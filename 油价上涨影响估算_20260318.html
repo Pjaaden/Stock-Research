@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 伊朗战争油价冲击分析 v4</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #f6f5f2;
+  --bg2:     #ffffff;
+  --bg3:     #f0eeea;
+  --bg4:     #e8e5e0;
+  --border:  #dddad4;
+  --border2: #c8c4bc;
+  --text:    #181714;
+  --muted:   #6a6760;
+  --dim:     #9e9b94;
+
+  --red:     #c0210e;
+  --red-bg:  #fff5f4;
+  --red-lt:  #fca99e;
+
+  --amber:   #b05c00;
+  --amber-bg:#fffaf0;
+  --amber-lt:#fcd07a;
+
+  --green:   #1a6e3c;
+  --green-bg:#f2fbf5;
+  --green-lt:#7dd3a0;
+
+  --blue:    #1a4fa0;
+  --blue-bg: #f0f5ff;
+  --blue-lt: #93b8f0;
+
+  --purple:  #6b30a8;
+  --purple-bg:#f7f3ff;
+  --purple-lt:#c4a8f0;
+
+  --oil-pre: #1a6e3c;   /* ~$70 pre-war */
+  --oil-now: #c0210e;   /* ~$103 current */
+  --oil-risk:#7c1a00;   /* ~$120 risk */
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans SC', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ─── HEADER ─── */
+header {
+  background: var(--bg2);
+  border-bottom: 2px solid var(--red);
+  padding: 26px 48px 20px;
+}
+
+.h-alert {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--red-bg);
+  border: 1px solid var(--red-lt);
+  padding: 4px 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.h-dot-pulse {
+  width: 7px; height: 7px;
+  background: var(--red);
+  border-radius: 50%;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+
+header h1 em { color: var(--red); font-style: normal; }
+
+.h-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 18px;
+}
+
+/* oil price ticker */
+.price-strip {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  width: fit-content;
+}
+
+.price-item {
+  padding: 9px 20px;
+  border-right: 1px solid var(--border);
+}
+.price-item:last-child { border-right: none; }
+
+.price-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 3px;
+}
+
+.price-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.price-change {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  margin-top: 2px;
+  letter-spacing: 0.5px;
+}
+
+/* ─── SECTION SYSTEM ─── */
+main { padding: 0 48px 48px; }
+
+.sec {
+  margin-top: 32px;
+}
+
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.sec-num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  border-right: 1px solid var(--border);
+  padding-right: 10px;
+}
+
+.sec-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.sec-note {
+  margin-left: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--dim);
+}
+
+/* ─── OIL TIMELINE ─── */
+.timeline {
+  display: flex;
+  gap: 0;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.tl-item {
+  flex: 1;
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.tl-item:last-child { border-right: none; }
+
+.tl-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.tl-price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.tl-event {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.tl-bar {
+  height: 3px;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 2px;
+}
+
+/* ─── COST TRANSMISSION DIAGRAM ─── */
+.chain-wrap {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.chain-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.chain-flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.chain-node {
+  flex: 1;
+  min-width: 140px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+}
+
+.chain-node-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.chain-node-item {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.4;
+  margin-bottom: 2px;
+}
+
+.chain-node-sub {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.chain-arrow {
+  font-size: 18px;
+  color: var(--red);
+  padding: 0 6px;
+  flex-shrink: 0;
+  font-weight: 300;
+}
+
+/* ─── COST IMPACT TABLE ─── */
+.impact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.impact-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-left: 3px solid;
+  padding: 14px 16px;
+}
+
+.ic-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.ic-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.ic-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.ic-body strong { color: var(--text); font-weight: 600; }
+.ic-body .num { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+
+/* ─── QUANTITATIVE IMPACT TABLE ─── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  font-size: 12px;
+}
+
+thead th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  padding: 9px 14px;
+  text-align: left;
+  background: var(--bg3);
+  border-bottom: 2px solid var(--border2);
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+tr:hover td { background: var(--bg3); }
+
+tr.stress-mid td { background: #fffaf0; }
+tr.stress-high td { background: #fff5f4; }
+
+tr.total-row td {
+  background: var(--bg3);
+  border-top: 2px solid var(--border2);
+  font-weight: 600;
+}
+
+.td-name { font-family: 'IBM Plex Sans SC', sans-serif; color: var(--text); }
+.td-pct  { color: var(--muted); }
+.td-base { color: var(--green); font-weight: 500; }
+.td-mid  { color: var(--amber); font-weight: 500; }
+.td-high { color: var(--red);   font-weight: 500; }
+
+/* ─── SCENARIO CARDS ─── */
+.scenario-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.sc-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.sc-header {
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sc-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.sc-price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sc-price-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.sc-body {
+  padding: 12px 16px;
+}
+
+.sc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 11.5px;
+}
+
+.sc-row:last-child { border-bottom: none; }
+
+.sc-row-label { color: var(--muted); font-family: 'IBM Plex Mono', monospace; font-size: 10px; }
+.sc-row-val   { font-family: 'IBM Plex Mono', monospace; font-weight: 500; }
+
+/* ─── SUPPLY CHAIN RISK ─── */
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.risk-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+
+.risk-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.risk-title {
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.risk-level {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  padding: 2px 7px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+}
+
+.rl-high   { background: var(--red-bg);    color: var(--red);    border: 1px solid var(--red-lt); }
+.rl-mid    { background: var(--amber-bg);  color: var(--amber);  border: 1px solid var(--amber-lt); }
+.rl-low    { background: var(--green-bg);  color: var(--green);  border: 1px solid var(--green-lt); }
+.rl-pos    { background: var(--blue-bg);   color: var(--blue);   border: 1px solid var(--blue-lt); }
+
+.risk-body {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.risk-body strong { color: var(--text); }
+
+/* ─── HEDGE NOTE ─── */
+.hedge-box {
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-lt);
+  border-left: 3px solid var(--blue);
+  padding: 14px 18px;
+}
+
+.hedge-title {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 8px;
+}
+
+.hedge-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.hedge-body strong { color: var(--text); }
+
+/* ─── CONCLUSION ─── */
+.conclusion {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--red);
+  padding: 18px 20px;
+  margin-top: 20px;
+}
+
+.conclusion-title {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.5px;
+}
+
+.verdict-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.verdict-item {
+  padding: 10px 12px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+}
+
+.verdict-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.verdict-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.verdict-sub { font-size: 10px; color: var(--muted); }
+
+.disclaimer {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9.5px;
+  color: var(--dim);
+  line-height: 1.8;
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 14px 48px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 0.8px;
+}
+
+/* util */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.mt8 { margin-top: 8px; }
+.mt12 { margin-top: 12px; }
+.fw6 { font-weight: 600; }
+.c-red { color: var(--red); }
+.c-amber { color: var(--amber); }
+.c-green { color: var(--green); }
+.c-blue { color: var(--blue); }
+.c-muted { color: var(--muted); }
+.mono { font-family: 'IBM Plex Mono', monospace; }
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header>
+  <div class="h-alert">
+    <div class="h-dot-pulse"></div>
+    实时更新 · 第17天 · 2026.03.17
+  </div>
+  <h1>赛轮轮胎（601058）<em>油价冲击影响评估</em></h1>
+  <div class="h-sub">SAILUN GROUP · OIL PRICE SHOCK ANALYSIS · IRAN WAR DAY 17 · UPDATED 2026.03.17</div>
+  <div class="price-strip">
+    <div class="price-item">
+      <div class="price-label">Brent 原油（战前基准）</div>
+      <div class="price-val c-green">~$70</div>
+      <div class="price-change c-muted">2026年2月28日前水平</div>
+    </div>
+    <div class="price-item" style="background:var(--red-bg);border-right:1px solid var(--red-lt)">
+      <div class="price-label" style="color:var(--red)">▶ Brent 期货（今日）</div>
+      <div class="price-val c-red">$102.92</div>
+      <div class="price-change c-red">盘中区间 $100.75–103.21 · 3月17日</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">WTI 原油（今日）</div>
+      <div class="price-val c-red">$95.03</div>
+      <div class="price-change c-red">+2.78% · 3月17日</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">战争期间 Brent 峰值</div>
+      <div class="price-val c-amber">$119.50</div>
+      <div class="price-change c-amber">52周最高 · 3月8–9日触及</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">EIA 未来2个月预测</div>
+      <div class="price-val c-amber">$95+</div>
+      <div class="price-change c-amber">Q3回落$80，年底约$70</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">霍尔木兹海峡</div>
+      <div class="price-val" style="font-size:14px;color:var(--red)">实质封锁</div>
+      <div class="price-change c-red">海湾出口较战前↓60%+</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">伊朗立场</div>
+      <div class="price-val" style="font-size:13px;color:var(--red)">拒绝停火</div>
+      <div class="price-change c-red">外长：战争"必须以胜利告终"</div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ─── §1 油价事件时间线 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">国际油价事件时间线</div>
+    <div class="sec-note">Operation Epic Fury · 2026.02.28 起</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2026年2月28日前</div>
+      <div class="tl-price c-green">~$70</div>
+      <div class="tl-event">战前基准。全球供应充裕，市场宽松；赛轮成本处于可控区间</div>
+      <div class="tl-bar" style="background:var(--green);width:59%"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">3月1日（D+1）</div>
+      <div class="tl-price" style="color:#e05a00">~$77–82</div>
+      <div class="tl-event">美以空袭伊朗首日，Brent单日涨6.2%，盘中触$82，随后回落</div>
+      <div class="tl-bar" style="background:#e05a00;width:69%"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">3月8–9日（D+8/9）</div>
+      <div class="tl-price c-red">$100–119</div>
+      <div class="tl-event">价格盘中触及$119.50（52周最高）。伊拉克/科威特产量削减670万桶/天，IEA宣布史上最大规模释储4亿桶</div>
+      <div class="tl-bar" style="background:var(--red);width:100%"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">3月10–13日（D+10–13）</div>
+      <div class="tl-price c-red">$94–103</div>
+      <div class="tl-event">价格高位震荡。EIA发布预测（3月10日）：未来2月维持$95+；新最高领袖发表声明继续封锁霍尔木兹</div>
+      <div class="tl-bar" style="background:var(--red);width:87%"></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">3月16日（D+16）</div>
+      <div class="tl-price c-red">~$103</div>
+      <div class="tl-event">首艘非伊朗货船AIS开启下通过霍尔木兹，显示有限疏通信号；伊朗外长明确拒绝停火；以色列开始黎巴嫩有限地面行动；欧盟拒绝扩展海峡海军行动</div>
+      <div class="tl-bar" style="background:var(--red);width:87%"></div>
+    </div>
+    <div class="tl-item" style="background:var(--red-bg);border:1px solid var(--red-lt)">
+      <div class="tl-date">▶ 3月17日（今日·D+17）</div>
+      <div class="tl-price c-red">$102.92</div>
+      <div class="tl-event">Brent期货 $102.92，盘中区间$100.75–103.21；WTI $95.03。霍尔木兹仍实质封锁，海湾石油出口较战前下降60%+；Trump称美军"即将"护航；未见停战迹象</div>
+      <div class="tl-bar" style="background:var(--red);width:87%;background:linear-gradient(90deg,var(--red),#7c0000)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §1b 最新战情摘要（3月17日更新） ─── -->
+<div class="sec" style="margin-top:14px">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--red);padding:14px 20px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px">🔴 战情最新摘要 · 第17天 · 2026.03.17</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+      <div style="background:var(--bg3);padding:10px 12px;border:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:600;margin-bottom:5px">霍尔木兹现状</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.65">
+          海峡仍实质封锁。<strong style="color:var(--text)">3月16日首艘非伊朗货船开启AIS通行</strong>，仅为孤立案例，整体船运仍陷入停滞。Lloyd's List估计即使有护航，也仅能恢复约10%的失去流量。海湾石油出口较战前<strong style="color:var(--red)">下降60%以上</strong>。
+        </div>
+      </div>
+      <div style="background:var(--bg3);padding:10px 12px;border:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:600;margin-bottom:5px">外交与停火前景</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.65">
+          <strong style="color:var(--red)">伊朗拒绝停火</strong>：外长明确表示"从未要求停火，也从未寻求谈判"；伊朗议会议长称"战斗到胜利"。Trump表示"条件尚不成熟"，称不确定新最高领袖是否仍在世。<strong style="color:var(--text)">短期内停战概率极低。</strong>
+        </div>
+      </div>
+      <div style="background:var(--bg3);padding:10px 12px;border:1px solid var(--border)">
+        <div style="font-size:11px;font-weight:600;margin-bottom:5px">冲突扩大化风险</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.65">
+          伊朗已向卡塔尔、迪拜、科威特、沙特、巴格达发射无人机/导弹；以色列启动黎巴嫩有限地面行动；美军空袭伊朗哈尔克岛（石油枢纽）。<strong style="color:var(--red)">地区扩大化风险上升</strong>，欧盟、日本、澳大利亚均拒绝向霍尔木兹派遣军舰。
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:var(--amber-bg);border:1px solid var(--amber-lt);padding:8px 12px;font-size:11px;color:var(--muted);line-height:1.6">
+        <strong style="color:var(--amber)">⚠ 对赛轮核心影响：</strong>伊朗自身石油出口通过霍尔木兹仍正常（中国进口量甚至上升），但<strong style="color:var(--text)">海湾产油国（沙特/科威特/伊拉克/UAE）出口受阻</strong>才是推高全球油价的主因。赛轮越南/柬埔寨产品出口欧洲的海运航线不直接经过霍尔木兹，但运费因全球油价和绕行效应上涨仍构成压力。
+      </div>
+      <div style="background:var(--green-bg);border:1px solid var(--green-lt);padding:8px 12px;font-size:11px;color:var(--muted);line-height:1.6">
+        <strong style="color:var(--green)">✓ 中国原油保供相对稳定：</strong>中国是赛轮国内基地合成橡胶的原料支撑来源。根据伊朗国际报道，伊朗明确表示霍尔木兹"仅对敌对国封锁"，中国作为最大进口国，3月伊朗对华原油出口反而上升至125万桶/天以上，一定程度上缓解了国内石油化工原料断供风险。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §2 油价→成本传导链 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">油价向轮胎成本的传导机制</div>
+    <div class="sec-note">赛轮原材料占营业成本 &gt;75%</div>
+  </div>
+
+  <div class="chain-wrap">
+    <div class="chain-title">OIL PRICE → TIRE PRODUCTION COST · 传导路径</div>
+    <div class="chain-flow">
+      <div class="chain-node" style="border-top:2px solid var(--red)">
+        <div class="chain-node-label">① 原油价格</div>
+        <div class="chain-node-item">Brent $103</div>
+        <div class="chain-node-item">战前 $70</div>
+        <div class="chain-node-sub">+47% 涨幅<br>霍尔木兹封锁持续</div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top:2px solid #e07000">
+        <div class="chain-node-label">② 合成橡胶</div>
+        <div class="chain-node-item">丁苯橡胶 (SBR)</div>
+        <div class="chain-node-item">顺丁橡胶 (BR)</div>
+        <div class="chain-node-sub">直接以原油为原料<br>油价与胶价强联动<br>半钢胎用量约13–26%</div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top:2px solid #c07000">
+        <div class="chain-node-label">③ 炭黑</div>
+        <div class="chain-node-item">全钢胎占比 20.5%</div>
+        <div class="chain-node-item">半钢胎占比 ~14%</div>
+        <div class="chain-node-sub">以石油馏分为原料<br>与油价联动显著<br>已于2025年2月快速反弹</div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top:2px solid #a06000">
+        <div class="chain-node-label">④ 化工助剂</div>
+        <div class="chain-node-item">硫化剂、防老剂</div>
+        <div class="chain-node-item">石油基助剂</div>
+        <div class="chain-node-sub">石油化工衍生品<br>占原材料成本约6–8%<br>滞后传导约1–2月</div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top:2px solid #808080">
+        <div class="chain-node-label">⑤ 能源/运输</div>
+        <div class="chain-node-item">工厂用电/天然气</div>
+        <div class="chain-node-item">物流/海运成本</div>
+        <div class="chain-node-sub">能源价格同步上涨<br>海运费因绕行上升<br>霍尔木兹封锁影响</div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top:2px solid var(--red);background:var(--red-bg)">
+        <div class="chain-node-label">⑥ 轮胎综合成本</div>
+        <div class="chain-node-item c-red fw6">成本压力显著上升</div>
+        <div class="chain-node-sub">原材料占成本>75%<br>石油相关原料占比<br>约35–45%（估算）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- cost composition reference -->
+  <div class="mt8 grid2">
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:14px 16px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px">全钢胎原材料成本构成（参考）</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">天然橡胶</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:32.5%;background:var(--green-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">32.5%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">非油价直接</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">炭黑</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:20.5%;background:var(--red-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">20.5%</div>
+          <div style="font-size:9px;color:var(--red);width:60px">⚠ 石油衍生</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">钢丝帘线</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:17.4%;background:var(--blue-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">17.4%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">间接影响</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">合成橡胶</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:13.2%;background:var(--red-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">13.2%</div>
+          <div style="font-size:9px;color:var(--red);width:60px">⚠ 石油衍生</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">其他助剂</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:16.5%;background:var(--border2)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">16.5%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">部分联动</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);border-top:1px solid var(--border);padding-top:6px">
+        石油相关（炭黑+合成橡胶+部分助剂）合计约 <strong style="color:var(--red)">33–40%</strong> · 数据来源：卓创资讯/行业报告
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:14px 16px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px">半钢胎原材料成本构成（参考）</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">天然橡胶</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:19%;background:var(--green-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">~19%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">非油价直接</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">合成橡胶</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:24%;background:var(--red-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">~24%</div>
+          <div style="font-size:9px;color:var(--red);width:60px">⚠ 石油衍生</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">炭黑</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:14%;background:var(--red-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">~14%</div>
+          <div style="font-size:9px;color:var(--red);width:60px">⚠ 石油衍生</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">金属/织物</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:29%;background:var(--blue-lt)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">~29%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">间接影响</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="font-size:10px;color:var(--muted);width:80px;font-family:'IBM Plex Mono',monospace">其他</div>
+          <div style="flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden"><div style="height:100%;width:14%;background:var(--border2)"></div></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;width:50px;text-align:right">~14%</div>
+          <div style="font-size:9px;color:var(--dim);width:60px">部分联动</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);border-top:1px solid var(--border);padding-top:6px">
+        石油相关（合成橡胶+炭黑+部分其他）合计约 <strong style="color:var(--red)">38–45%</strong> · 数据参考：固特异/行业协会披露
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §3 三情景量化测算 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">三情景量化成本与业绩压力测算</div>
+    <div class="sec-note">基于赛轮2025年全年营收~370亿元 · 毛利率约20%</div>
+  </div>
+
+  <!-- EIA forward curve callout -->
+  <div style="background:var(--blue-bg);border:1px solid var(--blue-lt);border-left:3px solid var(--blue);padding:12px 16px;margin-bottom:12px;display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+    <div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">📊 EIA 最新预测（2026.03.10发布）</div>
+      <div style="display:flex;gap:24px;align-items:center">
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500;color:var(--red)">$95+</div><div style="font-size:10px;color:var(--muted)">未来2个月均价</div></div>
+        <div style="color:var(--border2)">→</div>
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500;color:var(--amber)">$80</div><div style="font-size:10px;color:var(--muted)">Q3 2026回落目标</div></div>
+        <div style="color:var(--border2)">→</div>
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500;color:var(--green)">$70</div><div style="font-size:10px;color:var(--muted)">2026年底预期</div></div>
+        <div style="color:var(--border2)">→</div>
+        <div><div style="font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:500;color:var(--green)">$64</div><div style="font-size:10px;color:var(--muted)">2027年均价预期</div></div>
+      </div>
+    </div>
+    <div style="border-left:1px solid var(--blue-lt);padding-left:16px;font-size:11px;color:var(--muted);line-height:1.7;max-width:360px">
+      EIA假设霍尔木兹将逐步恢复通行，对应<strong style="color:var(--text)">情景一偏乐观路径</strong>。但当前伊朗明确拒绝停火，EIA自承预测"高度依赖冲突时长假设"。若对峙延续，实际价格将显著高于此预测。
+    </div>
+  </div>
+
+  <!-- scenario cards -->
+  <div class="scenario-row">
+    <!-- S1: Base -->
+    <div class="sc-card" style="border-top:3px solid var(--green)">
+      <div class="sc-header" style="background:var(--green-bg)">
+        <div class="sc-tag c-green">情景一：冲突趋缓（EIA基准路径）</div>
+        <div class="sc-price c-green">$80–90</div>
+        <div class="sc-price-label">EIA预测Q3回落 · 霍尔木兹逐步重开</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-row">
+          <span class="sc-row-label">Brent均价假设</span>
+          <span class="sc-row-val">$80–90/桶</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">较战前涨幅</span>
+          <span class="sc-row-val c-amber">+14–29%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">合成橡胶成本增幅</span>
+          <span class="sc-row-val c-amber">+10–20%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">炭黑成本增幅</span>
+          <span class="sc-row-val c-amber">+8–15%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">综合成本增幅</span>
+          <span class="sc-row-val c-amber">+4–8%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">毛利率影响</span>
+          <span class="sc-row-val c-amber">−2–4 ppt</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">年度毛利额影响</span>
+          <span class="sc-row-val c-amber">−4–10亿元</span>
+        </div>
+        <div class="sc-row" style="border-bottom:none">
+          <span class="sc-row-label">归母净利润影响</span>
+          <span class="sc-row-val c-amber">−3–7亿元</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S2: Mid -->
+    <div class="sc-card" style="border-top:3px solid var(--amber)">
+      <div class="sc-header" style="background:var(--amber-bg)">
+        <div class="sc-tag c-amber">情景二：持续对峙 ⬅ 当前已进入</div>
+        <div class="sc-price c-amber">$95–110</div>
+        <div class="sc-price-label">今日 $102.92 · 伊朗拒绝停火 · D+17</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-row">
+          <span class="sc-row-label">Brent均价假设</span>
+          <span class="sc-row-val">$100–110/桶</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">较战前涨幅</span>
+          <span class="sc-row-val c-red">+43–57%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">合成橡胶成本增幅</span>
+          <span class="sc-row-val c-red">+25–40%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">炭黑成本增幅</span>
+          <span class="sc-row-val c-red">+20–35%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">综合成本增幅</span>
+          <span class="sc-row-val c-red">+10–18%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">毛利率影响</span>
+          <span class="sc-row-val c-red">−5–9 ppt</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">年度毛利额影响</span>
+          <span class="sc-row-val c-red">−10–25亿元</span>
+        </div>
+        <div class="sc-row" style="border-bottom:none">
+          <span class="sc-row-label">归母净利润影响</span>
+          <span class="sc-row-val c-red">−8–18亿元</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- S3: Severe -->
+    <div class="sc-card" style="border-top:3px solid #7c0000">
+      <div class="sc-header" style="background:#fff0f0">
+        <div class="sc-tag" style="color:#7c0000">情景三：深度危机（悲观）</div>
+        <div class="sc-price" style="color:#7c0000">$120–140</div>
+        <div class="sc-price-label">霍尔木兹长期封闭 · 冲突扩大化</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-row">
+          <span class="sc-row-label">Brent均价假设</span>
+          <span class="sc-row-val">$120–140/桶</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">较战前涨幅</span>
+          <span class="sc-row-val" style="color:#7c0000">+71–100%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">合成橡胶成本增幅</span>
+          <span class="sc-row-val" style="color:#7c0000">+50–80%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">炭黑成本增幅</span>
+          <span class="sc-row-val" style="color:#7c0000">+40–70%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">综合成本增幅</span>
+          <span class="sc-row-val" style="color:#7c0000">+18–28%</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">毛利率影响</span>
+          <span class="sc-row-val" style="color:#7c0000">−9–14 ppt</span>
+        </div>
+        <div class="sc-row">
+          <span class="sc-row-label">年度毛利额影响</span>
+          <span class="sc-row-val" style="color:#7c0000">−25–40亿元</span>
+        </div>
+        <div class="sc-row" style="border-bottom:none">
+          <span class="sc-row-label">归母净利润影响</span>
+          <span class="sc-row-val" style="color:#7c0000">−18–30亿元</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- methodology note -->
+  <div style="margin-top:8px;background:var(--bg3);border:1px solid var(--border);padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--muted);line-height:1.8">
+    <strong style="color:var(--text)">测算方法：</strong>
+    合成橡胶与炭黑约与原油价格呈0.6–0.8系数联动（行业历史数据）；
+    石油相关原料（合成橡胶+炭黑+石油助剂）占全钢胎原料成本约33–40%，占半钢胎约38–45%；
+    原材料占营业成本>75%，综合成本增幅 = 油价涨幅 × 石油相关原料占比 × 联动系数；
+    毛利率影响 = 综合成本增幅 × 成本/收入比（约80%）；
+    赛轮2025Q1-3毛利率约20%（推算），净利率约10.4%（28.72亿/275.87亿×4/3测算）。<br>
+    <strong style="color:var(--blue)">▸ EIA基准路径：</strong>Q3回落$80、年底$70，全年加权均价约$85–88，对应情景一/二之间。<strong style="color:var(--red)">▸ 当前路径：</strong>今日$102.92，伊朗拒停火，若上半年均维持$95–105，全年加权均价仍高达$87–92，压力持续至三季度。
+    <span style="color:var(--dim)">注：天然橡胶未直接列入石油联动，但战争通胀预期可能间接推升胶价；中国对伊朗原油进口量3月上升，一定程度缓解国内石化原料紧张。</span>
+  </div>
+</div>
+
+<!-- ─── §4 多维度风险分析 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">多维度风险与机遇分析</div>
+  </div>
+
+  <div class="risk-grid">
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-title">合成橡胶成本</div>
+        <div class="risk-level rl-high">高风险</div>
+      </div>
+      <div class="risk-body">
+        合成橡胶直接以石油馏分（丁二烯等）为原料，<strong>与油价联动最直接</strong>。半钢胎合成橡胶用量占比~24%，全钢胎约13%。油价+47%情景下，合成橡胶成本预计上涨<strong>25–40%</strong>，对半钢胎成本压力显著高于全钢胎。赛轮半钢胎产能1.12亿条（规划），受影响体量最大。
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-title">炭黑成本</div>
+        <div class="risk-level rl-high">高风险</div>
+      </div>
+      <div class="risk-body">
+        炭黑以石油馏分油为原料，<strong>全钢胎用量占比高达20.5%</strong>。2025年2月炭黑价格已快速反弹（已形成高位），此次油价再涨预计进一步推高炭黑成本<strong>20–35%</strong>。全钢胎产能3,170万条（规划），炭黑成本压力集中体现在全钢产品线，对OTR胎影响尤为突出。
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-title">海运/物流成本</div>
+        <div class="risk-level rl-mid">中风险</div>
+      </div>
+      <div class="risk-body">
+        霍尔木兹海峡封锁迫使油轮绕行好望角，全球航运成本上升。赛轮海外基地（越南/柬埔寨/印尼/墨西哥）出口欧美的<strong>海运运费将显著上涨</strong>；印尼基地原材料进口成本（包括化工品）也受影响。越南/柬埔寨→欧盟航线绕行影响相对有限，但中东过境的原材料运输受冲击。
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-title">终端需求抑制</div>
+        <div class="risk-level rl-mid">中风险</div>
+      </div>
+      <div class="risk-body">
+        Oxford Economics预测：油价$100维持2月将拖累全球GDP增速，欧洲/日本面临衰退风险。汽车销量与轮胎替换需求将受到<strong>宏观下行压力抑制</strong>。但替换胎占赛轮销售主体（替换市场约占75%），需求韧性相对较强；配套胎（OEM）受新车销量下滑影响更直接，尤其是欧美市场。
+      </div>
+    </div>
+
+    <div class="risk-card">
+      <div class="risk-head">
+        <div class="risk-title">涨价能力受限</div>
+        <div class="risk-level rl-mid">中风险</div>
+      </div>
+      <div class="risk-body">
+        历史经验显示，<strong>国内轮胎企业行业议价能力较弱</strong>，原材料价格快速上涨时，成本向下游传导不畅。赛轮已于2024年10月启动部分产品涨价，但终端消费市场疲软时涨价落地率有限（历史案例：企业发布2–3%涨价函，实际落地往往打折）。高端配套（如捷达VS8独家供应）定价权相对较强。
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left:3px solid var(--blue)">
+      <div class="risk-head">
+        <div class="risk-title">天然橡胶成本</div>
+        <div class="risk-level rl-low">相对利好</div>
+      </div>
+      <div class="risk-body">
+        天然橡胶与石油无直接原料关系，<strong>不受油价直接驱动</strong>。印尼是全球第二大天然橡胶产国，赛轮印尼基地改扩建后可就地采购，降低原料采购成本。东南亚多个基地（越南/柬埔寨/印尼）靠近天然橡胶产区，<strong>构建了天然橡胶的成本缓冲</strong>，有效对冲部分油价冲击。
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left:3px solid var(--blue)">
+      <div class="risk-head">
+        <div class="risk-title">外汇套保机制</div>
+        <div class="risk-level rl-pos">对冲工具</div>
+      </div>
+      <div class="risk-body">
+        赛轮已长期开展<strong>外汇套期保值业务</strong>（2月27日投关记录明确表述），坚持风险中性原则，采用远期套保匹配应收账款账期。伊朗战争导致美元指数波动、各国货币承压，赛轮的汇率对冲机制可部分减轻海外营收折算损失和原材料美元计价采购成本上升。但套保比例与期限有限，无法完全覆盖极端波动。
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left:3px solid var(--blue)">
+      <div class="risk-head">
+        <div class="risk-title">欧美市场贸易壁垒</div>
+        <div class="risk-level rl-pos">战略机遇</div>
+      </div>
+      <div class="risk-body">
+        油价高涨背景下，欧美消费者<strong>更倾向购买高性价比替代品</strong>，中国轮胎品牌（性价比优势显著）可能受益于替换需求结构性转移。同时，赛轮越南/柬埔寨/墨西哥基地在贸易壁垒下正承接大量欧盟/北美订单，油价冲击对赛轮竞争对手（欧洲本土轮胎厂）的能源成本冲击更为直接，<strong>相对竞争力反而可能改善</strong>。
+      </div>
+    </div>
+
+    <div class="risk-card" style="border-left:3px solid var(--red)">
+      <div class="risk-head">
+        <div class="risk-title">新基地爬坡受阻</div>
+        <div class="risk-level rl-high">高风险</div>
+      </div>
+      <div class="risk-body">
+        墨西哥（半钢600万条）、沈阳新和平（全钢330万条）、印尼扩建均处于<strong>爬坡关键期</strong>——此阶段成本高、利用率低，对油价敏感性更高。成本冲击叠加需求端承压，可能导致爬坡周期延长、达产时间推后，进而延迟+65亿增量营收的实现。埃及基地（建设中，总投资2.9亿美元）建设成本也因能源与材料价格上涨而面临超支压力。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §4b 伊朗折价原油缓解效应量化 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04b</div>
+    <div class="sec-title">伊朗折价原油：对成本冲击的缓解效应量化</div>
+    <div class="sec-note">数据来源：Kpler · Iran International · Bloomberg · Kayrros · Hydrocarbon Processing</div>
+  </div>
+
+  <!-- KPI strip -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px">
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">伊朗对华出口量（3月）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--text);line-height:1">~125万桶/天</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">Kpler / Iran International</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">战时伊朗折价（Iranian Light）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--red);line-height:1">Brent −$10–11</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">Bloomberg / Kpler senior analyst</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">实际折价幅度（vs. $103 Brent）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--amber);line-height:1">−10.7%</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">$11 ÷ $103 = 10.7%</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">中国战略原油储备（3月2日）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--text);line-height:1">13.9亿桶 ≈ 120天</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">Kayrros地理空间分析</div>
+    </div>
+  </div>
+
+  <!-- charts row -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">折价对比：原油采购价格</div>
+      <div style="font-size:11px;color:var(--dim);margin-bottom:12px">战前基准 / 当前Brent / 伊朗折价后实际到岸（$/桶）</div>
+      <div style="display:flex;align-items:flex-end;gap:12px;height:120px;padding-bottom:4px">
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--green)">$70</div>
+          <div style="width:100%;background:var(--green);border-radius:2px 2px 0 0" title="$70 战前基准" style="height:68%"></div>
+          <div style="height:54px;width:100%;background:var(--green);border-radius:2px 2px 0 0"></div>
+          <div style="font-size:10px;color:var(--muted);text-align:center">战前基准</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--red)">$103</div>
+          <div style="height:79px;width:100%;background:var(--red);border-radius:2px 2px 0 0"></div>
+          <div style="font-size:10px;color:var(--muted);text-align:center">当前Brent</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--amber)">$92</div>
+          <div style="height:71px;width:100%;background:var(--amber);border-radius:2px 2px 0 0"></div>
+          <div style="font-size:10px;color:var(--muted);text-align:center">伊朗折价</div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--dim)">~$73</div>
+          <div style="height:56px;width:100%;background:var(--dim);border-radius:2px 2px 0 0"></div>
+          <div style="font-size:10px;color:var(--muted);text-align:center">茶壶预购<br>库存成本</div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);border-top:1px solid var(--border);padding-top:6px">
+        茶壶炼厂战前预购库存约可维持1–1.5个月 · 来源：Hydrocarbon Processing / 山东贸易商
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">折价传导后：合成橡胶及赛轮成本压力对比</div>
+      <div style="font-size:11px;color:var(--dim);margin-bottom:10px">有/无伊朗折价两种情景下的成本涨幅（%）</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px"><span>半钢胎合成橡胶成本增幅（全Brent $103）</span><span style="color:var(--red);font-family:'IBM Plex Mono',monospace">+40%</span></div>
+          <div style="height:6px;background:var(--bg4);border-radius:3px"><div style="height:100%;width:80%;background:var(--red);border-radius:3px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px"><span>半钢胎合成橡胶成本增幅（伊朗折价后 $92）</span><span style="color:var(--amber);font-family:'IBM Plex Mono',monospace">+31%</span></div>
+          <div style="height:6px;background:var(--bg4);border-radius:3px"><div style="height:100%;width:62%;background:var(--amber);border-radius:3px"></div></div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:2px 0"></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px"><span>赛轮半钢胎综合成本增幅（无折价）</span><span style="color:var(--red);font-family:'IBM Plex Mono',monospace">+16%</span></div>
+          <div style="height:6px;background:var(--bg4);border-radius:3px"><div style="height:100%;width:32%;background:var(--red);border-radius:3px"></div></div>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px"><span>赛轮半钢胎综合成本增幅（有折价缓冲）</span><span style="color:var(--green);font-family:'IBM Plex Mono',monospace">+14%</span></div>
+          <div style="height:6px;background:var(--bg4);border-radius:3px"><div style="height:100%;width:28%;background:var(--green);border-radius:3px"></div></div>
+        </div>
+        <div style="height:1px;background:var(--border);margin:2px 0"></div>
+        <div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-bottom:3px"><span>折价带来的综合成本缓冲</span><span style="color:var(--blue);font-family:'IBM Plex Mono',monospace;font-weight:500">≈−1.5–2 ppt</span></div>
+          <div style="height:6px;background:var(--bg4);border-radius:3px"><div style="height:100%;width:10%;background:var(--blue);border-radius:3px"></div></div>
+        </div>
+      </div>
+      <div style="margin-top:8px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);border-top:1px solid var(--border);padding-top:6px">
+        测算：10.7% 折价 × 0.6–0.8联动系数 × 24%合成橡胶占比 × 75%原料/成本比
+      </div>
+    </div>
+  </div>
+
+  <!-- quantification table -->
+  <table style="width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:11.5px;margin-bottom:10px">
+    <thead>
+      <tr style="background:var(--bg3)">
+        <th style="padding:9px 14px;text-align:left;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border2)">量化维度</th>
+        <th style="padding:9px 14px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border2)">数值</th>
+        <th style="padding:9px 14px;text-align:left;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;border-bottom:2px solid var(--border2)">依据 / 来源</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">伊朗对华出口量（2025年均值）</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">~138万桶/天</td>
+        <td style="padding:9px 14px;color:var(--muted)">Kpler · 占伊朗总出口80%+</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">伊朗对华出口量（2026年3月）</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">~125万桶/天（装船），中国到岸中</td>
+        <td style="padding:9px 14px;color:var(--muted)">Kpler数据 · Iran International（2026.03.12）</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">战时伊朗原油折价（Iranian Light）</td>
+        <td style="padding:9px 14px;text-align:right;font-weight:500;color:var(--red)">Brent −$10–11/桶</td>
+        <td style="padding:9px 14px;color:var(--muted)">Bloomberg · Kpler senior analyst Xu Muyu</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">实际到岸价（vs. Brent $103）</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">~$92/桶</td>
+        <td style="padding:9px 14px;color:var(--muted)">$103 − $11 = $92；折价幅度 −10.7%</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">合成橡胶与油价历史弹性系数</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">0.6–0.8</td>
+        <td style="padding:9px 14px;color:var(--muted)">行业历史联动数据（丁二烯/SBR）</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">折价对合成橡胶成本压缩（直接）</td>
+        <td style="padding:9px 14px;text-align:right;font-weight:500;color:var(--amber)">−6.4–8.5%</td>
+        <td style="padding:9px 14px;color:var(--muted)">10.7% × 0.6–0.8 = 6.4%–8.5%</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">合成橡胶占半钢胎原料成本</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">~24%</td>
+        <td style="padding:9px 14px;color:var(--muted)">固特异 / 美国轮胎协会披露</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">折价对赛轮半钢胎综合成本缓冲</td>
+        <td style="padding:9px 14px;text-align:right;font-weight:500;color:var(--green)">约 −1.5–2.0 ppt</td>
+        <td style="padding:9px 14px;color:var(--muted)">6.4–8.5% × 24% × 75% 原料/成本比</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">茶壶炼厂战前低价库存可用期</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">约1–1.5个月</td>
+        <td style="padding:9px 14px;color:var(--muted)">Hydrocarbon Processing · 山东贸易商（2026.03）</td>
+      </tr>
+      <tr style="border-bottom:1px solid var(--border)">
+        <td style="padding:9px 14px;color:var(--text)">中国战略原油储备（3月2日）</td>
+        <td style="padding:9px 14px;text-align:right;font-weight:500;color:var(--text)">13.9亿桶 ≈ 120天净进口</td>
+        <td style="padding:9px 14px;color:var(--muted)">Kayrros地理空间分析 · Columbia CGEP（2026.03.02）</td>
+      </tr>
+      <tr>
+        <td style="padding:9px 14px;color:var(--text)">全球浮仓伊朗原油（亚洲海域）</td>
+        <td style="padding:9px 14px;text-align:right;color:var(--text)">4,600万桶以上</td>
+        <td style="padding:9px 14px;color:var(--muted)">Columbia CGEP · 另有部分在连云港/舟山保税库</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- conclusion box -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="background:var(--green-bg);border:1px solid var(--green-lt);border-left:3px solid var(--green);padding:14px 16px">
+      <div style="font-size:12px;font-weight:600;color:var(--green);margin-bottom:7px">✓ 缓解效应：真实但有限</div>
+      <div style="font-size:11.5px;color:var(--muted);line-height:1.7">
+        折价缓冲对赛轮半钢胎综合成本的直接减压约 <strong style="color:var(--text)">−1.5至2个百分点</strong>，可将情景二毛利率压缩幅度从 −5至9 ppt 改善为约 −4至7 ppt。若库存缓冲期叠加，前1–1.5个月的成本实际增幅将更低。中国战略储备13.9亿桶（120天）可在更长时间内维持稳定的石化原料供应，显著降低断供风险。
+      </div>
+    </div>
+    <div style="background:var(--amber-bg);border:1px solid var(--amber-lt);border-left:3px solid var(--amber);padding:14px 16px">
+      <div style="font-size:12px;font-weight:600;color:var(--amber);margin-bottom:7px">⚠ 两大限制因素</div>
+      <div style="font-size:11.5px;color:var(--muted);line-height:1.7">
+        <strong style="color:var(--text)">① 受益主体偏差：</strong>折价主要惠及山东"茶壶"独立炼厂（约占全国炼能25%），赛轮作为大型企业以市场价采购合成橡胶为主，与茶壶炼厂的成本联动有一定稀释，实际缓冲可能低于理论值。<br>
+        <strong style="color:var(--text)">② 库存窗口有限：</strong>茶壶炼厂战前预购库存仅维持约1–1.5个月。一旦库存耗尽且霍尔木兹仍封锁，新购批次将面临接近全市价的压力，缓冲效应将显著收窄。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §05 天然橡胶停割叠加：双重成本冲击 + 涨价传导 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">新增成本因子：天然橡胶停割叠加 · 轮胎涨价传导分析</div>
+    <div class="sec-note">来源：新浪财经 · 国信证券 · 华鑫期货 · 卓创资讯 · 2026年3月</div>
+  </div>
+
+  <!-- Natural rubber KPIs -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">天然橡胶当前价格（3月）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--red);line-height:1">17,000–18,000元/吨</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">2月24日触及18,000元高点 · 新浪财经</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">较2025年年末涨幅</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--red);line-height:1">+13–20%</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">2025年末约15,000元/吨 · 生意社</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">赛轮TBR涨价幅度（4月1日起）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--amber);line-height:1">+3–5%</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">3月12日官宣 · 新浪财经 · 赛轮公告</div>
+    </div>
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:12px 14px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:4px">行业跟进企业数量</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;color:var(--text);line-height:1">67家 · 74份函</div>
+      <div style="font-size:10px;color:var(--dim);margin-top:3px">截至3月16日 · 新浪财经统计</div>
+    </div>
+  </div>
+
+  <!-- §5a: 停割机制 + 价格驱动 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">天然橡胶停割周期机制</div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="min-width:72px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding-top:1px">11–12月</div>
+          <div style="flex:1">
+            <div style="height:5px;background:var(--red-lt);border-radius:2px;margin-bottom:3px"></div>
+            <div style="font-size:11px;color:var(--muted)">国内云南/海南产区全面停割，国内供应归零</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="min-width:72px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding-top:1px">1–3月</div>
+          <div style="flex:1">
+            <div style="height:5px;background:var(--red);border-radius:2px;margin-bottom:3px"></div>
+            <div style="font-size:11px;color:var(--muted)"><strong style="color:var(--text)">当前阶段：</strong>国内全面停割+东南亚主产区（泰国北部/越南）进入季节性减产，全球供应处于年度低谷；同期轮胎企业春节后开足马力备货，供需剪刀差扩大</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="min-width:72px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding-top:1px">4–5月</div>
+          <div style="flex:1">
+            <div style="height:5px;background:var(--amber);border-radius:2px;margin-bottom:3px"></div>
+            <div style="font-size:11px;color:var(--muted)">东南亚新割季开启，供应逐步恢复，价格压力理论上趋缓</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="min-width:72px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--dim);padding-top:1px">长期结构</div>
+          <div style="flex:1">
+            <div style="height:5px;background:var(--blue-lt);border-radius:2px;margin-bottom:3px"></div>
+            <div style="font-size:11px;color:var(--muted)">全球橡胶树老龄化（泰国35年以上仅5.2%但青壮年树放量后续乏力），2026年后供应增速骤降；国信证券判断价格中长期"易涨难跌"</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);line-height:1.7">
+        当前正处停割季末尾叠加地缘冲击的双重共振窗口，历史上罕见。华鑫期货年报预测2026年RU区间【14,000–18,000元/吨】，当前价格已在区间上沿。
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">天然橡胶对赛轮成本的量化影响</div>
+
+      <!-- NR price bar chart manual -->
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px">天然橡胶现货价格走势对比（元/吨）</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);width:56px">2025年5月低</div>
+            <div style="flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;width:75%;background:var(--green)"></div></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--green);width:70px;text-align:right">13,550</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);width:56px">2025年末</div>
+            <div style="flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;width:83%;background:var(--amber)"></div></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--amber);width:70px;text-align:right">15,000</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);width:56px">2026年3月</div>
+            <div style="flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;width:94%;background:var(--red)"></div></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--red);width:70px;text-align:right">17,000+</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);width:56px">2月24日峰值</div>
+            <div style="flex:1;height:5px;background:var(--bg4);border-radius:2px;overflow:hidden"><div style="height:100%;width:100%;background:var(--red)"></div></div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--red);width:70px;text-align:right">18,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- cost calc table -->
+      <div style="border:1px solid var(--border);border-radius:2px;overflow:hidden">
+        <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:10.5px">
+          <tr style="background:var(--bg3)">
+            <td style="padding:6px 10px;color:var(--muted);font-size:9px;letter-spacing:1px">测算项目</td>
+            <td style="padding:6px 10px;text-align:right;color:var(--muted);font-size:9px;letter-spacing:1px">全钢胎</td>
+            <td style="padding:6px 10px;text-align:right;color:var(--muted);font-size:9px;letter-spacing:1px">半钢胎</td>
+          </tr>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="padding:7px 10px;color:var(--text)">天然橡胶原料占比</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--text)">32.5%</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--text)">~19%</td>
+          </tr>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="padding:7px 10px;color:var(--text)">天然橡胶价格涨幅（vs. 2025年末）</td>
+            <td colspan="2" style="padding:7px 10px;text-align:right;color:var(--red);font-weight:500">+13–20%</td>
+          </tr>
+          <tr style="border-top:1px solid var(--border)">
+            <td style="padding:7px 10px;color:var(--text)">天然橡胶对综合原材料成本影响</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--amber)">+4.2–6.5%</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--amber)">+2.5–3.8%</td>
+          </tr>
+          <tr style="border-top:1px solid var(--border);background:var(--red-bg)">
+            <td style="padding:7px 10px;color:var(--text);font-weight:500">天然橡胶对赛轮综合成本增幅</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--red);font-weight:500">+3.2–4.9%</td>
+            <td style="padding:7px 10px;text-align:right;color:var(--red);font-weight:500">+1.9–2.9%</td>
+          </tr>
+        </table>
+      </div>
+      <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)">
+        测算：天然橡胶占比×涨幅×原料/成本比(75%)；天然橡胶与合成橡胶价差收窄，轮胎企业替代空间受限
+      </div>
+    </div>
+  </div>
+
+  <!-- combined cost pressure table -->
+  <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px;margin-bottom:12px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:12px;text-transform:uppercase">三重成本叠加：综合压力修订（纳入天然橡胶因子后）</div>
+    <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:11px">
+      <thead>
+        <tr style="background:var(--bg3)">
+          <th style="padding:8px 12px;text-align:left;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">成本因子</th>
+          <th style="padding:8px 12px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">价格涨幅</th>
+          <th style="padding:8px 12px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">半钢原料占比</th>
+          <th style="padding:8px 12px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">全钢原料占比</th>
+          <th style="padding:8px 12px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">对赛轮半钢综合成本增幅</th>
+          <th style="padding:8px 12px;text-align:right;font-size:9px;letter-spacing:1.5px;color:var(--muted);border-bottom:2px solid var(--border2)">对赛轮全钢综合成本增幅</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:8px 12px;color:var(--text)">🌿 天然橡胶（停割+地缘）</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+13–20%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">~19%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">32.5%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+1.9–2.9%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+3.2–4.9%</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:8px 12px;color:var(--text)">⚫ 合成橡胶（油价驱动）</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+25–40%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">~24%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">~13%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+4.5–7.2%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+2.4–3.9%</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:8px 12px;color:var(--text)">🖤 炭黑（油价+单月暴涨13%）</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+20–35%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">~14%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted)">20.5%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+2.1–3.7%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red)">+3.1–5.4%</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border)">
+          <td style="padding:8px 12px;color:var(--text)">🚢 物流/海运（绕行溢价）</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--amber)">+15–20%</td>
+          <td colspan="2" style="padding:8px 12px;text-align:right;color:var(--muted)">成本占比~3–5%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--amber)">+0.5–1.0%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--amber)">+0.5–1.0%</td>
+        </tr>
+        <tr style="background:var(--red-bg);border-top:2px solid var(--red-lt)">
+          <td style="padding:8px 12px;color:var(--red);font-weight:600">三重叠加综合成本增幅（修订后）</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);font-size:10px">—</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);font-size:10px">—</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--muted);font-size:10px">—</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-weight:600">+9–15%</td>
+          <td style="padding:8px 12px;text-align:right;color:var(--red);font-weight:600">+9–15%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:6px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);line-height:1.7">
+      注：此前仅考虑合成橡胶+炭黑（综合成本增幅约+10–18%），纳入天然橡胶停割因子后修订为+9–15%（半钢）/+9–15%（全钢），两类轮胎均受到实质性冲击。天然橡胶对全钢胎冲击更重（占比32.5%），合成橡胶对半钢胎冲击更重（占比24%）。
+    </div>
+  </div>
+
+  <!-- §5b: Pricing + demand impact -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">赛轮及行业涨价传导：成本端 → 销售端</div>
+
+      <!-- pricing timeline -->
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:12px">
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--bg3);border:1px solid var(--border)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);min-width:48px;padding-top:1px">2月17日</div>
+          <div style="font-size:11px;color:var(--muted)">行业首波：内胎/垫带价格上调<strong style="color:var(--text)"> +5%</strong>，不接受预付款</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--bg3);border:1px solid var(--border)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);min-width:48px;padding-top:1px">3月3日</div>
+          <div style="font-size:11px;color:var(--muted)">中策橡胶发布涨价函，3月16日起装载机轮胎上调</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--bg3);border:1px solid var(--border)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);min-width:48px;padding-top:1px">3月6日</div>
+          <div style="font-size:11px;color:var(--muted)">玲珑连发两函：TBR+PCR自4月1日起涨<strong style="color:var(--text)"> +3–5%</strong></div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--amber-bg);border:1px solid var(--amber-lt)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber);min-width:48px;padding-top:1px">3月12日</div>
+          <div style="font-size:11px;color:var(--muted)"><strong style="color:var(--amber)">赛轮集团官宣</strong>：自4月1日起TBR价格上调<strong style="color:var(--text)"> +3–5%</strong> · 与贵州、通用、风神等同日宣布</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:flex-start;padding:8px 10px;background:var(--red-bg);border:1px solid var(--red-lt)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);min-width:48px;padding-top:1px">3月16日</div>
+          <div style="font-size:11px;color:var(--muted)">行业涨价潮全面蔓延：<strong style="color:var(--red)">67家企业 · 74份函</strong>，固特异亦加入，涨幅2–10%</div>
+        </div>
+      </div>
+
+      <div style="padding:10px 12px;background:var(--green-bg);border:1px solid var(--green-lt);font-size:11.5px;color:var(--muted);line-height:1.7">
+        <strong style="color:var(--green)">涨价意义：</strong>此轮为<strong style="color:var(--text)">成本倒逼型</strong>集体行动，而非竞争性提价。67家同时宣涨意味着个别企业无需担忧"单独涨价失去市场份额"的顾虑，是行业少见的集体传导窗口，赛轮作为头部企业此次参与并<strong style="color:var(--text)">率先宣涨（3月12日）</strong>，显示成本压力已不可承受。
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-bottom:10px;text-transform:uppercase">销售端：涨价落地率与需求影响</div>
+
+      <div style="display:flex;flex-direction:column;gap:9px;margin-bottom:12px">
+        <div style="padding:10px 12px;background:var(--red-bg);border-left:3px solid var(--red)">
+          <div style="font-size:11px;font-weight:600;color:var(--red);margin-bottom:4px">⚠ 终端"量利双降"</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6">部分终端门店月销量同比下滑超20%；毛利普遍不足10%，部分规格跌破盈亏线。全钢胎库存周转天数突破45天警戒线。<br><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)">来源：新浪财经（2026.03.16）</span></div>
+        </div>
+        <div style="padding:10px 12px;background:var(--amber-bg);border-left:3px solid var(--amber)">
+          <div style="font-size:11px;font-weight:600;color:var(--amber);margin-bottom:4px">⚠ 涨价落地率存疑</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6">历史规律：企业发布3–5%涨价函，实际落地往往打折。经销商当前库存约3个月，渠道谨慎拿货，将进一步稀释涨价效果。中策明确表示"涨价幅度远低于成本上升"。<br><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)">来源：新浪财经 · 卓创资讯</span></div>
+        </div>
+        <div style="padding:10px 12px;background:var(--green-bg);border-left:3px solid var(--green)">
+          <div style="font-size:11px;font-weight:600;color:var(--green);margin-bottom:4px">✓ 工厂端订单"开门红"</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6">开工率高于历年同期均值（半钢74.84%、全钢62.44%），订单充沛。工厂繁忙与终端疲软之间形成"冰火两重天"，短期成本通过价格上调部分对冲，但利润保护力度不足。<br><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)">来源：冠通期货（2026.02.05）</span></div>
+        </div>
+        <div style="padding:10px 12px;background:var(--blue-bg);border-left:3px solid var(--blue)">
+          <div style="font-size:11px;font-weight:600;color:var(--blue);margin-bottom:4px">✓ 赛轮海外基地成本优势</div>
+          <div style="font-size:11px;color:var(--muted);line-height:1.6">越南/柬埔寨/印尼靠近东南亚天然橡胶主产区，天然橡胶就地采购成本低于内地，可部分对冲停割涨价压力。外销欧美的涨价函可同步发出，外销毛利受油价冲击但天然橡胶成本相对较低，形成部分对冲。<br><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)">来源：烽火研报 / 赛轮轮胎基地区位分析</span></div>
+        </div>
+      </div>
+
+      <!-- revised profit impact -->
+      <div style="padding:10px 12px;background:var(--bg3);border:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.8">
+        <strong style="color:var(--text)">毛利率影响修订（纳入天然橡胶+涨价对冲后）</strong><br>
+        综合成本增幅修订为+9–15%（较此前+10–18%小幅调整）<br>
+        涨价对冲（3–5%落地率约50–70%）= 实际收入端提升约+1.5–3.5%<br>
+        净毛利率压缩：<strong style="color:var(--red)">−5–9 ppt</strong>（持续冲击情景）→ 与§03测算一致，但天然橡胶是新增压力项，需动态跟踪4–5月开割后的价格走势
+      </div>
+    </div>
+  </div>
+
+  <!-- data validation box -->
+  <div style="margin-top:12px;background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--blue);padding:14px 16px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--blue);letter-spacing:1.5px;margin-bottom:8px;text-transform:uppercase">📋 所提供微信文章数据可靠性核验</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:11.5px">
+      <div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:4px">✅ 已通过独立来源交叉验证的数据</div>
+        <div style="color:var(--muted);line-height:1.8">
+          · 天然橡胶3月突破17,000元/吨 → <strong style="color:var(--text)">新浪财经 / 卓创资讯确认</strong><br>
+          · 2月24日触及18,000元/吨峰值 → <strong style="color:var(--text)">多媒体交叉确认</strong><br>
+          · 停割周期（1–3月）供应收紧逻辑 → <strong style="color:var(--text)">冠通期货/华鑫期货报告确认</strong><br>
+          · 赛轮3月12日宣涨TBR +3–5% → <strong style="color:var(--text)">新浪财经原文逐字核实</strong><br>
+          · 行业涨价函数量67家/74份 → <strong style="color:var(--text)">新浪财经统计截至3月16日</strong><br>
+          · 炭黑单月暴涨13% → <strong style="color:var(--text)">证券日报（2026.03.17）确认</strong>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:600;color:var(--text);margin-bottom:4px">⚠ 定性描述，数值为行业共识估算</div>
+        <div style="color:var(--muted);line-height:1.8">
+          · 终端门店月销量"下滑超20%" → 匿名渠道商引述，反映市场情绪，非官方数据<br>
+          · "涨价落地率打折" → 行业历史经验，非实时数据<br>
+          · 物流成本"上涨15–20%" → 参考值，航线差异大<br>
+          · 橡胶+钢材"占总成本超60%" → 略高于其他来源（约54%），或包含帘子布等<br>
+          · 赛轮2025Q1-3归母净利同比<strong style="color:var(--text)">下降11.47%</strong> → 搜狐财经引三季报，数据可信
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── §5 综合结论与业绩展望 ─── -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">综合结论与2026年业绩展望</div>
+  </div>
+
+  <div class="conclusion">
+    <div class="conclusion-title">三情景业绩测算汇总（2026年全年，基于~370亿营收基准）</div>
+    <div class="verdict-row">
+      <div class="verdict-item">
+        <div class="verdict-label">📊 战前业绩基准（2025年化）</div>
+        <div class="verdict-val">~370亿</div>
+        <div class="verdict-sub">营收 · 净利润约38亿（估）</div>
+      </div>
+      <div class="verdict-item" style="background:var(--green-bg);border-color:var(--green-lt)">
+        <div class="verdict-label">✅ 情景一：短期冲击后恢复</div>
+        <div class="verdict-val c-green">约34–35亿</div>
+        <div class="verdict-sub">净利润 · 较战前压缩约10%</div>
+      </div>
+      <div class="verdict-item" style="background:var(--amber-bg);border-color:var(--amber-lt)">
+        <div class="verdict-label">⚠ 情景二：持续冲击（当前）</div>
+        <div class="verdict-val c-amber">约20–30亿</div>
+        <div class="verdict-sub">净利润 · 较战前压缩约25–50%</div>
+      </div>
+      <div class="verdict-item" style="background:var(--red-bg);border-color:var(--red-lt)">
+        <div class="verdict-label">🚨 情景三：深度危机</div>
+        <div class="verdict-val c-red">约8–20亿</div>
+        <div class="verdict-sub">净利润 · 较战前压缩50–80%</div>
+      </div>
+    </div>
+
+    <!-- key considerations -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px">
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:12px 14px">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px">核心缓冲因素（减弱冲击）</div>
+        <div style="font-size:11.5px;color:var(--muted);line-height:1.8">
+          ✓ 东南亚基地靠近天然橡胶产区，天胶成本相对稳定<br>
+          ✓ 外汇套保机制已建立，部分对冲汇率波动<br>
+          ✓ 欧美市场对中国高性价比轮胎的替代需求增加<br>
+          ✓ 软控股份关联采购使设备/材料成本低于同业<br>
+          ✓ 替换胎需求韧性（占销售75%），比OEM配套更稳定<br>
+          ✓ 全球布局分散成本风险，非单一依赖高风险区域
+        </div>
+      </div>
+      <div style="background:var(--red-bg);border:1px solid var(--red-lt);padding:12px 14px">
+        <div style="font-size:12px;font-weight:600;margin-bottom:8px;color:var(--red)">主要压力因素（放大冲击）</div>
+        <div style="font-size:11.5px;color:var(--muted);line-height:1.8">
+          ✗ 原材料占成本>75%，油价敏感度极高<br>
+          ✗ 行业议价能力偏弱，涨价传导困难<br>
+          ✗ 多个新基地同时爬坡，成本效率尚低<br>
+          ✗ 战前天然橡胶价格已处于高位（2025年涨27%）<br>
+          ✗ 埃及基地建设成本面临超支风险<br>
+          ✗ 全球经济下行将抑制汽车销量与配套需求
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠ 测算说明：① 净利润基准约38亿估算依据：2025Q1-3净利28.72亿÷0.75×（1−约15%额外费用率）；② 成本联动系数参考行业历史数据（丁二烯/炭黑原材料历史油价弹性），非精确建模；
+      ③ 实际影响取决于：油价持续时长、库存对冲周期（通常1–3月）、公司涨价能力、下游需求变化及汇率走势；
+      ④ 天然橡胶（全钢胎占比32.5%）未被纳入油价直接联动，但战争引发全球通胀预期可能间接推升胶价，构成额外压力；
+      ⑤ 本报告为情景分析，非投资建议。数据来源：CNBC、Al Jazeera、Oxford Economics、卓创资讯、行业协会报告，截至2026年3月13日。
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：Investing.com · EIA · NBC/CNN/Al Jazeera · Iran International · 新浪财经 · 卓创资讯 · 国信证券 · 华鑫期货 · 证券日报 · 赛轮公告 · 截至2026.03.17</span>
+  <span>SAILUN OIL SHOCK ANALYSIS · v4 · UPDATED 2026.03.17 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>

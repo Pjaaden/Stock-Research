@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮 · 四基地成本营收对比</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f5f4f1; --bg2:#fff; --bg3:#f0eeea; --bg4:#e8e5e0;
+  --border:#dddad4; --border2:#c8c4bc;
+  --text:#181714; --muted:#6a6760; --dim:#9e9b94;
+  --red:#c0210e; --red-bg:#fff5f4; --red-lt:#fca99e;
+  --amber:#b05c00; --amber-bg:#fffaf0; --amber-lt:#fcd07a;
+  --green:#15803d; --green-bg:#f0fdf4; --green-lt:#86efac;
+  --blue:#1a4fa0; --blue-bg:#eff6ff; --blue-lt:#93b8f0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'IBM Plex Sans SC',sans-serif; font-size:13px; line-height:1.6; }
+
+header { background:var(--bg2); border-bottom:2px solid var(--red); padding:22px 48px 18px; }
+.h-tag { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--red); text-transform:uppercase; margin-bottom:8px; }
+header h1 { font-size:22px; font-weight:600; margin-bottom:3px; }
+header h1 em { color:var(--red); font-style:normal; }
+.h-sub { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1.5px; margin-bottom:12px; }
+.src { display:inline-block; background:var(--blue-bg); border:1px solid var(--blue-lt); padding:3px 9px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--blue); letter-spacing:0.8px; margin-right:5px; margin-bottom:3px; }
+
+main { padding:0 48px 48px; }
+.sec { margin-top:26px; }
+.sec-head { display:flex; align-items:center; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--border); margin-bottom:14px; }
+.sec-num { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1px; border-right:1px solid var(--border); padding-right:10px; }
+.sec-title { font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+.sec-note { margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); }
+
+table { width:100%; border-collapse:collapse; background:var(--bg2); border:1px solid var(--border); font-size:12px; }
+thead th { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase; padding:8px 12px; text-align:left; background:var(--bg3); border-bottom:2px solid var(--border2); white-space:nowrap; }
+tbody td { padding:8px 12px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; vertical-align:middle; }
+tr:hover td { background:var(--bg3); }
+tr.hl-green td { background:var(--green-bg); }
+tr.hl-amber td { background:var(--amber-bg); }
+tr.hl-red td { background:var(--red-bg); }
+tr.subtotal td { background:var(--bg3); font-weight:600; border-top:2px solid var(--border2); }
+tr.grand td { font-weight:700; border-top:2px solid var(--border2); }
+
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.grid4 { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:12px; }
+
+.card { background:var(--bg2); border:1px solid var(--border); padding:14px 16px; }
+.card.g { border-top:3px solid var(--green); }
+.card.a { border-top:3px solid var(--amber); }
+.card.r { border-top:3px solid var(--red); }
+.card.b { border-top:3px solid var(--blue); }
+.card-label { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:1px; margin-bottom:5px; }
+.card-val { font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:500; line-height:1; margin-bottom:3px; }
+.card-sub { font-size:10px; color:var(--dim); line-height:1.5; }
+
+.bar-row { display:flex; align-items:center; gap:8px; margin-bottom:5px; }
+.bar-lbl { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); width:120px; flex-shrink:0; }
+.bar-bg { flex:1; height:5px; background:var(--bg4); border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; }
+.bar-val { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; width:80px; text-align:right; flex-shrink:0; }
+
+.note { padding:10px 14px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--muted); line-height:1.8; border-left:3px solid var(--border2); background:var(--bg3); margin-top:8px; }
+.note b { color:var(--text); }
+
+.c-r { color:var(--red); } .c-g { color:var(--green); }
+.c-a { color:var(--amber); } .c-b { color:var(--blue); }
+.c-m { color:var(--muted); } .fw6 { font-weight:600; }
+
+.insight { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--blue); padding:12px 16px; font-size:12px; color:var(--muted); line-height:1.7; }
+.insight strong { color:var(--text); }
+
+/* 新章节：亏损逻辑专用 */
+.loss-box { background:var(--red-bg); border:1px solid var(--red-lt); padding:14px 16px; margin-bottom:10px; }
+.loss-box-title { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1.5px; color:var(--red); text-transform:uppercase; margin-bottom:8px; }
+.waterfall-bar { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.wf-lbl { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); width:140px; flex-shrink:0; }
+.wf-track { flex:1; height:18px; background:var(--bg4); position:relative; border-radius:2px; overflow:hidden; }
+.wf-pos { height:100%; background:var(--green); border-radius:2px; display:flex; align-items:center; padding-left:6px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#fff; }
+.wf-neg { height:100%; background:var(--red); border-radius:2px; display:flex; align-items:center; padding-left:6px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#fff; }
+.wf-result { height:100%; background:var(--blue); border-radius:2px; display:flex; align-items:center; padding-left:6px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:#fff; }
+.wf-val { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; width:90px; text-align:right; flex-shrink:0; }
+
+.divider { border:none; border-top:2px solid var(--border); margin:26px 0; }
+
+footer { padding:12px 48px; border-top:1px solid var(--border); background:var(--bg2); display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-tag">赛轮集团 · 跨基地成本营收对比研究</div>
+  <h1>四基地财务全景：<em>成本结构 · 营收盈利 · 亏损逻辑</em></h1>
+  <div class="h-sub">新和平（沈阳）· 印尼 · 柬埔寨 · 埃及 · 更新于 2026.03.20</div>
+  <div>
+    <span class="src">★ 新和平可研报告（2025年）</span>
+    <span class="src">★ 印尼可研报告</span>
+    <span class="src">★ 柬埔寨扩建可研报告</span>
+    <span class="src">★ 埃及可研报告（2025年）</span>
+    <span class="src">★ 2024年度审计报告</span>
+    <span class="src">★ 2025Q3季报</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════ §1 四基地核心参数总览 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">四基地核心参数总览</div>
+    <div class="sec-note">均为各可研报告原文数据 · 货币统一换算为人民币（USD×7.2）</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>参数</th>
+        <th>新和平（沈阳）</th>
+        <th>印尼基地</th>
+        <th>柬埔寨扩建</th>
+        <th>埃及基地</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>产品结构</td>
+        <td>全钢330万条 + OTR 2万吨</td>
+        <td>半钢600万条 + 全钢75万条 + OTR 1万吨 + 内胎150万套</td>
+        <td>全钢165万条</td>
+        <td>半钢300万条 + 全钢60万条</td>
+      </tr>
+      <tr>
+        <td>项目性质</td>
+        <td>改造+扩建（接收普利司通旧厂）</td>
+        <td>新建</td>
+        <td>依托现有厂扩建</td>
+        <td>新建（苏伊士经贸合作区）</td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">年营业收入</td>
+        <td class="fw6">329,345万元</td>
+        <td class="fw6">240,320万元</td>
+        <td class="fw6 c-g">176,206万元<br><span style="font-size:9px;font-weight:400">(24,473万美元×7.2)</span></td>
+        <td class="fw6 c-b">136,778万元<br><span style="font-size:9px;font-weight:400">(18,997万美元×7.2)</span></td>
+      </tr>
+      <tr>
+        <td class="fw6">年净利润</td>
+        <td class="c-a fw6">23,104万元</td>
+        <td class="c-g fw6">44,827万元</td>
+        <td class="c-g fw6">33,926万元<br><span style="font-size:9px;font-weight:400">(4,712万美元×7.2)</span></td>
+        <td class="c-g fw6">25,034万元<br><span style="font-size:9px;font-weight:400">(3,477万美元×7.2)</span></td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">净利润率</td>
+        <td class="fw6 c-r">7.02%</td>
+        <td class="fw6 c-g">18.65%</td>
+        <td class="fw6 c-g">19.25%</td>
+        <td class="fw6 c-g">18.30%</td>
+      </tr>
+      <tr>
+        <td class="fw6">项目总投资</td>
+        <td>170,093万元</td>
+        <td>215,741万元<br><span style="font-size:9px">(29,964万美元×7.2)</span></td>
+        <td>67,306万元<br><span style="font-size:9px">(9,348万美元×7.2)</span></td>
+        <td>209,866万元<br><span style="font-size:9px">(29,148万美元×7.2)</span></td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">投资回收期</td>
+        <td class="fw6 c-r">5.66年</td>
+        <td class="fw6 c-a">5.21年</td>
+        <td class="fw6 c-g">2.23年</td>
+        <td class="fw6 c-a">6.15年</td>
+      </tr>
+      <tr>
+        <td>所得税率</td>
+        <td class="c-r">25%（标准税率）</td>
+        <td class="c-a">22%（印尼标准）</td>
+        <td class="c-g">免税9年，后6年阶梯5–15%</td>
+        <td class="c-g">15%（埃及优惠）</td>
+      </tr>
+      <tr>
+        <td>定员</td>
+        <td>1,591人</td>
+        <td>1,270人</td>
+        <td>480人</td>
+        <td>900人</td>
+      </tr>
+      <tr>
+        <td>资金结构</td>
+        <td class="c-r">自有30% / 债务70%</td>
+        <td class="c-a">自有30% / 债务70%</td>
+        <td class="c-g">自有100%（无债务）</td>
+        <td class="c-g">自有60% / 债务40%</td>
+      </tr>
+      <tr>
+        <td>建设周期</td>
+        <td>18个月（分两期）</td>
+        <td>18个月</td>
+        <td>9个月</td>
+        <td>18个月</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>换算说明：</b>柬埔寨与埃及可研报告以美元列示，按1美元=7.2元人民币换算，仅用于横向比较，非官方汇率。<br>
+    <b>产品结构差异：</b>四个基地产品线各异，净利润率已为收入标准化后指标，可直接对比。营收和利润绝对值受产能规模影响，需结合单位产能效率解读。
+  </div>
+</div>
+
+<!-- ══════ §2 新和平亏损的财务逻辑（新增章节）══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">新和平：从"规划盈利"到"实际亏损"的财务逻辑</div>
+    <div class="sec-note">★ 集团披露H1 2025亏损约5.6亿元 · 可研规划达产净利润2.31亿元/年</div>
+  </div>
+
+  <div class="insight" style="margin-bottom:14px">
+    <strong>核心结论：新和平的亏损不是经营失败，而是"固定成本先到、收入后到"的时序性亏损，叠加外部原材料成本冲击。</strong>可研报告规划达产后净利润率7.02%，但该数字建立在330万条全钢胎满产假设之上。2025年上半年项目仍处爬坡阶段，三层结构性压力同时作用，导致实际亏损约5.6亿元。
+  </div>
+
+  <!-- 瀑布图：文字版 -->
+  <div style="background:var(--bg2);border:1px solid var(--border);padding:16px 18px;margin-bottom:12px">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px">亏损瀑布：规划盈利 → 实际亏损路径（2025H1推算，亿元人民币）</div>
+
+    <div class="waterfall-bar">
+      <div class="wf-lbl">规划半年利润基准</div>
+      <div class="wf-track"><div class="wf-pos" style="width:20%">+1.15亿</div></div>
+      <div class="wf-val c-g">+1.15</div>
+    </div>
+    <div class="waterfall-bar">
+      <div class="wf-lbl">① 产能爬坡·收入不足</div>
+      <div class="wf-track"><div class="wf-neg" style="width:48%">一期仅部分达产</div></div>
+      <div class="wf-val c-r">−2.80</div>
+    </div>
+    <div class="waterfall-bar">
+      <div class="wf-lbl">② 折旧刚性·全额计提</div>
+      <div class="wf-track"><div class="wf-neg" style="width:7%"></div></div>
+      <div class="wf-val c-r">−0.41</div>
+    </div>
+    <div class="waterfall-bar">
+      <div class="wf-lbl">③ 财务费用·债务利息</div>
+      <div class="wf-track"><div class="wf-neg" style="width:11%"></div></div>
+      <div class="wf-val c-r">−0.60</div>
+    </div>
+    <div class="waterfall-bar">
+      <div class="wf-lbl">④ 原材料·油价冲击</div>
+      <div class="wf-track"><div class="wf-neg" style="width:14%"></div></div>
+      <div class="wf-val c-r">−0.80</div>
+    </div>
+    <div class="waterfall-bar">
+      <div class="wf-lbl">⑤ 其他启动费用</div>
+      <div class="wf-track"><div class="wf-neg" style="width:12%"></div></div>
+      <div class="wf-val c-r">−0.70</div>
+    </div>
+    <div class="waterfall-bar" style="border-top:1px solid var(--border2);padding-top:8px;margin-top:4px">
+      <div class="wf-lbl" style="color:var(--text);font-weight:600">实际亏损（H1 2025）</div>
+      <div class="wf-track"><div class="wf-result" style="width:100%">★ 集团披露数据</div></div>
+      <div class="wf-val c-r" style="font-size:14px">−5.60</div>
+    </div>
+    <div class="note" style="margin-top:10px">
+      <b>注：</b>规划半年利润基准 = 可研达产净利润23,104万元÷2 = 1.15亿元。各扣减项为结构性推算，用于说明亏损成因，非精确会计分拆。实际亏损5.6亿元为集团2025H1公开披露数字（★标注为原文数据）。
+    </div>
+  </div>
+
+  <!-- 三层亏损结构 -->
+  <div class="grid3" style="margin-bottom:12px">
+    <div class="loss-box">
+      <div class="loss-box-title">第一层：收入端塌陷（最主要）</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);line-height:1.8">
+        <div>分两期建设，共18个月</div>
+        <div>· 一期200万条建设期9个月</div>
+        <div>· 二期130万条+OTR再9个月</div>
+        <div style="margin-top:6px">爬坡期实际产量约20–40%满产，收入远低于规划32.9亿/年基准</div>
+        <div style="margin-top:6px;color:var(--red);font-weight:600">性质：时间性亏损，随产能提升自然修复</div>
+      </div>
+    </div>
+    <div class="loss-box">
+      <div class="loss-box-title">第二层：固定成本刚性不变</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);line-height:1.8">
+        <div>设备投资10.5亿÷15年 = 约7,000万/年</div>
+        <div>房屋投资1亿÷25年 = 约400万/年</div>
+        <div style="margin-top:6px">合计年折旧约8,200万元，爬坡期全额计提，产量不足时单位固定成本极高</div>
+        <div style="margin-top:6px;color:var(--red);font-weight:600">性质：结构性压力，长期存在但随产量摊薄</div>
+      </div>
+    </div>
+    <div class="loss-box">
+      <div class="loss-box-title">第三层：财务杠杆放大亏损</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text);line-height:1.8">
+        <div>自有资金仅30%，债务融资约11.9亿元</div>
+        <div>流动资金4.33亿，借款利息持续发生</div>
+        <div style="margin-top:6px">对比柬埔寨：全部自有资金，零利息支出。柬埔寨扩建成本结构优势的关键来源之一</div>
+        <div style="margin-top:6px;color:var(--red);font-weight:600">性质：结构性压力，随借款偿还逐步改善</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 关键假设偏差 -->
+  <table>
+    <thead>
+      <tr>
+        <th>假设维度</th>
+        <th>可研规划值</th>
+        <th>2025年实际挑战</th>
+        <th>对利润影响</th>
+        <th>可逆性</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-red">
+        <td class="fw6">产能利用率</td>
+        <td>未披露（"正常年"满产假设）</td>
+        <td>改造产线爬坡通常需2–3年才达75%+</td>
+        <td class="c-r fw6">收入−50–80%</td>
+        <td class="c-g">可逆·时间问题</td>
+      </tr>
+      <tr class="hl-red">
+        <td class="fw6">原材料价格</td>
+        <td>2025年1–7月均价基准</td>
+        <td>布伦特油价升至~102美元/桶，天胶+合胶+炭黑三重涨价，年增成本约2.6亿元</td>
+        <td class="c-r fw6">净利润−111%</td>
+        <td class="c-a">部分可逆·取决于油价走势</td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">旧设备良品率</td>
+        <td>沿用普利司通旧设备（密炼机/钢丝压延机等）</td>
+        <td>改造初期设备稳定性风险，废品率偏高，维护成本未充分估算</td>
+        <td class="c-a">成本↑（隐性）</td>
+        <td class="c-g">可逆·设备磨合后改善</td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">冬季能耗</td>
+        <td>纳入公用工程，未单独量化</td>
+        <td>极端最低−30.6℃，≤5℃天数达152天，供热成本高于所有海外基地</td>
+        <td class="c-a">成本↑（长期固定）</td>
+        <td class="c-r">不可逆·地理因素</td>
+      </tr>
+      <tr>
+        <td class="fw6">税率</td>
+        <td>25%（中国标准税率）</td>
+        <td>无任何优惠，高于印尼22%、埃及15%，远高于柬埔寨9年免税</td>
+        <td class="c-r">净利润率−2–3 ppt vs 海外</td>
+        <td class="c-a">部分可逆·若获高新认定可降至15%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight" style="margin-top:12px">
+    <strong>达产后仍存盈亏边缘风险：</strong>即便新和平完成爬坡、产能利用率达到满产，当前原材料价格冲击（年增成本约2.6亿元）已接近吃掉全部规划净利润（2.31亿元）。<strong>2026年新和平极有可能在达产后仍处盈亏边缘，轮胎均价需提升3–5%方可维持正利润。</strong>这是新和平与其他三个海外基地最根本的财务差异——海外基地净利润率缓冲空间（18–19%）使其在相同冲击下依然稳健盈利。
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════ §3 原材料结构四基地对比 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">原材料用量：四基地精确对比</div>
+    <div class="sec-note">均来自各自可研报告原文数据（吨/年）</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>原材料</th>
+        <th>新和平（沈阳）</th>
+        <th>印尼基地</th>
+        <th>柬埔寨扩建</th>
+        <th>埃及基地</th>
+        <th>采购模式差异</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-red">
+        <td class="fw6">天然橡胶</td>
+        <td class="fw6 c-r">70,258吨<br><span style="font-size:9px;font-weight:400">占原料比36.5%</span></td>
+        <td class="c-m">含于胶料87,583吨中</td>
+        <td class="c-g fw6">36,741吨<br><span style="font-size:9px;font-weight:400">柬埔寨本地产，世界第六</span></td>
+        <td>21,500吨<br><span style="font-size:9px">中国/东南亚进口</span></td>
+        <td>新和平：市场价直采；柬埔寨：本地产地直采，成本约低500–1500元/吨</td>
+      </tr>
+      <tr>
+        <td class="fw6">合成橡胶</td>
+        <td class="c-r">12,432吨</td>
+        <td class="c-m">含于胶料内</td>
+        <td>12,686吨</td>
+        <td>12,285吨</td>
+        <td>新和平全部市价采购，直接承受油价联动涨价；印尼通过内部转移价缓冲</td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">炭黑</td>
+        <td class="fw6 c-r">42,560吨<br><span style="font-size:9px;font-weight:400">全钢胎炭黑占比高</span></td>
+        <td class="c-m">含于胶料内</td>
+        <td>23,360吨</td>
+        <td>18,655吨</td>
+        <td>新和平炭黑用量最大（全钢胎结构决定）；2026年3月炭黑单月暴涨13%，冲击最直接</td>
+      </tr>
+      <tr>
+        <td class="fw6">钢丝帘线</td>
+        <td class="fw6">28,152吨</td>
+        <td>11,710吨</td>
+        <td class="fw6">13,757吨</td>
+        <td>8,325吨</td>
+        <td>新和平用量最大（330万条全钢胎）；柬埔寨165万条全钢胎也以钢丝为主</td>
+      </tr>
+      <tr>
+        <td class="fw6">胎圈钢丝</td>
+        <td>9,694吨</td>
+        <td>4,614吨</td>
+        <td>4,471吨</td>
+        <td>3,258吨</td>
+        <td>与钢丝帘线同步，全钢胎基地用量显著高于半钢</td>
+      </tr>
+      <tr>
+        <td class="fw6">纤维帘线</td>
+        <td class="c-m">67吨（极少）</td>
+        <td>3,343吨</td>
+        <td>120吨</td>
+        <td>1,950吨</td>
+        <td>半钢胎纤维用量大（印尼/埃及）；全钢胎以钢丝为主（新和平/柬埔寨）</td>
+      </tr>
+      <tr>
+        <td class="fw6">化工助剂</td>
+        <td class="c-r">18,362吨</td>
+        <td class="c-m">含于胶料内</td>
+        <td>8,000吨（含油料+硫磺）</td>
+        <td>6,590吨</td>
+        <td>新和平化工助剂市价直采，石油基原料，油价联动</td>
+      </tr>
+      <tr class="subtotal">
+        <td>原材料采购模式</td>
+        <td class="c-r fw6">全部市价直采<br>直接暴露于三重冲击</td>
+        <td class="c-g fw6">主料内部转移价<br>传导延迟1–3季度</td>
+        <td class="c-g fw6">天然胶本地直采<br>其余依托现有渠道</td>
+        <td class="c-a fw6">大部分进口<br>但规模相对较小</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <b>柬埔寨天然橡胶优势：</b>柬埔寨是世界第六大天然橡胶产地，可本地直采SVR5#/SVR10#标准胶，无进口物流成本，价格约低500–1,500元/吨，且供应稳定。36,741吨/年的用量对应每吨节省约500元，年节约成本约1,800–5,500万元，是柬埔寨成本结构最显著的天然优势。<br>
+    <b>新和平的原材料困境：</b>年直采天然胶70,258吨+炭黑42,560吨+合成胶12,432吨+化工助剂18,362吨，四类原料合计约15.3万吨，全部按市场价采购。当前油价冲击下，年增成本约2.6亿元，接近吃掉全部规划净利润（2.31亿）。
+  </div>
+</div>
+
+<!-- ══════ §4 净利润率差异归因：四基地对比 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">净利润率差异归因：为何海外基地全面优于新和平</div>
+    <div class="sec-note">新和平7.02% vs 印尼18.65% / 柬埔寨19.25% / 埃及18.30%</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>差异来源</th>
+        <th>vs 印尼（+11.6 ppt）</th>
+        <th>vs 柬埔寨（+12.2 ppt）</th>
+        <th>vs 埃及（+11.3 ppt）</th>
+        <th>2026年动态</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">① 所得税</td>
+        <td>印尼22% vs 国内25%：贡献约+2.2 ppt</td>
+        <td class="c-g fw6">柬埔寨免税9年：贡献约+4–5 ppt（最大单项）</td>
+        <td>埃及15% vs 国内25%：贡献约+3 ppt</td>
+        <td>柬埔寨免税期结束后优势收窄；新和平若获高新可降至15%</td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">② 劳动力成本</td>
+        <td>印尼1,270人 vs 新和平1,591人（少20%）；工资约国内50–60%水平；贡献约+2 ppt</td>
+        <td class="c-g">柬埔寨480人（最精简）；东盟最低工资水平之一；贡献约+3 ppt</td>
+        <td>埃及900人；当地生产工人年薪约6,000美元（约国内1/7）；贡献约+3–4 ppt</td>
+        <td>东南亚劳动力成本缓慢上升；埃及工资近年稳定</td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">③ 关税/市场准入</td>
+        <td>印尼→ASEAN/大洋洲/欧盟享关税优惠；贡献约+3–5 ppt（最大项）</td>
+        <td class="c-g">柬埔寨GSP待遇：美/欧/日等28国给予普惠制；贡献约+3–5 ppt</td>
+        <td>埃及→欧盟地中海协定+GAFTA+AfCFTA；贡献约+2–4 ppt</td>
+        <td>2026年欧盟对华关税壁垒提升，令所有海外基地产地优势进一步强化</td>
+      </tr>
+      <tr>
+        <td class="fw6">④ 原材料结构</td>
+        <td>印尼内部采购隔离现货波动；贡献约+1–2 ppt</td>
+        <td class="c-g">柬埔寨天然胶本地直采（世界第六产胶国）；贡献约+1–2 ppt</td>
+        <td>埃及规模较小，绝对用量低，冲击额较小；但全为进口，无产地优势</td>
+        <td>新和平原材料敞口最大；柬埔寨天胶优势长期稳定</td>
+      </tr>
+      <tr>
+        <td class="fw6">⑤ 资金结构</td>
+        <td>印尼同为30%自有资金，利息负担相似</td>
+        <td class="c-g fw6">柬埔寨100%自有资金，零利息支出；贡献约+1–2 ppt</td>
+        <td>埃及60%自有资金，优于新和平和印尼</td>
+        <td>柬埔寨扩建无债务是其回收期仅2.23年的核心原因之一</td>
+      </tr>
+      <tr>
+        <td class="fw6">⑥ 爬坡期折旧（当前）</td>
+        <td colspan="3" class="c-r">新和平爬坡期固定折旧全额计提（约8,200万/年），产量不足时单位成本极高。海外可研均基于达产后测算，不含此项拖累。</td>
+        <td class="c-a">随新和平产能提升，此项逐步收窄</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════ §5 能源成本与地理禀赋 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">能源成本与地理禀赋对比</div>
+    <div class="sec-note">来自各可研报告气象与公用工程章节</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>新和平（沈阳）</th>
+        <th>印尼基地</th>
+        <th>柬埔寨</th>
+        <th>埃及</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-red">
+        <td class="fw6">气候类型</td>
+        <td class="c-r fw6">温带大陆性气候<br>极端最低−30.6℃<br>≤5℃天数152天<br>供热不可或缺</td>
+        <td class="c-g">热带雨林气候<br>全年高温均匀<br>无供热需求</td>
+        <td class="c-g">热带季风气候<br>年均24℃<br>无供热需求</td>
+        <td class="c-a">热带沙漠气候<br>夏季最高36℃<br>冬季温和，无供热<br>但夏季制冷需求高</td>
+      </tr>
+      <tr>
+        <td class="fw6">电价</td>
+        <td>约0.57元/kwh（不含税）</td>
+        <td class="c-m">未单独披露</td>
+        <td class="c-m">自有发电厂供电</td>
+        <td class="c-g fw6">0.045美元/kwh<br>≈0.32元/kwh<br>（约国内56%）</td>
+      </tr>
+      <tr>
+        <td class="fw6">蒸汽/热源</td>
+        <td>亨通能源供汽，90t/h+75t/h×2+130t/h在建；价格238.53元/吨</td>
+        <td class="c-m">未披露</td>
+        <td>自有沸腾床锅炉（现有工厂）</td>
+        <td>自建25吨蒸汽锅炉；单价18.16美元/吨≈131元/吨（约国内55%）</td>
+      </tr>
+      <tr>
+        <td class="fw6">供热负担</td>
+        <td class="c-r fw6">高：辽宁冬季152天需持续供热，是海外所有基地都没有的额外固定成本</td>
+        <td class="c-g">无</td>
+        <td class="c-g">无</td>
+        <td class="c-a">低：冬季温和，主要需求在夏季空调制冷</td>
+      </tr>
+      <tr>
+        <td class="fw6">港口距离</td>
+        <td>距铁路约26km，距京哈高速6.3km；出口依赖大连港（约400km）</td>
+        <td>近海港口，出口便利</td>
+        <td>距西贡港150km，距胡志明95km；过境越南无须开柜查验</td>
+        <td class="c-g fw6">距苏赫纳港约1.5小时车程；苏伊士运河直接连通欧亚航线，出口极便利</td>
+      </tr>
+      <tr>
+        <td class="fw6">战略区位</td>
+        <td>国内全钢胎市场；服务东北车企（一汽解放等）</td>
+        <td>ASEAN市场 + 大洋洲 + 欧盟</td>
+        <td>北美 + 东南亚 + GSP目标市场</td>
+        <td class="c-g fw6">欧洲南部 + 中东 + 非洲大陆（AfCFTA）+ 阿拉伯国家（GAFTA）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════ §6 当前原材料冲击敏感性 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">当前原材料冲击下各基地净利润敏感性</div>
+    <div class="sec-note">天胶+13% · 合成胶+30% · 炭黑+13% · 布伦特油价约$102/桶</div>
+  </div>
+
+  <div class="grid4" style="margin-bottom:12px">
+    <div class="card r">
+      <div class="card-label">新和平 冲击后净利润（估）</div>
+      <div class="card-val c-r">−2,616万元</div>
+      <div class="card-sub">
+        规划净利23,104万<br>
+        原材料冲击−25,720万<br>
+        <b>冲击幅度：−111%</b><br>
+        实际亏损更深（含爬坡损失）<br>
+        涨价3%可勉强保本
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">印尼 冲击后净利润（估）</div>
+      <div class="card-val c-a">约29,000–36,000万元</div>
+      <div class="card-sub">
+        规划净利44,827万<br>
+        内部采购延迟传导，当期冲击约−8,000–15,000万<br>
+        <b>净利润率仍有12–15%</b><br>
+        不存在亏损风险
+      </div>
+    </div>
+    <div class="card g">
+      <div class="card-label">柬埔寨 冲击后净利润（估）</div>
+      <div class="card-val c-g">约25,000–30,000万元</div>
+      <div class="card-sub">
+        规划净利33,926万<br>
+        天然胶本地直采部分对冲；炭黑进口承压<br>
+        <b>9年免税期大幅缓冲</b><br>
+        投资回收期仍远优于其他基地
+      </div>
+    </div>
+    <div class="card b">
+      <div class="card-label">埃及 冲击后净利润（估）</div>
+      <div class="card-val c-b">约18,000–22,000万元</div>
+      <div class="card-sub">
+        规划净利25,034万<br>
+        原材料全部进口，承受完整涨价<br>
+        但15%税率+低电价+低工资有缓冲<br>
+        <b>净利润率仍有13–16%</b>
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>新和平的核心困境：</b>①原材料暴露最高（15.3万吨/年全部市价直采）；②全钢胎天然橡胶占比最高（36.5%，是四个基地中最高的品类）；③税率最高（25%，无任何优惠）；④爬坡期折旧拖累；⑤辽宁冬季供热成本。五重不利因素叠加，使得相同外部冲击下，新和平所受伤害远超其他三个基地。
+  </div>
+</div>
+
+<!-- ══════ §7 集团战略分工解读 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">集团战略分工：四基地在全球布局中的功能定位</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:12px">
+    <div class="card r">
+      <div class="card-label">新和平（沈阳）· 国内产能卡位</div>
+      <div class="card-sub" style="font-size:12px;line-height:1.8">
+        <b>战略价值：</b>补全国内全钢胎布局，以改造成本低价接收普利司通退出留下的市场空白（高端全钢胎领域）<br>
+        <b>供应链韧性：</b>国内生产不受国际航运/关税/地缘冲击，确保一汽解放等东北车企配套供货<br>
+        <b>OTR 2万吨：</b>非公路轮胎毛利率约30%+，是盈利改善的关键子产线<br>
+        <b>短期定性：</b>战略性亏损，2026–2027年爬坡完成后盈利可见，但7%净利率天花板仍受制于税率和原材料结构
+      </div>
+    </div>
+    <div class="card g">
+      <div class="card-label">海外三基地 · 高利润率盈利引擎</div>
+      <div class="card-sub" style="font-size:12px;line-height:1.8">
+        <b>印尼：</b>ASEAN+大洋洲+欧盟出口平台；半钢为主，产品线最丰富；覆盖新兴市场增长红利<br>
+        <b>柬埔寨：</b>全钢胎出口北美+东南亚；GSP免税+9年所得税优惠+本地天然胶+零债务，回收期仅2.23年，是四个基地中资本效率最高的<br>
+        <b>埃及：</b>辐射欧洲南部+中东+非洲；苏伊士运河枢纽地位使其出口半径覆盖全球最广；是赛轮进入非洲大陆自贸区（AfCFTA）的战略支点<br>
+        <b>共同特点：</b>净利润率均在18–19%区间，是国内基地的2.5–2.7倍，支撑集团整体利润率
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>集团盈利结构的根本逻辑：</strong>赛轮的利润主要由海外基地贡献，国内基地（新和平+青岛+东营+潍坊）承担供应链保障和国内市场份额维护功能，海外基地（印尼+柬埔寨+越南+埃及+墨西哥）承担利润创造功能。新和平的战略意义在于"有"而非"赚"——守住国内全钢胎市场份额，防止外资或竞争对手填补普利司通退出的真空。短期亏损是这一战略的已知成本，而非经营失败的信号。
+  </div>
+</div>
+
+<!-- ══════ §8 信源完整性声明 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div class="sec-title">数据来源与信源完整性声明</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>基地</th>
+        <th>来源文件</th>
+        <th>★ 原文数据（已核实）</th>
+        <th>斜体 推算数据（注明方法）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">新和平（沈阳）</td>
+        <td>赛轮新和平可研报告（2025年8月）</td>
+        <td>年营收329,345万元 · 净利润23,104万元 · 净利率7.02% · 总投资170,093万元 · 天然胶70,258吨 · 炭黑42,560吨 · 定员1,591人</td>
+        <td>H1 2025亏损5.6亿：集团季报披露；瀑布图各分项：结构性推算，用于逻辑说明非精确会计分拆</td>
+      </tr>
+      <tr>
+        <td class="fw6">印尼基地</td>
+        <td>印尼可研报告（官方文件）</td>
+        <td>年净利润44,827万元 · 净利率18.65% · 回收期5.21年 · 总投资29,964万美元 · 定员1,270人 · 胶料87,583吨</td>
+        <td>冲击后净利润：基于原材料用量×当前市价推算，实际因内部转移价可能不同</td>
+      </tr>
+      <tr>
+        <td class="fw6">柬埔寨扩建</td>
+        <td>柬埔寨全钢子午线轮胎扩建项目可研报告</td>
+        <td>年净利润4,712万美元 · 净利率19.25% · 回收期2.23年 · 总投资9,348万美元 · 天然胶36,741吨 · 炭黑23,360吨 · 定员480人 · 9年免税</td>
+        <td>人民币换算按7.2汇率；达产后净利润率受免税期影响，免税结束后将降低</td>
+      </tr>
+      <tr>
+        <td class="fw6">埃及基地</td>
+        <td>埃及年产360万条子午线轮胎可研报告（2025年）</td>
+        <td>年净利润3,477万美元 · 净利率18.30% · 回收期6.15年 · 总投资29,148万美元 · 天然胶21,500吨 · 炭黑18,655吨 · 定员900人 · 税率15%</td>
+        <td>人民币换算按7.2汇率；原材料全进口采购，冲击敏感性按比例推算</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：四份可研报告原文 · 2024年度审计报告 · 2025Q3季报 · 更新于2026.03.20</span>
+  <span>四基地成本营收对比_20260320 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION</span>
+</footer>
+
+</body>
+</html>

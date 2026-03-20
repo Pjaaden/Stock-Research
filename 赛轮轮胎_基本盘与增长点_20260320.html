@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 基本盘与增长点</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f5f4f1; --bg2:#fff; --bg3:#f0eeea; --bg4:#e8e5e0;
+  --border:#dddad4; --border2:#c8c4bc;
+  --text:#181714; --muted:#6a6760; --dim:#9e9b94;
+  --red:#c0210e; --red-bg:#fff5f4; --red-lt:#fca99e;
+  --amber:#b05c00; --amber-bg:#fffaf0; --amber-lt:#fcd07a;
+  --green:#15803d; --green-bg:#f0fdf4; --green-lt:#86efac;
+  --blue:#1a4fa0; --blue-bg:#eff6ff; --blue-lt:#93b8f0;
+  --purple:#6d28d9; --purple-bg:#f5f3ff; --purple-lt:#c4b5fd;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'IBM Plex Sans SC',sans-serif; font-size:13px; line-height:1.6; }
+
+header { background:var(--bg2); border-bottom:2px solid var(--red); padding:22px 48px 18px; }
+.h-tag { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:2px; color:var(--red); text-transform:uppercase; margin-bottom:8px; }
+header h1 { font-size:22px; font-weight:600; margin-bottom:3px; }
+header h1 em { color:var(--red); font-style:normal; }
+.h-sub { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1.5px; margin-bottom:12px; }
+.src { display:inline-block; background:var(--blue-bg); border:1px solid var(--blue-lt); padding:3px 9px; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--blue); letter-spacing:0.8px; margin-right:5px; margin-bottom:3px; }
+
+main { padding:0 48px 48px; }
+.sec { margin-top:28px; }
+.sec-head { display:flex; align-items:center; gap:10px; padding-bottom:9px; border-bottom:1px solid var(--border); margin-bottom:14px; }
+.sec-num { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); letter-spacing:1px; border-right:1px solid var(--border); padding-right:10px; }
+.sec-title { font-size:13px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; }
+.sec-note { margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--dim); text-align:right; }
+
+table { width:100%; border-collapse:collapse; background:var(--bg2); border:1px solid var(--border); font-size:12px; }
+thead th { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase; padding:8px 12px; text-align:left; background:var(--bg3); border-bottom:2px solid var(--border2); white-space:nowrap; }
+tbody td { padding:8px 12px; border-bottom:1px solid var(--border); font-family:'IBM Plex Mono',monospace; vertical-align:middle; }
+tr:hover td { background:var(--bg3); }
+tr.hl-green td { background:var(--green-bg); }
+tr.hl-amber td { background:var(--amber-bg); }
+tr.hl-red td { background:var(--red-bg); }
+tr.hl-purple td { background:var(--purple-bg); }
+tr.subtotal td { background:var(--bg3); font-weight:600; border-top:2px solid var(--border2); }
+tr.grand td { font-weight:700; border-top:2px solid var(--border2); }
+
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.grid3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.grid4 { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px; }
+
+.card { background:var(--bg2); border:1px solid var(--border); padding:14px 16px; }
+.card-label { font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:1px; margin-bottom:6px; }
+.card-val { font-family:'IBM Plex Mono',monospace; font-size:22px; font-weight:500; line-height:1; margin-bottom:3px; }
+.card-sub { font-size:10px; color:var(--dim); line-height:1.5; }
+
+.bar-row { display:flex; align-items:center; gap:8px; margin-bottom:6px; }
+.bar-lbl { font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); width:100px; flex-shrink:0; }
+.bar-bg { flex:1; height:6px; background:var(--bg4); border-radius:3px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:3px; }
+.bar-val { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:500; width:80px; text-align:right; flex-shrink:0; }
+
+.note { padding:10px 14px; font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--muted); line-height:1.8; border-left:3px solid var(--border2); background:var(--bg3); margin-top:8px; }
+.note b { color:var(--text); }
+
+.insight { background:var(--bg2); border:1px solid var(--border); border-left:3px solid var(--blue); padding:12px 16px; font-size:12px; color:var(--muted); line-height:1.7; margin-top:10px; }
+.insight strong { color:var(--text); }
+
+.c-r { color:var(--red); } .c-g { color:var(--green); }
+.c-a { color:var(--amber); } .c-b { color:var(--blue); }
+.c-p { color:var(--purple); } .c-m { color:var(--muted); }
+.fw6 { font-weight:600; }
+
+/* 判断矩阵专用 */
+.matrix-grid { display:grid; grid-template-columns:180px repeat(4,minmax(0,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); font-size:11px; }
+.m-cell { background:var(--bg2); padding:9px 11px; font-family:'IBM Plex Mono',monospace; line-height:1.5; }
+.m-head { background:var(--bg3); font-size:9px; letter-spacing:1px; color:var(--muted); text-transform:uppercase; font-weight:600; }
+.m-label { background:var(--bg3); font-weight:600; font-size:11px; color:var(--text); }
+.pill { display:inline-block; font-size:9px; padding:1px 7px; border-radius:2px; letter-spacing:0.5px; font-family:'IBM Plex Mono',monospace; }
+.pill-g { background:var(--green-bg); color:var(--green); border:1px solid var(--green-lt); }
+.pill-a { background:var(--amber-bg); color:var(--amber); border:1px solid var(--amber-lt); }
+.pill-r { background:var(--red-bg); color:var(--red); border:1px solid var(--red-lt); }
+.pill-b { background:var(--blue-bg); color:var(--blue); border:1px solid var(--blue-lt); }
+.pill-p { background:var(--purple-bg); color:var(--purple); border:1px solid var(--purple-lt); }
+.pill-d { background:var(--bg4); color:var(--dim); border:1px solid var(--border); }
+
+/* 增量营收可视化 */
+.rev-stack { display:flex; height:28px; border-radius:2px; overflow:hidden; margin:10px 0 4px; }
+.rev-seg { display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:500; color:#fff; transition:width 0.3s; }
+.seg-label { display:flex; align-items:center; gap:6px; font-family:'IBM Plex Mono',monospace; font-size:10px; color:var(--muted); margin-bottom:3px; }
+.seg-dot { width:8px; height:8px; border-radius:1px; flex-shrink:0; }
+
+footer { padding:12px 48px; border-top:1px solid var(--border); background:var(--bg2); display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:9px; color:var(--dim); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-tag">赛轮集团（601058）· 投资研究 · 2026.03.20</div>
+  <h1>赛轮轮胎：<em>利润基本盘识别与增长点量化</em></h1>
+  <div class="h-sub">越南是唯一真正基本盘 · 柬埔寨是最确定性增量 · 海外扩产是核心逻辑 · 国内基地是战略保障</div>
+  <div>
+    <span class="src">★ 全球产能结构估算（2026.02.27）</span>
+    <span class="src">★ 四基地可行性报告（新和平/印尼/柬埔寨/埃及）</span>
+    <span class="src">★ 2024年度审计报告</span>
+    <span class="src">★ 2025Q3季报 · 2025半年报</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════ §1 核心结论 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">核心判断：三层利润结构</div>
+    <div class="sec-note">基于可研报告原文数据 + 年报披露</div>
+  </div>
+
+  <div class="grid3" style="margin-bottom:12px">
+    <div class="card" style="border-top:3px solid var(--green)">
+      <div class="card-label">第一层：唯一真正基本盘</div>
+      <div class="card-val c-g">越南</div>
+      <div class="card-sub" style="font-size:11px;line-height:1.7;margin-top:6px">
+        <b>净利润率22%，已运营12年，三期全部达产</b><br>
+        2024年营收86.44亿元，同比+20%<br>
+        2023年净利润15.94亿元，占集团约52%<br>
+        欧盟+东南亚双市场，暂无双反压力<br>
+        <span style="color:var(--amber)">⚠ 唯一风险：产能接近天花板，增量有限</span>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--amber)">
+      <div class="card-label">第二层：最确定性增量</div>
+      <div class="card-val c-a">柬埔寨二期</div>
+      <div class="card-sub" style="font-size:11px;line-height:1.7;margin-top:6px">
+        <b>净利润率24.2%，高于越南，已经营验证</b><br>
+        2024年营收40.39亿元，同比+73%<br>
+        2023年净利润5.65亿元，占集团约15%<br>
+        9年免税+无双反+本地天然橡胶<br>
+        <span style="color:var(--green)">✓ 二期1200万条半钢胎爬坡中，为下一个利润锚</span>
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--purple)">
+      <div class="card-label">第三层：待验证增长期权</div>
+      <div class="card-val c-p">印尼·墨西哥·埃及</div>
+      <div class="card-sub" style="font-size:11px;line-height:1.7;margin-top:6px">
+        <b>可研预测净利率18–19%，尚待实际验证</b><br>
+        印尼+墨西哥首胎2025H1下线，爬坡中<br>
+        埃及建设中，覆盖欧非双市场<br>
+        合计增量预测+45亿营收（达产后）<br>
+        <span style="color:var(--amber)">⚠ 关键不确定：能否复制越柬高利润率模型</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>结构性认知：</strong>赛轮不是一家"国内轮胎企业"，而是一家以国内基地为制造基础、以海外基地为利润引擎的全球化制造集团。<strong>2023年，越南+柬埔寨营收占集团36.8%，却贡献净利润的67.4%。</strong>国内基地（青岛/东营/潍坊/新和平）的战略价值是维持规模、保障国内市场份额和供应链韧性，而非创造超额利润。真正决定集团估值水平的，是海外基地的盈利质量与新产能的爬坡进度。
+  </div>
+</div>
+
+<!-- ══════ §2 利润来源量化 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">利润来源量化：国内 vs 海外的真实对比</div>
+    <div class="sec-note">★ = 年报原文数据 · 其余为推算</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:12px">
+    <div class="card">
+      <div class="card-label">净利润率：海外基地 vs 国内基地（2023年，★原文或引用披露数据）</div>
+      <div class="bar-row" style="margin-top:8px">
+        <div class="bar-lbl">柬埔寨 ★</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#15803d"></div></div>
+        <div class="bar-val c-g fw6">24.2%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lbl">越南 ★</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:91%;background:#15803d"></div></div>
+        <div class="bar-val c-g fw6">22.0%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lbl">印尼（可研）</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:77%;background:#5DCAA5"></div></div>
+        <div class="bar-val c-g">18.7%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lbl">埃及（可研）</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:76%;background:#5DCAA5"></div></div>
+        <div class="bar-val c-g">18.3%</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:8px 0"></div>
+      <div class="bar-row">
+        <div class="bar-lbl">东营（国内）★</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:28%;background:#9e9b94"></div></div>
+        <div class="bar-val c-m">6.7%</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-lbl">新和平（国内）</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:3%;background:#c0210e"></div></div>
+        <div class="bar-val c-r">亏损中</div>
+      </div>
+      <div class="note" style="margin-top:8px">海外基地净利率是国内基地的<b>3–4倍</b>，且这一差距来自税率、劳动力、关税、原材料结构四重结构性因素，不会因经济周期而消失。</div>
+    </div>
+
+    <div class="card">
+      <div class="card-label">2023年集团净利润来源归因（30.91亿元总计）</div>
+      <div style="margin:12px 0 6px">
+        <div class="seg-label"><div class="seg-dot" style="background:#15803d"></div>越南 15.94亿 → 占集团净利润约 51.6%</div>
+        <div class="rev-stack">
+          <div class="rev-seg" style="width:51.6%;background:#15803d">越南 51.6%</div>
+          <div class="rev-seg" style="width:18.3%;background:#639922">柬埔寨</div>
+          <div class="rev-seg" style="width:30.1%;background:#9e9b94">国内四基地</div>
+        </div>
+        <div class="seg-label"><div class="seg-dot" style="background:#639922"></div>柬埔寨 5.65亿 → 占集团净利润约 18.3%</div>
+        <div class="seg-label"><div class="seg-dot" style="background:#9e9b94"></div>国内四基地合计（倒推估算）→ 约 9.3亿 · 30.1%</div>
+      </div>
+      <div style="border-top:1px solid var(--border);margin:10px 0 8px;padding-top:8px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px">2024年外销毛利率 vs 内销毛利率（★年报披露）</div>
+        <div class="bar-row">
+          <div class="bar-lbl">外销毛利率</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:100%;background:#1a4fa0"></div></div>
+          <div class="bar-val c-b fw6">29.88% ★</div>
+        </div>
+        <div class="bar-row">
+          <div class="bar-lbl">内销毛利率</div>
+          <div class="bar-bg"><div class="bar-fill" style="width:70%;background:#9e9b94"></div></div>
+          <div class="bar-val c-m">20.86% ★</div>
+        </div>
+        <div style="font-size:10px;color:var(--dim);margin-top:4px;font-family:'IBM Plex Mono',monospace">外销较内销高出 9.02 ppt · 2023年海外毛利润占比达83%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ §3 产能测算：增量营收路线图 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">产能增量营收路线图：从370亿到450亿</div>
+    <div class="sec-note">基于全球产能结构估算（2026.02.27）· 均价：全钢650元/条 · 半钢260元/条 · OTR 1.8万/吨 · 达产率85%</div>
+  </div>
+
+  <!-- 可视化堆叠条 -->
+  <div class="card" style="margin-bottom:12px">
+    <div class="card-label">全球营收构成：当前基准 → 全面达产潜力</div>
+    <div style="margin:12px 0 8px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:6px">当前年化基准约370亿（2025年前三季275.87亿×4/3）</div>
+      <div class="rev-stack" style="height:34px">
+        <div class="rev-seg" style="width:70%;background:#6b6860;font-size:11px">国内已投产 ~260–320亿</div>
+        <div class="rev-seg" style="width:30%;background:#1a4fa0;font-size:11px">海外已投产 ~96–150亿</div>
+      </div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin:8px 0 4px">全面达产后约430–450亿，新增约+65亿</div>
+      <div class="rev-stack" style="height:34px">
+        <div class="rev-seg" style="width:58%;background:#6b6860;font-size:10px">国内已投产</div>
+        <div class="rev-seg" style="width:24%;background:#1a4fa0;font-size:10px">海外已投产</div>
+        <div class="rev-seg" style="width:5%;background:#b05c00;font-size:9px">沈阳</div>
+        <div class="rev-seg" style="width:3%;background:#d97706;font-size:9px">墨</div>
+        <div class="rev-seg" style="width:5%;background:#7c3aed;font-size:9px">印尼</div>
+        <div class="rev-seg" style="width:2%;background:#9333ea;font-size:9px">埃</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px">
+      <div style="background:var(--amber-bg);border:1px solid var(--amber-lt);padding:8px 10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber);margin-bottom:3px">沈阳新和平（爬坡中）</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--amber)">+21亿</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'IBM Plex Mono',monospace">全钢330万×650×85%=18.2亿<br>OTR 2万吨×1.8万×85%=3.1亿</div>
+      </div>
+      <div style="background:var(--amber-bg);border:1px solid var(--amber-lt);padding:8px 10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--amber);margin-bottom:3px">墨西哥（爬坡中）</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--amber)">+13亿</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'IBM Plex Mono',monospace">半钢600万×260×85%≈13.2亿<br>北美市场直供，USMCA优惠</div>
+      </div>
+      <div style="background:var(--purple-bg);border:1px solid var(--purple-lt);padding:8px 10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--purple);margin-bottom:3px">印尼扩建（达产增量）</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--purple)">+21亿</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'IBM Plex Mono',monospace">半600万+全75万+OTR 1万吨<br>+内胎150万套×85%=21.4亿</div>
+      </div>
+      <div style="background:var(--purple-bg);border:1px solid var(--purple-lt);padding:8px 10px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--purple);margin-bottom:3px">埃及（建设中）</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;color:var(--purple)">+10亿</div>
+        <div style="font-size:9px;color:var(--dim);margin-top:2px;font-family:'IBM Plex Mono',monospace">半300万×260+全60万×650<br>×85%≈9.9亿，覆盖欧非市场</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>基地</th>
+        <th>性质</th>
+        <th>利润定性</th>
+        <th>产能规模</th>
+        <th>当前营收贡献（估）</th>
+        <th>达产增量（估）</th>
+        <th>净利率参考</th>
+        <th>净利增量（估）</th>
+        <th>可靠性评级</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-green">
+        <td class="fw6">越南 ★</td>
+        <td>海外·基本盘</td>
+        <td class="c-g fw6">唯一真正基本盘</td>
+        <td>三期全达产</td>
+        <td class="c-g fw6">~60–80亿/年</td>
+        <td class="c-m">有限</td>
+        <td class="c-g fw6">22.0% ★</td>
+        <td class="c-g fw6">~13–18亿/年</td>
+        <td><span class="pill pill-g">极高·已验证12年</span></td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">柬埔寨 ★</td>
+        <td>海外·稳定增量</td>
+        <td class="c-g fw6">最确定性增量</td>
+        <td>一期达产+二期爬坡</td>
+        <td class="c-g fw6">~30–50亿/年</td>
+        <td class="c-g">+20–30亿（二期达产）</td>
+        <td class="c-g fw6">24.2% ★</td>
+        <td class="c-g fw6">+5–7亿/年（二期）</td>
+        <td><span class="pill pill-g">高·已验证·二期可信</span></td>
+      </tr>
+      <tr>
+        <td>青岛</td>
+        <td>国内·规模基础</td>
+        <td class="c-m">低利润率规模贡献</td>
+        <td>推算最大国内基地</td>
+        <td class="c-m">~130–150亿/年</td>
+        <td class="c-m">有限</td>
+        <td class="c-m">推算~8–10%</td>
+        <td class="c-m">~10–15亿/年</td>
+        <td><span class="pill pill-d">稳定·非增长来源</span></td>
+      </tr>
+      <tr>
+        <td>东营</td>
+        <td>国内·规模基础</td>
+        <td class="c-m">低利润率规模贡献</td>
+        <td>推算中型基地</td>
+        <td class="c-m">~80–100亿/年</td>
+        <td class="c-m">有限</td>
+        <td class="c-m">6.7% ★</td>
+        <td class="c-m">~5–7亿/年</td>
+        <td><span class="pill pill-d">稳定·非增长来源</span></td>
+      </tr>
+      <tr>
+        <td>潍坊</td>
+        <td>国内·配套战略</td>
+        <td class="c-m">新能源商用车配套</td>
+        <td>推算较小基地</td>
+        <td class="c-m">~50–70亿/年</td>
+        <td class="c-a">中等（新能源拉动）</td>
+        <td class="c-m">推算~7–9%</td>
+        <td class="c-m">~4–6亿/年</td>
+        <td><span class="pill pill-a">中等·新能源变量</span></td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">沈阳新和平</td>
+        <td>国内·战略卡位</td>
+        <td class="c-r fw6">当前亏损·达产后7%天花板</td>
+        <td>全钢330万+OTR 2万吨</td>
+        <td class="c-r">亏损（-4.8亿·-5.6亿 H1）</td>
+        <td class="c-a">+21亿（达产）</td>
+        <td class="c-a">7.02%（可研）</td>
+        <td class="c-a">+1.5亿/年（达产后）</td>
+        <td><span class="pill pill-r">风险高·利润天花板低</span></td>
+      </tr>
+      <tr class="hl-purple">
+        <td class="fw6">印尼（扩建）</td>
+        <td>海外·期权</td>
+        <td class="c-p fw6">待验证高利润期权</td>
+        <td>半600+全75+OTR1万吨</td>
+        <td class="c-m">~5–15亿（存量）</td>
+        <td class="c-p fw6">+21亿（扩建达产）</td>
+        <td class="c-p">18.7%（可研）</td>
+        <td class="c-p fw6">+4亿/年（达产后）</td>
+        <td><span class="pill pill-p">待验证·2026–2027年关键</span></td>
+      </tr>
+      <tr class="hl-purple">
+        <td class="fw6">墨西哥</td>
+        <td>海外·期权</td>
+        <td class="c-p fw6">北美市场战略期权</td>
+        <td>半钢600万条</td>
+        <td class="c-m">~1–5亿（初期）</td>
+        <td class="c-p fw6">+13亿（达产）</td>
+        <td class="c-p">推算~15–18%</td>
+        <td class="c-p fw6">+2–2.5亿/年</td>
+        <td><span class="pill pill-p">待验证·USMCA合规关键</span></td>
+      </tr>
+      <tr class="hl-purple">
+        <td class="fw6">埃及</td>
+        <td>海外·远期期权</td>
+        <td class="c-p fw6">欧非市场远期布局</td>
+        <td>半300+全60万条</td>
+        <td class="c-m">0（建设中）</td>
+        <td class="c-p">+10亿（达产）</td>
+        <td class="c-p">18.3%（可研）</td>
+        <td class="c-p">+1.8亿/年</td>
+        <td><span class="pill pill-a">地缘风险·2027年后</span></td>
+      </tr>
+      <tr class="subtotal">
+        <td colspan="4">全球合计</td>
+        <td class="c-g fw6">~370亿/年（2025年化）</td>
+        <td class="c-p fw6">+64–81亿（全达产）</td>
+        <td class="c-m">—</td>
+        <td class="c-g fw6">~26–32亿/年（集团归母）</td>
+        <td>—</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top:8px">
+    <b>数据来源说明：</b>★标注数据来自年报原文披露；可研数字来自四份可行性报告；国内三基地（青岛/东营/潍坊）营收为按合计倒推的结构性估算，公司未单独披露；净利增量按各基地可研净利率×达产增量营收计算。
+  </div>
+</div>
+
+<!-- ══════ §4 六维判断矩阵 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">六维判断矩阵：什么是基本盘，什么是增长点</div>
+  </div>
+
+  <div class="matrix-grid">
+    <div class="m-cell m-head">维度</div>
+    <div class="m-cell m-head">越南（基本盘）</div>
+    <div class="m-cell m-head">柬埔寨（最确定增量）</div>
+    <div class="m-cell m-head">印尼·墨西哥（期权）</div>
+    <div class="m-cell m-head">国内基地（保障层）</div>
+
+    <div class="m-cell m-label">利润率</div>
+    <div class="m-cell"><span class="pill pill-g">22% · 已验证</span></div>
+    <div class="m-cell"><span class="pill pill-g">24.2% · 最高</span></div>
+    <div class="m-cell"><span class="pill pill-p">18–19% · 可研预测</span></div>
+    <div class="m-cell"><span class="pill pill-d">6–10% · 结构性低</span></div>
+
+    <div class="m-cell m-label">税收优惠</div>
+    <div class="m-cell">低税率（具体未披露）<br>反补贴税仅6.23%</div>
+    <div class="m-cell c-g fw6">9年免税·后6年阶梯<br>暂无双反</div>
+    <div class="m-cell">印尼22%；墨西哥USMCA<br>理论上避开高关税</div>
+    <div class="m-cell c-r">25%标准税率<br>无任何优惠</div>
+
+    <div class="m-cell m-label">贸易壁垒风险</div>
+    <div class="m-cell c-a">反补贴税6.23%（半钢）<br>全钢/OTR暂无</div>
+    <div class="m-cell c-g fw6">暂无双反<br>GSP最不发达国家待遇</div>
+    <div class="m-cell c-a">印尼：东南亚双反蔓延风险<br>墨西哥：USMCA合规审查</div>
+    <div class="m-cell c-g">国内无关税问题<br>出口承压</div>
+
+    <div class="m-cell m-label">原材料优势</div>
+    <div class="m-cell">无产地优势<br>市场价采购</div>
+    <div class="m-cell c-g fw6">世界第六大产胶国<br>本地直采，成本低500–1500元/吨</div>
+    <div class="m-cell">印尼：东南亚采购优势<br>墨西哥：无特殊优势</div>
+    <div class="m-cell c-r">全部市价直采<br>新和平暴露最大</div>
+
+    <div class="m-cell m-label">产能增长空间</div>
+    <div class="m-cell c-a">三期已达产<br>增量有限</div>
+    <div class="m-cell c-g fw6">二期1200万条半钢爬坡<br>+30–40亿营收增量</div>
+    <div class="m-cell c-g">印尼+21亿；墨西哥+13亿<br>2026–2027年主要增量来源</div>
+    <div class="m-cell c-a">新和平+21亿（全达产）<br>其余基地有限</div>
+
+    <div class="m-cell m-label">不确定性</div>
+    <div class="m-cell c-g fw6">极低·12年运营验证<br>最稳定的利润来源</div>
+    <div class="m-cell c-g">低·一期已验证<br>二期逻辑可信</div>
+    <div class="m-cell c-a">中等·能否复制<br>越柬模型待验证</div>
+    <div class="m-cell c-r">新和平：高<br>达产后利润天花板仅7%</div>
+  </div>
+</div>
+
+<!-- ══════ §5 战略分工与关键风险 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">战略分工：各基地的真实功能定位</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:12px">
+    <div>
+      <div class="card" style="border-left:3px solid var(--green);margin-bottom:10px">
+        <div class="card-label">利润创造层（海外基地）</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-top:4px">
+          <b style="color:var(--text)">越南：</b>利润压舱石。12年运营，稳定22%净利率，欧盟+东南亚双市场，是集团估值的锚定基础。产能已近天花板，未来贡献相对稳定而非高速增长。<br><br>
+          <b style="color:var(--text)">柬埔寨：</b>下一个越南。24.2%净利率+9年免税+本地天胶+无双反，是四个条件同时满足的稀有组合。二期1200万条爬坡是2026年最确定的利润增量来源。<br><br>
+          <b style="color:var(--text)">印尼/墨西哥/埃及：</b>利润期权。可研预测18–19%净利率，但能否复制越柬模型，取决于关税政策稳定性、本地化采购能力和客户开拓进度，2026–2027年是关键验证窗口。
+        </div>
+      </div>
+      <div class="card" style="border-left:3px solid var(--red)">
+        <div class="card-label">规模保障层（国内基地）</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-top:4px">
+          <b style="color:var(--text)">青岛/东营/潍坊：</b>低利润率但不可或缺。承担国内市场份额维护（一汽/重汽/宇通配套）、供应链韧性保障（不受航运/关税冲击）、研发与技术中台功能。利润贡献有限，战略价值不可替代。<br><br>
+          <b style="color:var(--text)">沈阳新和平：</b>战略性买单。以接手普利司通退出的方式卡位国内高端全钢胎市场，代价是短期（2024–2026年）持续亏损。达产后7%净利率天花板意味着它永远是"规模贡献"而非"利润贡献"型资产，但OTR产线（毛利率30%+）是盈利改善的关键变量。
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left:3px solid var(--amber)">
+      <div class="card-label">核心风险：集中度与政策依赖</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.8;margin-top:4px">
+        <b style="color:var(--text)">风险1：利润高度集中于东南亚双基地</b><br>
+        越南+柬埔寨贡献集团67%以上净利润，若这两个基地遭遇类似美国2009年特保案的双反调查，集团利润将直接减半。这是最核心的集中度风险，也是赛轮持续向印尼/墨西哥/埃及分散的根本驱动力。<br><br>
+        <b style="color:var(--text)">风险2：越南产能天花板与柬埔寨接力节奏</b><br>
+        越南三期已达产，增量有限。柬埔寨二期能否顺利爬坡决定2026–2027年集团利润增速。若爬坡不及预期，加上新和平持续亏损，集团净利润下行压力将延续到2027年。<br><br>
+        <b style="color:var(--text)">风险3：油价传导与原材料成本冲击</b><br>
+        当前布伦特油价约102美元/桶，天胶+合成胶+炭黑三重涨价。新和平暴露最大（15.3万吨/年直采），达产后净利润面临被原材料成本完全吞噬的风险。越南和柬埔寨通过本地采购和内部定价有一定缓冲，但长期仍会传导。<br><br>
+        <b style="color:var(--text)">风险4：印尼/墨西哥爬坡期双重拖累</b><br>
+        两家基地2025年同时进入爬坡期，折旧先行、利息累计、收入不足的三层压力叠加，可能使2025–2026年集团层面持续呈现"增收不增利"态势。
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>投资研究核心命题：</strong>赛轮的股价中枢，本质上由"柬埔寨二期爬坡速度 × 越南利润稳定性 × 印尼/墨西哥能否验证高利润率模型"三个变量共同决定。国内基地的业绩波动（包括新和平亏损）是可预期的噪音，不影响核心逻辑；真正的信号在于海外新基地的产能利用率数据——每次季报中披露的海外营收增速，是观察这三个变量进展的最直接指标。
+  </div>
+</div>
+
+<!-- ══════ §6 利润增量时间轴 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">利润增量时间轴：分阶段达产预期</div>
+    <div class="sec-note">基于各基地建设期+爬坡周期推算 · 非公司官方指引</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>时间节点</th>
+        <th>关键里程碑</th>
+        <th>营收变化</th>
+        <th>净利润影响</th>
+        <th>驱动基地</th>
+        <th>核心观察指标</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">2025全年（已发生）</td>
+        <td>新和平首胎下线；印尼/墨西哥首胎下线；柬埔寨二期爬坡启动</td>
+        <td class="c-g">~370亿（年化）</td>
+        <td class="c-r">同比下滑：新和平拖累+原材料冲击</td>
+        <td>全基地运营基准</td>
+        <td>新和平月度产量；柬埔寨二期利用率</td>
+      </tr>
+      <tr class="hl-amber">
+        <td class="fw6">2026年H1</td>
+        <td>新和平爬坡关键期（一期200万条应达产）；墨西哥产能利用率提升；柬埔寨二期持续爬坡</td>
+        <td class="c-g">~390–410亿（+5–10%）</td>
+        <td class="c-a">新和平亏损收窄；柬二期开始贡献利润</td>
+        <td>柬埔寨二期+墨西哥</td>
+        <td>海外营收增速；新和平亏损额是否收窄</td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">2026年H2–2027年</td>
+        <td>印尼扩建产能达产；新和平二期完工（330万条全达产）；柬二期基本达产</td>
+        <td class="c-g">~420–440亿（+10–20%）</td>
+        <td class="c-g fw6">净利润加速修复；海外三基地同步贡献</td>
+        <td>柬二期+印尼+新和平</td>
+        <td>印尼净利润率是否达到可研预测18.7%</td>
+      </tr>
+      <tr class="hl-green">
+        <td class="fw6">2028年以后</td>
+        <td>埃及基地投产达产；全球9基地全面运营；全球年产能超1.6亿条</td>
+        <td class="c-g fw6">~430–450亿（全达产）</td>
+        <td class="c-g fw6">集团净利率有望回升至12–14%区间</td>
+        <td>埃及新增+全基地协同</td>
+        <td>海外净利润占比是否突破75%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note" style="margin-top:8px">
+    <b>核心投资逻辑验证路径：</b>2025年Q3季报和2025年年报是关键窗口——如果能看到①新和平亏损同比收窄、②柬埔寨营收继续高增速（二期贡献）、③印尼营收开始出现（存量+扩建），则核心逻辑得到阶段性验证，可对中期目标更有信心；反之，若三项全部落空，则海外扩产逻辑的可信度需要重新评估。
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：全球产能结构估算（2026.02.27）· 四基地可研报告 · 2024年报 · 2025半年报 · 研究报告引用数据</span>
+  <span>赛轮轮胎_基本盘与增长点_20260320 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION</span>
+</footer>
+
+</body>
+</html>
