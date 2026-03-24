@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国国贸 600007 · 2025年度业绩快报分析</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #f8f7f4;
+    --bg2: #f2f0ec;
+    --bg3: #ede9e3;
+    --surface: #ffffff;
+    --border: #d8d3cb;
+    --border2: #c8c2b8;
+    --text: #1a1916;
+    --muted: #6b6560;
+    --dim: #9b948c;
+    --gold: #b8860b;
+    --gold-lt: #d4a820;
+    --gold-bg: #fdf8ec;
+    --green: #1a6b3a;
+    --green-lt: #2d9655;
+    --green-bg: #edf7f1;
+    --red: #b51c1c;
+    --red-bg: #fdf0f0;
+    --amber: #c47d0a;
+    --amber-bg: #fef4e4;
+    --blue: #1a4f8a;
+    --blue-bg: #eef3fb;
+    --teal: #0e6b6b;
+    --teal-bg: #eaf5f5;
+    --accent: #4a3728;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--gold);
+    padding: 22px 32px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header-left .ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .header-left .title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+  }
+  .header-left .subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+  }
+  .header-right {
+    text-align: right;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    line-height: 1.8;
+  }
+  .header-right .date {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+  }
+
+  /* ── VERDICT BANNER ── */
+  .verdict {
+    background: var(--gold-bg);
+    border: 1px solid var(--gold);
+    border-left: 4px solid var(--gold);
+    padding: 12px 20px;
+    margin: 16px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .verdict-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .verdict-body {
+    font-size: 12px;
+    color: var(--text);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  /* ── MAIN ── */
+  main {
+    padding: 0 24px 32px;
+    max-width: 1100px;
+  }
+
+  /* ── SECTIONS ── */
+  .sec {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 14px;
+  }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 16px 8px;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .sec-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 2px;
+    min-width: 20px;
+  }
+  .sec-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+  .sec-note {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--dim);
+    white-space: nowrap;
+  }
+  .sec-body {
+    padding: 14px 16px;
+  }
+
+  /* ── KPI CARDS ── */
+  .kpi-row { display: grid; gap: 10px; margin-bottom: 12px; }
+  .kpi-row.k3 { grid-template-columns: repeat(3, 1fr); }
+  .kpi-row.k4 { grid-template-columns: repeat(4, 1fr); }
+  .kpi-row.k5 { grid-template-columns: repeat(5, 1fr); }
+  .kpi {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+  }
+  .kpi.gold { border-top: 3px solid var(--gold); }
+  .kpi.g { border-top: 3px solid var(--green); }
+  .kpi.r { border-top: 3px solid var(--red); }
+  .kpi.a { border-top: 3px solid var(--amber); }
+  .kpi.b { border-top: 3px solid var(--blue); }
+  .kpi.t { border-top: 3px solid var(--teal); }
+  .kl { font-size: 10px; color: var(--muted); margin-bottom: 3px; }
+  .kv { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.1; }
+  .kv.small { font-size: 14px; }
+  .ks { font-size: 10px; color: var(--dim); margin-top: 2px; }
+  .kv.c-g { color: var(--green); }
+  .kv.c-r { color: var(--red); }
+  .kv.c-a { color: var(--amber); }
+  .kv.c-gold { color: var(--gold); }
+
+  /* ── COMPARISON TABLE ── */
+  table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+  thead tr { background: var(--bg3); }
+  th { padding: 7px 10px; text-align: left; font-weight: 600; color: var(--text); border-bottom: 2px solid var(--border2); font-size: 11px; }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  tr.hl-g td { background: #f0faf4; }
+  tr.hl-r td { background: #fdf4f4; }
+  tr.hl-gold td { background: var(--gold-bg); }
+  tr.hl-b td { background: var(--blue-bg); }
+  tr.hl-a td { background: var(--amber-bg); }
+  tr.sub td { background: var(--bg3); font-weight: 600; border-top: 2px solid var(--border2); }
+  .fw6 { font-weight: 600; }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .c-g { color: var(--green); }
+  .c-r { color: var(--red); }
+  .c-a { color: var(--amber); }
+  .c-gold { color: var(--gold); }
+  .c-b { color: var(--blue); }
+  .c-m { color: var(--muted); }
+
+  /* ── DELTA BADGE ── */
+  .delta { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; display: inline-block; padding: 1px 5px; border-radius: 2px; }
+  .delta.pos { background: var(--green-bg); color: var(--green); }
+  .delta.neg { background: var(--red-bg); color: var(--red); }
+  .delta.neu { background: var(--bg3); color: var(--muted); }
+  .delta.warn { background: var(--amber-bg); color: var(--amber); }
+
+  /* ── CALLOUT BOXES ── */
+  .green-box { background: var(--green-bg); border: 1px solid #b3dfc5; border-left: 3px solid var(--green); padding: 10px 14px; font-size: 11.5px; line-height: 1.75; margin-bottom: 10px; }
+  .amber-box { background: var(--amber-bg); border: 1px solid #f0c980; border-left: 3px solid var(--amber); padding: 10px 14px; font-size: 11.5px; line-height: 1.75; margin-bottom: 10px; }
+  .red-box { background: var(--red-bg); border: 1px solid #f0b8b8; border-left: 3px solid var(--red); padding: 10px 14px; font-size: 11.5px; line-height: 1.75; margin-bottom: 10px; }
+  .blue-box { background: var(--blue-bg); border: 1px solid #b8cfe8; border-left: 3px solid var(--blue); padding: 10px 14px; font-size: 11.5px; line-height: 1.75; margin-bottom: 10px; }
+  .note { font-size: 10.5px; color: var(--muted); line-height: 1.7; margin-top: 8px; }
+
+  /* ── GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .card { background: var(--bg2); border: 1px solid var(--border); padding: 12px 14px; font-size: 11.5px; }
+  .card-title { font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--dim); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .card-val { font-family: 'IBM Plex Mono', monospace; font-size: 20px; font-weight: 600; line-height: 1.2; }
+  .card-sub { font-size: 10.5px; color: var(--muted); margin-top: 4px; line-height: 1.6; }
+
+  /* ── CHECKLIST ── */
+  .check-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .check-icon { font-size: 14px; min-width: 20px; line-height: 1.5; }
+  .check-body { flex: 1; font-size: 11.5px; line-height: 1.7; }
+  .check-tag { font-family: 'IBM Plex Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 6px; display: inline-block; margin-bottom: 3px; }
+  .tag-g { background: var(--green-bg); color: var(--green); }
+  .tag-r { background: var(--red-bg); color: var(--red); }
+  .tag-a { background: var(--amber-bg); color: var(--amber); }
+  .tag-n { background: var(--bg3); color: var(--muted); }
+
+  /* ── VALUATION TABLE ── */
+  .val-scenario { border: 1px solid var(--border); margin-bottom: 8px; }
+  .val-header { padding: 8px 12px; display: flex; gap: 16px; align-items: center; }
+  .val-body { padding: 8px 12px; border-top: 1px solid var(--border); font-size: 11.5px; }
+
+  /* ── FORECAST BOX ── */
+  .forecast-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 12px; }
+  .forecast-cell { background: var(--surface); padding: 12px 14px; }
+  .fc-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .fc-val { font-family: 'IBM Plex Mono', monospace; font-size: 16px; font-weight: 600; }
+  .fc-sub { font-size: 10px; color: var(--dim); margin-top: 3px; }
+
+  /* ── FOOTER ── */
+  footer {
+    margin: 0 24px;
+    padding: 12px 16px;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: var(--dim);
+    gap: 20px;
+  }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; font-size: 11px; }
+    main { max-width: 100%; padding: 0 12px; }
+    .sec { break-inside: avoid; }
+    .header { padding: 14px 12px; }
+    footer { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="ticker">600007 SH · EQUITY RESEARCH · FLASH UPDATE</div>
+    <div class="title">中国国际贸易中心</div>
+    <div class="subtitle">2025年度业绩快报分析 · 预测vs实际对比 · 估值复核</div>
+  </div>
+  <div class="header-right">
+    <div class="date">2026年3月24日</div>
+    <div>业绩快报发布：2026.03.23</div>
+    <div>数据截至：2025年12月31日</div>
+    <div>数据状态：初步核算，未经审计</div>
+  </div>
+</div>
+
+<div class="verdict">
+  <div class="verdict-tag">▪ 综合判断</div>
+  <div class="verdict-body">
+    业绩快报基本符合此前Q3预测框架，但收入及利润均轻微偏低于基案预测值。全年营收37.70亿（预测37.2亿，超出+0.5亿），归母净利润12.02亿（预测12.3亿，低约−0.28亿，差距仅−2.3%），EPS 1.19元（预测1.22元）。写字楼、商场、酒店三大业务收入<strong>全线同比下滑</strong>，这是2024年以来承压趋势的延续，并无特别负面的超预期信号。<strong>年报全文将是关键验证窗口</strong>：需核实商场Q4季报转正信号是否在全年层面兑现，以及股息公告。
+  </div>
+</div>
+
+<main>
+
+<!-- §01 业绩快报 vs Q3预测对比 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">业绩快报 vs 此前预测基准：逐项比较</div>
+    <div class="sec-note">预测基准来源：Q3季报推算（2025年11月）</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k5">
+      <div class="kpi gold">
+        <div class="kl">营业总收入</div>
+        <div class="kv c-gold">37.70亿</div>
+        <div class="ks">预测 ~37.2亿 <span class="delta pos">+1.3%</span></div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">营业利润</div>
+        <div class="kv c-a">16.03亿</div>
+        <div class="ks">同比 −4.16%</div>
+      </div>
+      <div class="kpi r">
+        <div class="kl">归母净利润</div>
+        <div class="kv c-r small">12.02亿</div>
+        <div class="ks">预测 ~12.3亿 <span class="delta neg">−2.3%</span></div>
+      </div>
+      <div class="kpi r">
+        <div class="kl">基本EPS</div>
+        <div class="kv c-r">1.19元</div>
+        <div class="ks">预测 ~1.22元 <span class="delta neg">−2.5%</span></div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">净资产/股</div>
+        <div class="kv c-b">9.68元</div>
+        <div class="ks">同比 +0.98%</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>财务指标</th>
+          <th>2024年实际</th>
+          <th>Q3预测（基案）</th>
+          <th>2025年快报实际</th>
+          <th>预测误差</th>
+          <th>同比变动</th>
+          <th>信号评级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-gold">
+          <td class="fw6">营业总收入（亿元）</td>
+          <td class="mono">39.12</td>
+          <td class="mono">~37.2</td>
+          <td class="mono fw6 c-gold">37.70</td>
+          <td><span class="delta pos">+0.5亿 / +1.3%</span></td>
+          <td class="c-r">−3.63%</td>
+          <td><span class="delta neu">符合预期</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">营业利润（亿元）</td>
+          <td class="mono">16.72</td>
+          <td class="mono">~16.5</td>
+          <td class="mono fw6">16.03</td>
+          <td><span class="delta neg">−0.47亿 / −2.8%</span></td>
+          <td class="c-r">−4.16%</td>
+          <td><span class="delta warn">轻微低于</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">利润总额（亿元）</td>
+          <td class="mono">16.85</td>
+          <td class="mono">—</td>
+          <td class="mono fw6">16.05</td>
+          <td>—</td>
+          <td class="c-r">−4.74%</td>
+          <td>—</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">归母净利润（亿元）</td>
+          <td class="mono">12.62</td>
+          <td class="mono">~12.3</td>
+          <td class="mono fw6 c-r">12.02</td>
+          <td><span class="delta neg">−0.28亿 / −2.3%</span></td>
+          <td class="c-r">−4.76%</td>
+          <td><span class="delta warn">轻微低于</span></td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">扣非归母净利润（亿元）</td>
+          <td class="mono">12.48</td>
+          <td class="mono">—</td>
+          <td class="mono fw6 c-r">11.97</td>
+          <td>—</td>
+          <td class="c-r">−4.09%</td>
+          <td>—</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">基本EPS（元/股）</td>
+          <td class="mono">1.25</td>
+          <td class="mono">~1.22</td>
+          <td class="mono fw6 c-r">1.19</td>
+          <td><span class="delta neg">−0.03元 / −2.5%</span></td>
+          <td class="c-r">−4.76%</td>
+          <td><span class="delta warn">轻微低于</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">加权平均ROE</td>
+          <td class="mono">13.35%</td>
+          <td class="mono">~12.5%</td>
+          <td class="mono fw6">12.64%</td>
+          <td><span class="delta pos">略好于预测</span></td>
+          <td class="c-r">−0.71pt</td>
+          <td><span class="delta neu">符合预期</span></td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6">总资产（亿元）</td>
+          <td class="mono">123.24</td>
+          <td class="mono">—</td>
+          <td class="mono fw6">114.54</td>
+          <td>—</td>
+          <td class="c-r">−7.07%</td>
+          <td><span class="delta warn">值得关注</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">归母股东权益（亿元）</td>
+          <td class="mono">96.53</td>
+          <td class="mono">—</td>
+          <td class="mono fw6">97.47</td>
+          <td>—</td>
+          <td class="c-g">+0.98%</td>
+          <td><span class="delta pos">稳健</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">每股净资产（元/股）</td>
+          <td class="mono">9.58</td>
+          <td class="mono">—</td>
+          <td class="mono fw6">9.68</td>
+          <td>—</td>
+          <td class="c-g">+0.98%</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:8px">
+      ★ 快报数据为初步核算，未经审计，以年报正式披露为准 · Q3预测基准来自本研究框架基于前三季度数据的全年推算
+    </div>
+  </div>
+</div>
+
+<!-- §02 业绩下滑归因 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">下滑归因：收入端与利润端双重压力</div>
+    <div class="sec-note">快报原文："写字楼、商场及酒店收入同比下降所致"</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="amber-box">
+      <strong>快报原文说明：</strong>"公司实现营业收入较上年同期减少，主要是写字楼、商场及酒店收入同比下降所致。"——三大核心业务全线下滑，无一幸免。快报未披露分项收入数据，具体业务表现有待年报全文。
+    </div>
+
+    <div class="grid3" style="margin-bottom:12px">
+      <div class="card">
+        <div class="card-title">写字楼租金 · 核心压力源</div>
+        <div class="card-val c-r" style="font-size:14px">持续承压</div>
+        <div class="card-sub">
+          北京CBD写字楼空置率持续高位（市场均值超20%）。国贸写字楼虽为A级核心资产但仍受大环境拖累。Q3单季降幅窄于H1，全年仍录得负增长。<br>
+          <strong>关注点：</strong>年报需披露租金单价与出租率，观察是否进入筑底阶段。
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">商场租金 · 出现拐点信号</div>
+        <div class="card-val c-a" style="font-size:14px">拐点待验证</div>
+        <div class="card-sub">
+          Q3单季商场租金同比+9.4%（vs H1 −2.7%），为正面拐点信号。但全年仍为负增长，说明H1的拖累显著。<br>
+          <strong>关注点：</strong>Q4是否延续Q3反弹势头？全年商场租金是否接近持平，还是小幅负增长？
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">酒店业务 · 旅游消费修复偏慢</div>
+        <div class="card-val c-r" style="font-size:14px">弱于预期</div>
+        <div class="card-sub">
+          国际商务旅行虽有所恢复，但高端商务酒店需求受跨国企业在华活动收缩影响。RevPAR回升幅度有限。<br>
+          <strong>关注点：</strong>2026年是否有持续改善空间？入住率与房价变化。
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>压力层次</th>
+          <th>成因分析</th>
+          <th>量化影响（估算）</th>
+          <th>可逆性判断</th>
+          <th>年报验证指标</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-r">
+          <td class="fw6 c-r">① 宏观环境</td>
+          <td>北京CBD写字楼市场供过于求；外资企业压缩办公面积；互联网行业裁员去化</td>
+          <td>写字楼收入估算约占总收入40%，若单价下降5%则影响~0.7亿</td>
+          <td class="c-a">中期承压，1–2年见底</td>
+          <td>出租率、租金单价、续约率</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">② 结构性转型</td>
+          <td>商场业态向体验消费升级过渡期，传统零售租金较难提价；租户结构调整带来短暂空档</td>
+          <td>Q3已出现转正（+9.4%），全年仍负增长；影响约−0.3亿收入</td>
+          <td class="c-g">Q3拐点信号积极，2026年有望回正</td>
+          <td>Mall租金单价、出租率、零售额增长</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-b">③ 酒店承压</td>
+          <td>商务出行结构性变化；国际会议频次低于疫前水平；竞争新供给入市</td>
+          <td>酒店约占总收入15%，同比小幅下降</td>
+          <td class="c-a">逐步修复，需观察跨国商务活动</td>
+          <td>RevPAR、出租率、国际旅客占比</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">总资产大幅下降−7.07%</td>
+          <td>总资产从123.24亿降至114.54亿，主因可能是固定资产折旧摊销+有息负债偿还；净资产轻微正增</td>
+          <td>净资产+0.98%，说明不是亏损导致；结合低资本支出，为主动去杠杆态势</td>
+          <td class="c-g">健康信号：低负债优质资产</td>
+          <td>负债结构变化、资本支出水平</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- §03 关键亮点：总资产下降与净资产稳定 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">财务健康度评估：低杠杆特征维持，净资产稳健</div>
+    <div class="sec-note">快报资产负债结构解读</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="grid2" style="margin-bottom:12px">
+      <div>
+        <div class="green-box">
+          <strong>✓ 净资产小幅正增长（+0.98%）：</strong>归母股东权益从96.53亿升至97.47亿，每股净资产9.68元（+0.10元）。净利润12.02亿 − 2024年股息约10亿左右 = 净资产自然增长约2亿，与+0.98%吻合。说明公司在收益下滑情况下，仍维持净资产稳定扩张，无"吃老本"迹象。
+        </div>
+        <div class="blue-box">
+          <strong>◎ 总资产下降−7.07%：</strong>总资产从123.24亿降至114.54亿，减少约8.7亿。主因推断：① 持续折旧摊销（国贸大厦等固定资产每年折旧数亿元）；② 无重大新增资本支出；③ 可能存在部分有息负债偿还。这是轻资本运营模式的体现，不是资产损失，而是账面资产的自然消耗。
+        </div>
+      </div>
+      <div>
+        <div class="kpi-row k3">
+          <div class="kpi g">
+            <div class="kl">股东权益（亿元）</div>
+            <div class="kv c-g small">97.47</div>
+            <div class="ks c-g">+0.94亿 YoY</div>
+          </div>
+          <div class="kpi b">
+            <div class="kl">总资产（亿元）</div>
+            <div class="kv c-r small">114.54</div>
+            <div class="ks c-r">−8.70亿 YoY</div>
+          </div>
+          <div class="kpi t">
+            <div class="kl">ROE（加权）</div>
+            <div class="kv" style="color:var(--teal)">12.64%</div>
+            <div class="ks c-r">−0.71pt YoY</div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:10px">
+          <div class="card-title">隐含负债推算</div>
+          <div style="font-size:11.5px;line-height:1.8">
+            总资产114.54亿 − 归母权益97.47亿 = 总负债约<strong>17.07亿</strong>（估算，含少数股东权益）<br>
+            资产负债率（粗估）：~14.9%（极低）<br>
+            与2024年类似水平，<strong>无杠杆风险</strong>，中国商业地产中罕见的低负债运营商。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §04 估值复核 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">估值框架复核：基于快报数据更新</div>
+    <div class="sec-note">参考股价：约13–14元（A股，估算）· 市值约130–140亿</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="amber-box" style="margin-bottom:12px">
+      <strong>估值复核背景：</strong>此前基于Q3数据建立的估值区间为17–21元/股（净现金+营收×P/S框架），以及净利润12.3亿×P/E框架。现以快报实际EPS 1.19元、净资产9.68元重新校准关键参数。
+    </div>
+
+    <table style="margin-bottom:12px">
+      <thead>
+        <tr>
+          <th>估值方法</th>
+          <th>Q3预测参数</th>
+          <th>快报更新参数</th>
+          <th>旧目标价（元）</th>
+          <th>更新目标价（元）</th>
+          <th>变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-gold">
+          <td class="fw6">P/E法</td>
+          <td>EPS 1.22元 × 12–15x</td>
+          <td>EPS <strong>1.19元</strong> × 12–15x</td>
+          <td class="mono">14.6–18.3元</td>
+          <td class="mono fw6 c-gold">14.3–17.9元</td>
+          <td><span class="delta neg">轻微下调 ~2%</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">P/B法</td>
+          <td>BVPS 9.58元 × 1.5–2.0x</td>
+          <td>BVPS <strong>9.68元</strong> × 1.5–2.0x</td>
+          <td class="mono">14.4–19.2元</td>
+          <td class="mono fw6">14.5–19.4元</td>
+          <td><span class="delta pos">轻微上调 ~0.5%</span></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">股息贴现（DDM）</td>
+          <td>DPS ~1.00元 · 增长3% · 贴现8%</td>
+          <td>DPS ~0.95–1.00元（待年报确认）· 同参数</td>
+          <td class="mono">~20元</td>
+          <td class="mono fw6 c-g">~19–20元</td>
+          <td><span class="delta neu">基本不变</span></td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6">净现金+P/S法</td>
+          <td>净现金5亿 + 营收37.2亿×0.3–0.4</td>
+          <td>净现金待年报 + 营收<strong>37.70亿</strong>×0.3–0.4</td>
+          <td class="mono">16–20元</td>
+          <td class="mono fw6 c-b">16.3–20.1元</td>
+          <td><span class="delta pos">营收略超，小幅正面</span></td>
+        </tr>
+        <tr class="sub">
+          <td>综合估值区间（中枢）</td>
+          <td colspan="2">四法交叉验证，Q3框架维持有效</td>
+          <td class="mono">17–21元</td>
+          <td class="mono fw6 c-gold">16.5–20元</td>
+          <td><span class="delta warn">轻微下调上沿</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div>
+        <div class="green-box">
+          <strong>股息预测更新：</strong><br>
+          2025年归母净利润12.02亿，假设派息率85–90%（与历史相近），则<strong>全年DPS约1.00–1.08元</strong>。历史数据：2024年DPS约1.00元。按当前股价约13–14元估算，<strong>股息率约7–8%</strong>，提供估值底部支撑。<br>
+          <em>股息公告将在年报中披露，是年报最重要的单一信号。</em>
+        </div>
+      </div>
+      <div>
+        <div class="red-box">
+          <strong>下行风险更新：</strong><br>
+          三大业务全线下滑且快报未给出改善指引，若2026年写字楼出租率继续下滑，收入可能进一步降至36亿以下，将压低P/S估值。北京CBD写字楼市场供给压力预计2026–2027年才能实质性去化。<br>
+          <em>若EPS继续走低至1.0元以下，P/E估值下沿将至12元。</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §05 Q3拐点信号复核 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">Q3拐点信号复核：全年数据是否兑现</div>
+    <div class="sec-note">Q3季报显示商场租金+9.4% · 写字楼降幅收窄 · 待年报分项确认</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr>
+          <th>季报信号</th>
+          <th>Q3当时观察</th>
+          <th>全年快报隐含</th>
+          <th>当前判断</th>
+          <th>年报验证要点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-g">
+          <td class="fw6">商场租金拐点</td>
+          <td>Q3单季同比+9.4%（vs H1 −2.7%）</td>
+          <td>全年营收仍−3.6%，但商场贡献改善；隐含Q4商场收入亦为正增长</td>
+          <td><span class="delta pos">部分兑现</span> H2反弹属实，但H1基数影响全年仍负</td>
+          <td>年报分项：商场全年收入金额，Q4是否持续+正增长</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6">写字楼降幅收窄</td>
+          <td>Q3降幅较H1收窄，但尚未转正</td>
+          <td>全年仍为负增长，快报未特别说明任何改善加速</td>
+          <td><span class="delta warn">待验证</span> 降幅收窄趋势能否持续到2026年</td>
+          <td>年报分项：写字楼出租率、租金单价走势</td>
+        </tr>
+        <tr>
+          <td class="fw6">酒店复苏</td>
+          <td>Q3RevPAR有所改善，但基数弱</td>
+          <td>全年酒店收入同比仍下降，修复速度偏慢</td>
+          <td><span class="delta neg">低于预期</span> 修复不及Q3预判</td>
+          <td>年报：入住率、RevPAR、国际旅客占比</td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6">净利率稳定性</td>
+          <td>营业利润率约42.7%（前三季）</td>
+          <td>营业利润率：16.03/37.70 = <strong>42.5%</strong>，全年基本一致</td>
+          <td><span class="delta pos">兑现</span> 成本管控稳健，利润率未进一步恶化</td>
+          <td>成本分项、费用管控情况</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- §06 待验证清单（年报） -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">年报发布前观察清单</div>
+    <div class="sec-note">年报预计2026年4月发布</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="check-item">
+      <div class="check-icon">💰</div>
+      <div class="check-body">
+        <span class="check-tag tag-g">★★★ 最关键</span>
+        <strong>股息公告：全年DPS金额</strong><br>
+        历史股息：约1.00元/股（2024年），DPS维持是最重要单一信号。EPS 1.19元下，若维持1.00元/股，派息率84%，支撑7%+股息率。若下调至0.90元以下，将触发市场估值重估。
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">🏢</div>
+      <div class="check-body">
+        <span class="check-tag tag-a">★★ 重要</span>
+        <strong>写字楼分项：出租率 & 租金单价</strong><br>
+        Q3写字楼降幅收窄信号是否在Q4持续？年报需披露出租率具体数字。市场关注北京CBD写字楼是否已触底，写字楼是最大单一收入来源。
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">🛍️</div>
+      <div class="check-body">
+        <span class="check-tag tag-a">★★ 重要</span>
+        <strong>商场分项：Q4是否延续Q3的+9.4%反弹</strong><br>
+        Q3是季节性旺季（十一黄金周）还是趋势性拐点？Q4（圣诞）表现是关键验证。若Q4亦为正增长，则商场业务2026年全年正增长的概率较高。
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">📊</div>
+      <div class="check-body">
+        <span class="check-tag tag-a">★★ 重要</span>
+        <strong>总资产大幅下降−7.07%的具体构成</strong><br>
+        需拆分：折旧摊销 vs 有息负债偿还 vs 其他资产变动。若主要是折旧，则无需担忧；若有大额资产减值则需关注。
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">🏨</div>
+      <div class="check-body">
+        <span class="check-tag tag-n">★ 关注</span>
+        <strong>酒店业务：RevPAR及经营恢复情况</strong><br>
+        2025年酒店收入同比下降，需了解是出租率下降还是房价下调，以判断2026年修复路径。
+      </div>
+    </div>
+
+    <div class="check-item">
+      <div class="check-icon">🔮</div>
+      <div class="check-body">
+        <span class="check-tag tag-n">★ 关注</span>
+        <strong>管理层对2026年的指引或展望</strong><br>
+        若管理层在年报中对2026年收入趋势有正面表述（如写字楼止跌、商场保持正增长），将改善市场预期。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §07 综合结论与操作建议 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">综合结论与投资框架</div>
+    <div class="sec-note">业绩快报解读 · 非投资建议</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="forecast-grid">
+      <div class="forecast-cell">
+        <div class="fc-label">本次快报评分</div>
+        <div class="fc-val c-a">符合偏弱</div>
+        <div class="fc-sub">营收略超+1.3%，净利略低−2.3%<br>全线下滑但无超预期负面信号</div>
+      </div>
+      <div class="forecast-cell">
+        <div class="fc-label">估值支撑</div>
+        <div class="fc-val c-gold">16.5–20元</div>
+        <div class="fc-sub">综合四法估值区间<br>股息率7–8%提供底部支撑</div>
+      </div>
+      <div class="forecast-cell">
+        <div class="fc-label">年报核心信号</div>
+        <div class="fc-val c-g">股息公告</div>
+        <div class="fc-sub">DPS维持≥1.00元 = 维持评级<br>DPS < 0.90元 = 重新评估</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600">正面因素 / 支撑逻辑</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 股息率稳健：</strong>EPS 1.19元，高派息率传统支撑7%+股息率，安全垫较高<br>
+          <strong style="color:var(--text)">② 商场拐点初现：</strong>Q3商场+9.4%，若Q4延续，2026年商场收入有望转正<br>
+          <strong style="color:var(--text)">③ 低杠杆护城河：</strong>负债率约15%，无财务风险，下行保护强<br>
+          <strong style="color:var(--text)">④ 净资产小幅正增：</strong>即使收益下滑，净资产仍增长，账面质地稳健<br>
+          <strong style="color:var(--text)">⑤ 利润率维持：</strong>营业利润率42.5%，成本管控无恶化
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600">负面因素 / 风险提示</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 三大业务全线负增长：</strong>写字楼+商场+酒店无一反弹，需等年报分项数据<br>
+          <strong style="color:var(--text)">② EPS连续下行：</strong>2024年1.25元 → 2025年1.19元，趋势延续则估值持续承压<br>
+          <strong style="color:var(--text)">③ 写字楼仍是主要拖累：</strong>北京CBD市场短期无改善催化剂<br>
+          <strong style="color:var(--text)">④ 无增长引擎：</strong>国贸无扩张新业务，估值主要依赖股息，股价向上空间有限<br>
+          <strong style="color:var(--text)">⑤ 总资产收缩：</strong>资产规模持续萎缩，若收益也持续下降则P/B估值空间压缩
+        </div>
+      </div>
+    </div>
+
+    <div class="amber-box" style="margin-top:12px">
+      <strong>结论：</strong>业绩快报数据与此前预测框架高度吻合，未有超预期负面惊喜。核心结论不变：中国国贸是一家<strong>低杠杆、高股息、无增长</strong>的防御型资产。在当前市场环境下，适合以股息收益率视角定价（7–8%），而非增长溢价视角。<strong>等待年报全文（预计4月）</strong>：股息公告、写字楼出租率、商场Q4数据是三个关键验证点，任何一个超预期正面改善均可重新测算上行空间。
+    </div>
+  </div>
+</div>
+
+<!-- §08 数据来源 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div class="sec-title">数据来源与透明声明</div>
+  </div>
+  <div class="sec-body">
+    <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+      <strong style="color:var(--text)">【确认数据】</strong>中国国际贸易中心股份有限公司2025年度业绩快报公告（2026年3月23日，编号2026-006）· 2024年年度报告 · 2025年前三季度季报<br>
+      <strong style="color:var(--text)">【推算数据】</strong>分项收入（写字楼/商场/酒店）：快报未披露，为历史趋势推算 · 负债总额：总资产−归母权益的粗估，含少数股东权益，并非精确数字 · 股息预测：基于历史派息率推算，以年报公告为准<br>
+      <strong style="color:var(--text)">【估值框架】</strong>基于本研究框架前期Q3分析（2025年11月），以快报数据更新参数，不构成投资建议<br>
+      <strong style="color:var(--amber)">【重要提示】</strong>快报为初步核算数据，未经审计，以2025年年度报告正式披露为准 · 报告日期：2026年3月24日 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：中国国贸2025年度业绩快报（2026.03.23）· 2024年年报 · 2025年Q3季报</span>
+  <span>中国国贸_2025业绩快报分析_20260324 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
