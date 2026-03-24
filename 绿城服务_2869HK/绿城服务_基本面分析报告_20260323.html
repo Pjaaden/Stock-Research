@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>绿城服务集团 · 基本面分析报告 2025</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f8f5ef;
+    --accent: #c8421a;
+    --accent2: #1a5c8a;
+    --muted: #6b6460;
+    --rule: #d4cdc5;
+    --highlight: #f0e8d8;
+    --green-pos: #2e7d4f;
+    --red-neg: #c8421a;
+    --amber: #b8860b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  /* ─── HEADER ─── */
+  .report-header {
+    border-top: 3px solid var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding: 24px 0 20px;
+    margin-bottom: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 16px;
+  }
+
+  .report-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+
+  .report-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  .ticker-badge {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8px 14px;
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section {
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 600;
+    border-left: 3px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ─── SUMMARY CARDS ─── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .kpi {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 12px 10px;
+    text-align: center;
+  }
+
+  .kpi-val {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink);
+    line-height: 1.1;
+  }
+
+  .kpi-val.pos { color: var(--green-pos); }
+  .kpi-val.neg { color: var(--red-neg); }
+  .kpi-val.warn { color: var(--amber); }
+
+  .kpi-label {
+    font-size: 10.5px;
+    color: var(--muted);
+    margin-top: 4px;
+    line-height: 1.3;
+  }
+
+  .kpi-delta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    margin-top: 3px;
+  }
+
+  /* ─── TABLES ─── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    margin-bottom: 16px;
+  }
+
+  th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 7px 10px;
+    font-weight: 500;
+    font-size: 11px;
+    text-align: right;
+    letter-spacing: 0.3px;
+  }
+
+  th:first-child { text-align: left; }
+
+  td {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--rule);
+    text-align: right;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+  }
+
+  td:first-child {
+    text-align: left;
+    font-family: 'Noto Sans SC', sans-serif;
+    font-size: 12.5px;
+  }
+
+  tr:nth-child(even) td { background: rgba(0,0,0,0.02); }
+  tr.subtotal td { background: var(--highlight); font-weight: 500; }
+  tr.total td { background: var(--ink); color: var(--paper); font-weight: 500; }
+  tr.total td:first-child { color: var(--paper); }
+
+  .pos { color: var(--green-pos); }
+  .neg { color: var(--red-neg); }
+  .warn { color: var(--amber); }
+  .muted { color: var(--muted); }
+
+  /* ─── RISK BOX ─── */
+  .risk-box {
+    border: 1px solid;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .risk-box.high { border-color: var(--red-neg); background: #fff5f2; }
+  .risk-box.med { border-color: var(--amber); background: #fffbf0; }
+  .risk-box.low { border-color: var(--green-pos); background: #f2faf5; }
+
+  .risk-icon {
+    font-size: 18px;
+    line-height: 1;
+    margin-top: 1px;
+  }
+
+  .risk-title {
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .risk-body {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* ─── CHARTS ─── */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 24px;
+  }
+
+  .chart-box {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 16px;
+  }
+
+  .chart-title {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  canvas { max-height: 180px; }
+
+  /* ─── VALUATION TABLE ─── */
+  .valuation-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .val-card {
+    border: 1px solid var(--rule);
+    padding: 14px;
+    background: white;
+  }
+
+  .val-scenario {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  .val-price {
+    font-size: 22px;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    line-height: 1;
+  }
+
+  .val-price.bear { color: var(--red-neg); }
+  .val-price.base { color: var(--accent2); }
+  .val-price.bull { color: var(--green-pos); }
+
+  .val-detail {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ─── VERDICT ─── */
+  .verdict {
+    border: 2px solid var(--ink);
+    padding: 20px 24px;
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .verdict-rating {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent2);
+    line-height: 1;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .verdict-label {
+    font-size: 10px;
+    font-family: 'DM Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .verdict-text {
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .verdict-text strong { color: var(--accent); }
+
+  /* ─── PROS/CONS ─── */
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .pros, .cons {
+    padding: 14px;
+    border: 1px solid var(--rule);
+  }
+
+  .pros { background: #f2faf5; }
+  .cons { background: #fff5f2; }
+
+  .pros-header, .cons-header {
+    font-weight: 600;
+    font-size: 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .pros-header { color: var(--green-pos); }
+  .cons-header { color: var(--red-neg); }
+
+  .item-list {
+    list-style: none;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .item-list li {
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .item-list li::before {
+    position: absolute;
+    left: 0;
+    font-size: 10px;
+  }
+
+  .pros .item-list li::before { content: '↑'; color: var(--green-pos); }
+  .cons .item-list li::before { content: '↓'; color: var(--red-neg); }
+
+  /* ─── FOOTNOTE ─── */
+  .footnote {
+    border-top: 1px solid var(--rule);
+    margin-top: 32px;
+    padding-top: 12px;
+    font-size: 10.5px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 24px 0;
+  }
+
+  .inline-note {
+    background: var(--highlight);
+    border-left: 3px solid var(--amber);
+    padding: 8px 12px;
+    font-size: 12px;
+    margin: 12px 0;
+    line-height: 1.6;
+  }
+
+  @media print {
+    body { padding: 16px; font-size: 12px; }
+    .kpi-grid { grid-template-columns: repeat(6,1fr); }
+    .chart-row { break-inside: avoid; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- HEADER -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <div>
+    <div class="report-title">绿城服务集团 · 基本面分析报告</div>
+    <div class="report-sub">GREENTOWN SERVICE GROUP CO. LTD. &nbsp;|&nbsp; 2025年报 + 2025中期 &nbsp;|&nbsp; 分析日期：2026-03-23</div>
+    <div class="report-sub" style="margin-top:3px;">数据来源：2025年度审计业绩公告 / 2025年中期报告 &nbsp;|&nbsp; 本报告仅供研究参考，不构成投资建议</div>
+  </div>
+  <div class="ticker-badge">
+    <div style="font-size:16px;font-weight:700;">2869.HK</div>
+    <div style="font-size:10px;margin-top:2px;">港交所主板</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S1 · 核心财务快照 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">01</span> 核心财务快照（FY2025）</div>
+
+  <div class="kpi-grid">
+    <div class="kpi">
+      <div class="kpi-val">191.6亿</div>
+      <div class="kpi-label">全年收入</div>
+      <div class="kpi-delta pos">+7.1% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">33.2亿</div>
+      <div class="kpi-label">毛利</div>
+      <div class="kpi-delta pos">+10.3% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val pos">18.8亿</div>
+      <div class="kpi-label">核心经营利润</div>
+      <div class="kpi-delta pos">+24.6% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val">8.8亿</div>
+      <div class="kpi-label">归母净利润</div>
+      <div class="kpi-delta pos">+29.9% YoY<span class="muted">（持续经营）</span></div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val pos">15.3亿</div>
+      <div class="kpi-label">经营性现金净额</div>
+      <div class="kpi-delta pos">+3.6% YoY</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-val pos">53.2亿</div>
+      <div class="kpi-label">现金及等价物</div>
+      <div class="kpi-delta pos">+9.6% YoY</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:24%">项目（百万元人民币）</th>
+        <th>FY2022E</th>
+        <th>FY2023E</th>
+        <th>FY2024</th>
+        <th>H1 2025</th>
+        <th>FY2025</th>
+        <th>YoY %</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>总收入</td>
+        <td>8,197</td>
+        <td>15,530</td>
+        <td>17,893</td>
+        <td>9,289</td>
+        <td>19,164</td>
+        <td class="pos">+7.1%</td>
+      </tr>
+      <tr>
+        <td>— 物业服务</td>
+        <td>—</td>
+        <td>—</td>
+        <td>12,401</td>
+        <td>6,633</td>
+        <td>13,644</td>
+        <td class="pos">+10.0%</td>
+      </tr>
+      <tr>
+        <td>— 园区服务</td>
+        <td>—</td>
+        <td>—</td>
+        <td>2,739</td>
+        <td>1,357</td>
+        <td>2,756</td>
+        <td class="muted">+0.6%</td>
+      </tr>
+      <tr>
+        <td>— 咨询服务</td>
+        <td>—</td>
+        <td>—</td>
+        <td>2,753</td>
+        <td>1,299</td>
+        <td>2,764</td>
+        <td class="muted">+0.4%</td>
+      </tr>
+      <tr class="subtotal">
+        <td>毛利</td>
+        <td>1,530</td>
+        <td>—</td>
+        <td>3,011</td>
+        <td>1,808</td>
+        <td>3,322</td>
+        <td class="pos">+10.3%</td>
+      </tr>
+      <tr>
+        <td>毛利率</td>
+        <td>18.7%</td>
+        <td>—</td>
+        <td>16.8%</td>
+        <td>19.5%</td>
+        <td>17.3%</td>
+        <td class="pos">+0.5ppt</td>
+      </tr>
+      <tr class="subtotal">
+        <td>核心经营利润</td>
+        <td>—</td>
+        <td>—</td>
+        <td>1,507</td>
+        <td>1,074</td>
+        <td>1,878</td>
+        <td class="pos">+24.6%</td>
+      </tr>
+      <tr>
+        <td>预期信用损失（ECL）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>241</td>
+        <td>195</td>
+        <td>532</td>
+        <td class="neg">+121.1%</td>
+      </tr>
+      <tr>
+        <td>税前利润</td>
+        <td>—</td>
+        <td>—</td>
+        <td>1,071</td>
+        <td>—</td>
+        <td>1,386</td>
+        <td class="pos">+29.5%</td>
+      </tr>
+      <tr>
+        <td>有效税率</td>
+        <td>—</td>
+        <td>—</td>
+        <td>29.8%</td>
+        <td>—</td>
+        <td>32.1%</td>
+        <td class="neg">+2.3ppt</td>
+      </tr>
+      <tr class="subtotal">
+        <td>归母净利润（持续经营）</td>
+        <td>553</td>
+        <td>432</td>
+        <td>678</td>
+        <td>613</td>
+        <td>880</td>
+        <td class="pos">+29.9%</td>
+      </tr>
+      <tr>
+        <td>净利率</td>
+        <td>—</td>
+        <td>—</td>
+        <td>4.2%</td>
+        <td>—</td>
+        <td>4.6%</td>
+        <td class="pos">+0.4ppt</td>
+      </tr>
+      <tr>
+        <td>基本每股盈利（元）</td>
+        <td>0.13</td>
+        <td>0.13</td>
+        <td>0.214</td>
+        <td>0.20</td>
+        <td>0.280</td>
+        <td class="pos">+30.8%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inline-note">
+    ⚠ ECL（预期信用损失）全年达5.32亿，同比+121%，远超核心利润增速，为本年度最值关注的负面信号。其中贸易应收款项减值拨备5.46亿，较去年的2.19亿大幅上升。结合应收款账龄分析，2–3年以上账龄款项余额持续增加（2025年末3–5年账龄合计达3.17亿），反映地产行业下行导致的开发商付款能力承压。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S2 · 现金流与资产负债 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">02</span> 现金流与资产负债质量</div>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <div class="chart-title">经营活动现金净额趋势（H1，百万元）</div>
+      <canvas id="cfChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">收入与归母净利润趋势（FY，亿元）</div>
+      <canvas id="plChart"></canvas>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:28%">资产负债核心指标</th>
+        <th>FY2024</th>
+        <th>H1 2025</th>
+        <th>FY2025</th>
+        <th>变动分析</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>现金及等价物（亿元）</td>
+        <td>48.5</td>
+        <td>—</td>
+        <td>53.2</td>
+        <td class="pos">+9.6% ✓</td>
+      </tr>
+      <tr>
+        <td>定期存款（亿元）</td>
+        <td>11.2</td>
+        <td>—</td>
+        <td>16.9</td>
+        <td class="pos">+50.8%，主动提高资金收益率</td>
+      </tr>
+      <tr>
+        <td>贸易应收款项净额（亿元）</td>
+        <td>48.4</td>
+        <td>—</td>
+        <td>51.0</td>
+        <td class="warn">+5.4%，随规模扩大增加</td>
+      </tr>
+      <tr>
+        <td>贸易应收款减值拨备（亿元）</td>
+        <td>5.4</td>
+        <td>—</td>
+        <td>7.2</td>
+        <td class="neg">+34%，坏账风险上升</td>
+      </tr>
+      <tr>
+        <td>银行贷款合计（亿元）</td>
+        <td>0.65</td>
+        <td>—</td>
+        <td>0.52</td>
+        <td class="pos">极低，几乎无有息负债</td>
+      </tr>
+      <tr>
+        <td>租赁负债（亿元）</td>
+        <td>7.1</td>
+        <td>—</td>
+        <td>4.3</td>
+        <td class="pos">-39%，退出部分商业资产项目</td>
+      </tr>
+      <tr>
+        <td>合同负债（亿元）</td>
+        <td>22.3</td>
+        <td>—</td>
+        <td>23.3</td>
+        <td class="pos">+4.5%，预收费用健康</td>
+      </tr>
+      <tr>
+        <td>流动比率</td>
+        <td>1.48x</td>
+        <td>—</td>
+        <td>1.42x</td>
+        <td class="muted">小幅下降但仍健康</td>
+      </tr>
+      <tr class="subtotal">
+        <td>负债比率（总负债/总资产）</td>
+        <td>51.7%</td>
+        <td>—</td>
+        <td>52.4%</td>
+        <td class="warn">+0.7ppt，轻微上升</td>
+      </tr>
+      <tr>
+        <td>经营活动现金净额（亿元）</td>
+        <td>14.7</td>
+        <td>0.51（H1）</td>
+        <td>15.3</td>
+        <td class="warn">H1异常偏低，全年回补</td>
+      </tr>
+      <tr>
+        <td>融资活动现金净额（亿元）</td>
+        <td>-6.5</td>
+        <td>—</td>
+        <td>-8.7</td>
+        <td class="neg">股息+回购支出增加</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inline-note">
+    💡 <strong>H1经营性现金流异常低（仅5,080万）</strong>：与往年H1均为负数（2021: -3.99亿，2022: -4.23亿，2023: -4.96亿，2024: -3.98亿）对比，FY2025 H1实现小幅正值属阶段性改善，但绿城服务历史上H1经营现金流惯性偏弱，主要由于Q1~Q2是物业费旺季收款但同期薪资及外包结算支出亦集中，需结合全年口径判断。全年经营现金净额15.3亿，现金质量良好。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S3 · 业务结构分析 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">03</span> 业务结构与盈利能力分析</div>
+
+  <div class="chart-row">
+    <div class="chart-box">
+      <div class="chart-title">收入结构（FY2025）</div>
+      <canvas id="segPieChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">各业务毛利率对比（%）</div>
+      <canvas id="marginChart"></canvas>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:20%">业务板块</th>
+        <th>FY2025收入</th>
+        <th>占比</th>
+        <th>YoY</th>
+        <th>FY2025毛利率</th>
+        <th>FY2024毛利率</th>
+        <th>变化</th>
+        <th>核心观察</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>物业服务</strong></td>
+        <td>136.4亿</td>
+        <td>71.2%</td>
+        <td class="pos">+10.0%</td>
+        <td>14.3%</td>
+        <td>13.7%</td>
+        <td class="pos">+0.6ppt</td>
+        <td>在管566百万㎡，+11.2%</td>
+      </tr>
+      <tr>
+        <td>— 园区产品和服务</td>
+        <td>13.7亿</td>
+        <td>7.1%</td>
+        <td class="pos">+4.7%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>社区零售稳健增长</td>
+      </tr>
+      <tr>
+        <td>— 居家生活服务</td>
+        <td>2.6亿</td>
+        <td>1.4%</td>
+        <td class="neg">-34.2%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>浙江绿城房屋调整为合营公司</td>
+      </tr>
+      <tr>
+        <td>— 园区空间服务</td>
+        <td>3.6亿</td>
+        <td>1.9%</td>
+        <td class="pos">+23.3%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>延伸至城市公共空间运营</td>
+      </tr>
+      <tr>
+        <td>— 物业资产管理</td>
+        <td>6.6亿</td>
+        <td>3.5%</td>
+        <td class="pos">+4.6%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>车位代理+二手房经纪</td>
+      </tr>
+      <tr>
+        <td><strong>园区服务合计</strong></td>
+        <td>27.6亿</td>
+        <td>14.4%</td>
+        <td class="muted">+0.6%</td>
+        <td>22.4%</td>
+        <td>21.0%</td>
+        <td class="pos">+1.4ppt</td>
+        <td>结构优化，高毛利品类占比提升</td>
+      </tr>
+      <tr>
+        <td>— 在建物业服务</td>
+        <td>21.4亿</td>
+        <td>11.2%</td>
+        <td class="muted">+1.3%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>开发市场承压，但相对稳定</td>
+      </tr>
+      <tr>
+        <td>— 管理咨询服务</td>
+        <td>6.2亿</td>
+        <td>3.2%</td>
+        <td class="neg">-2.6%</td>
+        <td colspan="3" class="muted">—</td>
+        <td>受房地产开发市场影响</td>
+      </tr>
+      <tr class="subtotal">
+        <td><strong>咨询服务合计</strong></td>
+        <td>27.6亿</td>
+        <td>14.4%</td>
+        <td class="muted">+0.4%</td>
+        <td>27.4%</td>
+        <td>26.7%</td>
+        <td class="pos">+0.7ppt</td>
+        <td>最高毛利率业务</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inline-note">
+    📍 <strong>业务结构分析要点</strong>：物业服务凭借在管面积持续扩张（566百万㎡，覆盖31省195城）主导收入增长；园区服务和咨询服务占比各约14.4%，两者增速接近停滞，但毛利率持续改善（园区+1.4ppt，咨询+0.7ppt），反映内部优化成效。值得注意的是新拓展非住宅项目年饱和收入占比已达53.5%，商办转型步伐加快，可降低对地产销售周期的依赖性。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S4 · 运营指标深析 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">04</span> 运营指标深析</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>运营指标</th>
+        <th>FY2022</th>
+        <th>FY2023</th>
+        <th>FY2024</th>
+        <th>FY2025</th>
+        <th>趋势</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>在管面积（百万㎡）</td>
+        <td>~390</td>
+        <td>~455</td>
+        <td>509</td>
+        <td>566.1</td>
+        <td class="pos">+11.2% ✓</td>
+      </tr>
+      <tr>
+        <td>储备面积（百万㎡）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>357.2</td>
+        <td>330.8</td>
+        <td class="neg">-7.4%，主动清退风险项目</td>
+      </tr>
+      <tr>
+        <td>在管项目数（个）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>~3,500</td>
+        <td>3,823</td>
+        <td class="pos">覆盖195城</td>
+      </tr>
+      <tr>
+        <td>新拓展年饱和收入目标</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>40亿（超额完成）</td>
+        <td class="pos">非住宅占53.5%</td>
+      </tr>
+      <tr>
+        <td>员工总数</td>
+        <td>—</td>
+        <td>—</td>
+        <td>~48,400</td>
+        <td>51,785</td>
+        <td class="warn">+6.9%，人工成本刚性</td>
+      </tr>
+      <tr>
+        <td>员工成本（亿元）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>57.9</td>
+        <td>61.9</td>
+        <td class="warn">+7.1%，=收入增速</td>
+      </tr>
+      <tr>
+        <td>外包员工成本（亿元）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>56.5</td>
+        <td>59.8</td>
+        <td class="warn">+5.8%，劳动力成本占主导</td>
+      </tr>
+      <tr>
+        <td>销售费用率</td>
+        <td>—</td>
+        <td>—</td>
+        <td>1.9%</td>
+        <td>1.6%</td>
+        <td class="pos">持续下降</td>
+      </tr>
+      <tr>
+        <td>管理费用率</td>
+        <td>—</td>
+        <td>—</td>
+        <td>6.5%</td>
+        <td>5.9%</td>
+        <td class="pos">持续下降</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inline-note">
+    🔑 <strong>储备面积主动压降的战略意义</strong>：储备面积从357亿㎡降至330亿㎡，并非拓展乏力，而是主动退出非核心城市和存在交付风险的项目，是当前地产下行周期中难能可贵的风控意识。代价是未来1–2年新增在管面积增速可能阶段性放缓。核心城市（杭州、长三角、环渤海）占收入62%以上，集中度高且现金流可预期。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S5 · 财务压力评估 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">05</span> 财务压力与风险评估</div>
+
+  <div class="risk-box low">
+    <div class="risk-icon">🟢</div>
+    <div>
+      <div class="risk-title">【低风险】债务与流动性压力</div>
+      <div class="risk-body">
+        银行贷款仅5,200万（+长期1,769万），几乎可以忽略不计。租赁负债4.3亿，且全年下降39%（退出商业资产运营）。现金53.2亿+定期存款16.9亿+受限银行结余5.9亿，广义现金资产合计约76亿，完全覆盖所有有息负债。<strong>公司实质上是"净现金"状态</strong>，无偿债压力。流动比率1.42x，合同负债（预收物业费）23.3亿形成天然运营资金缓冲。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box med">
+    <div class="risk-icon">🟡</div>
+    <div>
+      <div class="risk-title">【中等风险】应收款项质量与ECL快速上升</div>
+      <div class="risk-body">
+        贸易应收款项减值拨备从5.4亿升至7.2亿（+34%），全年ECL拨备5.32亿同比+121%，为核心财务风险。账龄分析显示：2–3年账龄款5.82亿（FY2024: 6.68亿，略有改善），3–4年款3.06亿（FY2024: 1.89亿，<strong>大幅恶化</strong>），显示部分开发商拖延付款问题在延伸。咨询服务（在建物业服务收款对象为开发商）是主要风险敞口。对比H1 2025 ECL（1.95亿）与全年5.32亿，H2单季ECL拨备约3.37亿，H2大幅计提反映年末更为审慎的拨备政策。
+        <br><strong>量化影响</strong>：若ECL稳定在5亿左右/年（约为FY2025水平），则对应税前利润"拖累"相当于毛利的15%，为可控但需持续追踪的财务成本。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box med">
+    <div class="risk-icon">🟡</div>
+    <div>
+      <div class="risk-title">【中等风险】有效税率显著上升（32.1%，+2.3ppt）</div>
+      <div class="risk-body">
+        税率上升主要来自两个新增税项：①向香港附属公司派息的中国股息预扣税（已确认及支付1.45亿+递延1.63亿）；②过往年度遞延税项调整。这一结构性变化将在未来持续存在，实质压低归母净利率约0.5–0.8ppt，投资者需在估值模型中加以考量。香港中间层架构符合"内地-香港税务安排"可享5%优惠预扣税率（标准10%），但分红规模扩大后绝对金额仍会提升。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box high">
+    <div class="risk-icon">🔴</div>
+    <div>
+      <div class="risk-title">【较高风险】房地产开发商拖欠款项结构性压力</div>
+      <div class="risk-body">
+        咨询服务（主要是在建物业服务，年收入21.4亿）收款对手方为房地产开发商，部分为绿城中国（母公司）及第三方开发商。在当前"开发商流动性危机仍未彻底出清"的背景下，此类账款质量持续恶化的风险较高。关联方（绿城中国）在绿城服务的应付款项约5,510万元（FY2025年末），作为关联交易风险相对可控，但若母公司地产业务持续承压，可能影响在建物业服务项目的按期收款。绿城中国2024–2025年的财务压力尚需独立评估，这是绿城服务最重要的外部信用风险传导路径。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box med">
+    <div class="risk-icon">🟡</div>
+    <div>
+      <div class="risk-title">【中等风险】劳动力成本刚性与盈利空间压缩</div>
+      <div class="risk-body">
+        员工成本61.9亿+外包员工成本59.8亿，两项合计121.7亿，占总收入63.5%，占销售成本约77%。物业管理行业本质是劳动力密集型服务，最低工资标准逐年上调（杭州等核心城市2025年标准持续提升）的背景下，成本端刚性显著。若收入增速低于7%，毛利率提升空间将十分有限。物业费提价受制于业主委员会协商机制，短期弹性不足，是行业级别的结构性约束。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-box low">
+    <div class="risk-icon">🟢</div>
+    <div>
+      <div class="risk-title">【低风险】市场拓展与储备面积可持续性</div>
+      <div class="risk-body">
+        新拓展年饱和收入目标40亿（超额完成），非住宅占比首超50%，结构性转型显著。但储备面积330.8百万㎡仅为在管566百万㎡的58%，若新开工持续低迷（2025年全国商品房新开工面积预计同比再降），则新增交付项目的持续性存在不确定性。公司采取主动退出低质量储备的策略，这是正确的防御性选择，但可能导致2026–2027年在管面积增速低于过去3年的水平。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S6 · 股东回报 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">06</span> 股东回报政策</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>股东回报</th>
+        <th>FY2022</th>
+        <th>FY2023</th>
+        <th>FY2024</th>
+        <th>FY2025</th>
+        <th>YoY</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>末期股息（港元/股）</td>
+        <td>0.15</td>
+        <td>0.11</td>
+        <td>0.13</td>
+        <td>0.16</td>
+        <td class="pos">+23.1%</td>
+      </tr>
+      <tr>
+        <td>特别股息（港元/股）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>0.07</td>
+        <td>0.08</td>
+        <td class="pos">+14.3%</td>
+      </tr>
+      <tr>
+        <td>合计分派（港元/股）</td>
+        <td>0.15</td>
+        <td>0.11</td>
+        <td>0.20</td>
+        <td>0.24</td>
+        <td class="pos">+20.0%</td>
+      </tr>
+      <tr>
+        <td>综合派息率</td>
+        <td>—</td>
+        <td>—</td>
+        <td>~75%（含特别）</td>
+        <td>75%</td>
+        <td class="muted">保持稳定</td>
+      </tr>
+      <tr>
+        <td>回购股份（港元总额）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>0.72亿</td>
+        <td>1.32亿</td>
+        <td class="pos">+83%，积极回购</td>
+      </tr>
+      <tr>
+        <td>注销股份数量（百万股）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>30.5</td>
+        <td>20.0</td>
+        <td class="muted">持续缩减股本</td>
+      </tr>
+      <tr class="subtotal">
+        <td>现金分红支出（亿元）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>4.3</td>
+        <td>5.7</td>
+        <td class="pos">+32.5%，股东回报大幅提升</td>
+      </tr>
+      <tr>
+        <td>回购+分红合计（亿元）</td>
+        <td>—</td>
+        <td>—</td>
+        <td>5.0</td>
+        <td>6.9</td>
+        <td class="pos">对应经营CF约45%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="inline-note">
+    💰 FY2025派息率维持75%，末期+特别股息合计0.24港元/股，按当前价格约4.5港元计，股息率约5.3%，具有较强吸引力。考虑到公司账上约53亿现金（剔除受限资金仍达47亿），2026年分红可持续性强，且回购力度在加大，综合来看股东回报框架较同行业优质。
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S7 · 估值分析 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">07</span> 合理估值分析</div>
+
+  <div class="inline-note" style="margin-bottom:16px;">
+    📌 基准假设：FY2025 EPS（HKD）约0.305元（人民币0.280元×1.09汇率）；FY2026E EPS预测约0.33–0.36元（净利润增速10–15%）；当前股息率约5.3%（按0.24港元/股 ÷ 4.5港元）。物业管理行业当前港股平均P/E约10–15x，碧桂园服务（6098）、华润万象生活（1209）、保利物业（6049）等可比公司。
+  </div>
+
+  <div class="valuation-grid">
+    <div class="val-card">
+      <div class="val-scenario">悲观情景 / BEAR</div>
+      <div class="val-price bear">3.0 – 3.5 港元</div>
+      <div class="val-detail">
+        <strong>假设：</strong><br>
+        · ECL持续恶化，净利增速停滞<br>
+        · P/E压缩至8–10x<br>
+        · FY2026E EPS = 0.30港元<br>
+        · 股息维持0.20港元，收益率5.7–6.7%<br>
+        <br>触发条件：绿城中国流动性危机扩大化；全国物业费收缴率大幅下滑；劳动力成本超预期上涨导致毛利率逆转。
+      </div>
+    </div>
+    <div class="val-card">
+      <div class="val-scenario">基准情景 / BASE</div>
+      <div class="val-price base">4.5 – 5.5 港元</div>
+      <div class="val-detail">
+        <strong>假设：</strong><br>
+        · FY2026E净利润增速~12%<br>
+        · P/E维持12–14x<br>
+        · FY2026E EPS = 0.34港元<br>
+        · 股息0.26港元/股，收益率约5–5.8%<br>
+        <br>触发条件：在管面积增速维持8–10%；ECL不再大幅上升；物业费收入稳健增长；股息率对港股存量资金形成吸引。
+      </div>
+    </div>
+    <div class="val-card">
+      <div class="val-scenario">乐观情景 / BULL</div>
+      <div class="val-price bull">6.0 – 7.5 港元</div>
+      <div class="val-detail">
+        <strong>假设：</strong><br>
+        · AI/科技赋能带动效率提升<br>
+        · 非住宅+城市更新订单超预期<br>
+        · P/E扩张至16–20x<br>
+        · FY2026E EPS = 0.38–0.40港元<br>
+        <br>触发条件：城市更新政策密集落地；商办物业管理市场份额扩大；港股物管板块整体重评；ECL拨备减少。
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>估值方法</th>
+        <th>核心参数</th>
+        <th>隐含价格区间</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>P/E估值法</td>
+        <td>FY2025 EPS 0.305港元 × 12–15x</td>
+        <td>3.66 – 4.58 港元</td>
+        <td>基于当前盈利；行业P/E相对低迷</td>
+      </tr>
+      <tr>
+        <td>P/E估值法（FY2026E）</td>
+        <td>FY2026E EPS 0.34港元 × 12–16x</td>
+        <td>4.08 – 5.44 港元</td>
+        <td>含增长预期；中性合理</td>
+      </tr>
+      <tr>
+        <td>股息折现（DDM）</td>
+        <td>0.24港元股息，折现率9%，稳定增长5%</td>
+        <td>6.0 港元</td>
+        <td>适合高分红、现金充裕公司</td>
+      </tr>
+      <tr>
+        <td>P/S估值法</td>
+        <td>FY2025收入191.6亿元，P/S = 0.25–0.35x</td>
+        <td>3.5 – 5.0 港元</td>
+        <td>物业服务行业P/S偏低</td>
+      </tr>
+      <tr>
+        <td>EV/核心利润</td>
+        <td>EV = 市值 – 净现金（约47亿），核心利润18.8亿，12–15x</td>
+        <td>4.5 – 5.5 港元</td>
+        <td>扣净现金后估值吸引力明显</td>
+      </tr>
+      <tr class="subtotal">
+        <td><strong>综合估值中枢</strong></td>
+        <td>多方法加权</td>
+        <td><strong>4.2 – 5.5 港元</strong></td>
+        <td>对应FY2026E P/E 13–16x，隐含上行空间~10–22%（按4.5港元基准）</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S8 · SWOT / 综合判断 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">08</span> 综合优劣势与投资结论</div>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <div class="pros-header">▲ 核心优势（STRENGTHS & OPPORTUNITIES）</div>
+      <ul class="item-list">
+        <li>强品牌溢价：高端住宅物业费处于行业较高水平，客户粘性强</li>
+        <li>净现金资产：账面广义现金约76亿，无有息负债压力，抗周期能力极强</li>
+        <li>盈利质量提升：三项费用率持续下降（销售1.6%、管理5.9%），核心经营利润增速（+24.6%）远超收入增速（+7.1%）</li>
+        <li>高派息率：75%综合派息率，按当前股价股息率约5.3%，具有防御性价值</li>
+        <li>回购增值：持续回购注销，每股内在价值稳步提升</li>
+        <li>新业态布局：非住宅占新拓展超53%，城市更新政策红利可期</li>
+        <li>轻资产退出：租赁负债减少39%，降低固定成本，资产更轻</li>
+        <li>AI/科技赋能：成立AI战略发展委员会，有望实现人均效率提升</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <div class="cons-header">▼ 主要风险（WEAKNESSES & THREATS）</div>
+      <ul class="item-list">
+        <li>ECL拨备激增：全年5.32亿同比+121%，为最大利润侵蚀项，且账龄恶化未见好转</li>
+        <li>税率结构性上升：分红预扣税导致有效税率32.1%，高于同类公司</li>
+        <li>关联方风险：咨询服务收款方部分为地产开发商（含绿城中国），流动性传导风险</li>
+        <li>储备面积压缩：主动退出低质项目固然谨慎，但2027年后增速存在不确定性</li>
+        <li>劳动力成本刚性：人工+外包占营收64%，最低工资上调压力持续</li>
+        <li>园区服务增速停滞：+0.6%，居家生活服务下滑-34%，增值服务变现效率有限</li>
+        <li>港股流动性折价：物管板块估值受港股市场整体情绪影响，波动较大</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="verdict">
+    <div>
+      <div class="verdict-rating">审慎<br>买入</div>
+      <div class="verdict-label">投资判断</div>
+    </div>
+    <div class="verdict-text">
+      绿城服务2025年业绩质量整体向好：收入+7.1%、归母净利润+29.9%（持续经营口径）、核心经营利润+24.6%、现金增加9.6%，<strong>在地产下行周期中展示出稳健的防御属性</strong>。公司实质净现金状态、75%高派息率、持续回购，使其成为港股少数兼具"确定性收益+价值修复"潜力的物业标的。<br><br>
+      核心顾虑集中于：<strong>①ECL拨备加速扩大（+121%），且3–4年账龄款项恶化信号尚未逆转；②咨询服务对地产开发商的收款依赖；③有效税率结构性上升</strong>。这三项因素共同压制了净利润的实际释放。按综合估值4.2–5.5港元，当前4.5港元附近提供约合理价值的中性入场点，对应FY2026E P/E约13x，股息率5.3%，<strong>适合稳健型投资者以分红收益为主要回报目标、以价值修复为潜在上行来源的持仓逻辑</strong>。激进型投资者需等待ECL拐点信号（如3–4年账龄款项余额止升）出现后再考虑加仓。
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<!-- S9 · 前瞻跟踪清单 -->
+<!-- ══════════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title"><span class="section-num">09</span> 2026年跟踪验证清单</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:5%">#</th>
+        <th style="width:30%">关键跟踪指标</th>
+        <th>乐观信号</th>
+        <th>预警信号</th>
+        <th>时间节点</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>①</td>
+        <td>ECL拨备与账龄结构</td>
+        <td class="pos">3–4年账龄款项余额下降；全年ECL &lt;4.5亿</td>
+        <td class="neg">3–4年账龄继续恶化；H1 ECL &gt;2.5亿</td>
+        <td>H1 2026中报</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td>在管面积增速</td>
+        <td class="pos">&gt;600百万㎡，增速维持8%+</td>
+        <td class="neg">增速低于5%，城市更新项目交付不及预期</td>
+        <td>H1 2026运营数据</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td>物业服务毛利率</td>
+        <td class="pos">&gt;15%，劳动力管控有效</td>
+        <td class="neg">&lt;13.5%，人工成本侵蚀毛利</td>
+        <td>H1 2026中报</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td>咨询服务收入与回款</td>
+        <td class="pos">在建物业服务收入恢复正增长；应收款下降</td>
+        <td class="neg">在建物业收入持续下滑；更多坏账计提</td>
+        <td>H1 2026中报</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td>非住宅新拓展占比</td>
+        <td class="pos">&gt;55%，城市更新+商办合同落地</td>
+        <td class="neg">&lt;45%，转型速度不及预期</td>
+        <td>2026年报</td>
+      </tr>
+      <tr>
+        <td>⑥</td>
+        <td>AI/数字化成本节约效应</td>
+        <td class="pos">人均管理面积提升&gt;5%；外包比例下降</td>
+        <td class="neg">科技投入增加但效率无改善，管理费用率反弹</td>
+        <td>2026年报</td>
+      </tr>
+      <tr>
+        <td>⑦</td>
+        <td>股息+回购政策延续性</td>
+        <td class="pos">2026年派息率维持≥70%；继续回购</td>
+        <td class="neg">削减特别股息或暂停回购（现金储备遭挤占）</td>
+        <td>2026年报发布时</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footnote">
+  <strong>数据来源说明：</strong>① 已确认数据：直接来源于《绿城服务集团有限公司2025年度经审核综合财务业绩公告》（2026年3月20日）及《2025年中期报告》（截至2025年6月30日止六个月）。② 估算/推导数据：EPS（港元）采用人民币EPS×1.09汇率转换；FY2022/2023部分数据来自2025中期报告历史财务摘要表。③ 估值测算为分析师独立判断，非任何机构建议。④ 本报告不构成投资建议，投资者需自行评估风险。分析日期：2026年3月23日。
+</div>
+
+<script>
+// Chart defaults
+Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.font.size = 11;
+Chart.defaults.plugins.legend.display = false;
+
+const colors = {
+  ink: '#1a1a1a',
+  accent: '#c8421a',
+  accent2: '#1a5c8a',
+  green: '#2e7d4f',
+  amber: '#b8860b',
+  muted: '#6b6460',
+  light: '#e8e2d8'
+};
+
+// CF Chart
+new Chart(document.getElementById('cfChart'), {
+  type: 'bar',
+  data: {
+    labels: ['H1 2021', 'H1 2022', 'H1 2023', 'H1 2024', 'H1 2025'],
+    datasets: [{
+      data: [-399, -423, -496, -399, 51],
+      backgroundColor: (ctx) => ctx.raw >= 0 ? colors.green : colors.accent,
+      borderRadius: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { tooltip: { callbacks: { label: (c) => c.raw + ' 百万元' } } },
+    scales: {
+      y: { grid: { color: '#e8e2d8' }, ticks: { callback: (v) => v + 'M' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// P&L Chart
+new Chart(document.getElementById('plChart'), {
+  type: 'bar',
+  data: {
+    labels: ['FY2021', 'FY2022', 'FY2023', 'FY2024', 'FY2025'],
+    datasets: [
+      {
+        label: '收入',
+        data: [111, 138, 155, 179, 192],
+        backgroundColor: colors.light,
+        yAxisID: 'y'
+      },
+      {
+        label: '归母净利润',
+        data: [5.5, 5.5, 4.3, 6.8, 8.8],
+        type: 'line',
+        borderColor: colors.accent,
+        backgroundColor: colors.accent,
+        tension: 0.3,
+        yAxisID: 'y2',
+        pointRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { font: { size: 10 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + c.raw + '亿' } }
+    },
+    scales: {
+      y: { position: 'left', grid: { color: '#e8e2d8' }, ticks: { callback: (v) => v + '亿' } },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: (v) => v + '亿' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Segment Pie
+new Chart(document.getElementById('segPieChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['物业服务 71.2%', '园区服务 14.4%', '咨询服务 14.4%'],
+    datasets: [{
+      data: [71.2, 14.4, 14.4],
+      backgroundColor: [colors.ink, colors.accent2, colors.accent],
+      borderWidth: 2,
+      borderColor: '#f8f5ef'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { font: { size: 10 }, boxWidth: 12, padding: 8 } }
+    },
+    cutout: '55%'
+  }
+});
+
+// Margin Chart
+new Chart(document.getElementById('marginChart'), {
+  type: 'bar',
+  data: {
+    labels: ['物业服务', '园区服务', '咨询服务', '综合毛利率'],
+    datasets: [
+      {
+        label: 'FY2024',
+        data: [13.7, 21.0, 26.7, 16.8],
+        backgroundColor: colors.light,
+        borderRadius: 2
+      },
+      {
+        label: 'FY2025',
+        data: [14.3, 22.4, 27.4, 17.3],
+        backgroundColor: colors.accent2,
+        borderRadius: 2
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { display: true, position: 'top', labels: { font: { size: 10 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: (c) => c.dataset.label + ': ' + c.raw + '%' } }
+    },
+    scales: {
+      y: { grid: { color: '#e8e2d8' }, ticks: { callback: (v) => v + '%' }, min: 0, max: 35 },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
