@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国国贸（600007）综合财务分析报告 · 2025年3月17日</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 14px; }
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  color: #101828;
+  background: #fff;
+  line-height: 1.7;
+  padding: 0;
+}
+
+/* ── Print ── */
+@media print {
+  body { font-size: 11px; }
+  .page { page-break-after: always; padding: 18mm 20mm; }
+  .page:last-child { page-break-after: avoid; }
+  .no-break { page-break-inside: avoid; }
+  h2 { page-break-after: avoid; }
+  .chart-wrap { page-break-inside: avoid; }
+  @page { size: A4; margin: 15mm 18mm; }
+  .cover { background: #1A3557 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .h1-bar { background: #1A3557 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .tag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  thead tr { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .kpi-grid .kpi { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .signal { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+
+/* ── Layout ── */
+.page { max-width: 860px; margin: 0 auto; padding: 28px 36px 36px; }
+.cover { background: #1A3557; color: #fff; padding: 60px 48px 48px; min-height: 320px; max-width: 860px; margin: 0 auto; }
+
+/* ── Cover ── */
+.cover-title { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+.cover-sub   { font-size: 1.3rem; font-weight: 400; color: #93c5fd; margin-bottom: 8px; }
+.cover-code  { font-size: 1rem; color: #bfdbfe; margin-bottom: 32px; }
+.cover-meta  { font-size: 0.9rem; color: #93c5fd; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; }
+.cover-meta span { display: block; margin-bottom: 4px; }
+.cover-warn { display: inline-block; margin-top: 12px; background: #b45309; color: #fef3c7; padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; }
+
+/* ── Section headings ── */
+.h1-bar {
+  background: #1A3557;
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 10px 20px;
+  margin: 36px -36px 20px;
+  letter-spacing: 0.02em;
+}
+h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1A3557;
+  border-bottom: 2.5px solid #185FA5;
+  padding-bottom: 5px;
+  margin: 28px 0 14px;
+}
+h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #185FA5;
+  margin: 20px 0 10px;
+}
+p { margin-bottom: 10px; }
+.lead { color: #475467; font-size: 0.92rem; margin-bottom: 14px; }
+
+/* ── KPI Grid ── */
+.kpi-grid { display: grid; gap: 8px; margin-bottom: 18px; }
+.kpi-grid.col4 { grid-template-columns: repeat(4, 1fr); }
+.kpi-grid.col3 { grid-template-columns: repeat(3, 1fr); }
+.kpi-grid.col2 { grid-template-columns: repeat(2, 1fr); }
+.kpi {
+  background: #F2F4F7;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.kpi-label { font-size: 0.78rem; color: #475467; margin-bottom: 3px; }
+.kpi-val   { font-size: 1.35rem; font-weight: 700; color: #1A3557; }
+.kpi-chg   { font-size: 0.75rem; margin-top: 2px; }
+.pos { color: #1D9E75; } .neg { color: #A32D2D; } .muted { color: #475467; } .amber { color: #BA7517; }
+
+/* ── Tables ── */
+.tbl-wrap { overflow-x: auto; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+thead tr { background: #1A3557; color: #fff; }
+thead th { padding: 8px 10px; text-align: left; font-weight: 600; white-space: nowrap; }
+tbody tr:nth-child(even) { background: #F2F4F7; }
+tbody tr:nth-child(odd)  { background: #fff; }
+td { padding: 7px 10px; border-bottom: 1px solid #E4E7EC; vertical-align: top; }
+td.r { text-align: right; }
+td.c { text-align: center; }
+td.bold { font-weight: 700; }
+td.blue { color: #185FA5; font-weight: 700; }
+td.green { color: #1D9E75; font-weight: 700; }
+td.red { color: #A32D2D; }
+td.amber { color: #BA7517; }
+
+/* ── Charts ── */
+.chart-row { display: grid; gap: 16px; margin-bottom: 18px; }
+.chart-row.col2 { grid-template-columns: 1fr 1fr; }
+.chart-row.col3 { grid-template-columns: 1fr 1fr 1fr; }
+.chart-box {
+  border: 1px solid #E4E7EC;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #fff;
+}
+.chart-box-title { font-size: 0.8rem; color: #475467; margin-bottom: 8px; }
+.chart-wrap { position: relative; }
+.legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.75rem; color: #475467; margin-bottom: 8px; }
+.ld { width: 9px; height: 9px; border-radius: 2px; display: inline-block; margin-right: 3px; vertical-align: middle; }
+
+/* ── Occupancy bars ── */
+.occ-row { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; font-size: 0.8rem; }
+.occ-label { width: 52px; color: #475467; flex-shrink: 0; }
+.occ-bg { flex: 1; height: 8px; background: #E4E7EC; border-radius: 4px; overflow: hidden; }
+.occ-bar { height: 100%; border-radius: 4px; }
+.occ-val { min-width: 80px; text-align: right; font-size: 0.78rem; }
+
+/* ── Cashflow waterfall ── */
+.cf-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.cf-label { font-size: 0.78rem; width: 110px; color: #475467; flex-shrink: 0; }
+.cf-bar-wrap { flex: 1; display: flex; align-items: center; gap: 6px; }
+.cf-bar { height: 11px; border-radius: 3px; min-width: 2px; }
+.cf-val { font-size: 0.78rem; white-space: nowrap; }
+
+/* ── Valuation cards ── */
+.val-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.val-card { border: 1px solid #E4E7EC; border-radius: 10px; padding: 16px; }
+.val-card.base { border: 2px solid #185FA5; }
+.val-tag { font-size: 0.75rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 10px; }
+.val-tag.bear { background: #FCEBEB; color: #A32D2D; }
+.val-tag.base { background: #E6F1FB; color: #185FA5; }
+.val-tag.bull { background: #EAF3DE; color: #3B6D11; }
+.val-row { display: flex; justify-content: space-between; font-size: 0.8rem; margin: 4px 0; }
+.val-row .lbl { color: #475467; }
+.val-price { font-size: 1.6rem; font-weight: 700; color: #101828; margin: 8px 0 2px; }
+.val-sub { font-size: 0.75rem; color: #475467; }
+.val-div { border-top: 1px solid #E4E7EC; margin: 8px 0; }
+
+/* ── Signal tags ── */
+.signal { font-size: 0.75rem; font-weight: 600; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-right: 6px; margin-bottom: 4px; }
+.signal-pos { background: #EAF3DE; color: #3B6D11; }
+.signal-neg { background: #FCEBEB; color: #A32D2D; }
+.signal-neu { background: #F2F4F7; color: #475467; }
+
+/* ── Bullets ── */
+ul.report-list { padding-left: 20px; margin-bottom: 12px; }
+ul.report-list li { margin-bottom: 6px; font-size: 0.9rem; }
+
+/* ── Divider ── */
+.divider { border: none; border-top: 1px solid #E4E7EC; margin: 24px 0; }
+
+/* ── Note ── */
+.note { font-size: 0.78rem; color: #475467; margin-top: 6px; line-height: 1.6; }
+
+/* ── Update checklist ── */
+.checklist li { list-style: none; padding-left: 24px; position: relative; margin-bottom: 6px; }
+.checklist li::before { content: "□"; position: absolute; left: 0; color: #185FA5; font-size: 1rem; }
+
+/* ── Footer ── */
+.report-footer { border-top: 1px solid #E4E7EC; margin-top: 36px; padding-top: 12px; font-size: 0.75rem; color: #667085; }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════ COVER ══ -->
+<div class="cover">
+  <div class="cover-title">中国国际贸易中心股份有限公司</div>
+  <div class="cover-sub">综合财务分析与估值报告</div>
+  <div class="cover-code">证券代码：600007 · 中国国贸 · A股 · 上海证券交易所</div>
+  <div class="cover-meta">
+    <span>报告日期：2025年3月17日</span>
+    <span>数据覆盖：2023FY / 2024FY审计报告 / 2025H1半年报 / 2025前三季度经营简报 / 2024年分红公告</span>
+    <span>审计机构：德勤华永会计师事务所（特殊普通合伙）</span>
+    <span class="cover-warn">⏳ 本报告待2025年年度财报发布后更新</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════ 一、核心指标 ══ -->
+<div class="page">
+<div class="h1-bar">一、2024年度核心财务指标（合并口径）</div>
+
+<div class="kpi-grid col4">
+  <div class="kpi"><div class="kpi-label">营业收入</div><div class="kpi-val">39.1亿</div><div class="kpi-chg neg">▼ 1.1% vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">净利润（归母）</div><div class="kpi-val">12.6亿</div><div class="kpi-chg pos">▲ 0.3% vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">经营现金流净额</div><div class="kpi-val">18.0亿</div><div class="kpi-chg neg">▼ 6.4% vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">净利润率</div><div class="kpi-val">32.3%</div><div class="kpi-chg pos">▲ 0.5ppt vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">总资产</div><div class="kpi-val">123.2亿</div><div class="kpi-chg neg">▼ 4.3% vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">股东权益（归母）</div><div class="kpi-val">96.5亿</div><div class="kpi-chg neg">▼ 0.5% vs 2023</div></div>
+  <div class="kpi"><div class="kpi-label">资产负债率</div><div class="kpi-val">22%</div><div class="kpi-chg pos">▼ 3ppt vs 2023（25%）</div></div>
+  <div class="kpi"><div class="kpi-label">基本每股收益</div><div class="kpi-val">1.25元</div><div class="kpi-chg muted">与2023年持平</div></div>
+</div>
+
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">收入结构（2024年）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>租赁收入 67.9%</span>
+      <span><span class="ld" style="background:#1D9E75"></span>物业管理&会展 18.0%</span>
+      <span><span class="ld" style="background:#D85A30"></span>酒店 13.4%</span>
+      <span><span class="ld" style="background:#888780"></span>其他 0.7%</span>
+    </div>
+    <div class="chart-wrap" style="height:180px"><canvas id="revPie"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">收入 vs 净利润趋势（亿元）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>营业收入</span>
+      <span><span class="ld" style="background:#1D9E75"></span>归母净利润</span>
+    </div>
+    <div class="chart-wrap" style="height:180px"><canvas id="trendBar"></canvas></div>
+  </div>
+</div>
+
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">费用结构占营收比（2024年）</div>
+    <div class="chart-wrap" style="height:180px"><canvas id="costBar"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">现金流量结构（亿元，2024年）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#1D9E75"></span>经营</span>
+      <span><span class="ld" style="background:#D85A30"></span>投资</span>
+      <span><span class="ld" style="background:#888780"></span>筹资</span>
+    </div>
+    <div class="chart-wrap" style="height:180px"><canvas id="cfBar"></canvas></div>
+  </div>
+</div>
+
+<!-- ══ 二、资产负债表 ══ -->
+<div class="h1-bar">二、资产负债表质量分析</div>
+
+<p>国贸的资产结构极具防御性。总资产123.2亿中，投资性房地产账面价值59.8亿，固定资产13.9亿，两者合计占总资产约60%，均为位于北京核心地段的实物不动产，资产质量极高。货币资金39.9亿，其中受限资金1.47亿为物业管理项目代管款，扣除后自由现金约38.4亿。</p>
+<p>负债端同样优质。资产负债率仅22%（2023年25%），长期借款10.85亿为以国贸三期A阶段房产抵押的建行贷款，利率已从3.90%降至3.55%。2024年5亿公司债（19国贸01）已如期全额偿还，有息负债大幅减少。其他应付款中应付租户押金7.55亿，为无息占款，实为经营优势。</p>
+
+<!-- ══ 三、盈利能力 ══ -->
+<div class="h1-bar">三、盈利能力与现金转化</div>
+
+<div class="kpi-grid col3">
+  <div class="kpi"><div class="kpi-label">毛利率（综合）</div><div class="kpi-val">58.1%</div><div class="kpi-chg muted">租赁&物管分部 66.0%</div></div>
+  <div class="kpi"><div class="kpi-label">EBITDA（估算）</div><div class="kpi-val">~21.3亿</div><div class="kpi-chg muted">EBITDA利润率 ~54.5%</div></div>
+  <div class="kpi"><div class="kpi-label">ROE（加权平均）</div><div class="kpi-val">13.35%</div><div class="kpi-chg muted">2023年：13.53%</div></div>
+  <div class="kpi"><div class="kpi-label">经营现金流/净利润</div><div class="kpi-val">142%</div><div class="kpi-chg pos">利润质量极高</div></div>
+  <div class="kpi"><div class="kpi-label">酒店分部利润</div><div class="kpi-val">-104万</div><div class="kpi-chg neg">2023年盈利869万</div></div>
+  <div class="kpi"><div class="kpi-label">每股股息（2024年拟派）</div><div class="kpi-val">1.10元</div><div class="kpi-chg muted">派息率 88%（归母净利）</div></div>
+</div>
+
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">分部营收 vs 利润（2024年，亿元）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>收入</span>
+      <span><span class="ld" style="background:#1D9E75"></span>分部利润总额</span>
+    </div>
+    <div class="chart-wrap" style="height:190px"><canvas id="segChart"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">租赁可变租金趋势（亿元）</div>
+    <div class="chart-wrap" style="height:190px"><canvas id="varRent"></canvas></div>
+  </div>
+</div>
+
+<p>盈利质量方面，经营现金流18.0亿对净利润12.6亿比率达142%，说明账面利润有充裕现金支撑。但有两点值得关注：一是可变租金（按承租人销售额比例收取）从2023年1.52亿降至1.31亿，反映商户零售景气度下行；二是酒店分部2024年转亏（亏损约104万），酒店收入同比下滑7.8%。</p>
+</div>
+
+<!-- ══════════════════════════════════════════════ 四、估值 ══ -->
+<div class="page">
+<div class="h1-bar">四、综合估值分析（基于2024年报）</div>
+
+<h2>净现金计算</h2>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>项目</th><th class="r">金额（亿元）</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>货币资金</td><td class="r">39.9</td><td class="muted">含库存现金+银行存款+应收利息</td></tr>
+    <tr><td>减：受限资金</td><td class="r red">-1.5</td><td class="muted">物业代管款</td></tr>
+    <tr><td>减：应收利息（受限）</td><td class="r red">-0.75</td><td class="muted">已作为应收利息列示，非即期现金</td></tr>
+    <tr><td>减：长期借款（含一年内到期部分）</td><td class="r red">-10.86</td><td class="muted">建行抵押借款本息合计</td></tr>
+    <tr><td>减：租赁负债</td><td class="r red">-0.38</td><td class="muted">使用权资产对应负债</td></tr>
+    <tr><td class="bold">净现金（保守口径）</td><td class="r bold green">26.4</td><td class="muted">扣除全部有息负债后</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>三情景估值区间（净现金 + 营收×倍数）</h2>
+<div class="val-grid">
+  <div class="val-card">
+    <span class="val-tag bear">悲观情景</span>
+    <div class="val-row"><span class="lbl">营收倍数</span><span>3.0x → 117.3亿</span></div>
+    <div class="val-row"><span class="lbl">加：净现金</span><span>+ 26.4亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-row"><span class="lbl">总估值</span><span>143.7亿</span></div>
+    <div class="val-price">143.7亿</div>
+    <div class="val-sub">对应每股 ≈ 14.3元</div>
+  </div>
+  <div class="val-card base">
+    <span class="val-tag base">基准情景</span>
+    <div class="val-row"><span class="lbl">营收倍数</span><span>4.0x → 156.4亿</span></div>
+    <div class="val-row"><span class="lbl">加：净现金</span><span>+ 26.4亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-row"><span class="lbl">总估值</span><span>182.8亿</span></div>
+    <div class="val-price">182.8亿</div>
+    <div class="val-sub">对应每股 ≈ 18.1元</div>
+  </div>
+  <div class="val-card">
+    <span class="val-tag bull">乐观情景</span>
+    <div class="val-row"><span class="lbl">营收倍数</span><span>5.0x → 195.5亿</span></div>
+    <div class="val-row"><span class="lbl">加：净现金</span><span>+ 26.4亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-row"><span class="lbl">总估值</span><span>221.9亿</span></div>
+    <div class="val-price">221.9亿</div>
+    <div class="val-sub">对应每股 ≈ 22.0元</div>
+  </div>
+</div>
+
+<h2>交叉验证：PE法（EPS × PE倍数 + 净现金/股）</h2>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>情景</th><th class="r">PE倍数</th><th class="r">EPS贡献</th><th class="r">净现金/股</th><th class="r">目标价</th></tr></thead>
+  <tbody>
+    <tr><td class="muted">悲观</td><td class="r">12x</td><td class="r">15.0元</td><td class="r">+2.6元</td><td class="r bold">17.6元</td></tr>
+    <tr><td class="muted">基准</td><td class="r">15x</td><td class="r">18.8元</td><td class="r">+2.6元</td><td class="r bold blue">21.4元</td></tr>
+    <tr><td class="muted">乐观</td><td class="r">18x</td><td class="r">22.5元</td><td class="r">+2.6元</td><td class="r bold">25.1元</td></tr>
+  </tbody>
+</table>
+</div>
+
+<p><strong>综合评价：</strong>国贸资产负债率仅22%且有息负债已大幅减轻（5亿公司债2024年已还清），账面净现金厚达26亿以上，相当于每股约2.6元安全垫。租赁业务毛利率超66%，经营现金流转化率142%，派息率极高（2024年拟派1.10元/股，占归母净利润约88%），分红吸引力强。综合两种估值方法，<strong>基准目标区间约18—21元/股</strong>。</p>
+</div>
+
+<!-- ══════════════════════════════════════════════ 五、H1 2025 ══ -->
+<div class="page">
+<div class="h1-bar">五、2025H1实际数据与全年预测（基于半年报）</div>
+
+<div class="kpi-grid col4">
+  <div class="kpi"><div class="kpi-label">营业收入</div><div class="kpi-val">18.90亿</div><div class="kpi-chg neg">▼ 3.85% YoY</div></div>
+  <div class="kpi"><div class="kpi-label">归母净利润</div><div class="kpi-val">6.32亿</div><div class="kpi-chg neg">▼ 8.02% YoY</div></div>
+  <div class="kpi"><div class="kpi-label">经营现金流</div><div class="kpi-val">8.43亿</div><div class="kpi-chg neg">▼ 10.59% YoY</div></div>
+  <div class="kpi"><div class="kpi-label">基本EPS</div><div class="kpi-val">0.63元</div><div class="kpi-chg neg">▼ 0.05元 YoY</div></div>
+  <div class="kpi"><div class="kpi-label">总资产</div><div class="kpi-val">112.1亿</div><div class="kpi-chg neg">▼ 9.1% vs 年初</div></div>
+  <div class="kpi"><div class="kpi-label">长期借款余额</div><div class="kpi-val">5.0亿</div><div class="kpi-chg pos">▼ 5.85亿（已还）</div></div>
+  <div class="kpi"><div class="kpi-label">归母净资产</div><div class="kpi-val">91.8亿</div><div class="kpi-chg neg">▼ 4.9% vs 年初</div></div>
+  <div class="kpi"><div class="kpi-label">加权ROE（H1）</div><div class="kpi-val">6.59%</div><div class="kpi-chg neg">vs 上年同期 7.16%</div></div>
+</div>
+
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">分业态收入对比（亿元，H1 2025 vs H1 2024）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>2024H1</span>
+      <span><span class="ld" style="background:#D85A30"></span>2025H1</span>
+    </div>
+    <div class="chart-wrap" style="height:190px"><canvas id="segRev"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">出租率 & 平均租金变化（2025H1 vs 2024H1）</div>
+    <div style="margin-top:8px;">
+      <div class="occ-row"><span class="occ-label">写字楼</span><div class="occ-bg"><div class="occ-bar" style="width:92.4%;background:#185FA5"></div></div><span class="occ-val">92.4% <span class="neg" style="font-size:0.72rem">▼0.8pp</span></span></div>
+      <div class="occ-row"><span class="occ-label">商城</span><div class="occ-bg"><div class="occ-bar" style="width:95.3%;background:#1D9E75"></div></div><span class="occ-val">95.3% <span class="neg" style="font-size:0.72rem">▼1.6pp</span></span></div>
+      <div class="occ-row"><span class="occ-label">公寓</span><div class="occ-bg"><div class="occ-bar" style="width:88.7%;background:#BA7517"></div></div><span class="occ-val">88.7% <span class="neg" style="font-size:0.72rem">▼0.1pp</span></span></div>
+      <div style="border-top:1px solid #E4E7EC;margin:10px 0 8px;"></div>
+      <div style="font-size:0.75rem;color:#475467;margin-bottom:6px;">平均租金（元/㎡/月，含物管费）</div>
+      <div class="occ-row"><span class="occ-label">写字楼</span><div class="occ-bg"><div class="occ-bar" style="width:95.8%;background:#185FA5"></div></div><span class="occ-val">621 <span class="neg" style="font-size:0.72rem">▼27</span></span></div>
+      <div class="occ-row"><span class="occ-label">商城</span><div class="occ-bg"><div class="occ-bar" style="width:98%;background:#1D9E75"></div></div><span class="occ-val">1,315 <span class="neg" style="font-size:0.72rem">▼26</span></span></div>
+      <div class="occ-row"><span class="occ-label">公寓</span><div class="occ-bg"><div class="occ-bar" style="width:99%;background:#BA7517"></div></div><span class="occ-val">364 <span class="neg" style="font-size:0.72rem">▼4</span></span></div>
+    </div>
+  </div>
+</div>
+
+<h2>货币资金变动解析：2024FY → 2025H1</h2>
+<div class="chart-box no-break" style="margin-bottom:16px;">
+  <div class="cf-item"><span class="cf-label">2024FY末</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:100%;background:#185FA5;"></div></div><span class="cf-val" style="font-weight:700">39.86亿</span></div>
+  <div class="cf-item"><span class="cf-label">经营现金流</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:45%;background:#1D9E75;"></div></div><span class="cf-val pos">+8.43亿</span></div>
+  <div class="cf-item"><span class="cf-label">派发2024年股息</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:59%;background:#A32D2D;"></div></div><span class="cf-val neg">-11.08亿</span></div>
+  <div class="cf-item"><span class="cf-label">偿还长期借款</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:31%;background:#A32D2D;"></div></div><span class="cf-val neg">-5.85亿</span></div>
+  <div class="cf-item"><span class="cf-label">投资及其他</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:8%;background:#888780;"></div></div><span class="cf-val neg">-1.57亿</span></div>
+  <div style="border-top:1px solid #E4E7EC;margin:8px 0;padding-top:8px;">
+  <div class="cf-item"><span class="cf-label">2025H1末</span><div class="cf-bar-wrap"><div class="cf-bar" style="width:77%;background:#185FA5;"></div></div><span class="cf-val" style="font-weight:700">30.69亿</span></div>
+  </div>
+  <div class="note">货币资金下降≈9.2亿，主因股息11.08亿+还款5.85亿，合计16.93亿主动资本流出，经营现金流实际补充+8.43亿。非经营性消耗。</div>
+</div>
+
+<h2>2025全年预测（基于H1 + H2情景假设）</h2>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>指标</th><th class="r">2023A</th><th class="r">2024A</th><th class="r">2025H1实际</th><th class="r red">悲观H2</th><th class="r blue">基准H2</th><th class="r green">乐观H2</th><th class="r red">2025E悲</th><th class="r blue">2025E基准</th><th class="r green">2025E乐</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">营业收入（亿）</td><td class="r">39.5</td><td class="r">39.1</td><td class="r">18.9</td><td class="r red">17.8</td><td class="r blue bold">18.6</td><td class="r green">19.4</td><td class="r red">36.7</td><td class="r blue bold">37.5</td><td class="r green">38.3</td></tr>
+    <tr><td>YoY增速</td><td class="r muted">—</td><td class="r muted">-1.1%</td><td class="r muted">-3.9%</td><td class="r red">H2 -5.5%</td><td class="r blue">H2 -0.5%</td><td class="r green">H2 +3.7%</td><td class="r red">-6.1%</td><td class="r blue">-4.1%</td><td class="r green">-2.0%</td></tr>
+    <tr><td class="bold">归母净利润（亿）</td><td class="r">12.59</td><td class="r">12.62</td><td class="r">6.32</td><td class="r red">5.61</td><td class="r blue bold">6.14</td><td class="r green">6.60</td><td class="r red">11.93</td><td class="r blue bold">12.46</td><td class="r green">12.92</td></tr>
+    <tr><td class="bold">EPS（元）</td><td class="r">1.25</td><td class="r">1.25</td><td class="r">0.63</td><td class="r red">0.56</td><td class="r blue bold">0.61</td><td class="r green">0.66</td><td class="r red">1.18</td><td class="r blue bold">1.24</td><td class="r green">1.28</td></tr>
+    <tr><td class="bold">拟派股息/股（估）</td><td class="r">0.70</td><td class="r">1.10</td><td class="r muted">—</td><td class="r muted">—</td><td class="r muted">—</td><td class="r muted">—</td><td class="r red">0.95</td><td class="r blue bold">1.02</td><td class="r green">1.08</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>估值修订（纳入H1，净现金20.8亿）</h2>
+<div class="val-grid">
+  <div class="val-card">
+    <span class="val-tag bear">悲观情景</span>
+    <div class="val-row"><span class="lbl">净现金（H1末）</span><span>+20.8亿</span></div>
+    <div class="val-row"><span class="lbl">2025E收入×3.0x</span><span>110.1亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-price">13.0元/股</div>
+    <div class="val-sub">PE法：1.18 × 12PE + 2.1 = 16.8元</div>
+  </div>
+  <div class="val-card base">
+    <span class="val-tag base">基准情景（主情景）</span>
+    <div class="val-row"><span class="lbl">净现金（H1末）</span><span>+20.8亿</span></div>
+    <div class="val-row"><span class="lbl">2025E收入×4.0x</span><span>150.0亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-price">17.0元/股</div>
+    <div class="val-sub">PE法：1.24 × 15PE + 2.6 = 20.7元</div>
+  </div>
+  <div class="val-card">
+    <span class="val-tag bull">乐观情景</span>
+    <div class="val-row"><span class="lbl">净现金（H1末）</span><span>+20.8亿</span></div>
+    <div class="val-row"><span class="lbl">2025E收入×5.0x</span><span>191.5亿</span></div>
+    <div class="val-div"></div>
+    <div class="val-price">21.1元/股</div>
+    <div class="val-sub">PE法：1.28 × 18PE + 2.6 = 25.1元</div>
+  </div>
+</div>
+<div class="note">基准目标价区间小幅下修至<strong>17—21元/股</strong>，主因派息后净现金从26.4亿降至20.8亿，以及全年营收预测下调至37.5亿。</div>
+</div>
+
+<!-- ══════════════════════════════════════════════ 六、Q3简报 ══ -->
+<div class="page">
+<div class="h1-bar">六、2025Q3经营简报关键信号与全年预测更新</div>
+
+<div class="kpi-grid col4">
+  <div class="kpi"><div class="kpi-label">写字楼 Q3 YoY</div><div class="kpi-val neg">-3.7%</div><div class="kpi-chg">H1为 <span class="neg">-6.3%</span> → <span class="pos">降幅收窄</span></div></div>
+  <div class="kpi"><div class="kpi-label">商城 Q3 YoY</div><div class="kpi-val pos">+9.4%</div><div class="kpi-chg">H1为 <span class="neg">-2.7%</span> → <span class="pos">强势反弹</span></div></div>
+  <div class="kpi"><div class="kpi-label">公寓 Q3 YoY</div><div class="kpi-val pos">+5.0%</div><div class="kpi-chg">H1为 <span class="muted">+0.5%</span> → 加速改善</div></div>
+  <div class="kpi"><div class="kpi-label">租金合计 Q3 YoY</div><div class="kpi-val pos">+2.2%</div><div class="kpi-chg pos">Q3首次转正，趋势改善</div></div>
+  <div class="kpi"><div class="kpi-label">9M 2025 租金合计</div><div class="kpi-val">20.96亿</div><div class="kpi-chg neg">-4.3% vs 9M 2024（21.90亿）</div></div>
+  <div class="kpi"><div class="kpi-label">Q3 2025 租金合计</div><div class="kpi-val">6.87亿</div><div class="kpi-chg pos">+2.2% vs Q3 2024（6.72亿）</div></div>
+  <div class="kpi"><div class="kpi-label">2024FY 全年租金</div><div class="kpi-val">26.57亿</div><div class="kpi-chg muted">占总营收 67.9%</div></div>
+  <div class="kpi"><div class="kpi-label">Q4 2024 隐含租金</div><div class="kpi-val">4.67亿</div><div class="kpi-chg muted">FY减去9M倒推</div></div>
+</div>
+
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">季度租金收入逐季对比（亿元，三大业态合计）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>2024</span>
+      <span><span class="ld" style="background:#D85A30"></span>2025</span>
+      <span><span class="ld" style="background:#888780;opacity:0.5"></span>2025Q4预测</span>
+    </div>
+    <div class="chart-wrap" style="height:190px"><canvas id="qtrRent"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">业态租金 Q3 YoY明细（亿元）</div>
+    <div class="legend">
+      <span><span class="ld" style="background:#185FA5"></span>Q3 2024</span>
+      <span><span class="ld" style="background:#D85A30"></span>Q3 2025</span>
+    </div>
+    <div class="chart-wrap" style="height:190px"><canvas id="segQ3"></canvas></div>
+  </div>
+</div>
+
+<h2>净现金与有息负债演变</h2>
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">净现金 vs 有息负债（亿元）</div>
+    <div class="chart-wrap" style="height:190px"><canvas id="netCashChart"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">净现金明细（亿元）</div>
+    <div class="tbl-wrap" style="margin-bottom:0">
+    <table>
+      <thead><tr><th>项目</th><th class="r">2023FY</th><th class="r">2024FY</th><th class="r">2025H1</th></tr></thead>
+      <tbody>
+        <tr><td>货币资金</td><td class="r">40.89</td><td class="r">39.86</td><td class="r">30.69</td></tr>
+        <tr><td class="muted">减：受限资金</td><td class="r muted">-1.44</td><td class="r muted">-1.47</td><td class="r muted">-1.23</td></tr>
+        <tr><td class="muted">减：长期借款</td><td class="r muted">-10.85</td><td class="r muted">-10.86</td><td class="r muted">-5.00</td></tr>
+        <tr><td class="muted">减：应付债券</td><td class="r muted">-4.43</td><td class="r muted">0</td><td class="r muted">0</td></tr>
+        <tr><td class="muted">减：租赁负债</td><td class="r muted">-0.41</td><td class="r muted">-0.38</td><td class="r muted">-0.41</td></tr>
+        <tr><td class="bold">净现金</td><td class="r bold green">23.76</td><td class="r bold green">27.15</td><td class="r bold green">24.05</td></tr>
+        <tr><td class="bold">每股净现金（元）</td><td class="r bold">2.36</td><td class="r bold">2.70</td><td class="r bold">2.39</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<h2>分红深度分析</h2>
+<div class="chart-row col2">
+  <div class="chart-box">
+    <div class="chart-box-title">历史分红：每股股息 & 派息率</div>
+    <div class="chart-wrap" style="height:190px"><canvas id="divChart"></canvas></div>
+  </div>
+  <div class="chart-box">
+    <div class="chart-box-title">分红可持续性指标</div>
+    <div class="tbl-wrap" style="margin-bottom:0">
+    <table>
+      <thead><tr><th>指标</th><th class="r">2022FY</th><th class="r">2023FY</th><th class="r">2024FY</th></tr></thead>
+      <tbody>
+        <tr><td>每股股息（元）</td><td class="r">0.70</td><td class="r amber">1.30</td><td class="r bold">1.10</td></tr>
+        <tr><td>派息率（归母净利润）</td><td class="r">63%</td><td class="r amber">104%</td><td class="r">88%</td></tr>
+        <tr><td>经营CF/股息覆盖率</td><td class="r muted">—</td><td class="r green">146%</td><td class="r green">137%</td></div></tr>
+        <tr><td>净现金/股（年末）</td><td class="r muted">—</td><td class="r">2.36元</td><td class="r">2.70元</td></tr>
+        <tr><td class="bold">三年累计分红</td><td class="r bold green" colspan="3">31.23亿（累计派息率 ~258%）</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div style="margin-top:10px;">
+      <span class="signal signal-pos">股息收益率吸引力强</span>
+      <span class="signal signal-pos">现金流覆盖130%+</span>
+      <span class="signal signal-neu">派息率已合理化</span>
+    </div>
+  </div>
+</div>
+
+<h2>2025全年预测更新（纳入Q3简报信号）</h2>
+<div class="tbl-wrap">
+<table>
+  <thead><tr><th>指标</th><th class="r">2024A</th><th class="r muted">前次预测(H1)</th><th class="r red">悲观</th><th class="r blue">基准（↑上调）</th><th class="r green">乐观</th></tr></thead>
+  <tbody>
+    <tr><td class="bold">租金收入（亿）</td><td class="r">26.57</td><td class="r muted">—</td><td class="r red">25.40</td><td class="r blue bold">25.54</td><td class="r green">25.72</td></tr>
+    <tr><td class="bold">营业收入（亿）</td><td class="r">39.12</td><td class="r muted">37.5</td><td class="r red">36.5</td><td class="r blue bold">37.2</td><td class="r green">38.0</td></tr>
+    <tr><td>营收 YoY</td><td class="r muted">-1.1%</td><td class="r muted">-4.1%</td><td class="r red">-6.7%</td><td class="r blue">-4.9%</td><td class="r green">-2.9%</td></tr>
+    <tr><td class="bold">归母净利润（亿）</td><td class="r">12.62</td><td class="r muted">12.46</td><td class="r red">11.7</td><td class="r blue bold">12.3</td><td class="r green">12.9</td></tr>
+    <tr><td class="bold">EPS（元）</td><td class="r">1.25</td><td class="r muted">1.24</td><td class="r red">1.16</td><td class="r blue bold">1.22</td><td class="r green">1.28</td></tr>
+    <tr><td class="bold">预计股息/股（元）</td><td class="r">1.10</td><td class="r muted">1.02</td><td class="r red">0.95</td><td class="r blue bold">1.00</td><td class="r green">1.08</td></tr>
+    <tr><td class="bold">净现金/股（年末估）</td><td class="r">2.70</td><td class="r muted">—</td><td class="r red">2.1</td><td class="r blue bold">2.3</td><td class="r green">2.5</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="chart-row col3">
+  <div class="chart-box" style="text-align:center;padding:16px 12px;">
+    <span class="val-tag bear">悲观情景</span>
+    <div class="val-price" style="font-size:1.8rem">14—17元</div>
+    <div class="val-sub">P/S 3x → 109.5亿 + 净现金21亿</div>
+    <div class="val-sub">= 130.5亿 ÷ 10.07亿股</div>
+    <div class="val-sub" style="margin-top:6px">PE法：1.16 × 12x + 2.1 = 16.0元</div>
+  </div>
+  <div class="chart-box" style="text-align:center;padding:16px 12px;border:2px solid #185FA5;">
+    <span class="val-tag base">基准情景（主情景）</span>
+    <div class="val-price" style="font-size:1.8rem">17—21元</div>
+    <div class="val-sub">P/S 4x → 148.8亿 + 净现金23亿</div>
+    <div class="val-sub">= 171.8亿 ÷ 10.07亿股</div>
+    <div class="val-sub" style="margin-top:6px">PE法：1.22 × 15x + 2.3 = 20.6元</div>
+  </div>
+  <div class="chart-box" style="text-align:center;padding:16px 12px;">
+    <span class="val-tag bull">乐观情景</span>
+    <div class="val-price" style="font-size:1.8rem">21—25元</div>
+    <div class="val-sub">P/S 5x → 190亿 + 净现金25亿</div>
+    <div class="val-sub">= 215亿 ÷ 10.07亿股</div>
+    <div class="val-sub" style="margin-top:6px">PE法：1.28 × 18x + 2.5 = 25.5元</div>
+  </div>
+</div>
+
+<p><strong>Q3核心解读：</strong>商城Q3同比+9.4%是超预期积极信号，潮流餐饮/运动户外/黄金饰品/潮玩谷子经济等新消费业态填补空缺，结构性改善趋势明确。写字楼-3.7%较H1(-6.3%)明显收窄。基准情景全年预测约37.2亿营收、12.3亿归母净利润，较前次预测基本持平，信心度有所提升。</p>
+
+<p><strong>等年报时需重点盯的数据：</strong>写字楼全年出租率（是否守住90%以上）、酒店分部是否修复、红馆中餐厅改造后出租进展，以及2025年股息公告。</p>
+
+<div class="report-footer">
+  <strong>报告日期：2025年3月17日</strong>　|　数据来源：公司2024年度财务报表及审计报告、2025年半年度报告、2024Q3/2025Q1/2025H1/2025Q3房地产行业经营性信息简报、2024年年度利润分配方案公告　|　审计机构：德勤华永会计师事务所（特殊普通合伙）<br>
+  <span style="color:#A32D2D">⏳ 本报告待2025年年度财报发布后更新。本报告仅供参考，不构成投资建议。</span>
+</div>
+</div>
+
+<script>
+// ── Chart 1: Revenue Pie ──
+new Chart(document.getElementById('revPie'), {
+  type: 'doughnut',
+  data: {
+    labels: ['租赁收入', '物业管理&会展', '酒店经营', '其他收益'],
+    datasets: [{ data: [67.9,18.0,13.4,0.7], backgroundColor:['#185FA5','#1D9E75','#D85A30','#888780'], borderWidth:0, hoverOffset:6 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{ legend:{display:false}, tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.parsed}%`}} }, cutout:'60%' }
+});
+
+// ── Chart 2: Revenue Trend ──
+new Chart(document.getElementById('trendBar'), {
+  type: 'bar',
+  data: {
+    labels: ['2023', '2024'],
+    datasets: [
+      { label:'营业收入', data:[39.5,39.1], backgroundColor:'#185FA5' },
+      { label:'归母净利润', data:[12.6,12.6], backgroundColor:'#1D9E75' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{beginAtZero:false,min:10,ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.6 }
+});
+
+// ── Chart 3: Cost structure ──
+new Chart(document.getElementById('costBar'), {
+  type: 'bar',
+  data: {
+    labels: ['营业成本','税金及附加','销售费用','管理费用','财务费用净额'],
+    datasets: [{ data:[41.9,9.8,2.3,3.2,0.3], backgroundColor:['#185FA5','#1D9E75','#D85A30','#BA7517','#888780'], borderRadius:3 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, indexAxis:'y', plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.x}%`}}}, scales:{ x:{ticks:{callback:v=>v+'%'}}, y:{ticks:{font:{size:11}},grid:{display:false}} } }
+});
+
+// ── Chart 4: Cash Flow ──
+new Chart(document.getElementById('cfBar'), {
+  type: 'bar',
+  data: {
+    labels: ['经营活动','投资活动','筹资活动'],
+    datasets: [{ data:[18.0,-0.6,-18.6], backgroundColor:['#1D9E75','#D85A30','#888780'], borderRadius:3 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y.toFixed(1)}亿`}}}, scales:{ y:{ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} } }
+});
+
+// ── Chart 5: Segment 2024 ──
+new Chart(document.getElementById('segChart'), {
+  type: 'bar',
+  data: {
+    labels: ['租赁及物业管理','酒店经营'],
+    datasets: [
+      { label:'收入', data:[33.9,5.3], backgroundColor:'#185FA5' },
+      { label:'利润总额', data:[17.4,-0.01], backgroundColor:'#1D9E75' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.6 }
+});
+
+// ── Chart 6: Variable rent ──
+new Chart(document.getElementById('varRent'), {
+  type: 'bar',
+  data: {
+    labels: ['2023','2024'],
+    datasets: [{ data:[1.52,1.31], backgroundColor:['#185FA5','#D85A30'], borderRadius:3 }]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.parsed.y.toFixed(2)}亿`}}}, scales:{ y:{beginAtZero:false,min:1.0,ticks:{callback:v=>v.toFixed(2)+'亿'}}, x:{grid:{display:false}} } }
+});
+
+// ── Chart 7: Seg H1 revenue ──
+new Chart(document.getElementById('segRev'), {
+  type: 'bar',
+  data: {
+    labels: ['写字楼','商城','公寓','酒店','其他'],
+    datasets: [
+      { label:'2024H1', data:[7.68,6.56,0.94,2.56,1.91], backgroundColor:'#185FA5' },
+      { label:'2025H1', data:[7.29,6.42,0.93,2.38,1.88], backgroundColor:'#D85A30' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false}}, scales:{ y:{beginAtZero:false,min:0,ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.7 }
+});
+
+// ── Chart 8: Quarterly rent ──
+new Chart(document.getElementById('qtrRent'), {
+  type: 'bar',
+  data: {
+    labels: ['Q1','Q2','Q3','Q4'],
+    datasets: [
+      { label:'2024', data:[7.22,7.96,6.72,4.67], backgroundColor:'#185FA5', borderRadius:3 },
+      { label:'2025', data:[7.15,6.94,6.87,null], backgroundColor:'#D85A30', borderRadius:3 },
+      { label:'2025 Q4预测', data:[null,null,null,4.58], backgroundColor:'rgba(136,135,128,0.4)', borderRadius:3, borderColor:'#888780', borderWidth:1 }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y?.toFixed(2)??'—'}亿`}}}, scales:{ y:{beginAtZero:false,min:4,ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.7 }
+});
+
+// ── Chart 9: Segment Q3 ──
+new Chart(document.getElementById('segQ3'), {
+  type: 'bar',
+  data: {
+    labels: ['写字楼','商城','公寓'],
+    datasets: [
+      { label:'Q3 2024', data:[3.53,2.73,0.46], backgroundColor:'#185FA5', borderRadius:3 },
+      { label:'Q3 2025', data:[3.40,2.99,0.48], backgroundColor:'#D85A30', borderRadius:3 }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}亿`}}}, scales:{ y:{beginAtZero:false,min:0,ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.7 }
+});
+
+// ── Chart 10: Net cash ──
+new Chart(document.getElementById('netCashChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2023FY','2024FY','2025H1'],
+    datasets: [
+      { label:'净现金', data:[23.76,27.15,24.05], backgroundColor:'#1D9E75', borderRadius:3 },
+      { label:'有息负债', data:[15.69,11.24,5.41], backgroundColor:'#E24B4A', borderRadius:3 }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}亿`}}}, scales:{ y:{beginAtZero:true,ticks:{callback:v=>v+'亿'}}, x:{grid:{display:false}} }, barPercentage:0.6 }
+});
+
+// ── Chart 11: Dividend ──
+new Chart(document.getElementById('divChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2022FY','2023FY','2024FY'],
+    datasets: [
+      { label:'每股股息', data:[0.70,1.30,1.10], backgroundColor:'#185FA5', borderRadius:3, yAxisID:'y' },
+      { label:'派息率', data:[63,104,88], type:'line', borderColor:'#D85A30', backgroundColor:'transparent', tension:0.3, pointRadius:5, yAxisID:'y2' }
+    ]
+  },
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>ctx.datasetIndex===0?` 股息: ${ctx.parsed.y.toFixed(2)}元`:` 派息率: ${ctx.parsed.y}%`}}},
+    scales:{ y:{position:'left',beginAtZero:true,ticks:{callback:v=>v+'元'}}, y2:{position:'right',beginAtZero:true,ticks:{callback:v=>v+'%'},grid:{display:false}}, x:{grid:{display:false}} }, barPercentage:0.5 }
+});
+</script>
+</body>
+</html>
