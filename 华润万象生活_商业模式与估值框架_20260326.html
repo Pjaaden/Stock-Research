@@ -679,15 +679,328 @@ footer{padding:14px 36px;border-top:1px solid var(--border);background:var(--bg1
   </div>
 </div>
 
+<!-- ══════ CH8 Gordon Growth Model ══════ -->
+<div class="chapter">
+  <div class="ch-num">08</div>
+  <div class="ch-title">Gordon Growth Model：永续增长估值模型详解</div>
+  <div class="ch-line"></div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--blue)"></div><div class="card-ht">第一步：最基本的问题——一家公司值多少钱</div></div>
+  <div class="card-body">
+    <div class="prose" style="margin-bottom:10px">
+      <p>答案只有一个：它未来能给你带来的所有现金，折算成今天的价值。需要"折算"是因为今天的100元比五年后的100元更值钱——这个折算过程叫<strong>折现</strong>，折算用的利率叫<strong>折现率</strong>（即你的机会成本/要求回报率）。</p>
+    </div>
+    <div class="code"><span class="hl">最简单情况：公司每年稳定赚35亿，永远不增长，折现率10%</span>
+
+  第1年：35亿 ÷ 1.10        = 31.8亿
+  第2年：35亿 ÷ 1.10²       = 28.9亿
+  第3年：35亿 ÷ 1.10³       = 26.3亿
+  ……一直加到无穷年……
+
+  数学求和 = 35亿 ÷ 10% = <span class="hl g">350亿</span>
+
+  <span class="hl">公式：公司价值 = 利润 ÷ 折现率</span>
+  对应合理PE = 1 ÷ 10% = <span class="hl">10倍</span>  ← 零增长公司的合理PE</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--green)"></div><div class="card-ht">第二步：加入增长——Gordon Model核心公式</div></div>
+  <div class="card-body">
+    <div class="code"><span class="hl">假设利润每年增长g%，折现率r，Gordon Model核心公式：</span>
+
+  公司价值 = 利润 ÷ (折现率 r − 增长率 g)
+  合理PE   = 1 ÷ (r − g)
+
+  <span class="hl">增长率对估值的指数级影响（折现率统一10%，利润35亿）：</span>
+
+  增长率  0% → 价值 = 35 ÷ (10%−0%)  = <span class="g"> 350亿</span>   PE = 10x
+  增长率  5% → 价值 = 35 ÷ (10%−5%)  = <span class="g"> 700亿</span>   PE = 20x
+  增长率  8% → 价值 = 35 ÷ (10%−8%)  = <span class="g">1750亿</span>   PE = 50x
+  增长率  9% → 价值 = 35 ÷ (10%−9%)  = <span class="g">3500亿</span>   PE = 100x
+
+  <span class="dim">增长率从0%到8%，估值从350亿涨到1750亿——增长率的微小变化影响是指数级的</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--amber)"></div><div class="card-ht">第三步：加入ROE——为何高ROE公司值更高PE</div></div>
+  <div class="card-body">
+    <div class="prose" style="margin-bottom:10px">公司要产生增长，必须留一部分利润再投资。<strong>ROE越高，实现同样增长率所需留存的利润越少，能分给股东的越多。</strong></div>
+    <div class="code"><span class="hl">再投资率 = 增长率 g ÷ ROE</span>
+
+  <span class="hl">公司A（高ROE = 30%），目标增长8%：</span>
+  再投资率 = 8% ÷ 30% = 26.7%
+  → 赚100元，留26.7元就能实现8%增长
+  → 剩余 <span class="g">73.3元</span> 可以分给股东
+
+  <span class="hl">公司B（低ROE = 10%），目标增长8%：</span>
+  再投资率 = 8% ÷ 10% = 80%
+  → 赚100元，必须留80元才能实现8%增长
+  → 只有 <span class="r">20元</span> 可以分给股东
+
+  两家公司都"增长8%"，股东实际拿到的现金天差地别</div>
+
+    <div class="code" style="margin-top:10px"><span class="hl">完整Gordon Model公式（含ROE）：</span>
+
+  合理PE = (1 − 再投资率) ÷ (r − g)
+          = (1 − g/ROE) ÷ (r − g)
+
+  <span class="hl">华润万象（名义）：ROE 30%，g = 8%，r = 10%</span>
+  再投资率 = 8% ÷ 30% = 26.7%
+  合理PE   = 73.3% ÷ 2% = <span class="g">36.6x</span>
+
+  <span class="hl">普通物管：ROE 12%，g = 5%，r = 10%</span>
+  再投资率 = 5% ÷ 12% = 41.7%
+  合理PE   = 58.3% ÷ 5% = <span class="dim">11.7x</span>
+
+  → 当前22x在此框架下看似低估——但ROE存在会计失真（见CH09）</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--red)"></div><div class="card-ht">第四步：模型的三大局限性</div></div>
+  <div class="card-body">
+    <table>
+      <thead><tr><th>局限</th><th>具体问题</th><th>华润万象的影响</th></tr></thead>
+      <tbody>
+        <tr class="hl-r"><td class="fw6 c-r">对增长率极度敏感</td><td>增长率差2pt，PE可能腰斩<br>8%→36x，6%→19x，4%→11x</td><td class="c-r">开业放缓是确定性压力，增速换挡直接压缩合理PE</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">假设永续固定增长</td><td>现实中无公司能永续固定增速<br>通常用两阶段模型</td><td class="c-a">应分：高速期（5-8年）+ 永续期（2-3%）两阶段</td></tr>
+        <tr class="hl-b"><td class="fw6 c-b">折现率主观性强</td><td>折现率 = 无风险利率 + 风险溢价<br>港股额外折价1-2%</td><td class="c-b">个人折现率7-8%（非10%）时，合理PE区间显著上移</td></tr>
+      </tbody>
+    </table>
+    <div class="code" style="margin-top:10px"><span class="hl">折现率敏感性（增长率6%固定）：</span>
+
+  折现率 10% → 合理PE = (1−6%/20%) ÷ 4% = <span class="dim">17.5x</span>
+  折现率  8% → 合理PE = (1−6%/20%) ÷ 2% = <span class="g">35.0x</span>
+  折现率  7% → 合理PE = (1−6%/20%) ÷ 1% = <span class="g">70.0x</span>  ← 分母趋近0，模型失效
+
+  <span class="dim">折现率接近增长率时模型不稳定，需切换至两阶段DCF</span></div>
+  </div>
+</div>
+
+<!-- ══════ CH9 ROE失真与修正 ══════ -->
+<div class="chapter">
+  <div class="ch-num">09</div>
+  <div class="ch-title">ROE失真：会计幻觉与三种修正方案</div>
+  <div class="ch-line"></div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--red)"></div><div class="card-ht">ROE在华润万象案例中为何完全不可参考</div></div>
+  <div class="card-body">
+    <div class="code"><span class="hl">表观ROE = 净利润 / 净资产 = 35亿 / ~115亿 ≈ 30%</span>
+
+  但净资产为什么只有115亿？
+  → 因为购物中心资产（数百亿）的产权在置地
+  → 万象生活净资产是"被抽空后的残余"
+
+  <span class="hl">直营/加盟类比：</span>
+  你开餐厅，厨房设备、装修、房租全由父亲出钱
+  你只出人工 → 你的ROE当然极高
+  但这不代表你的生意模式多优秀
+  只代表父亲补贴了你
+
+  <span class="r">真实经济ROE应把置地资产并表：</span>
+  分母暴增至数千亿 → ROE可能只有5-8%
+  → 接近普通重资产商业地产水平</div>
+    <div class="note" style="margin-top:8px"><b>结论：</b>Gordon Model里用30% ROE推出的36x合理PE，建立在会计结构性失真上。正确做法是放弃ROE，从现金流出发重建估值。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--teal)"></div><div class="card-ht">修正方案一：现金再投资率法</div></div>
+  <div class="card-body">
+    <div class="prose" style="margin-bottom:8px">不用ROE间接推算再投资率，直接观察公司实际把多少现金再投入业务。</div>
+    <div class="code"><span class="hl">现金再投资率 = (Capex − 折旧) / 经营现金流</span>
+
+  华润万象2024FY估算：
+    经营现金流：  ~42亿
+    Capex：       ~8亿
+    折旧加回：    ~5亿
+    净新增投入：  ~3亿
+
+  现金再投资率 = 3亿 ÷ 42亿 ≈ <span class="hl">7%</span>
+  分红率       = 93%   ← 与接近100%派息吻合
+
+  <span class="hl">现金ROIC = 经营现金流 / 万象自己投入的现金资本</span>
+           ≈ 42亿 / 200亿 ≈ 21%
+
+  隐含增长率 g = 7% × 21% ≈ <span class="r">1.5%</span>
+
+  <span class="dim">→ 揭示了核心问题：万象的增长主要不靠自身再投资驱动
+    而是靠置地持续供给新项目的"外生增长"
+    一旦置地收缩，增长来源中断</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--blue)"></div><div class="card-ht">修正方案二：净现金拆分法（最符合商业模式）</div></div>
+  <div class="card-body">
+    <div class="code"><span class="hl">公司价值 = 现有合同永续价值 + 净现金 + 新增合同期权价值</span>
+
+  <span class="hl">现有合同价值（稳态，折现率8%，存量自然增长3%）：</span>
+  = 35亿核心净利润 ÷ (8% − 3%)
+  = <span class="g">700亿人民币 ≈ 763亿港元</span>
+
+  <span class="hl">净现金（安全垫）：</span>
+  = 178亿人民币 ≈ <span class="g">194亿港元</span>
+
+  <span class="hl">新增合同期权价值（第三方扩张+城市空间，保守估算）：</span>
+  = <span class="a">~100-200亿港元</span>（难以精确定价）
+
+  合计合理市值 ≈ 763 + 194 + 150 = <span class="hl g">~1107亿港元</span>
+  对应股价     ≈ <span class="g">48-50港元</span>
+
+  <span class="dim">当前44港元有小幅安全边际，主要来自对期权价值的低估</span></div>
+    <div class="note" style="margin-top:8px"><b>关键洞察：</b>置地供给旺盛时，期权价值很大；置地收缩（现正发生）时，期权价值缩水——这正是股价从50跌至44的真实原因。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--purple)"></div><div class="card-ht">修正方案三：FCF Yield反推法（最直觉）</div></div>
+  <div class="card-body">
+    <div class="prose" style="margin-bottom:8px">跳过所有模型假设，直接问：<strong>用44港元买入，每年实际拿回多少现金？</strong></div>
+    <div class="code"><span class="hl">FCF Yield = 自由现金流 / 市值</span>
+
+  FCF（2024）= 经营现金流42亿 − Capex8亿 = 34亿人民币 ≈ 37亿港元
+  FCF Yield  = 37亿 ÷ 1005亿 ≈ <span class="hl">3.7%</span>
+
+  综合年化回报 = FCF Yield 3.7% + 存量自然增长 3-4% ≈ <span class="hl g">7-8%</span>
+
+  <span class="hl">与机会成本对比：</span>
+  10年期中国国债：  ~2.3%  → 万象溢价显著   <span class="g">✓ 有吸引力</span>
+  港股高息股平均：  ~5-6%  → 万象有小幅溢价  <span class="g">✓ 合理</span>
+  恒生指数长期回报：~6-7%  → 万象基本持平    <span class="a">△ 无超额</span>
+  私募/实业要求：  ~12-15% → 万象明显不足    <span class="r">✗ 不合适</span></div>
+    <div class="note" style="margin-top:8px"><b>结论：</b>7-8%综合回报是否值得买入，完全取决于个人机会成本，而非模型给出的"合理PE"。对要求回报率5-6%的投资者有吸引力；对要求10%+的投资者则明显高估。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--cr-gold)"></div><div class="card-ht">22x PE是否合理：五个变量的综合判断</div></div>
+  <div class="card-body">
+    <table>
+      <thead><tr><th>变量</th><th>支撑高PE</th><th>压制PE</th><th>当前判断</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6">ROE</td><td>名义30%，天然高</td><td>会计失真，经济实质5-8%</td><td class="c-a fw6">△ 慎用</td></tr>
+        <tr class="hl-a"><td class="fw6">增长率</td><td>存量改善+城市空间</td><td>开业放缓，下沉质量弱</td><td class="c-a fw6">△ 基准5-6%</td></tr>
+        <tr class="hl-g"><td class="fw6">分红率</td><td>100%派息，极罕见</td><td>若并购则阶段性下降</td><td class="c-g fw6">✓ 成立</td></tr>
+        <tr class="hl-a"><td class="fw6">护城河</td><td>万象城品牌真实</td><td>港资/高奢竞争，区域性非全国</td><td class="c-a fw6">△ 区域成立</td></tr>
+        <tr class="hl-g"><td class="fw6">折现率</td><td>内地资产机会成本低</td><td>港股流动性折价</td><td class="c-g fw6">✓ 7-8%合理</td></tr>
+      </tbody>
+    </table>
+    <div class="code" style="margin-top:10px"><span class="hl">折现率8%，ROE修正至20%，不同增长率下的合理PE：</span>
+
+  增长率 8%（乐观） → 合理PE = (1−8%/20%) ÷ (8%−8%) = <span class="dim">分母为0，模型失效</span>
+  增长率 6%（基准） → 合理PE = (1−6%/20%) ÷ 2% = <span class="g">35x</span>  当前22x = 低估
+  增长率 4%（保守） → 合理PE = (1−4%/20%) ÷ 4% = <span class="a">20x</span>  当前22x = 基本合理
+  增长率 3%（悲观） → 合理PE = (1−3%/20%) ÷ 5% = <span class="r">17x</span>  当前22x = 轻微高估
+
+  <span class="dim">核心结论：增速能否维持4%+，是22x PE站得住脚的临界线</span></div>
+  </div>
+</div>
+
+<!-- ══════ CH10 置地压力传导 ══════ -->
+<div class="chapter">
+  <div class="ch-num">10</div>
+  <div class="ch-title">华润置地财务压力：对万象生活增长率的传导风险</div>
+  <div class="ch-line"></div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--blue)"></div><div class="card-ht">置地2025H1关键财务数据</div></div>
+  <div class="card-body">
+    <div class="kpi-strip k4">
+      <div class="kpi b">
+        <div class="kl">总借贷</div>
+        <div class="kv b">2812亿</div>
+        <div class="ks">现金储备1202亿 · 净有息负债率39.2%</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">融资成本</div>
+        <div class="kv g">2.79%</div>
+        <div class="ks">行业最低梯队 · 平均债期6.4年</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">信用评级</div>
+        <div class="kv gold">BBB+</div>
+        <div class="ks">标普/惠誉BBB+ · 穆迪Baa1 · 维持</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">签约销售额</div>
+        <div class="kv a">−11.5%</div>
+        <div class="ks">2025H1同比 · 销售面积−20.9%</div>
+      </div>
+    </div>
+    <div class="note"><b>整体判断：</b>置地的问题是<strong>利润承压</strong>，而非<strong>资金链断裂</strong>——两者对万象生活的影响截然不同。1202亿现金储备、三道红线绿档、投资级信用评级，不存在流动性危机。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--amber)"></div><div class="card-ht">压力传导矩阵：哪些风险会影响万象生活</div></div>
+  <div class="card-body">
+    <table>
+      <thead><tr><th>置地压力来源</th><th>对万象生活的传导</th><th>风险等级</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6">住宅销售下滑（−11.5%）</td><td>无直接关联</td><td class="c-g fw6">无风险</td></tr>
+        <tr class="hl-g"><td class="fw6">开发毛利率承压（15.6%）</td><td>无直接关联</td><td class="c-g fw6">无风险</td></tr>
+        <tr class="hl-g"><td class="fw6">写字楼收入−14.2%</td><td>万象不管写字楼</td><td class="c-g fw6">无风险</td></tr>
+        <tr class="hl-a"><td class="fw6">新开购物中心放缓（6座/年）</td><td>直接影响"直营"增量供给</td><td class="c-a fw6">中等·已知</td></tr>
+        <tr class="hl-g"><td class="fw6">购物中心经营（零售额+20.2%）</td><td>存量运营健康，管理费稳定</td><td class="c-g fw6">正面信号</td></tr>
+        <tr class="hl-b"><td class="fw6">轻资产转型提速</td><td>更多资产委托万象管理</td><td class="c-b fw6">正面信号</td></tr>
+        <tr class="hl-r"><td class="fw6">极端情况：现金流枯竭</td><td>新项目供给停止+品牌背书削弱</td><td class="c-r fw6">低概率·央企</td></tr>
+      </tbody>
+    </table>
+    <div class="code" style="margin-top:10px"><span class="hl">置地战略方向：从资产持有者→资产管理者</span>
+
+  2025H1 REIT市值破百亿，上市以来+52.2%
+  每年推进REITs扩募50-100亿规模
+  → 成熟资产通过REIT退出，再投入新项目
+  → 万象生活作为管理方，资产规模持续扩大
+  → 这是万象生活增长的<span class="g">隐性正向驱动</span></div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-head"><div class="card-icon" style="background:var(--green)"></div><div class="card-ht">结论：风险性质是"增速放缓"而非"业务威胁"</div></div>
+  <div class="card-body">
+    <div class="g2">
+      <div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--green);letter-spacing:1.5px;margin-bottom:8px">▪ 利好万象的信号</div>
+        <div class="code" style="font-size:10px">✓ 融资成本2.79%，行业最低，无债务危机
+✓ 购物中心零售额+20.2%，利润率创新高
+✓ 主动轻资产转型，万象管理资产增加
+✓ 三大评级机构维持投资级，无降级风险
+✓ REIT扩募提供资产循环，持续供给管理标的</div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--amber);letter-spacing:1.5px;margin-bottom:8px">▪ 需持续观察的信号</div>
+        <div class="code" style="font-size:10px">△ 新开购物中心6座/年（已确认，增速换挡）
+△ 销售回款持续下滑→3-5年后拿地受限
+  →未来新开工潜在减少
+△ 写字楼/酒店若持续恶化
+  →整体经常性收入拖累置地现金流
+△ 下沉市场第三方项目质量能否对冲
+  直营供给减少</div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══════ VERDICT ══════ -->
 <div class="verdict">
-  <div class="verdict-label">▪ 核心认知框架 · SUMMARY</div>
+  <div class="verdict-label">▪ 核心认知框架 · SUMMARY（共十章）</div>
   <div class="verdict-text">
     <strong>①</strong> 华润万象生活报表只含管理费分成（~6-10%），不含购物中心全部租金——购物中心核心资产收益仍在华润置地。<br><br>
-    <strong>②</strong> 万象生活是"乙方品牌壳"：净资产不含产权，PB失效；真实价值在管理合同现金流、品牌溢价、7200万会员生态，只在PE/ROE/股息率中体现。<br><br>
+    <strong>②</strong> 万象生活是"乙方品牌壳"：净资产不含产权，PB失效；真实价值在管理合同现金流、品牌溢价、7200万会员生态，只在PE/FCF Yield/股息率中体现。<br><br>
     <strong>③</strong> 折旧是非现金支出，不影响现金流。重资产公司净利润率被折旧压低，EBITDA和FCF才是真实盈利能力的镜子。<br><br>
     <strong>④</strong> 母公司持股62%，分红利益完全一致，100%派息率的背后是母公司主动推动超额分配的利益驱动。<br><br>
-    <strong>⑤</strong> 正确估值公式：<strong>期望市值 = EBITDA × 期望倍数 + 净现金</strong>。当前44港元处于保守情景（15x）下沿，基本面无恶化，属消费预期下修的市场定价，而非基本面崩塌。
+    <strong>⑤</strong> ROE在万象案例中存在会计失真（置地承担资产），不可直接用于Gordon Model。推荐用<strong>净现金拆分法</strong>或<strong>FCF Yield反推法</strong>替代。<br><br>
+    <strong>⑥</strong> 正确估值公式：<strong>期望市值 = EBITDA × 期望倍数 + 净现金</strong>。当前44港元对应FCF Yield约3.7%，综合年化回报约7-8%，是否吸引力取决于个人机会成本。<br><br>
+    <strong>⑦</strong> 置地财务压力是"利润承压"而非"流动性危机"，对万象生活的真实影响是<strong>增速天花板</strong>（直营新开6座/年），而非业务威胁。置地主动转型轻资产反而是万象的隐性正向驱动。
   </div>
 </div>
 
