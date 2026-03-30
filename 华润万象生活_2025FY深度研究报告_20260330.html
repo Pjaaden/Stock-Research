@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华润万象生活 (01209.HK) · 2025FY深度研究报告 · 2026.03.30</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#f4f5f7;--bg1:#fff;--bg2:#f0f2f5;--bg3:#e8eaed;--bg4:#dde1e7;
+  --border:#d0d5dd;--border2:#b0b8c8;
+  --text:#1a2033;--muted:#526280;--dim:#8a96a8;
+  --blue:#1a5fcc;--green:#187a4a;--amber:#a06000;--red:#c0242e;
+  --purple:#5e3fb0;--teal:#0e7a6e;
+  --green-bg:rgba(24,122,74,.07);--amber-bg:rgba(160,96,0,.07);
+  --red-bg:rgba(192,36,46,.06);--blue-bg:rgba(26,95,204,.06);
+  --purple-bg:rgba(94,63,176,.06);
+  --cr-gold:#8a6200;--cr-gold-bg:rgba(138,98,0,.07);--cr-gold-lt:rgba(138,98,0,.2);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px;background:var(--bg0);color-scheme:light}
+body{font-family:'IBM Plex Sans SC',sans-serif;color:var(--text);line-height:1.6}
+
+/* TOPBAR */
+.topbar{background:var(--bg1);border-bottom:2px solid var(--cr-gold);padding:12px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.ticker{font-family:'IBM Plex Mono';font-size:18px;font-weight:700;color:var(--cr-gold);letter-spacing:2px}
+.ticker-sub{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.topbar-right{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);text-align:right;line-height:1.8}
+.status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:5px}
+
+/* MAIN */
+main{max-width:1100px;margin:0 auto;padding:24px 20px 60px}
+
+/* TITLE CARD */
+.title-card{background:var(--bg1);border:1px solid var(--border);border-left:4px solid var(--cr-gold);padding:20px 24px;margin-bottom:12px;position:relative;overflow:hidden}
+.title-card::before{content:'万象';position:absolute;right:-8px;top:-8px;font-size:120px;font-weight:900;color:rgba(138,98,0,.04);line-height:1;pointer-events:none}
+.title-main{font-family:'IBM Plex Mono';font-size:18px;font-weight:700;color:var(--cr-gold);letter-spacing:1px;margin-bottom:4px}
+.title-sub{font-size:11px;color:var(--muted);letter-spacing:.5px;margin-bottom:14px}
+.title-meta{display:flex;gap:20px;flex-wrap:wrap}
+.meta-item{display:flex;flex-direction:column;gap:2px}
+.meta-label{font-family:'IBM Plex Mono';font-size:9px;color:var(--dim);letter-spacing:1px;text-transform:uppercase}
+.meta-value{font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:var(--text)}
+.meta-value.gold{color:var(--cr-gold)}.meta-value.green{color:var(--green)}.meta-value.amber{color:var(--amber)}.meta-value.red{color:var(--red)}
+
+/* SECTION */
+.sec{background:var(--bg1);border:1px solid var(--border);margin-bottom:12px}
+.sec-head{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.sec-num{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);letter-spacing:2px;min-width:28px}
+.sec-title{font-family:'IBM Plex Mono';font-size:11px;font-weight:600;color:var(--text);letter-spacing:.5px;text-transform:uppercase}
+.sec-note{font-size:10px;color:var(--muted);margin-left:auto}
+.sec-body{padding:14px 18px}
+
+/* KPI GRID */
+.kpi-row{display:grid;gap:10px;margin-bottom:12px}
+.k2{grid-template-columns:1fr 1fr}.k3{grid-template-columns:repeat(3,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k5{grid-template-columns:repeat(5,1fr)}
+.kpi{background:var(--bg2);border:1px solid var(--border);padding:11px 13px}
+.kpi.gold{border-top:3px solid var(--cr-gold)}.kpi.g{border-top:3px solid var(--green)}.kpi.b{border-top:3px solid var(--blue)}.kpi.a{border-top:3px solid var(--amber)}.kpi.r{border-top:3px solid var(--red)}.kpi.p{border-top:3px solid var(--purple)}.kpi.t{border-top:3px solid var(--teal)}
+.kl{font-family:'IBM Plex Mono';font-size:9px;color:var(--dim);letter-spacing:.8px;margin-bottom:4px;line-height:1.4}
+.kv{font-family:'IBM Plex Mono';font-size:19px;font-weight:600;line-height:1;margin-bottom:3px}
+.kv.sm{font-size:15px}.kv.gold{color:var(--cr-gold)}.kv.g{color:var(--green)}.kv.b{color:var(--blue)}.kv.a{color:var(--amber)}.kv.r{color:var(--red)}.kv.p{color:var(--purple)}.kv.t{color:var(--teal)}
+.ks{font-size:10px;color:var(--dim);line-height:1.45}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:11px}
+thead th{padding:7px 10px;background:var(--bg3);border-bottom:2px solid var(--border2);text-align:left;color:var(--muted);letter-spacing:.8px;font-weight:500;white-space:nowrap}
+tbody td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:var(--bg3)}
+tr.hl-g td{background:var(--green-bg)}tr.hl-a td{background:var(--amber-bg)}tr.hl-r td{background:var(--red-bg)}tr.hl-b td{background:var(--blue-bg)}tr.hl-gold td{background:var(--cr-gold-bg)}tr.hl-p td{background:var(--purple-bg)}
+tr.sub td{background:var(--bg3);font-weight:600;border-top:2px solid var(--border2)}
+tr.grand td{font-weight:700;border-top:2px solid var(--border2)}
+
+/* GRID */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+
+/* CARD */
+.card{background:var(--bg2);border:1px solid var(--border);padding:13px 15px;margin-bottom:10px}
+.card.g{border-left:3px solid var(--green)}.card.a{border-left:3px solid var(--amber)}.card.r{border-left:3px solid var(--red)}.card.b{border-left:3px solid var(--blue)}.card.gold{border-left:3px solid var(--cr-gold)}.card.p{border-left:3px solid var(--purple)}
+.card-title{font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:7px}
+.card-body{font-size:11.5px;color:var(--muted);line-height:1.8}
+.card-body strong{color:var(--text)}
+
+/* CALLOUTS */
+.insight{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);padding:11px 15px;font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.insight strong{color:var(--text)}
+.good{background:var(--green-bg);border:1px solid rgba(24,122,74,.18);border-left:3px solid var(--green);padding:11px 15px;font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.good strong{color:var(--green)}
+.warn{background:var(--red-bg);border:1px solid rgba(192,36,46,.18);border-left:3px solid var(--red);padding:11px 15px;font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.warn strong{color:var(--red)}
+.amber-box{background:var(--amber-bg);border:1px solid rgba(160,96,0,.18);border-left:3px solid var(--amber);padding:11px 15px;font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.amber-box strong{color:var(--amber)}
+.gold-box{background:var(--cr-gold-bg);border:1px solid var(--cr-gold-lt);border-left:3px solid var(--cr-gold);padding:11px 15px;font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:10px}
+.gold-box strong{color:var(--cr-gold)}
+
+/* BAR */
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.bar-lbl{font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);width:130px;flex-shrink:0}
+.bar-bg{flex:1;height:5px;background:var(--bg4);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px}
+.bar-val{font-family:'IBM Plex Mono';font-size:11px;font-weight:500;width:70px;text-align:right;flex-shrink:0}
+
+/* SEG CHART */
+.seg-chart{display:flex;height:28px;border-radius:3px;overflow:hidden;gap:2px;margin:8px 0}
+.seg-bar{display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-size:9px;font-weight:600;overflow:hidden;white-space:nowrap;padding:0 4px}
+
+/* NOTE */
+.note{padding:9px 13px;font-size:10px;color:var(--muted);line-height:1.8;border-left:3px solid var(--border2);background:var(--bg3);margin-top:8px}
+.note b{color:var(--text)}
+
+/* VERDICT */
+.verdict-final{background:var(--bg2);border:2px solid var(--border2);padding:18px 22px;margin-top:12px}
+
+/* UTIL */
+.fw6{font-weight:600}.c-g{color:var(--green)}.c-a{color:var(--amber)}.c-r{color:var(--red)}.c-b{color:var(--blue)}.c-m{color:var(--muted)}.c-d{color:var(--dim)}.c-gold{color:var(--cr-gold)}.c-p{color:var(--purple)}.c-t{color:var(--teal)}
+.tag{display:inline-block;padding:2px 7px;font-family:'IBM Plex Mono';font-size:9px;font-weight:600;letter-spacing:.8px}
+.tag.g{background:var(--green-bg);color:var(--green)}.tag.a{background:var(--amber-bg);color:var(--amber)}.tag.r{background:var(--red-bg);color:var(--red)}.tag.b{background:var(--blue-bg);color:var(--blue)}.tag.gold{background:var(--cr-gold-bg);color:var(--cr-gold)}
+.divider{border:none;border-top:1px solid var(--border);margin:10px 0}
+
+/* PRINT */
+@media print{
+  :root{--bg0:#fff;--bg1:#fafafa;--bg2:#f4f4f4;--bg3:#ebebeb;--bg4:#e0e0e0;--border:#ddd;--border2:#ccc;--text:#111;--muted:#444;--dim:#777}
+  .topbar{position:static}
+  .sec,.kpi,.card{break-inside:avoid}
+}
+
+/* FOOTER */
+footer{padding:12px 32px;border-top:1px solid var(--border);background:var(--bg1);font-family:'IBM Plex Mono';font-size:9px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:14px">
+    <span class="ticker">01209.HK</span>
+    <div>
+      <div style="font-size:12px;font-weight:600;color:var(--text)">华润万象生活有限公司</div>
+      <div class="ticker-sub">CR Mixc Lifestyle Services Ltd · 2025FY 深度研究报告</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <div><span class="status-dot"></span>年报已发布：2026.03.27 · 审计数据</div>
+    <div>数据基准：2025FY + 2024FY对比 | 撰写：2026.03.30</div>
+  </div>
+</div>
+
+<main>
+
+<!-- TITLE CARD -->
+<div class="title-card">
+  <div class="title-main">华润万象生活 — 2025FY 财务深度研究</div>
+  <div class="title-sub">增速换挡后的首份全年审计报告 · 质量型增长验证 · 购物中心扩张超预期</div>
+  <div class="title-meta">
+    <div class="meta-item"><span class="meta-label">核心净利润</span><span class="meta-value gold">39.5亿 (+13.7%)</span></div>
+    <div class="meta-item"><span class="meta-label">全年股息/股</span><span class="meta-value gold">1.731元 (100%派息)</span></div>
+    <div class="meta-item"><span class="meta-label">毛利率</span><span class="meta-value green">35.5% (+2.5pt)</span></div>
+    <div class="meta-item"><span class="meta-label">在营购物中心</span><span class="meta-value green">135座 (+13座)</span></div>
+    <div class="meta-item"><span class="meta-label">参考股价</span><span class="meta-value amber">44港元 · PE 23.3x</span></div>
+    <div class="meta-item"><span class="meta-label">投资结论</span><span class="meta-value">合理 · 质量向好 · 关注ECL</span></div>
+  </div>
+</div>
+
+<!-- §01 核心财务快照 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">核心财务快照：2025FY vs 2024FY</div>
+    <div class="sec-note">数据来源：2025年度业绩公告（审计）</div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-row k5">
+      <div class="kpi gold">
+        <div class="kl">全年收入</div>
+        <div class="kv gold">180.2亿</div>
+        <div class="ks">+5.1% YoY<br>2024：170.4亿</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">毛利润</div>
+        <div class="kv g">64.1亿</div>
+        <div class="ks">毛利率 35.5% (+2.5pt)<br>2024：33.0%</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">核心净利润</div>
+        <div class="kv b">39.5亿</div>
+        <div class="ks">+13.7% YoY<br>核心净利润率 21.9%</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">核心EPS</div>
+        <div class="kv gold">1.731元</div>
+        <div class="ks">+13.2% YoY<br>2024：1.536元</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">全年股息/股</div>
+        <div class="kv g sm">1.731元</div>
+        <div class="ks">派息率100%<br>≈1.887港元</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>损益项目</th><th>2025FY</th><th>2024FY</th><th>增幅</th><th>备注</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-gold"><td class="fw6">总收入</td><td class="fw6">18,021.6百万</td><td>17,154.4百万</td><td class="c-g fw6">+5.1%</td><td>增速换挡，2024为+15.4%</td></tr>
+        <tr><td>销售成本</td><td>11,616.0百万</td><td>11,500.9百万</td><td class="c-g">+1.0%</td><td>成本增速远低于收入增速</td></tr>
+        <tr class="hl-g"><td class="fw6">毛利润</td><td class="fw6 c-g">6,405.6百万</td><td>5,653.5百万</td><td class="c-g fw6">+13.3%</td><td>毛利率35.5%，+2.5pt</td></tr>
+        <tr><td>投资物业公允价值变动</td><td>263.6百万</td><td>40.7百万</td><td class="c-g">+547%</td><td>商业分租项目重估，非经常</td></tr>
+        <tr><td>其他收入及收益</td><td>338.0百万</td><td>705.4百万</td><td class="c-r">-52.1%</td><td>或然对价损失+利息收入下降</td></tr>
+        <tr><td>市场推广支出</td><td>(295.6)百万</td><td>(328.6)百万</td><td class="c-g">-10.0%</td><td>费用控制有效</td></tr>
+        <tr><td>行政支出</td><td>(1,062.7)百万</td><td>(1,004.4)百万</td><td class="c-a">+5.8%</td><td>略高于收入增速</td></tr>
+        <tr class="hl-r"><td class="fw6">其他支出（含ECL）</td><td class="fw6 c-r">(187.8)百万</td><td>(89.7)百万</td><td class="c-r fw6">+109%</td><td>⚠ 信用减值损失大幅增加</td></tr>
+        <tr><td>财务费用</td><td>(111.0)百万</td><td>(115.9)百万</td><td class="c-g">-4.2%</td><td>租赁负债利息，无银行贷款</td></tr>
+        <tr class="hl-b"><td class="fw6">税前利润</td><td class="fw6 c-b">5,353.4百万</td><td>4,864.2百万</td><td class="c-g fw6">+10.1%</td><td></td></tr>
+        <tr><td>所得税</td><td>(1,269.6)百万</td><td>(1,165.5)百万</td><td class="c-r">+9.0%</td><td>实际税率23.7%（含预扣税）</td></tr>
+        <tr class="hl-g"><td class="fw6">归母净利润</td><td class="fw6 c-g">3,969.0百万</td><td>3,598.0百万</td><td class="c-g fw6">+10.3%</td><td></td></tr>
+        <tr class="hl-gold"><td class="fw6">核心净利润</td><td class="fw6 c-gold">3,950.3百万</td><td>3,474.1百万</td><td class="c-gold fw6">+13.7%</td><td>★ 剔除物业重估、或然代价等</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:10px"><b>利润增速 vs 收入增速：</b>收入+5.1%，但核心净利润+13.7%，利润弹性显著——毛利率提升2.5pt与费用率压降0.3pt协同作用，体现了"有利润的营收"经营方针的落地。★为原始数据，其余为计算值。</div>
+  </div>
+</div>
+
+<!-- §02 分部拆解 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">分部拆解：商业航道 vs 物业航道</div>
+  </div>
+  <div class="sec-body">
+
+    <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px">2025FY收入结构（各业务占比）</div>
+    <div class="seg-chart">
+      <div class="seg-bar" style="width:26.5%;background:#c8a43c;color:#3d2a00">购物中心 26.5%</div>
+      <div class="seg-bar" style="width:11.9%;background:#2d5080;color:#a8c4e8">写字楼 11.9%</div>
+      <div class="seg-bar" style="width:39.8%;background:#1a4070;color:#7aa8d0">社区空间 39.8%</div>
+      <div class="seg-bar" style="width:11.3%;background:#155060;color:#5a9ab0">城市空间 11.3%</div>
+      <div class="seg-bar" style="width:9%;background:#102840;color:#4a7890">增值+生态 9.0%</div>
+      <div class="seg-bar" style="width:1.5%;background:#0c2030;color:#3a6070">生态</div>
+    </div>
+
+    <table style="margin-top:12px">
+      <thead>
+        <tr><th>业务板块</th><th>2025收入</th><th>占比</th><th>2024收入</th><th>YoY</th><th>毛利率2025</th><th>毛利率2024</th><th>变动</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-gold"><td class="fw6 c-gold">商业·购物中心</td><td class="fw6">47.68亿</td><td>26.5%</td><td>42.09亿</td><td class="c-g fw6">+13.3%</td><td class="c-g fw6">75.9%</td><td>72.6%</td><td class="c-g">+3.3pt</td></tr>
+        <tr><td>商业·写字楼</td><td>21.37亿</td><td>11.9%</td><td>20.65亿</td><td class="c-g">+3.5%</td><td>34.5%</td><td>34.9%</td><td class="c-r">-0.4pt</td></tr>
+        <tr class="sub"><td class="fw6">商业航道小计</td><td class="fw6">69.06亿</td><td>38.3%</td><td>62.74亿</td><td class="c-g fw6">+10.1%</td><td class="c-g fw6">63.1%</td><td>60.2%</td><td class="c-g fw6">+2.9pt</td></tr>
+        <tr class="hl-b"><td>物业·基础物业服务</td><td>71.71亿</td><td>39.8%</td><td>66.69亿</td><td class="c-g">+7.5%</td><td class="c-g">15.9%</td><td>14.4%</td><td class="c-g">+1.5pt</td></tr>
+        <tr class="hl-r"><td>物业·非业主增值服务</td><td>5.20亿</td><td>2.9%</td><td>7.18亿</td><td class="c-r fw6">-27.7%</td><td>24.7%</td><td>33.0%</td><td class="c-r">-8.3pt</td></tr>
+        <tr class="hl-r"><td>物业·业主增值服务</td><td>11.17亿</td><td>6.2%</td><td>15.16亿</td><td class="c-r fw6">-26.3%</td><td>36.6%</td><td>25.6%</td><td class="c-g">+11pt</td></tr>
+        <tr><td>物业·城市空间</td><td>20.40亿</td><td>11.3%</td><td>18.21亿</td><td class="c-g fw6">+12.0%</td><td>13.4%</td><td>12.9%</td><td class="c-g">+0.5pt</td></tr>
+        <tr class="sub"><td class="fw6">物业航道小计</td><td class="fw6">108.47亿</td><td>60.2%</td><td>107.24亿</td><td class="c-g">+1.1%</td><td>18.0%</td><td>17.0%</td><td class="c-g">+1.0pt</td></tr>
+        <tr class="hl-p"><td>生态圈业务</td><td>2.69亿</td><td>1.5%</td><td>1.56亿</td><td class="c-g fw6">+72.2%</td><td class="c-g">36.9%</td><td>35.7%</td><td class="c-g">+1.2pt</td></tr>
+        <tr class="grand"><td class="fw6">合计</td><td class="fw6">180.2亿</td><td>100%</td><td>170.4亿</td><td class="c-g fw6">+5.1%</td><td class="c-g fw6">35.5%</td><td>33.0%</td><td class="c-g fw6">+2.5pt</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid2" style="margin-top:12px">
+      <div>
+        <div class="good">
+          <strong>购物中心：超预期的亮点</strong><br>
+          收入+13.3%，毛利率75.9%（+3.3pt）——数字化运营使单位成本持续下降，规模效应充分发挥。零售额2660亿（+23.7%）、业主端租金307亿（+16.9%），双双大幅增长。新开业14座购物中心（此前预期仅6座），在营135座，在管合同达207座，储备项目极为充裕。
+        </div>
+        <div class="good">
+          <strong>城市空间：政策顺风持续兑现</strong><br>
+          收入+12.0%至20.4亿，高品质项目占比提升，合同回款率维持92.6%高位。主动退出低效项目后结构优化，毛利率+0.5pt至13.4%，质量提升中。
+        </div>
+      </div>
+      <div>
+        <div class="warn">
+          <strong>增值服务：结构调整拖累物业航道</strong><br>
+          非业主增值服务-27.7%（开发商新开工缩减），业主增值服务-26.3%（主动剥离低盈利业务）。两项合计约16.4亿，较2024年约22.3亿减少5.9亿——这是物业航道增速仅+1.1%的主因。管理层定性为"战略性调整"，盈利质量改善，但收入规模短期承压。
+        </div>
+        <div class="amber-box">
+          <strong>写字楼：温和复苏，压力未消</strong><br>
+          收入+3.5%，平均出租率77.2%（+3.6pt），较2025H1的74.5%明显回升，全年改善趋势确认。毛利率-0.4pt至34.5%，基本稳定。写字楼市场整体仍承压，华润的"招运管一体化"策略在新租面积实现双位数增长，是积极信号。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §03 购物中心深度运营分析 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">购物中心深度运营分析：规模·效益·储备</div>
+    <div class="sec-note">商管业务是估值核心驱动</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k4">
+      <div class="kpi gold">
+        <div class="kl">全年零售额</div>
+        <div class="kv gold">2660亿</div>
+        <div class="ks">+23.7% YoY<br>2024：2150亿</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">业主端租金收入</div>
+        <div class="kv g">307亿</div>
+        <div class="ks">+16.9% YoY<br>业主端NOI Margin：65.7%</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">年末在营购物中心</div>
+        <div class="kv b">135座</div>
+        <div class="ks">+13座 YoY（其中管理输出129座）<br>在管合同：207座</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">第三方项目数</div>
+        <div class="kv a">31座</div>
+        <div class="ks">华润系98座 | 第三方31座<br>2024：第三方26座</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">零售额增速 vs 社零增速对比</div>
+        <div class="bar-row"><div class="bar-lbl">万象购物中心全年</div><div class="bar-bg"><div class="bar-fill" style="width:85%;background:var(--cr-gold)"></div></div><div class="bar-val c-gold">+23.7%</div></div>
+        <div class="bar-row"><div class="bar-lbl">全国社零增速（估）</div><div class="bar-bg"><div class="bar-fill" style="width:15%;background:var(--dim)"></div></div><div class="bar-val c-m">~3-4%</div></div>
+        <div class="bar-row"><div class="bar-lbl">购物中心毛利率</div><div class="bar-bg"><div class="bar-fill" style="width:76%;background:var(--green)"></div></div><div class="bar-val c-g">75.9%</div></div>
+        <div class="bar-row"><div class="bar-lbl">业主端NOI Margin</div><div class="bar-bg"><div class="bar-fill" style="width:66%;background:var(--blue)"></div></div><div class="bar-val c-b">65.7%</div></div>
+        <div class="bar-row"><div class="bar-lbl">第三方项目占比</div><div class="bar-bg"><div class="bar-fill" style="width:24%;background:var(--purple)"></div></div><div class="bar-val c-p">24.0%</div></div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">在管项目结构（2025年末）</div>
+        <table>
+          <thead><tr><th>来源</th><th>在营座数</th><th>面积</th><th>收入（商管）</th></tr></thead>
+          <tbody>
+            <tr class="hl-gold"><td class="fw6 c-gold">华润置地</td><td>98座</td><td>11,681千㎡</td><td>31.92亿</td></tr>
+            <tr><td>华润集团+第三方</td><td>31座</td><td>2,637千㎡</td><td>5.18亿</td></tr>
+            <tr class="grand"><td class="fw6">合计</td><td class="fw6">129座</td><td>14,318千㎡</td><td class="fw6">37.09亿</td></tr>
+          </tbody>
+        </table>
+        <div class="note"><b>单项目收益对比：</b>华润置地项目均值 3,257万/年 vs 第三方项目 1,671万/年，仍有约2:1差距。第三方外拓量增但质量仍偏弱，是增速能否维持的关键变量。</div>
+      </div>
+    </div>
+
+    <div class="insight" style="margin-top:12px">
+      <strong>超预期开业：储备项目丰厚，"增速换挡"论证需要修正</strong><br>
+      此前分析预期每年约6座新开业，但2025年实际新开14座（深圳湾万象城二期等标杆项目），在管合同项目达207座——较在营129座有<strong>78座储备</strong>（约60%的潜在增量）。这意味着未来2-3年开业节奏存在显著加速空间，是估值中被低估的正面变量。华润置地已获取未签约储备项目另有14个/2057千㎡，供给管道极为充裕。
+    </div>
+  </div>
+</div>
+
+<!-- §04 现金流与资产负债表质量 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">资产负债表质量与现金流分析</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k4">
+      <div class="kpi b">
+        <div class="kl">现金及等价物</div>
+        <div class="kv b">55.4亿</div>
+        <div class="ks">2024：96.0亿（下降系分红支付）</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">定期存款（流+非流）</div>
+        <div class="kv g">51.0亿</div>
+        <div class="ks">非流动46.7亿 + 流动4.2亿</div>
+      </div>
+      <div class="kpi t">
+        <div class="kl">理财产品（流+非流）</div>
+        <div class="kv t">50.2亿</div>
+        <div class="ks">非流动13.0亿 + 流动37.2亿</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">净现金（扣租赁负债）</div>
+        <div class="kv gold">134.4亿</div>
+        <div class="ks">总流动性156.5亿 - 租赁负债22.1亿<br>★ 无银行贷款</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <table>
+          <thead><tr><th>资产负债项目</th><th>2025FY</th><th>2024FY</th><th>变动</th></tr></thead>
+          <tbody>
+            <tr class="hl-b"><td class="fw6">现金+定期+理财</td><td class="fw6 c-b">156.5亿</td><td>171.4亿</td><td class="c-r">-14.9亿</td></tr>
+            <tr><td>贸易应收款项（净）</td><td>27.4亿</td><td>23.8亿</td><td class="c-r">+3.6亿</td></tr>
+            <tr class="hl-r"><td class="fw6 c-r">ECL拨备（贸易）</td><td class="fw6 c-r">2.38亿</td><td>1.42亿</td><td class="c-r fw6">+67.6%</td></tr>
+            <tr class="hl-r"><td class="fw6 c-r">ECL拨备（其他应收）</td><td class="fw6 c-r">1.26亿</td><td>0.39亿</td><td class="c-r fw6">+225%</td></tr>
+            <tr><td>投资物业（公允价值）</td><td>47.1亿</td><td>41.6亿</td><td class="c-g">+5.5亿</td></tr>
+            <tr><td>租赁负债（流+非流）</td><td>22.1亿</td><td>23.1亿</td><td class="c-g">-1.0亿</td></tr>
+            <tr><td>银行贷款</td><td class="c-g fw6">0</td><td class="c-g fw6">0</td><td class="c-g">—</td></tr>
+            <tr class="sub"><td class="fw6">净资产</td><td class="fw6">156.9亿</td><td>167.0亿</td><td class="c-r">-10.1亿</td></tr>
+            <tr><td>资产负债率</td><td>46.0%</td><td>42.7%</td><td class="c-r">+3.3pt</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="good">
+          <strong>现金减少属正常分红耗用，非流动性恶化</strong><br>
+          净现金从约178亿（H1）降至134亿（年末），主要原因：中期股息+中期特别股息约20亿 + 末期股息约27亿 + 并购华润通等小额投资。分红支付带来的现金减少是股东回报的体现，不代表现金流恶化。公司仍无任何银行贷款，净现金134亿约为年核心净利润的3.4倍。
+        </div>
+        <div class="warn">
+          <strong>⚠ ECL拨备大幅提升是核心风险信号</strong><br>
+          贸易应收ECL +67.6%，其他应收ECL +225%——合计拨备从1.81亿升至3.64亿，增加约1.83亿。年报解释：宏观承压致部分物业客户回款放缓，应收账款账龄结构恶化（2-3年期账款从5.6亿升至16.2亿）。这是非现金费用（在其他支出中体现），2025年侵蚀了约1.8亿税前利润。若2026年继续扩大，将形成持续压力。
+        </div>
+        <div class="note"><b>有效净现金流覆盖：</b>年报披露有效净现金流44.4亿，核心净利润覆盖倍数1.1x（2025H1为1.21x），较上半年有所收窄，仍属健康水平。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §05 股息政策 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">股息政策：100%派息连续三年兑现</div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-row k4">
+      <div class="kpi g">
+        <div class="kl">中期股息/股</div>
+        <div class="kv g sm">0.529元</div>
+        <div class="ks">+89.6% YoY (2024:0.279元)</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">中期特别股息/股</div>
+        <div class="kv g sm">0.352元</div>
+        <div class="ks">首次中期特别股息（2024：0.575元）</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">末期股息/股</div>
+        <div class="kv gold sm">0.509元</div>
+        <div class="ks">-20.8% YoY (2024:0.643元)</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">末期特别股息/股</div>
+        <div class="kv gold sm">0.341元</div>
+        <div class="ks">-44.5% YoY (2024:0.614元)</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>年度</th><th>核心EPS</th><th>中期</th><th>中期特别</th><th>末期</th><th>末期特别</th><th>全年合计</th><th>派息率</th><th>港元折算</th></tr></thead>
+      <tbody>
+        <tr><td>2022FY</td><td>~1.16元</td><td>—</td><td>—</td><td>~0.48元</td><td>—</td><td>~0.48元</td><td>~41%</td><td>—</td></tr>
+        <tr><td>2023FY</td><td>~1.36元</td><td>0.279元</td><td>—</td><td>0.481元</td><td>—</td><td>0.760元</td><td>~56%</td><td>—</td></tr>
+        <tr class="hl-a"><td>2024FY</td><td>1.536元</td><td>0.279元</td><td>0.575元</td><td>0.643元</td><td>0.614元</td><td class="fw6">2.111元</td><td class="c-a fw6">137%*</td><td>~2.30港元</td></tr>
+        <tr class="hl-gold"><td class="fw6">2025FY</td><td class="fw6">1.731元</td><td>0.529元</td><td>0.352元</td><td>0.509元</td><td>0.341元</td><td class="fw6 c-gold">1.731元</td><td class="c-g fw6">100%</td><td class="c-gold fw6">~1.887港元</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note" style="margin-top:10px"><b>*2024年超发原因：</b>2024年派息率137%，超过核心EPS，系公司清理历史积累超额现金的一次性特别分派（首次末期特别股息）。2025年回归100%常态化派息，不应与2024年绝对金额直接对比。<b>关键确认：</b>连续三年100%核心净利润分派，股息可预测性极高，与母公司利益高度一致。</div>
+
+    <div class="grid2" style="margin-top:10px">
+      <div class="card gold">
+        <div class="card-title">44港元股息收益率</div>
+        <div class="card-body">
+          全年股息1.731元 × 1.09汇率 = <strong>1.887港元</strong><br>
+          股息率 = 1.887 / 44 = <strong>4.3%</strong><br>
+          对比10年期国债约2.3%，溢价约200bp，具有吸引力。
+        </div>
+      </div>
+      <div class="card b">
+        <div class="card-title">2026E股息预测</div>
+        <div class="card-body">
+          若核心净利润+10%：EPS约1.90元 → 股息约1.90元 → 约2.07港元<br>
+          44港元对应预期股息率约 <strong>4.7%</strong><br>
+          若增速回升至12%+，则股息率有望接近5%。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §06 盈利质量与ECL风险 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">盈利质量深度：ECL风险量化与现金流覆盖</div>
+    <div class="sec-note">⚠ 重点关注项</div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead><tr><th>ECL拨备项目</th><th>2025FY</th><th>2024FY</th><th>增量</th><th>影响性质</th></tr></thead>
+      <tbody>
+        <tr class="hl-r"><td class="fw6">贸易应收款项ECL</td><td class="fw6 c-r">2.38亿</td><td>1.42亿</td><td class="c-r fw6">+0.96亿</td><td>非现金费用，计入其他支出</td></tr>
+        <tr class="hl-r"><td class="fw6">其他应收款项ECL</td><td class="fw6 c-r">1.26亿</td><td>0.39亿</td><td class="c-r fw6">+0.87亿</td><td>非现金费用，计入其他支出</td></tr>
+        <tr class="sub"><td class="fw6">ECL合计增量</td><td class="fw6 c-r">3.64亿</td><td>1.81亿</td><td class="c-r fw6">+1.83亿</td><td>致其他支出+109%至1.88亿</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid2" style="margin-top:10px">
+      <div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1px;margin-bottom:8px">应收账款账龄结构恶化</div>
+        <table>
+          <thead><tr><th>账龄</th><th>2025FY</th><th>2024FY</th><th>变动</th></tr></thead>
+          <tbody>
+            <tr class="hl-g"><td>1年内</td><td>23.83亿</td><td>20.33亿</td><td class="c-g">+17.2%</td></tr>
+            <tr class="hl-a"><td>1-2年</td><td>3.61亿</td><td>3.96亿</td><td class="c-a">-8.8%</td></tr>
+            <tr class="hl-r"><td class="fw6">2-3年</td><td class="c-r fw6">1.62亿</td><td>0.56亿</td><td class="c-r fw6">+189%</td></tr>
+            <tr class="hl-r"><td>3年以上</td><td>0.68亿</td><td>0.40亿</td><td class="c-r">+70%</td></tr>
+            <tr class="sub"><td>合计（毛）</td><td>29.74亿</td><td>25.25亿</td><td>+17.8%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div class="amber-box">
+          <strong>ECL：规模可控但趋势需持续追踪</strong><br>
+          2025年ECL增量约1.83亿，占核心净利润比约4.6%——单年影响有限，但增速+101%（合计口径）是警示信号。账龄2年以上应收款从0.96亿升至2.30亿（+140%），说明部分项目（主要是物业管理）客户回款持续迟滞。若2026年继续以此速度增长，ECL拨备可能达5-6亿，侵蚀净利润约3-4%。<br><br>
+          <strong>正面因素：</strong>ECL属非现金支出，加回后经营现金流不受影响；有效净现金流覆盖倍数仍为1.1x，盈利质量基本健康。
+        </div>
+        <div class="note"><b>对比参考：</b>绿城服务的ECL问题在H1已出现拐点迹象，万象生活ECL虽上升但绝对规模（3.64亿 vs 总资产290亿）远小于同行，不构成系统性风险。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §07 估值框架 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">估值框架：基于2025FY审计数据的重算</div>
+    <div class="sec-note">基准股价：44港元（2026.03.30）</div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-row k4">
+      <div class="kpi b">
+        <div class="kl">当前市值（约）</div>
+        <div class="kv b">1005亿</div>
+        <div class="ks">港元 · 22.83亿股 × 44港元</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">2025 PE（实际）</div>
+        <div class="kv gold">23.3x</div>
+        <div class="ks">EPS 1.731元 × 1.09 = 1.887港元</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">2026E PE（+10%增速）</div>
+        <div class="kv g">21.1x</div>
+        <div class="ks">EPS预期1.904元 → 2.076港元</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">股息率（2025实际）</div>
+        <div class="kv a">4.3%</div>
+        <div class="ks">1.887港元 / 44港元<br>2026E预期：~4.7%</div>
+      </div>
+    </div>
+
+    <table style="margin-bottom:10px">
+      <thead><tr><th>估值方法</th><th>参数假设</th><th>目标价（港元）</th><th>较44港元空间</th><th>可信度</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6">净现金拆分法</td><td>稳态价值+净现金134亿+储备期权</td><td class="fw6 c-g">46-50港元</td><td class="c-g">+5-14%</td><td class="c-g">高（最适配模型）</td></tr>
+        <tr class="hl-b"><td class="fw6">EV/EBITDA 18x</td><td>EBITDA约55亿（2025E）×18x+净现金</td><td class="fw6 c-b">~52港元</td><td class="c-b">+18%</td><td class="c-b">中高</td></tr>
+        <tr class="hl-gold"><td class="fw6">PE法 22x（2026E）</td><td>EPS 1.904元 × 22x × 1.09</td><td class="fw6 c-gold">~45.6港元</td><td class="c-gold">+4%</td><td class="c-gold">中（基本合理）</td></tr>
+        <tr class="hl-a"><td class="fw6">FCF Yield法</td><td>FCF约35亿/1005亿+自然增长3-4%</td><td class="fw6 c-a">7-8%综合年化</td><td class="c-a">折现率依赖</td><td class="c-a">中（最直觉）</td></tr>
+        <tr class="hl-a"><td class="fw6">DDM（100%派息）</td><td>股息1.887港元，增长8%，折现率8%</td><td class="fw6 c-a">~47港元</td><td class="c-a">+7%</td><td class="c-a">中</td></tr>
+        <tr class="hl-r"><td class="fw6">悲观情景（ECL扩大+增速4%）</td><td>PE压缩至16-18x</td><td class="fw6 c-r">37-41港元</td><td class="c-r">-7-16%</td><td class="c-r">低概率</td></tr>
+      </tbody>
+    </table>
+
+    <div class="verdict-final">
+      <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px">综合估值判断</div>
+      <div class="grid2">
+        <div>
+          <div style="font-family:'IBM Plex Mono';font-size:10px;font-weight:600;color:var(--green);margin-bottom:8px">支撑当前估值的核心逻辑</div>
+          <div style="font-size:11.5px;color:var(--muted);line-height:1.9">
+            <strong style="color:var(--text)">① 购物中心储备超预期：</strong>207座在管合同 vs 129座在营，78座储备（60%潜在增量），开业节奏可能远超6座/年的此前预期，增长外生来源并未萎缩。<br>
+            <strong style="color:var(--text)">② 毛利率持续改善：</strong>数字化运营降低单位成本，35.5%毛利率仍有提升空间，利润弹性大于收入弹性。<br>
+            <strong style="color:var(--text)">③ 100%派息可持续：</strong>母公司62%持股利益一致，净现金134亿为派息提供强大安全垫，股息率4.3%具吸引力。<br>
+            <strong style="color:var(--text)">④ 净现金公司，零银行负债：</strong>无杠杆风险，利率环境变化不影响财务成本。
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'IBM Plex Mono';font-size:10px;font-weight:600;color:var(--amber);margin-bottom:8px">主要风险与监控变量</div>
+          <div style="font-size:11.5px;color:var(--muted);line-height:1.9">
+            <strong style="color:var(--text)">① ECL拨备上升趋势：</strong>2025年合计3.64亿（+101%），需在2026H1确认是否触顶或继续扩大。<br>
+            <strong style="color:var(--text)">② 增值服务结构调整时长：</strong>两项增值服务合计-27%，何时触底回升影响物业航道增速。<br>
+            <strong style="color:var(--text)">③ 第三方项目质量提升：</strong>1671万 vs 3257万的单项目收益差距是否收窄，直接影响外拓增速的含金量。<br>
+            <strong style="color:var(--text)">④ 消费环境持续承压：</strong>零售额增速23.7%受益于开业数增加，可比增速实际水平需持续跟踪。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §08 2025FY vs 预测验证 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div class="sec-title">预测验证：2025FY实际 vs 此前预测清单</div>
+    <div class="sec-note">基于2024FY报告建立的预测清单</div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead><tr><th>观察指标</th><th>保守预测</th><th>乐观预测</th><th>2025实际</th><th>评价</th></tr></thead>
+      <tbody>
+        <tr class="hl-a"><td class="fw6">全年营收</td><td>~178亿</td><td>~192亿</td><td class="fw6">180.2亿</td><td class="c-a">△ 保守端，+5.1%（预期+4.8-12.6%）</td></tr>
+        <tr class="hl-r"><td class="fw6">核心净利润</td><td>~40亿</td><td>~44亿</td><td class="fw6 c-a">39.5亿</td><td class="c-r">✗ 略低于保守预测，但+13.7%质量优秀</td></tr>
+        <tr class="hl-g"><td class="fw6">毛利率</td><td>维持~34%</td><td>提升至36%</td><td class="fw6 c-g">35.5%</td><td class="c-g">✓ 优于预期，+2.5pt超出</td></tr>
+        <tr class="hl-g"><td class="fw6">购物中心零售额</td><td>~2600亿</td><td>~2800亿</td><td class="fw6 c-g">2660亿</td><td class="c-g">✓ 区间内，+23.7% YoY</td></tr>
+        <tr class="hl-g"><td class="fw6">在营购物中心</td><td>~130座</td><td>~133座</td><td class="fw6 c-g">135座</td><td class="c-g">✓ 超出预期，+13座（预期+8-11座）</td></tr>
+        <tr class="hl-g"><td class="fw6">末期+特别股息</td><td>~0.85元</td><td>~1.00元</td><td class="fw6 c-g">0.850元</td><td class="c-g">✓ 精确落在保守预测</td></tr>
+        <tr class="hl-g"><td class="fw6">派息率</td><td>维持100%</td><td>维持100%</td><td class="fw6 c-g">100%</td><td class="c-g">✓ 连续三年100%，完整兑现</td></tr>
+        <tr class="hl-r"><td class="fw6">新开购物中心</td><td>约6座</td><td>约8座</td><td class="fw6 c-g">14座</td><td class="c-r fw6">！大幅超预期——估值逻辑需修正</td></tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top:10px"><b>最重要的修正：</b>新开14座购物中心大幅超出"6座/年"的预期。加上207座在管合同规模，"增速换挡至低速"的判断需要修正——外延增长管道比预期充裕得多，这是估值上行的核心催化剂。</div>
+  </div>
+</div>
+
+<!-- §09 2026年展望与监控清单 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">09</div>
+    <div class="sec-title">2026年展望与投资监控清单</div>
+  </div>
+  <div class="sec-body">
+    <div class="grid2">
+      <div>
+        <div class="insight">
+          <strong>管理层2026年指引核心要点</strong><br>
+          · 商业航道：购物中心"核心城市全域布局+机会性城市卡位"，2026年设立消费基金，投资孵化消费品牌<br>
+          · 物业航道：深化国资央企合作，"潤城计划"持续推进<br>
+          · 大会员：8300万会员（+36%），积分/权益/数据三资产循环增值<br>
+          · 科技：大力推进"AI+"专项行动，重塑服务模式<br>
+          · 战略目标：创建世界一流城市品质生活服务商
+        </div>
+      </div>
+      <div>
+        <table>
+          <thead><tr><th>2026H1关键监控指标</th><th>目标/预期</th><th>风险情景</th></tr></thead>
+          <tbody>
+            <tr class="hl-g"><td>商管收入增速</td><td class="c-g">&gt;10%</td><td class="c-r">&lt;8%</td></tr>
+            <tr class="hl-g"><td>毛利率</td><td class="c-g">&gt;36%</td><td class="c-a">34-36%</td></tr>
+            <tr class="hl-r"><td class="fw6">ECL拨备合计</td><td class="c-a">稳定/小幅增加</td><td class="c-r fw6">&gt;5亿（警示线）</td></tr>
+            <tr><td>新开购物中心</td><td class="c-g">H1至少4-6座</td><td class="c-a">&lt;4座</td></tr>
+            <tr><td>可比零售额增速</td><td class="c-g">&gt;8%</td><td class="c-r">&lt;5%</td></tr>
+            <tr><td>增值服务收入</td><td class="c-a">触底企稳</td><td class="c-r">继续-20%+</td></tr>
+            <tr><td>有效净现金流覆盖</td><td class="c-g">&gt;1.0x</td><td class="c-r">&lt;0.9x</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="gold-box" style="margin-top:10px">
+      <strong>投资结论（2026.03.30，44港元）</strong><br>
+      2025FY是增速换挡后的首份全年报告，核心答卷是：量增速放缓（+5.1%）、质持续改善（毛利率+2.5pt、净利润+13.7%）、储备超预期（207座在管合同）、分红承诺完整兑现（100%）。当前44港元对应23.3x PE（2025实际）/ 21x PE（2026E），股息率4.3%，估值基本合理，无明显高估。<br><br>
+      上行催化剂：购物中心储备项目加速开业（207座管道支撑未来3年增量）、增值服务触底回升、ECL拨备稳定。下行风险：ECL持续扩大、消费环境进一步恶化、第三方项目质量长期偏弱。综合判断：<strong>持有/适量增持</strong>，核心逻辑完整，重点跟踪2026H1 ECL和可比零售额数据。
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：华润万象生活2025年度业绩公告（审计）· 2025FY年报 · 2026.03.27发布</span>
+  <span>华润万象生活_2025FY深度研究报告_20260330 · FOR REFERENCE ONLY · 不构成投资建议</span>
+</footer>
+
+</body>
+</html>
