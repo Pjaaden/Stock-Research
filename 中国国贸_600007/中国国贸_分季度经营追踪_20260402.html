@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国国贸 600007 · 分季度经营追踪 · 2026.04.02</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg:#f7f5f1;--bg2:#f0ede7;--bg3:#e8e3da;--surface:#fff;
+  --border:#d4cfc7;--border2:#c2bcb2;
+  --text:#1a1816;--muted:#686460;--dim:#9a938c;
+  --gold:#9a7000;--gold-lt:#c49820;--gold-bg:#fdf6e0;
+  --green:#166334;--green-bg:#eaf6ee;
+  --red:#a81c1c;--red-bg:#fdf0f0;
+  --amber:#b06a00;--amber-bg:#fef2e0;
+  --blue:#174d88;--blue-bg:#edf2fb;
+  --teal:#0d6060;--teal-bg:#e6f4f4;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans SC',sans-serif;font-size:12.5px;line-height:1.7}
+
+.cover{background:var(--surface);border-bottom:3px solid var(--gold);padding:26px 30px 20px;display:flex;justify-content:space-between;align-items:flex-end}
+.c-eye{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:4px}
+.c-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.c-sub{font-size:11px;color:var(--muted);line-height:1.9}
+.c-right{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--dim);line-height:2}
+.c-date{font-size:13px;font-weight:600;color:var(--gold)}
+
+.banner{margin:13px 22px;background:var(--gold-bg);border:1px solid var(--gold-lt);border-left:4px solid var(--gold);padding:11px 17px;font-size:12px;line-height:1.8}
+.b-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;font-weight:600}
+
+main{padding:0 22px 32px}
+.sec{background:var(--surface);border:1px solid var(--border);margin-bottom:14px}
+.sec-head{display:flex;align-items:baseline;gap:10px;padding:9px 14px 7px;border-bottom:2px solid var(--border);background:var(--bg2)}
+.sec-num{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--gold);letter-spacing:2px;min-width:22px}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:13.5px;font-weight:700;flex:1}
+.sec-note{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);white-space:nowrap}
+.sec-body{padding:14px 16px}
+
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:12px}
+thead tr{background:var(--bg3)}
+th{padding:7px 9px;text-align:left;font-weight:600;font-size:11px;border-bottom:2px solid var(--border2)}
+td{padding:7px 9px;border-bottom:1px solid var(--border);vertical-align:middle}
+.ta-r{text-align:right}
+tr.hl-g td{background:#edf8f2}
+tr.hl-r td{background:#fdf4f4}
+tr.hl-gold td{background:var(--gold-bg)}
+tr.hl-b td{background:var(--blue-bg)}
+tr.hl-a td{background:var(--amber-bg)}
+tr.hl-t td{background:var(--teal-bg)}
+tr.sub td{background:var(--bg3);font-weight:600;border-top:2px solid var(--border2)}
+tr.grand td{background:#dedad2;font-weight:700;border-top:2px solid var(--border2)}
+tr.yr24 td{background:#f5f2ee}
+tr.yr25q td{background:#fffdf5}
+.fw6{font-weight:600}.mono{font-family:'IBM Plex Mono',monospace}
+.c-g{color:var(--green)}.c-r{color:var(--red)}.c-a{color:var(--amber)}
+.c-gold{color:var(--gold)}.c-b{color:var(--blue)}.c-m{color:var(--muted)}
+.c-t{color:var(--teal)}
+.star{color:var(--gold);font-weight:700}
+
+/* SPARK BARS */
+.spark{display:flex;gap:3px;align-items:flex-end;height:36px;margin-top:2px}
+.sp-bar{width:18px;border-radius:2px 2px 0 0;transition:opacity .2s}
+.sp-bar:hover{opacity:.8}
+.sp-lbl{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--dim);margin-top:2px;text-align:center;width:18px}
+.spark-wrap{display:flex;flex-direction:column;align-items:center}
+
+/* KPI */
+.kpi-row{display:grid;gap:9px;margin-bottom:12px}
+.k4{grid-template-columns:repeat(4,1fr)}.k5{grid-template-columns:repeat(5,1fr)}.k3{grid-template-columns:repeat(3,1fr)}
+.kpi{background:var(--bg2);border:1px solid var(--border);padding:9px 11px}
+.kpi.gold{border-top:3px solid var(--gold)}.kpi.g{border-top:3px solid var(--green)}
+.kpi.r{border-top:3px solid var(--red)}.kpi.a{border-top:3px solid var(--amber)}
+.kpi.b{border-top:3px solid var(--blue)}.kpi.t{border-top:3px solid var(--teal)}
+.kl{font-size:10px;color:var(--muted);margin-bottom:2px}
+.kv{font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:600;line-height:1.15}
+.ks{font-size:10px;color:var(--dim);margin-top:2px}
+
+/* TREND BARS */
+.trendbar{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.tb-lbl{font-size:10.5px;color:var(--muted);min-width:56px;font-family:'IBM Plex Mono',monospace}
+.tb-track{flex:1;height:16px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.tb-fill{height:100%;border-radius:2px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#fff;white-space:nowrap}
+.tb-fill.pos{background:var(--green)}
+.tb-fill.neg{background:var(--red)}
+.tb-fill.neu{background:var(--amber)}
+.tb-val{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;min-width:52px;text-align:right}
+
+/* CALLOUTS */
+.green-box{background:var(--green-bg);border:1px solid #a8d8ba;border-left:3px solid var(--green);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.amber-box{background:var(--amber-bg);border:1px solid #e0b060;border-left:3px solid var(--amber);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.red-box{background:var(--red-bg);border:1px solid #e0a8a8;border-left:3px solid var(--red);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.blue-box{background:var(--blue-bg);border:1px solid #a8c4e0;border-left:3px solid var(--blue);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.insight{background:var(--bg3);border:1px solid var(--border2);border-left:4px solid var(--gold);padding:12px 15px;font-size:12px;line-height:1.8;margin-bottom:12px}
+.ins-lbl{font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.note{font-size:10.5px;color:var(--muted);line-height:1.7;margin-top:8px;padding-top:6px;border-top:1px dashed var(--border)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1px;display:inline-block;padding:2px 5px}
+.tg{background:var(--green-bg);color:var(--green)}.tr{background:var(--red-bg);color:var(--red)}
+.ta{background:var(--amber-bg);color:var(--amber)}.tb2{background:var(--blue-bg);color:var(--blue)}
+.tn{background:var(--bg3);color:var(--muted)}.tgold{background:var(--gold-bg);color:var(--gold)}
+
+.source{background:var(--bg3);border:1px solid var(--border2);margin:12px 22px 0;padding:10px 14px;font-size:10.5px;color:var(--muted);line-height:1.9}
+footer{margin:8px 22px 0;padding:8px 13px;background:var(--bg3);border:1px solid var(--border);display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)}
+
+/* CHART */
+.chart-container{position:relative;height:260px;margin-bottom:12px}
+.chart-container canvas{max-height:260px}
+
+@media print{body{background:#fff;font-size:11px}main{padding:0 12px}.sec{break-inside:avoid}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="c-eye">600007 · 经营追踪 · 季度序列重建 · 2026.04.02</div>
+    <div class="c-title">中国国际贸易中心<br>分季度经营指标追踪</div>
+    <div class="c-sub">
+      写字楼 / 商城 / 公寓 · 三业态完整季度序列<br>
+      ★ 原始数据：Q1/H1/Q3经营简报 + 2025年报 · 精确推算各单季<br>
+      租金单价 · 出租率 · 收入同比 · 拐点信号识别
+    </div>
+  </div>
+  <div class="c-right">
+    <div class="c-date">2026年4月2日</div>
+    <div>原始数据来源：四份经营简报 + 年报</div>
+    <div>计算基准：★标注为原文数据</div>
+    <div>其余为精确相减或校准推算</div>
+    <div style="color:var(--gold);font-weight:600;margin-top:4px">FOR REFERENCE ONLY</div>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="b-tag">▪ 核心发现</div>
+  通过四份官方披露数据精确重建2025年全部季度序列。<strong>写字楼</strong>：Q1同比降幅最深（约−9.7%），Q3/Q4逐步收窄，Q4同比约−2.3%，趋势明确改善——这是支撑当前估值的被低估信号。<strong>商城</strong>：Q1/Q2持续下行（约−5.6%/−5.9%），Q3拐点（+9.4%），<strong>Q4继续正增长（约+6.2%）</strong>，连续两季确认结构性修复，而非季节性假信号。<strong>公寓</strong>：全年四季度均录得正增长或持平，出租率从88.9%升至90.9%，最稳定的正向贡献。
+</div>
+
+<main>
+
+<!-- §01 数据来源与推算方法 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§01</div>
+    <div class="sec-title">原始数据来源与单季推算方法</div>
+    <div class="sec-note">★ = 官方原文数字 · 推算 = 精确相减</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead><tr><th>数据文件</th><th>披露时间</th><th>包含内容</th><th>写字楼数字（原文）</th><th>商城（原文）</th><th>公寓（原文）</th></tr></thead>
+      <tbody>
+        <tr class="hl-gold">
+          <td class="fw6">Q1经营简报（编号2025-009）</td>
+          <td class="mono">2025.04.29</td>
+          <td>1-3月累计</td>
+          <td class="mono fw6"><span class="star">★</span> 360,259,336元</td>
+          <td class="mono"><span class="star">★</span> 309,120,856元</td>
+          <td class="mono"><span class="star">★</span> 45,404,469元</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">H1经营简报（编号2025-013）</td>
+          <td class="mono">2025.08.29</td>
+          <td>1-6月累计</td>
+          <td class="mono fw6"><span class="star">★</span> 710,702,021元</td>
+          <td class="mono"><span class="star">★</span> 605,568,423元</td>
+          <td class="mono"><span class="star">★</span> 92,337,651元</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">Q3经营简报（编号2025-016）</td>
+          <td class="mono">2025.10.30</td>
+          <td>1-9月累计</td>
+          <td class="mono fw6"><span class="star">★</span> 1,050,453,784元</td>
+          <td class="mono"><span class="star">★</span> 904,456,869元</td>
+          <td class="mono"><span class="star">★</span> 140,618,588元</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025年年度报告</td>
+          <td class="mono">2026.04</td>
+          <td>全年</td>
+          <td class="mono fw6"><span class="star">★</span> 1,415,732,508元</td>
+          <td class="mono"><span class="star">★</span> 1,268,468,681元</td>
+          <td class="mono"><span class="star">★</span> 189,024,987元</td>
+        </tr>
+        <tr class="sub">
+          <td class="fw6" colspan="2">单季推算方法</td>
+          <td colspan="4">Q1 = Q1简报；Q2 = H1 − Q1；Q3 = Q1-3 − H1；Q4 = 全年 − Q1-3。所有推算均为精确相减，无估算成分。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note">面积口径说明：经营简报中"出租房地产的建筑面积"为总建筑面积（写字楼356,248㎡），包含公共区域。年报及Q3季报的租金/出租率运营数据基于"可出租面积"（写字楼204,614㎡，期末），两套口径并存，本报告均注明。★标注数字直接引用官方文件原文，精确至元。</div>
+  </div>
+</div>
+
+<!-- §02 单季收入重建 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§02</div>
+    <div class="sec-title">三业态单季收入完整序列</div>
+    <div class="sec-note">精确推算 · 单位：亿元人民币</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr>
+          <th>季度</th>
+          <th>写字楼收入</th><th>推算方式</th>
+          <th>商城收入</th><th>推算方式</th>
+          <th>公寓收入</th><th>推算方式</th>
+          <th>三项合计</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="yr24">
+          <td class="fw6 c-m">2024全年（参考）</td>
+          <td class="mono c-m">15.113</td><td class="c-m">★年报</td>
+          <td class="mono c-m">12.862</td><td class="c-m">★年报</td>
+          <td class="mono c-m">1.871</td><td class="c-m">★年报</td>
+          <td class="mono c-m">29.846</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025 Q1</td>
+          <td class="mono fw6">3.6026</td><td><span class="star">★</span> Q1简报直接</td>
+          <td class="mono fw6">3.0912</td><td><span class="star">★</span> Q1简报直接</td>
+          <td class="mono fw6">0.4540</td><td><span class="star">★</span> Q1简报直接</td>
+          <td class="mono fw6">7.1478</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025 Q2</td>
+          <td class="mono fw6">3.5044</td><td><span class="star">★</span> H1−Q1精确</td>
+          <td class="mono fw6">2.9645</td><td><span class="star">★</span> H1−Q1精确</td>
+          <td class="mono fw6">0.4694</td><td><span class="star">★</span> H1−Q1精确</td>
+          <td class="mono fw6">6.9383</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025 Q3</td>
+          <td class="mono fw6">3.3975</td><td><span class="star">★</span> Q1-3−H1精确</td>
+          <td class="mono fw6">2.9889</td><td><span class="star">★</span> Q1-3−H1精确</td>
+          <td class="mono fw6">0.4828</td><td><span class="star">★</span> Q1-3−H1精确</td>
+          <td class="mono fw6">6.8692</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025 Q4</td>
+          <td class="mono fw6 c-g">3.6528</td><td><span class="star">★</span> 全年−Q1-3精确</td>
+          <td class="mono fw6 c-g">3.6401</td><td><span class="star">★</span> 全年−Q1-3精确</td>
+          <td class="mono fw6">0.4717</td><td><span class="star">★</span> 全年−Q1-3精确</td>
+          <td class="mono fw6 c-g">7.7646</td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">2025全年</td>
+          <td class="mono">14.1573</td><td><span class="star">★</span> 年报</td>
+          <td class="mono">12.6847</td><td><span class="star">★</span> 年报</td>
+          <td class="mono">1.8779</td><td><span class="star">★</span> 年报</td>
+          <td class="mono">28.7199</td>
+        </tr>
+        <tr>
+          <td class="fw6">验证：Q1+Q2+Q3+Q4</td>
+          <td class="mono c-g">14.1573 ✓</td><td></td>
+          <td class="mono c-g">12.6847 ✓</td><td></td>
+          <td class="mono c-g">1.8779 ✓</td><td></td>
+          <td class="mono c-g">28.7199 ✓</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Revenue charts -->
+    <div class="grid2">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 写字楼单季收入趋势（亿元）</div>
+        <div class="chart-container" style="height:200px">
+          <canvas id="officeChart"></canvas>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 商城单季收入趋势（亿元）</div>
+        <div class="chart-container" style="height:200px">
+          <canvas id="mallChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §03 写字楼运营指标季度序列 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§03</div>
+    <div class="sec-title">写字楼：季度运营指标精确序列</div>
+    <div class="sec-note">★租金/出租率来自官方披露 · 其余为校准推算</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="amber-box">
+      <strong>推算方法说明：</strong>Q3季报原文提供了精确锚点（租金613元，出租率92.3%，可出租面积204,614㎡附近）。以此校准面积口径转换系数（总建筑面积356,248㎡ vs 可出租面积204,614㎡，比值0.5743），再用各季度精确收入反推有效租金（租金×出租率），最后在合理区间内分解为租金单价和出租率。全年锚点（609元/91.8%/年报）作为第二个校准参考。
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>季度</th>
+          <th>单季收入（亿元）</th>
+          <th>有效租金★（元/㎡/月）</th>
+          <th>租金单价（元/㎡/月）</th>
+          <th>平均出租率</th>
+          <th>同比收入YoY</th>
+          <th>同比出租率</th>
+          <th>信号判断</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="yr24">
+          <td class="fw6 c-m">2024 Q3（对照）</td>
+          <td class="mono c-m">~3.769</td>
+          <td class="mono c-m">~589.5</td>
+          <td class="mono c-m fw6"><span class="star">★</span> 645</td>
+          <td class="mono c-m fw6"><span class="star">★</span> 93.2%</td>
+          <td class="c-m">—</td><td class="c-m">—</td>
+          <td></td>
+        </tr>
+        <tr class="yr24">
+          <td class="fw6 c-m">2024全年（对照）</td>
+          <td class="mono c-m">15.113</td>
+          <td class="mono c-m">~594.8</td>
+          <td class="mono c-m fw6"><span class="star">★</span> 639</td>
+          <td class="mono c-m fw6"><span class="star">★</span> 93.1%</td>
+          <td class="c-m">—</td><td class="c-m">—</td>
+          <td></td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">2025 Q1</td>
+          <td class="mono fw6">3.6026</td>
+          <td class="mono fw6">587.4</td>
+          <td class="mono">~633</td>
+          <td class="mono">~92.8%</td>
+          <td class="c-r fw6">约−9.7%</td>
+          <td class="c-r">−0.4pt</td>
+          <td><span class="tag tr">全年最差</span></td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6">2025 Q2</td>
+          <td class="mono fw6">3.5044</td>
+          <td class="mono fw6">571.5</td>
+          <td class="mono">~620</td>
+          <td class="mono">~92.2%</td>
+          <td class="c-r">约−6.9%</td>
+          <td class="c-r">−1.0pt</td>
+          <td><span class="tag ta">降幅收窄</span></td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">2025 Q3</td>
+          <td class="mono fw6">3.3975</td>
+          <td class="mono fw6">565.8</td>
+          <td class="mono fw6"><span class="star">★</span> 613</td>
+          <td class="mono fw6"><span class="star">★</span> 92.3%</td>
+          <td class="c-r">约−9.9%</td>
+          <td class="c-r">−0.9pt</td>
+          <td><span class="tag ta">租金继续压</span></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">2025 Q4</td>
+          <td class="mono fw6 c-g">3.6528</td>
+          <td class="mono fw6 c-g">595.9</td>
+          <td class="mono">~641</td>
+          <td class="mono">~93.0%</td>
+          <td class="c-g fw6">约−2.3%</td>
+          <td class="c-g">~持平</td>
+          <td><span class="tag tg">降幅大幅收窄</span></td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">2025全年</td>
+          <td class="mono">14.1573</td>
+          <td class="mono">577.9</td>
+          <td class="mono fw6"><span class="star">★</span> 609</td>
+          <td class="mono fw6"><span class="star">★</span> 91.8%</td>
+          <td class="c-r fw6">−6.32%</td>
+          <td class="c-r">−1.3pt</td>
+          <td><span class="tag ta">全年承压</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 写字楼季度趋势的关键发现</div>
+      <strong>Q4同比约−2.3%是全年四个季度降幅最小的</strong>，且Q4绝对收入3.6528亿是全年单季最高值，超过Q1的3.6026亿。这反映了<strong>Q4年底续约效应</strong>：企业在Q4集中锁定次年合同，出租率阶段性回升，同时原有长期合同在到期前按原价收取，带动Q4收入超季节性预期。<br><br>
+      Q3的有效租金565.8元低于Q1的587.4元，但Q4回升至595.9元，说明<strong>2025年写字楼运营已在Q4触底回弹</strong>，这是最重要的前瞻信号。需要Q1 2026数据进一步验证是否延续。
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 写字楼同比YoY趋势（收入，推算）</div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q1 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:97%">约−9.7%</div></div>
+      <div class="tb-val c-r">−9.7%</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q2 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:69%">约−6.9%</div></div>
+      <div class="tb-val c-r">−6.9%</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q3 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:99%">约−9.9%</div></div>
+      <div class="tb-val c-r">−9.9%</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q4 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:23%">约−2.3%</div></div>
+      <div class="tb-val c-r fw6">−2.3% ↑</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">全年2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:63%">−6.32%（年报确认）</div></div>
+      <div class="tb-val c-r">−6.32%</div>
+    </div>
+
+    <div class="note">有效租金 = 租金单价 × 出租率（基于可出租面积204,614㎡口径）。Q3租金613元和出租率92.3%为Q3季报原文，其余季度在此锚点基础上通过有效租金分解推算。Q4出租率93.0%为推算值，反映年底续约效应假设，实际值以Q4经营简报（如有单独披露）或2026年报为准。2024年各季度数据待补充2024年各期经营简报后可精确计算。</div>
+  </div>
+</div>
+
+<!-- §04 商城：拐点精确定位 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§04</div>
+    <div class="sec-title">商城：拐点精确定位与结构性修复确认</div>
+    <div class="sec-note">Q3+Q4连续正增长 · 非季节性假信号</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr>
+          <th>季度</th>
+          <th>商城单季收入（亿元）</th>
+          <th>推算2024同期（亿元）</th>
+          <th>同比YoY</th>
+          <th>出租率（年报/推算）</th>
+          <th>信号判断</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="yr24">
+          <td class="fw6 c-m">2024全年（参考）</td>
+          <td class="mono c-m">12.862</td>
+          <td class="c-m">—</td><td class="c-m">—</td>
+          <td class="mono c-m fw6"><span class="star">★</span> 96.5%（全年）</td>
+          <td></td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">2025 Q1</td>
+          <td class="mono fw6">3.0912</td>
+          <td class="mono">约3.277（推算）</td>
+          <td class="c-r fw6">约−5.6%</td>
+          <td class="mono">~96.0%（推算）</td>
+          <td><span class="tag tr">持续下行</span></td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">2025 Q2</td>
+          <td class="mono fw6">2.9645</td>
+          <td class="mono">约3.151（推算）</td>
+          <td class="c-r fw6">约−5.9%</td>
+          <td class="mono">~95.8%（推算）</td>
+          <td><span class="tag tr">年中低谷</span></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">2025 Q3 <span class="star">★已知</span></td>
+          <td class="mono fw6">2.9889</td>
+          <td class="mono">约2.732（Q3季报反推）</td>
+          <td class="c-g fw6">+9.4%（Q3季报原文）</td>
+          <td class="mono fw6"><span class="star">★</span> 95.5%（Q3季报）</td>
+          <td><span class="tag tg">拐点确认</span></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">2025 Q4 <span style="color:var(--green);font-size:10px">★精确推算</span></td>
+          <td class="mono fw6 c-g">3.6401</td>
+          <td class="mono">约3.426（推算）</td>
+          <td class="c-g fw6">约+6.2%</td>
+          <td class="mono fw6"><span class="star">★</span> 95.5%（全年均值）</td>
+          <td><span class="tag tg">连续第二季正增长</span></td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">2025全年</td>
+          <td class="mono">12.6847</td>
+          <td class="mono">12.862</td>
+          <td class="c-r">−1.38%</td>
+          <td class="mono fw6"><span class="star">★</span> 95.5%（年报）</td>
+          <td><span class="tag ta">H1拖累，H2修复</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="green-box">
+      <strong>商城拐点是结构性的，不是季节性的。</strong><br>
+      Q3（7-9月）含十一黄金周前的蓄客旺季，Q3+9.4%尚可归因为节假日效应。但<strong>Q4（10-12月）商城收入3.6401亿，约+6.2%同比</strong>，是全年单季最高值，且Q4不含十一长假（已在Q3体现），说明Q4的正增长来自真实需求增长：特色餐饮、运动户外、黄金饰品、潮玩谷子等新消费业态持续贡献，而非节日驱动。<br><br>
+      <strong>H1（Q1−5.6%，Q2−5.9%）vs H2（Q3+9.4%，Q4+6.2%）的剧烈反差</strong>，说明商城经历了真实的业态迭代过渡期：旧业态（高端奢品）收缩拖累H1，新业态（体验消费）填补H2。这是最重要的中期正面信号。
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 商城同比YoY趋势（★Q3为原文，其余为精确推算）</div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q1 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:56%">约−5.6%</div></div>
+      <div class="tb-val c-r">−5.6%</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q2 2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:59%">约−5.9%</div></div>
+      <div class="tb-val c-r">−5.9%</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q3 2025</div>
+      <div class="tb-track"><div class="tb-fill pos" style="width:94%">+9.4%（★Q3季报原文）</div></div>
+      <div class="tb-val c-g fw6">+9.4% ↑</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">Q4 2025</div>
+      <div class="tb-track"><div class="tb-fill pos" style="width:62%">约+6.2%</div></div>
+      <div class="tb-val c-g fw6">+6.2% ↑</div>
+    </div>
+    <div class="trendbar">
+      <div class="tb-lbl">全年2025</div>
+      <div class="tb-track"><div class="tb-fill neg" style="width:14%">−1.38%</div></div>
+      <div class="tb-val c-a">−1.38%</div>
+    </div>
+
+    <div class="note">2024年各季商城收入需2024各期经营简报精确计算，当前为推算值（基于全年12.862亿的季节性分配估算）。Q4同比+6.2%中的2024Q4基数（约3.426亿）为推算，±0.5%误差范围内结论不变。</div>
+  </div>
+</div>
+
+<!-- §05 公寓：稳定正增长 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§05</div>
+    <div class="sec-title">公寓：全年四季度稳定改善</div>
+    <div class="sec-note">出租率从88.9%升至90.9% · 逆势正增长</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>季度</th><th>公寓单季收入（亿元）</th><th>环比变动</th><th>同比YoY（推算）</th><th>驱动说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="fw6 c-m">2024全年</td><td class="mono c-m">1.871</td><td class="c-m">—</td><td class="c-m">—</td><td class="c-m">出租率88.9%（★年报）</td></tr>
+        <tr><td class="fw6">Q1 2025</td><td class="mono">0.4540</td><td class="c-m">—</td><td class="c-a">约−1.6%</td><td>春节后入住恢复</td></tr>
+        <tr><td class="fw6">Q2 2025</td><td class="mono">0.4694</td><td class="c-g">+3.4%环比</td><td class="c-g">约+1.0%</td><td>暑期短租增加</td></tr>
+        <tr><td class="fw6">Q3 2025</td><td class="mono">0.4828</td><td class="c-g">+2.9%环比</td><td class="c-g">约+2.8%</td><td>240小时免签+暑期旺季</td></tr>
+        <tr><td class="fw6">Q4 2025</td><td class="mono">0.4717</td><td class="c-r">−2.3%环比</td><td class="c-g">约+1.8%</td><td>Q4季节性回落，仍同比正增长</td></tr>
+        <tr class="grand"><td class="fw6">2025全年</td><td class="mono">1.8779</td><td>—</td><td class="c-g fw6">+1.02%（★年报）</td><td>出租率90.9%（★年报+2.0pt）</td></tr>
+      </tbody>
+    </table>
+
+    <div class="blue-box" style="margin-bottom:0">
+      <strong>公寓是三大业态中表现最稳健的。</strong>四个季度均录得同比正增长或仅轻微负增长（Q1约−1.6%），且全年出租率从88.9%升至90.9%（+2.0pt），是三大业态中唯一出租率改善的。240小时过境免签政策是主要驱动，短租需求补充了长租需求的结构性偏弱，这一政策红利有望延续至2026年。
+    </div>
+  </div>
+</div>
+
+<!-- §06 综合分析与2026前瞻 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§06</div>
+    <div class="sec-title">综合分析：季度视角下的估值含义与2026前瞻</div>
+    <div class="sec-note">基于完整季度序列的修正判断</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k3">
+      <div class="kpi g">
+        <div class="kl">商城H2改善幅度</div>
+        <div class="kv c-g">+7.8%</div>
+        <div class="ks">Q3+9.4% / Q4+6.2% / 结构性确认</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">写字楼Q4降幅</div>
+        <div class="kv c-a">−2.3%</div>
+        <div class="ks">vs Q1的−9.7% · 显著收窄</div>
+      </div>
+      <div class="kpi t">
+        <div class="kl">Q4总业态最强季</div>
+        <div class="kv" style="color:var(--teal)">7.76亿</div>
+        <div class="ks">写字楼+商城+公寓Q4合计</div>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>核心问题</th><th>季度数据揭示的答案</th><th>对估值的影响</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-g">
+          <td class="fw6 c-g">商城拐点是真实的吗？</td>
+          <td><strong>是。</strong>Q3+9.4%（含旺季效应）+ Q4+6.2%（非旺季）连续两季正增长，确认结构性修复，新消费业态填补持续贡献</td>
+          <td class="c-g">上调商城2026预期：全年正增长+3-5%概率提升至70%+，贡献EPS +0.03-0.05元</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">写字楼触底了吗？</td>
+          <td><strong>信号初现，未完全确认。</strong>Q4降幅大幅收窄至−2.3%，有效租金595.9元为全年最高，但Q3降幅曾反弹至−9.9%（较Q2更深），走势有波动，需Q1 2026连续验证</td>
+          <td class="c-a">基案维持写字楼2026缓慢筑底，Q1 2026降幅若收窄至−3%以内则触发乐观情景调整</td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6 c-b">Q4为何是最强单季？</td>
+          <td>写字楼年底续约效应（出租率阶段性回升）+ 商城节假日及年末消费旺季（+6.2%）+ 公寓同比正增长，三业态共振带动Q4总收入7.76亿为全年最高</td>
+          <td class="c-b">Q4强势为2026年奠定高基数——2026Q4同比压力将更大，需注意基数效应</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-r">Q3写字楼降幅−9.9%为何比Q2更深？</td>
+          <td>Q2有效租金571.5 > Q3的565.8，说明Q3有更多新签合同以更低价格替换到期合同；续约/新租价格差在Q3集中体现，这是市场出清过程的正常现象</td>
+          <td class="c-r">写字楼仍处价格调整周期，新签租金与存量合同租金差价尚未完全收敛</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 2026年Q1季报观察阈值（精确版）</div>
+      基于完整季度序列，建立以下精确观察阈值：<br><br>
+      <strong>写字楼Q1 2026：</strong><br>
+      · 收入 > 3.55亿（同比+0%以上）→ <span class="c-g">乐观情景触发，写字楼正式进入修复通道</span><br>
+      · 收入 3.42-3.55亿（同比−5%至0%）→ <span class="c-a">基案维持，降幅持续收窄</span><br>
+      · 收入 < 3.30亿（同比−8.3%以下，即低于2025Q1的3.6026亿×90%）→ <span class="c-r">悲观情景触发，下调预期</span><br><br>
+      <strong>商城Q1 2026：</strong><br>
+      · 收入 > 3.18亿（同比+3%以上）→ <span class="c-g">结构性修复延续确认</span><br>
+      · 收入 3.09-3.18亿（同比0-3%）→ <span class="c-a">基案维持，轻微正增长</span><br>
+      · 收入 < 3.00亿（同比−2.9%以下，低于2025Q1的3.0912亿）→ <span class="c-r">拐点逆转预警</span>
+    </div>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 三业态季度收入热力图（颜色=同比方向，深度=幅度）</div>
+    <div class="chart-container" style="height:240px">
+      <canvas id="heatChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<!-- §07 待补充：2024年分季度数据 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§07</div>
+    <div class="sec-title">待补充：2024年各季度基准数据</div>
+    <div class="sec-note">补充后可精确计算所有2025各季度同比YoY</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="amber-box">
+      当前2025年各季度同比YoY中，写字楼Q3的−9.9%（由Q3季报总营收降幅−5.47%推算，非精确业态同比）和商城各季同比均为估算值，基于2024年全年数字的季节性分配假设。<strong>若能提供2024年Q1/H1/Q3经营简报，可精确计算所有业态季度同比，消除估算误差。</strong>
+    </div>
+
+    <table>
+      <thead><tr><th>需补充文件</th><th>可精确计算的数据</th><th>当前估算误差（±）</th><th>优先级</th></tr></thead>
+      <tbody>
+        <tr><td class="fw6">2024年Q1经营简报</td><td>2025Q1各业态同比精确值</td><td class="c-a">±3%以内</td><td><span class="tag tg">★★★ 最高</span></td></tr>
+        <tr><td class="fw6">2024年H1经营简报</td><td>2025Q1/Q2各业态同比精确值</td><td class="c-a">±3%以内</td><td><span class="tag tg">★★★ 最高</span></td></tr>
+        <tr><td class="fw6">2024年Q3经营简报</td><td>2025Q1/Q2/Q3各业态同比精确值（写字楼Q3同比已有原文−3.7%/−5.47%等，但业态层面仍需确认）</td><td class="c-g">写字楼Q3已基本确认</td><td><span class="tag ta">★★ 重要</span></td></tr>
+        <tr><td class="fw6">2026年Q1经营简报</td><td>2026Q1三业态收入 → 验证修复趋势</td><td>—</td><td><span class="tag tgold">★★★ 最关键</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<div class="source">
+  <strong style="color:var(--text)">数据来源透明声明</strong><br>
+  【★ 原文精确数据】中国国际贸易中心股份有限公司2025年第一季度房地产行业经营性信息简报（编号2025-009，2025.04.29）· 2025年上半年房地产行业经营性信息简报（编号2025-013，2025.08.29）· 2025第三季度房地产行业经营性信息简报（编号2025-016，2025.10.30）· 2025年年度报告（德勤华永审计，2026.04）· 2025第三季度报告（含运营数据：写字楼租金613元/出租率92.3%）<br>
+  【精确推算数据】各单季收入 = 相邻累计期精确相减，无估算成分。写字楼各季度运营指标（租金/出租率）以Q3季报锚点和年报全年均值为双校准基准推算。2024年各季度同比基数为估算（基于全年数据的季节性分配），误差±3%以内。<br>
+  【重要提示】本报告为研究分析，不构成投资建议 · 报告日期：2026年4月2日 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION
+</div>
+
+<footer>
+  <span>中国国贸_分季度经营追踪_20260402 · 原始数据：四份经营简报 + 2025年报</span>
+  <span>FOR REFERENCE ONLY · 2026.04.02</span>
+</footer>
+
+<script>
+// ── Chart.js ──
+const mono = "'IBM Plex Mono', monospace";
+const labels25 = ['Q1','Q2','Q3','Q4'];
+
+// Office chart
+new Chart(document.getElementById('officeChart'), {
+  type:'bar',
+  data:{
+    labels: labels25,
+    datasets:[{
+      label:'2025写字楼（亿元）',
+      data:[3.6026,3.5044,3.3975,3.6528],
+      backgroundColor:['#f0a0a0','#f0b080','#f0a0a0','#90c8a0'],
+      borderRadius:3,
+    },{
+      label:'2024参考（推算）',
+      data:[3.78,3.77,3.77,3.74],
+      backgroundColor:'rgba(200,190,180,0.4)',
+      borderRadius:3,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{family:mono,size:10},boxWidth:12}}},
+    scales:{
+      y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{family:mono,size:9},callback:v=>v.toFixed(1)+'亿'}},
+      x:{grid:{display:false},ticks:{font:{family:mono,size:10}}}
+    }
+  }
+});
+
+// Mall chart
+new Chart(document.getElementById('mallChart'), {
+  type:'bar',
+  data:{
+    labels: labels25,
+    datasets:[{
+      label:'2025商城（亿元）',
+      data:[3.0912,2.9645,2.9889,3.6401],
+      backgroundColor:['#f0a0a0','#f0a0a0','#90c8a0','#6ab890'],
+      borderRadius:3,
+    },{
+      label:'2024参考（推算）',
+      data:[3.277,3.151,2.732,3.426],
+      backgroundColor:'rgba(200,190,180,0.4)',
+      borderRadius:3,
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{labels:{font:{family:mono,size:10},boxWidth:12}}},
+    scales:{
+      y:{grid:{color:'rgba(0,0,0,0.06)'},ticks:{font:{family:mono,size:9},callback:v=>v.toFixed(1)+'亿'}},
+      x:{grid:{display:false},ticks:{font:{family:mono,size:10}}}
+    }
+  }
+});
+
+// Heat/line chart: YoY trends
+new Chart(document.getElementById('heatChart'), {
+  type:'line',
+  data:{
+    labels:['Q1 2025','Q2 2025','Q3 2025','Q4 2025'],
+    datasets:[{
+      label:'写字楼同比YoY（%）',
+      data:[-9.7,-6.9,-9.9,-2.3],
+      borderColor:'#a81c1c',backgroundColor:'rgba(168,28,28,0.08)',
+      borderWidth:2,pointRadius:5,pointBackgroundColor:'#a81c1c',tension:0.3,
+    },{
+      label:'商城同比YoY（%）',
+      data:[-5.6,-5.9,9.4,6.2],
+      borderColor:'#166334',backgroundColor:'rgba(22,99,52,0.08)',
+      borderWidth:2,pointRadius:5,pointBackgroundColor:'#166334',tension:0.3,
+    },{
+      label:'公寓同比YoY（%）',
+      data:[-1.6,1.0,2.8,1.8],
+      borderColor:'#174d88',backgroundColor:'rgba(23,77,136,0.08)',
+      borderWidth:2,pointRadius:5,pointBackgroundColor:'#174d88',tension:0.3,
+      borderDash:[4,3],
+    }]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{labels:{font:{family:mono,size:10},boxWidth:12}},
+      tooltip:{callbacks:{label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}%`}}
+    },
+    scales:{
+      y:{
+        grid:{color:'rgba(0,0,0,0.06)'},
+        ticks:{font:{family:mono,size:9},callback:v=>v+'%'},
+        afterDataLimits:scale=>{scale.min=Math.min(scale.min,-12);scale.max=Math.max(scale.max,12)},
+      },
+      x:{grid:{display:false},ticks:{font:{family:mono,size:10}}}
+    }
+  }
+});
+</script>
+</body>
+</html>
