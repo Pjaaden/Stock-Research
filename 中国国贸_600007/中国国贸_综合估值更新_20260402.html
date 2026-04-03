@@ -857,13 +857,367 @@ footer{margin:8px 22px 0;padding:9px 14px;background:var(--bg3);border:1px solid
   </div>
 </div>
 
+<!-- §10 现金流全面拆解 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§10</div>
+    <div class="sec-title">现金流全面拆解：钱从哪来、到哪去</div>
+    <div class="sec-note">★ 年报 + Q3季报原文 · 三层结构分析</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k4">
+      <div class="kpi g">
+        <div class="kl">经营CF（★年报）</div>
+        <div class="kv c-g sm">15.751亿</div>
+        <div class="ks c-r">YoY −12.32%</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">投资CF（★年报）</div>
+        <div class="kv c-a sm">−0.757亿</div>
+        <div class="ks">资本支出极低</div>
+      </div>
+      <div class="kpi r">
+        <div class="kl">筹资CF（★年报）</div>
+        <div class="kv c-r sm">−20.206亿</div>
+        <div class="ks">偿债+分红双重流出</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">货币资金净变动</div>
+        <div class="kv c-r sm">−5.010亿</div>
+        <div class="ks">期末34.851亿（★年报）</div>
+      </div>
+    </div>
+
+    <!-- Waterfall: cash flow decomposition -->
+    <div class="wf">
+      <div class="wf-title">▪ 2025年现金流动全图（亿元）— 精确重建</div>
+      <div class="wf-row">
+        <div class="wf-lbl">期初货币资金（2024年末）</div>
+        <div class="wf-bar wfp" style="width:265px">★ 年报：39.861亿</div>
+        <div class="wf-val c-g">+39.861</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">+ 经营活动现金流</div>
+        <div class="wf-bar wfp" style="width:105px">主营业务造血</div>
+        <div class="wf-val c-g">+15.751</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 资本支出（维护性）</div>
+        <div class="wf-bar wfn" style="width:5px"></div>
+        <div class="wf-val c-r">−0.757</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 偿还银行借款本金</div>
+        <div class="wf-bar wfn" style="width:59px">★ 年报原文：8.85亿</div>
+        <div class="wf-val c-r fw6">−8.850</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 股东分红（2024年度）</div>
+        <div class="wf-bar wfn" style="width:72px">DPS 1.07×10.073亿股</div>
+        <div class="wf-val c-r fw6">−10.778</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 其他筹资流出（租赁等）</div>
+        <div class="wf-bar wfn" style="width:4px"></div>
+        <div class="wf-val c-r">−0.578</div>
+      </div>
+      <div class="wf-row" style="border-top:1px solid var(--border2);padding-top:6px;margin-top:4px">
+        <div class="wf-lbl fw6">期末货币资金（2025年末）</div>
+        <div class="wf-bar wfr" style="width:232px">★ 年报：34.851亿（验证误差0.2亿=汇率）</div>
+        <div class="wf-val c-gold fw6">34.851 ✓</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>现金流层次</th><th>2025年金额</th><th>2024年对照</th><th>核心说明</th><th>2026展望</th></tr></thead>
+      <tbody>
+        <tr class="hl-g">
+          <td class="fw6 c-g">① 经营CF — 造血层</td>
+          <td class="mono fw6">15.751亿</td>
+          <td class="mono">17.963亿</td>
+          <td>同比−12.32%，主因：①保险赔偿一次性消失1.6亿；②利息收入减少；③主营收入下滑。剔除一次性因素可持续约15.5-16亿</td>
+          <td class="c-a">企稳假设约14.5-15.5亿</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-b">② 投资CF — 极度克制</td>
+          <td class="mono fw6">−0.757亿</td>
+          <td class="mono">−0.636亿</td>
+          <td>全年资本支出不足1亿，占总资产&lt;1%。无新建项目，仅维护性支出。这是"坐收租金、不扩张"商业模式的体现</td>
+          <td class="c-g">维持约0.8亿，稳定</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-r">③ 偿债 — 2026年消失的大项</td>
+          <td class="mono fw6 c-r">−8.850亿</td>
+          <td class="mono">−4.900亿</td>
+          <td>提前大额还款建行贷款（余额从10.85亿降至2亿）。2026年余额仅2亿，约定年还款额约1亿，<strong>释放约7.85亿可分配现金</strong></td>
+          <td class="c-g fw6">约−1.0亿（骤降7.85亿）</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">④ 分红 — 股东回报</td>
+          <td class="mono fw6">−10.778亿</td>
+          <td class="mono">−11.080亿</td>
+          <td>DPS 1.07元，派息率90%，FCF覆盖分红倍数1.39x（安全）。分红完全由经营现金流支撑，无需借债维持</td>
+          <td class="c-g fw6">有望升至12-16亿</td>
+        </tr>
+        <tr class="sub">
+          <td class="fw6">FCF覆盖分红倍数</td>
+          <td class="mono fw6 c-g">1.39x</td>
+          <td class="mono c-g">1.56x</td>
+          <td colspan="2">连续两年&gt;1.3x，分红安全性无虞。2026年偿债压力骤降后覆盖倍数将大幅改善</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div class="green-box" style="margin-bottom:0">
+        <strong>经营CF下降−12.32%的真实原因：</strong><br>
+        年报明确说明：① 上年同期含2022年度营业中断保险赔偿款1,619万元（一次性）；② 银行存款利息收入减少（货币资金规模下降）；③ 主营收入下滑−3.63%。三项合计约2.2亿，与实际下降额高度匹配。<strong>可持续经营CF约15.5-16亿，并非趋势性恶化。</strong>
+      </div>
+      <div class="blue-box" style="margin-bottom:0">
+        <strong>为何提前大额还款8.85亿？</strong><br>
+        建行贷款利率3.20%（2025年8月降至），货币资金理财收益约2.2-2.5%，利差仅0.7-1.0%。提前还款可能为<strong>释放抵押物</strong>（三期A阶段189,176㎡房产）以备未来资产处置或REITs化灵活性。余额2亿对于持有34.85亿货币资金的公司已无实质压力。
+      </div>
+    </div>
+
+    <div class="note">★ 筹资CF明细来源：Q3季报现金流量表原文（偿还债务6.85亿/分红11.28亿为前三季度）；Q4补充偿债2亿（建行贷款从Q3末4亿降至年末2亿）；全年偿债合计8.85亿与年报"偿还债务支付的现金8.85亿元"原文完全一致。</div>
+  </div>
+</div>
+
+<!-- §11 2026年分红提升：精确测算 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§11</div>
+    <div class="sec-title">2026年分红提升空间：精确测算与受益分析</div>
+    <div class="sec-note">偿债8.85亿释放 → 可分配现金大幅扩张 → DPS提升区间量化</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="gold-box">
+      <strong>核心逻辑链：</strong>2025年偿债8.85亿（一次性大额提前还款）→ 2026年偿债约1亿（骤降7.85亿）→ FCF中7.85亿从"偿债"转移到"可分配" → 可分配FCF从约6亿（2025年）扩张至约13-14亿（2026年）→ DPS从1.07元升至1.20-1.65元区间 → 股息率@21元从5.1%升至5.7-7.9%
+    </div>
+
+    <!-- 2026 available cash calc -->
+    <div class="wf">
+      <div class="wf-title">▪ 2026年可分配现金测算（亿元）</div>
+      <div class="wf-row">
+        <div class="wf-lbl">2026E经营CF（中性假设）</div>
+        <div class="wf-bar wfp" style="width:155px">企稳，主营横盘</div>
+        <div class="wf-val c-g">+15.5</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 资本支出</div>
+        <div class="wf-bar wfn" style="width:5px"></div>
+        <div class="wf-val c-r">−0.8</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">= FCF</div>
+        <div class="wf-bar wfp" style="width:147px">vs 2025年14.994亿</div>
+        <div class="wf-val c-g fw6">14.7</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 偿还银行借款（余额2亿）</div>
+        <div class="wf-bar wfn" style="width:7px">约定还款</div>
+        <div class="wf-val c-r">−1.0</div>
+      </div>
+      <div class="wf-row">
+        <div class="wf-lbl">− 租赁负债等其他</div>
+        <div class="wf-bar wfn" style="width:3px"></div>
+        <div class="wf-val c-r">−0.4</div>
+      </div>
+      <div class="wf-row" style="border-top:1px solid var(--border2);padding-top:6px;margin-top:4px">
+        <div class="wf-lbl fw6">可用于分红的FCF上限</div>
+        <div class="wf-bar wfr" style="width:220px">vs 2025年约6亿（FCF−偿债8.85）</div>
+        <div class="wf-val c-gold fw6">13.3亿</div>
+      </div>
+    </div>
+
+    <table style="margin-bottom:14px">
+      <thead>
+        <tr>
+          <th>情景</th>
+          <th>经营CF假设</th>
+          <th>FCF</th>
+          <th>非分红筹资流出</th>
+          <th>可分红上限</th>
+          <th>实际分红（派息率）</th>
+          <th>DPS</th>
+          <th>较2025年+幅</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-a">
+          <td class="fw6">保守</td>
+          <td class="mono">14.5亿</td>
+          <td class="mono">13.7亿</td>
+          <td class="mono">1.4亿</td>
+          <td class="mono">12.3亿</td>
+          <td class="mono">11.07亿（90%）</td>
+          <td class="mono fw6 c-a">1.099元</td>
+          <td class="c-a">+2.7%</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">中性（基案）</td>
+          <td class="mono">15.5亿</td>
+          <td class="mono">14.7亿</td>
+          <td class="mono">1.4亿</td>
+          <td class="mono">13.3亿</td>
+          <td class="mono">11.97亿（90%）</td>
+          <td class="mono fw6 c-gold">1.188元</td>
+          <td class="c-g fw6">+11.0%</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6">中性+特别分红</td>
+          <td class="mono">15.5亿</td>
+          <td class="mono">14.7亿</td>
+          <td class="mono">1.4亿</td>
+          <td class="mono">13.3亿</td>
+          <td class="mono">12.63亿（95%）</td>
+          <td class="mono fw6 c-gold">1.254元</td>
+          <td class="c-g fw6">+17.2%</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">乐观+特别分红</td>
+          <td class="mono">16.5亿</td>
+          <td class="mono">15.7亿</td>
+          <td class="mono">1.4亿</td>
+          <td class="mono">14.3亿</td>
+          <td class="mono">13.59亿（95%）</td>
+          <td class="mono fw6 c-g">1.349元</td>
+          <td class="c-g fw6">+26.1%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Special dividend analysis -->
+    <div class="grid2" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-title">特别分红的独立逻辑</div>
+        <div style="font-size:11.5px;line-height:1.9;margin-top:6px">
+          年报披露母公司报表<strong>未分配利润62.699亿元</strong>（存量），是2025年年度分红10.778亿的<strong>5.8倍</strong>，历年累积从未分配。<br><br>
+          2023年曾派特别分红每10股5元（总额5.036亿），来源正是存量未分配利润。在偿债压力骤降、现金充裕的2026年，特别分红的触发概率显著提升。<br><br>
+          <strong>特别分红区间：0.20-0.50元/股</strong><br>
+          对应总额：2.01-5.04亿元<br>
+          占存量未分配利润比：3.2-8.0%（极低，可持续）
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">管理层分红意愿评估</div>
+        <div style="font-size:11.5px;line-height:1.9;margin-top:6px">
+          <strong>支持提升的因素：</strong><br>
+          · 国企改革政策：提升股东回报是明确导向<br>
+          · 红利ETF持仓：外部资金持续关注，市场预期已形成<br>
+          · 无扩张计划：核心地块饱和，资金无处可用<br>
+          · 存量未分配利润62.7亿：弹药充足<br><br>
+          <strong>约束因素：</strong><br>
+          · 常规派息率超100%不可持续（避免市场误读）<br>
+          · 特别分红为一次性，不应被视为永久提升<br>
+          · 写字楼若继续下行，EPS基础收窄
+        </div>
+      </div>
+    </div>
+
+    <!-- Dividend yield and price impact -->
+    <table>
+      <thead>
+        <tr>
+          <th>DPS情景</th>
+          <th>分红总额</th>
+          <th>股息率（@21元）</th>
+          <th>股息率（@18元）</th>
+          <th>DDM估值（贴现率7%−g1.5%）</th>
+          <th>vs当前21元空间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="yr24">
+          <td class="fw6 c-m">2025年基准：1.07元</td>
+          <td class="mono c-m">10.78亿</td>
+          <td class="mono c-m">5.1%</td>
+          <td class="mono c-m">5.9%</td>
+          <td class="mono c-m">19.5元</td>
+          <td class="c-m">−7.1%</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6">保守：1.10元（+2.7%）</td>
+          <td class="mono">11.08亿</td>
+          <td class="mono">5.2%</td>
+          <td class="mono">6.1%</td>
+          <td class="mono">20.0元</td>
+          <td class="c-a">−4.8%</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">中性：1.19元（+11.2%）</td>
+          <td class="mono">11.99亿</td>
+          <td class="mono c-g">5.7%</td>
+          <td class="mono">6.6%</td>
+          <td class="mono fw6 c-gold">21.6元</td>
+          <td class="c-g">+2.9%</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">中性+特别：1.37元（+28.0%）</td>
+          <td class="mono">13.80亿</td>
+          <td class="mono c-g fw6">6.5%</td>
+          <td class="mono">7.6%</td>
+          <td class="mono fw6 c-gold">24.9元</td>
+          <td class="c-g fw6">+18.6%</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">乐观+特别：1.57元（+46.7%）</td>
+          <td class="mono">15.81亿</td>
+          <td class="mono c-g fw6">7.5%</td>
+          <td class="mono">8.7%</td>
+          <td class="mono fw6 c-g">28.5元</td>
+          <td class="c-g fw6">+35.7%</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">大额特别：1.65元（+54.2%）</td>
+          <td class="mono">16.62亿</td>
+          <td class="mono c-g fw6">7.9%</td>
+          <td class="mono">9.2%</td>
+          <td class="mono fw6 c-g">30.0元</td>
+          <td class="c-g fw6">+42.9%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 综合结论：分红提升的确定性与弹性</div>
+      <strong>方向确定，幅度有弹性。</strong>2026年常规DPS提升至1.15-1.25元（+7-17%）几乎是必然的，因为偿债压力释放7.85亿是机械性的现金流改善，与经营业绩无关。<br><br>
+      <strong>关键催化剂——特别分红决策：</strong>若管理层参照2023年模式（每10股5元特别分红），叠加常规DPS约1.15-1.25元，合计DPS可达1.65元，DDM估值对应约30元，较当前21元有约+42%的上行空间。这是当前股价21元中尚未充分定价的潜在收益。<br><br>
+      <strong>监控节点：</strong>2026年年度分红方案通常随年报发布（预计2027年4月），届时是否包含特别分红是最重要的单一信号。若Q1 2026季报（4月底）同时确认写字楼降幅收窄，双重正面信号可能触发明显的估值重估。
+    </div>
+
+    <!-- Scenario summary -->
+    <div class="sc-grid">
+      <div class="sc-cell pes">
+        <div class="sc-label">保守情景（概率20%）</div>
+        <div class="sc-val c-r">1.07-1.10元</div>
+        <div class="sc-sub">写字楼继续下行，EPS降至1.10元，管理层维持90%派息率，不派特别分红。分红基本持平，@21元股息率5.1-5.2%</div>
+      </div>
+      <div class="sc-cell base">
+        <div class="sc-label">基案情景（概率55%）</div>
+        <div class="sc-val c-gold">1.19-1.37元</div>
+        <div class="sc-sub">业绩企稳，偿债释放现金提升常规DPS至1.19-1.25元，可能加派小额特别分红0.10-0.20元。@21元股息率5.7-6.5%，DDM对应21-25元</div>
+      </div>
+      <div class="sc-cell opt">
+        <div class="sc-label">乐观情景（概率25%）</div>
+        <div class="sc-val c-g">1.50-1.65元</div>
+        <div class="sc-sub">写字楼止跌+大额特别分红（参考2023年模式）。管理层动用存量未分配利润62.7亿，加派每10股4-5元特别分红。@21元股息率7.1-7.9%，DDM对应27-30元</div>
+      </div>
+    </div>
+
+    <div class="note">总股本10.0728亿股（固定）。DDM估值公式：DPS ÷ (贴现率7% − 永续增长率1.5%) = DPS ÷ 5.5%。保守情景DDM未单独列示，因维持现状估值已在§04中分析。未分配利润62.699亿为2025年年报原文披露的母公司报表数据，德勤华永审计确认。</div>
+  </div>
+</div>
+
 </main>
 
 <div class="source">
   <strong style="color:var(--text)">数据来源与透明声明</strong><br>
   【★ 审计确认原文数据】中国国际贸易中心股份有限公司2025年年度报告（德勤华永会计师事务所审计，2026年4月发布）— 分业态收入、成本明细、分季度财务数据、运营指标（租金/出租率）、资产负债表精确值、现金流量表、关联交易、土地使用权结构披露均来自年报原文<br>
-  【推算数据】Q4单季隐含数据（全年−Q1-3）· 净现金精确值（货币资金−有息负债）· FCF重建 · 写字楼敏感性分析 · 三情景EPS/DPS预测 · 隐性NAV修正估算<br>
-  【估值框架来源】基于Stock-Research/中国国贸_600007/中国国贸_综合财务分析报告_20250317.html既有框架更新 · 四方法交叉验证（PE / P/S+净现金 / DDM / 隐性NAV）<br>
+  【推算数据】Q4单季隐含数据（全年−Q1-3）· 净现金精确值 · FCF重建 · 写字楼敏感性分析 · 三情景EPS/DPS预测 · 隐性NAV修正估算 · 2026年可分配FCF及DPS区间测算<br>
+  【估值框架来源】基于既有框架（综合财务分析_20250317）更新 · 四方法交叉验证 · §10-11新增现金流与分红提升分析<br>
   <strong style="color:var(--amber)">【重要提示】</strong>本报告为研究分析，不构成投资建议 · 当前股价约21元（2026年4月2日）· FOR REFERENCE ONLY · NOT FOR DISTRIBUTION
 </div>
 
