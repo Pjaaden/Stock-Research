@@ -4,7 +4,8 @@
     "last_updated": "2026-04-03",
     "description": "Investment OS 主数据文件 - 所有公司估值参数、情景、监控清单",
     "maintainer": "Pjaaden/Stock-Research",
-    "update_instructions": "直接编辑此文件并 git push，工作台将自动读取最新数据"
+    "update_instructions": "直接编辑此文件并 git push，工作台将自动读取最新数据",
+    "test_sync": "端到端同步测试 · 2026-04-03"
   },
   "settings": {
     "default_discount_rate": 7,
@@ -54,11 +55,41 @@
         }
       ],
       "position_rules": [
-        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（15%）", "trigger": "价格低于熊市目标价¥14" },
-        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "正常建仓", "trigger": "分批买入，每跌5%加一批" },
-        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "持有不动", "trigger": "等待年报催化剂" },
-        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减仓50%", "trigger": "价格超过¥22基准价" },
-        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市目标价¥32" }
+        {
+          "zone": "极度低估",
+          "condition": "安全边际 ≥ 40%",
+          "action": "BUY",
+          "target_position": "满仓（15%）",
+          "trigger": "价格低于熊市目标价¥14"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "安全边际 20–40%",
+          "action": "ADD",
+          "target_position": "正常建仓",
+          "trigger": "分批买入，每跌5%加一批"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "安全边际 0–20%",
+          "action": "HOLD",
+          "target_position": "持有不动",
+          "trigger": "等待年报催化剂"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "高估 0–20%",
+          "action": "TRIM",
+          "target_position": "减仓50%",
+          "trigger": "价格超过¥22基准价"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "高估 ≥ 20%",
+          "action": "SELL",
+          "target_position": "清仓",
+          "trigger": "价格超过牛市目标价¥32"
+        }
       ],
       "checklist": [
         {
@@ -154,11 +185,41 @@
         }
       ],
       "position_rules": [
-        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（20%）", "trigger": "价格≤¥7.5，或熊市情景概率下调" },
-        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至15%", "trigger": "TBR涨价确认，同时价格≤¥9" },
-        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持5%", "trigger": "等待季报验证三大核查项" },
-        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至2.5%", "trigger": "价格超过基准¥11" },
-        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市¥16" }
+        {
+          "zone": "极度低估",
+          "condition": "安全边际 ≥ 40%",
+          "action": "BUY",
+          "target_position": "满仓（20%）",
+          "trigger": "价格≤¥7.5，或熊市情景概率下调"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "安全边际 20–40%",
+          "action": "ADD",
+          "target_position": "加至15%",
+          "trigger": "TBR涨价确认，同时价格≤¥9"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "安全边际 0–20%",
+          "action": "HOLD",
+          "target_position": "维持5%",
+          "trigger": "等待季报验证三大核查项"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "高估 0–20%",
+          "action": "TRIM",
+          "target_position": "减至2.5%",
+          "trigger": "价格超过基准¥11"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "高估 ≥ 20%",
+          "action": "SELL",
+          "target_position": "清仓",
+          "trigger": "价格超过牛市¥16"
+        }
       ],
       "checklist": [
         {
@@ -257,11 +318,41 @@
         }
       ],
       "position_rules": [
-        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（15%）", "trigger": "价格≤¥18，且囤货论点成立" },
-        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至10%", "trigger": "年报确认毛利率优势" },
-        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持3%", "trigger": "等待Q1–Q2毛利率验证" },
-        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至1.5%", "trigger": "价格超过基准¥28" },
-        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市¥38" }
+        {
+          "zone": "极度低估",
+          "condition": "安全边际 ≥ 40%",
+          "action": "BUY",
+          "target_position": "满仓（15%）",
+          "trigger": "价格≤¥18，且囤货论点成立"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "安全边际 20–40%",
+          "action": "ADD",
+          "target_position": "加至10%",
+          "trigger": "年报确认毛利率优势"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "安全边际 0–20%",
+          "action": "HOLD",
+          "target_position": "维持3%",
+          "trigger": "等待Q1–Q2毛利率验证"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "高估 0–20%",
+          "action": "TRIM",
+          "target_position": "减至1.5%",
+          "trigger": "价格超过基准¥28"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "高估 ≥ 20%",
+          "action": "SELL",
+          "target_position": "清仓",
+          "trigger": "价格超过牛市¥38"
+        }
       ],
       "checklist": [
         {
@@ -340,11 +431,41 @@
         }
       ],
       "position_rules": [
-        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（20%）", "trigger": "价格≤¥14且ECL拐点确认" },
-        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至15%", "trigger": "2026H1 ECL同比收窄确认" },
-        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持8%", "trigger": "等待ECL数据" },
-        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至4%", "trigger": "价格超过¥21" },
-        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过¥28" }
+        {
+          "zone": "极度低估",
+          "condition": "安全边际 ≥ 40%",
+          "action": "BUY",
+          "target_position": "满仓（20%）",
+          "trigger": "价格≤¥14且ECL拐点确认"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "安全边际 20–40%",
+          "action": "ADD",
+          "target_position": "加至15%",
+          "trigger": "2026H1 ECL同比收窄确认"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "安全边际 0–20%",
+          "action": "HOLD",
+          "target_position": "维持8%",
+          "trigger": "等待ECL数据"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "高估 0–20%",
+          "action": "TRIM",
+          "target_position": "减至4%",
+          "trigger": "价格超过¥21"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "高估 ≥ 20%",
+          "action": "SELL",
+          "target_position": "清仓",
+          "trigger": "价格超过¥28"
+        }
       ],
       "checklist": [
         {
@@ -415,9 +536,27 @@
         }
       ],
       "position_rules": [
-        { "zone": "建仓门槛", "condition": "双重信号：1–2年应收<¥9亿 AND H1 ECL<¥2.5亿", "action": "BUY", "target_position": "初始建仓5%", "trigger": "2026H1中报双重确认后" },
-        { "zone": "等待", "condition": "仅一项满足", "action": "WATCH", "target_position": "继续观察", "trigger": "不行动，等下一期数据" },
-        { "zone": "放弃", "condition": "两项均恶化", "action": "PASS", "target_position": "移出关注", "trigger": "重新评估基本面" }
+        {
+          "zone": "建仓门槛",
+          "condition": "双重信号：1–2年应收<¥9亿 AND H1 ECL<¥2.5亿",
+          "action": "BUY",
+          "target_position": "初始建仓5%",
+          "trigger": "2026H1中报双重确认后"
+        },
+        {
+          "zone": "等待",
+          "condition": "仅一项满足",
+          "action": "WATCH",
+          "target_position": "继续观察",
+          "trigger": "不行动，等下一期数据"
+        },
+        {
+          "zone": "放弃",
+          "condition": "两项均恶化",
+          "action": "PASS",
+          "target_position": "移出关注",
+          "trigger": "重新评估基本面"
+        }
       ],
       "checklist": [
         {
@@ -480,9 +619,27 @@
         }
       ],
       "position_rules": [
-        { "zone": "建仓门槛", "condition": "同店GMV同比转正 + 海外单店经济趋势向好", "action": "BUY", "target_position": "初始5%", "trigger": "Q1财报双重确认" },
-        { "zone": "等待", "condition": "GMV企稳但未转正", "action": "WATCH", "target_position": "继续观察", "trigger": "等下一个季度数据" },
-        { "zone": "放弃", "condition": "GMV持续负增长+市场份额丢失", "action": "PASS", "target_position": "移出", "trigger": "论点破裂" }
+        {
+          "zone": "建仓门槛",
+          "condition": "同店GMV同比转正 + 海外单店经济趋势向好",
+          "action": "BUY",
+          "target_position": "初始5%",
+          "trigger": "Q1财报双重确认"
+        },
+        {
+          "zone": "等待",
+          "condition": "GMV企稳但未转正",
+          "action": "WATCH",
+          "target_position": "继续观察",
+          "trigger": "等下一个季度数据"
+        },
+        {
+          "zone": "放弃",
+          "condition": "GMV持续负增长+市场份额丢失",
+          "action": "PASS",
+          "target_position": "移出",
+          "trigger": "论点破裂"
+        }
       ],
       "checklist": [
         {
