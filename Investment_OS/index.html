@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment OS · Pjaaden Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;600;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg:#f5f3ef;--bg2:#edeae4;--bg3:#e4e0d8;
+    --surface:#ffffff;--surface2:#faf9f7;
+    --border:#d4cfc6;--border2:#c2bcb1;
+    --text:#1a1916;--text2:#4a4742;--text3:#7a756e;
+    --accent:#1a3a5c;--accent2:#2557a7;
+    --green:#0f5132;--green-bg:#d1e7dd;--green-mid:#198754;
+    --red:#842029;--red-bg:#f8d7da;--red-mid:#dc3545;
+    --yellow:#664d03;--yellow-bg:#fff3cd;--yellow-mid:#fd7e14;
+    --blue-bg:#cfe2ff;--blue-mid:#0d6efd;
+    --mono:'IBM Plex Mono',monospace;
+    --sans:'IBM Plex Sans SC',sans-serif;
+    --display:'Syne',sans-serif;
+    --radius:8px;
+    --shadow:0 1px 3px rgba(0,0,0,.08),0 1px 2px rgba(0,0,0,.06);
+    --shadow-md:0 4px 12px rgba(0,0,0,.10),0 2px 4px rgba(0,0,0,.06);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.6}
+  .app-shell{display:flex;min-height:100vh}
+  .sidebar{width:220px;min-width:220px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
+  .main{flex:1;overflow:auto;padding:32px 36px}
+  .sidebar-logo{padding:20px 18px 16px;border-bottom:1px solid var(--border)}
+  .sidebar-logo h1{font-family:var(--display);font-size:17px;font-weight:700;color:var(--accent);letter-spacing:-.3px}
+  .sidebar-logo .ver{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
+  .sidebar-nav{padding:12px 0;flex:1}
+  .nav-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);padding:8px 18px 4px}
+  .nav-item{display:flex;align-items:center;gap:8px;padding:8px 18px;cursor:pointer;font-size:13px;color:var(--text2);transition:all .15s;border-left:3px solid transparent;white-space:nowrap}
+  .nav-item:hover{background:var(--bg2);color:var(--text)}
+  .nav-item.active{background:var(--bg2);color:var(--accent);border-left-color:var(--accent2);font-weight:500}
+  .nav-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .sig-badge{margin-left:auto;font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:3px;font-weight:500}
+  .sidebar-footer{padding:12px 18px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text3)}
+  .sidebar-footer .ds{color:var(--text2);font-weight:500}
+  .panel{display:none}.panel.active{display:block}
+  .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:28px}
+  .page-header h2{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.5px}
+  .page-header .sub{font-size:12px;color:var(--text3);margin-top:3px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
+  .card-title{font-family:var(--display);font-size:12px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+  .stat-card .sl{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .stat-card .sv{font-family:var(--display);font-size:24px;font-weight:700}
+  .stat-card .ss{font-size:11px;color:var(--text3);margin-top:3px}
+  .co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+  .co-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;box-shadow:var(--shadow);cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+  .co-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%}
+  .co-card.sig-buy::before{background:var(--green-mid)}.co-card.sig-hold::before{background:var(--yellow-mid)}.co-card.sig-sell::before{background:var(--red-mid)}.co-card.sig-watch::before{background:var(--blue-mid)}
+  .co-card:hover{box-shadow:var(--shadow-md);transform:translateY(-1px)}
+  .co-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px}
+  .co-name{font-family:var(--display);font-size:16px;font-weight:700}
+  .co-code{font-family:var(--mono);font-size:11px;color:var(--text3);margin-top:2px}
+  .sig-chip{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.3px}
+  .sig-chip.buy{background:var(--green-bg);color:var(--green)}.sig-chip.hold{background:var(--yellow-bg);color:var(--yellow)}.sig-chip.sell{background:var(--red-bg);color:var(--red)}.sig-chip.watch{background:var(--blue-bg);color:var(--blue-mid)}
+  .vbar-wrap{margin:10px 0 14px}
+  .vbar-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:5px}
+  .vbar-track{height:6px;border-radius:3px;background:var(--bg3);position:relative;overflow:visible}
+  .vbar-range{position:absolute;height:100%;border-radius:3px}
+  .vbar-dot{position:absolute;top:-4px;width:14px;height:14px;border-radius:50%;border:2px solid var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.3);transform:translateX(-50%)}
+  .co-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px}
+  .m-item{text-align:center}
+  .m-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.3px}
+  .m-val{font-family:var(--mono);font-size:13px;font-weight:500;margin-top:1px}
+  .trigger-row{margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:5px}
+  .ttag{font-size:10px;padding:2px 8px;border-radius:3px;background:var(--bg2);color:var(--text3);border:1px solid var(--border)}
+  .ttag.alert{background:var(--yellow-bg);color:var(--yellow);border-color:#ffc107}
+  .detail-hdr{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+  .back-btn{padding:6px 12px;background:var(--surface);border:1px solid var(--border);border-radius:6px;cursor:pointer;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:5px;transition:all .15s;font-family:var(--sans)}
+  .back-btn:hover{background:var(--bg2)}
+  .d-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+  .tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin-bottom:18px}
+  .tab-btn{padding:8px 16px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);transition:all .15s;font-family:var(--sans);background:none;border-top:none;border-left:none;border-right:none;margin-bottom:-1px}
+  .tab-btn:hover{color:var(--text)}.tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent2);font-weight:500}
+  .tab-content{display:none}.tab-content.active{display:block}
+  .sc-table{width:100%;border-collapse:collapse;font-size:13px}
+  .sc-table th{background:var(--bg2);padding:8px 12px;text-align:left;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid var(--border)}
+  .sc-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  .sc-table tr:last-child td{border-bottom:none}
+  .r-bull td:first-child{color:var(--green-mid);font-weight:600}.r-base td:first-child{color:var(--accent2);font-weight:600}.r-bear td:first-child{color:var(--red-mid);font-weight:600}
+  .prob-pill{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;font-family:var(--mono);background:var(--bg2)}
+  .rules-table{width:100%;border-collapse:collapse;font-size:12.5px}
+  .rules-table th{background:var(--bg2);padding:7px 10px;text-align:left;font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.3px}
+  .rules-table td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+  .rules-table tr:last-child td{border-bottom:none}
+  .a-buy{color:var(--green-mid);font-weight:600}.a-hold{color:var(--yellow-mid);font-weight:600}.a-sell{color:var(--red-mid);font-weight:600}.a-trim{color:var(--yellow);font-weight:600}
+  .checklist{list-style:none}
+  .checklist li{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .checklist li:last-child{border-bottom:none}
+  .chk-box{width:16px;height:16px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .chk-box.on{background:var(--green-mid);border-color:var(--green-mid)}.chk-box.on::after{content:'✓';color:white;font-size:10px}
+  .chk-label{flex:1}.chk-meta{font-size:11px;color:var(--text3);margin-top:1px}
+  .pri{font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;text-transform:uppercase;flex-shrink:0;margin-top:2px}
+  .pri-high{background:var(--red-bg);color:var(--red-mid)}.pri-mid{background:var(--yellow-bg);color:var(--yellow)}.pri-low{background:var(--bg3);color:var(--text3)}
+  .log-entry{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:12px}
+  .log-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+  .log-date{font-family:var(--mono);font-size:11px;color:var(--text3)}
+  .log-act{font-size:11px;padding:2px 8px;border-radius:3px;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+  .log-ticker{font-family:var(--mono);font-size:12px;color:var(--text2)}
+  .log-rat{font-size:12px;color:var(--text3);margin-top:5px;font-style:italic}
+  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:100;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
+  .modal-overlay.open{display:flex}
+  .modal{background:var(--surface);border-radius:10px;padding:24px;width:520px;max-width:95vw;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-md);border:1px solid var(--border)}
+  .modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .modal-title{font-family:var(--display);font-size:17px;font-weight:700}
+  .modal-close{width:28px;height:28px;border-radius:50%;background:var(--bg2);border:none;cursor:pointer;font-size:16px;color:var(--text3);display:flex;align-items:center;justify-content:center;transition:all .15s}
+  .modal-close:hover{background:var(--bg3)}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  .f-field{margin-bottom:12px}
+  .f-field label{display:block;font-size:11px;color:var(--text2);font-weight:500;text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px}
+  .f-field input,.f-field select,.f-field textarea{width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:6px;font-family:var(--sans);font-size:13px;color:var(--text);background:var(--surface);outline:none;transition:border-color .15s}
+  .f-field input:focus,.f-field select:focus,.f-field textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 2px rgba(37,87,167,.12)}
+  .f-field textarea{resize:vertical;min-height:70px}
+  .btn{padding:8px 18px;border-radius:6px;font-size:13px;cursor:pointer;font-family:var(--sans);transition:all .15s;font-weight:500;border:none}
+  .btn-primary{background:var(--accent2);color:white}.btn-primary:hover{background:var(--accent)}
+  .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text2)}.btn-outline:hover{background:var(--bg2)}
+  .gap-8{display:flex;gap:8px}
+  .mb-16{margin-bottom:16px}
+  .chart-wrap{position:relative;height:220px}
+  .pos-status{margin-top:12px;padding:10px 14px;border-radius:6px;font-size:13px}
+  .params-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .p-item .p-label{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+  .p-field{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px}
+  .p-field input{flex:1;border:none;background:transparent;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text);outline:none;width:100%}
+  .p-field .unit{font-size:11px;color:var(--text3);flex-shrink:0}
+  .wval-box{margin-top:12px;padding:10px 12px;background:var(--bg2);border-radius:6px}
+  .sync-bar{background:var(--blue-bg);border:1px solid var(--blue-mid);border-radius:6px;padding:10px 14px;margin-bottom:18px;font-size:12px;color:var(--blue-mid);display:flex;align-items:center;gap:8px}
+  .sync-spinner{animation:spin 1s linear infinite;display:inline-block}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  .src-badge{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:3px;background:var(--green-bg);color:var(--green);border:1px solid var(--green-mid)}
+  ::-webkit-scrollbar{width:5px;height:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+  .empty{text-align:center;padding:48px 24px;color:var(--text3);font-size:14px}
+  .empty-icon{font-size:32px;margin-bottom:12px;opacity:.5}
+  .notes-pre{font-family:var(--sans);font-size:13px;color:var(--text2);line-height:1.7;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <nav class="sidebar">
+    <div class="sidebar-logo">
+      <h1>Investment OS</h1>
+      <div class="ver">GitHub Pages · 云端数据联动</div>
+    </div>
+    <div class="sidebar-nav">
+      <div class="nav-label">主视图</div>
+      <div class="nav-item active" onclick="showPanel('overview')">◉ 总览仪表盘</div>
+      <div class="nav-item" onclick="showPanel('log')">≡ 操作日志</div>
+      <div class="nav-label" style="margin-top:12px">持仓 / 关注</div>
+      <div id="sidebar-cos"></div>
+      <div class="nav-label" style="margin-top:12px">操作</div>
+      <div class="nav-item" onclick="openLogModal()">＋ 记录决策</div>
+      <div class="nav-item" onclick="refreshData()">⟳ 刷新数据</div>
+    </div>
+    <div class="sidebar-footer">
+      数据源 <span class="ds" id="ds-label">加载中…</span><br>
+      更新于 <span class="ds" id="footer-date"></span>
+    </div>
+  </nav>
+
+  <main class="main">
+    <!-- OVERVIEW -->
+    <div id="panel-overview" class="panel active">
+      <div id="sync-bar-wrap"></div>
+      <div class="page-header">
+        <div>
+          <h2>投资操作系统</h2>
+          <div class="sub" id="hdr-date"></div>
+        </div>
+        <div class="gap-8">
+          <button class="btn btn-outline" onclick="exportLogs()">↓ 导出日志</button>
+          <button class="btn btn-outline" onclick="refreshData()">⟳ 刷新数据</button>
+        </div>
+      </div>
+      <div class="stats-row" id="stats-row"></div>
+      <div class="co-grid" id="co-grid"></div>
+      <div id="empty-ov" class="empty" style="display:none"><div class="empty-icon">📊</div>数据加载中…</div>
+    </div>
+
+    <!-- DETAIL -->
+    <div id="panel-detail" class="panel">
+      <div class="detail-hdr">
+        <button class="back-btn" onclick="showPanel('overview')">← 返回总览</button>
+        <div>
+          <div style="font-family:var(--display);font-size:20px;font-weight:700" id="d-title"></div>
+          <div style="font-family:var(--mono);font-size:12px;color:var(--text3)" id="d-sub"></div>
+        </div>
+        <div style="margin-left:auto;display:flex;align-items:center;gap:10px">
+          <span id="d-sig-chip" class="sig-chip"></span>
+          <span class="src-badge">★ data/companies.json</span>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(0)">估值框架</button>
+        <button class="tab-btn" onclick="switchTab(1)">仓位规则</button>
+        <button class="tab-btn" onclick="switchTab(2)">监控清单</button>
+        <button class="tab-btn" onclick="switchTab(3)">研究笔记</button>
+      </div>
+
+      <!-- TAB 0 VALUATION -->
+      <div class="tab-content active" id="tab-0">
+        <div class="d-grid mb-16">
+          <div class="card">
+            <div class="card-title">当前市场数据</div>
+            <div class="params-grid">
+              <div class="p-item"><div class="p-label">当前价格</div>
+                <div class="p-field"><input type="number" id="ov-price" onchange="ovUpdate('price',this.value)"><span class="unit">¥</span></div></div>
+              <div class="p-item"><div class="p-label">总股本 (亿)</div>
+                <div class="p-field"><input type="number" id="ov-shares"><span class="unit">亿</span></div></div>
+              <div class="p-item"><div class="p-label">净现金 (亿)</div>
+                <div class="p-field"><input type="number" id="ov-cash"><span class="unit">亿</span></div></div>
+            </div>
+            <div style="margin-top:8px;font-size:11px;color:var(--text3)">↑ 价格可手动修改（本地覆盖），其余字段来自JSON</div>
+          </div>
+          <div class="card">
+            <div class="card-title">估值方法</div>
+            <div style="font-size:13px;color:var(--text2);line-height:1.7" id="method-display"></div>
+            <div style="margin-top:10px;font-size:12px;color:var(--text3)" id="data-as-of-display"></div>
+          </div>
+        </div>
+
+        <div class="card mb-16">
+          <div style="display:flex;align-items:center;justify-content:space-between" class="mb-16">
+            <div class="card-title" style="margin-bottom:0">三情景估值区间</div>
+            <div style="font-size:11px;color:var(--text3)">概率来自JSON · 价格可本地调整</div>
+          </div>
+          <table class="sc-table">
+            <thead><tr><th>情景</th><th>概率</th><th>假设条件</th><th>目标价</th><th>vs 当前价</th><th>加权贡献</th></tr></thead>
+            <tbody id="sc-tbody"></tbody>
+          </table>
+          <div class="wval-box">
+            <span style="font-size:12px;color:var(--text3)">加权内在价值：</span>
+            <span style="font-family:var(--mono);font-size:16px;font-weight:700;color:var(--accent2)" id="wval">—</span>
+            <span style="font-size:12px;color:var(--text3);margin-left:16px">安全边际：</span>
+            <span style="font-family:var(--mono);font-size:16px;font-weight:700" id="mos">—</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">估值可视化</div>
+          <div class="chart-wrap"><canvas id="val-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- TAB 1 POSITION -->
+      <div class="tab-content" id="tab-1">
+        <div class="card mb-16">
+          <div class="card-title">系统性仓位规则</div>
+          <table class="rules-table"><thead><tr><th>区间</th><th>安全边际</th><th>操作</th><th>目标仓位</th><th>触发条件</th></tr></thead>
+          <tbody id="rules-tbody"></tbody></table>
+        </div>
+        <div class="card">
+          <div class="card-title">当前仓位 · 本地记录</div>
+          <div class="params-grid">
+            <div class="p-item"><div class="p-label">持仓比例</div>
+              <div class="p-field"><input type="number" id="lc-pos" onchange="localUpdate('position_pct',this.value)"><span class="unit">%</span></div></div>
+            <div class="p-item"><div class="p-label">平均成本</div>
+              <div class="p-field"><input type="number" id="lc-cost" onchange="localUpdate('avg_cost',this.value)"><span class="unit">¥</span></div></div>
+            <div class="p-item"><div class="p-label">最大仓位</div>
+              <div class="p-field"><input type="number" id="lc-maxpos"><span class="unit">%</span></div></div>
+          </div>
+          <div class="pos-status" id="pos-status"></div>
+        </div>
+      </div>
+
+      <!-- TAB 2 CHECKLIST -->
+      <div class="tab-content" id="tab-2">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+          <div style="font-size:13px;color:var(--text2)">核心监控变量 · 来自 data/companies.json</div>
+          <span class="src-badge">★ JSON 主数据</span>
+        </div>
+        <div class="card"><ul class="checklist" id="cl-items"></ul></div>
+      </div>
+
+      <!-- TAB 3 NOTES -->
+      <div class="tab-content" id="tab-3">
+        <div class="card mb-16">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div class="card-title" style="margin-bottom:0">研究笔记</div>
+            <span class="src-badge">★ JSON 主数据</span>
+          </div>
+          <div class="notes-pre" id="notes-display"></div>
+        </div>
+        <div class="card">
+          <div class="card-title">关键信息</div>
+          <div class="params-grid" style="grid-template-columns:1fr 1fr">
+            <div class="p-item"><div class="p-label">评级</div><div style="padding:6px 0;font-size:13px;font-weight:600" id="d-rating"></div></div>
+            <div class="p-item"><div class="p-label">下一催化剂</div><div style="padding:6px 0;font-size:13px;color:var(--text2)" id="d-catalyst"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOG -->
+    <div id="panel-log" class="panel">
+      <div class="page-header">
+        <div><h2>操作日志</h2><div class="sub">记录每一次决策的依据 · 存储于 data/logs.json</div></div>
+        <div class="gap-8">
+          <button class="btn btn-outline" onclick="exportLogs()">↓ 导出</button>
+          <button class="btn btn-primary" onclick="openLogModal()">＋ 记录决策</button>
+        </div>
+      </div>
+      <div id="log-entries"></div>
+      <div id="empty-log" class="empty" style="display:none"><div class="empty-icon">📝</div>尚无操作记录。</div>
+    </div>
+  </main>
+</div>
+
+<!-- LOG MODAL -->
+<div class="modal-overlay" id="log-modal">
+  <div class="modal">
+    <div class="modal-hdr"><div class="modal-title">记录操作决策</div><button class="modal-close" onclick="closeModal('log-modal')">×</button></div>
+    <div class="form-row">
+      <div class="f-field"><label>公司</label><select id="log-co"></select></div>
+      <div class="f-field"><label>操作类型</label>
+        <select id="log-act">
+          <option value="BUY">买入</option><option value="ADD">加仓</option>
+          <option value="HOLD">持有确认</option><option value="TRIM">减仓</option>
+          <option value="SELL">清仓</option><option value="WATCH">调入观察</option>
+          <option value="UPDATE">估值更新</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="f-field"><label>执行价格</label><input type="number" id="log-price" placeholder="0.00"></div>
+      <div class="f-field"><label>仓位变动</label><input type="text" id="log-pos-change" placeholder="0% → 10%"></div>
+    </div>
+    <div class="f-field"><label>决策依据 *</label><textarea id="log-rat" placeholder="为什么现在执行这个操作？触发了什么条件？"></textarea></div>
+    <div class="gap-8">
+      <button class="btn btn-primary" onclick="addLog()">记录</button>
+      <button class="btn btn-outline" onclick="closeModal('log-modal')">取消</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────
+const REPO_RAW = 'https://raw.githubusercontent.com/Pjaaden/Stock-Research/main';
+const TODAY = new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});
+
+// ── STATE ───────────────────────────────────────────
+let companies = [];
+let logs = [];
+let localOverrides = {}; // price & position edits, stored in localStorage
+let currentId = null;
+let currentTab = 0;
+let valChart = null;
+
+function lsGet(k){ try{ return JSON.parse(localStorage.getItem('ios_'+k)||'{}') }catch{return {}} }
+function lsSet(k,v){ localStorage.setItem('ios_'+k, JSON.stringify(v)) }
+
+// ── FETCH DATA ───────────────────────────────────────
+async function fetchData() {
+  showSyncBar(true);
+  try {
+    const [coRes, logRes] = await Promise.all([
+      fetch(REPO_RAW + '/data/companies.json?t=' + Date.now()),
+      fetch(REPO_RAW + '/data/logs.json?t=' + Date.now())
+    ]);
+    const coData = await coRes.json();
+    const logData = await logRes.json();
+    companies = coData.companies || [];
+    logs = logData.logs || [];
+    localOverrides = lsGet('overrides');
+    document.getElementById('ds-label').textContent = 'GitHub ★';
+    document.getElementById('footer-date').textContent = coData._meta?.last_updated || TODAY;
+    showSyncBar(false, true);
+  } catch(e) {
+    showSyncBar(false, false);
+    document.getElementById('ds-label').textContent = '离线';
+    // try localStorage fallback
+    const cached = lsGet('cache');
+    if(cached.companies) { companies = cached.companies; logs = cached.logs || []; }
+  }
+  localOverrides = lsGet('overrides');
+  renderAll();
+}
+
+function showSyncBar(loading, success) {
+  const wrap = document.getElementById('sync-bar-wrap');
+  if(loading){
+    wrap.innerHTML = `<div class="sync-bar"><span class="sync-spinner">⟳</span> 正在从 GitHub 同步数据…</div>`;
+  } else if(success){
+    wrap.innerHTML = `<div class="sync-bar" style="background:var(--green-bg);border-color:var(--green-mid);color:var(--green)">✓ 数据已从 GitHub 同步 · data/companies.json</div>`;
+    setTimeout(()=>wrap.innerHTML='', 3000);
+  } else {
+    wrap.innerHTML = `<div class="sync-bar" style="background:var(--red-bg);border-color:var(--red-mid);color:var(--red)">⚠ 无法连接 GitHub，显示缓存数据</div>`;
+  }
+}
+
+async function refreshData() { await fetchData(); }
+
+// ── HELPERS ──────────────────────────────────────────
+function getC(id){ return companies.find(c=>c.id===id) }
+function weightedVal(c){
+  return (c.scenarios||[]).reduce((s,sc)=>s+sc.target_price*(sc.prob/100),0);
+}
+function sigColor(s){
+  return {buy:'var(--green-mid)',hold:'var(--yellow-mid)',sell:'var(--red-mid)',watch:'var(--blue-mid)'}[s]||'var(--text3)';
+}
+function sigLabel(s){ return {buy:'↑ 买入',hold:'→ 持有',sell:'↓ 卖出',watch:'◎ 观察'}[s]||s }
+function eff(c){ // effective price (local override or json)
+  return localOverrides[c.id]?.price ?? c.price;
+}
+function effPos(c){ return localOverrides[c.id]?.position_pct ?? c.position_pct }
+
+// ── RENDER ALL ───────────────────────────────────────
+function renderAll(){
+  document.getElementById('hdr-date').textContent = '基于估值锚定的系统性决策框架 · ' + TODAY;
+  renderSidebar();
+  renderOverview();
+  renderLog();
+}
+
+function renderSidebar(){
+  const el = document.getElementById('sidebar-cos');
+  el.innerHTML = companies.map(c=>{
+    const sc = sigColor(c.signal);
+    return `<div class="nav-item${c.id===currentId?' active':''}" onclick="showPanel('detail','${c.id}')" data-cid="${c.id}">
+      <span class="nav-dot" style="background:${sc}"></span>
+      <span style="flex:1;overflow:hidden;text-overflow:ellipsis">${c.name}</span>
+      <span class="sig-badge" style="background:${sc}20;color:${sc}">${c.code.split('.')[0]}</span>
+    </div>`;
+  }).join('');
+}
+
+function renderOverview(){
+  const buy=companies.filter(c=>c.signal==='buy').length;
+  const hold=companies.filter(c=>c.signal==='hold').length;
+  const watch=companies.filter(c=>c.signal==='watch').length;
+  document.getElementById('stats-row').innerHTML=`
+    <div class="stat-card"><div class="sl">覆盖公司</div><div class="sv">${companies.length}</div><div class="ss">A股 · 港股 · 美股</div></div>
+    <div class="stat-card"><div class="sl">买入信号</div><div class="sv" style="color:var(--green-mid)">${buy}</div><div class="ss">当前估值具安全边际</div></div>
+    <div class="stat-card"><div class="sl">持有 / 观察</div><div class="sv" style="color:var(--yellow-mid)">${hold+watch}</div><div class="ss">等待催化剂</div></div>
+    <div class="stat-card"><div class="sl">操作记录</div><div class="sv">${logs.length}</div><div class="ss">决策历史条数</div></div>
+  `;
+  const grid=document.getElementById('co-grid');
+  if(!companies.length){ grid.style.display='none'; document.getElementById('empty-ov').style.display='block'; return; }
+  grid.style.display='grid'; document.getElementById('empty-ov').style.display='none';
+  grid.innerHTML=companies.map(c=>{
+    const price=eff(c);
+    const w=weightedVal(c);
+    const bear=Math.min(...c.scenarios.map(s=>s.target_price));
+    const bull=Math.max(...c.scenarios.map(s=>s.target_price));
+    const range=bull-bear||1;
+    const pp=Math.max(0,Math.min(100,(price-bear)/range*100));
+    const mos=w>0?((w-price)/w*100):0;
+    const mosStr=mos>=0?`+${mos.toFixed(1)}% 安全边际`:`${mos.toFixed(1)}% 高估`;
+    const alerts=(c.checklist||[]).filter(i=>i.priority==='high'&&!i.checked);
+    const sc=sigColor(c.signal);
+    return `<div class="co-card sig-${c.signal}" onclick="showPanel('detail','${c.id}')">
+      <div class="co-header">
+        <div><div class="co-name">${c.name}</div><div class="co-code">${c.code} · ${c.sector}</div></div>
+        <span class="sig-chip ${c.signal}">${sigLabel(c.signal)}</span>
+      </div>
+      <div class="vbar-wrap">
+        <div class="vbar-labels"><span>熊 ¥${bear}</span><span style="font-family:var(--mono);font-size:11px">${mosStr}</span><span>牛 ¥${bull}</span></div>
+        <div class="vbar-track">
+          <div class="vbar-range" style="left:0;width:${pp}%;background:${pp<50?'var(--green-bg)':'var(--red-bg)'}"></div>
+          <div class="vbar-dot" style="left:${pp}%;background:${sc}"></div>
+        </div>
+      </div>
+      <div class="co-metrics">
+        <div class="m-item"><div class="m-label">当前价</div><div class="m-val">¥${price}</div></div>
+        <div class="m-item"><div class="m-label">内在价值</div><div class="m-val">¥${w>0?w.toFixed(1):'—'}</div></div>
+        <div class="m-item"><div class="m-label">仓位</div><div class="m-val">${effPos(c)}%</div></div>
+      </div>
+      ${alerts.length?`<div class="trigger-row">${alerts.slice(0,2).map(a=>`<span class="ttag alert">⚠ ${a.text.slice(0,20)}…</span>`).join('')}${alerts.length>2?`<span class="ttag">+${alerts.length-2}</span>`:''}</div>`:''}
+    </div>`;
+  }).join('');
+}
+
+// ── DETAIL ──────────────────────────────────────────
+function renderDetail(id){
+  const c=getC(id);
+  if(!c) return;
+  document.getElementById('d-title').textContent=c.name;
+  document.getElementById('d-sub').textContent=`${c.code} · ${c.sector} · 数据截至${c.data_as_of}`;
+  const sc=document.getElementById('d-sig-chip');
+  sc.className='sig-chip '+c.signal; sc.textContent=sigLabel(c.signal);
+
+  // Tab 0
+  document.getElementById('ov-price').value=eff(c);
+  document.getElementById('ov-shares').value=c.shares;
+  document.getElementById('ov-cash').value=c.net_cash_bn;
+  document.getElementById('method-display').textContent=c.valuation_method;
+  document.getElementById('data-as-of-display').textContent=`数据截至：${c.data_as_of} · 来源：★ data/companies.json`;
+  renderScenarios(c);
+
+  // Tab 1
+  document.getElementById('lc-pos').value=effPos(c);
+  document.getElementById('lc-cost').value=localOverrides[c.id]?.avg_cost??c.avg_cost;
+  document.getElementById('lc-maxpos').value=c.max_position_pct;
+  renderRules(c);
+  renderPosStatus(c);
+
+  // Tab 2
+  renderChecklist(c);
+
+  // Tab 3
+  document.getElementById('notes-display').textContent=c.research_notes||'（暂无研究笔记）';
+  document.getElementById('d-rating').textContent={
+    'strong-buy':'强烈买入 🟢','buy':'买入 🟢','hold':'持有 🟡',
+    'trim':'减仓 🟠','sell':'卖出 🔴','watch':'观察 🔵'
+  }[c.rating]||c.rating;
+  document.getElementById('d-catalyst').textContent=c.next_catalyst||'—';
+
+  if(currentTab===0) setTimeout(()=>renderChart(c),50);
+}
+
+function renderScenarios(c){
+  const price=eff(c);
+  const w=weightedVal(c);
+  const rows=[['r-bull','r-base','r-bear']];
+  document.getElementById('sc-tbody').innerHTML=(c.scenarios||[]).map((s,i)=>{
+    const cls=['r-bull','r-base','r-bear'][i]||'';
+    const dev=price?((price-s.target_price)/s.target_price*100):0;
+    const devStr=dev<=0
+      ?`<span style="color:var(--green-mid)">+${Math.abs(dev).toFixed(1)}% 上行</span>`
+      :`<span style="color:var(--red-mid)">−${Math.abs(dev).toFixed(1)}% 下行</span>`;
+    return `<tr class="${cls}">
+      <td>${s.name}</td>
+      <td><span class="prob-pill">${s.prob}%</span></td>
+      <td style="font-size:12px;color:var(--text2)">${s.assumptions}</td>
+      <td style="font-family:var(--mono);font-weight:600">¥${s.target_price}</td>
+      <td>${devStr}</td>
+      <td style="font-family:var(--mono);font-size:12px">¥${(s.target_price*s.prob/100).toFixed(2)}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('wval').textContent='¥'+w.toFixed(2);
+  const mos=price&&w?((w-price)/w*100):0;
+  const mosEl=document.getElementById('mos');
+  mosEl.textContent=mos.toFixed(1)+'%';
+  mosEl.style.color=mos>=20?'var(--green-mid)':mos>=0?'var(--yellow-mid)':'var(--red-mid)';
+}
+
+function renderRules(c){
+  document.getElementById('rules-tbody').innerHTML=(c.position_rules||[]).map(r=>{
+    const ac={BUY:'a-buy',ADD:'a-buy',HOLD:'a-hold',TRIM:'a-trim',SELL:'a-sell'}[r.action]||'';
+    return `<tr>
+      <td style="font-weight:500">${r.zone}</td>
+      <td style="font-family:var(--mono);font-size:12px">${r.condition}</td>
+      <td><span class="${ac}">${r.action}</span></td>
+      <td style="font-family:var(--mono);font-size:12px">${r.target_position}</td>
+      <td style="font-size:12px;color:var(--text2)">${r.trigger}</td>
+    </tr>`;
+  }).join('');
+}
+
+function renderChecklist(c){
+  const ul=document.getElementById('cl-items');
+  const items=c.checklist||[];
+  if(!items.length){ ul.innerHTML='<li style="color:var(--text3);font-size:13px;padding:12px 0">暂无监控项目</li>'; return; }
+  // get local check states
+  const chkState=lsGet('chk_'+c.id);
+  ul.innerHTML=items.map(item=>{
+    const checked=chkState[item.id]??item.checked;
+    return `<li>
+      <div class="chk-box${checked?' on':''}" onclick="toggleChk('${c.id}','${item.id}')"></div>
+      <div class="chk-label" style="${checked?'opacity:.5;text-decoration:line-through':''}">
+        ${item.text}
+        <div class="chk-meta">${item.action}</div>
+      </div>
+      <span class="pri pri-${item.priority}">${{high:'高',mid:'中',low:'低'}[item.priority]}</span>
+    </li>`;
+  }).join('');
+}
+
+function renderPosStatus(c){
+  const w=weightedVal(c);
+  const price=eff(c);
+  const mos=w&&price?((w-price)/w*100):0;
+  const el=document.getElementById('pos-status');
+  let msg,bg;
+  if(mos>=40){msg=`✅ 极度低估（+${mos.toFixed(1)}%）— 积极买入至 ${c.max_position_pct}%`;bg='var(--green-bg)'}
+  else if(mos>=20){msg=`🟢 合理低估（+${mos.toFixed(1)}%）— 可分批建仓`;bg='var(--green-bg)'}
+  else if(mos>=0){msg=`🟡 公允价值（+${mos.toFixed(1)}%）— 持有，不加仓`;bg='var(--yellow-bg)'}
+  else if(mos>=-20){msg=`🟠 轻微高估（${mos.toFixed(1)}%）— 考虑减仓50%`;bg='var(--yellow-bg)'}
+  else{msg=`🔴 明显高估（${mos.toFixed(1)}%）— 止盈清仓`;bg='var(--red-bg)'}
+  el.textContent=msg; el.style.background=bg;
+}
+
+function renderChart(c){
+  const ctx=document.getElementById('val-chart');
+  if(!ctx) return;
+  if(valChart){valChart.destroy();valChart=null}
+  const w=weightedVal(c);
+  const price=eff(c);
+  valChart=new Chart(ctx,{
+    type:'bar',
+    data:{
+      labels:[...c.scenarios.map(s=>s.name),'加权价值','当前市价'],
+      datasets:[{
+        label:'目标价(¥)',
+        data:[...c.scenarios.map(s=>s.target_price),w,price],
+        backgroundColor:['rgba(25,135,84,.7)','rgba(37,87,167,.7)','rgba(220,53,69,.7)','rgba(37,87,167,.9)','rgba(100,100,100,.6)'],
+        borderRadius:4,borderSkipped:false
+      }]
+    },
+    options:{
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'¥'+c.raw.toFixed(2)}}},
+      scales:{y:{beginAtZero:false,grid:{color:'rgba(0,0,0,.05)'},ticks:{callback:v=>'¥'+v}},x:{grid:{display:false}}}
+    }
+  });
+}
+
+function renderLog(){
+  const el=document.getElementById('log-entries');
+  const empty=document.getElementById('empty-log');
+  // merge json logs + local logs
+  const localLogs=lsGet('local_logs').list||[];
+  const all=[...logs,...localLogs].sort((a,b)=>b.date.localeCompare(a.date));
+  if(!all.length){el.innerHTML='';empty.style.display='block';return}
+  empty.style.display='none';
+  const aStyle={BUY:'background:var(--green-bg);color:var(--green)',ADD:'background:var(--green-bg);color:var(--green)',HOLD:'background:var(--yellow-bg);color:var(--yellow)',TRIM:'background:var(--yellow-bg);color:var(--yellow)',SELL:'background:var(--red-bg);color:var(--red)',WATCH:'background:var(--blue-bg);color:var(--blue-mid)',UPDATE:'background:var(--bg3);color:var(--text2)'};
+  el.innerHTML=all.map(log=>`
+    <div class="log-entry">
+      <div class="log-hdr">
+        <span class="log-date">${log.date}</span>
+        <span class="log-act" style="${aStyle[log.action]||''}">${log.action}</span>
+        <span class="log-ticker">${log.company}</span>
+        ${log.price?`<span style="font-family:var(--mono);font-size:12px;color:var(--text2)">@ ¥${log.price}</span>`:''}
+        ${log.position_change?`<span style="font-size:12px;color:var(--text3)">${log.position_change}</span>`:''}
+        ${log._local?'<span style="font-size:10px;background:var(--blue-bg);color:var(--blue-mid);padding:1px 6px;border-radius:3px">本地</span>':''}
+      </div>
+      <div class="log-rat">${log.rationale}</div>
+    </div>`).join('');
+}
+
+// ── LOCAL OVERRIDES ──────────────────────────────────
+function ovUpdate(key,val){
+  if(!currentId) return;
+  if(!localOverrides[currentId]) localOverrides[currentId]={};
+  localOverrides[currentId][key]=parseFloat(val)||0;
+  lsSet('overrides',localOverrides);
+  const c=getC(currentId);
+  renderScenarios(c); renderPosStatus(c); renderOverview(); renderSidebar();
+  if(currentTab===0) setTimeout(()=>renderChart(c),50);
+}
+function localUpdate(key,val){
+  if(!currentId) return;
+  if(!localOverrides[currentId]) localOverrides[currentId]={};
+  localOverrides[currentId][key]=parseFloat(val)||0;
+  lsSet('overrides',localOverrides);
+}
+function toggleChk(cid,iid){
+  const state=lsGet('chk_'+cid);
+  const c=getC(cid);
+  const item=(c.checklist||[]).find(i=>i.id===iid);
+  state[iid]=!(state[iid]??item?.checked);
+  lsSet('chk_'+cid,state);
+  renderChecklist(c);
+}
+
+// ── NAVIGATION ───────────────────────────────────────
+function showPanel(name,cid){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  if(name==='detail'&&cid){
+    currentId=cid; currentTab=0;
+    document.getElementById('panel-detail').classList.add('active');
+    document.querySelectorAll('[data-cid]').forEach(el=>el.classList.toggle('active',el.dataset.cid===cid));
+    document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+    document.querySelectorAll('.tab-content').forEach((t,i)=>t.classList.toggle('active',i===0));
+    renderDetail(cid);
+  } else {
+    document.getElementById('panel-'+name).classList.add('active');
+    renderAll();
+  }
+}
+function switchTab(idx){
+  currentTab=idx;
+  document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===idx));
+  document.querySelectorAll('.tab-content').forEach((t,i)=>t.classList.toggle('active',i===idx));
+  if(idx===0&&currentId) setTimeout(()=>renderChart(getC(currentId)),50);
+}
+
+// ── LOG ──────────────────────────────────────────────
+function openLogModal(){
+  document.getElementById('log-co').innerHTML=companies.map(c=>`<option value="${c.name}">${c.name}</option>`).join('');
+  openModal('log-modal');
+}
+function addLog(){
+  const rat=document.getElementById('log-rat').value.trim();
+  if(!rat){alert('请填写决策依据');return}
+  const localLogs=lsGet('local_logs');
+  if(!localLogs.list) localLogs.list=[];
+  localLogs.list.push({
+    id:'l'+Date.now(), date:TODAY,
+    company:document.getElementById('log-co').value,
+    action:document.getElementById('log-act').value,
+    price:document.getElementById('log-price').value,
+    position_change:document.getElementById('log-pos-change').value,
+    rationale:rat, _local:true
+  });
+  lsSet('local_logs',localLogs);
+  closeModal('log-modal');
+  renderLog();
+}
+function exportLogs(){
+  const localLogs=lsGet('local_logs').list||[];
+  const all=[...logs,...localLogs];
+  const blob=new Blob([JSON.stringify({logs:all},null,2)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`InvestmentOS_logs_${TODAY.replace(/\//g,'-')}.json`;
+  a.click();
+}
+
+// ── MODAL ────────────────────────────────────────────
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+document.querySelectorAll('.modal-overlay').forEach(el=>{
+  el.addEventListener('click',e=>{if(e.target===el) el.classList.remove('open')})
+});
+
+// ── INIT ─────────────────────────────────────────────
+fetchData();
+</script>
+</body>
+</html>

@@ -1,0 +1,524 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-04-03",
+    "description": "Investment OS 主数据文件 - 所有公司估值参数、情景、监控清单",
+    "maintainer": "Pjaaden/Stock-Research",
+    "update_instructions": "直接编辑此文件并 git push，工作台将自动读取最新数据"
+  },
+  "settings": {
+    "default_discount_rate": 7,
+    "default_max_position": 25,
+    "default_margin_of_safety": 20,
+    "currency": "CNY"
+  },
+  "companies": [
+    {
+      "id": "c001",
+      "name": "中国国贸",
+      "code": "600007.SH",
+      "exchange": "A",
+      "sector": "商业地产",
+      "research_folder": "中国国贸_600007",
+      "price": 18.5,
+      "shares": 8.0,
+      "net_cash_bn": -30,
+      "eps_forecast": 0.85,
+      "discount_rate": 7,
+      "valuation_method": "EV/EBITDA + 净现金 + 隐含资产重估",
+      "signal": "watch",
+      "position_pct": 0,
+      "avg_cost": 0,
+      "max_position_pct": 15,
+      "rating": "watch",
+      "next_catalyst": "2025年报 + 2026Q1季报（2026年4月）",
+      "data_as_of": "2025Q3",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 30,
+          "target_price": 32,
+          "assumptions": "写字楼出租率回升至90%+，投资物业完成重估，隐含资产价值被市场认可"
+        },
+        {
+          "name": "基准",
+          "prob": 50,
+          "target_price": 22,
+          "assumptions": "出租率稳定在当前水平，无重大催化剂，正常折现估值"
+        },
+        {
+          "name": "熊市",
+          "prob": 20,
+          "target_price": 14,
+          "assumptions": "北京CBD办公空置率持续上升，租金下行，无重估事件"
+        }
+      ],
+      "position_rules": [
+        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（15%）", "trigger": "价格低于熊市目标价¥14" },
+        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "正常建仓", "trigger": "分批买入，每跌5%加一批" },
+        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "持有不动", "trigger": "等待年报催化剂" },
+        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减仓50%", "trigger": "价格超过¥22基准价" },
+        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市目标价¥32" }
+      ],
+      "checklist": [
+        {
+          "id": "chk001",
+          "text": "2025年报分部收入重建：写字楼 vs 公寓 vs 商场各贡献",
+          "action": "若写字楼收入同比跌幅>10%，下调基准目标价至¥19",
+          "priority": "high",
+          "checked": false,
+          "category": "财务验证"
+        },
+        {
+          "id": "chk002",
+          "text": "Q4费用异常确认（是否存在非经常性大额支出）",
+          "action": "若是，排除后重算正常化利润，调整EPS预测",
+          "priority": "mid",
+          "checked": false,
+          "category": "财务验证"
+        },
+        {
+          "id": "chk003",
+          "text": "嘉里/香格里拉管理费关联交易金额确认",
+          "action": "若超上年20%，标注为利润提取风险，降低估值可信度",
+          "priority": "high",
+          "checked": false,
+          "category": "治理风险"
+        },
+        {
+          "id": "chk004",
+          "text": "投资性房产公允价值变动（重估收益 or 减值）",
+          "action": "若出现减值，更新¥57.67bn账面价值，重算隐含价值",
+          "priority": "mid",
+          "checked": false,
+          "category": "资产质量"
+        },
+        {
+          "id": "chk005",
+          "text": "土地使用权2054–55年到期风险披露（商业用地无自动续期条款）",
+          "action": "关注是否有国家续期政策信号，影响长期估值折现",
+          "priority": "low",
+          "checked": false,
+          "category": "政策风险"
+        }
+      ],
+      "research_notes": "核心隐含价值：投资性房地产约332,000㎡，账面¥57.67bn，估算市场价值¥170–224bn（存在重大折价机会）。\n\n所有权结构：嘉里/香格里拉 vs 中服集团各约50%制衡。Kuok家族通过嘉里有实质运营控制权——香格里拉管理费流向需在年报关联交易披露中确认。\n\n关键分析框架：EV/EBITDA锚定运营价值，净现金修正，投资物业隐含价值作为上行期权。"
+    },
+    {
+      "id": "c002",
+      "name": "赛轮集团",
+      "code": "601058.SH",
+      "exchange": "A",
+      "sector": "轮胎制造",
+      "research_folder": "赛轮集团_601058",
+      "price": 9.2,
+      "shares": 28.0,
+      "net_cash_bn": -121.2,
+      "eps_forecast": 1.1,
+      "discount_rate": 8,
+      "valuation_method": "PE×EPS + 海外工厂税收溢价 + 净现金修正",
+      "signal": "hold",
+      "position_pct": 5,
+      "avg_cost": 8.6,
+      "max_position_pct": 20,
+      "rating": "hold",
+      "next_catalyst": "TBR涨价落地确认 + 2026Q1财报 + 特朗普关税截止日",
+      "data_as_of": "2025Q3",
+      "baseline_data": {
+        "interest_bearing_debt_bn": 121.2,
+        "operating_cf_bn": 25.0,
+        "true_funding_gap_bn": -21.6,
+        "debt_ratio_pct": 50.3,
+        "interest_coverage": 10.5,
+        "net_debt_ebitda": 1.1,
+        "due_within_1yr_bn": 18.0
+      },
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 25,
+          "target_price": 16,
+          "assumptions": "TBR涨价8–12%落地+越南产能满负荷+油价下行+特朗普关税豁免"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 11,
+          "assumptions": "现状维持，海外工厂盈利稳定，滚债依赖可控"
+        },
+        {
+          "name": "熊市",
+          "prob": 20,
+          "target_price": 6.5,
+          "assumptions": "特朗普关税升级+新和平（沈阳）亏损扩大+再融资压力暴露"
+        }
+      ],
+      "position_rules": [
+        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（20%）", "trigger": "价格≤¥7.5，或熊市情景概率下调" },
+        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至15%", "trigger": "TBR涨价确认，同时价格≤¥9" },
+        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持5%", "trigger": "等待季报验证三大核查项" },
+        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至2.5%", "trigger": "价格超过基准¥11" },
+        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市¥16" }
+      ],
+      "checklist": [
+        {
+          "id": "chk010",
+          "text": "TBR价格涨幅是否已落实（目标+8–12%）",
+          "action": "若未落实，下调2026盈利预测5–8%，基准目标价降至¥9.5",
+          "priority": "high",
+          "checked": false,
+          "category": "定价能力"
+        },
+        {
+          "id": "chk011",
+          "text": "越南工厂净利率是否维持≥20%（基准22%）",
+          "action": "若<18%，重新评估海外利润锚，牛市情景概率从25%→15%",
+          "priority": "high",
+          "checked": false,
+          "category": "海外利润核心"
+        },
+        {
+          "id": "chk012",
+          "text": "新和平（沈阳）亏损是否收窄至−¥5亿以内",
+          "action": "若持续亏损扩大，关注是否触发10%净利披露门槛（≈−¥3.3亿）",
+          "priority": "high",
+          "checked": false,
+          "category": "国内工厂"
+        },
+        {
+          "id": "chk013",
+          "text": "真实资金缺口验证：经营CF − 利息 − 股利 − CAPEX（基准−¥21.6亿）",
+          "action": "若缺口扩大至−¥25亿+，触发仓位降至持有上限50%",
+          "priority": "mid",
+          "checked": false,
+          "category": "流动性"
+        },
+        {
+          "id": "chk014",
+          "text": "有息负债规模（基准121.2亿）是否突破130亿",
+          "action": "若超130亿且资产负债率突破55%，降级为WATCH",
+          "priority": "mid",
+          "checked": false,
+          "category": "杠杆"
+        }
+      ],
+      "research_notes": "利润结构结论：越南=唯一验证利润锚（22%净利率，12年track record，~52%集团净利润）；柬埔寨=最确定增量驱动（24.2%净利率，9年免税，零债务融资）；国内=规模/供应链而非利润。\n\n核心风险：滚债依赖（真实资金缺口≈−¥21.6亿/年），有息负债两年+65%。\n\n地缘政治传导链：伊朗战争→霍尔木兹海峡→原油→天然橡胶→橡胶成本→轮胎毛利。直接路径，但越南/柬埔寨区位提供部分缓冲。"
+    },
+    {
+      "id": "c003",
+      "name": "中策橡胶",
+      "code": "603049.SH",
+      "exchange": "A",
+      "sector": "轮胎制造",
+      "research_folder": "赛轮集团_601058",
+      "price": 22.4,
+      "shares": 15.0,
+      "net_cash_bn": -135,
+      "eps_forecast": 2.4,
+      "discount_rate": 8,
+      "valuation_method": "PE×EPS + IPO后权益修正 + 囤货成本护城河",
+      "signal": "hold",
+      "position_pct": 3,
+      "avg_cost": 21.0,
+      "max_position_pct": 15,
+      "rating": "hold",
+      "next_catalyst": "2025年报 + 囤货成本优势验证（Q1–Q2毛利率vs同行）",
+      "data_as_of": "2025Q3",
+      "baseline_data": {
+        "interest_bearing_debt_bn": 135,
+        "net_profit_ytd_bn": 3.51,
+        "operating_cf_h1_bn": 0.12,
+        "purchase_payments_bn": 234.9,
+        "purchase_growth_pct": 51,
+        "current_ratio": 1.07,
+        "debt_ratio_pct": 52.7,
+        "inventory_bn": 86.8,
+        "ipo_proceeds_bn": 39.3,
+        "due_within_1yr_bn": 29.6
+      },
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 30,
+          "target_price": 38,
+          "assumptions": "囤货成本护城河兑现（300–600M毛利优势）+TBR涨价+伊朗冲突推高竞争对手成本"
+        },
+        {
+          "name": "基准",
+          "prob": 50,
+          "target_price": 28,
+          "assumptions": "盈利稳健增长，流动性压力通过IPO资金缓解"
+        },
+        {
+          "name": "熊市",
+          "prob": 20,
+          "target_price": 16,
+          "assumptions": "天然橡胶价格高企+流动比率恶化至<1.0+再融资受阻"
+        }
+      ],
+      "position_rules": [
+        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（15%）", "trigger": "价格≤¥18，且囤货论点成立" },
+        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至10%", "trigger": "年报确认毛利率优势" },
+        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持3%", "trigger": "等待Q1–Q2毛利率验证" },
+        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至1.5%", "trigger": "价格超过基准¥28" },
+        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过牛市¥38" }
+      ],
+      "checklist": [
+        {
+          "id": "chk020",
+          "text": "天然橡胶囤货成本护城河兑现：Q1–Q2毛利率是否高于同期竞争对手2–3ppt",
+          "action": "若差异<1ppt，囤货论点减弱，基准目标价下调至¥24",
+          "priority": "high",
+          "checked": false,
+          "category": "核心论点验证"
+        },
+        {
+          "id": "chk021",
+          "text": "经营CF是否从H1异常低位恢复（H1仅+¥0.12亿，战略采购所致）",
+          "action": "若全年经营CF<¥15亿，重新评估战略囤货论点",
+          "priority": "high",
+          "checked": false,
+          "category": "现金流"
+        },
+        {
+          "id": "chk022",
+          "text": "一年内到期负债¥29.6亿（+49%）再融资是否完成",
+          "action": "若未完成置换，流动比率<1.0，触发降级",
+          "priority": "mid",
+          "checked": false,
+          "category": "流动性"
+        },
+        {
+          "id": "chk023",
+          "text": "IPO募资¥39.3亿使用进度（2025年6月上市）",
+          "action": "确认资金用途是否按募集说明书执行",
+          "priority": "low",
+          "checked": false,
+          "category": "资金使用"
+        }
+      ],
+      "research_notes": "关键区分：H1近零经营CF是战略主动采购天然橡胶（+51%采购支付，约¥16,000–17,000/吨锁定），而非业务恶化。这形成¥300–600M的伊朗战争成本缓冲优势。\n\n相对赛轮的优势：盈利更强（Q3单季+76.6%）、IPO后权益充裕、囤货成本护城河、TBR涨价落地率更高。\n\n两家均不构成违约风险，差异在于风险结构：赛轮=杠杆增速风险；中策=流动性结构风险（已通过IPO部分修复）。"
+    },
+    {
+      "id": "c004",
+      "name": "华润万象生活",
+      "code": "01209.HK",
+      "exchange": "HK",
+      "sector": "物业管理",
+      "research_folder": "华润万象生活_000966",
+      "price": 18.2,
+      "shares": 14.5,
+      "net_cash_bn": 60,
+      "eps_forecast": 1.8,
+      "discount_rate": 7,
+      "valuation_method": "PE + 股息率 + EV/EBITDA（注：ROE/PB无效，轻资产结构失真）",
+      "signal": "hold",
+      "position_pct": 8,
+      "avg_cost": 17.5,
+      "max_position_pct": 20,
+      "rating": "hold",
+      "next_catalyst": "2026H1中报 ECL拨备是否同比收窄",
+      "data_as_of": "2025全年",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 25,
+          "target_price": 28,
+          "assumptions": "ECL拨备峰值已过，2026H1同比收窄，商管业务持续扩张"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 21,
+          "assumptions": "商管平稳，ECL持续但可控，维持合理PE估值"
+        },
+        {
+          "name": "熊市",
+          "prob": 20,
+          "target_price": 13,
+          "assumptions": "ECL加速（开发商违约蔓延），2–3年账龄应收进一步恶化至不可控"
+        }
+      ],
+      "position_rules": [
+        { "zone": "极度低估", "condition": "安全边际 ≥ 40%", "action": "BUY", "target_position": "满仓（20%）", "trigger": "价格≤¥14且ECL拐点确认" },
+        { "zone": "合理低估", "condition": "安全边际 20–40%", "action": "ADD", "target_position": "加至15%", "trigger": "2026H1 ECL同比收窄确认" },
+        { "zone": "公允价值", "condition": "安全边际 0–20%", "action": "HOLD", "target_position": "维持8%", "trigger": "等待ECL数据" },
+        { "zone": "轻微高估", "condition": "高估 0–20%", "action": "TRIM", "target_position": "减至4%", "trigger": "价格超过¥21" },
+        { "zone": "明显高估", "condition": "高估 ≥ 20%", "action": "SELL", "target_position": "清仓", "trigger": "价格超过¥28" }
+      ],
+      "checklist": [
+        {
+          "id": "chk030",
+          "text": "ECL拨备是否同比收窄（2025年同比+101%，需观察2026H1）",
+          "action": "若2026H1 ECL<上年同期，升级为ADD信号",
+          "priority": "high",
+          "checked": false,
+          "category": "ECL监控"
+        },
+        {
+          "id": "chk031",
+          "text": "2–3年账龄应收款余额是否开始下降（2025年同比+189%）",
+          "action": "若继续上升，维持HOLD不加仓",
+          "priority": "high",
+          "checked": false,
+          "category": "ECL监控"
+        },
+        {
+          "id": "chk032",
+          "text": "确认估值框架：ROE约30%因轻资产结构失真，不用PB，坚持PE/股息率/EV/EBITDA",
+          "action": "检查项，确保估值锚正确",
+          "priority": "low",
+          "checked": false,
+          "category": "估值纪律"
+        }
+      ],
+      "research_notes": "估值注意事项（重要）：ROE约30%是结构性虚高——华润置地持有实物资产，万象生活轻资产运营，所以PB基本无意义。正确估值锚：PE、股息率、EV/EBITDA+净现金、FCF收益率。\n\nECL是非现金项目：ECL拨备在经营CF中加回，影响报告利润但不影响现金生成——这是分析物业管理公司的关键认知。\n\n折现率：大陆资产适当折现率6–8%，不用10%。"
+    },
+    {
+      "id": "c005",
+      "name": "绿城服务",
+      "code": "2869.HK",
+      "exchange": "HK",
+      "sector": "物业管理",
+      "research_folder": "绿城服务_2869HK",
+      "price": 5.8,
+      "shares": 20.0,
+      "net_cash_bn": 20,
+      "eps_forecast": 0.52,
+      "discount_rate": 7,
+      "valuation_method": "PE + 应收款账龄矩阵双重验证",
+      "signal": "watch",
+      "position_pct": 0,
+      "avg_cost": 0,
+      "max_position_pct": 10,
+      "rating": "watch",
+      "next_catalyst": "2026H1中报：1–2年应收款余额 + ECL绝对额",
+      "data_as_of": "2025全年",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 20,
+          "target_price": 9,
+          "assumptions": "应收款显著改善（1–2年<¥9亿），ECL回落，开发商违约风险解除"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 6.5,
+          "assumptions": "维持现状，ECL可控，等待改善信号"
+        },
+        {
+          "name": "熊市",
+          "prob": 25,
+          "target_price": 3.8,
+          "assumptions": "应收款继续恶化，大额坏账确认，盈利大幅压缩"
+        }
+      ],
+      "position_rules": [
+        { "zone": "建仓门槛", "condition": "双重信号：1–2年应收<¥9亿 AND H1 ECL<¥2.5亿", "action": "BUY", "target_position": "初始建仓5%", "trigger": "2026H1中报双重确认后" },
+        { "zone": "等待", "condition": "仅一项满足", "action": "WATCH", "target_position": "继续观察", "trigger": "不行动，等下一期数据" },
+        { "zone": "放弃", "condition": "两项均恶化", "action": "PASS", "target_position": "移出关注", "trigger": "重新评估基本面" }
+      ],
+      "checklist": [
+        {
+          "id": "chk040",
+          "text": "1–2年账龄应收款余额是否降至¥9亿以下",
+          "action": "门槛1：降至¥9亿以下才考虑建仓",
+          "priority": "high",
+          "checked": false,
+          "category": "建仓门槛"
+        },
+        {
+          "id": "chk041",
+          "text": "2026H1 ECL拨备是否低于¥2.5亿",
+          "action": "门槛2：需与门槛1同时满足，双重确认后才建仓",
+          "priority": "high",
+          "checked": false,
+          "category": "建仓门槛"
+        }
+      ],
+      "research_notes": "当前处于观察等待状态。\n\n建仓需要双重确认（而非单一信号）：\n① 1–2年账龄应收款余额<¥9亿\n② 2026H1 ECL拨备<¥2.5亿\n\n两项同时满足→初始建仓5%；仅一项满足→继续等待；两项均恶化→移出关注列表。"
+    },
+    {
+      "id": "c006",
+      "name": "霸王茶姬",
+      "code": "CHA",
+      "exchange": "US",
+      "sector": "新茶饮",
+      "research_folder": "霸王茶姬_NASDAQ_CHA",
+      "price": 28.0,
+      "shares": 2.5,
+      "net_cash_bn": 5,
+      "eps_forecast": 0.8,
+      "discount_rate": 10,
+      "valuation_method": "PS倍数 + 净现金 + 同店GMV增速",
+      "signal": "watch",
+      "position_pct": 0,
+      "avg_cost": 0,
+      "max_position_pct": 10,
+      "rating": "watch",
+      "next_catalyst": "2026Q1同店GMV轨迹 + 春夏新品周期反应",
+      "data_as_of": "2025全年",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 25,
+          "target_price": 45,
+          "assumptions": "同店GMV企稳回升，海外直营单店经济转正，SBC正常化，外卖补贴战降温"
+        },
+        {
+          "name": "基准",
+          "prob": 50,
+          "target_price": 28,
+          "assumptions": "现状维持，品牌重新定位进行中，SBC逐步正常化"
+        },
+        {
+          "name": "熊市",
+          "prob": 25,
+          "target_price": 15,
+          "assumptions": "同店GMV持续下滑，竞争加剧，品牌定位漂移，海外扩张亏损扩大"
+        }
+      ],
+      "position_rules": [
+        { "zone": "建仓门槛", "condition": "同店GMV同比转正 + 海外单店经济趋势向好", "action": "BUY", "target_position": "初始5%", "trigger": "Q1财报双重确认" },
+        { "zone": "等待", "condition": "GMV企稳但未转正", "action": "WATCH", "target_position": "继续观察", "trigger": "等下一个季度数据" },
+        { "zone": "放弃", "condition": "GMV持续负增长+市场份额丢失", "action": "PASS", "target_position": "移出", "trigger": "论点破裂" }
+      ],
+      "checklist": [
+        {
+          "id": "chk050",
+          "text": "2026Q1同店GMV是否同比企稳（去年同期有较低基数效应）",
+          "action": "若同比仍负增长，维持观察不建仓",
+          "priority": "high",
+          "checked": false,
+          "category": "核心指标"
+        },
+        {
+          "id": "chk051",
+          "text": "春夏新品周期是否带动同店流量回升",
+          "action": "新品催化剂是短期观察变量，不能替代GMV趋势",
+          "priority": "mid",
+          "checked": false,
+          "category": "催化剂"
+        },
+        {
+          "id": "chk052",
+          "text": "海外直营门店单店经济是否趋势向正（亏损门店比例）",
+          "action": "若亏损门店>30%，推迟建仓",
+          "priority": "mid",
+          "checked": false,
+          "category": "海外扩张"
+        },
+        {
+          "id": "chk053",
+          "text": "SBC占收入比是否持续下降",
+          "action": "正常化是报告利润改善的必要条件，需追踪",
+          "priority": "low",
+          "checked": false,
+          "category": "盈利质量"
+        }
+      ],
+      "research_notes": "核心问题：同店GMV下滑 + 外卖平台补贴战压力。品牌定位从高端「中式奶茶」向更宽泛受众迁移中，定位漂移是中期风险。\n\n海外直营是长期差异化叙事，但短期单店盈利压力大。论点需要：同店GMV企稳 + 海外单店经济向好，两个信号同时出现才建仓。\n\n美股折现率用10%（vs A股/港股7–8%）。"
+    }
+  ]
+}
