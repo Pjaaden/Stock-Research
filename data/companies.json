@@ -1,18 +1,4 @@
 {
-  "_meta": {
-    "version": "2.0",
-    "last_updated": "2026-04-03",
-    "description": "Investment OS 主数据文件 - 所有公司估值参数、情景、监控清单",
-    "maintainer": "Pjaaden/Stock-Research",
-    "update_instructions": "直接编辑此文件并 git push，工作台将自动读取最新数据",
-    "test_sync": "端到端同步测试 · 2026-04-03"
-  },
-  "settings": {
-    "default_discount_rate": 7,
-    "default_max_position": 25,
-    "default_margin_of_safety": 20,
-    "currency": "CNY"
-  },
   "companies": [
     {
       "id": "c001",
@@ -21,16 +7,16 @@
       "exchange": "A",
       "sector": "商业地产",
       "research_folder": "中国国贸_600007",
-      "price": 18.5,
-      "shares": 8.0,
+      "price": 21.11,
+      "shares": 8,
       "net_cash_bn": -30,
       "eps_forecast": 0.85,
       "discount_rate": 7,
       "valuation_method": "EV/EBITDA + 净现金 + 隐含资产重估",
       "signal": "watch",
-      "position_pct": 0,
-      "avg_cost": 0,
-      "max_position_pct": 15,
+      "position_pct": 50,
+      "avg_cost": 21,
+      "max_position_pct": 80,
       "rating": "watch",
       "next_catalyst": "2025年报 + 2026Q1季报（2026年4月）",
       "data_as_of": "2025Q3",
@@ -135,11 +121,11 @@
       ],
       "research_notes": "核心隐含价值：投资性房地产约332,000㎡，账面¥57.67bn，估算市场价值¥170–224bn（存在重大折价机会）。\n\n所有权结构：嘉里/香格里拉 vs 中服集团各约50%制衡。Kuok家族通过嘉里有实质运营控制权——香格里拉管理费流向需在年报关联交易披露中确认。\n\n关键分析框架：EV/EBITDA锚定运营价值，净现金修正，投资物业隐含价值作为上行期权。",
       "gradient": {
-        "buy_strong": 14.0,
-        "buy": 17.0,
-        "hold_low": 20.0,
-        "trim": 24.0,
-        "sell": 30.0,
+        "buy_strong": 14,
+        "buy": 17,
+        "hold_low": 20,
+        "trim": 24,
+        "sell": 30,
         "custom_points": []
       },
       "shares_held": 0
@@ -151,27 +137,27 @@
       "exchange": "A",
       "sector": "轮胎制造",
       "research_folder": "赛轮集团_601058",
-      "price": 9.2,
-      "shares": 28.0,
+      "price": 13.17,
+      "shares": 28,
       "net_cash_bn": -121.2,
       "eps_forecast": 1.1,
       "discount_rate": 8,
       "valuation_method": "PE×EPS + 海外工厂税收溢价 + 净现金修正",
       "signal": "hold",
-      "position_pct": 5,
-      "avg_cost": 8.6,
+      "position_pct": 15,
+      "avg_cost": 14.15,
       "max_position_pct": 20,
       "rating": "hold",
       "next_catalyst": "TBR涨价落地确认 + 2026Q1财报 + 特朗普关税截止日",
       "data_as_of": "2025Q3",
       "baseline_data": {
         "interest_bearing_debt_bn": 121.2,
-        "operating_cf_bn": 25.0,
+        "operating_cf_bn": 25,
         "true_funding_gap_bn": -21.6,
         "debt_ratio_pct": 50.3,
         "interest_coverage": 10.5,
         "net_debt_ebitda": 1.1,
-        "due_within_1yr_bn": 18.0
+        "due_within_1yr_bn": 18
       },
       "scenarios": [
         {
@@ -276,9 +262,9 @@
       "gradient": {
         "buy_strong": 7.5,
         "buy": 8.5,
-        "hold_low": 10.0,
-        "trim": 13.0,
-        "sell": 16.0,
+        "hold_low": 10,
+        "trim": 13,
+        "sell": 16,
         "custom_points": []
       },
       "shares_held": 0
@@ -291,14 +277,14 @@
       "sector": "轮胎制造",
       "research_folder": "赛轮集团_601058",
       "price": 22.4,
-      "shares": 15.0,
+      "shares": 15,
       "net_cash_bn": -135,
       "eps_forecast": 2.4,
       "discount_rate": 8,
       "valuation_method": "PE×EPS + IPO后权益修正 + 囤货成本护城河",
       "signal": "hold",
-      "position_pct": 3,
-      "avg_cost": 21.0,
+      "position_pct": 0,
+      "avg_cost": 21,
       "max_position_pct": 15,
       "rating": "hold",
       "next_catalyst": "2025年报 + 囤货成本优势验证（Q1–Q2毛利率vs同行）",
@@ -408,11 +394,11 @@
       ],
       "research_notes": "关键区分：H1近零经营CF是战略主动采购天然橡胶（+51%采购支付，约¥16,000–17,000/吨锁定），而非业务恶化。这形成¥300–600M的伊朗战争成本缓冲优势。\n\n相对赛轮的优势：盈利更强（Q3单季+76.6%）、IPO后权益充裕、囤货成本护城河、TBR涨价落地率更高。\n\n两家均不构成违约风险，差异在于风险结构：赛轮=杠杆增速风险；中策=流动性结构风险（已通过IPO部分修复）。",
       "gradient": {
-        "buy_strong": 18.0,
-        "buy": 21.0,
-        "hold_low": 26.0,
-        "trim": 32.0,
-        "sell": 38.0,
+        "buy_strong": 18,
+        "buy": 21,
+        "hold_low": 26,
+        "trim": 32,
+        "sell": 38,
         "custom_points": []
       },
       "shares_held": 0
@@ -431,7 +417,7 @@
       "discount_rate": 7,
       "valuation_method": "PE + 股息率 + EV/EBITDA（注：ROE/PB无效，轻资产结构失真）",
       "signal": "hold",
-      "position_pct": 8,
+      "position_pct": 0,
       "avg_cost": 17.5,
       "max_position_pct": 20,
       "rating": "hold",
@@ -522,11 +508,11 @@
       ],
       "research_notes": "估值注意事项（重要）：ROE约30%是结构性虚高——华润置地持有实物资产，万象生活轻资产运营，所以PB基本无意义。正确估值锚：PE、股息率、EV/EBITDA+净现金、FCF收益率。\n\nECL是非现金项目：ECL拨备在经营CF中加回，影响报告利润但不影响现金生成——这是分析物业管理公司的关键认知。\n\n折现率：大陆资产适当折现率6–8%，不用10%。",
       "gradient": {
-        "buy_strong": 14.0,
+        "buy_strong": 14,
         "buy": 16.5,
-        "hold_low": 20.0,
-        "trim": 24.0,
-        "sell": 28.0,
+        "hold_low": 20,
+        "trim": 24,
+        "sell": 28,
         "custom_points": []
       },
       "shares_held": 0
@@ -539,7 +525,7 @@
       "sector": "物业管理",
       "research_folder": "绿城服务_2869HK",
       "price": 5.8,
-      "shares": 20.0,
+      "shares": 20,
       "net_cash_bn": 20,
       "eps_forecast": 0.52,
       "discount_rate": 7,
@@ -616,9 +602,9 @@
       "gradient": {
         "buy_strong": 3.8,
         "buy": 4.8,
-        "hold_low": 6.0,
+        "hold_low": 6,
         "trim": 7.5,
-        "sell": 9.0,
+        "sell": 9,
         "custom_points": []
       },
       "shares_held": 0
@@ -630,7 +616,7 @@
       "exchange": "US",
       "sector": "新茶饮",
       "research_folder": "霸王茶姬_NASDAQ_CHA",
-      "price": 28.0,
+      "price": 28,
       "shares": 2.5,
       "net_cash_bn": 5,
       "eps_forecast": 0.8,
@@ -722,20 +708,21 @@
       ],
       "research_notes": "核心问题：同店GMV下滑 + 外卖平台补贴战压力。品牌定位从高端「中式奶茶」向更宽泛受众迁移中，定位漂移是中期风险。\n\n海外直营是长期差异化叙事，但短期单店盈利压力大。论点需要：同店GMV企稳 + 海外单店经济向好，两个信号同时出现才建仓。\n\n美股折现率用10%（vs A股/港股7–8%）。",
       "gradient": {
-        "buy_strong": 15.0,
-        "buy": 22.0,
-        "hold_low": 30.0,
-        "trim": 38.0,
-        "sell": 45.0,
+        "buy_strong": 15,
+        "buy": 22,
+        "hold_low": 30,
+        "trim": 38,
+        "sell": 45,
         "custom_points": []
       },
       "shares_held": 0
     }
   ],
-  "portfolio": {
-    "total_capital_cny": 1000000,
-    "cash_cny": 850000,
-    "currency": "CNY",
-    "note": "请在工作台设置页修改总资本和现金"
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026/04/06",
+    "description": "Investment OS 主数据文件",
+    "maintainer": "Pjaaden/Stock-Research",
+    "update_instructions": "由工作台自动同步"
   }
 }
