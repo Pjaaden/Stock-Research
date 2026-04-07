@@ -15,7 +15,7 @@
       "valuation_method": "PS法（营收×倍数+净现金） + PE法（EPS×PE+净现金/股） 双法交叉验证",
       "signal": "watch",
       "position_pct": 50,
-      "avg_cost": 0,
+      "avg_cost": 20.053,
       "max_position_pct": 15,
       "rating": "watch",
       "next_catalyst": "2025年报全文（4月30日前） + 2026Q1季报（4月30日）",
@@ -24,19 +24,19 @@
         {
           "name": "牛市",
           "prob": 25,
-          "target_price": 24.0,
+          "target_price": 24,
           "assumptions": "写字楼出租率回升至93%+，商城收入转正，Q4费用为一次性计提，2026E EPS~1.25元×PE18x+净现金2.6"
         },
         {
           "name": "基准",
           "prob": 55,
-          "target_price": 21.0,
+          "target_price": 21,
           "assumptions": "写字楼承压但企稳（92%出租率），DPS维持1.07元，EPS1.19×PE15x+净现金2.6，当前股价合理"
         },
         {
           "name": "熊市",
           "prob": 20,
-          "target_price": 17.0,
+          "target_price": 17,
           "assumptions": "写字楼出租率跌破90%，商城继续负增长，利润率持续压缩，PE12x，或分红削减"
         }
       ],
@@ -167,7 +167,7 @@
         "sell": 30,
         "custom_points": []
       },
-      "shares_held": 0,
+      "shares_held": 500,
       "status": "active",
       "currency": "CNY"
     },
@@ -766,7 +766,7 @@
   ],
   "_meta": {
     "version": "1.0",
-    "last_updated": "2026-04-07",
+    "last_updated": "2026/04/07",
     "description": "Investment OS 主数据文件",
     "maintainer": "Pjaaden/Stock-Research",
     "update_instructions": "由工作台自动同步",
