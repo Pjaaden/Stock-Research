@@ -11,7 +11,7 @@
       "exchange": "HK",
       "currency": "HKD",
       "sector": "互联网平台",
-      "status": "candidate",
+      "status": "hidden",
       "watch_reason": "游戏复苏+微信生态变现，估值回落至历史合理区间",
       "priority": "high",
       "added_date": "2026-04-07",
@@ -28,7 +28,7 @@
       "exchange": "HK",
       "currency": "HKD",
       "sector": "能源",
-      "status": "candidate",
+      "status": "hidden",
       "watch_reason": "伊朗战争情景下油价上行受益标的，高股息防御属性",
       "priority": "high",
       "added_date": "2026-04-07",
@@ -45,7 +45,7 @@
       "exchange": "A",
       "currency": "CNY",
       "sector": "新能源汽车",
-      "status": "candidate",
+      "status": "hidden",
       "watch_reason": "出海加速+电池技术护城河，关注海外毛利率拐点",
       "priority": "mid",
       "added_date": "2026-04-07",
@@ -62,7 +62,7 @@
       "exchange": "HK",
       "currency": "HKD",
       "sector": "本地生活",
-      "status": "candidate",
+      "status": "hidden",
       "watch_reason": "即时零售渗透率提升，海外扩张期权价值",
       "priority": "mid",
       "added_date": "2026-04-07",
@@ -78,7 +78,7 @@
       "exchange": "A",
       "currency": "CNY",
       "sector": "航运",
-      "status": "researching",
+      "status": "hidden",
       "watch_reason": "地缘政治扰动航运供给，关税战受益标的，周期股择时难度大",
       "priority": "low",
       "added_date": "2026-04-07",
@@ -87,6 +87,19 @@
         "航运",
         "周期"
       ]
+    },
+    {
+      "id": "wmnocfqe13ln",
+      "name": "凌霄泵业",
+      "code": "002884",
+      "exchange": "A",
+      "currency": "CNY",
+      "sector": "民用水泵",
+      "status": "researching",
+      "watch_reason": "高股息稳定回报",
+      "priority": "mid",
+      "added_date": "2026/04/07",
+      "tags": []
     }
   ]
 }
