@@ -1,8 +1,7 @@
 {
   "_meta": {
-    "description": "Investment OS 候选池 - 待研究/关注公司列表",
-    "last_updated": "2026-04-07",
-    "schema": "status: candidate | researching | active | hidden"
+    "description": "Investment OS 候选池",
+    "last_updated": "2026/04/07"
   },
   "candidates": [
     {
@@ -16,7 +15,11 @@
       "watch_reason": "游戏复苏+微信生态变现，估值回落至历史合理区间",
       "priority": "high",
       "added_date": "2026-04-07",
-      "tags": ["港股", "科技", "平台经济"]
+      "tags": [
+        "港股",
+        "科技",
+        "平台经济"
+      ]
     },
     {
       "id": "w002",
@@ -29,7 +32,11 @@
       "watch_reason": "伊朗战争情景下油价上行受益标的，高股息防御属性",
       "priority": "high",
       "added_date": "2026-04-07",
-      "tags": ["港股", "能源", "高股息"]
+      "tags": [
+        "港股",
+        "能源",
+        "高股息"
+      ]
     },
     {
       "id": "w003",
@@ -42,7 +49,11 @@
       "watch_reason": "出海加速+电池技术护城河，关注海外毛利率拐点",
       "priority": "mid",
       "added_date": "2026-04-07",
-      "tags": ["A股", "新能源", "出海"]
+      "tags": [
+        "A股",
+        "新能源",
+        "出海"
+      ]
     },
     {
       "id": "w004",
@@ -55,7 +66,10 @@
       "watch_reason": "即时零售渗透率提升，海外扩张期权价值",
       "priority": "mid",
       "added_date": "2026-04-07",
-      "tags": ["港股", "消费互联网"]
+      "tags": [
+        "港股",
+        "消费互联网"
+      ]
     },
     {
       "id": "w005",
@@ -68,7 +82,11 @@
       "watch_reason": "地缘政治扰动航运供给，关税战受益标的，周期股择时难度大",
       "priority": "low",
       "added_date": "2026-04-07",
-      "tags": ["A股", "航运", "周期"]
+      "tags": [
+        "A股",
+        "航运",
+        "周期"
+      ]
     }
   ]
 }
