@@ -128,7 +128,8 @@
         "sell": 30,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     },
     {
       "id": "c002",
@@ -267,7 +268,8 @@
         "sell": 16,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     },
     {
       "id": "c003",
@@ -401,7 +403,8 @@
         "sell": 38,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     },
     {
       "id": "c004",
@@ -515,7 +518,8 @@
         "sell": 28,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     },
     {
       "id": "c005",
@@ -607,7 +611,8 @@
         "sell": 9,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     },
     {
       "id": "c006",
@@ -715,14 +720,16 @@
         "sell": 45,
         "custom_points": []
       },
-      "shares_held": 0
+      "shares_held": 0,
+      "status": "active"
     }
   ],
   "_meta": {
     "version": "1.0",
-    "last_updated": "2026/04/06",
+    "last_updated": "2026-04-07",
     "description": "Investment OS 主数据文件",
     "maintainer": "Pjaaden/Stock-Research",
-    "update_instructions": "由工作台自动同步"
+    "update_instructions": "由工作台自动同步",
+    "schema_version": "2.0"
   }
 }
