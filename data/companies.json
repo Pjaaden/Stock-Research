@@ -5,121 +5,160 @@
       "name": "中国国贸",
       "code": "600007.SH",
       "exchange": "A",
-      "sector": "商业地产",
+      "sector": "商业地产·北京CBD",
       "research_folder": "中国国贸_600007",
-      "price": 21.11,
-      "shares": 8,
+      "price": 21.08,
+      "shares": 10.07,
       "net_cash_bn": -30,
-      "eps_forecast": 0.85,
+      "eps_forecast": 1.19,
       "discount_rate": 7,
-      "valuation_method": "EV/EBITDA + 净现金 + 隐含资产重估",
+      "valuation_method": "PS法（营收×倍数+净现金） + PE法（EPS×PE+净现金/股） 双法交叉验证",
       "signal": "watch",
       "position_pct": 50,
-      "avg_cost": 21,
-      "max_position_pct": 80,
+      "avg_cost": 0,
+      "max_position_pct": 15,
       "rating": "watch",
-      "next_catalyst": "2025年报 + 2026Q1季报（2026年4月）",
-      "data_as_of": "2025Q3",
+      "next_catalyst": "2025年报全文（4月30日前） + 2026Q1季报（4月30日）",
+      "data_as_of": "2025年报（业绩快报+部分年报数据）",
       "scenarios": [
         {
           "name": "牛市",
-          "prob": 30,
-          "target_price": 32,
-          "assumptions": "写字楼出租率回升至90%+，投资物业完成重估，隐含资产价值被市场认可"
+          "prob": 25,
+          "target_price": 24.0,
+          "assumptions": "写字楼出租率回升至93%+，商城收入转正，Q4费用为一次性计提，2026E EPS~1.25元×PE18x+净现金2.6"
         },
         {
           "name": "基准",
-          "prob": 50,
-          "target_price": 22,
-          "assumptions": "出租率稳定在当前水平，无重大催化剂，正常折现估值"
+          "prob": 55,
+          "target_price": 21.0,
+          "assumptions": "写字楼承压但企稳（92%出租率），DPS维持1.07元，EPS1.19×PE15x+净现金2.6，当前股价合理"
         },
         {
           "name": "熊市",
           "prob": 20,
-          "target_price": 14,
-          "assumptions": "北京CBD办公空置率持续上升，租金下行，无重估事件"
+          "target_price": 17.0,
+          "assumptions": "写字楼出租率跌破90%，商城继续负增长，利润率持续压缩，PE12x，或分红削减"
         }
       ],
       "position_rules": [
         {
           "zone": "极度低估",
-          "condition": "安全边际 ≥ 40%",
+          "condition": "安全边际 ≥ 40%（≤¥12.6）",
           "action": "BUY",
           "target_position": "满仓（15%）",
-          "trigger": "价格低于熊市目标价¥14"
+          "trigger": "价格低于熊市目标价¥17×0.75"
         },
         {
           "zone": "合理低估",
-          "condition": "安全边际 20–40%",
+          "condition": "安全边际 20–40%（¥12.6–16.8）",
           "action": "ADD",
-          "target_position": "正常建仓",
-          "trigger": "分批买入，每跌5%加一批"
+          "target_position": "分批建仓",
+          "trigger": "价格低于基准×0.8=¥16.8"
         },
         {
           "zone": "公允价值",
-          "condition": "安全边际 0–20%",
+          "condition": "安全边际 0–20%（¥16.8–21.0）",
           "action": "HOLD",
-          "target_position": "持有不动",
-          "trigger": "等待年报催化剂"
+          "target_position": "持有",
+          "trigger": "等年报全文验证"
         },
         {
           "zone": "轻微高估",
-          "condition": "高估 0–20%",
-          "action": "TRIM",
-          "target_position": "减仓50%",
-          "trigger": "价格超过¥22基准价"
+          "condition": "高估 0–15%（¥21.0–24.2）",
+          "action": "HOLD",
+          "target_position": "持有不加",
+          "trigger": "价格超过¥21基准"
         },
         {
           "zone": "明显高估",
-          "condition": "高估 ≥ 20%",
+          "condition": "高估 ≥ 15%（>¥24.0）",
+          "action": "TRIM",
+          "target_position": "减仓50%",
+          "trigger": "价格超过牛市目标¥24"
+        },
+        {
+          "zone": "极度高估",
+          "condition": "高估 ≥ 25%（>¥26.3）",
           "action": "SELL",
-          "target_position": "清仓",
-          "trigger": "价格超过牛市目标价¥32"
+          "target_position": "止盈清仓",
+          "trigger": "价格超过¥26.3"
         }
       ],
       "checklist": [
         {
           "id": "chk001",
-          "text": "2025年报分部收入重建：写字楼 vs 公寓 vs 商场各贡献",
-          "action": "若写字楼收入同比跌幅>10%，下调基准目标价至¥19",
           "priority": "high",
           "checked": false,
-          "category": "财务验证"
+          "category": "年报核心验证",
+          "text": "年报全文：Q4费用异常低利润（2.15亿，同比-56%）的归因",
+          "action": "若为一次性计提（年终奖/减值），可持续EPS≈1.25元，上调基准目标价；若为持续性费用，维持1.19元"
         },
         {
           "id": "chk002",
-          "text": "Q4费用异常确认（是否存在非经常性大额支出）",
-          "action": "若是，排除后重算正常化利润，调整EPS预测",
-          "priority": "mid",
+          "priority": "high",
           "checked": false,
-          "category": "财务验证"
+          "category": "年报核心验证",
+          "text": "年报全文：写字楼年末出租率（全年-6.32%）",
+          "action": "≥93%→筑底信号，维持基准；≤90%→下调熊市概率升至35%"
         },
         {
           "id": "chk003",
-          "text": "嘉里/香格里拉管理费关联交易金额确认",
-          "action": "若超上年20%，标注为利润提取风险，降低估值可信度",
           "priority": "high",
           "checked": false,
-          "category": "治理风险"
+          "category": "年报核心验证",
+          "text": "年报全文：净现金精确值（估算≈26亿，每股≈2.6元）",
+          "action": "直接进入估值公式：目标价=EPS×PE+净现金/股；若净现金<20亿需下调"
         },
         {
           "id": "chk004",
-          "text": "投资性房产公允价值变动（重估收益 or 减值）",
-          "action": "若出现减值，更新¥57.67bn账面价值，重算隐含价值",
-          "priority": "mid",
+          "priority": "high",
           "checked": false,
-          "category": "资产质量"
+          "category": "分红验证",
+          "text": "DPS=1.07元（每10股10.7元）已披露，派息率90%，确认年报正式公告一致",
+          "action": "以年报正式公告为准，快报DPS已初步确认，与预测基本吻合"
         },
         {
           "id": "chk005",
-          "text": "土地使用权2054–55年到期风险披露（商业用地无自动续期条款）",
-          "action": "关注是否有国家续期政策信号，影响长期估值折现",
+          "priority": "mid",
+          "checked": false,
+          "category": "年报核心验证",
+          "text": "关联交易章节：香格里拉品牌/管理费金额（历史稳定，需建立基准）",
+          "action": "若管理费同比增加>20%，标注为利润提取风险，降低估值可信度"
+        },
+        {
+          "id": "chk006",
+          "priority": "mid",
+          "checked": false,
+          "category": "年报核心验证",
+          "text": "投资性房地产减值测试说明（账面¥57.67亿，估算市值¥170-224亿）",
+          "action": "确认账面价值无重大变动；关注是否首次披露重估或减值迹象"
+        },
+        {
+          "id": "chk007",
+          "priority": "high",
+          "checked": false,
+          "category": "Q1季报验证",
+          "text": "2026Q1季报（4月30日）：写字楼同比降幅是否收窄至-3%以内",
+          "action": "降幅收窄→筑底确认→升级信号至BUY候选；继续扩大至-6%+→维持WATCH"
+        },
+        {
+          "id": "chk008",
+          "priority": "mid",
+          "checked": false,
+          "category": "Q1季报验证",
+          "text": "2026Q1营业利润率是否回升至43-44%（Q4异常低为39%）",
+          "action": "回升→Q4为季节性低点，可持续EPS更高；若Q1仍<40%→持续性费用压力"
+        },
+        {
+          "id": "chk009",
           "priority": "low",
           "checked": false,
-          "category": "政策风险"
+          "category": "长期风险",
+          "text": "土地使用权2054-55年到期风险：年报是否有续期政策信号披露",
+          "action": "关注是否有国家政策变化，影响极长期折现，当前暂不进入估值"
         }
       ],
-      "research_notes": "核心隐含价值：投资性房地产约332,000㎡，账面¥57.67bn，估算市场价值¥170–224bn（存在重大折价机会）。\n\n所有权结构：嘉里/香格里拉 vs 中服集团各约50%制衡。Kuok家族通过嘉里有实质运营控制权——香格里拉管理费流向需在年报关联交易披露中确认。\n\n关键分析框架：EV/EBITDA锚定运营价值，净现金修正，投资物业隐含价值作为上行期权。",
+      "research_notes": "核心资产：北京CBD国贸综合体（写字楼+商城+酒店+公寓）\n投资性房地产：约332,000㎡，账面¥57.67亿，估算市价¥170–224亿（历史成本计量，存在重大隐含价值）\n总股本：10.07亿股；净资产/股 9.68元（2025年报）\n\n2025年报关键数字（业绩快报，待年报全文确认）：\n・营业总收入 37.70亿（同比-3.63%）\n・归母净利润 12.02亿（同比-4.76%）\n・基本EPS 1.19元（2024年实际1.25元）\n・DPS 1.07元/股（派息率90%，拟分红10.78亿）\n・净资产/股 9.68元\n・加权ROE 12.64%\n\n分业态收入（2025全年）：\n・写字楼 14.16亿（-6.32%）—— 最大拖累，北京CBD办公空置率上升\n・商城   12.69亿（-1.38%）—— 小幅下滑但韧性好于写字楼\n・酒店    4.94亿（-5.98%）—— 与写字楼相关联（住商联动）\n・公寓    1.89亿（+1.02%）—— 唯一正增长业务\n・其他    4.02亿（+0.20%）\n\n双法估值框架：\n【PS法】营收×倍数+净现金：悲观¥14.3（3x）/ 基准¥18.1（4x）/ 乐观¥22.0（5x）\n【PE法】EPS×PE+净现金/股：悲观¥17.6（12x）/ 基准¥21.4（15x）/ 乐观¥25.1（18x）\n综合：基准区间¥18–22，当前¥21.08处于基准上沿\n\n治理结构：\n・中国世贸投资（中方）vs 嘉里兴业（Kuok家族/香格里拉，外方）各约50%制衡\n・香格里拉酒店管理费为关联交易，金额需年报确认\n・合资合同期限：据披露约至2054–2055年（与土地使用权一致）\n\n关键分析判断：\n・Q4利润异常低（2.15亿，同比-56%），需年报解释是否一次性计提\n・FCF覆盖率估算~1.49x，分红安全性较高\n・债务已大幅减轻（5亿公司债2024年还清），资产负债率约22%，财务极稳健\n・当前估值（PE17.7x，股息率5.07%）处于合理偏贵区间，无明显安全边际",
       "gradient": {
         "buy_strong": 14,
         "buy": 17,
@@ -129,7 +168,8 @@
         "custom_points": []
       },
       "shares_held": 0,
-      "status": "active"
+      "status": "active",
+      "currency": "CNY"
     },
     {
       "id": "c002",
