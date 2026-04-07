@@ -7,7 +7,7 @@
       "exchange": "A",
       "sector": "商业地产·北京CBD",
       "research_folder": "中国国贸_600007",
-      "price": 21.08,
+      "price": 21.28,
       "shares": 10.07,
       "net_cash_bn": -30,
       "eps_forecast": 1.19,
@@ -178,15 +178,15 @@
       "exchange": "A",
       "sector": "轮胎制造·全球化产能布局",
       "research_folder": "赛轮集团_601058",
-      "price": 9.2,
-      "shares": 28.0,
+      "price": 13.43,
+      "shares": 28,
       "net_cash_bn": -121.2,
       "eps_forecast": 0.85,
       "discount_rate": 8,
       "valuation_method": "PE×EPS + 海外工厂税收溢价 + 油价情景概率加权",
       "signal": "hold",
       "position_pct": 15,
-      "avg_cost": 0,
+      "avg_cost": 14.153,
       "max_position_pct": 20,
       "rating": "hold",
       "next_catalyst": "2026Q1季报（4月30日） + TBR涨价落地确认 + 伊朗/油价局势",
@@ -204,7 +204,7 @@
         {
           "name": "牛市",
           "prob": 25,
-          "target_price": 14.0,
+          "target_price": 14,
           "assumptions": "情景零（快速和解）：油价回落¥80–90，天然橡胶季节性改善，TBR涨价完全落地，越南/柬埔寨利润恢复正常，2026E EPS~1.20元×PE11x，海外产能溢价修复"
         },
         {
@@ -216,7 +216,7 @@
         {
           "name": "熊市",
           "prob": 25,
-          "target_price": 6.0,
+          "target_price": 6,
           "assumptions": "情景二（谈判破裂）：油价$115–135，成本冲击-25–40亿，新和平亏损扩大，全年EPS~0.35–0.55元，估值压缩至8-9x，滚债压力显现"
         }
       ],
@@ -340,7 +340,7 @@
         "sell": 16,
         "custom_points": []
       },
-      "shares_held": 0,
+      "shares_held": 200,
       "status": "active",
       "currency": "CNY"
     },
