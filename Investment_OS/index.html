@@ -8,121 +8,184 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
-:root{--bg:#f4f2ee;--bg2:#ede9e2;--bg3:#e2ddd5;--surface:#fff;--border:#d8d3c9;--border2:#bfb9ae;--text:#18160f;--text2:#46423a;--text3:#7a746c;--accent:#1c3f6e;--accent2:#2557a7;--accent3:#e8f0fc;--green:#0a4229;--green-bg:#d0e9dc;--green-mid:#1a7a45;--green-lt:#eaf5ee;--red:#7a1c26;--red-bg:#f5d5d8;--red-mid:#c93040;--red-lt:#fdf0f1;--yellow:#5c3d00;--yellow-bg:#fdefc8;--yellow-mid:#e08a00;--yellow-lt:#fffbef;--blue-bg:#d6e4ff;--blue-mid:#2557a7;--blue-lt:#eef3ff;--orange:#7a3500;--orange-bg:#fde4cc;--orange-mid:#e06020;--mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans SC',sans-serif;--display:'Syne',sans-serif;--r:8px;--sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.05);--sh-md:0 4px 16px rgba(0,0,0,.09),0 2px 6px rgba(0,0,0,.05)}
+:root{
+  --bg:#f4f2ee;--bg2:#ede9e2;--bg3:#e2ddd5;
+  --surface:#fff;--border:#d8d3c9;--border2:#bfb9ae;
+  --text:#18160f;--text2:#46423a;--text3:#7a746c;
+  --accent:#1c3f6e;--accent2:#2557a7;--accent3:#e8f0fc;
+  --green:#0a4229;--green-bg:#d0e9dc;--green-mid:#1a7a45;--green-lt:#eaf5ee;
+  --red:#7a1c26;--red-bg:#f5d5d8;--red-mid:#c93040;--red-lt:#fdf0f1;
+  --yellow:#5c3d00;--yellow-bg:#fdefc8;--yellow-mid:#e08a00;--yellow-lt:#fffbef;
+  --blue-bg:#d6e4ff;--blue-mid:#2557a7;--blue-lt:#eef3ff;
+  --orange-bg:#fde4cc;--orange-mid:#e06020;
+  --cny:#c0392b;--hkd:#2471a3;--usd:#1e8449;
+  --mono:'IBM Plex Mono',monospace;--sans:'IBM Plex Sans SC',sans-serif;--display:'Syne',sans-serif;
+  --r:8px;--sh:0 1px 3px rgba(0,0,0,.07),0 1px 2px rgba(0,0,0,.05);--sh-md:0 4px 16px rgba(0,0,0,.09);
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;font-size:13.5px;line-height:1.6}
 .shell{display:flex;min-height:100vh}
-.sidebar{width:228px;min-width:228px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;z-index:10}
-.main{flex:1;overflow:auto;padding:28px 32px;min-width:0}
-.sb-logo{padding:18px 16px 14px;border-bottom:1px solid var(--border)}
+.sidebar{width:232px;min-width:232px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;z-index:10}
+.main{flex:1;overflow:auto;padding:26px 30px;min-width:0}
+.sb-logo{padding:16px 16px 12px;border-bottom:1px solid var(--border)}
 .sb-logo h1{font-family:var(--display);font-size:16px;font-weight:800;color:var(--accent);letter-spacing:-.4px}
-.sb-logo .ver{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:2px}
-.sb-nav{padding:10px 0;flex:1}
-.nav-sec{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);padding:8px 16px 3px}
-.nav-item{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;font-size:12.5px;color:var(--text2);border-left:3px solid transparent;transition:all .12s;white-space:nowrap}
-.nav-item:hover{background:var(--bg2);color:var(--text)}
-.nav-item.active{background:var(--bg2);color:var(--accent);border-left-color:var(--accent2);font-weight:500}
+.sb-logo .ver{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:1px}
+.sb-nav{padding:8px 0;flex:1}
+.nav-sec{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--text3);padding:8px 15px 3px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 15px;cursor:pointer;font-size:12.5px;color:var(--text2);border-left:3px solid transparent;transition:all .12s}
+.nav-item:hover{background:var(--bg2);color:var(--text)}.nav-item.active{background:var(--bg2);color:var(--accent);border-left-color:var(--accent2);font-weight:500}
 .nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .nav-badge{margin-left:auto;font-family:var(--mono);font-size:10px;padding:1px 5px;border-radius:3px;font-weight:500}
-.sb-footer{padding:10px 16px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text3);line-height:1.8}
+.sb-footer{padding:10px 15px;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--text3);line-height:1.8}
 .sb-footer b{color:var(--text2)}
-.sync-pill{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:10px;margin-top:4px;cursor:pointer}
-.sync-pill.ok{background:var(--green-bg);color:var(--green)}
-.sync-pill.syncing{background:var(--blue-bg);color:var(--blue-mid)}
-.sync-pill.err{background:var(--red-bg);color:var(--red-mid)}
-.spin{animation:spin .8s linear infinite;display:inline-block}
-@keyframes spin{to{transform:rotate(360deg)}}
+.sync-pill{display:inline-flex;align-items:center;gap:5px;font-size:10px;padding:2px 8px;border-radius:10px;margin-top:3px;cursor:pointer}
+.sync-pill.ok{background:var(--green-bg);color:var(--green)}.sync-pill.syncing{background:var(--blue-bg);color:var(--blue-mid)}.sync-pill.err{background:var(--red-bg);color:var(--red-mid)}
+.spin{animation:spin .8s linear infinite;display:inline-block}@keyframes spin{to{transform:rotate(360deg)}}
 .panel{display:none}.panel.active{display:block}
-.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px}
+.ph{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
 .ph h2{font-family:var(--display);font-size:20px;font-weight:800;letter-spacing:-.5px}
 .ph .sub{font-size:11px;color:var(--text3);margin-top:2px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px;box-shadow:var(--sh)}
-.card-title{font-family:var(--display);font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px}
-.port-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:22px}
-.port-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh)}
-.port-card .pl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
-.port-card .pv{font-family:var(--display);font-size:22px;font-weight:800;color:var(--text)}
-.port-card .ps{font-size:10px;color:var(--text3);margin-top:2px}
-.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
-.co-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;box-shadow:var(--sh);cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}
+.card-title{font-family:var(--display);font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+
+/* ── FX BAR ── */
+.fx-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:8px 14px;margin-bottom:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:var(--sh)}
+.fx-item{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px}
+.fx-label{color:var(--text3);font-size:10px;text-transform:uppercase;letter-spacing:.3px}
+.fx-val{font-weight:500;color:var(--text)}
+.fx-src{font-size:10px;color:var(--text3);margin-left:auto}
+.fx-dot{width:6px;height:6px;border-radius:50%}
+
+/* ── PORTFOLIO OVERVIEW ── */
+.port-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+.pool-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;box-shadow:var(--sh);position:relative;overflow:hidden}
+.pool-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pool-cny::before{background:var(--cny)}.pool-hkd::before{background:var(--hkd)}.pool-usd::before{background:var(--usd)}
+.pool-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+.pool-cny .pool-tag{color:var(--cny)}.pool-hkd .pool-tag{color:var(--hkd)}.pool-usd .pool-tag{color:var(--usd)}
+.pool-main{font-family:var(--display);font-size:20px;font-weight:800;color:var(--text)}
+.pool-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.pool-bar-wrap{margin-top:8px}
+.pool-bar-track{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden}
+.pool-bar-fill{height:100%;border-radius:3px;transition:width .4s}
+.pool-cny .pool-bar-fill{background:var(--cny)}.pool-hkd .pool-bar-fill{background:var(--hkd)}.pool-usd .pool-bar-fill{background:var(--usd)}
+.pool-bar-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:3px}
+
+.port-summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.sum-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;box-shadow:var(--sh)}
+.sum-card .sl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px}
+.sum-card .sv{font-family:var(--display);font-size:20px;font-weight:800}
+.sum-card .ss{font-size:10px;color:var(--text3);margin-top:2px}
+
+/* ── MARKET ALLOCATION CHART ── */
+.alloc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.alloc-chart-wrap{position:relative;height:160px}
+
+/* ── COMPANY CARDS ── */
+.co-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:12px}
+.co-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;box-shadow:var(--sh);cursor:pointer;transition:all .15s;position:relative;overflow:hidden}
 .co-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
 .co-card.s-buy::before{background:var(--green-mid)}.co-card.s-hold::before{background:var(--yellow-mid)}.co-card.s-sell::before{background:var(--red-mid)}.co-card.s-watch::before{background:var(--blue-mid)}
 .co-card:hover{box-shadow:var(--sh-md);transform:translateY(-1px)}
-.co-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
-.co-name{font-family:var(--display);font-size:15px;font-weight:700}
-.co-code{font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:1px}
-.sc{padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:600;letter-spacing:.2px}
+.co-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:8px}
+.co-name{font-family:var(--display);font-size:14px;font-weight:700}
+.co-meta{display:flex;align-items:center;gap:6px;margin-top:2px}
+.co-code{font-family:var(--mono);font-size:10px;color:var(--text3)}
+.cur-badge{font-family:var(--mono);font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:3px}
+.cur-CNY{background:#fde8e8;color:var(--cny)}.cur-HKD{background:#d6eaf8;color:var(--hkd)}.cur-USD{background:#d5f5e3;color:var(--usd)}
+.sc{padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600}
 .sc.buy{background:var(--green-bg);color:var(--green)}.sc.hold{background:var(--yellow-bg);color:var(--yellow)}.sc.sell{background:var(--red-bg);color:var(--red)}.sc.watch{background:var(--blue-bg);color:var(--blue-mid)}
-.dev-track{height:8px;border-radius:4px;background:var(--bg3);position:relative;overflow:visible;margin:5px 0}
-.dev-fill{position:absolute;height:100%;border-radius:4px;transition:width .3s}
-.dev-pin{position:absolute;top:-5px;width:18px;height:18px;border-radius:50%;border:2.5px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.25);transform:translateX(-50%);transition:left .3s}
+
+.dev-track{height:6px;border-radius:3px;background:var(--bg3);position:relative;overflow:visible;margin:6px 0}
+.dev-fill{position:absolute;height:100%;border-radius:3px}
+.dev-pin{position:absolute;top:-5px;width:16px;height:16px;border-radius:50%;border:2.5px solid var(--surface);box-shadow:0 1px 4px rgba(0,0,0,.25);transform:translateX(-50%)}
 .dev-labels{display:flex;justify-content:space-between;font-size:10px;color:var(--text3)}
-.co-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
-.mi .ml{font-size:9.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.2px;text-align:center}
-.mi .mv{font-family:var(--mono);font-size:12px;font-weight:500;margin-top:1px;text-align:center}
-.dh{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
-.back-btn{padding:5px 11px;background:var(--surface);border:1px solid var(--border);border-radius:5px;cursor:pointer;font-size:12px;color:var(--text2);display:flex;align-items:center;gap:4px;font-family:var(--sans);transition:all .12s}
+
+.co-pos-row{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+.pos-item{text-align:center}
+.pos-item .pl{font-size:9.5px;color:var(--text3);text-transform:uppercase;letter-spacing:.2px}
+.pos-item .pv{font-family:var(--mono);font-size:11.5px;font-weight:500;margin-top:1px}
+
+/* ── DETAIL ── */
+.dh{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.back-btn{padding:5px 10px;background:var(--surface);border:1px solid var(--border);border-radius:5px;cursor:pointer;font-size:12px;color:var(--text2);font-family:var(--sans);transition:all .12s}
 .back-btn:hover{background:var(--bg2)}
-.src-link{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:3px;background:var(--green-bg);color:var(--green);border:1px solid var(--green-mid);text-decoration:none;cursor:pointer}
-.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:16px}
+.tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:14px}
 .tab-btn{padding:7px 14px;font-size:12.5px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);font-family:var(--sans);background:none;border-top:none;border-left:none;border-right:none;margin-bottom:-1px;transition:all .12s}
 .tab-btn:hover{color:var(--text)}.tab-btn.active{color:var(--accent2);border-bottom-color:var(--accent2);font-weight:500}
 .tc{display:none}.tc.active{display:block}
-.dg2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+.dg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.mb12{margin-bottom:12px}
+
+/* ── LADDER ── */
 .ladder{width:100%;border-collapse:collapse;font-size:12.5px}
 .ladder th{background:var(--bg2);padding:7px 10px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border)}
-.ladder td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.ladder td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 .ladder tr:last-child td{border-bottom:none}
 .ladder tr.cur-zone{background:var(--accent3)}
 .act-buy{color:var(--green-mid);font-weight:700}.act-add{color:var(--green-mid);font-weight:600}.act-hold{color:var(--yellow-mid);font-weight:600}.act-trim{color:var(--orange-mid);font-weight:600}.act-sell{color:var(--red-mid);font-weight:700}
-.pos-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+
+/* ── POSITION INPUTS ── */
+.pos-inputs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
 .p-item .p-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px}
-.p-field{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:5px 9px}
+.p-field{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:5px 8px}
 .p-field input{flex:1;border:none;background:transparent;font-family:var(--mono);font-size:13px;font-weight:500;color:var(--text);outline:none;width:100%}
-.p-field .unit{font-size:10.5px;color:var(--text3)}
+.p-field .unit{font-size:10.5px;color:var(--text3);white-space:nowrap}
+
+/* ── SCENARIO TABLE ── */
 .sct{width:100%;border-collapse:collapse;font-size:12.5px}
 .sct th{background:var(--bg2);padding:7px 10px;text-align:left;font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;border-bottom:1px solid var(--border)}
-.sct td{padding:9px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.sct td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
 .sct tr:last-child td{border-bottom:none}
 .r-bull td:first-child{color:var(--green-mid);font-weight:600}.r-base td:first-child{color:var(--accent2);font-weight:600}.r-bear td:first-child{color:var(--red-mid);font-weight:600}
-.log-entry{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:12px 16px;margin-bottom:10px}
-.log-hdr{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+
+/* ── CHECKLIST ── */
+.cl-item{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--border)}
+.cl-item:last-child{border-bottom:none}
+.chk{width:15px;height:15px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .12s}
+.chk.on{background:var(--green-mid);border-color:var(--green-mid)}
+
+/* ── LOG ── */
+.log-entry{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:11px 15px;margin-bottom:9px}
+.log-hdr{display:flex;align-items:center;gap:8px;margin-bottom:5px;flex-wrap:wrap}
 .log-date{font-family:var(--mono);font-size:10px;color:var(--text3)}
 .log-act{font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600;text-transform:uppercase}
 .log-ticker{font-family:var(--mono);font-size:11px;color:var(--text2)}
-.log-rat{font-size:12px;color:var(--text2);line-height:1.5}
+
+/* ── MODAL ── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.28);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(2px)}
 .overlay.open{display:flex}
-.modal{background:var(--surface);border-radius:10px;padding:22px;width:500px;max-width:95vw;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-md);border:1px solid var(--border)}
-.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal{background:var(--surface);border-radius:10px;padding:20px;width:500px;max-width:95vw;max-height:92vh;overflow-y:auto;box-shadow:var(--sh-md);border:1px solid var(--border)}
+.mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .mt{font-family:var(--display);font-size:16px;font-weight:800}
 .mc{width:26px;height:26px;border-radius:50%;background:var(--bg2);border:none;cursor:pointer;font-size:15px;color:var(--text3);display:flex;align-items:center;justify-content:center}
-.mc:hover{background:var(--bg3)}
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
 .ff{margin-bottom:10px}
 .ff label{display:block;font-size:10px;color:var(--text2);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
 .ff input,.ff select,.ff textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:5px;font-family:var(--sans);font-size:12.5px;color:var(--text);background:var(--surface);outline:none}
 .ff input:focus,.ff select:focus,.ff textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 2px rgba(37,87,167,.12)}
-.ff textarea{resize:vertical;min-height:65px}
-.btn{padding:7px 16px;border-radius:5px;font-size:12.5px;cursor:pointer;font-family:var(--sans);font-weight:500;border:none;transition:all .12s}
+.ff textarea{resize:vertical;min-height:60px}
+
+/* ── BUTTONS ── */
+.btn{padding:7px 15px;border-radius:5px;font-size:12.5px;cursor:pointer;font-family:var(--sans);font-weight:500;border:none;transition:all .12s}
 .btn-primary{background:var(--accent2);color:#fff}.btn-primary:hover{background:var(--accent)}
 .btn-outline{background:transparent;border:1px solid var(--border2);color:var(--text2)}.btn-outline:hover{background:var(--bg2)}
 .btn-sm{padding:4px 10px;font-size:11.5px}
-.btn-ghost{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;padding:4px 8px;border-radius:4px;font-family:var(--sans)}
-.btn-ghost:hover{background:var(--bg2);color:var(--text)}
+.btn-ghost{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:12px;padding:3px 7px;border-radius:4px;font-family:var(--sans)}
+.btn-ghost:hover{background:var(--bg2)}
 .row{display:flex;gap:8px;align-items:center}
-.mb14{margin-bottom:14px}
-.token-field{display:flex;align-items:center;gap:6px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:6px 10px}
+.token-field{display:flex;align-items:center;gap:5px;background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:5px 9px}
 .token-field input{flex:1;border:none;background:transparent;font-family:var(--mono);font-size:12px;color:var(--text);outline:none}
-.wval-row{display:flex;align-items:center;gap:16px;margin-top:10px;padding:10px 12px;background:var(--bg2);border-radius:6px;flex-wrap:wrap}
+.wval-row{display:flex;align-items:center;gap:14px;margin-top:10px;padding:10px 12px;background:var(--bg2);border-radius:6px;flex-wrap:wrap}
 .wval-row .lbl{font-size:11px;color:var(--text3)}
-.wval-row .val{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--accent2)}
-.wval-row .mos{font-family:var(--mono);font-size:15px;font-weight:700}
+.wval-row .val{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--accent2)}
+.wval-row .mos{font-family:var(--mono);font-size:14px;font-weight:700}
 .notes-pre{font-family:var(--sans);font-size:12.5px;color:var(--text2);line-height:1.75;white-space:pre-wrap}
-.empty{text-align:center;padding:40px 24px;color:var(--text3);font-size:13px}
-.empty-icon{font-size:28px;margin-bottom:10px;opacity:.4}
-.chart-wrap{position:relative;height:200px}
-.toast{position:fixed;bottom:24px;right:24px;padding:10px 16px;border-radius:8px;font-size:12.5px;font-weight:500;box-shadow:var(--sh-md);z-index:300;transition:opacity .3s;max-width:320px}
+.chart-wrap{position:relative;height:180px}
+.chart-wrap-sm{position:relative;height:140px}
+.empty{text-align:center;padding:36px 24px;color:var(--text3);font-size:13px}
+.empty-icon{font-size:26px;margin-bottom:8px;opacity:.4}
+.toast{position:fixed;bottom:22px;right:22px;padding:10px 15px;border-radius:8px;font-size:12.5px;font-weight:500;box-shadow:var(--sh-md);z-index:300;transition:opacity .3s;max-width:300px}
 .toast.ok{background:var(--green-bg);color:var(--green);border:1px solid var(--green-mid)}
 .toast.err{background:var(--red-bg);color:var(--red-mid);border:1px solid var(--red-mid)}
 .toast.info{background:var(--blue-bg);color:var(--blue-mid);border:1px solid var(--blue-mid)}
@@ -131,28 +194,32 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 </head>
 <body>
 <div class="shell">
+
+<!-- SIDEBAR -->
 <nav class="sidebar">
-  <div class="sb-logo"><h1>Investment OS</h1><div class="ver">v3.0 · 仓位纪律工作台</div></div>
+  <div class="sb-logo"><h1>Investment OS</h1><div class="ver">v3.1 · 多币种仓位工作台</div></div>
   <div class="sb-nav">
     <div class="nav-sec">主视图</div>
     <div class="nav-item active" onclick="nav('overview')">◉ 组合总览</div>
     <div class="nav-item" onclick="nav('log')">≡ 操作日志</div>
     <div class="nav-item" onclick="nav('settings')">⚙ 设置 · 同步</div>
-    <div class="nav-sec" style="margin-top:10px">持仓 · 关注</div>
+    <div class="nav-sec" style="margin-top:8px">持仓 · 关注</div>
     <div id="sb-cos"></div>
-    <div class="nav-sec" style="margin-top:10px">操作</div>
+    <div class="nav-sec" style="margin-top:8px">操作</div>
     <div class="nav-item" onclick="openLogModal()">＋ 记录决策</div>
-    <div class="nav-item" onclick="pullData()">⟳ 刷新数据</div>
+    <div class="nav-item" onclick="pullData()">⟳ 刷新 · 更新汇率</div>
   </div>
   <div class="sb-footer">
     <div>数据源 <b id="sb-src">—</b></div>
     <div>更新 <b id="sb-date">—</b></div>
-    <div id="sb-sync-pill"><span class="sync-pill syncing"><span class="spin">⟳</span> 同步中</span></div>
+    <div id="sb-sp"><span class="sync-pill syncing"><span class="spin">⟳</span> 同步中</span></div>
   </div>
 </nav>
+
+<!-- MAIN -->
 <main class="main">
 
-<!-- OVERVIEW -->
+<!-- ═══ OVERVIEW ═══ -->
 <div id="panel-overview" class="panel active">
   <div class="ph">
     <div><h2>组合总览</h2><div class="sub" id="ov-date"></div></div>
@@ -161,12 +228,44 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <button class="btn btn-outline btn-sm" onclick="pullData()">⟳ 刷新</button>
     </div>
   </div>
-  <div class="port-grid" id="port-grid"></div>
+
+  <!-- FX Bar -->
+  <div class="fx-bar" id="fx-bar">
+    <span class="fx-label">汇率</span>
+    <div class="fx-item"><span class="fx-dot" style="background:var(--usd)"></span><span style="color:var(--text3)">USD/CNY</span><span class="fx-val" id="fx-usd">—</span></div>
+    <div class="fx-item"><span class="fx-dot" style="background:var(--hkd)"></span><span style="color:var(--text3)">HKD/CNY</span><span class="fx-val" id="fx-hkd">—</span></div>
+    <span class="fx-src" id="fx-src">加载中…</span>
+    <button class="btn btn-outline btn-sm" onclick="nav('settings')" style="margin-left:4px">手动调整</button>
+  </div>
+
+  <!-- Three pool cards -->
+  <div class="port-top">
+    <div class="pool-card pool-cny" id="pool-cny"></div>
+    <div class="pool-card pool-hkd" id="pool-hkd"></div>
+    <div class="pool-card pool-usd" id="pool-usd"></div>
+  </div>
+
+  <!-- Summary stats -->
+  <div class="port-summary" id="port-summary"></div>
+
+  <!-- Allocation charts + pool detail -->
+  <div class="alloc-row mb12">
+    <div class="card">
+      <div class="card-title">市场资产配置（RMB等值）</div>
+      <div class="alloc-chart-wrap"><canvas id="alloc-chart"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="card-title">持仓 vs 现金（各市场）</div>
+      <div class="alloc-chart-wrap"><canvas id="cash-chart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Company cards -->
   <div class="co-grid" id="co-grid"></div>
   <div class="empty" id="ov-empty" style="display:none"><div class="empty-icon">📊</div>加载中…</div>
 </div>
 
-<!-- DETAIL -->
+<!-- ═══ DETAIL ═══ -->
 <div id="panel-detail" class="panel">
   <div class="dh">
     <button class="back-btn" onclick="nav('overview')">← 返回</button>
@@ -175,7 +274,7 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div style="font-family:var(--mono);font-size:11px;color:var(--text3)" id="d-sub"></div>
     </div>
     <span class="sc" id="d-sig"></span>
-    <a id="d-rlink" class="src-link" target="_blank" style="display:none">★ 研究报告</a>
+    <span id="d-cur-badge" class="cur-badge"></span>
   </div>
   <div class="tabs">
     <button class="tab-btn active" onclick="tab(0)">价格梯度</button>
@@ -187,37 +286,36 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 
   <!-- TAB 0: LADDER -->
   <div class="tc active" id="tc-0">
-    <div class="dg2 mb14">
-      <div class="card"><div class="card-title">实时偏离度仪表盘</div><div id="dev-gauge-lg"></div></div>
+    <div class="dg2 mb12">
+      <div class="card"><div class="card-title">偏离度仪表盘</div><div id="dev-gauge-lg"></div></div>
       <div class="card">
         <div class="card-title">当前价格</div>
         <div class="pos-inputs" style="grid-template-columns:1fr 1fr">
-          <div class="p-item"><div class="p-label">市价 (¥)</div>
-            <div class="p-field"><input type="number" id="lc-price" step="0.01" onchange="lcU('price',this.value)"></div></div>
+          <div class="p-item"><div class="p-label">市价</div>
+            <div class="p-field"><input type="number" id="lc-price" step="0.01" onchange="lcU('price',this.value)"><span class="unit" id="lc-price-unit">¥</span></div></div>
           <div class="p-item"><div class="p-label">加权内在价值</div>
-            <div class="p-field" style="background:var(--bg3)"><input readonly id="lc-wval" style="color:var(--accent2)"><span class="unit">¥</span></div></div>
+            <div class="p-field" style="background:var(--bg3)"><input readonly id="lc-wval" style="color:var(--accent2)"><span class="unit" id="lc-wval-unit">¥</span></div></div>
         </div>
         <div id="ladder-status" style="padding:8px 10px;border-radius:5px;font-size:12px;margin-top:4px"></div>
       </div>
     </div>
     <div class="card">
-      <div class="card-title" style="margin-bottom:10px">价格行动梯度 · 当前区间高亮</div>
-      <table class="ladder"><thead><tr><th>区间</th><th>价格范围</th><th>安全边际</th><th>操作指令</th><th>目标仓位</th><th>执行条件</th></tr></thead>
+      <div class="card-title" style="margin-bottom:8px">价格行动梯度</div>
+      <table class="ladder"><thead><tr><th>区间</th><th>价格范围</th><th>安全边际</th><th>操作指令</th><th>目标仓位</th><th>触发条件</th></tr></thead>
       <tbody id="ladder-tbody"></tbody></table>
-      <div style="margin-top:8px;font-size:11px;color:var(--text3)">梯度边界由三情景目标价自动计算。在「仓位管理」调整后点击「同步至 GitHub」保存。</div>
     </div>
   </div>
 
   <!-- TAB 1: SCENARIOS -->
   <div class="tc" id="tc-1">
-    <div class="card mb14">
+    <div class="card mb12">
       <div class="card-title">三情景估值框架</div>
-      <table class="sct"><thead><tr><th>情景</th><th>概率</th><th>目标价</th><th>假设条件</th><th>vs 当前价</th><th>加权贡献</th></tr></thead>
+      <table class="sct"><thead><tr><th>情景</th><th>概率</th><th>目标价</th><th>假设条件</th><th>vs 市价</th><th>加权贡献</th></tr></thead>
       <tbody id="sc-tbody"></tbody></table>
       <div class="wval-row">
         <span class="lbl">加权内在价值</span><span class="val" id="wval-d">—</span>
         <span class="lbl">安全边际</span><span class="mos" id="mos-d">—</span>
-        <span class="lbl">方法论</span><span style="font-size:12px;color:var(--text2)" id="method-d">—</span>
+        <span class="lbl">方法</span><span style="font-size:12px;color:var(--text2)" id="method-d">—</span>
       </div>
     </div>
     <div class="card"><div class="card-title">估值可视化</div><div class="chart-wrap"><canvas id="val-chart"></canvas></div></div>
@@ -225,20 +323,20 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 
   <!-- TAB 2: POSITION -->
   <div class="tc" id="tc-2">
-    <div class="card mb14">
-      <div class="card-title">仓位参数 · 调整后同步至 GitHub</div>
+    <div class="card mb12">
+      <div class="card-title">仓位参数 · 以股数计 · 调整后同步 GitHub</div>
       <div class="pos-inputs">
-        <div class="p-item"><div class="p-label">当前持仓 (%)</div>
-          <div class="p-field"><input type="number" id="lc-pos" min="0" max="100" step="0.5" onchange="lcU('position_pct',this.value)"><span class="unit">%</span></div></div>
-        <div class="p-item"><div class="p-label">平均成本 (¥)</div>
-          <div class="p-field"><input type="number" id="lc-cost" step="0.01" onchange="lcU('avg_cost',this.value)"></div></div>
-        <div class="p-item"><div class="p-label">最大仓位上限 (%)</div>
+        <div class="p-item"><div class="p-label">持有股数</div>
+          <div class="p-field"><input type="number" id="lc-shares" min="0" step="100" onchange="lcU('shares_held',this.value)"><span class="unit">股</span></div></div>
+        <div class="p-item"><div class="p-label">平均成本</div>
+          <div class="p-field"><input type="number" id="lc-cost" step="0.01" onchange="lcU('avg_cost',this.value)"><span class="unit" id="lc-cost-unit">¥</span></div></div>
+        <div class="p-item"><div class="p-label">最大仓位上限</div>
           <div class="p-field"><input type="number" id="lc-maxpos" step="1" onchange="lcU('max_position_pct',this.value)"><span class="unit">%</span></div></div>
       </div>
-      <div id="pos-pnl" style="padding:10px 12px;border-radius:6px;font-size:12.5px;margin-bottom:10px"></div>
+      <div id="pos-detail" style="padding:10px 12px;border-radius:6px;font-size:12px;margin-bottom:10px;line-height:1.8"></div>
       <div class="row">
         <button class="btn btn-primary btn-sm" onclick="pushOne()">↑ 同步此公司至 GitHub</button>
-        <button class="btn btn-outline btn-sm" onclick="pushAll()">↑ 同步全部至 GitHub</button>
+        <button class="btn btn-outline btn-sm" onclick="pushAll()">↑ 同步全部</button>
       </div>
     </div>
     <div class="card">
@@ -250,16 +348,16 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 
   <!-- TAB 3: CHECKLIST -->
   <div class="tc" id="tc-3">
-    <div class="row mb14" style="justify-content:space-between">
-      <div style="font-size:12.5px;color:var(--text2)">季报/年报后逐项核验 · 勾选状态可同步至 GitHub</div>
-      <button class="btn btn-outline btn-sm" onclick="pushOne()">↑ 同步勾选状态</button>
+    <div class="row mb12" style="justify-content:space-between">
+      <div style="font-size:12.5px;color:var(--text2)">季报/年报后逐项核验</div>
+      <button class="btn btn-outline btn-sm" onclick="pushOne()">↑ 同步勾选</button>
     </div>
-    <div class="card"><ul id="cl-items" style="list-style:none"></ul></div>
+    <div class="card"><div id="cl-items"></div></div>
   </div>
 
   <!-- TAB 4: NOTES -->
   <div class="tc" id="tc-4">
-    <div class="card mb14">
+    <div class="card mb12">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div class="card-title" style="margin-bottom:0">研究笔记</div>
         <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">★ data/companies.json</span>
@@ -270,14 +368,14 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
       <div class="card-title">关键参数</div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
         <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:3px">评级</div><div style="font-size:13px;font-weight:600" id="d-rating">—</div></div>
-        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:3px">下一催化剂</div><div style="font-size:12.5px;color:var(--text2)" id="d-cat">—</div></div>
+        <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:3px">下一催化剂</div><div style="font-size:12px;color:var(--text2)" id="d-cat">—</div></div>
         <div><div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:3px">数据截至</div><div style="font-family:var(--mono);font-size:12px" id="d-asof">—</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- LOG -->
+<!-- ═══ LOG ═══ -->
 <div id="panel-log" class="panel">
   <div class="ph">
     <div><h2>操作日志</h2><div class="sub">每次决策前记录依据</div></div>
@@ -290,37 +388,60 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   <div class="empty" id="log-empty" style="display:none"><div class="empty-icon">📝</div>尚无记录</div>
 </div>
 
-<!-- SETTINGS -->
+<!-- ═══ SETTINGS ═══ -->
 <div id="panel-settings" class="panel">
-  <div class="ph"><div><h2>设置 · 数据同步</h2><div class="sub">GitHub PAT · 总资金 · 全局参数</div></div></div>
-  <div class="dg2">
+  <div class="ph"><div><h2>设置 · 数据同步</h2><div class="sub">GitHub PAT · 资金池 · 汇率</div></div></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
     <div class="card">
-      <div class="card-title">GitHub 同步配置</div>
-      <div class="ff"><label>Personal Access Token (PAT)</label>
+      <div class="card-title">GitHub 同步</div>
+      <div class="ff"><label>PAT Token</label>
         <div class="token-field"><input type="password" id="s-pat" placeholder="github_pat_…" oninput="savePAT()"><button class="btn-ghost" onclick="togglePAT()">👁</button></div>
         <div style="font-size:11px;margin-top:4px" id="pat-status"></div></div>
       <div class="ff"><label>仓库路径</label><div class="token-field"><input type="text" id="s-repo" value="Pjaaden/Stock-Research" oninput="saveS()"></div></div>
-      <div class="ff"><label>数据文件路径</label><div class="token-field"><input type="text" id="s-datapath" value="data/companies.json" oninput="saveS()"></div></div>
       <div class="row" style="margin-top:8px">
         <button class="btn btn-primary btn-sm" onclick="testPAT()">测试连接</button>
-        <button class="btn btn-outline btn-sm" onclick="pushAll()">↑ 立即全量同步</button>
+        <button class="btn btn-outline btn-sm" onclick="pushAll()">↑ 全量同步</button>
       </div>
-      <div style="margin-top:10px;font-size:11px;color:var(--text3);line-height:1.7">PAT 仅存于浏览器 localStorage，不上传任何服务器。<br>所需权限：<b>Contents: Read and write</b>（Fine-grained PAT）或 <b>repo</b> scope（Classic PAT）。</div>
+      <div style="margin-top:8px;font-size:11px;color:var(--text3);line-height:1.7">只写入仓位字段，不覆盖研究数据。</div>
     </div>
     <div class="card">
-      <div class="card-title">投资组合参数</div>
-      <div class="ff"><label>总资金 (¥万)</label><div class="token-field"><input type="number" id="s-capital" placeholder="100" oninput="saveS()"></div></div>
-      <div class="ff"><label>默认折现率 (%)</label><div class="token-field"><input type="number" id="s-discount" value="7" oninput="saveS()"></div></div>
-      <div class="ff"><label>最低安全边际要求 (%)</label><div class="token-field"><input type="number" id="s-margin" value="20" oninput="saveS()"></div></div>
-      <div class="ff"><label>单股最大仓位上限 (%)</label><div class="token-field"><input type="number" id="s-maxpos" value="25" oninput="saveS()"></div></div>
+      <div class="card-title">汇率设置</div>
+      <div style="font-size:11px;color:var(--text3);margin-bottom:10px">自动获取失败时使用以下手动值</div>
+      <div class="pos-inputs" style="grid-template-columns:1fr 1fr">
+        <div class="p-item"><div class="p-label">USD/CNY</div>
+          <div class="p-field"><input type="number" id="s-usdcny" step="0.01" placeholder="7.28" oninput="saveS()"></div></div>
+        <div class="p-item"><div class="p-label">HKD/CNY</div>
+          <div class="p-field"><input type="number" id="s-hkdcny" step="0.001" placeholder="0.934" oninput="saveS()"></div></div>
+      </div>
+      <button class="btn btn-outline btn-sm" onclick="fetchFX(true)">⟳ 重新获取实时汇率</button>
+      <div style="margin-top:8px;font-size:11px;color:var(--text3)" id="fx-status-detail"></div>
     </div>
   </div>
-  <div class="card" style="margin-top:14px">
-    <div class="card-title">同步规则说明</div>
+
+  <!-- Three pool capital inputs -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px">
+    <div class="card pool-card pool-cny" style="cursor:default">
+      <div class="pool-tag">A股资金池 CNY</div>
+      <div class="ff" style="margin-bottom:0"><label>总资金 (¥万)</label>
+        <div class="p-field"><input type="number" id="s-cap-cny" step="1" placeholder="0" oninput="saveS()"><span class="unit">万</span></div></div>
+    </div>
+    <div class="card pool-card pool-hkd" style="cursor:default">
+      <div class="pool-tag">港股资金池 HKD</div>
+      <div class="ff" style="margin-bottom:0"><label>总资金 (HK$万)</label>
+        <div class="p-field"><input type="number" id="s-cap-hkd" step="1" placeholder="0" oninput="saveS()"><span class="unit">万</span></div></div>
+    </div>
+    <div class="card pool-card pool-usd" style="cursor:default">
+      <div class="pool-tag">美股资金池 USD</div>
+      <div class="ff" style="margin-bottom:0"><label>总资金 (US$万)</label>
+        <div class="p-field"><input type="number" id="s-cap-usd" step="1" placeholder="0" oninput="saveS()"><span class="unit">万</span></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">同步规则</div>
     <div style="font-size:12.5px;color:var(--text2);line-height:1.9">
-      <b>工作台只写入以下字段（不覆盖研究数据）：</b><br>
-      <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">position_pct</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">avg_cost</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">max_position_pct</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">signal</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">checklist[].checked</code><br>
-      估值情景、目标价、研究笔记等研究字段不会被覆盖。同步需手动点击按钮触发。
+      工作台写入字段：<code style="background:var(--bg2);padding:1px 5px;border-radius:3px">shares_held</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">avg_cost</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">max_position_pct</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">price</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">signal</code> · <code style="background:var(--bg2);padding:1px 5px;border-radius:3px">checklist[].checked</code><br>
+      估值情景、目标价、研究笔记等研究字段不会被覆盖。
     </div>
   </div>
 </div>
@@ -338,8 +459,8 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
         <select id="lm-act"><option value="BUY">买入</option><option value="ADD">加仓</option><option value="HOLD">持有确认</option><option value="TRIM">减仓</option><option value="SELL">清仓</option><option value="WATCH">调入观察</option><option value="UPDATE">估值更新</option></select></div>
     </div>
     <div class="fr">
-      <div class="ff"><label>执行价格 (¥)</label><input type="number" id="lm-price" step="0.01" placeholder="0.00"></div>
-      <div class="ff"><label>仓位变动</label><input type="text" id="lm-pos" placeholder="0% → 10%"></div>
+      <div class="ff"><label>执行价格</label><input type="number" id="lm-price" step="0.01" placeholder="0.00"></div>
+      <div class="ff"><label>股数变动</label><input type="text" id="lm-shares" placeholder="买入1000股"></div>
     </div>
     <div class="ff"><label>决策依据 *</label><textarea id="lm-rat" placeholder="触发了哪条规则？市价与内在价值的关系？"></textarea></div>
     <div class="row"><button class="btn btn-primary" onclick="addLog()">记录</button><button class="btn btn-outline" onclick="closeM('log-modal')">取消</button></div>
@@ -347,53 +468,169 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
 </div>
 
 <script>
+// ════════════════════════════════════════════
+// CONFIG
+// ════════════════════════════════════════════
 const RAW='https://raw.githubusercontent.com/';
 const API='https://api.github.com/repos/';
 const TODAY=new Date().toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'});
-let companies=[],remoteLogs=[],currentId=null,currentTab=0,valChart=null;
-let S={pat:'',repo:'Pjaaden/Stock-Research',datapath:'data/companies.json',capital:0,discount:7,margin:20,maxpos:25};
-let LO={},localLogs=[];
+const CUR_SYMBOL={CNY:'¥',HKD:'HK$',USD:'US$'};
+const CUR_COLOR={CNY:'var(--cny)',HKD:'var(--hkd)',USD:'var(--usd)'};
 
-function lsG(k,d=null){try{const v=localStorage.getItem('ios3_'+k);return v?JSON.parse(v):d}catch{return d}}
-function lsS(k,v){try{localStorage.setItem('ios3_'+k,JSON.stringify(v))}catch{}}
-function loadLocal(){S={...S,...(lsG('settings')||{})};LO=lsG('overrides')||{};localLogs=lsG('local_logs')||[]}
-function saveS(){S.repo=id('s-repo').value;S.datapath=id('s-datapath').value;S.capital=pf(id('s-capital').value);S.discount=pf(id('s-discount').value)||7;S.margin=pf(id('s-margin').value)||20;S.maxpos=pf(id('s-maxpos').value)||25;lsS('settings',S)}
-function savePAT(){S.pat=id('s-pat').value;lsS('settings',S);updPAT()}
-function updPAT(){const el=id('pat-status');if(S.pat&&S.pat.length>10){el.style.color='var(--green-mid)';el.textContent='✓ PAT 已保存（'+S.pat.length+'位）'}else{el.style.color='var(--text3)';el.textContent='未配置 · 无法同步'}}
-function togglePAT(){const i=id('s-pat');i.type=i.type==='password'?'text':'password'}
-function fillSettings(){id('s-pat').value=S.pat||'';id('s-repo').value=S.repo;id('s-datapath').value=S.datapath;id('s-capital').value=S.capital||'';id('s-discount').value=S.discount;id('s-margin').value=S.margin;id('s-maxpos').value=S.maxpos;updPAT()}
-function id(x){return document.getElementById(x)}
-function pf(v){return parseFloat(v)||0}
+// ════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════
+let companies=[], remoteLogs=[], currentId=null, currentTab=0;
+let valChart=null, allocChart=null, cashChart=null;
 
+// FX rates (CNY per 1 unit)
+let FX = {USDCNY:7.28, HKDCNY:0.934, src:'手动'};
+
+// Settings
+let S={pat:'',repo:'Pjaaden/Stock-Research',datapath:'data/companies.json',
+  capCNY:0, capHKD:0, capUSD:0,
+  fxUSD:7.28, fxHKD:0.934};
+
+// Local overrides: { id: { price, shares_held, avg_cost, max_position_pct, signal, checklist_state:{} } }
+let LO={};
+let localLogs=[];
+
+function lsG(k,d=null){try{const v=localStorage.getItem('ios31_'+k);return v?JSON.parse(v):d}catch{return d}}
+function lsS(k,v){try{localStorage.setItem('ios31_'+k,JSON.stringify(v))}catch{}}
+function pf(v,def=0){return parseFloat(v)||def}
+function pi(v,def=0){return parseInt(v)||def}
+function g(x){return document.getElementById(x)}
+
+function loadLocal(){
+  S={...S,...(lsG('settings')||{})};
+  LO=lsG('overrides')||{};
+  localLogs=lsG('local_logs')||[];
+  FX.USDCNY=S.fxUSD||7.28;
+  FX.HKDCNY=S.fxHKD||0.934;
+}
+
+function saveS(){
+  S.repo=g('s-repo').value;
+  S.fxUSD=pf(g('s-usdcny').value,7.28);
+  S.fxHKD=pf(g('s-hkdcny').value,0.934);
+  S.capCNY=pf(g('s-cap-cny').value);
+  S.capHKD=pf(g('s-cap-hkd').value);
+  S.capUSD=pf(g('s-cap-usd').value);
+  FX.USDCNY=S.fxUSD; FX.HKDCNY=S.fxHKD; FX.src='手动';
+  lsS('settings',S);
+  renderOverview();
+}
+function savePAT(){S.pat=g('s-pat').value;lsS('settings',S);updPAT()}
+function updPAT(){const el=g('pat-status');if(S.pat&&S.pat.length>10){el.style.color='var(--green-mid)';el.textContent='✓ PAT 已保存（'+S.pat.length+'位）'}else{el.style.color='var(--text3)';el.textContent='未配置'}}
+function togglePAT(){const i=g('s-pat');i.type=i.type==='password'?'text':'password'}
+function fillSettings(){
+  g('s-pat').value=S.pat||'';g('s-repo').value=S.repo;
+  g('s-usdcny').value=S.fxUSD;g('s-hkdcny').value=S.fxHKD;
+  g('s-cap-cny').value=S.capCNY||'';g('s-cap-hkd').value=S.capHKD||'';g('s-cap-usd').value=S.capUSD||'';
+  updPAT();
+}
+
+// ════════════════════════════════════════════
+// FX RATES
+// ════════════════════════════════════════════
+async function fetchFX(manual=false){
+  // Try multiple free endpoints
+  const endpoints=[
+    {url:'https://open.er-api.com/v6/latest/CNY',parse:d=>({USDCNY:1/d.rates.USD,HKDCNY:1/d.rates.HKD,src:'ExchangeRate-API'})},
+    {url:'https://api.frankfurter.app/latest?from=CNY&to=USD,HKD',parse:d=>({USDCNY:1/d.rates.USD,HKDCNY:1/d.rates.HKD,src:'Frankfurter'})},
+  ];
+  for(const ep of endpoints){
+    try{
+      const r=await fetch(ep.url);
+      if(!r.ok) continue;
+      const d=await r.json();
+      const fx=ep.parse(d);
+      FX={...FX,...fx};
+      S.fxUSD=FX.USDCNY;S.fxHKD=FX.HKDCNY;
+      lsS('settings',S);
+      updateFXBar();
+      if(manual) toast(`✓ 汇率已更新（${fx.src}）`,'ok');
+      return;
+    }catch{}
+  }
+  // Fallback to manual
+  FX.src='手动（自动获取失败）';
+  updateFXBar();
+  if(manual) toast('自动获取失败，使用手动汇率','err');
+}
+
+function updateFXBar(){
+  g('fx-usd').textContent=FX.USDCNY.toFixed(4);
+  g('fx-hkd').textContent=FX.HKDCNY.toFixed(4);
+  g('fx-src').textContent=FX.src;
+  if(g('s-usdcny')) g('s-usdcny').value=FX.USDCNY.toFixed(4);
+  if(g('s-hkdcny')) g('s-hkdcny').value=FX.HKDCNY.toFixed(4);
+  const detail=g('fx-status-detail');
+  if(detail) detail.textContent=`来源：${FX.src} · USD/CNY=${FX.USDCNY.toFixed(4)} · HKD/CNY=${FX.HKDCNY.toFixed(4)}`;
+}
+
+function toCNY(amount, currency){
+  if(currency==='CNY') return amount;
+  if(currency==='HKD') return amount*FX.HKDCNY;
+  if(currency==='USD') return amount*FX.USDCNY;
+  return amount;
+}
+
+// ════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════
 async function pullData(){
   setSP('syncing');
+  await fetchFX();
   try{
     const r=await fetch(RAW+S.repo+'/main/'+S.datapath+'?t='+Date.now());
-    if(!r.ok)throw new Error('HTTP '+r.status);
+    if(!r.ok) throw new Error(r.status);
     const d=await r.json();
     companies=d.companies||[];
+    // Sync pool settings from JSON if present
+    if(d.settings?.pools){
+      const p=d.settings.pools;
+      if(!S.capCNY && p.CNY?.capital) S.capCNY=p.CNY.capital;
+      if(!S.capHKD && p.HKD?.capital) S.capHKD=p.HKD.capital;
+      if(!S.capUSD && p.USD?.capital) S.capUSD=p.USD.capital;
+    }
     try{const lr=await fetch(RAW+S.repo+'/main/data/logs.json?t='+Date.now());const ld=await lr.json();remoteLogs=ld.logs||[]}catch{}
-    id('sb-src').textContent='GitHub ★';
-    id('sb-date').textContent=d._meta?.last_updated||TODAY;
+    g('sb-src').textContent='GitHub ★';
+    g('sb-date').textContent=d._meta?.last_updated||TODAY;
     lsS('cache_co',companies);setSP('ok');
-  }catch{companies=lsG('cache_co')||[];setSP('err');id('sb-src').textContent='缓存'}
+  }catch{
+    companies=lsG('cache_co')||[];setSP('err');g('sb-src').textContent='缓存';
+  }
   renderAll();
 }
-function setSP(s){const m={ok:'<span class="sync-pill ok">✓ 已同步</span>',syncing:'<span class="sync-pill syncing"><span class="spin">⟳</span> 同步中</span>',err:'<span class="sync-pill err">⚠ 离线</span>'};id('sb-sync-pill').innerHTML=m[s]||''}
 
+function setSP(s){const m={ok:'<span class="sync-pill ok">✓ 已同步</span>',syncing:'<span class="sync-pill syncing"><span class="spin">⟳</span> 同步中</span>',err:'<span class="sync-pill err">⚠ 离线</span>'};g('sb-sp').innerHTML=m[s]||''}
+
+// ════════════════════════════════════════════
+// GITHUB PUSH
+// ════════════════════════════════════════════
 async function pushGH(msg){
-  if(!S.pat){toast('请在「设置」中配置 GitHub PAT','err');return false}
+  if(!S.pat){toast('请在设置中配置 GitHub PAT','err');return false}
   toast('正在推送至 GitHub…','info');
   try{
     const mRes=await fetch(API+S.repo+'/contents/'+S.datapath,{headers:{Authorization:'token '+S.pat,'Accept':'application/vnd.github.v3+json'}});
-    if(!mRes.ok)throw new Error('获取文件失败: '+mRes.status);
+    if(!mRes.ok) throw new Error('获取文件: '+mRes.status);
     const meta=await mRes.json();
+    // Merge overrides into companies (only writable fields)
     const merged=companies.map(c=>{
       const ov=LO[c.id]||{};const cs=ov.checklist_state||{};
-      return{...c,price:ov.price??c.price,position_pct:ov.position_pct??c.position_pct,avg_cost:ov.avg_cost??c.avg_cost,max_position_pct:ov.max_position_pct??c.max_position_pct,signal:ov.signal??c.signal,
-        checklist:(c.checklist||[]).map(i=>({...i,checked:cs[i.id]??i.checked}))};
+      return{...c,
+        price:ov.price??c.price,
+        shares_held:ov.shares_held??c.shares_held??0,
+        avg_cost:ov.avg_cost??c.avg_cost??0,
+        max_position_pct:ov.max_position_pct??c.max_position_pct,
+        signal:ov.signal??c.signal,
+        checklist:(c.checklist||[]).map(i=>({...i,checked:cs[i.id]??i.checked}))
+      };
     });
-    const payload={companies:merged,_meta:{version:'1.0',last_updated:TODAY,description:'Investment OS 主数据文件',maintainer:'Pjaaden/Stock-Research',update_instructions:'由工作台自动同步'}};
+    // Build payload preserving all original fields
+    const original=await(await fetch(RAW+S.repo+'/main/'+S.datapath+'?t='+Date.now())).json();
+    const payload={...original,companies:merged,_meta:{...original._meta,last_updated:TODAY}};
     const content=btoa(unescape(encodeURIComponent(JSON.stringify(payload,null,2))));
     const pRes=await fetch(API+S.repo+'/contents/'+S.datapath,{method:'PUT',
       headers:{Authorization:'token '+S.pat,'Content-Type':'application/json','Accept':'application/vnd.github.v3+json'},
@@ -405,217 +642,341 @@ async function pushGH(msg){
 }
 async function pushOne(){const c=getC(currentId);if(!c)return;await pushGH('Update '+c.name+' ['+TODAY+']')}
 async function pushAll(){await pushGH('Investment OS full sync ['+TODAY+']')}
-async function testPAT(){saveS();savePAT();if(!S.pat){toast('请先输入 PAT','err');return}try{const r=await fetch(API+S.repo,{headers:{Authorization:'token '+S.pat}});if(r.ok)toast('✓ 连接成功','ok');else toast('连接失败: '+r.status,'err')}catch(e){toast('网络错误: '+e.message,'err')}}
+async function testPAT(){saveS();savePAT();if(!S.pat){toast('请先输入PAT','err');return}try{const r=await fetch(API+S.repo,{headers:{Authorization:'token '+S.pat}});if(r.ok)toast('✓ 连接成功','ok');else toast('失败: '+r.status,'err')}catch(e){toast('网络错误: '+e.message,'err')}}
 
+// ════════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════════
 function getC(id){return companies.find(c=>c.id===id)}
 function wval(c){return(c.scenarios||[]).reduce((s,sc)=>s+sc.target_price*(sc.prob/100),0)}
-function effP(c){return LO[c.id]?.price??c.price}
-function effPos(c){return LO[c.id]?.position_pct??c.position_pct}
-function effCost(c){return LO[c.id]?.avg_cost??c.avg_cost}
-function effMax(c){return LO[c.id]?.max_position_pct??c.max_position_pct}
+function effP(c){return pf(LO[c.id]?.price??c.price)}
+function effShares(c){return pi(LO[c.id]?.shares_held??c.shares_held??0)}
+function effCost(c){return pf(LO[c.id]?.avg_cost??c.avg_cost??0)}
+function effMax(c){return pf(LO[c.id]?.max_position_pct??c.max_position_pct??25)}
 function effChk(c,iid){return(LO[c.id]?.checklist_state||{})[iid]??null}
 function sigC(s){return{buy:'var(--green-mid)',hold:'var(--yellow-mid)',sell:'var(--red-mid)',watch:'var(--blue-mid)'}[s]||'var(--text3)'}
 function sigL(s){return{buy:'↑ 买入',hold:'→ 持有',sell:'↓ 卖出',watch:'◎ 观察'}[s]||s}
 function mosC(m){return m>=20?'var(--green-mid)':m>=0?'var(--yellow-mid)':m>=-20?'var(--orange-mid)':'var(--red-mid)'}
+function cur(c){return c.currency||{A:'CNY',HK:'HKD',US:'USD'}[c.exchange]||'CNY'}
+function sym(c){return CUR_SYMBOL[cur(c)]||'¥'}
+
+// Position market value in native currency
+function posVal(c){return effShares(c)*effP(c)}
+// Position market value in CNY
+function posValCNY(c){return toCNY(posVal(c),cur(c))}
+// Pool capital in CNY
+function capCNY(pool){
+  if(pool==='CNY') return S.capCNY*10000;
+  if(pool==='HKD') return toCNY(S.capHKD*10000,'HKD');
+  if(pool==='USD') return toCNY(S.capUSD*10000,'USD');
+  return 0;
+}
+// Invested in pool (CNY)
+function investedInPool(pool){
+  return companies.filter(c=>cur(c)===pool).reduce((s,c)=>s+posValCNY(c),0);
+}
 
 function lcU(key,val){
   if(!currentId)return;if(!LO[currentId])LO[currentId]={};
-  LO[currentId][key]=pf(val);lsS('overrides',LO);
+  LO[currentId][key]=key==='shares_held'?pi(val):pf(val);
+  lsS('overrides',LO);
   const c=getC(currentId);if(c){renderLadder(c);renderScenarios(c);renderPosPanel(c);renderOverview();renderSidebar()}
 }
 function toggleChk(cid,iid){
   if(!LO[cid])LO[cid]={};if(!LO[cid].checklist_state)LO[cid].checklist_state={};
   const c=getC(cid);const item=(c.checklist||[]).find(i=>i.id===iid);
-  const cur=effChk(c,iid)??item?.checked??false;
-  LO[cid].checklist_state[iid]=!cur;lsS('overrides',LO);renderChecklist(c);
+  const cur2=effChk(c,iid)??item?.checked??false;
+  LO[cid].checklist_state[iid]=!cur2;lsS('overrides',LO);renderChecklist(c);
 }
 
-function renderAll(){id('ov-date').textContent='基于估值纪律的被动决策工作台 · '+TODAY;renderSidebar();renderOverview();renderLog()}
+// ════════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════════
+function renderAll(){
+  g('ov-date').textContent='多币种仓位纪律工作台 · '+TODAY;
+  renderSidebar();renderOverview();renderLog();
+}
 
 function renderSidebar(){
-  id('sb-cos').innerHTML=companies.map(c=>{
-    const sc=sigC(c.signal),pos=effPos(c);
+  g('sb-cos').innerHTML=companies.map(c=>{
+    const sc=sigC(c.signal),cv=cur(c),sym2=CUR_SYMBOL[cv]||'¥';
+    const shares=effShares(c),price=effP(c),mv=shares*price;
+    const mvStr=shares>0?(sym2+(mv>=10000?(mv/10000).toFixed(1)+'万':mv.toFixed(0))):sym2+'—';
     return`<div class="nav-item${c.id===currentId?' active':''}" onclick="nav('detail','${c.id}')" data-cid="${c.id}">
       <span class="nav-dot" style="background:${sc}"></span>
       <span style="flex:1;overflow:hidden;text-overflow:ellipsis">${c.name}</span>
-      <span class="nav-badge" style="background:${sc}20;color:${sc}">${pos}%</span>
+      <span class="nav-badge" style="background:${CUR_COLOR[cv]}18;color:${CUR_COLOR[cv]}">${mvStr}</span>
     </div>`;
   }).join('');
 }
 
 function renderOverview(){
-  const cap=S.capital;let ip=0,pnlSum=0,pnlW=0,alerts=0;
-  companies.forEach(c=>{
-    const pos=effPos(c),cost=effCost(c),price=effP(c);ip+=pos;
-    if(cost>0&&pos>0){pnlSum+=(price-cost)/cost*pos;pnlW+=pos}
-    alerts+=(c.checklist||[]).filter(i=>i.priority==='high'&&!(effChk(c,i.id)??i.checked)).length;
+  // Pool cards
+  const pools=['CNY','HKD','USD'];
+  const poolCaps={'CNY':S.capCNY*10000,'HKD':S.capHKD*10000,'USD':S.capUSD*10000};
+  const poolLabels={'CNY':'A股资金池','HKD':'港股资金池','USD':'美股资金池'};
+  const poolSyms={'CNY':'¥','HKD':'HK$','USD':'US$'};
+  const poolClasses={'CNY':'pool-cny','HKD':'pool-hkd','USD':'pool-usd'};
+
+  pools.forEach(pool=>{
+    const cap=poolCaps[pool];
+    const inv=companies.filter(c=>cur(c)===pool).reduce((s,c)=>s+posVal(c),0);
+    const cash=Math.max(0,cap-inv);
+    const invPct=cap>0?(inv/cap*100):0;
+    const sym2=poolSyms[pool];
+    const fmt=v=>v>=10000?(v/10000).toFixed(1)+'万':v.toFixed(0);
+    g('pool-'+pool.toLowerCase()).innerHTML=`
+      <div class="pool-tag">${poolLabels[pool]}</div>
+      <div class="pool-main">${sym2}${fmt(inv)}</div>
+      <div class="pool-sub">已投入 / ${cap>0?sym2+fmt(cap):'未设置总资金'}</div>
+      ${cap>0?`<div class="pool-bar-wrap">
+        <div class="pool-bar-track"><div class="pool-bar-fill" style="width:${Math.min(100,invPct).toFixed(1)}%"></div></div>
+        <div class="pool-bar-labels"><span>已投${invPct.toFixed(1)}%</span><span>现金${sym2}${fmt(cash)}</span></div>
+      </div>`:'<div style="font-size:11px;color:var(--text3);margin-top:6px">在设置中输入总资金</div>'}`;
   });
-  const cp=Math.max(0,100-ip),ia=cap>0?(ip/100*cap).toFixed(1):'—',ca=cap>0?(cp/100*cap).toFixed(1):'—';
-  const pnl=pnlW>0?pnlSum/pnlW:0,pnlStr=(pnl>=0?'+':'')+pnl.toFixed(1)+'%',pnlCol=pnl>=0?'var(--green-mid)':'var(--red-mid)';
-  id('port-grid').innerHTML=`
-    <div class="port-card"><div class="pl">总仓位</div><div class="pv">${ip.toFixed(1)}<span style="font-size:14px">%</span></div><div class="ps">${companies.filter(c=>effPos(c)>0).length}只持仓股</div></div>
-    <div class="port-card"><div class="pl">现金比例</div><div class="pv" style="color:var(--accent2)">${cp.toFixed(1)}<span style="font-size:14px">%</span></div><div class="ps">${ca!=='—'?'≈¥'+ca+'万':cap?'—':'设置总资金后显示'}</div></div>
-    <div class="port-card"><div class="pl">持仓金额</div><div class="pv">${ia!=='—'?'¥'+ia:'—'}<span style="font-size:14px">${ia!=='—'?'万':''}</span></div><div class="ps">${cap>0?'总资金¥'+cap+'万':cap?'—':'设置总资金后显示'}</div></div>
-    <div class="port-card"><div class="pl">加权浮盈</div><div class="pv" style="color:${pnlCol}">${pnlStr}</div><div class="ps">仓位加权收益率</div></div>
-    <div class="port-card"><div class="pl">待核验</div><div class="pv" style="color:${alerts>0?'var(--orange-mid)':'var(--green-mid)'}">${alerts}</div><div class="ps">高优先级监控项</div></div>`;
-  const grid=id('co-grid');
-  if(!companies.length){grid.style.display='none';id('ov-empty').style.display='block';return}
-  grid.style.display='grid';id('ov-empty').style.display='none';
+
+  // Summary stats
+  const totalCNY=pools.reduce((s,p)=>s+companies.filter(c=>cur(c)===p).reduce((ss,c)=>ss+posValCNY(c),0),0);
+  const totalCapCNY=toCNY(S.capCNY*10000,'CNY')+toCNY(S.capHKD*10000,'HKD')+toCNY(S.capUSD*10000,'USD');
+  const cashCNY=Math.max(0,totalCapCNY-totalCNY);
+  const portPct=totalCapCNY>0?(totalCNY/totalCapCNY*100).toFixed(1)+'%':'—';
+
+  // Weighted PnL
+  let pnlW=0,pnlN=0;
+  companies.forEach(c=>{const sh=effShares(c),cost=effCost(c),price=effP(c);if(sh>0&&cost>0){const mv=toCNY(sh*price,cur(c)),cb=toCNY(sh*cost,cur(c));pnlN+=mv-cb;pnlW+=cb;}});
+  const pnl=pnlW>0?(pnlN/pnlW*100):null;
+  const pnlStr=pnl!==null?((pnl>=0?'+':'')+pnl.toFixed(2)+'%'):'—';
+  const pnlCol=pnl===null?'var(--text)':pnl>=0?'var(--green-mid)':'var(--red-mid)';
+
+  const alerts=companies.reduce((s,c)=>s+(c.checklist||[]).filter(i=>i.priority==='high'&&!(effChk(c,i.id)??i.checked)).length,0);
+  const fmt=v=>v>=10000?'¥'+(v/10000).toFixed(1)+'万':'¥'+v.toFixed(0);
+
+  g('port-summary').innerHTML=`
+    <div class="sum-card"><div class="sl">总持仓（RMB等值）</div><div class="sv">${totalCNY>0?fmt(totalCNY):'—'}</div><div class="ss">${portPct} 仓位使用率</div></div>
+    <div class="sum-card"><div class="sl">现金（RMB等值）</div><div class="sv" style="color:var(--accent2)">${totalCapCNY>0?fmt(cashCNY):'—'}</div><div class="ss">三市场现金合计</div></div>
+    <div class="sum-card"><div class="sl">加权浮盈</div><div class="sv" style="color:${pnlCol}">${pnlStr}</div><div class="ss">含成本持仓加权</div></div>
+    <div class="sum-card"><div class="sl">高优先监控</div><div class="sv" style="color:${alerts>0?'var(--orange-mid)':'var(--green-mid)'}">${alerts}</div><div class="ss">待核验项目</div></div>`;
+
+  // Alloc chart
+  renderAllocCharts(pools,poolCaps);
+
+  // Company cards
+  const grid=g('co-grid');
+  if(!companies.length){grid.style.display='none';g('ov-empty').style.display='block';return}
+  grid.style.display='grid';g('ov-empty').style.display='none';
   grid.innerHTML=companies.map(c=>{
-    const price=effP(c),w=wval(c),bear=Math.min(...c.scenarios.map(s=>s.target_price)),bull=Math.max(...c.scenarios.map(s=>s.target_price));
+    const price=effP(c),w=wval(c),cv=cur(c),sym2=sym(c);
+    const shares=effShares(c),mv=shares*price,cost=effCost(c);
+    const bear=Math.min(...c.scenarios.map(s=>s.target_price)),bull=Math.max(...c.scenarios.map(s=>s.target_price));
     const range=bull-bear||1,pp=Math.max(2,Math.min(98,(price-bear)/range*100));
-    const mos=w>0?((w-price)/w*100):0,mosStr=(mos>=0?'+':'')+mos.toFixed(1)+'%';
-    const sc=sigC(c.signal),pos=effPos(c),cost=effCost(c),pnl=cost>0?(price-cost)/cost*100:null;
+    const mos=w>0?((w-price)/w*100):0;
+    const pnlPct=shares>0&&cost>0?(price-cost)/cost*100:null;
+    const mvCNY=toCNY(mv,cv);
+    const mvStr=mv>=10000?sym2+(mv/10000).toFixed(2)+'万':sym2+mv.toFixed(0);
+    const mvCNYStr=cv!=='CNY'&&mv>0?'≈¥'+(mvCNY/10000).toFixed(2)+'万':'';
     return`<div class="co-card s-${c.signal}" onclick="nav('detail','${c.id}')">
-      <div class="co-top"><div><div class="co-name">${c.name}</div><div class="co-code">${c.code} · ${c.sector}</div></div><span class="sc ${c.signal}">${sigL(c.signal)}</span></div>
-      <div style="margin:8px 0 10px">
-        <div class="dev-labels"><span style="color:var(--red-mid)">熊 ¥${bear}</span><span style="font-family:var(--mono);font-size:11px;color:${mosC(mos)};font-weight:600">${mosStr} 安全边际</span><span style="color:var(--green-mid)">牛 ¥${bull}</span></div>
-        <div class="dev-track"><div class="dev-fill" style="width:${pp}%;background:${mos>=20?'var(--green-bg)':mos>=0?'var(--yellow-bg)':'var(--red-bg)'}"></div><div class="dev-pin" style="left:${pp}%;background:${sc}"></div></div>
+      <div class="co-top">
+        <div>
+          <div class="co-name">${c.name}</div>
+          <div class="co-meta"><span class="co-code">${c.code}</span><span class="cur-badge cur-${cv}">${cv}</span></div>
+        </div>
+        <span class="sc ${c.signal}">${sigL(c.signal)}</span>
       </div>
-      <div class="co-metrics">
-        <div class="mi"><div class="ml">市价</div><div class="mv">¥${price}</div></div>
-        <div class="mi"><div class="ml">内在价值</div><div class="mv" style="color:var(--accent2)">¥${w>0?w.toFixed(1):'—'}</div></div>
-        <div class="mi"><div class="ml">持仓</div><div class="mv">${pos}%</div></div>
-        <div class="mi"><div class="ml">浮盈</div><div class="mv" style="color:${pnl===null?'var(--text3)':pnl>=0?'var(--green-mid)':'var(--red-mid)'}">${pnl===null?'—':(pnl>=0?'+':'')+pnl.toFixed(1)+'%'}</div></div>
+      <div>
+        <div class="dev-labels"><span style="color:var(--red-mid)">熊 ${sym2}${bear}</span><span style="font-family:var(--mono);font-size:11px;color:${mosC(mos)};font-weight:600">${(mos>=0?'+':'')+mos.toFixed(1)}% 安全边际</span><span style="color:var(--green-mid)">牛 ${sym2}${bull}</span></div>
+        <div class="dev-track"><div class="dev-fill" style="width:${pp}%;background:${mos>=20?'var(--green-bg)':mos>=0?'var(--yellow-bg)':'var(--red-bg)'}"></div><div class="dev-pin" style="left:${pp}%;background:${sigC(c.signal)}"></div></div>
       </div>
+      <div class="co-pos-row">
+        <div class="pos-item"><div class="pl">市价</div><div class="pv">${sym2}${price}</div></div>
+        <div class="pos-item"><div class="pl">内在价值</div><div class="pv" style="color:var(--accent2)">${sym2}${w>0?w.toFixed(1):'—'}</div></div>
+        <div class="pos-item"><div class="pl">持股</div><div class="pv">${shares>0?shares.toLocaleString()+'股':'—'}</div></div>
+        <div class="pos-item"><div class="pl">持仓市值</div><div class="pv">${shares>0?mvStr:'—'}</div></div>
+        <div class="pos-item"><div class="pl">浮盈</div><div class="pv" style="color:${pnlPct===null?'var(--text3)':pnlPct>=0?'var(--green-mid)':'var(--red-mid)'}">${pnlPct===null?'—':(pnlPct>=0?'+':'')+pnlPct.toFixed(1)+'%'}</div></div>
+      </div>
+      ${mvCNYStr?`<div style="text-align:right;font-size:10px;color:var(--text3);margin-top:4px">${mvCNYStr}</div>`:''}
     </div>`;
   }).join('');
 }
 
+function renderAllocCharts(pools,poolCaps){
+  // Alloc by market (invested CNY value)
+  const allocData=pools.map(p=>companies.filter(c=>cur(c)===p).reduce((s,c)=>s+posValCNY(c),0));
+  const allocColors=['rgba(192,57,43,.75)','rgba(36,113,163,.75)','rgba(30,132,73,.75)'];
+
+  if(allocChart){allocChart.destroy();allocChart=null}
+  const actx=g('alloc-chart');
+  if(actx&&allocData.some(v=>v>0)){
+    allocChart=new Chart(actx,{type:'doughnut',data:{labels:['A股(CNY)','港股(HKD)','美股(USD)'],datasets:[{data:allocData,backgroundColor:allocColors,borderWidth:2,borderColor:'#fff'}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},padding:10}},tooltip:{callbacks:{label:ctx=>'¥'+(ctx.raw/10000).toFixed(1)+'万'}}}}});
+  }
+
+  // Cash vs invested per market
+  if(cashChart){cashChart.destroy();cashChart=null}
+  const cctx=g('cash-chart');
+  const invArr=pools.map(p=>companies.filter(c=>cur(c)===p).reduce((s,c)=>s+posValCNY(c),0));
+  const capArr=pools.map((p,i)=>({CNY:S.capCNY*10000,HKD:toCNY(S.capHKD*10000,'HKD'),USD:toCNY(S.capUSD*10000,'USD')}[p]||0));
+  const cashArr=capArr.map((cap,i)=>Math.max(0,cap-invArr[i]));
+  if(cctx){
+    cashChart=new Chart(cctx,{type:'bar',data:{
+      labels:['A股','港股','美股'],
+      datasets:[
+        {label:'已投入',data:invArr,backgroundColor:allocColors,borderRadius:4,borderSkipped:false},
+        {label:'现金',data:cashArr,backgroundColor:['rgba(192,57,43,.2)','rgba(36,113,163,.2)','rgba(30,132,73,.2)'],borderRadius:4,borderSkipped:false}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11},padding:8}},tooltip:{callbacks:{label:ctx=>'¥'+(ctx.raw/10000).toFixed(1)+'万'}}},
+        scales:{x:{grid:{display:false}},y:{ticks:{callback:v=>v>0?'¥'+(v/10000).toFixed(0)+'万':''},grid:{color:'rgba(0,0,0,.04)'}}}}});
+  }
+}
+
+// ── DETAIL ──
 function renderDetail(cid){
   const c=getC(cid);if(!c)return;
-  id('d-name').textContent=c.name;id('d-sub').textContent=`${c.code} · ${c.exchange} · ${c.sector} · 数据截至 ${c.data_as_of}`;
-  const sc=id('d-sig');sc.className='sc '+c.signal;sc.textContent=sigL(c.signal);
-  const rl=id('d-rlink');if(c.report_url){rl.style.display='inline';rl.href=c.report_url}else rl.style.display='none';
+  const cv=cur(c),sym2=sym(c);
+  g('d-name').textContent=c.name;
+  g('d-sub').textContent=`${c.code} · ${c.exchange} · ${c.sector} · 数据截至 ${c.data_as_of}`;
+  const sc=g('d-sig');sc.className='sc '+c.signal;sc.textContent=sigL(c.signal);
+  const cb=g('d-cur-badge');cb.className='cur-badge cur-'+cv;cb.textContent=cv;
+  if(g('lc-price-unit')) g('lc-price-unit').textContent=sym2;
+  if(g('lc-wval-unit')) g('lc-wval-unit').textContent=sym2;
+  if(g('lc-cost-unit')) g('lc-cost-unit').textContent=sym2;
   renderLadder(c);renderScenarios(c);renderPosPanel(c);renderChecklist(c);
-  id('notes-d').textContent=c.research_notes||'（暂无）';
-  id('d-rating').textContent={'strong-buy':'强烈买入 🟢','buy':'买入 🟢','hold':'持有 🟡','trim':'减仓 🟠','sell':'卖出 🔴','watch':'观察 🔵'}[c.rating]||c.rating||'—';
-  id('d-cat').textContent=c.next_catalyst||'—';id('d-asof').textContent=c.data_as_of||'—';
+  g('notes-d').textContent=c.research_notes||'（暂无）';
+  g('d-rating').textContent={'strong-buy':'强烈买入 🟢','buy':'买入 🟢','hold':'持有 🟡','trim':'减仓 🟠','sell':'卖出 🔴','watch':'观察 🔵'}[c.rating]||c.rating||'—';
+  g('d-cat').textContent=c.next_catalyst||'—';g('d-asof').textContent=c.data_as_of||'—';
   if(currentTab===1)setTimeout(()=>renderChart(c),50);
 }
 
 function renderLadder(c){
-  const price=effP(c),w=wval(c),bear=Math.min(...c.scenarios.map(s=>s.target_price)),bull=Math.max(...c.scenarios.map(s=>s.target_price));
+  const price=effP(c),w=wval(c),sym2=sym(c);
+  const bear=Math.min(...c.scenarios.map(s=>s.target_price)),bull=Math.max(...c.scenarios.map(s=>s.target_price));
   const base=c.scenarios.find(s=>s.name==='基准')?.target_price||w;
   const mos=w>0?((w-price)/w*100):0;
   const zones=[
-    {n:'极度低估',lo:0,hi:bear*0.85,act:'BUY',pos:`满仓（${effMax(c)}%）`,tr:`价格 < ¥${(bear*0.85).toFixed(2)}`},
+    {n:'极度低估',lo:0,hi:bear*0.85,act:'BUY',pos:`满仓（${effMax(c)}%）`,tr:`价格 < ${sym2}${(bear*0.85).toFixed(2)}`},
     {n:'合理低估',lo:bear*0.85,hi:w*0.8,act:'ADD',pos:'正常建仓',tr:'安全边际 ≥ 20%'},
     {n:'公允偏低',lo:w*0.8,hi:w,act:'HOLD',pos:'持有',tr:'持有，等催化剂'},
     {n:'公允偏高',lo:w,hi:base,act:'HOLD',pos:'持有',tr:'不加仓'},
-    {n:'轻微高估',lo:base,hi:bull*0.9,act:'TRIM',pos:'减仓50%',tr:`价格 > ¥${base.toFixed(2)}`},
-    {n:'明显高估',lo:bull*0.9,hi:9999,act:'SELL',pos:'止盈清仓',tr:`价格 > ¥${(bull*0.9).toFixed(2)}`},
+    {n:'轻微高估',lo:base,hi:bull*0.9,act:'TRIM',pos:'减仓50%',tr:`价格 > ${sym2}${base.toFixed(2)}`},
+    {n:'明显高估',lo:bull*0.9,hi:9999,act:'SELL',pos:'止盈清仓',tr:`价格 > ${sym2}${(bull*0.9).toFixed(2)}`},
   ];
   const ac={BUY:'act-buy',ADD:'act-add',HOLD:'act-hold',TRIM:'act-trim',SELL:'act-sell'};
-  id('ladder-tbody').innerHTML=zones.map(z=>{
+  g('ladder-tbody').innerHTML=zones.map(z=>{
     const inZ=price>=z.lo&&price<z.hi;
-    const lo=z.lo>0?`¥${z.lo.toFixed(2)}`:'—',hi=z.hi<9000?`¥${z.hi.toFixed(2)}`:'∞';
-    const mlo=w>0?((w-z.hi)/w*100).toFixed(0)+'%':'—',mhi=w>0?((w-z.lo)/w*100).toFixed(0)+'%':'—';
-    return`<tr${inZ?' class="cur-zone"':''}>
-      <td>${inZ?'▶ ':''}<span style="font-weight:${inZ?'700':'400'}">${z.n}</span></td>
-      <td style="font-family:var(--mono);font-size:11.5px">${lo} – ${hi}</td>
-      <td style="font-family:var(--mono);font-size:11px;color:var(--text3)">${mlo} ~ ${mhi}</td>
-      <td><span class="${ac[z.act]||''}">${z.act}</span></td>
-      <td style="font-size:12px">${z.pos}</td>
-      <td style="font-size:11.5px;color:var(--text2)">${z.tr}</td>
-    </tr>`;
+    const lo=z.lo>0?sym2+z.lo.toFixed(2):'—',hi=z.hi<9000?sym2+z.hi.toFixed(2):'∞';
+    const mlo=w>0?((w-Math.min(z.hi,w*2))/w*100).toFixed(0)+'%':'—',mhi=w>0?((w-z.lo)/w*100).toFixed(0)+'%':'—';
+    return`<tr${inZ?' class="cur-zone"':''}><td>${inZ?'▶ ':''}<span style="font-weight:${inZ?700:400}">${z.n}</span></td><td style="font-family:var(--mono);font-size:11.5px">${lo} – ${hi}</td><td style="font-family:var(--mono);font-size:11px;color:var(--text3)">${mlo} ~ ${mhi}</td><td><span class="${ac[z.act]||''}">${z.act}</span></td><td style="font-size:12px">${z.pos}</td><td style="font-size:11.5px;color:var(--text2)">${z.tr}</td></tr>`;
   }).join('');
   // Gauge
   const range=bull-bear||1,pp=Math.max(2,Math.min(98,(price-bear)/range*100));
-  id('dev-gauge-lg').innerHTML=`
-    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px"><span>熊 ¥${bear}</span><span style="font-family:var(--mono);font-weight:700;font-size:14px;color:${mosC(mos)}">${mos>=0?'+':''}${mos.toFixed(1)}% 安全边际</span><span>牛 ¥${bull}</span></div>
+  g('dev-gauge-lg').innerHTML=`
+    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text3);margin-bottom:4px"><span>熊 ${sym2}${bear}</span><span style="font-family:var(--mono);font-weight:700;font-size:14px;color:${mosC(mos)}">${mos>=0?'+':''}${mos.toFixed(1)}% 安全边际</span><span>牛 ${sym2}${bull}</span></div>
     <div class="dev-track" style="height:12px;border-radius:6px"><div class="dev-fill" style="width:${pp}%;background:${mos>=20?'var(--green-bg)':mos>=0?'var(--yellow-bg)':'var(--red-bg)'}"></div><div class="dev-pin" style="left:${pp}%;width:22px;height:22px;top:-5px;background:${sigC(c.signal)}"></div></div>
     <div style="margin-top:8px;display:flex;justify-content:space-around;font-size:11px;flex-wrap:wrap;gap:6px">
-      <span>内在价值 <b style="font-family:var(--mono)">¥${w.toFixed(2)}</b></span>
-      <span>市价 <b style="font-family:var(--mono)">¥${price}</b></span>
+      <span>内在价值 <b style="font-family:var(--mono)">${sym2}${w.toFixed(2)}</b></span>
+      <span>市价 <b style="font-family:var(--mono)">${sym2}${price}</b></span>
       <span>距牛 <b style="font-family:var(--mono);color:var(--green-mid)">+${((bull-price)/price*100).toFixed(1)}%</b></span>
       <span>距熊 <b style="font-family:var(--mono);color:var(--red-mid)">${((bear-price)/price*100).toFixed(1)}%</b></span>
     </div>`;
   const curZ=zones.find(z=>price>=z.lo&&price<z.hi);
-  const stEl=id('ladder-status');
-  if(curZ){const bg={BUY:'var(--green-lt)',ADD:'var(--green-lt)',HOLD:'var(--yellow-lt)',TRIM:'var(--orange-bg)',SELL:'var(--red-lt)'}[curZ.act]||'var(--bg2)';stEl.style.background=bg;stEl.innerHTML=`当前：<b>${curZ.n}</b>区间 · 指令：<b class="${ac[curZ.act]}">${curZ.act}</b> · ${curZ.tr}`}
-  id('lc-price').value=price;id('lc-wval').value=w.toFixed(2);
+  const st=g('ladder-status');
+  if(curZ){const bg={BUY:'var(--green-lt)',ADD:'var(--green-lt)',HOLD:'var(--yellow-lt)',TRIM:'var(--orange-bg)',SELL:'var(--red-lt)'}[curZ.act]||'var(--bg2)';st.style.background=bg;st.innerHTML=`当前：<b>${curZ.n}</b> · 指令：<b class="${ac[curZ.act]}">${curZ.act}</b> · ${curZ.tr}`}
+  g('lc-price').value=price;g('lc-wval').value=w.toFixed(2);
 }
 
 function renderScenarios(c){
-  const price=effP(c),w=wval(c);
-  id('sc-tbody').innerHTML=(c.scenarios||[]).map((s,i)=>{
+  const price=effP(c),w=wval(c),sym2=sym(c);
+  g('sc-tbody').innerHTML=(c.scenarios||[]).map((s,i)=>{
     const cls=['r-bull','r-base','r-bear'][i]||'',dev=price?((price-s.target_price)/s.target_price*100):0;
     const ds=dev<=0?`<span style="color:var(--green-mid)">+${Math.abs(dev).toFixed(1)}%</span>`:`<span style="color:var(--red-mid)">−${Math.abs(dev).toFixed(1)}%</span>`;
-    return`<tr class="${cls}"><td>${s.name}</td><td style="font-family:var(--mono)">${s.prob}%</td><td style="font-family:var(--mono);font-weight:600">¥${s.target_price}</td><td style="font-size:12px;color:var(--text2)">${s.assumptions}</td><td>${ds}</td><td style="font-family:var(--mono);font-size:11.5px">¥${(s.target_price*s.prob/100).toFixed(2)}</td></tr>`;
+    return`<tr class="${cls}"><td>${s.name}</td><td style="font-family:var(--mono)">${s.prob}%</td><td style="font-family:var(--mono);font-weight:600">${sym2}${s.target_price}</td><td style="font-size:12px;color:var(--text2)">${s.assumptions}</td><td>${ds}</td><td style="font-family:var(--mono);font-size:11.5px">${sym2}${(s.target_price*s.prob/100).toFixed(2)}</td></tr>`;
   }).join('');
-  id('wval-d').textContent='¥'+w.toFixed(2);
+  g('wval-d').textContent=sym(c)+w.toFixed(2);
   const mos=price&&w?((w-price)/w*100):0;
-  id('mos-d').textContent=(mos>=0?'+':'')+mos.toFixed(1)+'%';id('mos-d').style.color=mosC(mos);
-  id('method-d').textContent=c.valuation_method||'—';
+  g('mos-d').textContent=(mos>=0?'+':'')+mos.toFixed(1)+'%';g('mos-d').style.color=mosC(mos);
+  g('method-d').textContent=c.valuation_method||'—';
 }
 
 function renderPosPanel(c){
-  id('lc-pos').value=effPos(c);id('lc-cost').value=effCost(c);id('lc-maxpos').value=effMax(c);
-  id('rules-tbody').innerHTML=(c.position_rules||[]).map(r=>{
+  const sym2=sym(c),cv=cur(c);
+  g('lc-shares').value=effShares(c);g('lc-cost').value=effCost(c);g('lc-maxpos').value=effMax(c);
+  g('rules-tbody').innerHTML=(c.position_rules||[]).map(r=>{
     const ac={BUY:'act-buy',ADD:'act-add',HOLD:'act-hold',TRIM:'act-trim',SELL:'act-sell'}[r.action]||'';
     return`<tr><td style="font-weight:500">${r.zone}</td><td style="font-size:12px">${r.condition}</td><td><span class="${ac}">${r.action}</span></td><td style="font-size:12px">${r.target_position}</td><td style="font-size:11.5px;color:var(--text2)">${r.trigger}</td></tr>`;
   }).join('');
-  const price=effP(c),cost=effCost(c),pos=effPos(c),pnl=cost>0?(price-cost)/cost*100:null;
-  const pe=id('pos-pnl');
-  if(pnl!==null){pe.style.background=pnl>=0?'var(--green-lt)':'var(--red-lt)';pe.innerHTML=`浮盈：<b style="color:${pnl>=0?'var(--green-mid)':'var(--red-mid)'}">${pnl>=0?'+':''}${pnl.toFixed(2)}%</b>　成本 ¥${cost} → 市价 ¥${price}　持仓 ${pos}%`}
-  else{pe.style.background='var(--bg2)';pe.textContent='请输入平均成本以计算浮盈'}
+  const shares=effShares(c),price=effP(c),cost=effCost(c);
+  const mv=shares*price,cb=shares*cost,pnl=cb>0?(mv-cb)/cb*100:null;
+  const mvCNY=toCNY(mv,cv),capPool={'CNY':S.capCNY*10000,'HKD':toCNY(S.capHKD*10000,'HKD'),'USD':toCNY(S.capUSD*10000,'USD')}[cv]||0;
+  const poolPct=capPool>0?(mvCNY/capPool*100).toFixed(1)+'%':'—';
+  const pd=g('pos-detail');
+  pd.style.background=pnl===null?'var(--bg2)':pnl>=0?'var(--green-lt)':'var(--red-lt)';
+  pd.innerHTML=`
+    <div><b>持有股数：</b>${shares>0?shares.toLocaleString()+'股':'未建仓'} &nbsp;·&nbsp; <b>市值：</b>${sym2}${(mv/10000).toFixed(2)}万${cv!=='CNY'?'（≈¥'+(mvCNY/10000).toFixed(2)+'万）':''}</div>
+    <div><b>占${cv}池：</b>${poolPct} &nbsp;·&nbsp; <b>成本：</b>${sym2}${cost} &nbsp;·&nbsp; <b>浮盈：</b><span style="color:${pnl===null?'var(--text3)':pnl>=0?'var(--green-mid)':'var(--red-mid)'};font-weight:600">${pnl===null?'—':(pnl>=0?'+':'')+pnl.toFixed(2)+'%'}</span></div>`;
 }
 
 function renderChecklist(c){
-  const ul=id('cl-items');const items=c.checklist||[];
-  if(!items.length){ul.innerHTML='<li style="color:var(--text3);font-size:12.5px;padding:10px 0">暂无监控项目</li>';return}
+  const el=g('cl-items');const items=c.checklist||[];
+  if(!items.length){el.innerHTML='<div style="color:var(--text3);font-size:12.5px;padding:10px 0">暂无监控项目</div>';return}
   const pc={high:'var(--red-mid)',mid:'var(--yellow-mid)',low:'var(--text3)'};
-  ul.innerHTML=items.map(item=>{
+  el.innerHTML=items.map(item=>{
     const chk=effChk(c,item.id)??item.checked;
-    return`<li style="display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid var(--border)">
-      <div onclick="toggleChk('${c.id}','${item.id}')" style="width:15px;height:15px;border:1.5px solid var(--border2);border-radius:3px;flex-shrink:0;margin-top:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;${chk?'background:var(--green-mid);border-color:var(--green-mid)':''}">${chk?'<span style="color:white;font-size:9px">✓</span>':''}</div>
-      <div style="flex:1;${chk?'opacity:.5;text-decoration:line-through':''}"><div style="font-size:12.5px">${item.text}</div><div style="font-size:11px;color:var(--text3);margin-top:1px">${item.action}</div>${item.category?`<div style="font-size:10px;color:var(--text3)">${item.category}</div>`:''}</div>
+    return`<div class="cl-item">
+      <div class="chk${chk?' on':''}" onclick="toggleChk('${c.id}','${item.id}')">${chk?'<span style="color:white;font-size:9px">✓</span>':''}</div>
+      <div style="flex:1;${chk?'opacity:.5;text-decoration:line-through':''}">
+        <div style="font-size:12.5px">${item.text}</div>
+        <div style="font-size:11px;color:var(--text3);margin-top:1px">${item.action}</div>
+        ${item.category?`<div style="font-size:10px;color:var(--text3)">${item.category}</div>`:''}
+      </div>
       <span style="font-size:9.5px;padding:1px 5px;border-radius:3px;font-weight:600;text-transform:uppercase;color:${pc[item.priority]};background:${pc[item.priority]}20;flex-shrink:0">${{high:'高',mid:'中',low:'低'}[item.priority]}</span>
-    </li>`;
+    </div>`;
   }).join('');
 }
 
 function renderChart(c){
-  const ctx=id('val-chart');if(!ctx)return;
+  const ctx=g('val-chart');if(!ctx)return;
   if(valChart){valChart.destroy();valChart=null}
-  const w=wval(c),price=effP(c);
-  valChart=new Chart(ctx,{type:'bar',data:{labels:[...c.scenarios.map(s=>s.name),'加权价值','当前市价'],
-    datasets:[{data:[...c.scenarios.map(s=>s.target_price),w,price],backgroundColor:['rgba(26,122,69,.7)','rgba(37,87,167,.7)','rgba(201,48,64,.7)','rgba(37,87,167,.9)','rgba(100,90,80,.6)'],borderRadius:5,borderSkipped:false}]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'¥'+c.raw.toFixed(2)}}},
-      scales:{y:{beginAtZero:false,grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>'¥'+v}},x:{grid:{display:false}}}}});
+  const w=wval(c),price=effP(c),sym2=sym(c);
+  valChart=new Chart(ctx,{type:'bar',data:{
+    labels:[...c.scenarios.map(s=>s.name),'加权价值','当前市价'],
+    datasets:[{data:[...c.scenarios.map(s=>s.target_price),w,price],
+      backgroundColor:['rgba(26,122,69,.7)','rgba(37,87,167,.7)','rgba(201,48,64,.7)','rgba(37,87,167,.9)','rgba(100,90,80,.6)'],
+      borderRadius:5,borderSkipped:false}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>sym2+ctx.raw.toFixed(2)}}},
+      scales:{y:{beginAtZero:false,grid:{color:'rgba(0,0,0,.04)'},ticks:{callback:v=>sym2+v}},x:{grid:{display:false}}}}});
 }
 
 function renderLog(){
-  const el=id('log-entries'),empty=id('log-empty');
+  const el=g('log-entries'),empty=g('log-empty');
   const all=[...remoteLogs,...localLogs].sort((a,b)=>b.date.localeCompare(a.date));
   if(!all.length){el.innerHTML='';empty.style.display='block';return}empty.style.display='none';
   const as={BUY:'background:var(--green-bg);color:var(--green)',ADD:'background:var(--green-bg);color:var(--green)',HOLD:'background:var(--yellow-bg);color:var(--yellow)',TRIM:'background:var(--orange-bg);color:var(--orange)',SELL:'background:var(--red-bg);color:var(--red)',WATCH:'background:var(--blue-bg);color:var(--blue-mid)',UPDATE:'background:var(--bg3);color:var(--text2)'};
-  el.innerHTML=all.map(l=>`<div class="log-entry"><div class="log-hdr"><span class="log-date">${l.date}</span><span class="log-act" style="${as[l.action]||''}">${l.action}</span><span class="log-ticker">${l.company}</span>${l.price?`<span style="font-family:var(--mono);font-size:11px;color:var(--text2)">@ ¥${l.price}</span>`:''}${l.position_change?`<span style="font-size:11px;color:var(--text3)">${l.position_change}</span>`:''}${l._local?'<span style="font-size:9.5px;background:var(--blue-bg);color:var(--blue-mid);padding:1px 5px;border-radius:3px">本地</span>':''}</div><div class="log-rat">${l.rationale}</div></div>`).join('');
+  el.innerHTML=all.map(l=>`<div class="log-entry"><div class="log-hdr"><span class="log-date">${l.date}</span><span class="log-act" style="${as[l.action]||''}">${l.action}</span><span class="log-ticker">${l.company}</span>${l.price?`<span style="font-family:var(--mono);font-size:11px;color:var(--text2)">@ ${l.price}</span>`:''}${l.shares?`<span style="font-size:11px;color:var(--text3)">${l.shares}</span>`:''}${l._local?'<span style="font-size:9.5px;background:var(--blue-bg);color:var(--blue-mid);padding:1px 5px;border-radius:3px">本地</span>':''}</div><div style="font-size:12px;color:var(--text2);line-height:1.5">${l.rationale}</div></div>`).join('');
 }
+
 function addLog(){
-  const rat=id('lm-rat').value.trim();if(!rat){alert('请填写决策依据');return}
-  localLogs.unshift({id:'l'+Date.now(),date:TODAY,company:id('lm-co').value,action:id('lm-act').value,price:id('lm-price').value,position_change:id('lm-pos').value,rationale:rat,_local:true});
+  const rat=g('lm-rat').value.trim();if(!rat){alert('请填写决策依据');return}
+  localLogs.unshift({id:'l'+Date.now(),date:TODAY,company:g('lm-co').value,action:g('lm-act').value,price:g('lm-price').value,shares:g('lm-shares').value,rationale:rat,_local:true});
   lsS('local_logs',localLogs);closeM('log-modal');renderLog();
 }
-function openLogModal(){id('lm-co').innerHTML=companies.map(c=>`<option>${c.name}</option>`).join('');openM('log-modal')}
+function openLogModal(){g('lm-co').innerHTML=companies.map(c=>`<option>${c.name}</option>`).join('');openM('log-modal')}
 function exportLogs(){
   const blob=new Blob([JSON.stringify({logs:[...remoteLogs,...localLogs],exported:TODAY},null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`logs_${TODAY.replace(/\//g,'-')}.json`;a.click();
 }
 
+// ── NAV ──
 function nav(panel,cid){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
   if(panel==='detail'&&cid){
     currentId=cid;currentTab=0;
-    id('panel-detail').classList.add('active');
+    g('panel-detail').classList.add('active');
     document.querySelectorAll('[data-cid]').forEach(el=>el.classList.toggle('active',el.dataset.cid===cid));
     document.querySelectorAll('.tab-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
     document.querySelectorAll('.tc').forEach((t,i)=>t.classList.toggle('active',i===0));
     renderDetail(cid);
   }else{
-    id('panel-'+panel).classList.add('active');
+    g('panel-'+panel).classList.add('active');
     if(panel==='settings')fillSettings();
     renderAll();
   }
@@ -634,6 +995,8 @@ function toast(msg,type='info',dur=3500){
   const el=document.createElement('div');el.className='toast '+type;el.textContent=msg;
   document.body.appendChild(el);setTimeout(()=>{el.style.opacity='0';setTimeout(()=>el.remove(),300)},dur);
 }
+
+// ── INIT ──
 loadLocal();fillSettings();pullData();
 </script>
 </body>
