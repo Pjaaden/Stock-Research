@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 油价冲击 v13 · 0409</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0;--bg2:#fff;--bg3:#edeae4;--bg4:#e4e1da;
+  --ink:#0e0c0a;--line:#d4d0c8;--line2:#b8b3a8;
+  --red:#b81c0a;--r2:#d42010;--rp:#fdf2f0;
+  --amb:#9c5200;--ap:#fdf8f0;
+  --grn:#1a6b35;--gp:#f0faf4;
+  --blu:#1a3f7a;--bp:#f0f4fb;
+  --muted:#78726a;--dim:#a09a90;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.65;}
+
+.hdr{background:var(--bg2);border-bottom:2px solid var(--ink);padding:0 48px;}
+.hdr-top{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;}
+.hdr-top .live{color:var(--grn);background:var(--gp);padding:2px 8px;font-weight:700;}
+.hdr-body{padding:15px 0 13px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;}
+h1 em{color:var(--grn);font-style:normal;}
+h1 .a{color:var(--amb);}
+.sub{font-size:12px;color:var(--muted);margin-top:7px;max-width:820px;line-height:1.65;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line);}
+.tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;padding:3px 8px;border:1px solid;}
+.r{color:var(--r2);border-color:var(--r2);background:var(--rp);}
+.a{color:var(--amb);border-color:var(--amb);background:var(--ap);}
+.g{color:var(--grn);border-color:var(--grn);background:var(--gp);}
+.b{color:var(--blu);border-color:var(--blu);background:var(--bp);}
+.n{color:var(--muted);border-color:var(--line2);background:var(--bg3);}
+
+main{padding:0 48px 56px;}
+.lbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+hr{border:none;border-top:2px solid var(--ink);margin:22px 0 16px;}
+
+/* IMPACT BANNER */
+.impact{background:var(--bg3);border:2px solid var(--grn);padding:16px 22px;margin:14px 0;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.imp-item .l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px;}
+.imp-item .v{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;line-height:1;}
+.imp-item .s{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+/* PRICE TIMELINE */
+.price-hist{background:var(--bg2);border:1px solid var(--line);padding:14px 18px;margin:12px 0;}
+.ph-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
+.ph-dt{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);width:72px;flex-shrink:0;text-align:right;}
+.ph-bg{flex:1;height:7px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.ph-fill{height:100%;border-radius:2px;}
+.ph-val{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;width:62px;text-align:right;}
+.ph-note{font-size:9px;color:var(--muted);width:220px;}
+
+/* TILES */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:12px 0;}
+.tile{background:var(--bg2);padding:11px 13px;}
+.tl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:4px;}
+.tv{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;line-height:1;}
+.ts{font-family:'JetBrains Mono',monospace;font-size:9.5px;margin-top:3px;}
+.up{color:var(--r2);}.dn{color:var(--grn);}
+
+/* CEASEFIRE STATUS */
+.cf-status{background:var(--ap);border:2px solid var(--amb);padding:14px 20px;margin:12px 0;}
+.cf-title{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--amb);margin-bottom:10px;}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.cf-item{background:var(--bg2);border:1px solid var(--line);padding:10px 13px;}
+.cf-k{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.cf-v{font-size:12px;font-weight:700;line-height:1.4;}
+
+/* TIMELINE */
+.tl-wrap{padding-left:22px;position:relative;margin:12px 0;}
+.tl-wrap::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:1.5px;background:var(--line2);}
+.ev{position:relative;margin-bottom:11px;}
+.ev::before{content:'';position:absolute;left:-17px;top:5px;width:8px;height:8px;border-radius:50%;border:2px solid var(--bg2);}
+.ev.r::before{background:var(--r2);}
+.ev.a::before{background:var(--amb);}
+.ev.g::before{background:var(--grn);}
+.ev.b::before{background:var(--blu);}
+.ev-dt{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;margin-bottom:2px;}
+.ev-hd{font-size:12px;font-weight:700;margin-bottom:2px;}
+.ev-bd{font-size:11.5px;color:var(--muted);line-height:1.65;}
+.ev-bd strong{color:var(--ink);}
+
+/* SCENARIO */
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);margin:12px 0;}
+.sc{background:var(--bg2);}
+.sc-hd{padding:12px 13px 9px;border-bottom:2px solid;}
+.sc-icon{font-size:18px;margin-bottom:3px;}
+.sc-nm{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;}
+.sc-pr{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;line-height:1;}
+.sc-dd{font-size:9.5px;color:var(--muted);margin-top:2px;line-height:1.3;}
+.sc-bd{padding:9px 13px;}
+.sc-r{display:flex;justify-content:space-between;padding:3.5px 0;border-bottom:1px solid var(--bg4);font-family:'JetBrains Mono',monospace;font-size:9.5px;}
+.sc-r:last-child{border-bottom:none;}
+.sc-k{color:var(--muted);}
+.badge{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;border:1px solid;display:inline-block;margin-top:5px;font-weight:700;}
+
+/* SAILUN VALUATION */
+.val-table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--line);font-size:11.5px;margin:10px 0;}
+.val-table thead th{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:7px 11px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+.val-table tbody td{padding:7px 11px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:middle;}
+.val-table tr.hg td{background:var(--gp);}
+.val-table tr.ha td{background:var(--ap);}
+.val-table tr.hr td{background:var(--rp);}
+.val-table tr.cur td{border-left:3px solid var(--amb);background:#fffdf0;}
+.val-table tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+
+.box{border-left:3px solid;padding:10px 14px;margin:10px 0;font-size:12px;line-height:1.7;}
+.box.r{border-color:var(--r2);background:var(--rp);color:var(--muted);}
+.box.g{border-color:var(--grn);background:var(--gp);color:var(--muted);}
+.box.a{border-color:var(--amb);background:var(--ap);color:var(--muted);}
+.box.b{border-color:var(--blu);background:var(--bp);color:var(--muted);}
+.box strong{color:var(--ink);}
+
+.verdict{background:var(--bg3);border:2px solid var(--ink);padding:16px 20px;margin:14px 0;}
+.vd-t{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.vd-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.vd-i .l{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--muted);letter-spacing:1.5px;margin-bottom:3px;}
+.vd-i .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1;}
+.vd-i .s{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fw7{font-weight:700;}.c-r{color:var(--r2);}.c-g{color:var(--grn);}.c-a{color:var(--amb);}.c-b{color:var(--blu);}.c-m{color:var(--muted);}
+
+footer{padding:11px 48px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);letter-spacing:0.8px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <span>赛轮集团（601058）· 油价冲击 v13 · 停火落地版</span>
+    <span class="live">⚡ 两周停火已宣布 · 4/7晚 · Brent −14% 收$94.75</span>
+    <span>2026.04.09 · 战争第41天 · 停火第2天</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Oil Shock Monitor · Ceasefire Edition</div>
+    <h1>两周停火宣布：<em>Brent暴跌−14%</em>至$94<br><span class="a">脆弱停火·伊朗保留霍尔木兹控制权·两周窗口倒计时</span></h1>
+    <div class="sub">4月7日晚8点截止日前90分钟，美伊达成两周停火协议，Brent当日暴跌−14%收$94.75，美股Dow创年内最佳单日。但协议极度脆弱：以色列轰炸黎巴嫩后伊朗随即暂停霍尔木兹通行；伊朗坚持要求"协调管理"海峡（保留控制权）；双方均宣称胜利但分歧深远。赛轮13.30元的股价将在今日A股开盘后被重新定价——本报告全面量化新估值锚点。</div>
+    <div class="tags">
+      <span class="tag g">✅ 两周停火宣布 · 4/7晚 · Brent −14%</span>
+      <span class="tag a">⚠ 停火脆弱·以轰黎巴嫩→伊朗暂停霍尔木兹</span>
+      <span class="tag a">伊朗坚持"协调管理"海峡（保留控制权）</span>
+      <span class="tag b">伊斯兰堡谈判：JD Vance、Witkoff、Kushner赴巴</span>
+      <span class="tag g">S&P +2.51% · Dow最佳单日年内</span>
+      <span class="tag r">Brent $94.75收盘·仍高于战前$70 · +35%</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══ 停火冲击数字 ══ -->
+<div class="impact">
+  <div class="imp-item">
+    <div class="l">Brent 4/8收盘</div>
+    <div class="v c-g">$94.75</div>
+    <div class="s">vs 停火前$110·单日−14%<br>vs 战前$70·仍+35%</div>
+  </div>
+  <div class="imp-item">
+    <div class="l">油价单日跌幅</div>
+    <div class="v c-g">−14.1%</div>
+    <div class="s">WTI −16.4%至$94.41<br>两者均创2020年以来最大单日跌幅</div>
+  </div>
+  <div class="imp-item">
+    <div class="l">美股4/8收盘</div>
+    <div class="v c-g">↑ 大涨</div>
+    <div class="s">Dow +1,325点/+2.85%<br>S&P +2.51%·Nasdaq +2.8%<br>Dow年内最佳单日</div>
+  </div>
+  <div class="imp-item">
+    <div class="l">两周谈判截止日</div>
+    <div class="v c-a">4月22日</div>
+    <div class="s">下一个关键节点<br>伊斯兰堡谈判4/12开始</div>
+  </div>
+</div>
+
+<!-- ══ 价格完整走廊 ══ -->
+<div class="price-hist">
+  <div class="lbl" style="margin-bottom:10px">BRENT 战争完整价格走廊（全系列 v1→v13）</div>
+  <div class="ph-row"><div class="ph-dt">战前</div><div class="ph-bg"><div class="ph-fill" style="width:33%;background:#4a9a6a"></div></div><div class="ph-val c-g">$70</div><div class="ph-note">2月28日前基准</div></div>
+  <div class="ph-row"><div class="ph-dt">D+9·3/9</div><div class="ph-bg"><div class="ph-fill" style="width:44%;background:#c47a2a"></div></div><div class="ph-val c-a">$94</div><div class="ph-note">EIA 3/9基准点</div></div>
+  <div class="ph-row"><div class="ph-dt">战争峰值</div><div class="ph-bg"><div class="ph-fill" style="width:57%;background:#8b0000"></div></div><div class="ph-val c-r">$119.50</div><div class="ph-note">3月8–9日最高点（Dated Brent实物 $144!）</div></div>
+  <div class="ph-row"><div class="ph-dt">3月月均</div><div class="ph-bg"><div class="ph-fill" style="width:48%;background:#c4562a"></div></div><div class="ph-val c-r">$102</div><div class="ph-note">3月创Brent合约历史最大月涨幅+55%</div></div>
+  <div class="ph-row"><div class="ph-dt">4/1讲话后</div><div class="ph-bg"><div class="ph-fill" style="width:50%;background:#b81c0a"></div></div><div class="ph-val c-r">$109</div><div class="ph-note">Trump"极度打击2–3周" → 油价+7.7%</div></div>
+  <div class="ph-row"><div class="ph-dt">4/6·截止日</div><div class="ph-bg"><div class="ph-fill" style="width:52%;background:#c47a2a"></div></div><div class="ph-val c-a">$111.25</div><div class="ph-note">伊朗拒绝临时停火·Trump："文明将在今晚死亡"</div></div>
+  <div class="ph-row"><div class="ph-dt">4/7·停火前</div><div class="ph-bg"><div class="ph-fill" style="width:50%;background:#c47a2a"></div></div><div class="ph-val c-a">$105–110</div><div class="ph-note">截止日当天·停火预期推动油价小幅回落</div></div>
+  <div class="ph-row" style="border-top:1px solid var(--line);padding-top:6px;margin-top:3px"><div class="ph-dt fw7">4/8停火后</div><div class="ph-bg"><div class="ph-fill" style="width:38%;background:#1a6b35;border:1px solid var(--grn)"></div></div><div class="ph-val c-g fw7">$94.75</div><div class="ph-note fw7" style="color:var(--grn)">停火宣布 → 单日−14.1% · 今日基准</div></div>
+  <div class="ph-row"><div class="ph-dt">今日预测区间</div><div class="ph-bg"><div class="ph-fill" style="width:36%;background:#3a8a55;opacity:0.6;border:1px dashed var(--grn)"></div></div><div class="ph-val c-g">$88–100</div><div class="ph-note">视停火稳固程度 · 黎巴嫩变量</div></div>
+</div>
+
+<!-- ══ 停火协议：内容与脆弱性 ══ -->
+<hr>
+<div class="lbl">停火协议核心条款 · 已知分歧 · 脆弱性评估</div>
+
+<div class="cf-status">
+  <div class="cf-title">⚠ 两周停火框架 · 状态：脆弱但有效（截至报告撰写时）</div>
+  <div class="cf-grid">
+    <div class="cf-item">
+      <div class="cf-k">协议核心条款</div>
+      <div class="cf-v">美以暂停对伊轰炸两周<br>伊朗承诺霍尔木兹"协调管理"通行<br>伊斯兰堡谈判4/12启动<br>前提：霍尔木兹"完全、立即、安全"开放</div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-k">立刻出现的裂缝</div>
+      <div class="cf-v c-r">以色列轰炸黎巴嫩（称不在停火范围内）<br>→ 伊朗随即暂停霍尔木兹通行<br>伊朗要求"海峡由伊朗协调管理"<br>（= 保留控制权·美国难接受）<br>船舶交通4/8仍仅10–15艘/日</div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-k">两周窗口内须谈定</div>
+      <div class="cf-v">① 霍尔木兹通行协议（谁管？收费否？）<br>② 黎巴嫩问题（是否纳入停火）<br>③ 伊朗核武器/铀浓缩问题<br>④ 制裁解除时间表<br>⑤ 战争赔偿框架</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 最新局势时间线 ══ -->
+<hr>
+<div class="lbl">最新事件时间线（4/7–4/9）</div>
+
+<div class="tl-wrap">
+  <div class="ev g">
+    <div class="ev-dt">4/7 晚 18:00–20:00 ET</div>
+    <div class="ev-hd c-g">⚡ 最戏剧性的90分钟：文明濒临毁灭→停火达成</div>
+    <div class="ev-bd">Trump在截止日前警告"整个文明今晚将死"。伊朗在巴基斯坦/中国压力下提交10点提案。<strong>停火在截止日前90分钟宣布</strong>——Trump称提案是"谈判的可行基础"，并宣布两周双向停火。Brent期货立即从$110暴跌，美股期货深夜飙升。</div>
+  </div>
+  <div class="ev a">
+    <div class="ev-dt">4/8 凌晨</div>
+    <div class="ev-hd c-a">停火宣布后2小时：以色列轰炸黎巴嫩·伊朗暂停霍尔木兹</div>
+    <div class="ev-bd">以色列宣布对黎巴嫩发动"最大规模协调打击"（称黎巴嫩不在停火范围）；黎巴嫩卫生部称死伤数百。伊朗IRGC随即宣布<strong>暂停霍尔木兹通行</strong>，仅两艘伊朗相关油轮被允许通过。伊朗称以色列违反停火协议，外长向美方提出抗议。</div>
+  </div>
+  <div class="ev g">
+    <div class="ev-dt">4/8 白天</div>
+    <div class="ev-hd c-g">油价−14%收$94.75 · 美股大涨 · 停火形式上维持</div>
+    <div class="ev-bd">尽管霍尔木兹实际通行停滞，市场仍大幅做多"停火情景"——Brent −14.1%，WTI −16.4%，两者创2020年以来最大单日跌幅。Dow +1,325点。停火在形式上维持，但巴林、科威特、UAE报告新的伊朗打击。<strong>双边停火是"条件性"的：以对黎不停，伊朗就不开海峡。</strong></div>
+  </div>
+  <div class="ev b">
+    <div class="ev-dt">4/12 · 伊斯兰堡谈判</div>
+    <div class="ev-hd c-b">Vance+Witkoff+Kushner赴巴 · 实质性谈判开始</div>
+    <div class="ev-bd">美国谈判团队最强阵容出击，伊斯兰堡将成为未来两周的外交中心。巴基斯坦军方参谋长Asim Munir担任核心调解人。关键议题：霍尔木兹通行机制、黎巴嫩停火纳入、核铀浓缩问题。<strong>这两周是"战争结束"还是"停火崩溃"的决定性窗口。</strong></div>
+  </div>
+  <div class="ev a">
+    <div class="ev-dt">今日（4/9）· A股开盘</div>
+    <div class="ev-hd c-a">赛轮将跳空高开 · 定价停火情景</div>
+    <div class="ev-bd">A股清明节假期后复盘第一个正式交易日（4/7）以来，全球市场已充分定价停火。今日（4/9）A股继续追涨，赛轮股价压力从"战争升级担忧"切换至"停火但油价仍高于战前+35%"的估值重构。当前13.30元意味着什么？见下方估值章节。</div>
+  </div>
+</div>
+
+<!-- ══ 情景重构 ══ -->
+<hr>
+<div class="lbl">情景概率重构 · v13 · 停火后最新评估</div>
+
+<div class="sc-grid">
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--grn);background:var(--gp);">
+      <div class="sc-icon">🤝</div>
+      <div class="sc-nm c-g">情景A · 两周内达成永久协议</div>
+      <div class="sc-pr c-g">$80–90</div>
+      <div class="sc-dd">伊斯兰堡谈判突破·霍尔木兹全面重开·战争结束</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-g">30–35% ↑ 大幅上调</span></div>
+      <div class="sc-r"><span class="sc-k">触发</span><span style="font-size:9px;max-width:120px;text-align:right">美伊就核+霍尔木兹+制裁达成框架；Vance/Witkoff出巴成果</span></div>
+      <div class="sc-r"><span class="sc-k">油价走向</span><span class="c-g">H2继续下行至$80–90</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮净利2026</span><span class="c-g fw7">约32–40亿</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮股价</span><span class="c-g fw7">↑ 修复至15–18元</span></div>
+      <span class="badge c-g" style="border-color:var(--grn)">停火达成→上调概率</span>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--amb);background:var(--ap);">
+      <div class="sc-icon">⏳</div>
+      <div class="sc-nm c-a">情景B · 停火维持·谈判拖延</div>
+      <div class="sc-pr c-a">$88–105</div>
+      <div class="sc-dd">两周后再延期·霍尔木兹部分重开·收费站制度固化</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-a">40–45% ← 最高概率</span></div>
+      <div class="sc-r"><span class="sc-k">触发</span><span style="font-size:9px;max-width:120px;text-align:right">停火维持但谈判无突破·霍尔木兹选择性开放·油价在$90–105震荡</span></div>
+      <div class="sc-r"><span class="sc-k">油价走向</span><span class="c-a">$90–105·高于战前但低于战争峰值</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮净利2026</span><span class="c-a fw7">约22–30亿</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮股价</span><span class="c-a">→ 13–15元横盘</span></div>
+      <span class="badge c-a" style="border-color:var(--amb)">当前最高概率·停火拉锯</span>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--r2);background:var(--rp);">
+      <div class="sc-icon">💥</div>
+      <div class="sc-nm c-r">情景C · 停火崩溃·重回战争</div>
+      <div class="sc-pr c-r">$115–145</div>
+      <div class="sc-dd">两周内谈判破裂·以色列/伊朗互相指责违规·重启轰炸</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-r">20–25%（已大幅下调）</span></div>
+      <div class="sc-r"><span class="sc-k">触发</span><span style="font-size:9px;max-width:120px;text-align:right">黎巴嫩冲突扩大→伊朗完全拒绝谈判→Trump恢复打击</span></div>
+      <div class="sc-r"><span class="sc-k">油价走向</span><span class="c-r">立即反弹至$115+·超过战前水平</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮净利2026</span><span class="c-r">约8–18亿（战争期损失+恢复成本）</span></div>
+      <div class="sc-r"><span class="sc-k">赛轮股价</span><span class="c-r fw7">↓ 跌回12元以下</span></div>
+      <span class="badge c-r" style="border-color:var(--r2)">主要风险·黎巴嫩是导火索</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="box a">
+  <strong>停火的核心矛盾：以色列不在停火范围内</strong><br>
+  以色列在4/8对黎巴嫩发动战争以来最大规模协调打击，称"黎巴嫩不在停火协议内"。但巴基斯坦调停人称协议涵盖"黎巴嫩及其他地区"。伊朗随即暂停霍尔木兹通行作为报复。<strong>这一矛盾是未来两周最大的定时炸弹</strong>——只要以色列继续打黎巴嫩，伊朗就有正当理由暂停霍尔木兹开放；而美国不可能要求以色列完全停火。这是协议设计上的根本缺陷。
+</div>
+
+<!-- ══ 赛轮估值重构 ══ -->
+<hr>
+<div class="lbl">赛轮（601058）估值重构 · 停火后 · 13.30元审视</div>
+
+<table class="val-table">
+  <thead>
+    <tr>
+      <th>情景</th>
+      <th>Brent全年均价假设</th>
+      <th>2026净利润</th>
+      <th>EPS（÷32.88亿股）</th>
+      <th>13.30元对应PE</th>
+      <th>合理目标价（PE 15x）</th>
+      <th>判断</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="hg">
+      <td class="fw7 c-g">A·永久协议（30–35%）</td>
+      <td>$78–88（H2回落$75–85）</td>
+      <td class="c-g fw7">约32–40亿</td>
+      <td class="c-g">0.97–1.22元</td>
+      <td class="c-g">11–14x</td>
+      <td class="c-g fw7">14.6–18.3元</td>
+      <td class="c-g">当前13.30元低估 · 有修复空间</td>
+    </tr>
+    <tr class="ha cur">
+      <td class="fw7 c-a">B·停火拖延（40–45%）<br><span style="font-size:9px">← 当前最可能</span></td>
+      <td>$88–105（停火维持·局部开放）</td>
+      <td class="c-a fw7">约22–30亿</td>
+      <td class="c-a">0.67–0.91元</td>
+      <td class="c-a">15–20x</td>
+      <td class="c-a fw7">10.0–13.7元</td>
+      <td class="c-a">13.30元处于合理区间上沿</td>
+    </tr>
+    <tr class="hr">
+      <td class="fw7 c-r">C·停火崩溃（20–25%）</td>
+      <td>$105–120（重回战争·部分月份$115+）</td>
+      <td class="c-r fw7">约8–18亿</td>
+      <td class="c-r">0.24–0.55元</td>
+      <td class="c-r">24–55x</td>
+      <td class="c-r fw7">3.6–8.3元</td>
+      <td class="c-r">股价将大幅下行−30–50%</td>
+    </tr>
+    <tr class="tot">
+      <td>概率加权期望净利润</td>
+      <td colspan="2" class="fw7">约22–28亿元（较v11上调约4–5亿）</td>
+      <td class="fw7">0.67–0.85元</td>
+      <td class="fw7">16–20x（13.30元）</td>
+      <td class="fw7 c-a">约10–13元（PE 15x基准）</td>
+      <td>13.30元·已充分定价停火预期</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box a">
+  <strong>13.30元的估值位置：已充分定价情景B的乐观一端</strong><br><br>
+  概率加权EPS约0.67–0.85元，对应PE 16–20x。这不便宜——市场已经把停火成功的预期大量折入股价。两种情况下13.30元有意义：①情景A实现（永久协议）：上行空间+10–37%，目标价14.6–18.3元；②情景B稳定（停火维持、霍尔木兹逐步开放）：合理区间13–15元，当前处于中枢附近。<br><br>
+  风险：情景C（停火崩溃）概率仍有20–25%，一旦触发股价将大幅下行−30–50%。<strong>关键观测窗口是4/12伊斯兰堡谈判的进展和黎巴嫩局势</strong>——这是当前持有赛轮的主要不确定性来源，而非油价本身。
+</div>
+
+<!-- ══ 停火后仍存在的隐性成本 ══ -->
+<hr>
+<div class="lbl">停火≠立即$70油价：隐性成本的持续性</div>
+
+<div class="grid2">
+  <div>
+    <div class="box b">
+      <strong>为什么Brent不会迅速回落到$70战前水平</strong><br><br>
+      ① <strong>172百万桶积压油轮</strong>：截至4/8，187艘油轮载172百万桶原油仍在波斯湾内等待——这批油需要数周才能清空并送达全球炼厂<br>
+      ② <strong>战争风险保险恢复需数月</strong>：保险公司需要"多次安全通行"证明才会恢复正常费率，短期内航运成本仍高<br>
+      ③ <strong>伊朗要求"协调管理"</strong>：即便霍尔木兹开放，伊朗坚持保留通行管理权+收费权（$1–2百万/艘），构成长期溢价<br>
+      ④ <strong>卡塔尔LNG修复需5年</strong>：全球LNG价格将长期高于战前，电力成本传导持续<br>
+      ⑤ <strong>海湾产油国重启需数周</strong>：伊拉克/科威特/UAE已停产的7.5百万桶/日需要有序重启，不是立即切换
+    </div>
+  </div>
+  <div>
+    <div class="box g">
+      <strong>赛轮受益于停火的具体路径</strong><br><br>
+      ① <strong>合成橡胶/炭黑：</strong>Brent从$111回落至$94，直接降低石脑油/炭黑原材料成本约15–20%，Q2开始体现在利润表<br>
+      ② <strong>天然橡胶：</strong>季节性改善仍在进行，叠加停火后汽油价格下降→驾驶里程增加→替换胎需求改善<br>
+      ③ <strong>海运费：</strong>好望角绕行溢价若随海峡逐步开放而回落，可为赛轮每年节省2,000–4,500万元<br>
+      ④ <strong>TBR涨价落地率提升：</strong>油价下降令下游配套商（卡车公司）更愿意接受轮胎提价，4月1日涨价的实际落地率可能从50%提升至70–80%<br>
+      ⑤ <strong>需求端修复：</strong>Brent$94→全球油价压力缓解→汽车销量预期改善→OEM需求回暖（赛轮约25%收入）
+    </div>
+    <div class="box r">
+      <strong>黎巴嫩是最大的定时炸弹</strong><br><br>
+      伊朗以以色列打黎巴嫩为由暂停霍尔木兹通行，并坚持停火应包括黎巴嫩。但以色列明确拒绝，Trump也支持以色列立场。<strong>只要黎巴嫩冲突继续，伊朗就拥有随时打断停火的借口</strong>——这使霍尔木兹的实质性开放充满变数，Brent可能在$90–100之间剧烈震荡，无法给市场清晰的信号。
+    </div>
+  </div>
+</div>
+
+<!-- ══ 最终判断 ══ -->
+<div class="verdict">
+  <div class="vd-t">赛轮2026年归母净利润 · v13最新概率加权预测（停火后修订）</div>
+  <div class="vd-g">
+    <div class="vd-i">
+      <div class="l">情景A · 永久协议（30–35%）</div>
+      <div class="v c-g">约32–40亿</div>
+      <div class="s">全年Brent均价$78–88<br>天胶改善·海运费回落·涨价落地<br>vs 2024年（40.6亿）约−1–21%</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">情景B · 停火拖延（40–45%）</div>
+      <div class="v c-a">约22–30亿</div>
+      <div class="s">全年均价$88–105·霍尔木兹部分开放<br>好望角绕行成本仍存·收费站固化<br>vs 2024年约−26–46%</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">情景C · 停火崩溃（20–25%）</div>
+      <div class="v c-r">约8–18亿</div>
+      <div class="s">重回$115+·战争恢复<br>市场将给予悲观定价<br>vs 2024年约−56–80%</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8;">
+    <strong style="color:var(--ink)">概率加权期望净利润：约22–28亿元</strong>（较v11上调约5亿·较2024年约−31–46%）<br>
+    <strong style="color:var(--amb)">13.30元估值判断：</strong>对应PE 16–20x（基于加权EPS 0.67–0.85元）·<strong>已充分定价情景B·情景A有上行空间·情景C有重大下行风险</strong><br>
+    <strong style="color:var(--grn)">关键观测指标（接下来两周）：</strong>① Kpler数据：每日霍尔木兹通行油轮数量（目标：恢复至30艘+/日）· ② 4/12伊斯兰堡谈判公报 · ③ 黎巴嫩局势是否纳入停火框架 · ④ Brent能否在$88–95区间稳定
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>来源：NPR·CNN·CBS·CNBC·Axios·Al Jazeera·IBTimes·tradingeconomics·Wikipedia霍尔木兹危机条目 · 2026.04.09</span>
+  <span>油价上涨影响估算_20260409 · v13 · 停火第2天 · D+42 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>

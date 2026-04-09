@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 油价冲击 v9 · 0402</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0;--bg2:#fff;--bg3:#edeae4;--bg4:#e4e1da;
+  --ink:#0e0c0a;--line:#d4d0c8;--line2:#b8b3a8;
+  --red:#b81c0a;--r2:#d42010;--rp:#fdf2f0;
+  --amb:#9c5200;--ap:#fdf8f0;
+  --grn:#1a6b35;--gp:#f0faf4;
+  --blu:#1a3f7a;--bp:#f0f4fb;
+  --pur:#5a1a8a;--pp:#f6f0fc;
+  --muted:#78726a;--dim:#a09a90;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.65;}
+
+.hdr{background:var(--bg2);border-bottom:2px solid var(--ink);padding:0 48px;}
+.hdr-bar{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;}
+.hdr-body{padding:15px 0 13px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;color:var(--ink);}
+h1 em{color:var(--r2);font-style:normal;}
+h1 .hl{color:var(--pur);}
+.sub{font-size:12px;color:var(--muted);margin-top:7px;max-width:820px;line-height:1.65;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line);}
+.tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;padding:3px 8px;border:1px solid;}
+.r{color:var(--r2);border-color:var(--r2);background:var(--rp);}
+.a{color:var(--amb);border-color:var(--amb);background:var(--ap);}
+.g{color:var(--grn);border-color:var(--grn);background:var(--gp);}
+.b{color:var(--blu);border-color:var(--blu);background:var(--bp);}
+.p{color:var(--pur);border-color:var(--pur);background:var(--pp);}
+.n{color:var(--muted);border-color:var(--line2);background:var(--bg3);}
+
+main{padding:0 48px 56px;}
+.sec{margin-top:22px;}
+.lbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+hr{border:none;border-top:2px solid var(--ink);margin:22px 0 16px;}
+
+/* ── 讲话结果 BANNER ── */
+.speech-result{background:var(--bg3);border:2px solid var(--ink);border-left:6px solid var(--r2);padding:16px 20px;margin:14px 0;}
+.sr-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--r2);text-transform:uppercase;margin-bottom:6px;}
+.sr-headline{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:8px;line-height:1.1;}
+.sr-body{font-size:12px;color:var(--muted);line-height:1.75;}
+.sr-body strong{color:var(--ink);}
+.sr-quote{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--rp);border-left:3px solid var(--r2);padding:8px 12px;margin:8px 0;color:var(--ink);line-height:1.6;}
+
+/* ── HOLIDAY CALENDAR ── */
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin:12px 0;}
+.cal-day{padding:8px 6px;text-align:center;background:var(--bg2);border:1px solid var(--line);}
+.cal-day.hdr-d{background:var(--bg3);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+.cal-day.today{border:2px solid var(--blu);background:var(--bp);}
+.cal-day.holiday-us{background:var(--ap);}
+.cal-day.holiday-cn{background:#fff8e8;border-color:var(--amb);}
+.cal-day.holiday-both{background:var(--rp);border-color:var(--r2);}
+.cal-day.deadline{background:var(--pp);border:2px solid var(--pur);}
+.cal-day.open-us{background:var(--gp);}
+.cal-num{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;line-height:1;}
+.cal-label{font-size:8.5px;color:var(--muted);margin-top:2px;line-height:1.3;}
+.cal-flag{font-size:9px;margin-top:1px;}
+
+/* ── TILES ── */
+.tiles{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:12px 0;}
+.tile{background:var(--bg2);padding:11px 13px;}
+.tl{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--dim);text-transform:uppercase;margin-bottom:4px;}
+.tv{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;line-height:1;}
+.tc{font-family:'JetBrains Mono',monospace;font-size:9.5px;margin-top:3px;}
+.up{color:var(--r2);}.dn{color:var(--grn);}
+
+/* ── KEY RISK BOX ── */
+.risk-box{border:2px solid var(--pur);background:var(--pp);padding:16px 20px;margin:14px 0;}
+.rb-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--pur);margin-bottom:10px;}
+.rb-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.rb-card{background:var(--bg2);border:1px solid var(--pur);padding:11px 13px;}
+.rb-card-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--pur);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;}
+.rb-card-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;line-height:1;margin-bottom:3px;}
+.rb-card-sub{font-size:10.5px;color:var(--muted);line-height:1.5;}
+
+/* ── SCENARIO TABLE ── */
+.sc-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border:1px solid var(--line);margin:12px 0;}
+.sc{background:var(--bg2);}
+.sc-hd{padding:12px 13px 9px;border-bottom:2px solid;}
+.sc-icon{font-size:18px;margin-bottom:4px;}
+.sc-nm{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:3px;}
+.sc-pr{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1;}
+.sc-dd{font-size:9.5px;color:var(--muted);margin-top:2px;line-height:1.4;}
+.sc-bd{padding:9px 13px;}
+.sc-r{display:flex;justify-content:space-between;padding:3.5px 0;border-bottom:1px solid var(--bg4);font-family:'JetBrains Mono',monospace;font-size:9.5px;}
+.sc-r:last-child{border-bottom:none;}
+.sc-k{color:var(--muted);}
+.badge{font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;border:1px solid;display:inline-block;margin-top:6px;font-weight:700;}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);border:1px solid var(--line);font-size:11.5px;margin:10px 0;}
+thead th{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:7px 11px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+tbody td{padding:7px 11px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hp td{background:var(--pp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+
+.box{border-left:3px solid;padding:10px 14px;margin:10px 0;font-size:12px;line-height:1.7;}
+.box.r{border-color:var(--r2);background:var(--rp);color:var(--muted);}
+.box.g{border-color:var(--grn);background:var(--gp);color:var(--muted);}
+.box.a{border-color:var(--amb);background:var(--ap);color:var(--muted);}
+.box.b{border-color:var(--blu);background:var(--bp);color:var(--muted);}
+.box.p{border-color:var(--pur);background:var(--pp);color:var(--muted);}
+.box strong{color:var(--ink);}
+
+.verdict{background:var(--bg3);border:2px solid var(--ink);padding:16px 20px;margin:14px 0;}
+.vd-t{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.vd-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.vd-i .l{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--muted);letter-spacing:1.5px;margin-bottom:3px;}
+.vd-i .v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1;}
+.vd-i .s{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fw7{font-weight:700;}.c-r{color:var(--r2);}.c-g{color:var(--grn);}.c-a{color:var(--amb);}.c-b{color:var(--blu);}.c-p{color:var(--pur);}.c-m{color:var(--muted);}
+
+footer{padding:11px 48px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);letter-spacing:0.8px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-bar">
+    <span>赛轮集团（601058）· 伊朗战争油价冲击 v9</span>
+    <span>2026.04.02 · 战争第35天 · 讲话已发生 · 节假日窗口分析</span>
+    <span>Brent ~$105 · A股今日最后交易日</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Oil Shock Monitor · Post-Speech Edition</div>
+    <h1>讲话落地：<em>"极度猛烈打击"2–3周内</em><br><span class="hl">节假日窗口 · Trump行动时机 · 赛轮4月7日复盘</span></h1>
+    <div class="sub">Trump讲话内容令市场失望——既未宣布停火也未升级，油价随即上涨4%至$104–105。更关键的是：接下来美股（4/3–4/6）与A股（4/4–4/6）同步休市，而4月6日正是Trump电厂打击截止日。这一"节假日窗口"为Trump提供了在市场关闭期间采取重大行动的特殊时机——无论是宣布停火还是发动升级打击。</div>
+    <div class="tags">
+      <span class="tag r">讲话结果C·继续施压·2–3周更猛烈打击</span>
+      <span class="tag r">Brent讲话后+4%至$104–105</span>
+      <span class="tag p">4/3–4/6 美股+A股同步休市</span>
+      <span class="tag p">4/6 Trump截止日 = 美股重开当天</span>
+      <span class="tag a">今日（4/2）A股最后交易日 · 赛轮承压</span>
+      <span class="tag b">下次A股开市：4月7日（周二）</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- 讲话结果 -->
+<div class="speech-result">
+  <div class="sr-eyebrow">✅ 讲话已发生 · 2026.04.01 21:00 ET · 结果：C类（继续施压）</div>
+  <div class="sr-headline">Trump：未来2–3周"极度猛烈打击"<br>战争接近完成但不会立即结束</div>
+  <div class="sr-quote">"We are going to hit them extremely hard over the next two to three weeks. We're going to bring them back to the stone ages, where they belong."<br>——Trump，2026.04.01</div>
+  <div class="sr-body">
+    <strong>讲话核心要点：</strong>①战争"接近完成"但需2–3周；②未来将对伊朗"极度猛烈打击"；③无停火框架、无霍尔木兹重开时间表；④将油价上涨完全归咎于伊朗；⑤声称已实现政权更迭（原领导人"全都死了"，新领导层"更温和"）；⑥敦促其他国家自行处理霍尔木兹通行问题。<br><br>
+    <strong>市场反应：</strong>油价讲话后立即+4%，Brent升至$104–105。美股期货下跌，Dow Jones期货跌逾300点。亚洲市场次日（4/2）普遍下跌（日经−1.4%、韩国−2.82%）。今日（4/2）美股开盘低迷，油价维持$105附近。<br><br>
+    <strong>Al Jazeera分析：</strong>"分析人士此前预期Trump会宣布战争结束或重大升级，但他只是重复了过去几周的说辞。"这是典型的Trump不确定性延续策略。
+  </div>
+</div>
+
+<!-- 价格tiles -->
+<div class="tiles">
+  <div class="tile">
+    <div class="tl">Brent 讲话后（今日）</div>
+    <div class="tv c-r">~$105</div>
+    <div class="tc up">▲ +4.3% vs 讲话前$100.6</div>
+  </div>
+  <div class="tile">
+    <div class="tl">月均价（3月全月）</div>
+    <div class="tv c-r">~$102</div>
+    <div class="tc c-m">vs战前$70 月均+46%</div>
+  </div>
+  <div class="tile">
+    <div class="tl">4/6截止日距今</div>
+    <div class="tv c-a">4天</div>
+    <div class="tc c-m">美股重开当天 · A股仍休市</div>
+  </div>
+  <div class="tile">
+    <div class="tl">赛轮今日（A股最后交易日）</div>
+    <div class="tv c-r">承压</div>
+    <div class="tc c-m">讲话令市场失望 · 油价上涨</div>
+  </div>
+  <div class="tile">
+    <div class="tl">A股复盘日</div>
+    <div class="tv c-b">4月7日</div>
+    <div class="tc c-m">周二 · 将消化假期所有消息</div>
+  </div>
+</div>
+
+<!-- ══ 节假日窗口 ══ -->
+<hr>
+<div class="lbl">⚠ 核心风险：全球市场节假日窗口 · 4月3–6日</div>
+
+<!-- 日历 -->
+<div style="background:var(--bg2);border:1px solid var(--line);padding:14px 18px;margin:12px 0;">
+  <div class="lbl" style="margin-bottom:10px">4月关键日历</div>
+  <div class="cal-grid">
+    <div class="cal-day hdr-d">周一</div>
+    <div class="cal-day hdr-d">周二</div>
+    <div class="cal-day hdr-d">周三</div>
+    <div class="cal-day hdr-d">周四</div>
+    <div class="cal-day hdr-d">周五</div>
+    <div class="cal-day hdr-d">周六</div>
+    <div class="cal-day hdr-d">周日</div>
+
+    <!-- 3月30 - blank -->
+    <div class="cal-day" style="background:var(--bg3)"><div class="cal-num" style="font-size:12px;color:var(--dim)">3/30</div></div>
+    <!-- 3/31 -->
+    <div class="cal-day" style="background:var(--bg3)"><div class="cal-num" style="font-size:12px;color:var(--dim)">3/31</div></div>
+    <!-- 4/1 -->
+    <div class="cal-day open-us">
+      <div class="cal-num c-b">1</div>
+      <div class="cal-label c-b">Trump讲话<br>21:00ET</div>
+      <div class="cal-flag">🇺🇸✅ 🇨🇳✅</div>
+    </div>
+    <!-- 4/2 TODAY -->
+    <div class="cal-day today">
+      <div class="cal-num c-b">2</div>
+      <div class="cal-label c-b fw7">TODAY<br>最后交易日</div>
+      <div class="cal-flag">🇺🇸✅ 🇨🇳✅</div>
+    </div>
+    <!-- 4/3 Good Friday -->
+    <div class="cal-day holiday-us">
+      <div class="cal-num c-a">3</div>
+      <div class="cal-label">耶稣受难日<br>美股休市</div>
+      <div class="cal-flag">🇺🇸❌ 🇨🇳✅</div>
+    </div>
+    <!-- 4/4 Sat -->
+    <div class="cal-day holiday-both">
+      <div class="cal-num c-r">4</div>
+      <div class="cal-label">清明节·周六<br>全球多市休</div>
+      <div class="cal-flag">🇺🇸❌ 🇨🇳❌</div>
+    </div>
+    <!-- 4/5 Easter/Sun -->
+    <div class="cal-day holiday-both">
+      <div class="cal-num c-r">5</div>
+      <div class="cal-label">复活节·清明<br>全球多市休</div>
+      <div class="cal-flag">🇺🇸❌ 🇨🇳❌</div>
+    </div>
+    <!-- 4/6 Deadline -->
+    <div class="cal-day deadline">
+      <div class="cal-num c-p">6</div>
+      <div class="cal-label fw7 c-p">Trump截止日<br>美股重开<br>A股仍休</div>
+      <div class="cal-flag">🇺🇸✅ 🇨🇳❌</div>
+    </div>
+    <!-- 4/7 -->
+    <div class="cal-day open-us">
+      <div class="cal-num c-g">7</div>
+      <div class="cal-label c-g">A股复盘<br>赛轮复盘</div>
+      <div class="cal-flag">🇺🇸✅ 🇨🇳✅</div>
+    </div>
+    <!-- 4/8 -->
+    <div class="cal-day open-us">
+      <div class="cal-num c-g">8</div>
+      <div class="cal-label">港股通<br>重开</div>
+      <div class="cal-flag">🇺🇸✅ 🇭🇰✅</div>
+    </div>
+    <!-- 4/9 -->
+    <div class="cal-day open-us">
+      <div class="cal-num">9</div>
+      <div class="cal-label">正常交易</div>
+      <div class="cal-flag">🇺🇸✅ 🇨🇳✅</div>
+    </div>
+    <!-- 4/10 -->
+    <div class="cal-day">
+      <div class="cal-num" style="font-size:12px;color:var(--dim)">10</div>
+      <div class="cal-label">周六</div>
+      <div class="cal-flag">休市</div>
+    </div>
+    <!-- 4/11 -->
+    <div class="cal-day">
+      <div class="cal-num" style="font-size:12px;color:var(--dim)">11</div>
+      <div class="cal-label">周日</div>
+      <div class="cal-flag">休市</div>
+    </div>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:9px;">
+    <span style="background:var(--bp);border:1px solid var(--blu);padding:2px 7px;">TODAY = 4月2日</span>
+    <span style="background:var(--ap);border:1px solid var(--amb);padding:2px 7px;">🇺🇸 美股休市</span>
+    <span style="background:#fff8e8;border:1px solid var(--amb);padding:2px 7px;">🇨🇳 A股清明休市</span>
+    <span style="background:var(--rp);border:1px solid var(--r2);padding:2px 7px;">全球多市同步休</span>
+    <span style="background:var(--pp);border:1px solid var(--pur);padding:2px 7px;">🎯 Trump截止日</span>
+    <span style="background:var(--gp);border:1px solid var(--grn);padding:2px 7px;">✅ 正常交易</span>
+  </div>
+</div>
+
+<!-- 节假日窗口的战略意义 -->
+<div class="risk-box">
+  <div class="rb-title">⚠ 节假日窗口：为什么这4天极度危险</div>
+  <div class="rb-grid">
+    <div class="rb-card">
+      <div class="rb-card-title">Trump的市场敏感性</div>
+      <div class="rb-card-val c-p">历史模式</div>
+      <div class="rb-card-sub">CNN记录：Trump多次在市场收盘后宣布重大消息（关税宣布在4:30PM、暂停在开盘后9:30AM）。<strong>股市关闭期间，他可以采取大胆行动而不用立即承受股市惩罚</strong>——这是极强的行动激励，无论是宣布停火还是升级打击。</div>
+    </div>
+    <div class="rb-card">
+      <div class="rb-card-title">A股与美股同步休市</div>
+      <div class="rb-card-val c-r">4/3–4/6</div>
+      <div class="rb-card-sub"><strong>美股：</strong>4/3耶稣受难日休市，4/4–4/5周末，4/6（截止日当天）重开<br><strong>A股：</strong>4/4–4/6清明节休市，4/7（周二）重开<br>赛轮股价将在<strong>4月7日一次性消化所有假期内的消息</strong>——这是单日波动风险最大的时刻。</div>
+    </div>
+    <div class="rb-card">
+      <div class="rb-card-title">油价24H不休市</div>
+      <div class="rb-card-val c-r">全天候</div>
+      <div class="rb-card-sub">即便股市关闭，Brent期货、原油期货24小时交易。任何假期内的重大消息都将立即反映在油价上。<strong>4月6日（周一）美股开盘时已会充分定价假期内发生的一切</strong>——A股4月7日复盘时面对的是双重积累冲击。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 四种假期结果 ══ -->
+<hr>
+<div class="lbl">假期窗口（4/3–4/6）三种路径 · 对赛轮4/7复盘的影响</div>
+
+<div class="sc-wrap">
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--grn);background:var(--gp);">
+      <div class="sc-icon">🤝</div>
+      <div class="sc-nm c-g">路径A · 假期内宣布停火框架</div>
+      <div class="sc-pr c-g">Brent $80–90</div>
+      <div class="sc-dd">Trump在美股休市期间宣布与伊朗达成协议，选择无法引起股市立即反应的时机</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-g">15–20%</span></div>
+      <div class="sc-r"><span class="sc-k">时机逻辑</span><span style="font-size:9px;max-width:110px;text-align:right">市场关闭=可控反应；Trump需要"胜利"的戏剧性宣布时刻</span></div>
+      <div class="sc-r"><span class="sc-k">4/6美股开盘</span><span class="c-g">大涨 · S&P+2–4%</span></div>
+      <div class="sc-r"><span class="sc-k">4/7赛轮复盘</span><span class="c-g fw7">↑ 大幅修复+8–15%</span></div>
+      <div class="sc-r"><span class="sc-k">Brent 4/7</span><span class="c-g">$82–92</span></div>
+      <div class="sc-r"><span class="sc-k">2026净利修订</span><span class="c-g">约28–36亿</span></div>
+      <span class="badge c-g" style="border-color:var(--grn)">Trump的"胜利时刻"剧本</span>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--amb);background:var(--ap);">
+      <div class="sc-icon">🔕</div>
+      <div class="sc-nm c-a">路径B · 假期无重大事件</div>
+      <div class="sc-pr c-a">Brent $100–110</div>
+      <div class="sc-dd">4/6截止日再次延期（第三次），谈判继续"进行中"，油价在$100–110区间维持</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-a">40–50% ← 最高概率</span></div>
+      <div class="sc-r"><span class="sc-k">时机逻辑</span><span style="font-size:9px;max-width:110px;text-align:right">Trump习惯于最后一刻延期；谈判仍在进行中；政治上不需要立即升级</span></div>
+      <div class="sc-r"><span class="sc-k">4/6美股开盘</span><span class="c-a">小幅波动 · 不确定性延续</span></div>
+      <div class="sc-r"><span class="sc-k">4/7赛轮复盘</span><span class="c-a">→ 继续承压·横盘为主</span></div>
+      <div class="sc-r"><span class="sc-k">Brent 4/7</span><span class="c-a">$100–110</span></div>
+      <div class="sc-r"><span class="sc-k">2026净利修订</span><span class="c-a">约15–22亿（维持）</span></div>
+      <span class="badge c-a" style="border-color:var(--amb)">当前最高概率 · Trump第三次延期</span>
+    </div>
+  </div>
+
+  <div class="sc">
+    <div class="sc-hd" style="border-color:var(--r2);background:var(--rp);">
+      <div class="sc-icon">💥</div>
+      <div class="sc-nm c-r">路径C · 假期内重大升级</div>
+      <div class="sc-pr c-r">Brent $125–147+</div>
+      <div class="sc-dd">4/6截止日执行后：打击伊朗电厂 / 授权Kharg岛作战 / 大规模能源基础设施打击</div>
+    </div>
+    <div class="sc-bd">
+      <div class="sc-r"><span class="sc-k">概率</span><span class="fw7 c-r">30–40% ↑ 上调</span></div>
+      <div class="sc-r"><span class="sc-k">时机逻辑</span><span style="font-size:9px;max-width:110px;text-align:right">股市关闭=冲击被"缓冲"；4/6截止日到期；讲话"2–3周极度打击"信号明确</span></div>
+      <div class="sc-r"><span class="sc-k">4/6美股开盘</span><span class="c-r">大跌 · 油价$130+</span></div>
+      <div class="sc-r"><span class="sc-k">4/7赛轮复盘</span><span class="c-r fw7">↓↓ 大跌−10–20%</span></div>
+      <div class="sc-r"><span class="sc-k">Brent 4/7</span><span class="c-r">$125–147</span></div>
+      <div class="sc-r"><span class="sc-k">2026净利修订</span><span class="c-r">约3–12亿</span></div>
+      <span class="badge c-r" style="border-color:var(--r2)">尾部但概率不低 · 截止日驱动</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="box p">
+  <strong>为什么路径C（升级）在节假日窗口期概率上调至30–40%？</strong><br><br>
+  ① <strong>Trump的行动激励逻辑：</strong>CNN记录了Trump多次选择股市关闭期间宣布重大政策——股市休市意味着他可以在不引起即时市场惩罚的情况下采取大胆行动。4/3–4/6美股+A股同步休市，是开战以来最长的全球多市场同步关闭窗口。<br>
+  ② <strong>讲话已释放明确信号：</strong>"未来2–3周极度猛烈打击"不是虚张声势——Trump在讲话中明确了如未达成协议将打击"每一座发电厂"。4/6是硬截止日。<br>
+  ③ <strong>军事资产已就位：</strong>USS Tripoli（2,200名陆战队员）、USS Boxer（更多兵力）、82nd Airborne特种部队——军事选项已完全就绪，等待政治决定。<br>
+  ④ <strong>但也有制衡：</strong>美国国内反战情绪上升（59%反对）、汽油$4/加仑政治压力、国会要求授权投票、盟友不参与——这些因素使完全升级的成本也很高。
+</div>
+
+<!-- ══ 赛轮4月7日复盘风险 ══ -->
+<hr>
+<div class="lbl">赛轮4月7日复盘：特殊风险结构</div>
+
+<div class="box r">
+  <strong>今日（4/2）是A股休市前的最后交易日——今日收盘价将成为假期4天内的唯一"锚点"</strong><br><br>
+  赛轮（601058）今日收盘后，将面对4月3日（周五）、4日（周六）、5日（周日）、6日（周一，Trump截止日）共4天的全球消息积累，然后在4月7日（周二）一次性以跳空方式打开。这是A股投资者面临的"信息真空+消息积累"双重风险——任何路径A或路径C的触发，都将在4/7复盘时以不可逆的方式呈现。
+</div>
+
+<table>
+  <thead>
+    <tr><th>情景</th><th>4/6（截止日）事件</th><th>油价4/7早盘</th><th>赛轮4/7复盘方向</th><th>潜在幅度</th><th>2026净利润影响</th></tr>
+  </thead>
+  <tbody>
+    <tr class="hg">
+      <td class="fw7">路径A · 停火宣布</td>
+      <td>Trump宣布协议框架·霍尔木兹重开进程</td>
+      <td class="c-g">$82–92</td>
+      <td class="c-g fw7">↑ 大幅跳涨</td>
+      <td class="c-g">+8–15%</td>
+      <td class="c-g">约28–36亿（改善）</td>
+    </tr>
+    <tr class="ha">
+      <td class="fw7">路径B · 第三次延期</td>
+      <td>Trump再延10天·谈判"进展中"</td>
+      <td class="c-a">$98–108</td>
+      <td class="c-a">→ 小幅低开·震荡</td>
+      <td class="c-a">−2–+2%</td>
+      <td class="c-a">约15–22亿（维持）</td>
+    </tr>
+    <tr class="hr">
+      <td class="fw7">路径C · 打击电厂/Kharg</td>
+      <td>美军对伊朗能源基础设施发动大规模打击</td>
+      <td class="c-r">$125–145</td>
+      <td class="c-r fw7">↓ 大幅跳空低开</td>
+      <td class="c-r">−10–20%</td>
+      <td class="c-r">约3–12亿（大幅恶化）</td>
+    </tr>
+    <tr class="hp">
+      <td class="fw7">路径C+· Kharg+沙特反击</td>
+      <td>Kharg作战触发伊朗对沙特阿美报复</td>
+      <td style="color:#7c0000">$147+（历史高位）</td>
+      <td style="color:#7c0000;font-weight:700">↓↓ 系统性跌停风险</td>
+      <td style="color:#7c0000">−20%+ · 多日跌停</td>
+      <td style="color:#7c0000">约0–8亿（极端压力）</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══ 对赛轮的综合判断 ══ -->
+<hr>
+<div class="lbl">综合判断 · 赛轮当前处境</div>
+
+<div class="verdict">
+  <div class="vd-t">关键变量矩阵 · 4月7日复盘前的持仓逻辑</div>
+  <div class="vd-g">
+    <div class="vd-i">
+      <div class="l">基准净利润区间（2026年）</div>
+      <div class="v c-a">约15–25亿</div>
+      <div class="s">路径B延续（40–50%概率）<br>vs 2024年（40.6亿）约−38–63%<br>当前股价12.90元 PE约13–17x</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">路径A（停火）修复上限</div>
+      <div class="v c-g">约28–36亿</div>
+      <div class="s">4/7复盘可能+8–15%<br>对应目标价14–15元区间<br>概率约15–20%</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">路径C（升级）下行风险</div>
+      <div class="v c-r">约3–12亿</div>
+      <div class="s">4/7复盘可能−10–20%<br>对应股价10.3–11.6元<br>概率约30–40%（节假日窗口上调）</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);line-height:1.8;">
+    <strong style="color:var(--pur)">节假日窗口特殊提示：</strong>今日（4/2）是假期前最后交易日。明日至4/6（约4天），赛轮股价被"冻结"在今日收盘价，但全球油价和战争形势仍在演变。4/7复盘将以"跳空"方式体现所有积累信息——这是高度不对称的风险节点。<br>
+    <strong style="color:var(--r2)">不对称性：</strong>路径A（涨）概率15–20%、路径C（跌）概率30–40%，路径B（横）40–50%。期望值略偏负，但不是压倒性悲观——关键在于路径A的收益幅度（+8–15%）也很显著。如果持有赛轮，今日应充分意识到这一节假日风险结构。
+  </div>
+</div>
+
+<div class="box a">
+  <strong>今日赛轮的一个结构性利好被忽略：</strong>天然橡胶季节性改善正在进行——4月份新割季开始，天胶供应增加。停割季（1–3月）导致的价格高位（17,000–18,000元/吨）有望在4月下旬至5月逐步回落至14,000–15,500元/吨区间。这是赛轮成本端最大的非战争因素改善项，对全钢胎产线（新和平）意义尤为重大。4月7日复盘时，若无战争升级，天胶季节性因素是支撑股价不进一步大跌的重要底线。
+</div>
+
+</main>
+
+<footer>
+  <span>来源：CNN·NBC·CBS·CNBC·NPR·Time·Al Jazeera·白宫官网·上交所·深交所·InvestorPlace·Schwab · 2026.04.02</span>
+  <span>油价上涨影响估算_20260402 · v9 · D+35 · 节假日窗口版 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>

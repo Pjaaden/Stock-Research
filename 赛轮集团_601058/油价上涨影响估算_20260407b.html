@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 油价冲击 v12 · 僵局情景深度分析</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f4f0;--bg2:#fff;--bg3:#edeae4;--bg4:#e4e1da;
+  --ink:#0e0c0a;--line:#d4d0c8;--line2:#b8b3a8;
+  --red:#b81c0a;--r2:#d42010;--rp:#fdf2f0;
+  --amb:#9c5200;--ap:#fdf8f0;
+  --grn:#1a6b35;--gp:#f0faf4;
+  --blu:#1a3f7a;--bp:#f0f4fb;
+  --dk:#4a0000;--dkp:#fff5f5;
+  --muted:#78726a;--dim:#a09a90;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.65;}
+
+.hdr{background:var(--bg2);border-bottom:2px solid var(--ink);padding:0 48px;}
+.hdr-top{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:2px;}
+.hdr-top .warn{color:var(--dk);background:var(--dkp);border:1px solid var(--red);padding:2px 8px;font-weight:700;}
+.hdr-body{padding:15px 0 13px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;color:var(--ink);}
+h1 em{color:var(--r2);font-style:normal;}
+h1 .dk{color:var(--dk);}
+.sub{font-size:12px;color:var(--muted);margin-top:7px;max-width:820px;line-height:1.65;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:9px;border-top:1px solid var(--line);}
+.tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;padding:3px 8px;border:1px solid;}
+.r{color:var(--r2);border-color:var(--r2);background:var(--rp);}
+.a{color:var(--amb);border-color:var(--amb);background:var(--ap);}
+.g{color:var(--grn);border-color:var(--grn);background:var(--gp);}
+.b{color:var(--blu);border-color:var(--blu);background:var(--bp);}
+.d{color:var(--dk);border-color:var(--dk);background:var(--dkp);}
+.n{color:var(--muted);border-color:var(--line2);background:var(--bg3);}
+
+main{padding:0 48px 56px;}
+.lbl{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+hr{border:none;border-top:2px solid var(--ink);margin:22px 0 16px;}
+
+/* WARNING BOX */
+.warn-banner{background:var(--dk);color:#fff;padding:14px 22px;margin:14px 0;display:flex;gap:16px;align-items:flex-start;}
+.wb-icon{font-size:24px;flex-shrink:0;padding-top:2px;}
+.wb-body{font-size:12px;line-height:1.75;}
+.wb-body strong{color:#ffe080;}
+.wb-body em{color:#ffa0a0;font-style:normal;}
+
+/* SCENARIO MATRIX */
+.matrix{width:100%;border-collapse:collapse;border:2px solid var(--ink);margin:12px 0;}
+.matrix th{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:8px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);border-right:1px solid var(--line);}
+.matrix td{padding:9px 12px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;}
+.matrix tr.base td{background:var(--ap);}
+.matrix tr.stress td{background:var(--rp);}
+.matrix tr.extreme td{background:var(--dkp);}
+.matrix tr.total-war td{background:#fff0f0;border-top:2px solid var(--dk);}
+.matrix .fw7{font-weight:700;}
+
+/* CHAIN */
+.chain{background:var(--bg2);border:1px solid var(--line);padding:16px 20px;margin:12px 0;}
+.chain-title{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.chain-flow{display:flex;flex-wrap:wrap;align-items:center;gap:4px;}
+.chain-node{background:var(--rp);border:1.5px solid var(--red);padding:7px 12px;font-size:11.5px;font-weight:600;color:var(--r2);text-align:center;line-height:1.3;min-width:110px;}
+.chain-node.dk{background:var(--dkp);border-color:var(--dk);color:var(--dk);}
+.chain-node.g{background:var(--gp);border-color:var(--grn);color:var(--grn);}
+.chain-arr{color:var(--r2);font-size:18px;font-weight:700;}
+
+/* OIL LADDER */
+.ladder{display:flex;flex-direction:column;gap:6px;margin:12px 0;}
+.rung{display:flex;align-items:center;gap:10px;padding:8px 14px;border-left:4px solid;}
+.rung.g{border-color:var(--grn);background:var(--gp);}
+.rung.a{border-color:var(--amb);background:var(--ap);}
+.rung.r{border-color:var(--r2);background:var(--rp);}
+.rung.d{border-color:var(--dk);background:var(--dkp);}
+.rung-price{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;width:80px;flex-shrink:0;}
+.rung-label{font-size:11.5px;flex:1;}
+.rung-label strong{color:var(--ink);}
+.rung-sailun{font-family:'JetBrains Mono',monospace;font-size:10px;width:140px;text-align:right;flex-shrink:0;}
+
+/* DAMAGE MAP */
+.damage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0;}
+.damage-card{background:var(--bg2);border:1px solid var(--line);padding:12px 14px;}
+.dc-title{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+.dc-status{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;margin-bottom:4px;}
+.dc-body{font-size:11px;color:var(--muted);line-height:1.6;}
+.dc-body strong{color:var(--ink);}
+
+/* TIMELINE */
+.tl-wrap{padding-left:22px;position:relative;margin:12px 0;}
+.tl-wrap::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:1.5px;background:var(--line2);}
+.ev{position:relative;margin-bottom:11px;}
+.ev::before{content:'';position:absolute;left:-17px;top:5px;width:8px;height:8px;border-radius:50%;border:2px solid var(--bg2);}
+.ev.r::before{background:var(--r2);}
+.ev.a::before{background:var(--amb);}
+.ev.g::before{background:var(--grn);}
+.ev.d::before{background:var(--dk);}
+.ev-dt{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;margin-bottom:2px;}
+.ev-hd{font-size:12px;font-weight:700;margin-bottom:2px;}
+.ev-bd{font-size:11.5px;color:var(--muted);line-height:1.65;}
+.ev-bd strong{color:var(--ink);}
+
+/* VERDICT */
+.verdict{background:var(--bg3);border:2px solid var(--ink);padding:16px 20px;margin:14px 0;}
+.vd-t{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.vd-g{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.vd-i .l{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1.5px;margin-bottom:3px;}
+.vd-i .v{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;line-height:1;}
+.vd-i .s{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.5;}
+
+.box{border-left:3px solid;padding:10px 14px;margin:10px 0;font-size:12px;line-height:1.7;}
+.box.r{border-color:var(--r2);background:var(--rp);color:var(--muted);}
+.box.g{border-color:var(--grn);background:var(--gp);color:var(--muted);}
+.box.a{border-color:var(--amb);background:var(--ap);color:var(--muted);}
+.box.b{border-color:var(--blu);background:var(--bp);color:var(--muted);}
+.box.d{border-color:var(--dk);background:var(--dkp);color:var(--muted);}
+.box strong{color:var(--ink);}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fw7{font-weight:700;}.c-r{color:var(--r2);}.c-g{color:var(--grn);}.c-a{color:var(--amb);}.c-b{color:var(--blu);}.c-d{color:var(--dk);}.c-m{color:var(--muted);}
+
+footer{padding:11px 48px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--dim);letter-spacing:0.8px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <span>赛轮集团（601058）· 油价冲击 v12 · 僵局情景深度分析</span>
+    <span class="warn">⚠ 市场最大盲点：持续战争 + 能源设施大规模损毁</span>
+    <span>2026.04.07 · 基于Oxford Economics / Dallas Fed / Al Jazeera等研究</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Oil Shock Monitor · Worst Case Analysis</div>
+    <h1>市场在乐观定价<em>战争结束</em><br><span class="dk">但若陷入僵局：$147–190 · 全球衰退 · 赛轮归零</span></h1>
+    <div class="sub">市场当前定价的是"45天停火→战争在数周内结束"的乐观路径。但存在一个被系统性低估的替代情景：战争持续陷入僵局，双方大规模破坏对方能源设施，霍尔木兹永久性半封锁，沙特阿美Abqaiq遭打击，油价冲破$147历史高位甚至逼近$190。本报告全面量化这一被低估情景对赛轮的冲击。</div>
+    <div class="tags">
+      <span class="tag d">Oxford Economics：僵局6个月 → Brent $190 · 全球GDP -1.2%</span>
+      <span class="tag d">Dallas Fed：霍尔木兹关闭1季度 → GDP -2.9% annualized</span>
+      <span class="tag r">沙特阿美Abqaiq若遭打击 → 额外减少700万桶/日</span>
+      <span class="tag r">现有替代管道容量仅3.5–5.5mb/d vs缺口20mb/d</span>
+      <span class="tag a">IEA确认：史上最大供应冲击 · 战略储备仅覆盖20天流量</span>
+      <span class="tag n">赛轮净利润僵局情景：约0–8亿元（≈归零）</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══ 核心警告 ══ -->
+<div class="warn-banner">
+  <div class="wb-icon">⚠</div>
+  <div class="wb-body">
+    <strong>市场在系统性低估一个关键情景：战争僵局 + 能源设施大规模互毁。</strong><br>
+    当前市场共识是"战争将在数周内结束"，Brent期货曲线显示6个月后约$95、1年后约$80。但Oxford Economics的压力测试显示：若战争陷入6个月僵局并扩大到沙特/UAE能源设施，<em>Brent将在8月冲破$190，超过2008年历史高点$147；全球GDP增速下滑1.2个百分点，美国和大多数发达国家进入衰退。</em>在此情景下，赛轮2026年归母净利润可能接近于零，股价将面临系统性风险。这不是尾部噪音，而是一个有30–40%概率的真实情景，正被市场以"停火乐观"所掩盖。
+  </div>
+</div>
+
+<!-- ══ 为什么僵局比市场想象的更可能发生 ══ -->
+<hr>
+<div class="lbl">一、为什么持续僵局是被低估的基准情景</div>
+
+<div class="grid2">
+  <div>
+    <div class="box r">
+      <strong>伊朗的战略理性：霍尔木兹是最强谈判筹码</strong><br><br>
+      Al Jazeera分析指出：<strong>伊朗无法在军事上与美以抗衡，但霍尔木兹封锁实现了"伤害国际化"</strong>——它把战争成本强加给全球，尤其是亚洲盟友（中国、印度、日本、韩国）和欧洲。只要霍尔木兹不开放，伊朗就具备持续谈判的筹码。打开霍尔木兹意味着放弃唯一的战略杠杆，没有任何伊朗政治派系会轻易同意。<br><br>
+      伊朗外长Araghchi在5点反案中明确要求"霍尔木兹通行费主权"——这与国际法和美国的核心利益根本冲突，<strong>美伊在霍尔木兹问题上存在不可调和的结构性分歧</strong>。
+    </div>
+    <div class="box r">
+      <strong>Trump的行动逻辑：停战不一定意味着霍尔木兹重开</strong><br><br>
+      WSJ报道确认Trump曾考虑"在不强制重开霍尔木兹的情况下结束战争"。伊朗收费站制度允许中俄等"友好国家"通行，而美以关联船只被阻断——<strong>这种"选择性开放"对伊朗是最优策略</strong>：既保留收入（人民币结算过路费），又维持对美国的制裁效果，还能向国际社会展示"我们不是在对全世界开战"的姿态。<br><br>
+      若美国在未强制重开霍尔木兹的情况下退出，这一收费站制度可能被固化为"新常态"，全球航运永久性承担更高成本。
+    </div>
+  </div>
+  <div>
+    <div class="box d">
+      <strong>替代路线容量远不足以弥补缺口</strong><br><br>
+      Al Jazeera分析的关键数据：<strong>现有绕行霍尔木兹的替代管道总容量仅3.5–5.5百万桶/日</strong>，而战前霍尔木兹日流量约20百万桶/日。缺口约14.5–16.5百万桶/日，无法被任何现有基础设施替代。<br><br>
+      具体：①沙特东-西管道（Yanbu港）：7百万桶/日，但正常使用状态下满载；②UAE ADCO管道（Fujairah港）：约1.5百万桶/日；③其余GCC国家（卡塔尔、科威特、伊拉克、巴林）：<strong>零替代出口路线</strong>——若霍尔木兹持续封锁，这些国家的产量只能减少或停产。<br><br>
+      LNG同样如此：替代运输通道极为有限，卡塔尔LNG出口已宣布force majeure，全球LNG价格飙升。
+    </div>
+    <div class="box a">
+      <strong>为什么"72小时规律"在这里失效</strong><br><br>
+      Brookings能源安全总监Samantha Gross的预判正被证实："我感觉市场至今严重低估了这场战争的影响。市场似乎预期战争会迅速结束，并且结束后我们能回到战前的世界。而我认为这两个假设都是错的。"<br><br>
+      <strong>历史上的地缘冲击（海湾战争、俄乌战争）均可通过增产/绕行替代</strong>，但2026年伊朗战争的结构性不同在于：它是物理性的通道封锁，不是制裁驱动的，无法通过市场机制绕行。Al Jazeera：<em>"2022年俄乌战争的工具——多样化和绕行——在这里完全不起作用。"</em>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 三种持续战争情景 ══ -->
+<hr>
+<div class="lbl">二、持续战争三情景：量化冲击</div>
+
+<!-- Oil Ladder -->
+<div class="ladder">
+  <div class="rung g">
+    <div class="rung-price c-g">$80–95</div>
+    <div class="rung-label"><strong>当前市场定价情景</strong>：45天停火 + Q3开始恢复 · 期货曲线预判</div>
+    <div class="rung-sailun c-g">赛轮净利: 约28–36亿</div>
+  </div>
+  <div class="rung a">
+    <div class="rung-price c-a">$100–115</div>
+    <div class="rung-label"><strong>战争新常态</strong>：收费站固化 + 好望角绕行持续 + 无明显升级（当前路径）</div>
+    <div class="rung-sailun c-a">赛轮净利: 约15–22亿</div>
+  </div>
+  <div class="rung r">
+    <div class="rung-price c-r">$130–147</div>
+    <div class="rung-label"><strong>僵局+能源基础设施打击</strong>：Kharg岛油基础设施毁损 + 伊朗打击沙特Ras Tanura · JP Morgan情景</div>
+    <div class="rung-sailun c-r">赛轮净利: 约3–10亿</div>
+  </div>
+  <div class="rung d">
+    <div class="rung-price c-d">$150–190+</div>
+    <div class="rung-label"><strong>Oxford Economics极端情景</strong>：6个月僵局 + Abqaiq遭打击 + Houthi重启Bab el-Mandeb · 全球衰退</div>
+    <div class="rung-sailun c-d">赛轮净利: ≈ 0（轮胎需求崩溃）</div>
+  </div>
+</div>
+
+<!-- 连锁传导 -->
+<div class="chain">
+  <div class="chain-title">战争僵局连锁传导：能源设施大规模互毁路径</div>
+  <div class="chain-flow">
+    <div class="chain-node">美打击Kharg岛<br>油基础设施</div>
+    <div class="chain-arr">→</div>
+    <div class="chain-node">伊朗反击<br>沙特Abqaiq/<br>Ras Tanura</div>
+    <div class="chain-arr">→</div>
+    <div class="chain-node">沙特原油<br>减产700万桶/日<br>+</div>
+    <div class="chain-arr">→</div>
+    <div class="chain-node">Houthi重启<br>Bab el-Mandeb<br>封锁</div>
+    <div class="chain-arr">→</div>
+    <div class="chain-node dk">全球供应<br>减少约20mb/d<br>Brent $147–190</div>
+  </div>
+  <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);line-height:1.8;">
+    Jeff Currie（Carlyle前Goldman Sachs大宗商品主席）："被战火损毁的基础设施无法在炮火下修复。战争风险保险溢价将在最后一枚导弹发射后长期维持高位。""这个世界正在走向一个新的能源范式，其中安全风险被永久嵌入商品价格。"
+  </div>
+</div>
+
+<!-- ══ 能源设施损毁现状 ══ -->
+<hr>
+<div class="lbl">三、能源设施损毁已经开始：现状盘点</div>
+
+<div class="damage-grid">
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">卡塔尔拉斯拉凡LNG</div>
+    <div class="dc-status c-r">受损 · Force Majeure</div>
+    <div class="dc-body">3月伊朗导弹打击后，卡塔尔LNG出口量下降17%，修复预计需要<strong>5年</strong>。这是全球最大LNG设施。全球LNG价格已大幅上涨。欧洲获取12–14%的LNG来自此处。</div>
+  </div>
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">沙特Ras Tanura炼厂</div>
+    <div class="dc-status c-r">关闭·预防性停产</div>
+    <div class="dc-body">沙特阿美最大国内炼厂在无人机袭击后预防性关闭。<strong>Abqaiq处理设施尚未遭打击，但已成为战争最担忧的目标</strong>——2019年遭无人机袭击时曾造成全球恐慌。</div>
+  </div>
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">科威特电力+海水淡化</div>
+    <div class="dc-status c-r">已遭打击·工人死亡</div>
+    <div class="dc-body">科威特发电和海水淡化厂遭伊朗无人机打击，服务楼受损，<strong>一名印度工人死亡</strong>。海湾GCC国家77%–99%饮用水来自海水淡化，其中断将构成人道主义灾难。</div>
+  </div>
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">伊朗Kharg岛</div>
+    <div class="dc-status c-a">军事设施被打 · 油设施暂保留</div>
+    <div class="dc-body">美军3月13日打击90+军事目标，<strong>刻意保留油基础设施</strong>（Trump的警告工具）。但若打击石油基础设施，伊朗年出口90%将中断，伊朗将反击沙特——这是最大的升级威胁。</div>
+  </div>
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">伊拉克扎比尔油田</div>
+    <div class="dc-status c-r">减产40%</div>
+    <div class="dc-body">原日产40万桶已降至约25万桶，伊拉克南部90%GDP依赖石油出口。<strong>伊拉克总进口量减半，GCC经济模型系统性崩溃</strong>，沙特和阿联酋绕行管道不足以覆盖全部需求。</div>
+  </div>
+  <div class="damage-card" style="border-top:3px solid var(--r2)">
+    <div class="dc-title">以色列海法炼厂</div>
+    <div class="dc-status c-r">遭伊朗打击</div>
+    <div class="dc-body">伊朗导弹打击以色列北部海法炼厂，报道有至少一处直接击中。以色列炼油能力受损。冲突双向破坏能源基础设施的模式<strong>正在互相强化</strong>，为更大规模能源战提供先例。</div>
+  </div>
+</div>
+
+<!-- ══ Oxford Economics压力测试 ══ -->
+<hr>
+<div class="lbl">四、机构压力测试：僵局路径的系统量化</div>
+
+<table class="matrix">
+  <thead>
+    <tr>
+      <th style="width:120px">情景</th>
+      <th>核心假设</th>
+      <th>Brent高点</th>
+      <th>全球GDP影响</th>
+      <th>全球通胀</th>
+      <th>美国</th>
+      <th>中国</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="base">
+      <td class="fw7 c-g">当前市场定价<br><span style="font-size:8.5px">(停火·Q3恢复)</span></td>
+      <td>45天停火成功 · 霍尔木兹Q2末逐步开放 · EIA预测路径</td>
+      <td class="c-g">$95–115（已发生）</td>
+      <td class="c-g">−0.5–0.8 ppt</td>
+      <td class="c-g">+2.5–3.5 ppt</td>
+      <td class="c-g">轻度放缓</td>
+      <td class="c-g">−0.5–0.8%</td>
+    </tr>
+    <tr class="stress">
+      <td class="fw7 c-r">压力情景<br><span style="font-size:8.5px">(2–3季度僵局)</span></td>
+      <td>战争持续至Q3 · 霍尔木兹维持收费站 · 无大规模升级 · Dallas Fed基准</td>
+      <td class="c-r">$130–147</td>
+      <td class="c-r">−1.0–1.5 ppt (annualized)</td>
+      <td class="c-r">+4–5 ppt</td>
+      <td class="c-r">GDP -0.5–1%</td>
+      <td class="c-r">−1.5–2%</td>
+    </tr>
+    <tr class="extreme">
+      <td class="fw7 c-r">极端情景<br><span style="font-size:8.5px">(Oxford Economics)</span></td>
+      <td>6个月僵局 + 沙特管道受打击 + Houthi重启红海封锁 · 能源设施大规模互毁</td>
+      <td class="c-r fw7">$190（8月）<br>超越2008高点</td>
+      <td class="c-r fw7">−2.9 ppt (Q2)<br>全年−1.2 ppt</td>
+      <td class="c-r fw7">全球通胀7.7%</td>
+      <td class="c-r fw7">进入衰退<br>股市−20%</td>
+      <td class="c-r fw7">GDP降至3.4%<br>生产成本急升</td>
+    </tr>
+    <tr class="total-war">
+      <td class="fw7 c-d">末日情景<br><span style="font-size:8.5px">(核设施互打)</span></td>
+      <td>核设施实质损毁 + 沙特阿美Abqaiq全毁 + 数年重建 + 中东全面战争</td>
+      <td style="color:var(--dk);font-weight:700">$200+<br>理论无上限</td>
+      <td style="color:var(--dk);font-weight:700">超级衰退<br>类1973石油危机</td>
+      <td style="color:var(--dk)">两位数通胀</td>
+      <td style="color:var(--dk)">深度衰退</td>
+      <td style="color:var(--dk)">严重冲击<br>供应链中断</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box d">
+  <strong>Dallas Fed量化研究关键结论：</strong>若霍尔木兹在Q2整个季度关闭（当前正在发生），全球WTI油价将被推高至$98/桶平均，全球实际GDP增速将环比年化下降<strong>2.9个百分点</strong>。若关闭持续3个季度，对全球经济增长的拖累将叠加且扩大。该研究明确指出："这是自1973年阿拉伯石油禁运以来最大的供应冲击，规模为1973年的两倍以上（15.8百万桶/日 vs 7%全球供应量）。"
+</div>
+
+<!-- ══ 僵局情景时间线 ══ -->
+<hr>
+<div class="lbl">五、僵局情景时间线：若协议在4/8后失败，接下来会发生什么</div>
+
+<div class="tl-wrap">
+  <div class="ev r">
+    <div class="ev-dt">4月8–15日</div>
+    <div class="ev-hd c-r">Trump截止日过后·美执行打击计划</div>
+    <div class="ev-bd">若谈判失败，美军对伊朗电厂和桥梁发动大规模打击。<strong>伊朗立即宣布在霍尔木兹及整个波斯湾大规模布雷</strong>，同时对沙特/UAE/科威特能源设施发动飞弹和无人机攻击。Brent预计跳涨至$130–145。</div>
+  </div>
+  <div class="ev r">
+    <div class="ev-dt">4月下旬</div>
+    <div class="ev-hd c-r">沙特Abqaiq遭打击（压力情景的关键节点）</div>
+    <div class="ev-bd">专家一致认为伊朗最有威慑力的报复目标是<strong>沙特阿美Abqaiq油气处理设施</strong>——全球最大单一油气处理厂，每天处理约700万桶。Bob McNally指出其关键设备"无法从通用电气订购"，修复需要数年。<em>若Abqaiq遭重创，全球即时减少700万桶/日，Brent可能单日突破$160。</em></div>
+  </div>
+  <div class="ev d">
+    <div class="ev-dt">5–8月</div>
+    <div class="ev-hd c-d">完全僵局期·Oxford Economics极端情景展开</div>
+    <div class="ev-bd">全球商业库存在6月耗尽（IEA战略储备仅覆盖20天霍尔木兹正常流量）。实物供应短缺触发<strong>强制配给</strong>，全球通胀升至7.7%（2022年水平）。美国GDP开始负增长。中国GDP降至3.4%。轮胎需求随汽车销量崩溃，Brent在8月逼近$190。<strong>这是赛轮净利润归零的情景——需求崩溃比成本上涨更致命。</strong></div>
+  </div>
+  <div class="ev d">
+    <div class="ev-dt">Q3–Q4 2026</div>
+    <div class="ev-hd c-d">Houthi重启Bab el-Mandeb</div>
+    <div class="ev-bd">若局势进一步升级，Houthi明确表示将关闭Bab el-Mandeb——好望角绕行路线的必经之路。<em>届时全球将面临同时失去霍尔木兹和Bab el-Mandeb两条关键航路的极端局面。</em>沙特Yanbu港（好望角绕行节点）也将成为攻击目标。SolAbility分析称此为"全球经济灾难路径"。</div>
+  </div>
+</div>
+
+<!-- ══ 赛轮特定冲击 ══ -->
+<hr>
+<div class="lbl">六、赛轮在各情景下的净利润量化（僵局视角重构）</div>
+
+<table class="matrix">
+  <thead>
+    <tr>
+      <th>情景</th>
+      <th>Brent区间</th>
+      <th>合成橡胶+炭黑成本增幅</th>
+      <th>天然橡胶</th>
+      <th>海运费</th>
+      <th>终端需求</th>
+      <th>赛轮2026净利润</th>
+      <th>股价含义</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="base">
+      <td class="fw7 c-g">基线·停火</td>
+      <td>$80–95</td>
+      <td>+10–20%</td>
+      <td>季节改善↓</td>
+      <td>+10–20%</td>
+      <td>稳健</td>
+      <td class="c-g fw7">约28–36亿</td>
+      <td class="c-g">↑估值修复</td>
+    </tr>
+    <tr class="base">
+      <td class="fw7 c-a">当前路径</td>
+      <td>$100–115</td>
+      <td>+25–40%</td>
+      <td>改善中</td>
+      <td>+25–40%</td>
+      <td>轻度承压</td>
+      <td class="c-a fw7">约15–22亿</td>
+      <td class="c-a">→横盘</td>
+    </tr>
+    <tr class="stress">
+      <td class="fw7 c-r">压力·$130</td>
+      <td>$125–147</td>
+      <td>+50–80%</td>
+      <td>+20–30%恐慌溢价</td>
+      <td>+50–70%</td>
+      <td>明显下滑</td>
+      <td class="c-r fw7">约3–10亿</td>
+      <td class="c-r">↓大跌</td>
+    </tr>
+    <tr class="extreme">
+      <td class="fw7 c-d">极端·$150+</td>
+      <td>$150–190</td>
+      <td>+80–130%</td>
+      <td>+30–50%</td>
+      <td>+80–120%</td>
+      <td class="c-d">严重萎缩<br>轮胎需求-15–25%</td>
+      <td class="c-d fw7">≈ 0–3亿<br>（需求崩溃主导）</td>
+      <td class="c-d fw7">↓跌停风险<br>PB逼近1x</td>
+    </tr>
+    <tr class="total-war">
+      <td class="fw7" style="color:var(--dk)">末日·$190+</td>
+      <td>$190+</td>
+      <td>+130%+</td>
+      <td>全面通胀</td>
+      <td>+150%+</td>
+      <td style="color:var(--dk)">汽车销量暴跌<br>轮胎需求-30%+</td>
+      <td class="fw7 c-d">亏损可能</td>
+      <td style="color:var(--dk)">↓系统性崩溃</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="box r">
+  <strong>赛轮的双重风险：成本上涨 + 需求崩溃</strong><br><br>
+  在$130+情景下，赛轮面临的不仅是成本端的压力，更是终端需求的萎缩。历史数据显示：每当油价持续高于$100超过6个月，全球汽车销量会在3–6个月滞后下滑约8–15%。Oxford Economics的模型预测极端情景下全球GDP负增长，直接导致汽车销量暴跌——赛轮75%的销售是替换轮胎（有需求韧性），但25%是配套OEM（与新车销量高度相关）。<strong>即便配套OEM比例不高，需求萎缩叠加成本爆炸，将使净利润雪上加霜。</strong>
+</div>
+
+<!-- ══ 为什么市场可能错了 ══ -->
+<hr>
+<div class="lbl">七、为什么当前市场定价可能是错的</div>
+
+<div class="grid2">
+  <div>
+    <div class="box b">
+      <strong>期货曲线"backwardation"可能是幻觉</strong><br><br>
+      当前Brent期货曲线：现货$111，6个月$95，1年$80。市场用这个来证明"高油价是短暂的"。但SolAbility分析指出：<strong>这个期货价格结构是在假设霍尔木兹恢复的前提下定价的</strong>，而不是在假设物理封锁持续的前提下。若霍尔木兹封锁持续3个季度，远期期货价格就会错得离谱——市场将被迫重新定价整条曲线，届时"停损"抛售可能触发油价加速上涨。<br><br>
+      用一个比喻：市场定价的是"河流很快会解冻"，但实际上冰块已经冻成了水坝。
+    </div>
+    <div class="box b">
+      <strong>Q1企业盈利强劲≠Q2–Q3不会崩溃</strong><br><br>
+      S&P 500 Q1盈利预期+13%，是战争仅持续1个月的数据。原材料库存消耗（1–3个月缓冲）和能源成本的滞后传导意味着：<strong>Q2–Q3盈利将面临战争冲击的全面显现</strong>。轮胎行业的原材料库存周期约6–8周——3月采购的原料4–5月才进入生产，成本压力5–6月才体现在利润表。若战争持续至Q2，赛轮的Q2季报将是第一次"真正见血"的财务报告。
+    </div>
+  </div>
+  <div>
+    <div class="box b">
+      <strong>美国"能源绝缘"论有局限</strong><br><br>
+      Trump声称"美国不从霍尔木兹进口石油"。但：①全球油价是统一定价的，$111的Brent直接影响美国$4/加仑汽油；②美国进口不少成品油；③美国出口LNG竞争力因油价上涨而降低（生产成本上升）；④全球GDP下滑会减少美国出口需求。<br><br>
+      <strong>更重要的是：若全球衰退触发，美国科技股的估值将首先受冲击</strong>（利率上升+增长预期下调的双重压制）——而S&P 500过去两年的涨幅高度集中于AI/科技板块，估值溢价极高。
+    </div>
+    <div class="box a">
+      <strong>外交突破存在结构性障碍，被市场高估</strong><br><br>
+      伊朗5点反案要求的"霍尔木兹主权"，与美国15点要求的"自由通航"根本冲突。即便某种形式的停火达成：①<strong>水雷扫除需4–8周</strong>；②<strong>战争风险保险恢复正常需6–12个月</strong>；③<strong>QatarEnergy LNG设施修复需5年</strong>；④船公司需要多次"安全通行"验证才会回归——Jeff Currie："保险溢价将在最后一枚导弹发射后长期维持高位"。<br><br>
+      因此，停火≠立即$80油价，而是一个渐进的、充满变数的过程。
+    </div>
+  </div>
+</div>
+
+<!-- ══ 综合净利润判断 ══ -->
+<div class="verdict">
+  <div class="vd-t">赛轮2026年归母净利润 · 四情景全范围（含僵局深度修正）</div>
+  <div class="vd-g">
+    <div class="vd-i">
+      <div class="l">情景A · 停火（20–25%）</div>
+      <div class="v c-g">28–36亿</div>
+      <div class="s">乐观路径 · 油价回落<br>天胶季节改善叠加</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">情景B · 收费站常态（40–45%）</div>
+      <div class="v c-a">15–22亿</div>
+      <div class="s">$100–115持续 · 绕行<br>最高概率基准情景</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">情景C · 能源设施升级（20–25%）</div>
+      <div class="v c-r">3–10亿</div>
+      <div class="s">$130–147 · Kharg+沙特<br>需求开始萎缩</div>
+    </div>
+    <div class="vd-i">
+      <div class="l">情景D · 6个月僵局（10–15%）</div>
+      <div class="v c-d">0–3亿 / 亏损</div>
+      <div class="s">$150–190 · 全球衰退<br>需求崩溃主导</div>
+    </div>
+  </div>
+  <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);line-height:1.9;">
+    <strong style="color:var(--ink)">概率加权期望净利润：约15–21亿元</strong>（情景D的引入使期望值较上版小幅下修）<br>
+    <strong style="color:var(--r2)">核心判断：</strong>市场当前定价约60–70%的概率给了情景A/B（停火/收费站常态），但实际上情景C/D的合计概率（30–40%）被严重低估。若任何一个情景C/D触发，<strong>赛轮当前股价12.90元将面临−30–60%的下行风险</strong>，接近或低于每股净资产（6.40元）。<br>
+    <strong style="color:var(--grn)">唯一确定的中线利好：</strong>天然橡胶季节性改善（4月已开始），与战争情景无关，提供约1–2亿元净利润的"硬保底"改善。
+  </div>
+</div>
+
+<div class="box d">
+  <strong>给持有赛轮投资者的一句话总结：</strong>当前12.90元的股价隐含了"市场认为情景A/B最终会实现"的预判。这个预判可能是对的（概率约60–65%），但<strong>被市场低估的情景C/D（能源设施大规模互毁 + 持续僵局）一旦触发，将是非线性的、难以用日内止损应对的系统性冲击</strong>。赛轮的安全边际在于：①利息覆盖率10.5x，财务上不会崩溃；②海外工厂税收优惠5–8亿/年是结构性收益；③天胶季节性改善已在进行。但在情景D（$150–190）下，这些护城河无法阻止净利润归零——因为届时需求端的崩溃比成本端的冲击更大。
+</div>
+
+</main>
+
+<footer>
+  <span>来源：Oxford Economics · Dallas Fed · Al Jazeera · WEF · SolAbility · CNBC · WaPo · NPR · Wikipedia经济影响条目 · Jeff Currie/Carlyle · Vandana Hari/Vanda Insights · 2026.04.07</span>
+  <span>油价上涨影响估算_20260407b · v12 · 僵局情景深度版 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
