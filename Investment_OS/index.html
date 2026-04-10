@@ -1014,10 +1014,12 @@ function removeCandidate(id){
 
 // ── REPORT LINKS ──
 async function renderReportLinks(c){
+  const cid=c.id; // capture at call time — guard against switching mid-fetch
   const folder=c.research_folder;
   const listEl=g('report-links-list');
   const labelEl=g('report-folder-label');
   if(!folder){
+    if(currentId!==cid)return;
     listEl.innerHTML='<div style="font-size:12px;color:var(--text3)">（无研究文件夹）</div>';
     if(labelEl)labelEl.textContent='—';
     return;
@@ -1030,11 +1032,11 @@ async function renderReportLinks(c){
   try{
     const headers=S.pat?{Authorization:'token '+S.pat,'Accept':'application/vnd.github.v3+json'}:{'Accept':'application/vnd.github.v3+json'};
     const res=await fetch(apiUrl,{headers});
-    if(!res.ok){
-      // Fallback: use known files from companies.json reports array if exists
-      throw new Error('API '+res.status);
-    }
+    // ── GUARD: if user switched company while fetching, discard result ──
+    if(currentId!==cid)return;
+    if(!res.ok)throw new Error('API '+res.status);
     const files=await res.json();
+    if(currentId!==cid)return;
     const htmlFiles=files.filter(f=>f.name.endsWith('.html')).sort((a,b)=>b.name.localeCompare(a.name));
     if(!htmlFiles.length){
       listEl.innerHTML='<div style="font-size:12px;color:var(--text3)">（文件夹暂无HTML报告）</div>';
@@ -1042,10 +1044,8 @@ async function renderReportLinks(c){
     }
     listEl.innerHTML=htmlFiles.map(f=>{
       const url=pagesBase+folder+'/'+f.name;
-      // extract date from filename (pattern: _YYYYMMDD.html)
       const dm=f.name.match(/(\d{8})/);
       const dateStr=dm?dm[1].replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3'):'';
-      // version info
       const isLatest=htmlFiles[0].name===f.name;
       return`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--bg3);border-radius:5px;gap:10px">
         <div style="flex:1;min-width:0">
@@ -1057,7 +1057,7 @@ async function renderReportLinks(c){
       </div>`;
     }).join('');
   }catch(e){
-    // If API fails (no PAT or rate limit), show direct links from known pattern
+    if(currentId!==cid)return;
     const pagesUrl=pagesBase+folder+'/';
     listEl.innerHTML=`<div style="font-size:12px;color:var(--text2);line-height:1.7">
       无法从API获取文件列表（${e.message}）。<br>
@@ -1077,6 +1077,7 @@ function renderDetail(cid){
   const cb=g('d-cur-badge');cb.className='cur-badge cur-'+cv;cb.textContent=cv;
   if(g('lc-pu'))g('lc-pu').textContent=sym2;if(g('lc-wu'))g('lc-wu').textContent=sym2;if(g('lc-cu'))g('lc-cu').textContent=sym2;
   renderLadder(c);renderScenarios(c);renderPosPanel(c);renderChecklist(c);
+  if(c.id!==currentId)return; // guard after any potential async predecessors
   g('notes-d').textContent=c.research_notes||'（暂无）';
   g('d-rating').textContent={'strong-buy':'强烈买入 🟢','buy':'买入 🟢','hold':'持有 🟡','trim':'减仓 🟠','sell':'卖出 🔴','watch':'观察 🔵'}[c.rating]||c.rating||'—';
   g('d-cat').textContent=c.next_catalyst||'—';g('d-asof').textContent=c.data_as_of||'—';
@@ -1121,7 +1122,7 @@ function renderLadder(c){
 }
 
 function vcCalc(){
-  const c=companies.find(x=>x.id===sel)||candidates.find(x=>x.id===sel);
+  const c=getC(currentId);
   if(!c||!c.valuation_params)return;
   const vp=c.valuation_params;
   const profit=parseFloat(g('vc-profit').value);
@@ -1196,6 +1197,7 @@ function renderPosPanel(c){
 }
 
 function renderChecklist(c){
+  if(c.id!==currentId)return; // guard: discard if company switched
   const el=g('cl-items');const items=c.checklist||[];
   if(!items.length){el.innerHTML='<div style="color:var(--text3);font-size:12.5px;padding:10px 0">暂无监控项目</div>';return}
   const pc={high:'var(--red-mid)',mid:'var(--yellow-mid)',low:'var(--text3)'};
