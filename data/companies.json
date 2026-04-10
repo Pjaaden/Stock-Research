@@ -687,37 +687,46 @@
       "exchange": "US",
       "sector": "新茶饮",
       "research_folder": "霸王茶姬_NASDAQ_CHA",
-      "price": 28,
+      "price": 9.3,
       "shares": 2.5,
-      "net_cash_bn": 5,
+      "net_cash_bn": 10.9,
       "eps_forecast": 0.8,
       "discount_rate": 10,
-      "valuation_method": "PS倍数 + 净现金 + 同店GMV增速",
+      "valuation_method": "Non-GAAP净利润 × PE + 净现金 × 折算比例",
       "signal": "watch",
       "position_pct": 0,
       "avg_cost": 0,
       "max_position_pct": 10,
       "rating": "watch",
-      "next_catalyst": "2026Q1同店GMV轨迹 + 春夏新品周期反应",
-      "data_as_of": "2025全年",
+      "next_catalyst": "2026Q1财报（约5月）：同店GMV收窄幅度 + SBC规模",
+      "data_as_of": "2025FY（2026-03-31发布）",
       "scenarios": [
         {
-          "name": "牛市",
-          "prob": 25,
-          "target_price": 45,
-          "assumptions": "同店GMV企稳回升，海外直营单店经济转正，SBC正常化，外卖补贴战降温"
+          "name": "乐观",
+          "prob": 20,
+          "target_price": 36,
+          "pe_assumed": 16,
+          "profit_2026e": 26,
+          "cash_pct": 100,
+          "assumptions": "爆款新品推动同店GMV转正；海外直营H2盈利；SBC降至¥1亿；PE修复至16×"
         },
         {
           "name": "基准",
           "prob": 50,
-          "target_price": 28,
-          "assumptions": "现状维持，品牌重新定位进行中，SBC逐步正常化"
+          "target_price": 23,
+          "pe_assumed": 12,
+          "profit_2026e": 22,
+          "cash_pct": 80,
+          "assumptions": "强位门店出清完成（月销60-70万维持）；同店收窄至-15%；SBC降至¥1.5亿；PE 12×"
         },
         {
-          "name": "熊市",
-          "prob": 25,
-          "target_price": 15,
-          "assumptions": "同店GMV持续下滑，竞争加剧，品牌定位漂移，海外扩张亏损扩大"
+          "name": "悲观",
+          "prob": 30,
+          "target_price": 12,
+          "pe_assumed": 8,
+          "profit_2026e": 18,
+          "cash_pct": 50,
+          "assumptions": "出清未完成，加盟再减10-15%；直营亏损扩大；PE 8×；现金打五折"
         }
       ],
       "position_rules": [
@@ -746,48 +755,79 @@
       "checklist": [
         {
           "id": "chk050",
-          "text": "2026Q1同店GMV是否同比企稳（去年同期有较低基数效应）",
-          "action": "若同比仍负增长，维持观察不建仓",
+          "text": "2026Q1同店GMV跌幅是否收窄至-15%以内",
+          "action": "若跌幅仍超-20%，维持观察不建仓",
           "priority": "high",
           "checked": false,
           "category": "核心指标"
         },
         {
           "id": "chk051",
-          "text": "春夏新品周期是否带动同店流量回升",
-          "action": "新品催化剂是短期观察变量，不能替代GMV趋势",
+          "text": "大中华加盟店净变动：是否连续两季度净减少停止",
+          "action": "出清结束信号，届时单店均值应上移",
+          "priority": "high",
+          "checked": false,
+          "category": "核心指标"
+        },
+        {
+          "id": "chk052",
+          "text": "2026Q1 SBC费用是否较2025Q4（¥6610万）显著下降",
+          "action": "SBC正常化是最确定的利润改善路径，需跟踪季度确认金额",
+          "priority": "high",
+          "checked": false,
+          "category": "盈利质量"
+        },
+        {
+          "id": "chk053",
+          "text": "春夏新品周期：是否出现首周排队/社交媒体自发传播",
+          "action": "爆款是同店GMV转正的前置条件，实地可观察",
           "priority": "mid",
           "checked": false,
           "category": "催化剂"
         },
         {
-          "id": "chk052",
-          "text": "海外直营门店单店经济是否趋势向正（亏损门店比例）",
-          "action": "若亏损门店>30%，推迟建仓",
+          "id": "chk054",
+          "text": "海外直营GMV占比是否突破6%",
+          "action": "当前约5%，突破6%才具备独立估值叙事",
           "priority": "mid",
           "checked": false,
           "category": "海外扩张"
         },
         {
-          "id": "chk053",
-          "text": "SBC占收入比是否持续下降",
-          "action": "正常化是报告利润改善的必要条件，需追踪",
-          "priority": "low",
+          "id": "chk055",
+          "text": "大客流商场内门店是否出现空置（实地观察）",
+          "action": "强位门店出现空置=出清未完成，推迟建仓",
+          "priority": "mid",
           "checked": false,
-          "category": "盈利质量"
+          "category": "实地验证"
         }
       ],
-      "research_notes": "核心问题：同店GMV下滑 + 外卖平台补贴战压力。品牌定位从高端「中式奶茶」向更宽泛受众迁移中，定位漂移是中期风险。\n\n海外直营是长期差异化叙事，但短期单店盈利压力大。论点需要：同店GMV企稳 + 海外单店经济向好，两个信号同时出现才建仓。\n\n美股折现率用10%（vs A股/港股7–8%）。",
+      "research_notes": "核心问题：同店GMV连续五季度负增长（2025Q4: -25.5%），大中华加盟Q4净减271家。\n\n出清逻辑：弱位置门店（社区/写字楼）月销33万难覆盖成本自然退出；大客流商场门店月销60-70万（租金约20万）可持续经营，是真实底部支撑。出清后存活门店质量更高，单店均值将自然回升。\n\nSBC是最确定的修复路径：2025全年SBC ¥7.24亿（2024年仅¥603万），为IPO期权集中确认，2026年预计降至¥1-2亿，GAAP利润自动大幅改善。\n\n估值模型：合理股价 = (Non-GAAP净利润 × PE + 净现金 × 折算%) ÷ 1.92亿股。净现金US$10.9亿占当前市值64%，是真实资产但需打折（IPO募资，用于海外扩张）。\n\n当前Non-GAAP PE 6.5×，处于悲观定价区间。修复到15×需同店GMV止跌信号。",
       "gradient": {
-        "buy_strong": 15,
-        "buy": 22,
-        "hold_low": 30,
-        "trim": 38,
-        "sell": 45,
+        "buy_strong": 10,
+        "buy": 14,
+        "hold_low": 20,
+        "trim": 30,
+        "sell": 38,
         "custom_points": []
       },
       "shares_held": 0,
-      "status": "active"
+      "status": "active",
+      "valuation_params": {
+        "nongaap_profit_rmb_bn": 19.1,
+        "nongaap_profit_2026e_rmb_bn": 22.0,
+        "fx_rate": 6.9931,
+        "total_shares_mn": 192,
+        "net_cash_usd_bn": 10.9,
+        "sbc_2025_rmb_bn": 7.24,
+        "sbc_2026e_rmb_bn": 1.5,
+        "current_pe": 6.5,
+        "peer_pe_avg": 15,
+        "sssg_2025q4": -25.5,
+        "avg_gmv_per_store_2025q4_rmb": 337358,
+        "franchised_stores_2025q4": 6700,
+        "owned_stores_2025q4": 615
+      }
     }
   ],
   "_meta": {
@@ -796,6 +836,7 @@
     "description": "Investment OS 主数据文件",
     "maintainer": "Pjaaden/Stock-Research",
     "update_instructions": "由工作台自动同步",
-    "schema_version": "2.0"
+    "schema_version": "2.0",
+    "updated_at": "2026-04-10"
   }
 }

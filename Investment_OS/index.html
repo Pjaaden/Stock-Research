@@ -359,6 +359,61 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   </div>
 
   <div class="tc" id="tc-1">
+
+    <div class="card mb12" id="val-calc-card" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div class="card-title" style="margin-bottom:0">交互估值计算器</div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)">净利润×PE + 净现金×折算</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px" id="vc-params-grid">
+        <div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:4px">Non-GAAP净利润（亿元）</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <input type="range" id="vc-profit" min="14" max="32" step="1" value="22" style="flex:1" oninput="vcCalc()">
+            <span style="font-family:var(--mono);font-size:13px;font-weight:600;min-width:36px;text-align:right" id="vc-profit-out">22</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:1px"><span>悲观¥18亿</span><span>乐观¥28亿</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:4px">PE估值倍数</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <input type="range" id="vc-pe" min="5" max="22" step="1" value="12" style="flex:1" oninput="vcCalc()">
+            <span style="font-family:var(--mono);font-size:13px;font-weight:600;min-width:30px;text-align:right" id="vc-pe-out">12×</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:1px"><span>悲观5×</span><span>均值15×</span><span>乐观22×</span></div>
+        </div>
+        <div>
+          <div style="font-size:10px;color:var(--text3);text-transform:uppercase;margin-bottom:4px">净现金计入比例</div>
+          <div style="display:flex;align-items:center;gap:6px">
+            <input type="range" id="vc-cash" min="0" max="100" step="10" value="80" style="flex:1" oninput="vcCalc()">
+            <span style="font-family:var(--mono);font-size:13px;font-weight:600;min-width:34px;text-align:right" id="vc-cash-out">80%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text3);margin-top:1px"><span>不算</span><span>打折</span><span>全算</span></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+        <div style="background:var(--bg3);border-radius:5px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--text3);margin-bottom:2px">业务价值</div>
+          <div style="font-family:var(--mono);font-size:15px;font-weight:600" id="vc-biz">—</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:5px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--text3);margin-bottom:2px">净现金贡献</div>
+          <div style="font-family:var(--mono);font-size:15px;font-weight:600" id="vc-cash-c">—</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:5px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--text3);margin-bottom:2px">目标股价</div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent2)" id="vc-price">—</div>
+        </div>
+        <div style="background:var(--bg3);border-radius:5px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--text3);margin-bottom:2px">较现价空间</div>
+          <div style="font-family:var(--mono);font-size:20px;font-weight:700" id="vc-upside">—</div>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:var(--text2);line-height:1.6;padding:8px 10px;background:var(--bg3);border-radius:5px" id="vc-note">
+        参数：2025FY Non-GAAP净利润¥19.1亿；2026E中性估计¥22亿；净现金US$10.9亿；总股本1.92亿股（稀释后）。
+      </div>
+    </div>
+
     <div class="card mb12">
       <div class="card-title">三情景估值框架</div>
       <table class="sct"><thead><tr><th>情景</th><th>概率</th><th>目标价</th><th>假设条件</th><th>vs 市价</th><th>加权贡献</th></tr></thead>
@@ -1000,8 +1055,52 @@ function renderLadder(c){
   g('lc-price').value=price;g('lc-wval').value=w.toFixed(2);
 }
 
+function vcCalc(){
+  const c=companies.find(x=>x.id===sel)||candidates.find(x=>x.id===sel);
+  if(!c||!c.valuation_params)return;
+  const vp=c.valuation_params;
+  const profit=parseFloat(g('vc-profit').value);
+  const pe=parseFloat(g('vc-pe').value);
+  const cashPct=parseFloat(g('vc-cash').value)/100;
+  g('vc-profit-out').textContent=profit+'亿';
+  g('vc-pe-out').textContent=pe+'×';
+  g('vc-cash-out').textContent=Math.round(cashPct*100)+'%';
+  const fx=vp.fx_rate||6.9931;
+  const shares=vp.total_shares_mn||192;
+  const cashUSD=vp.net_cash_usd_bn||10.9;
+  const bizUSD=(profit/fx)*pe;
+  const cashC=cashUSD*cashPct;
+  const total=bizUSD+cashC;
+  const price=total/(shares/100);
+  const cur=effP(c)||9.30;
+  const upside=(price/cur-1)*100;
+  g('vc-biz').textContent='US$'+bizUSD.toFixed(1)+'亿';
+  g('vc-cash-c').textContent='US$'+cashC.toFixed(1)+'亿';
+  g('vc-price').textContent='$'+price.toFixed(1);
+  const uEl=g('vc-upside');
+  uEl.textContent=(upside>=0?'+':'')+Math.round(upside)+'%';
+  uEl.style.color=upside>=0?'var(--green-mid)':'var(--red-mid)';
+  let note=`参数：Non-GAAP净利润¥${profit}亿 × ${pe}倍 + 净现金US$${cashUSD}亿×${Math.round(cashPct*100)}% ÷ ${shares}M股`;
+  if(pe<=8) note+='。PE偏低，反映市场对持续下滑的担忧。';
+  else if(pe>=15) note+='。PE偏高，需同店GMV回正或海外盈利验证。';
+  else note+='。PE处于合理区间，对应出清完成后的稳定预期。';
+  g('vc-note').textContent=note;
+}
+
 function renderScenarios(c){
   const price=effP(c),w=wval(c),sym2=sym(c);
+  const vp=c.valuation_params;
+  const calcCard=g('val-calc-card');
+  if(calcCard){
+    if(vp&&vp.total_shares_mn){
+      calcCard.style.display='';
+      g('vc-profit').value=vp.nongaap_profit_2026e_rmb_bn||22;
+      g('vc-pe').value=12;g('vc-cash').value=80;
+      vcCalc();
+    } else {
+      calcCard.style.display='none';
+    }
+  }
   g('sc-tbody').innerHTML=(c.scenarios||[]).map((s,i)=>{
     const cls=['r-bull','r-base','r-bear'][i]||'',dev=price?((price-s.target_price)/s.target_price*100):0;
     const ds=dev<=0?`<span style="color:var(--green-mid)">+${Math.abs(dev).toFixed(1)}%</span>`:`<span style="color:var(--red-mid)">−${Math.abs(dev).toFixed(1)}%</span>`;
