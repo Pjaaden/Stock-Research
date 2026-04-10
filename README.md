@@ -13,16 +13,17 @@
 Stock-Research/
 ├── Investment_OS/              # 投资操作系统工作台（GitHub Pages）
 │   ├── index.html              # 主工作台（v3.2，实时从data/读取）
+│   ├── GUIDE.md                # 工作台操作指南（本文件同目录）
 │   └── update_from_report.py  # Claude Code PDF自动解析脚本
-├── data/                       # 工作台数据层（JSON）
-│   ├── companies.json          # 六家已研究公司完整数据
-│   ├── watchlist.json          # 候选池（轻量条目）
+├── data/                       # 工作台数据层（JSON，唯一数据真实来源）
+│   ├── companies.json          # 六家已研究公司完整估值数据
+│   ├── watchlist.json          # 候选池（轻量条目，无需完整估值）
 │   └── logs.json               # 操作日志存档
-├── 赛轮集团_601058/            # 赛轮集团全系研究
-│   └── 赛轮vs中策_比较分析/   # 赛轮 vs 中策橡胶
 ├── 中国国贸_600007/            # 中国国贸深度研究
+├── 中策橡胶_603049/            # 中策橡胶研究（含赛轮vs中策比较）
 ├── 华润万象生活_000966/        # 华润万象生活（HK: 01209）
 ├── 绿城服务_2869HK/            # 绿城服务（HK: 2869）
+├── 赛轮集团_601058/            # 赛轮集团全系研究
 ├── 霸王茶姬_NASDAQ_CHA/        # 霸王茶姬（NASDAQ: CHA）
 └── _archive/                   # 历史版本存档
 ```
@@ -31,7 +32,8 @@ Stock-Research/
 
 ## 📊 Investment OS · 投资操作系统
 
-**GitHub Pages 地址：** https://pjaaden.github.io/Stock-Research/Investment_OS/
+**GitHub Pages 地址：** https://pjaaden.github.io/Stock-Research/Investment_OS/  
+**操作指南：** [Investment_OS/GUIDE.md](Investment_OS/GUIDE.md) · 完整使用说明，无需编程基础
 
 **版本：** v3.2 · 多币种 · 公司池管理  
 **数据源：** `data/companies.json` + `data/watchlist.json`（GitHub实时同步）
@@ -97,7 +99,7 @@ Stock-Research/
 
 | 文件 | 内容摘要 | 数据基准 | 日期 |
 |------|----------|----------|------|
-| [中策vs赛轮_财务负债对比分析_20260320](赛轮集团_601058/赛轮vs中策_比较分析/中策vs赛轮_财务负债对比分析_20260320.html) | 八维度财务负债横向对比、伊朗战争差异影响、加权评分矩阵 | 2025Q3 | 2026-03-20 |
+| [中策vs赛轮_财务负债对比分析_20260320](中策橡胶_603049/中策vs赛轮_财务负债对比分析_20260320.html) | 八维度财务负债横向对比、伊朗战争差异影响、加权评分矩阵 | 2025Q3 | 2026-03-20 |
 
 **关键数据（赛轮2025Q3）**：有息负债121.2亿(+65%/2年) · 真实资金缺口-21.6亿/年 · 越南净利润≈集团52% · 柬埔寨净利润≈集团18%  
 **工作台估值（v13·停火后重构）**：牛¥16.5(32%，永久协议·$78–88油价) / 基准¥13.0(43%，停火拖延·$88–105) / 熊¥8.0(25%，停火崩溃) · 加权¥12.9 · 当前¥13.30 · 概率加权EPS约0.76元 · 当前PE约17.5x · 信号：HOLD  
@@ -180,4 +182,4 @@ Stock-Research/
 
 ---
 
-*Last updated: 2026-04-07*
+*Last updated: 2026-04-07（结构优化：删除冗余文件，中策独立目录，新增操作指南）*
