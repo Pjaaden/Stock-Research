@@ -457,6 +457,15 @@ body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:1
   </div>
 
   <div class="tc" id="tc-4">
+    <div class="card mb12" id="report-links-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div class="card-title" style="margin-bottom:0">研究报告</div>
+        <span style="font-family:var(--mono);font-size:10px;color:var(--text3)" id="report-folder-label">—</span>
+      </div>
+      <div id="report-links-list" style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:12px;color:var(--text3)">加载中…</div>
+      </div>
+    </div>
     <div class="card mb12">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <div class="card-title" style="margin-bottom:0">研究笔记</div>
@@ -1003,6 +1012,61 @@ function removeCandidate(id){
   candidates=candidates.filter(c=>c.id!==id);lsS('cache_wl',candidates);renderPool();
 }
 
+// ── REPORT LINKS ──
+async function renderReportLinks(c){
+  const folder=c.research_folder;
+  const listEl=g('report-links-list');
+  const labelEl=g('report-folder-label');
+  if(!folder){
+    listEl.innerHTML='<div style="font-size:12px;color:var(--text3)">（无研究文件夹）</div>';
+    if(labelEl)labelEl.textContent='—';
+    return;
+  }
+  if(labelEl)labelEl.textContent=folder;
+  listEl.innerHTML='<div style="font-size:12px;color:var(--text3)">加载中…</div>';
+  const repo=S.repo||'Pjaaden/Stock-Research';
+  const pagesBase='https://pjaaden.github.io/Stock-Research/';
+  const apiUrl='https://api.github.com/repos/'+repo+'/contents/'+encodeURIComponent(folder);
+  try{
+    const headers=S.pat?{Authorization:'token '+S.pat,'Accept':'application/vnd.github.v3+json'}:{'Accept':'application/vnd.github.v3+json'};
+    const res=await fetch(apiUrl,{headers});
+    if(!res.ok){
+      // Fallback: use known files from companies.json reports array if exists
+      throw new Error('API '+res.status);
+    }
+    const files=await res.json();
+    const htmlFiles=files.filter(f=>f.name.endsWith('.html')).sort((a,b)=>b.name.localeCompare(a.name));
+    if(!htmlFiles.length){
+      listEl.innerHTML='<div style="font-size:12px;color:var(--text3)">（文件夹暂无HTML报告）</div>';
+      return;
+    }
+    listEl.innerHTML=htmlFiles.map(f=>{
+      const url=pagesBase+folder+'/'+f.name;
+      // extract date from filename (pattern: _YYYYMMDD.html)
+      const dm=f.name.match(/(\d{8})/);
+      const dateStr=dm?dm[1].replace(/(\d{4})(\d{2})(\d{2})/,'$1-$2-$3'):'';
+      // version info
+      const isLatest=htmlFiles[0].name===f.name;
+      return`<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;background:var(--bg3);border-radius:5px;gap:10px">
+        <div style="flex:1;min-width:0">
+          <div style="font-size:12.5px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${f.name.replace('.html','')}</div>
+          ${dateStr?`<div style="font-family:var(--mono);font-size:10px;color:var(--text3);margin-top:1px">${dateStr}</div>`:''}
+        </div>
+        ${isLatest?'<span style="font-size:9.5px;padding:1px 6px;border-radius:3px;background:var(--green-lt);color:var(--green-mid);font-weight:600;flex-shrink:0">最新</span>':''}
+        <a href="${url}" target="_blank" style="font-size:12px;padding:4px 10px;border-radius:4px;border:0.5px solid var(--border2);color:var(--accent2);text-decoration:none;flex-shrink:0;white-space:nowrap">查看报告 →</a>
+      </div>`;
+    }).join('');
+  }catch(e){
+    // If API fails (no PAT or rate limit), show direct links from known pattern
+    const pagesUrl=pagesBase+folder+'/';
+    listEl.innerHTML=`<div style="font-size:12px;color:var(--text2);line-height:1.7">
+      无法从API获取文件列表（${e.message}）。<br>
+      <a href="${pagesUrl}" target="_blank" style="color:var(--accent2)">直接访问文件夹 →</a>
+      ${S.pat?'':'<br><span style="color:var(--text3)">在设置中填入 GitHub PAT 可自动列出报告文件。</span>'}
+    </div>`;
+  }
+}
+
 // ── DETAIL ──
 function renderDetail(cid){
   const c=getC(cid);if(!c)return;
@@ -1016,6 +1080,7 @@ function renderDetail(cid){
   g('notes-d').textContent=c.research_notes||'（暂无）';
   g('d-rating').textContent={'strong-buy':'强烈买入 🟢','buy':'买入 🟢','hold':'持有 🟡','trim':'减仓 🟠','sell':'卖出 🔴','watch':'观察 🔵'}[c.rating]||c.rating||'—';
   g('d-cat').textContent=c.next_catalyst||'—';g('d-asof').textContent=c.data_as_of||'—';
+  renderReportLinks(c);
   if(currentTab===1)setTimeout(()=>renderChart(c),50);
 }
 
