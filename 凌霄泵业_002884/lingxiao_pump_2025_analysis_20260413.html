@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>凌霄泵业 (002884) · 2025年报研究报告</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@300;400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface2: #f4f1ec;
+    --border: #e2ddd6;
+    --text: #1a1714;
+    --text2: #5a534a;
+    --text3: #8c8078;
+    --accent: #2d5a27;
+    --accent2: #4a8f40;
+    --accent-light: #e8f2e6;
+    --warn: #8b4513;
+    --warn-light: #fdf0e8;
+    --neutral: #3d4a6b;
+    --neutral-light: #edf0f7;
+    --gold: #c9a84c;
+    --gold-light: #fdf6e3;
+    --red: #c0392b;
+    --red-light: #fdecea;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .report-header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 48px 60px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent) 0%, var(--accent2) 40%, var(--gold) 100%);
+  }
+  .header-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .header-meta span { color: var(--accent); }
+  .company-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--text);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .company-sub {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--text3);
+    margin-bottom: 20px;
+  }
+  .header-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .tag {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .tag-green { background: var(--accent-light); color: var(--accent); }
+  .tag-gold { background: var(--gold-light); color: #8a6d1a; }
+  .tag-blue { background: var(--neutral-light); color: var(--neutral); }
+  .tag-warn { background: var(--warn-light); color: var(--warn); }
+
+  .header-kpis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 8px;
+  }
+  .kpi-cell {
+    background: var(--surface);
+    padding: 16px 20px;
+  }
+  .kpi-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .kpi-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .kpi-change {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    margin-top: 3px;
+  }
+  .up { color: var(--accent2); }
+  .down { color: var(--red); }
+  .flat { color: var(--text3); }
+
+  /* Layout */
+  .content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 40px;
+  }
+
+  .section {
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* Tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .data-table th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1.5px solid var(--border);
+    background: var(--surface2);
+  }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--surface2); }
+  .num-cell {
+    font-family: 'IBM Plex Mono', monospace;
+    text-align: right;
+  }
+  .star { color: var(--gold); font-size: 11px; }
+
+  /* Chart containers */
+  .chart-wrap {
+    position: relative;
+    height: 220px;
+    margin-top: 8px;
+  }
+
+  /* Callout boxes */
+  .callout {
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 3px solid;
+  }
+  .callout-green { background: var(--accent-light); border-color: var(--accent2); }
+  .callout-warn { background: var(--warn-light); border-color: var(--warn); }
+  .callout-gold { background: var(--gold-light); border-color: var(--gold); }
+  .callout-blue { background: var(--neutral-light); border-color: var(--neutral); }
+  .callout-red { background: var(--red-light); border-color: var(--red); }
+
+  .callout-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .callout p { font-size: 13px; line-height: 1.6; color: var(--text2); }
+
+  /* Scenario table */
+  .scenario-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .scenario-table th {
+    background: var(--surface2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+    padding: 10px 14px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  .scenario-table td {
+    padding: 10px 14px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .bear-row { background: #fef9f9; }
+  .base-row { background: #f9fcf9; }
+  .bull-row { background: #f6fbf5; }
+
+  .prob-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* Risk tags */
+  .risk-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-level {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .risk-high { background: var(--red-light); color: var(--red); }
+  .risk-med { background: var(--warn-light); color: var(--warn); }
+  .risk-low { background: var(--accent-light); color: var(--accent); }
+  .risk-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* Valuation */
+  .val-method {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .val-method-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .val-range {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .val-sub { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+  /* Progress bars */
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    font-size: 12px;
+    color: var(--text2);
+    width: 90px;
+    flex-shrink: 0;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--surface2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+  .progress-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--text2);
+    width: 48px;
+    text-align: right;
+  }
+
+  /* Footer */
+  .report-footer {
+    background: var(--surface2);
+    border-top: 1px solid var(--border);
+    padding: 28px 60px;
+    margin-top: 40px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+  }
+
+  @media print {
+    .section { break-inside: avoid; }
+    .card { break-inside: avoid; }
+  }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 24px 0; }
+
+  /* Summary banner */
+  .summary-banner {
+    background: linear-gradient(135deg, var(--accent) 0%, #3d7a35 100%);
+    color: white;
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .summary-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+  }
+  .summary-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .summary-text p { font-size: 13px; opacity: 0.88; line-height: 1.6; }
+
+  .inline-mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    background: var(--surface2);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-meta">
+    <span>研究报告 v1.0</span>
+    <span style="color:var(--text3)">|</span>
+    报告日期：<span>2026-04-13</span>
+    <span style="color:var(--text3)">|</span>
+    数据来源：<span>2025年年度报告（2026-04-10）</span>
+    <span style="color:var(--text3)">|</span>
+    仓位性质：<span>长期红利保守仓</span>
+  </div>
+  <div class="company-name">凌霄泵业</div>
+  <div class="company-sub">广东凌霄泵业股份有限公司 · A股 002884 · 中小板 · 广东阳春</div>
+  <div class="header-tags">
+    <span class="tag tag-green">民用离心泵龙头</span>
+    <span class="tag tag-green">塑料卫浴泵国内第一</span>
+    <span class="tag tag-gold">高分红 10元/10股</span>
+    <span class="tag tag-gold">ROE 19.5%</span>
+    <span class="tag tag-blue">零有息负债</span>
+    <span class="tag tag-blue">净现金占净资产47%</span>
+    <span class="tag tag-warn">出口占比高 关税风险</span>
+  </div>
+  <div class="header-kpis">
+    <div class="kpi-cell">
+      <div class="kpi-label">营业收入</div>
+      <div class="kpi-value">17.2亿</div>
+      <div class="kpi-change up">+8.2% YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">归母净利润</div>
+      <div class="kpi-value">4.55亿</div>
+      <div class="kpi-change up">+2.8% YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">扣非净利润</div>
+      <div class="kpi-value">4.38亿</div>
+      <div class="kpi-change up">+1.8% YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">经营现金流</div>
+      <div class="kpi-value">4.59亿</div>
+      <div class="kpi-change up">+3.5% YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">综合毛利率</div>
+      <div class="kpi-value">35.7%</div>
+      <div class="kpi-change down">-0.86ppt YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">加权ROE</div>
+      <div class="kpi-value">19.46%</div>
+      <div class="kpi-change flat">-0.22ppt YoY ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">每股股息（拟）</div>
+      <div class="kpi-value">1.00元</div>
+      <div class="kpi-change flat">每10股派10元 ★</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-label">派息覆盖率</div>
+      <div class="kpi-value">101%</div>
+      <div class="kpi-change gold" style="color:var(--gold)">净利润的78.6%</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- SUMMARY BANNER -->
+  <div class="summary-banner">
+    <div class="summary-icon">🏭</div>
+    <div class="summary-text">
+      <h3>研究结论：高质量红利资产，保守仓逻辑清晰，但出口风险值得关注</h3>
+      <p>凌霄泵业是典型的"制造业现金牛"：零有息负债、持续正向FCF、连年高分红，ROE稳定在19–20%区间。2025年国内销售大幅回升（+17.6%）部分对冲了出口压力（0增长）。当前最大风险是美国关税冲击——美国市场贡献约20%收入，塑料卫浴泵产品附加税率若大幅提升，将直接压缩利润。2026年公司管理层保守预期净利润变动-15%~+5%，体现了对关税不确定性的审慎判断。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 1: BUSINESS -->
+  <div class="section">
+    <div class="section-title"><span class="num">01</span> 公司业务与市场地位</div>
+
+    <div class="card">
+      <div class="card-title">主营业务：民用离心泵全品类制造商</div>
+      <p style="color:var(--text2);font-size:13px;line-height:1.7;margin-bottom:16px">
+        凌霄泵业专注民用离心泵研发、设计、生产及销售，覆盖休闲卫浴（浴缸泵、SPA泵、泳池泵）、工业配套（化工泵、不锈钢泵）、通用给排水（潜水泵、管道泵、消防泵）三大场景。产品销往全球近100个国家和地区。公司最重要的护城河是<strong>电机自供能力</strong>（几十年积累的电机设计制造优势）和<strong>适配性定制设计能力</strong>（能深度适配海外卫浴客户复杂规格要求）。
+      </p>
+      <div class="grid-3">
+        <div style="background:var(--accent-light);border-radius:8px;padding:16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--accent);margin-bottom:8px">🚿 塑料卫浴泵</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--text)">46.6%</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:4px">营收占比｜毛利率 36.7%</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:8px">国内龙头地位，终端集中欧美，全球知名卫浴品牌深度合作客户</div>
+        </div>
+        <div style="background:var(--neutral-light);border-radius:8px;padding:16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--neutral);margin-bottom:8px">⚙️ 不锈钢泵</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--text)">35.0%</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:4px">营收占比｜毛利率 34.4%</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:8px">国内同行业第一梯队，重点发展方向，国内外市场双线推进</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:8px;padding:16px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--text2);margin-bottom:8px">🌊 通用泵</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--text)">15.8%</div>
+          <div style="font-size:12px;color:var(--text3);margin-top:4px">营收占比｜毛利率 27.1%</div>
+          <div style="font-size:12px;color:var(--text2);margin-top:8px">铸铁泵为主，市场竞争激烈，价格敏感，毛利最低</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">产销量（2025年）</div>
+        <table class="data-table">
+          <thead><tr><th>指标</th><th class="num-cell">2025年</th><th class="num-cell">2024年</th><th class="num-cell">同比</th></tr></thead>
+          <tbody>
+            <tr><td>销售量</td><td class="num-cell">333.92 万台 ★</td><td class="num-cell">300.82 万台</td><td class="num-cell up">+11.0%</td></tr>
+            <tr><td>生产量</td><td class="num-cell">334.25 万台 ★</td><td class="num-cell">310.78 万台</td><td class="num-cell up">+7.6%</td></tr>
+            <tr><td>库存量</td><td class="num-cell">40.56 万台 ★</td><td class="num-cell">40.54 万台</td><td class="num-cell flat">+0.05%</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">库存几乎未变，产销率≈100%，无明显库存积压压力</p>
+      </div>
+      <div class="card">
+        <div class="card-title">内外销分布（2025年收入）</div>
+        <div class="progress-row" style="margin-top:12px">
+          <div class="progress-label">国内销售</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:50.56%;background:var(--accent2)"></div></div>
+          <div class="progress-value">50.6%</div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-label">国外销售</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:49.44%;background:var(--neutral)"></div></div>
+          <div class="progress-value">49.4%</div>
+        </div>
+        <p style="font-size:12px;color:var(--text3);margin-top:10px">2025年国内首次超越国外，国内+17.6% vs 国外±0.0%。出口主要面向欧美，美国市场约占出口的40%，即全收约20%。</p>
+      </div>
+    </div>
+
+    <div class="callout callout-warn">
+      <div class="callout-title">⚠️ 关税暴露风险（最大单一风险）</div>
+      <p>公司出口产品以美元报价结算，终端市场集中欧美，尤其是美国市场（SPA泵、泳池泵等卫浴泵为主）。2025年年报明确指出"受海外贸易政策的不确定性影响，海外需求有所下降，美国市场尤其明显，销售承压"。若2026年美国对华加征关税大幅提升，出口基本盘将受到直接冲击。管理层已提出积极拓展不锈钢泵美国市场，并挖掘产品多元化缓冲。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">未来产能规划</div>
+      <p style="color:var(--text2);font-size:13px;line-height:1.7">公司规划民用离心泵年产能达到 <strong>800万台套</strong>（现有334万台，约2.4倍空间），坚持"专业化生产、加快产能建设"战略。在建工程余额较小（284万元），当前无大规模重型资本开支，产能扩张节奏稳健。研发人员260人，占比24.8%，研发费用¥5,414万（占收入3.1%）。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: P&L -->
+  <div class="section">
+    <div class="section-title"><span class="num">02</span> 收入与盈利分析</div>
+
+    <div class="card">
+      <div class="card-title">利润表摘要（母公司口径，单位：万元）</div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>科目</th>
+            <th class="num-cell">2025年 ★</th>
+            <th class="num-cell">2024年 ★</th>
+            <th class="num-cell">2023年 ★</th>
+            <th class="num-cell">YoY</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>营业收入</td><td class="num-cell">17,221.8</td><td class="num-cell">15,920.8</td><td class="num-cell">13,155.7</td><td class="num-cell up">+8.2%</td></tr>
+          <tr><td>营业成本</td><td class="num-cell">11,079.6</td><td class="num-cell">10,117.2</td><td class="num-cell">—</td><td class="num-cell down">+9.5%</td></tr>
+          <tr><td>综合毛利</td><td class="num-cell">6,141.6</td><td class="num-cell">5,802.7</td><td class="num-cell">—</td><td class="num-cell up">+5.8%</td></tr>
+          <tr><td>综合毛利率</td><td class="num-cell">35.67%</td><td class="num-cell">36.53%</td><td class="num-cell">—</td><td class="num-cell down">-0.86ppt</td></tr>
+          <tr><td>销售费用</td><td class="num-cell">300.1</td><td class="num-cell">266.4</td><td class="num-cell">—</td><td class="num-cell flat">+12.6%</td></tr>
+          <tr><td>管理费用</td><td class="num-cell">285.1</td><td class="num-cell">244.0</td><td class="num-cell">—</td><td class="num-cell flat">+16.8%</td></tr>
+          <tr><td>研发费用</td><td class="num-cell">541.4</td><td class="num-cell">510.6</td><td class="num-cell">—</td><td class="num-cell flat">+6.0%</td></tr>
+          <tr><td>财务费用（净收入）</td><td class="num-cell" style="color:var(--accent2)">-188.9</td><td class="num-cell" style="color:var(--accent2)">-378.3</td><td class="num-cell">—</td><td class="num-cell">利息收入↓</td></tr>
+          <tr><td>公允价值变动收益</td><td class="num-cell">145.8</td><td class="num-cell">94.3</td><td class="num-cell">—</td><td class="num-cell up">+54.6%</td></tr>
+          <tr style="background:var(--accent-light)"><td><strong>营业利润</strong></td><td class="num-cell"><strong>5,295.8</strong></td><td class="num-cell"><strong>5,160.3</strong></td><td class="num-cell">—</td><td class="num-cell up"><strong>+2.6%</strong></td></tr>
+          <tr><td>利润总额</td><td class="num-cell">5,294.1</td><td class="num-cell">5,151.1</td><td class="num-cell">—</td><td class="num-cell up">+2.8%</td></tr>
+          <tr><td>所得税</td><td class="num-cell">747.6</td><td class="num-cell">729.3</td><td class="num-cell">—</td><td class="num-cell flat">实际税率~14.1%</td></tr>
+          <tr style="background:var(--gold-light)"><td><strong>归母净利润</strong></td><td class="num-cell"><strong>4,549.1</strong></td><td class="num-cell"><strong>4,424.1</strong></td><td class="num-cell"><strong>3,837.0</strong></td><td class="num-cell up"><strong>+2.8%</strong></td></tr>
+          <tr><td>扣非归母净利润</td><td class="num-cell">4,376.5</td><td class="num-cell">4,298.2</td><td class="num-cell">3,745.0</td><td class="num-cell up">+1.8%</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">各产品线毛利率（2025年）</div>
+        <div class="chart-wrap">
+          <canvas id="marginChart"></canvas>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">分季度经营表现（万元）</div>
+        <table class="data-table">
+          <thead><tr><th>季度</th><th class="num-cell">营业收入</th><th class="num-cell">归母净利</th><th class="num-cell">净利率</th></tr></thead>
+          <tbody>
+            <tr><td>Q1</td><td class="num-cell">3,663.8 ★</td><td class="num-cell">1,042.8 ★</td><td class="num-cell">28.5%</td></tr>
+            <tr><td>Q2</td><td class="num-cell">4,740.2 ★</td><td class="num-cell">1,299.4 ★</td><td class="num-cell">27.4%</td></tr>
+            <tr><td>Q3</td><td class="num-cell">4,300.4 ★</td><td class="num-cell">1,171.6 ★</td><td class="num-cell">27.2%</td></tr>
+            <tr><td>Q4</td><td class="num-cell">4,517.4 ★</td><td class="num-cell">1,035.3 ★</td><td class="num-cell">22.9%</td></tr>
+            <tr style="background:var(--surface2)"><td><strong>全年</strong></td><td class="num-cell"><strong>17,221.8</strong></td><td class="num-cell"><strong>4,549.1</strong></td><td class="num-cell"><strong>26.4%</strong></td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">Q2为收入峰值，与北半球夏季泳池卫浴旺季匹配。Q4净利率偏低，需关注Q1关税政策变化是否影响2026Q1接单。</p>
+      </div>
+    </div>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">💡 毛利率小幅收窄的原因分析</div>
+      <p>综合毛利率从36.53%下降至35.67%（-0.86ppt），主要系：①直接材料成本增速（+9.9%）高于收入增速（+8.2%）；②国内销售占比提升（国内毛利率32.2%低于国外39.2%）。非经常性损益合计¥1,727万，主要来自金融资产公允价值变动（¥1,673万）和政府补助（¥312万），对扣非净利润影响可控。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: BALANCE SHEET -->
+  <div class="section">
+    <div class="section-title"><span class="num">03</span> 资产负债表分析</div>
+
+    <div class="card">
+      <div class="card-title">资产负债简表（2025年末，万元）</div>
+      <div class="grid-2">
+        <div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">资产端</p>
+          <table class="data-table">
+            <thead><tr><th>项目</th><th class="num-cell">2025末 ★</th><th class="num-cell">2024末 ★</th><th class="num-cell">占总资产</th></tr></thead>
+            <tbody>
+              <tr><td>货币资金</td><td class="num-cell">11,698.6</td><td class="num-cell">4,229.6</td><td class="num-cell">44.8%</td></tr>
+              <tr><td>交易性金融资产</td><td class="num-cell">2,189.8</td><td class="num-cell">8,644.6</td><td class="num-cell">8.4%</td></tr>
+              <tr><td>其中：定期存款/大额存单</td><td class="num-cell">9,830.0</td><td class="num-cell">—</td><td class="num-cell">—</td></tr>
+              <tr><td>应收账款</td><td class="num-cell">1,558.1</td><td class="num-cell">1,630.9</td><td class="num-cell">6.0%</td></tr>
+              <tr><td>存货</td><td class="num-cell">2,831.8</td><td class="num-cell">2,744.2</td><td class="num-cell">10.8%</td></tr>
+              <tr><td>固定资产</td><td class="num-cell">2,967.4</td><td class="num-cell">3,145.0</td><td class="num-cell">11.4%</td></tr>
+              <tr><td>在建工程</td><td class="num-cell">28.4</td><td class="num-cell">0</td><td class="num-cell">0.1%</td></tr>
+              <tr><td>其他非流动资产</td><td class="num-cell">3,161.2</td><td class="num-cell">4,135.5</td><td class="num-cell">12.1%</td></tr>
+              <tr style="background:var(--accent-light)"><td><strong>总资产</strong></td><td class="num-cell"><strong>26,139.3</strong></td><td class="num-cell"><strong>24,965.5</strong></td><td class="num-cell"><strong>100%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px">负债与权益端</p>
+          <table class="data-table">
+            <thead><tr><th>项目</th><th class="num-cell">2025末 ★</th><th class="num-cell">2024末 ★</th></tr></thead>
+            <tbody>
+              <tr><td>应付账款</td><td class="num-cell">780.7</td><td class="num-cell">758.3</td></tr>
+              <tr><td>合同负债（预收）</td><td class="num-cell">449.7</td><td class="num-cell">399.6</td></tr>
+              <tr><td>短期借款</td><td class="num-cell" style="color:var(--accent2)"><strong>0</strong></td><td class="num-cell" style="color:var(--accent2)"><strong>0</strong></td></tr>
+              <tr><td>长期借款</td><td class="num-cell" style="color:var(--accent2)"><strong>0</strong></td><td class="num-cell" style="color:var(--accent2)"><strong>0</strong></td></tr>
+              <tr><td>流动负债合计</td><td class="num-cell">1,657.0</td><td class="num-cell">1,536.6</td></tr>
+              <tr><td>非流动负债合计</td><td class="num-cell">323.4</td><td class="num-cell">241.6</td></tr>
+              <tr><td>负债合计</td><td class="num-cell">1,980.5</td><td class="num-cell">1,778.3</td></tr>
+              <tr><td>归母净资产</td><td class="num-cell">24,158.9</td><td class="num-cell">23,187.3</td></tr>
+              <tr style="background:var(--gold-light)"><td><strong>资产负债率</strong></td><td class="num-cell"><strong>7.6%</strong></td><td class="num-cell"><strong>7.1%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="callout callout-green">
+        <div class="callout-title">✅ 资产负债表核心亮点</div>
+        <p><strong>零有息负债（无短期/长期借款）</strong>，资产负债率仅7.6%，几乎全部负债为经营性负债（应付账款+合同负债）。<br><br>
+        货币资金+金融资产合计约¥13,888万（约1.39亿），其中定期存款¥9,830万受限但无质押风险，实质净现金极为充裕。净现金（货币+金融资产）占归母净资产约57%。<br><br>
+        合同负债（客户预付）从¥400万增至¥450万（+12.5%），反映客户粘性正常。</p>
+      </div>
+      <div class="callout callout-blue">
+        <div class="callout-title">📊 资产质量关键指标</div>
+        <p>
+        <span class="inline-mono">资产负债率</span>：7.6%（近乎无杠杆）<br>
+        <span class="inline-mono">应收账款/收入</span>：9.1%（周转健康，无明显坏账风险）<br>
+        <span class="inline-mono">存货/收入</span>：16.4%（产销率≈100%，无积压）<br>
+        <span class="inline-mono">固定资产折旧率</span>：约8%（老化程度适中）<br>
+        <span class="inline-mono">净现金/净资产</span>：≈57%（大额存款为主）<br><br>
+        货币资金从¥4,230万暴增至¥11,699万，系将原来配置在交易性金融资产的大额存单到期后转回，结构性变化而非真实增加，实质资金量变化不大。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: CASH FLOW -->
+  <div class="section">
+    <div class="section-title"><span class="num">04</span> 现金流能力分析</div>
+
+    <div class="card">
+      <div class="card-title">现金流三表（合并口径，万元）</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>现金流科目</th><th class="num-cell">2025年 ★</th><th class="num-cell">2024年 ★</th><th class="num-cell">2023年 ★</th><th class="num-cell">YoY</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>销售商品收到的现金</td><td class="num-cell">17,872.0</td><td class="num-cell">16,446.8</td><td class="num-cell">—</td><td class="num-cell up">+8.7%</td></tr>
+          <tr><td>经营现金流入小计</td><td class="num-cell">18,473.2</td><td class="num-cell">17,007.9</td><td class="num-cell">—</td><td class="num-cell up">+8.6%</td></tr>
+          <tr><td>购买商品支付现金</td><td class="num-cell">11,350.0</td><td class="num-cell">10,275.1</td><td class="num-cell">—</td><td class="num-cell">+10.5%</td></tr>
+          <tr><td>支付职工薪酬</td><td class="num-cell">1,010.4</td><td class="num-cell">896.8</td><td class="num-cell">—</td><td class="num-cell">+12.7%</td></tr>
+          <tr><td>支付税费</td><td class="num-cell">1,050.8</td><td class="num-cell">933.4</td><td class="num-cell">—</td><td class="num-cell">+12.6%</td></tr>
+          <tr style="background:var(--accent-light)"><td><strong>经营活动净现金流（OCF）</strong></td><td class="num-cell"><strong>4,590.3</strong></td><td class="num-cell"><strong>4,434.0</strong></td><td class="num-cell"><strong>4,174.8</strong></td><td class="num-cell up"><strong>+3.5%</strong></td></tr>
+          <tr><td>购建固定资产支出（资本开支）</td><td class="num-cell">230.3</td><td class="num-cell">240.3</td><td class="num-cell">—</td><td class="num-cell up">-4.2%</td></tr>
+          <tr><td>投资支付现金（存单/理财）</td><td class="num-cell">28,389.0</td><td class="num-cell">19,591.0</td><td class="num-cell">—</td><td class="num-cell">资金周转</td></tr>
+          <tr><td>收回投资现金（存单/理财）</td><td class="num-cell">27,880.0</td><td class="num-cell">7,425.0</td><td class="num-cell">—</td><td class="num-cell">资金周转</td></tr>
+          <tr><td>投资活动净现金流</td><td class="num-cell" style="color:var(--red)">-403.1</td><td class="num-cell" style="color:var(--red)">-12,319.4</td><td class="num-cell">—</td><td class="num-cell">大幅改善</td></tr>
+          <tr style="background:var(--gold-light)"><td><strong>筹资活动净现金流（全部为股利）</strong></td><td class="num-cell" style="color:var(--red)"><strong>-3,576.8</strong></td><td class="num-cell" style="color:var(--red)"><strong>-3,576.8</strong></td><td class="num-cell">—</td><td class="num-cell flat"><strong>0%</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-3">
+      <div class="val-method">
+        <div class="val-method-title">自由现金流（FCF）</div>
+        <div class="val-range" style="color:var(--accent)">¥4,360万</div>
+        <div class="val-sub">= OCF ¥4,590万 - Capex ¥230万<br>连续3年强劲正向FCF</div>
+      </div>
+      <div class="val-method">
+        <div class="val-method-title">OCF/净利润</div>
+        <div class="val-range" style="color:var(--accent)">100.9%</div>
+        <div class="val-sub">利润质量极高，现金含量充足<br>无应收账款大幅扩张风险</div>
+      </div>
+      <div class="val-method">
+        <div class="val-method-title">资本开支强度</div>
+        <div class="val-range">¥230万</div>
+        <div class="val-sub">= 收入1.3% / 净利润5.1%<br>典型轻资本扩张阶段</div>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">✅ 现金流结论</div>
+      <p>凌霄泵业是标准的"现金奶牛"型制造商。OCF连续三年稳定增长（¥4,175→¥4,434→¥4,590万），资本开支极轻（约230万/年，相比净利润仅5%），FCF充裕，完全依靠内生现金流支撑股利分配。2025年筹资活动净现金流=-¥3,577万，恰好等于当年分红总额，印证公司"以经营现金流全额覆盖股利"的稳健分红策略。投资活动看似变动大，实为定期存款/大额存单滚动操作（¥28.4亿买入 vs ¥27.9亿收回），属于资金管理行为，并非真实投资。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 5: RETURNS -->
+  <div class="section">
+    <div class="section-title"><span class="num">05</span> 回报指标与股息分析</div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">关键回报指标</div>
+        <table class="data-table">
+          <thead><tr><th>指标</th><th class="num-cell">2025 ★</th><th class="num-cell">2024 ★</th><th class="num-cell">2023 ★</th></tr></thead>
+          <tbody>
+            <tr><td>加权ROE</td><td class="num-cell">19.46%</td><td class="num-cell">19.68%</td><td class="num-cell">17.49%</td></tr>
+            <tr><td>基本每股收益</td><td class="num-cell">1.27元</td><td class="num-cell">1.24元</td><td class="num-cell">1.07元</td></tr>
+            <tr><td>净利率</td><td class="num-cell">26.4%</td><td class="num-cell">27.8%</td><td class="num-cell">29.2%</td></tr>
+            <tr><td>毛利率</td><td class="num-cell">35.67%</td><td class="num-cell">36.53%</td><td class="num-cell">—</td></tr>
+            <tr><td>资产周转率</td><td class="num-cell">0.68×</td><td class="num-cell">0.66×</td><td class="num-cell">—</td></tr>
+            <tr><td>总资产收益率（ROA）</td><td class="num-cell">~17.4%</td><td class="num-cell">—</td><td class="num-cell">—</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">ROE三年连续≥17%，属于A股制造业优质区间。无杠杆条件下，ROE≈ROA，说明高ROE完全来自经营能力而非财务杠杆，品质极纯。</p>
+      </div>
+      <div class="card">
+        <div class="card-title">股息分析</div>
+        <table class="data-table">
+          <thead><tr><th>项目</th><th class="num-cell">数值 ★</th></tr></thead>
+          <tbody>
+            <tr><td>股息（每10股派息）</td><td class="num-cell">10.00元（含税）</td></tr>
+            <tr><td>每股股息</td><td class="num-cell">1.00元</td></tr>
+            <tr><td>总派息额</td><td class="num-cell">35,768.3万元</td></tr>
+            <tr><td>归母净利润</td><td class="num-cell">45,491.2万元</td></tr>
+            <tr><td>股息支付率（Payout）</td><td class="num-cell" style="color:var(--gold)">78.6%</td></tr>
+            <tr><td>OCF覆盖率</td><td class="num-cell" style="color:var(--accent)">101.0%</td></tr>
+            <tr><td>可分配利润余额（留存）</td><td class="num-cell">98,837万元</td></tr>
+            <tr><td>过去3年连续分红</td><td class="num-cell" style="color:var(--accent)">每10股10元（稳定）</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text3);margin-top:8px">公司章程规定"成熟期且无重大资金支出，现金分红占利润分配最低80%"。连续3年维持10元/10股，彰显分红高度稳定性。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">历年分红回顾与股息率估算</div>
+      <div class="chart-wrap" style="height:180px">
+        <canvas id="dividendChart"></canvas>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-top:8px">注：股息率以当前市价估算。若以¥15.00/股买入，股息率约6.7%（税前），个人投资者扣10%红利税后约6.0%；若以¥20.00/股，则约5.0%（税前），4.5%（税后）。</p>
+    </div>
+
+    <div class="callout callout-gold">
+      <div class="callout-title">💰 红利仓逻辑评价</div>
+      <p>凌霄泵业完全符合"红利保守仓"的核心要求：①高且稳定的股息支付率（78.6%，接近公司章程底线80%）；②现金流完全覆盖股息（OCF覆盖101%）；③零有息负债，无偿债压力抢占利润；④ROE稳定19–20%，股息增长有基础；⑤可分配利润余额近¥9.9亿，即使盈利短期下滑，维持分红能力充裕。最大的股息下调风险来自关税冲击导致净利润下滑超15%，但公司有大量存款和无杠杆，极限情况下仍具备维持股息的能力。</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: VALUATION -->
+  <div class="section">
+    <div class="section-title"><span class="num">06</span> 估值框架</div>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">📐 估值方法选择说明</div>
+      <p>凌霄泵业为轻资产高分红制造商，适合采用三种估值框架交叉验证：① <strong>PE估值</strong>（适配稳定盈利型）；② <strong>DDM股息折现</strong>（适配高分红型）；③ <strong>净现金 + 经营价值</strong>（揭示资产底部）。以下采用2025年实际数据进行测算，折现率取6%（保守），符合本系统对A股无杠杆优质制造商的基准设定。</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title">多维估值区间测算</div>
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th>估值方法</th>
+            <th>关键假设</th>
+            <th class="num-cell">每股公允价值</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>①PE估值（保守）</strong></td>
+            <td>EPS 1.27元 × PE 12×</td>
+            <td class="num-cell"><strong>15.2元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">12× = A股传统制造业保守基准</td>
+          </tr>
+          <tr>
+            <td><strong>①PE估值（中性）</strong></td>
+            <td>EPS 1.27元 × PE 15×</td>
+            <td class="num-cell"><strong>19.1元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">15× = 含分红溢价与龙头地位</td>
+          </tr>
+          <tr>
+            <td><strong>①PE估值（乐观）</strong></td>
+            <td>EPS 1.27元 × PE 18×</td>
+            <td class="num-cell"><strong>22.9元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">18× = 市场给予高分红品质溢价</td>
+          </tr>
+          <tr>
+            <td><strong>②DDM（Gordon增长）</strong></td>
+            <td>DPS 1.0元 / (r 6% − g 3%)</td>
+            <td class="num-cell"><strong>33.3元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">g=3%=收入复合增速低预期；偏乐观</td>
+          </tr>
+          <tr>
+            <td><strong>②DDM（保守无增长）</strong></td>
+            <td>DPS 1.0元 / r 6%</td>
+            <td class="num-cell"><strong>16.7元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">零增长永续股息的现值，提供底部支撑</td>
+          </tr>
+          <tr>
+            <td><strong>③净现金+经营价值</strong></td>
+            <td>净现金/股≈3.9元 + PE10×EPS ≈12.7元</td>
+            <td class="num-cell"><strong>~16.6元</strong></td>
+            <td style="font-size:12px;color:var(--text3)">经营资产10×PE保守定价，加存款底垫</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <div class="card-title">熊/基/牛情景净利润预测（2026年）</div>
+      <table class="scenario-table">
+        <thead>
+          <tr>
+            <th>情景</th>
+            <th>核心假设</th>
+            <th class="num-cell">净利润估算</th>
+            <th class="num-cell">EPS</th>
+            <th class="num-cell">隐含PE（@¥20）</th>
+            <th class="num-cell">概率</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bear-row">
+            <td><strong>🐻 熊市</strong></td>
+            <td style="font-size:12px">美国关税大幅加征，出口大幅下滑20%+，毛利率受损，净利润-15%</td>
+            <td class="num-cell">¥3,867万</td>
+            <td class="num-cell">1.08元</td>
+            <td class="num-cell">18.5×</td>
+            <td class="num-cell"><span class="prob-badge" style="background:var(--red-light);color:var(--red)">25%</span></td>
+          </tr>
+          <tr class="base-row">
+            <td><strong>📊 基准</strong></td>
+            <td style="font-size:12px">出口维持平稳（±0%），国内+10%，净利润+0%~+3%</td>
+            <td class="num-cell">¥4,640万</td>
+            <td class="num-cell">1.30元</td>
+            <td class="num-cell">15.4×</td>
+            <td class="num-cell"><span class="prob-badge" style="background:var(--accent-light);color:var(--accent)">55%</span></td>
+          </tr>
+          <tr class="bull-row">
+            <td><strong>🐂 牛市</strong></td>
+            <td style="font-size:12px">关税豁免或转单效应，国内+15%+，出口部分恢复，净利润+8%+</td>
+            <td class="num-cell">¥4,913万</td>
+            <td class="num-cell">1.37元</td>
+            <td class="num-cell">14.6×</td>
+            <td class="num-cell"><span class="prob-badge" style="background:var(--gold-light);color:#8a6d1a">20%</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text3);margin-top:10px">概率加权净利润：¥4,444万 → 概率加权EPS：1.24元。管理层2026年目标：净利润变动-15%~+5%，与熊/基情景匹配。</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="val-method">
+        <div class="val-method-title">合理估值区间</div>
+        <div class="val-range">¥16 — ¥20</div>
+        <div class="val-sub">PE 12–16×（基准情景），含分红溢价</div>
+      </div>
+      <div class="val-method">
+        <div class="val-method-title">当前股息率（@¥18）</div>
+        <div class="val-range" style="color:var(--gold)">5.6%</div>
+        <div class="val-sub">税前；个人扣10%红利税后≈5.0%</div>
+      </div>
+      <div class="val-method">
+        <div class="val-method-title">买入加仓参考</div>
+        <div class="val-range" style="color:var(--accent)">≤¥16</div>
+        <div class="val-sub">股息率≥6.25%，安全边际充足</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: RISKS -->
+  <div class="section">
+    <div class="section-title"><span class="num">07</span> 风险清单</div>
+
+    <div class="card">
+      <div class="risk-item">
+        <span class="risk-level risk-high">高</span>
+        <div class="risk-text"><strong>美国关税风险：</strong>美国市场约占总收入20%，主要为塑料卫浴泵。若特朗普关税大幅提升（如对华加征50%+），将直接压缩毛利率和出口量，净利润存在-15%以上下行空间，影响股息能力。目前公司已有泳池泵通过UL/ETL认证，但短期客户无法快速转移供应链，冲击真实存在。</div>
+      </div>
+      <div class="risk-item">
+        <span class="risk-level risk-high">高</span>
+        <div class="risk-text"><strong>汇率风险：</strong>出口以美元计价结算，人民币升值将侵蚀以人民币计算的出口收入及毛利率。过去几年汇率影响相对可控，但若汇率大幅波动，对占收入近50%的出口板块影响显著。</div>
+      </div>
+      <div class="risk-item">
+        <span class="risk-level risk-med">中</span>
+        <div class="risk-text"><strong>原材料价格波动：</strong>直接材料占营业成本83.9%，主要为塑料、不锈钢、铸铁等。金属原材料价格波动直接影响毛利率，2025年毛利率已小幅收窄0.86ppt，需持续关注大宗商品走势。</div>
+      </div>
+      <div class="risk-item">
+        <span class="risk-level risk-med">中</span>
+        <div class="risk-text"><strong>通用泵市场竞争：</strong>通用泵（铸铁泵为主）竞争格局分散，众多小企业和作坊式工厂参与竞争，价格战压力较大，毛利率最低（27.1%）。若通用泵占比持续上升，将拉低综合毛利率。</div>
+      </div>
+      <div class="risk-item">
+        <span class="risk-level risk-low">低</span>
+        <div class="risk-text"><strong>产能扩张执行风险：</strong>公司规划未来年产能达800万台套（现334万台），若市场需求不及预期，新产能利用率下降将摊薄固定成本。目前资本开支极轻，风险有限。</div>
+      </div>
+      <div class="risk-item">
+        <span class="risk-level risk-low">低</span>
+        <div class="risk-text"><strong>金融资产公允价值波动：</strong>持有约¥2,190万交易性金融资产（理财产品等），公允价值变动是非经常性损益主要来源（¥1,460万），风险可控，但若市场利率下行，利息收入将下降（已从¥2,796万降至¥1,744万）。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: MONITORING -->
+  <div class="section">
+    <div class="section-title"><span class="num">08</span> 持续监控框架</div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">核心监控指标（季度检查）</div>
+        <table class="data-table">
+          <thead><tr><th>指标</th><th>预警阈值</th><th>当前值</th></tr></thead>
+          <tbody>
+            <tr><td>国外销售同比</td><td style="color:var(--red)">跌幅 &gt;15%</td><td class="num-cell flat">0.0%</td></tr>
+            <tr><td>综合毛利率</td><td style="color:var(--red)">&lt;33%</td><td class="num-cell">35.67%</td></tr>
+            <tr><td>经营现金流/净利润</td><td style="color:var(--red)">&lt;80%</td><td class="num-cell up">100.9%</td></tr>
+            <tr><td>有息负债</td><td style="color:var(--red)">任何新增借款</td><td class="num-cell up">零</td></tr>
+            <tr><td>分红支付率</td><td style="color:var(--warn)">&lt;60%（大幅下调）</td><td class="num-cell">78.6%</td></tr>
+            <tr><td>ROE（滚动）</td><td style="color:var(--warn)">&lt;15%</td><td class="num-cell">19.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card">
+        <div class="card-title">2026年重点关注事项</div>
+        <div style="font-size:13px;color:var(--text2);line-height:1.8">
+          <p style="margin-bottom:8px">① <strong>关税政策跟踪：</strong>密切跟踪美国对华水泵（HS 8413）关税税率变化及企业转移订单动态</p>
+          <p style="margin-bottom:8px">② <strong>Q1营收披露：</strong>观察2026Q1出口订单是否因关税不确定性出现大幅预拉货或急降</p>
+          <p style="margin-bottom:8px">③ <strong>不锈钢泵市场拓展：</strong>美国不锈钢泵市场开拓成效，有无大客户突破</p>
+          <p style="margin-bottom:8px">④ <strong>原材料价格：</strong>2026年铜、不锈钢、塑料价格走势对毛利率影响测算</p>
+          <p>⑤ <strong>股息率套利：</strong>若股价因关税担忧大幅下跌至¥15以下，股息率将超7%，考虑是否加仓</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DATA LEGEND -->
+  <div class="callout callout-blue" style="margin-top:0">
+    <div class="callout-title">数据说明</div>
+    <p>★ = 原始报告数据（2025年年度报告，2026年4月10日披露）。未标注数据为派生计算。本报告用于个人投资研究归档，不构成投资建议。报告日期：2026年4月13日。</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div>凌霄泵业 002884 · 2025年报研究报告 v1.0</div>
+  <div style="color:var(--accent)">研究日期：2026-04-13</div>
+  <div>Stock-Research / 凌霄泵业_002884</div>
+</div>
+
+<script>
+// Margin chart
+const ctx1 = document.getElementById('marginChart').getContext('2d');
+new Chart(ctx1, {
+  type: 'bar',
+  data: {
+    labels: ['塑料卫浴泵', '不锈钢泵', '通用泵', '国外销售', '国内销售', '综合'],
+    datasets: [{
+      label: '毛利率 2025',
+      data: [36.72, 34.37, 27.14, 39.17, 32.23, 35.67],
+      backgroundColor: ['#4a8f40','#4a8f40','#8c8078','#3d4a6b','#a0a8c0','#c9a84c'],
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 20, max: 45, grid: { color: '#e2ddd6' }, ticks: { callback: v => v+'%', font: { family: 'IBM Plex Mono', size: 10 } } },
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// Dividend chart
+const ctx2 = document.getElementById('dividendChart').getContext('2d');
+new Chart(ctx2, {
+  type: 'bar',
+  data: {
+    labels: ['2023年', '2024年', '2025年（拟）'],
+    datasets: [
+      {
+        label: 'EPS (元)',
+        data: [1.07, 1.24, 1.27],
+        backgroundColor: '#d4e8d1',
+        borderRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: '每股股息 (元)',
+        data: [1.00, 1.00, 1.00],
+        backgroundColor: '#c9a84c',
+        borderRadius: 4,
+        yAxisID: 'y',
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 12 } }
+    },
+    scales: {
+      y: { min: 0, max: 1.5, grid: { color: '#e2ddd6' }, ticks: { callback: v => '¥'+v, font: { family: 'IBM Plex Mono', size: 10 } } },
+      x: { grid: { display: false }, ticks: { font: { size: 11 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
