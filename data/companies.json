@@ -477,115 +477,170 @@
       "name": "华润万象生活",
       "code": "01209.HK",
       "exchange": "HK",
-      "sector": "物业管理",
+      "currency": "HKD",
+      "sector": "商业运营管理·轻资产平台",
       "research_folder": "华润万象生活_000966",
-      "price": 18.2,
-      "shares": 14.5,
-      "net_cash_bn": 60,
-      "eps_forecast": 1.8,
+      "price": 47.0,
+      "avg_cost": 0,
+      "shares_held": 0,
+      "revenue_bn": 18.02,
+      "revenue_growth_pct": 5.1,
+      "core_np_bn": 3.95,
+      "core_np_growth_pct": 13.7,
+      "gross_margin_pct": 35.5,
+      "core_eps": 1.731,
+      "dps_full_year": 1.731,
+      "payout_ratio_pct": 100,
+      "net_cash_bn": 134.4,
+      "net_cash_currency": "CNY",
+      "ecl_provision_bn": 3.64,
+      "malls_operating": 135,
+      "malls_pipeline": 207,
+      "retail_sales_bn": 266.0,
+      "owner_noi_margin_pct": 65.7,
+      "data_as_of": "2025FY（审计，2026.03.27发布）",
+      "eps_forecast": 1.9,
+      "eps_forecast_year": "2026E",
       "discount_rate": 7,
-      "valuation_method": "PE + 股息率 + EV/EBITDA（注：ROE/PB无效，轻资产结构失真）",
+      "valuation_method": "EV/EBITDA+净现金拆分法（首选）+ PE + 股息率；PB/ROE因轻资产结构失真不用",
+      "ebitda_estimate_bn": 55.0,
+      "pe_current": 24.9,
+      "pe_forward": 22.7,
+      "div_yield_pct": 4.0,
+      "ev_ebitda_approx": 15.5,
       "signal": "hold",
-      "position_pct": 0,
-      "avg_cost": 17.5,
-      "max_position_pct": 20,
       "rating": "hold",
-      "next_catalyst": "2026H1中报 ECL拨备是否同比收窄",
-      "data_as_of": "2025全年",
+      "max_position_pct": 20,
+      "position_pct": 0,
       "scenarios": [
         {
           "name": "牛市",
           "prob": 25,
-          "target_price": 28,
-          "assumptions": "ECL拨备峰值已过，2026H1同比收窄，商管业务持续扩张"
+          "target_price": 58,
+          "target_currency": "HKD",
+          "assumptions": "2026E EPS 1.95元 × 22x PE × 1.09 + 净现金重估；207座储备加速开业，可比零售额+10%+，ECL拐点确认，EV/EBITDA扩张至18x"
         },
         {
           "name": "基准",
           "prob": 55,
-          "target_price": 21,
-          "assumptions": "商管平稳，ECL持续但可控，维持合理PE估值"
+          "target_price": 48,
+          "target_currency": "HKD",
+          "assumptions": "2026E EPS 1.90元 × 20x PE × 1.09；商管+10%，ECL稳定，净现金拆分法：EV/EBITDA 15x + 净现金 ≈ 1070亿港元 ÷ 22.83亿股 ≈ 47-49港元"
         },
         {
           "name": "熊市",
           "prob": 20,
-          "target_price": 13,
-          "assumptions": "ECL加速（开发商违约蔓延），2–3年账龄应收进一步恶化至不可控"
+          "target_price": 36,
+          "target_currency": "HKD",
+          "assumptions": "ECL拨备继续扩大至5亿+，增值服务继续下滑，消费承压可比增速跌破5%，PE压缩至16x，对应EPS 1.75 × 16x × 1.09 ≈ 30港元；净现金支撑底部约36港元"
         }
       ],
       "position_rules": [
         {
           "zone": "极度低估",
-          "condition": "安全边际 ≥ 40%",
+          "condition": "≤ 36港元（熊市目标价）",
           "action": "BUY",
-          "target_position": "满仓（20%）",
-          "trigger": "价格≤¥14且ECL拐点确认"
+          "target_position": "建仓至15%",
+          "trigger": "价格触达熊市目标价；需同时确认：ECL无继续恶化迹象，100%派息维持"
         },
         {
           "zone": "合理低估",
-          "condition": "安全边际 20–40%",
+          "condition": "36–42港元（安全边际10–25%）",
           "action": "ADD",
-          "target_position": "加至15%",
-          "trigger": "2026H1 ECL同比收窄确认"
+          "target_position": "加至10%",
+          "trigger": "2026H1 ECL同比收窄 + 可比零售额增速≥8%"
         },
         {
           "zone": "公允价值",
-          "condition": "安全边际 0–20%",
+          "condition": "42–50港元（基准目标价区间）",
           "action": "HOLD",
-          "target_position": "维持8%",
-          "trigger": "等待ECL数据"
+          "target_position": "维持，不加不减",
+          "trigger": "当前47港元处于此区间，等待2026H1数据"
         },
         {
           "zone": "轻微高估",
-          "condition": "高估 0–20%",
+          "condition": "50–58港元",
           "action": "TRIM",
-          "target_position": "减至4%",
-          "trigger": "价格超过¥21"
+          "target_position": "减仓至5%",
+          "trigger": "价格超过基准目标48港元10%以上"
         },
         {
           "zone": "明显高估",
-          "condition": "高估 ≥ 20%",
+          "condition": "≥ 58港元（牛市目标价）",
           "action": "SELL",
-          "target_position": "清仓",
-          "trigger": "价格超过¥28"
+          "target_position": "止盈清仓",
+          "trigger": "价格达到牛市目标价；或：ECL拨备失控 + 100%派息率无法维持"
         }
       ],
       "checklist": [
         {
-          "id": "chk030",
-          "text": "ECL拨备是否同比收窄（2025年同比+101%，需观察2026H1）",
-          "action": "若2026H1 ECL<上年同期，升级为ADD信号",
+          "id": "chk040",
           "priority": "high",
           "checked": false,
-          "category": "ECL监控"
+          "category": "ECL核心监控",
+          "text": "2026H1 ECL拨备合计是否低于2025H1（约1.8亿）或同比收窄",
+          "action": "若ECL同比收窄→升级为ADD信号；若继续+50%以上→维持HOLD，下调基准目标价至44港元"
         },
         {
-          "id": "chk031",
-          "text": "2–3年账龄应收款余额是否开始下降（2025年同比+189%）",
-          "action": "若继续上升，维持HOLD不加仓",
+          "id": "chk041",
           "priority": "high",
           "checked": false,
-          "category": "ECL监控"
+          "category": "ECL核心监控",
+          "text": "2–3年账龄应收款是否开始下降（2025FY同比+189%至1.62亿）",
+          "action": "账龄结构改善是ECL触顶的领先指标"
         },
         {
-          "id": "chk032",
-          "text": "确认估值框架：ROE约30%因轻资产结构失真，不用PB，坚持PE/股息率/EV/EBITDA",
-          "action": "检查项，确保估值锚正确",
+          "id": "chk042",
+          "priority": "high",
+          "checked": false,
+          "category": "购物中心增长",
+          "text": "2026H1新开业购物中心数量（2025年新开14座，超预期；此前预期6座）",
+          "action": "若H1开业≥6座→增速换挡论证需进一步修正；在管合同207座储备充足"
+        },
+        {
+          "id": "chk043",
+          "priority": "high",
+          "checked": false,
+          "category": "购物中心增长",
+          "text": "可比项目零售额增速（2025全年+23.7%受新开业拉动；需关注可比增速）",
+          "action": "可比增速≥8%→消费基本面健康；≤5%→下调增长预期"
+        },
+        {
+          "id": "chk044",
+          "priority": "medium",
+          "checked": false,
+          "category": "增值服务触底",
+          "text": "非业主增值服务（2025年-27.7%）和业主增值服务（-26.3%）是否触底企稳",
+          "action": "两项合计约16.4亿，若2026H1降幅收窄至-10%以内→物业航道增速回升"
+        },
+        {
+          "id": "chk045",
+          "priority": "medium",
+          "checked": false,
+          "category": "股息确认",
+          "text": "2026年中期股息是否维持100%核心净利润派发（连续三年确认）",
+          "action": "若低于90%派息率→重新评估估值逻辑"
+        },
+        {
+          "id": "chk046",
           "priority": "low",
           "checked": false,
-          "category": "估值纪律"
+          "category": "估值纪律",
+          "text": "坚持EV/EBITDA+净现金拆分法为首选估值框架；ROE约30%因轻资产结构失真，PB无意义",
+          "action": "净现金拆分：EV/EBITDA 15-18x × ~60亿港元EBITDA + 净现金146亿港元 = 合理市值1046-1226亿港元，对应46-54港元"
         }
       ],
-      "research_notes": "估值注意事项（重要）：ROE约30%是结构性虚高——华润置地持有实物资产，万象生活轻资产运营，所以PB基本无意义。正确估值锚：PE、股息率、EV/EBITDA+净现金、FCF收益率。\n\nECL是非现金项目：ECL拨备在经营CF中加回，影响报告利润但不影响现金生成——这是分析物业管理公司的关键认知。\n\n折现率：大陆资产适当折现率6–8%，不用10%。",
+      "research_notes": "【商业模式核心】轻资产管理平台，不持有购物中心产权（产权在华润置地）。万象收取管理费+流水分成（约占全部租金的6-10%），但小头里近78%是毛利。母公司华润置地持股62%（华润集团实际71.55%），股东利益高度一致，100%派息是结构性而非一次性承诺。\n\n【估值框架（重要）】ROE约30%严重失真（净资产被轻资产结构抽空），PB基本无意义。正确估值锚：①EV/EBITDA+净现金拆分法（首选）：合理EV约15-18x EBITDA，加上净现金134亿CNY，目标市值约1046-1226亿港元，对应每股46-54港元；②PE法：2026E EPS约1.90元×20-22x×汇率1.09；③股息率：100%派息下股息率≈4-5%具吸引力；④FCF Yield约3.5%+存量自然增长约3-4%=综合年化7-8%。折现率建议6-8%（内地资产机会成本低）。\n\n【2025FY关键结论】收入+5.1%（增速换挡确认），但核心净利润+13.7%（利润弹性大于收入弹性，毛利率+2.5pt）。最重要发现：2025年新开14座购物中心（此前预期6座），在管合同达207座（在营129座），储备规模极充裕，增速换挡论证需修正。ECL拨备合计+101%至3.64亿，需在2026H1验证是否触顶。\n\n【置地风险评估】置地2025H1净有息负债率39.2%，融资成本2.79%（行业最低），BBB+评级，1202亿现金储备——无暴雷风险。对万象的影响是增速天花板（供给放缓）而非业务威胁；且置地主动推进REIT/轻资产转型，反而对万象是增量。\n\n【ECL是非现金项目】ECL拨备在经营CF中加回，不影响现金生成；有效净现金流覆盖倍数1.1x，盈利质量基本健康。",
       "gradient": {
-        "buy_strong": 14,
-        "buy": 16.5,
-        "hold_low": 20,
-        "trim": 24,
-        "sell": 28,
+        "buy_strong": 36,
+        "buy": 42,
+        "hold_low": 48,
+        "trim": 54,
+        "sell": 58,
         "custom_points": []
       },
-      "shares_held": 0,
-      "status": "active"
+      "status": "active",
+      "next_catalyst": "2026H1中报（2026年8月前后）：ECL拨备趋势 + 可比零售额增速 + 新开购物中心数量"
     },
     {
       "id": "c005",
