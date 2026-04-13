@@ -883,15 +883,170 @@
         "franchised_stores_2025q4": 6700,
         "owned_stores_2025q4": 615
       }
+    },
+    {
+      "id": "c007",
+      "name": "凌霄泵业",
+      "code": "002884.SZ",
+      "exchange": "A",
+      "sector": "民用离心泵制造",
+      "research_folder": "凌霄泵业_002884",
+      "price": 17.94,
+      "shares": 3.578,
+      "net_cash_bn": 0,
+      "eps_forecast": 1.27,
+      "discount_rate": 6,
+      "valuation_method": "PE估值（EPS×PE）+ DDM股息折现（DPS/r）+ 净现金+经营价值 三法交叉验证",
+      "signal": "hold",
+      "position_pct": 100,
+      "avg_cost": 17.841,
+      "max_position_pct": 10,
+      "rating": "hold",
+      "next_catalyst": "2026Q1季报（4月30日）· 美国关税税率动态 · 出口订单趋势",
+      "data_as_of": "2025年年度报告（2026-04-10）",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 20,
+          "target_price": 23,
+          "assumptions": "关税豁免或转单效应，国内+15%+，出口部分恢复，净利润+8%，EPS 1.37元×PE17x"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 19,
+          "assumptions": "出口±0%，国内+10%，净利润+2%，EPS 1.30元×PE15x，当前股价略低于基准"
+        },
+        {
+          "name": "熊市",
+          "prob": 25,
+          "target_price": 15,
+          "assumptions": "美国关税大幅加征，出口下滑20%+，毛利率受损，净利润-15%，EPS 1.08元×PE14x"
+        }
+      ],
+      "position_rules": [
+        {
+          "zone": "极度低估",
+          "condition": "≤¥13（股息率≥7.7%税前）",
+          "action": "BUY",
+          "target_position": "加仓至满仓",
+          "trigger": "价格低于熊市目标¥15×0.85"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "¥13–16（股息率≥6.25%）",
+          "action": "ADD",
+          "target_position": "分批加仓",
+          "trigger": "价格低于基准×0.85=¥16"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "¥16–19（股息率5.3–6.25%）",
+          "action": "HOLD",
+          "target_position": "持有，红利仓不动",
+          "trigger": "当前区间，持有待息"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "¥19–23（股息率4.3–5.3%）",
+          "action": "HOLD",
+          "target_position": "持有不加",
+          "trigger": "价格超过基准¥19"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "¥23–27（股息率<4.3%）",
+          "action": "TRIM",
+          "target_position": "减仓50%",
+          "trigger": "价格超过牛市目标¥23"
+        },
+        {
+          "zone": "极度高估",
+          "condition": ">¥27（股息率<3.7%）",
+          "action": "SELL",
+          "target_position": "止盈清仓",
+          "trigger": "价格超过¥27"
+        }
+      ],
+      "checklist": [
+        {
+          "id": "lx001",
+          "priority": "high",
+          "checked": false,
+          "category": "关税风险监控",
+          "text": "2026Q1出口订单：是否出现>10%同比下滑",
+          "action": "下滑>10%→下调基准情景概率，熊市概率升至35%；下滑>20%→触发估值重算"
+        },
+        {
+          "id": "lx002",
+          "priority": "high",
+          "checked": false,
+          "category": "关税风险监控",
+          "text": "美国对华水泵（HS 8413）关税税率变化跟踪",
+          "action": "加征>25%附加税→出口毛利率受压，净利润下行风险增至-15%；需重新测算熊市目标价"
+        },
+        {
+          "id": "lx003",
+          "priority": "high",
+          "checked": false,
+          "category": "季报验证",
+          "text": "2026Q1综合毛利率：是否跌破34%",
+          "action": "<34%→原材料涨价+出口压力双重挤压，下调全年净利润预测；>35%→基准情景维持"
+        },
+        {
+          "id": "lx004",
+          "priority": "high",
+          "checked": false,
+          "category": "季报验证",
+          "text": "2026Q1经营现金流/净利润比率：是否维持>90%",
+          "action": "<80%→应收账款扩张或回款恶化，现金质量预警；>100%→红利仓逻辑继续成立"
+        },
+        {
+          "id": "lx005",
+          "priority": "mid",
+          "checked": false,
+          "category": "分红验证",
+          "text": "2025年度股东大会正式审议通过分红方案（每10股10元）",
+          "action": "确认派息时间表，记录实际派息日"
+        },
+        {
+          "id": "lx006",
+          "priority": "mid",
+          "checked": false,
+          "category": "经营监控",
+          "text": "国内销售同比增速：2026H1是否维持>10%以对冲出口压力",
+          "action": "<5%→内外双弱，下调基准情景；>15%→部分对冲出口风险，维持基准"
+        },
+        {
+          "id": "lx007",
+          "priority": "low",
+          "checked": false,
+          "category": "长期观察",
+          "text": "不锈钢泵美国市场新客户突破情况（管理层2026年重点方向）",
+          "action": "若有重大新客户公告，可小幅上调牛市目标价至¥24–25"
+        }
+      ],
+      "research_notes": "仓位性质：长期红利保守仓\n持仓：300股 @ 均价¥17.841，今日收盘¥17.94\n\n业务：民用离心泵全品类制造商（广东阳春），塑料卫浴泵国内龙头（国内第一），不锈钢泵国内第一梯队。产品销往全球近100个国家，出口占收入约49%，美国市场约占出口40%（总收入约20%）。\n\n2025FY关键数字（年报，数据基准日2026-04-10）：\n・营收 ¥1,722百万元（+8.2%）\n・归母净利润 ¥455百万元（+2.8%）\n・扣非净利润 ¥438百万元（+1.8%）\n・综合毛利率 35.67%（-0.86ppt）\n・加权ROE 19.46%\n・基本EPS 1.27元\n・每股股息（拟）1.00元，派息率78.6%\n・经营现金流 ¥459百万元（OCF/净利润≈101%）\n・资本开支 ¥23百万元（FCF ¥436百万元）\n・资产负债率 7.6%，零有息负债\n・货币资金+金融资产 ¥1,389百万元（含¥983百万元定期存款）\n\n管理层2026年目标：产销量及营收变动-10%~+10%，归母净利润变动-15%~+5%\n（措辞为更具挑战的一年，基准预期为零增长或小幅负增长）\n\n估值框架：\n・PE法保守：EPS 1.27×12x = ¥15.2\n・PE法中性：EPS 1.27×15x = ¥19.1\n・DDM零增长：DPS 1.0/6% = ¥16.7\n・合理区间：¥16–20，买入参考≤¥16（股息率≥6.25%税前）\n\n核心护城河：电机自供能力（几十年积累）+ 适配性定制设计能力（深度适配欧美卫浴客户）\n最大风险：美国关税（塑料卫浴泵为主，议价能力有限，短期客户难转移供应链）",
+      "gradient": {
+        "buy_strong": 13,
+        "buy": 16,
+        "hold_low": 19,
+        "trim": 23,
+        "sell": 27,
+        "custom_points": []
+      },
+      "shares_held": 300,
+      "status": "active",
+      "currency": "CNY"
     }
   ],
   "_meta": {
     "version": "1.0",
-    "last_updated": "2026/04/10",
+    "last_updated": "2026/04/13",
     "description": "Investment OS 主数据文件",
     "maintainer": "Pjaaden/Stock-Research",
     "update_instructions": "由工作台自动同步",
     "schema_version": "2.0",
-    "updated_at": "2026-04-10"
+    "updated_at": "2026-04-13"
   }
 }
