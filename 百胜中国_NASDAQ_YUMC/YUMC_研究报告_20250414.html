@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百胜中国 (YUMC) — 2025年度财报深度研究</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #faf8f5;
+    --surface: #ffffff;
+    --surface-alt: #f5f3ee;
+    --border: #e8e2d9;
+    --text-primary: #1a1714;
+    --text-secondary: #5a5550;
+    --text-muted: #9a9490;
+    --accent: #c84b31;
+    --accent-light: #f5ede9;
+    --green: #2d6a4f;
+    --green-light: #e8f4ef;
+    --amber: #b5590a;
+    --amber-light: #fef3e2;
+    --blue: #1a4a7c;
+    --blue-light: #e8f0f8;
+    --gold: #9a7528;
+    --gold-light: #faf5e4;
+    --font-body: 'IBM Plex Sans', sans-serif;
+    --font-serif: 'Noto Serif SC', serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--text-primary);
+    color: #fff;
+    padding: 52px 64px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(200,75,49,0.18);
+  }
+  .report-header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 200px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(200,75,49,0.10);
+  }
+  .header-meta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .header-title {
+    font-family: var(--font-serif);
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .header-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
+  }
+  .header-badges {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .badge-accent { background: var(--accent); color: #fff; }
+  .badge-outline { border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1080px; margin: 0 auto; padding: 48px 40px; }
+
+  /* ── DATE WATERMARK ── */
+  .date-stamp {
+    background: var(--gold-light);
+    border: 1px solid #d4b96a;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.08em;
+    display: inline-block;
+    margin-bottom: 36px;
+  }
+
+  /* ── SECTION TITLES ── */
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  /* ── HIGHLIGHT CARDS ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .kpi-card.red::before { background: var(--accent); }
+  .kpi-card.green::before { background: var(--green); }
+  .kpi-card.blue::before { background: var(--blue); }
+  .kpi-card.amber::before { background: var(--amber); }
+  .kpi-label {
+    font-size: 11px;
+    font-family: var(--font-mono);
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .kpi-value {
+    font-family: var(--font-mono);
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .kpi-change {
+    font-size: 11px;
+    font-family: var(--font-mono);
+  }
+  .up { color: var(--green); }
+  .down { color: var(--accent); }
+  .neutral { color: var(--text-muted); }
+
+  /* ── DATA TABLE ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+    font-size: 13px;
+  }
+  .data-table th {
+    background: var(--surface-alt);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--border);
+  }
+  .data-table th.right, .data-table td.right { text-align: right; }
+  .data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--surface-alt); }
+  .data-table td.mono { font-family: var(--font-mono); }
+
+  /* ── CHART WRAPPER ── */
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .chart-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .chart-box.full { grid-column: 1 / -1; }
+  .chart-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  /* ── CALLOUT BOXES ── */
+  .callout {
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+  }
+  .callout-green { background: var(--green-light); border-color: var(--green); }
+  .callout-amber { background: var(--amber-light); border-color: var(--amber); }
+  .callout-red { background: var(--accent-light); border-color: var(--accent); }
+  .callout-blue { background: var(--blue-light); border-color: var(--blue); }
+  .callout-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .callout-green .callout-title { color: var(--green); }
+  .callout-amber .callout-title { color: var(--amber); }
+  .callout-red .callout-title { color: var(--accent); }
+  .callout-blue .callout-title { color: var(--blue); }
+  .callout p { font-size: 13px; line-height: 1.65; }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .scenario-card {
+    border-radius: 10px;
+    padding: 22px 20px;
+    border: 1px solid;
+  }
+  .scenario-bear { background: #fff5f4; border-color: #f5c0b8; }
+  .scenario-base { background: #f0f7f4; border-color: #a8d5be; }
+  .scenario-bull { background: #f8f4ff; border-color: #c4aef5; }
+  .scenario-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .scenario-bear .scenario-label { color: var(--accent); }
+  .scenario-base .scenario-label { color: var(--green); }
+  .scenario-bull .scenario-label { color: #6b46c1; }
+  .scenario-prob {
+    font-family: var(--font-mono);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .scenario-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .scenario-row:last-child { border-bottom: none; }
+  .scenario-row .val { font-family: var(--font-mono); font-weight: 600; }
+
+  /* ── VALUATION TABLE ── */
+  .valuation-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 28px;
+  }
+  .valuation-header {
+    background: var(--text-primary);
+    color: #fff;
+    padding: 14px 20px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .valuation-body { padding: 0; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-gap { margin-bottom: 48px; }
+
+  /* ── TWO COLUMN ── */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* ── CONCLUSION BLOCK ── */
+  .conclusion-block {
+    background: var(--text-primary);
+    color: #fff;
+    border-radius: 12px;
+    padding: 36px 40px;
+    margin-bottom: 48px;
+  }
+  .conclusion-block h3 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+  .conclusion-block p {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .conclusion-rating {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 8px;
+  }
+  .conclusion-rating span {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  /* ── PILL TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+  }
+
+  /* ── RISK LIST ── */
+  .risk-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .risk-item:last-child { border-bottom: none; }
+  .risk-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+  .risk-high .risk-dot { background: var(--accent); }
+  .risk-med .risk-dot { background: var(--amber); }
+  .risk-low .risk-dot { background: var(--green); }
+  .risk-label { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+  .risk-desc { font-size: 12px; color: var(--text-secondary); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: #fff; }
+    .chart-box canvas { max-height: 220px; }
+    .report-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--surface-alt);
+    border-top: 1px solid var(--border);
+    padding: 28px 64px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    line-height: 1.8;
+  }
+
+  p { margin-bottom: 10px; }
+  strong { font-weight: 600; color: var(--text-primary); }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 5px; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HEADER
+═══════════════════════════════════════ -->
+<div class="report-header">
+  <div class="header-meta">深度研究报告 · Stock Research Archive · Pjaaden/Stock-Research</div>
+  <div class="header-title">百胜中国控股 (YUMC / 9987.HK)</div>
+  <div class="header-subtitle">2025 Annual Report (10-K) — 成长能力 · 财务健康 · 估值分析 · 买入决策</div>
+  <div class="header-badges">
+    <span class="badge badge-accent">NYSE: YUMC</span>
+    <span class="badge badge-outline">HK: 9987</span>
+    <span class="badge badge-outline">报告期：FY2025 (截至2025.12.31)</span>
+    <span class="badge badge-outline">分析日期：2026.04.14</span>
+    <span class="badge badge-outline">参考价：$49.44</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     MAIN BODY
+═══════════════════════════════════════ -->
+<div class="container">
+
+  <div class="date-stamp">★ 分析日期标记：2026年4月14日 · 数据源：百胜中国 2025 Form 10-K（KPMG审计，2026.02.27签发）</div>
+
+  <!-- ─── 0. 核心结论 (先读后看) ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">00</span>核心结论速览</div>
+    <div class="conclusion-block">
+      <h3>$49.44：估值合理，持有逻辑完整，中期有向上空间</h3>
+      <p>以2025年调整后EPS $2.51计算，当前PE约<strong style="color:#fff">19.7×</strong>，落在百胜中国"合理区间"（18–22×）的下沿。考虑2026年继续开店冲击2万店、特许经营费占比提升、股息+回购总回报目标$1.5B，公司不贵。但当前市场对<strong style="color:#fff">消费环境疲软、同店销售增速低迷（+1%）、人民币汇率风险</strong>存在折价，$49左右是可接受的持有价格，而非大幅低估的进攻机会。</p>
+      <p>长期持有理由清晰：中国餐饮市场渗透率仍低，百胜拥有独家品牌授权+18,101店网络护城河，数字化会员（5.9亿）带来持续订单粘性，FCF稳健支撑资本回报计划（2024–2028目标总返还>$6B）。</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:8px;">
+        <div class="conclusion-rating"><span>评级：持有 / 谨慎加仓</span></div>
+        <div class="conclusion-rating" style="background:var(--green);"><span>合理价值区间：$50–62</span></div>
+        <div class="conclusion-rating" style="background:#6b46c1;"><span>2026E PE 牛市目标：~$70+</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 1. 关键指标 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">01</span>2025年度核心财务指标</div>
+    <div class="kpi-grid">
+      <div class="kpi-card red">
+        <div class="kpi-label">Total Revenues</div>
+        <div class="kpi-value">$11.8B</div>
+        <div class="kpi-change up">↑ +4% YoY（含/排F/X均为+4%）</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Operating Profit</div>
+        <div class="kpi-value">$1.29B</div>
+        <div class="kpi-change up">↑ +11% · OP Margin 10.9%</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">Net Income (YUMC)</div>
+        <div class="kpi-value">$929M</div>
+        <div class="kpi-change up">↑ +2% YoY</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">Diluted EPS</div>
+        <div class="kpi-value">$2.51</div>
+        <div class="kpi-change up">↑ +8% YoY（vs $2.33）</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-label">Adj. EBITDA</div>
+        <div class="kpi-value">$1.78B</div>
+        <div class="kpi-change up">↑ +6% · EV/EBITDA ~10×</div>
+      </div>
+      <div class="kpi-card red">
+        <div class="kpi-label">Restaurant Margin</div>
+        <div class="kpi-value">16.3%</div>
+        <div class="kpi-change up">↑ +0.6ppts（vs 15.7%）</div>
+      </div>
+      <div class="kpi-card blue">
+        <div class="kpi-label">Operating CF</div>
+        <div class="kpi-value">$1.47B</div>
+        <div class="kpi-change up">↑ +3% · 扣税后现金充裕</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-label">门店总数</div>
+        <div class="kpi-value">18,101</div>
+        <div class="kpi-change up">↑ +1,706店 净增 · 覆盖2,500+城市</div>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">★ 数据源说明</div>
+      <p>以上数据均来自百胜中国 2025 Form 10-K（SEC备案日2026年2月28日），由KPMG华振会计师事务所审计签发（2026.02.27）。EPS均为调整后（Adjusted）口径，与GAAP EPS $2.51一致（2025年无Special Items）。</p>
+    </div>
+  </div>
+
+  <!-- ─── 2. 成长能力 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">02</span>成长能力分析</div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <div class="chart-title">收入 & 利润趋势（$M）</div>
+        <canvas id="revenueChart" height="200"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">EPS增长轨迹 (Diluted)</div>
+        <canvas id="epsChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th class="right">2023</th>
+          <th class="right">2024</th>
+          <th class="right">2025</th>
+          <th class="right">YoY变化</th>
+          <th class="right">2016→2025 CAGR</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>总收入</strong></td>
+          <td class="right mono">$10,978M</td>
+          <td class="right mono">$11,303M</td>
+          <td class="right mono">$11,797M</td>
+          <td class="right mono up">+4%</td>
+          <td class="right mono">~7%*</td>
+        </tr>
+        <tr>
+          <td><strong>运营利润</strong></td>
+          <td class="right mono">$1,106M</td>
+          <td class="right mono">$1,162M</td>
+          <td class="right mono">$1,290M</td>
+          <td class="right mono up">+11%</td>
+          <td class="right mono">显著扩张</td>
+        </tr>
+        <tr>
+          <td><strong>净利润（YUMC口径）</strong></td>
+          <td class="right mono">$827M</td>
+          <td class="right mono">$911M</td>
+          <td class="right mono">$929M</td>
+          <td class="right mono up">+2%</td>
+          <td class="right mono">—</td>
+        </tr>
+        <tr>
+          <td><strong>Diluted EPS</strong></td>
+          <td class="right mono">$1.97</td>
+          <td class="right mono">$2.33</td>
+          <td class="right mono">$2.51</td>
+          <td class="right mono up">+8%</td>
+          <td class="right mono">股份回购加速</td>
+        </tr>
+        <tr>
+          <td><strong>门店数量</strong></td>
+          <td class="right mono">~15,000</td>
+          <td class="right mono">16,395</td>
+          <td class="right mono">18,101</td>
+          <td class="right mono up">+10%</td>
+          <td class="right mono">~10% CAGR</td>
+        </tr>
+        <tr>
+          <td><strong>同店销售增速</strong></td>
+          <td class="right mono">+4%</td>
+          <td class="right mono">-3%</td>
+          <td class="right mono">+1%</td>
+          <td class="right mono up">转正</td>
+          <td class="right mono">—</td>
+        </tr>
+        <tr>
+          <td><strong>系统销售增速（排F/X）</strong></td>
+          <td class="right mono">+6%</td>
+          <td class="right mono">+5%</td>
+          <td class="right mono">+4%</td>
+          <td class="right mono neutral">稳定</td>
+          <td class="right mono">—</td>
+        </tr>
+        <tr>
+          <td><strong>餐厅利润率</strong></td>
+          <td class="right mono">~16%</td>
+          <td class="right mono">15.7%</td>
+          <td class="right mono">16.3%</td>
+          <td class="right mono up">+0.6ppts</td>
+          <td class="right mono">稳步修复</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">* 收入CAGR参考：2016年公司规模约7,562店，2025年18,101店，9年门店CAGR ~10%；收入估算CAGR约7%。</p>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">增长驱动力分析：三分法</div>
+      <p><strong>① 净新增门店（贡献+3%）：</strong>2025年净开1,706店，创历史纪录。特许经营占新增比例显著提升（KFC: 37%，PH: 31%），轻资产扩张提速。新店平均资本支出KFC约130万元、Pizza Hut约100万元，极低。</p>
+      <p><strong>② 同店销售修复（贡献+1%）：</strong>从2024年-3%的低谷回正，但力度有限，体现中国消费市场整体承压。外卖占KFC公司销售48%，会员贡献61%系统销售——数字化渗透率高为护城河而非昙花。</p>
+      <p><strong>③ EPS增长>净利增长（+8% vs +2%）：</strong>差异来自持续股份回购——2025年回购2,470万股耗资$11.36亿，加速每股盈利增长，形成"增利+减股"的EPS复利飞轮。</p>
+    </div>
+  </div>
+
+  <!-- ─── 3. 财务健康度 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">03</span>财务健康度与现金流质量</div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <div class="chart-title">现金流三表（$M）</div>
+        <canvas id="cfChart" height="200"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">资本回报分配（2025年，$M）</div>
+        <canvas id="returnChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>健康指标</th>
+          <th class="right">2025值</th>
+          <th class="right">2024值</th>
+          <th>评估</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>经营现金流</strong></td>
+          <td class="right mono">+$1,466M</td>
+          <td class="right mono">+$1,419M</td>
+          <td><span style="color:var(--green)">★ 强劲，持续正向</span></td>
+        </tr>
+        <tr>
+          <td><strong>资本支出（Capex）</strong></td>
+          <td class="right mono">-$626M</td>
+          <td class="right mono">-$705M</td>
+          <td><span style="color:var(--green)">管控良好，同比减少12%</span></td>
+        </tr>
+        <tr>
+          <td><strong>自由现金流（OCF-Capex）</strong></td>
+          <td class="right mono">+$840M</td>
+          <td class="right mono">+$714M</td>
+          <td><span style="color:var(--green)">★ FCF充裕，同比+18%</span></td>
+        </tr>
+        <tr>
+          <td><strong>净利润/经营CF转化率</strong></td>
+          <td class="right mono">~158%</td>
+          <td class="right mono">~145%</td>
+          <td><span style="color:var(--green)">★★ 优秀——现金利润远超会计利润</span></td>
+        </tr>
+        <tr>
+          <td><strong>短期借款</strong></td>
+          <td class="right mono">$30M</td>
+          <td class="right mono">$127M</td>
+          <td><span style="color:var(--green)">大幅下降，债务风险极低</span></td>
+        </tr>
+        <tr>
+          <td><strong>现金+短期投资</strong></td>
+          <td class="right mono">$1,384M</td>
+          <td class="right mono">$1,844M</td>
+          <td><span style="color:var(--amber)">同比下降（回购消耗），但仍充裕</span></td>
+        </tr>
+        <tr>
+          <td><strong>经营租赁负债（总）</strong></td>
+          <td class="right mono">$1,874M</td>
+          <td class="right mono">$1,865M</td>
+          <td><span style="color:var(--amber)">门店租约性质，非财务性债务</span></td>
+        </tr>
+        <tr>
+          <td><strong>实际有息债务</strong></td>
+          <td class="right mono">$81M</td>
+          <td class="right mono">$176M</td>
+          <td><span style="color:var(--green)">★★ 几乎无财务杠杆</span></td>
+        </tr>
+        <tr>
+          <td><strong>股东权益（YUMC口径）</strong></td>
+          <td class="right mono">$5,379M</td>
+          <td class="right mono">$5,728M</td>
+          <td><span style="color:var(--amber)">回购导致减少，但健康</span></td>
+        </tr>
+        <tr>
+          <td><strong>有效税率</strong></td>
+          <td class="right mono">27.2%</td>
+          <td class="right mono">26.7%</td>
+          <td><span style="color:var(--text-secondary)">稳定，无异常</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="two-col">
+      <div class="callout callout-green">
+        <div class="callout-title">现金流亮点</div>
+        <p><strong>FCF $840M</strong>是公司资本回报能力的核心锚点。净利润$929M与经营CF $1,466M之间的差距（约$537M）来自D&A $448M + 非现金租赁 $401M，均系正常会计调整，现金生成品质极高。利息收入净额$92M（持有大量短期存款），显示资产负债表拥有隐性"现金cushion"。</p>
+      </div>
+      <div class="callout callout-amber">
+        <div class="callout-title">关注点：现金余额下降</div>
+        <p>现金+短投从$1,844M降至$1,384M，净减少$460M。原因明确：2025年累计回购$1,136M + 现金股息$353M = 资本返还$1,489M，大幅超越FCF $840M差额由长期存款释放($678M→$678M结构调整)。这是主动决策而非恶化信号，但须跟踪2026年是否维持充足现金储备。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 4. 资产负债表 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">04</span>资产负债表深度解读</div>
+
+    <div class="chart-row">
+      <div class="chart-box">
+        <div class="chart-title">资产结构（2025年末，$M）</div>
+        <canvas id="assetChart" height="200"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">负债结构（2025年末，$M）</div>
+        <canvas id="liabChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>资产负债表科目</th>
+          <th class="right">2025</th>
+          <th class="right">2024</th>
+          <th>分析备注</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background:var(--surface-alt)">
+          <td colspan="4"><strong style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">— 资产侧 —</strong></td>
+        </tr>
+        <tr>
+          <td>现金及等价物</td>
+          <td class="right mono">$506M</td>
+          <td class="right mono">$723M</td>
+          <td>回购消耗，短投$878M为补充流动性</td>
+        </tr>
+        <tr>
+          <td>短期投资</td>
+          <td class="right mono">$878M</td>
+          <td class="right mono">$1,121M</td>
+          <td>高流动性资产，随时可变现</td>
+        </tr>
+        <tr>
+          <td>PP&E（有形固定资产）</td>
+          <td class="right mono">$2,543M</td>
+          <td class="right mono">$2,407M</td>
+          <td>店面资产扩张，新店资本支出体现</td>
+        </tr>
+        <tr>
+          <td>运营租赁使用权资产</td>
+          <td class="right mono">$2,189M</td>
+          <td class="right mono">$2,146M</td>
+          <td>IFRS16/ASC842门店租赁资本化，非负债风险</td>
+        </tr>
+        <tr>
+          <td>商誉（Goodwill）</td>
+          <td class="right mono">$1,963M</td>
+          <td class="right mono">$1,880M</td>
+          <td>KFC/PH/HJH/Lavazza品牌收购形成，稳定</td>
+        </tr>
+        <tr>
+          <td>无形资产（品牌授权）</td>
+          <td class="right mono">$148M</td>
+          <td class="right mono">$144M</td>
+          <td>KFC/PH独家中国授权权利摊销</td>
+        </tr>
+        <tr>
+          <td>长期银行存款及票据</td>
+          <td class="right mono">$678M</td>
+          <td class="right mono">$1,088M</td>
+          <td>战略储备，支撑回购后流动性</td>
+        </tr>
+        <tr>
+          <td><strong>总资产</strong></td>
+          <td class="right mono"><strong>$10,783M</strong></td>
+          <td class="right mono"><strong>$11,121M</strong></td>
+          <td>略降，主要因现金部署于回购</td>
+        </tr>
+        <tr style="background:var(--surface-alt)">
+          <td colspan="4"><strong style="font-family:var(--font-mono);font-size:11px;color:var(--text-muted)">— 负债侧 —</strong></td>
+        </tr>
+        <tr>
+          <td>短期借款</td>
+          <td class="right mono">$30M</td>
+          <td class="right mono">$127M</td>
+          <td><span class="up">★ 极低，几乎零财务杠杆</span></td>
+        </tr>
+        <tr>
+          <td>应付账款及流动负债</td>
+          <td class="right mono">$2,127M</td>
+          <td class="right mono">$2,080M</td>
+          <td>正常经营性负债，可持续</td>
+        </tr>
+        <tr>
+          <td>非流动运营租赁负债</td>
+          <td class="right mono">$1,823M</td>
+          <td class="right mono">$1,816M</td>
+          <td>门店合同义务，非金融杠杆</td>
+        </tr>
+        <tr>
+          <td>递延税负债</td>
+          <td class="right mono">$406M</td>
+          <td class="right mono">$389M</td>
+          <td>主要为境外预提所得税</td>
+        </tr>
+        <tr>
+          <td><strong>总负债</strong></td>
+          <td class="right mono"><strong>$4,684M</strong></td>
+          <td class="right mono"><strong>$4,694M</strong></td>
+          <td>稳定，无增加趋势</td>
+        </tr>
+        <tr>
+          <td><strong>YUMC股东权益</strong></td>
+          <td class="right mono"><strong>$5,379M</strong></td>
+          <td class="right mono"><strong>$5,728M</strong></td>
+          <td>回购导致减少，内在价值不变</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">资产负债表核心结论</div>
+      <p><strong>财务结构极为稳健。</strong>实际有息金融负债仅$30M（短期借款），对照$1,384M现金+短投，净现金头寸约+$1.35B。总负债$4.7B中约$2B为运营租赁（店面合同，非债务性质）、$0.4B为递延税，真正"银行借款"性质负债极少。这是特许餐饮/轻资产商业模式的典型特征——无需大量债务融资，依赖运营现金流自我造血。百胜中国不存在任何偿债压力。</p>
+    </div>
+  </div>
+
+  <!-- ─── 5. 段位分析：KFC vs PH ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">05</span>业务分部：KFC与Pizza Hut表现</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>指标</th>
+          <th class="right">KFC 2025</th>
+          <th class="right">KFC 2024</th>
+          <th class="right">PH 2025</th>
+          <th class="right">PH 2024</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>总收入</td>
+          <td class="right mono">$8,871M</td>
+          <td class="right mono">$8,509M</td>
+          <td class="right mono">$2,324M</td>
+          <td class="right mono">$2,260M</td>
+        </tr>
+        <tr>
+          <td>运营利润</td>
+          <td class="right mono">$1,285M</td>
+          <td class="right mono">~$1,192M</td>
+          <td class="right mono">$183M</td>
+          <td class="right mono">~$155M</td>
+        </tr>
+        <tr>
+          <td>OP Margin</td>
+          <td class="right mono">14.5%</td>
+          <td class="right mono">14.0%</td>
+          <td class="right mono">7.9%</td>
+          <td class="right mono">~6.9%</td>
+        </tr>
+        <tr>
+          <td>餐厅利润率</td>
+          <td class="right mono">17.4%</td>
+          <td class="right mono">16.9%</td>
+          <td class="right mono">~12–13%</td>
+          <td class="right mono">~11–12%</td>
+        </tr>
+        <tr>
+          <td>门店数量</td>
+          <td class="right mono">12,997</td>
+          <td class="right mono">~11,788</td>
+          <td class="right mono">4,168</td>
+          <td class="right mono">~3,926</td>
+        </tr>
+        <tr>
+          <td>会员规模</td>
+          <td class="right mono">5.5亿+</td>
+          <td class="right mono">—</td>
+          <td class="right mono">2.1亿+</td>
+          <td class="right mono">—</td>
+        </tr>
+        <tr>
+          <td>外卖占比（公司销售）</td>
+          <td class="right mono">~48%</td>
+          <td class="right mono">—</td>
+          <td class="right mono">~47%</td>
+          <td class="right mono">—</td>
+        </tr>
+        <tr>
+          <td>会员系统销售贡献</td>
+          <td class="right mono">61%</td>
+          <td class="right mono">—</td>
+          <td class="right mono">59%</td>
+          <td class="right mono">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-green">
+      <div class="callout-title">KFC：中流砥柱，利润率扩张</div>
+      <p>KFC 2025年收入+4.3%，OP Margin从14.0%→14.5%，显示规模效应与运营效率双提升。外卖约占48%公司销售，叠加92%门店+98%城市的外卖覆盖，形成极高的消费触达密度。新增特许门店加速，轻资产化有助于进一步提升ROE。KCOFFEE模块（已约2,200个cafe嵌入KFC门店）打开早餐+咖啡品类，AUV提升路径清晰。</p>
+    </div>
+    <div class="callout callout-amber">
+      <div class="callout-title">Pizza Hut：转型期，盈利改善方向正确</div>
+      <p>PH正从高端正餐向大众化（"Pizza Hut WOW"模型）转型，2025年OP利润率约7.9%，同比改善约1ppt，方向正确但绝对值仍偏低。PH 2025年净新增约242店，特许占新增比31%（vs 2024的10%），轻资产化加速。潜在风险：转型期客单价下行可能持续压制同店销售。</p>
+    </div>
+  </div>
+
+  <!-- ─── 6. 为什么能持续18×+ PE ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">06</span>为什么百胜中国能长期维持18倍以上PE</div>
+
+    <p style="margin-bottom:20px; color:var(--text-secondary);">投资者愿意为百胜中国支付溢价，来自五个相互强化的结构性护城河：</p>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th width="25%">护城河来源</th>
+          <th>核心逻辑</th>
+          <th width="15%" class="right">估值贡献</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>① 独家品牌授权</strong></td>
+          <td>持有KFC、Pizza Hut在中国大陆（不含港澳台）的独家运营和转授权权利，YUM向百胜收取系统销售约3%的许可费，这一结构无法被复制。品牌授权价值体现在商誉$1.96B和无形资产中。</td>
+          <td class="right mono up">+3–4×</td>
+        </tr>
+        <tr>
+          <td><strong>② 规模网络效应</strong></td>
+          <td>18,101店、2,500+城市覆盖，34个物流中心，850+专属供应商，形成竞争对手无法在短期复制的供应链+选址+运营体系。2016→2025年店数CAGR ~10%，扩张纪律严明。</td>
+          <td class="right mono up">+2–3×</td>
+        </tr>
+        <tr>
+          <td><strong>③ 数字会员护城河</strong></td>
+          <td>5.9亿+会员（KFC 5.5亿+，PH 2.1亿+），会员贡献系统销售61%/59%，数字订单占公司销售约94%。这意味着百胜掌握中国最大规模的餐饮消费数据，精准营销能力形成正向循环。</td>
+          <td class="right mono up">+2×</td>
+        </tr>
+        <tr>
+          <td><strong>④ 现金生成与资本回报</strong></td>
+          <td>FCF $840M，2024–2026三年目标返还股东$4.5B（即$1.5B/年）。2025年实际返还$1.489B（回购$1.136B + 股息$353M）。2027–2028计划年均返还$1B+。持续分红+回购驱动EPS复利增长，直接支撑PE估值底部。</td>
+          <td class="right mono up">+2–3×</td>
+        </tr>
+        <tr>
+          <td><strong>⑤ 中国餐饮渗透率空间</strong></td>
+          <td>中国社会消费品零售餐饮规模2025年约人民币5.756万亿（+3% YoY），百胜中国系统销售约$120亿美元（约人民币870亿），市场份额仍低。目标2026年冲2万店、2030年3万店，意味着至少4–5年的净新增门店可见增长路径。</td>
+          <td class="right mono up">+1–2×</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-blue">
+      <div class="callout-title">18×PE的分解：DCF视角</div>
+      <p>若假设：① FCF $840M，年增长率7%（门店扩张驱动），② 折现率9%，③ 永续增长率3%，则FCF估值约 $840M × (1/(9%-3%)) ≈ $14B，当前市值约$18B（$49 × 3.7亿股），溢价约28%。这部分溢价来自：品牌授权无法DCF捕捉的战略价值 + 回购带来的EPS加速 + 30,000店目标的期权价值。综合来看，18–22× PE有合理依据，但显著超过22× 需要消费环境明确好转 + 同店销售加速。</p>
+    </div>
+  </div>
+
+  <!-- ─── 7. 估值分析 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">07</span>多维度估值分析</div>
+
+    <div class="chart-row">
+      <div class="chart-box full">
+        <div class="chart-title">情景估值区间（$／股）</div>
+        <canvas id="valuationChart" height="120"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>估值方法</th>
+          <th>基础假设</th>
+          <th class="right">熊市价值</th>
+          <th class="right">中性价值</th>
+          <th class="right">牛市价值</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>PE估值法</strong></td>
+          <td>基准EPS $2.51；熊市15×，中性20×，牛市25×</td>
+          <td class="right mono down">$37.7</td>
+          <td class="right mono">$50.2</td>
+          <td class="right mono up">$62.8</td>
+        </tr>
+        <tr>
+          <td><strong>2026E PE法</strong></td>
+          <td>预估EPS $2.75–2.90（+10%EPS增长）；18×/21×/24×</td>
+          <td class="right mono down">$49.5</td>
+          <td class="right mono">$59.0</td>
+          <td class="right mono up">$69.6</td>
+        </tr>
+        <tr>
+          <td><strong>EV/EBITDA</strong></td>
+          <td>EBITDA $1.78B；8×/11×/14×；净现金$1.35B，股数3.54亿</td>
+          <td class="right mono down">$41.8</td>
+          <td class="right mono">$57.5</td>
+          <td class="right mono up">$73.1</td>
+        </tr>
+        <tr>
+          <td><strong>FCF收益率</strong></td>
+          <td>FCF $840M；目标收益率3.5%/4.5%/5.5%</td>
+          <td class="right mono down">$43.0</td>
+          <td class="right mono">$53.0</td>
+          <td class="right mono up">$67.9</td>
+        </tr>
+        <tr>
+          <td><strong>股息折现（DDM补充）</strong></td>
+          <td>股息$0.29×4=$1.16/年；增速7%；折现率10%</td>
+          <td class="right mono">—</td>
+          <td class="right mono">$38.7</td>
+          <td class="right mono">—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono); margin-bottom:24px;">注：DDM仅供参考，百胜中国的价值主要来自FCF再投资与回购，而非股息最大化。股息收益率约2.4%为补充性回报。</p>
+
+    <div class="scenario-grid">
+      <div class="scenario-card scenario-bear">
+        <div class="scenario-label">熊市情景 Bear</div>
+        <div class="scenario-prob" style="color:var(--accent)">概率 25%</div>
+        <div class="scenario-row"><span>触发条件</span><span class="val" style="color:var(--accent)">消费持续疲软</span></div>
+        <div class="scenario-row"><span>同店销售</span><span class="val">-2% ~ 0%</span></div>
+        <div class="scenario-row"><span>2026E EPS</span><span class="val">$2.20–2.40</span></div>
+        <div class="scenario-row"><span>合理PE</span><span class="val">14–16×</span></div>
+        <div class="scenario-row"><span>目标价</span><span class="val" style="color:var(--accent)">$33–$40</span></div>
+        <div class="scenario-row"><span>风险</span><span class="val">人民币贬值+消费降级</span></div>
+      </div>
+      <div class="scenario-card scenario-base">
+        <div class="scenario-label">基准情景 Base</div>
+        <div class="scenario-prob" style="color:var(--green)">概率 55%</div>
+        <div class="scenario-row"><span>触发条件</span><span class="val" style="color:var(--green)">温和复苏</span></div>
+        <div class="scenario-row"><span>同店销售</span><span class="val">+1% ~ +3%</span></div>
+        <div class="scenario-row"><span>2026E EPS</span><span class="val">$2.70–2.90</span></div>
+        <div class="scenario-row"><span>合理PE</span><span class="val">18–21×</span></div>
+        <div class="scenario-row"><span>目标价</span><span class="val" style="color:var(--green)">$50–$62</span></div>
+        <div class="scenario-row"><span>回报</span><span class="val">+1%–+25% 总回报</span></div>
+      </div>
+      <div class="scenario-card scenario-bull">
+        <div class="scenario-label">牛市情景 Bull</div>
+        <div class="scenario-prob" style="color:#6b46c1">概率 20%</div>
+        <div class="scenario-row"><span>触发条件</span><span class="val" style="color:#6b46c1">刺激政策落地</span></div>
+        <div class="scenario-row"><span>同店销售</span><span class="val">+3% ~ +6%</span></div>
+        <div class="scenario-row"><span>2026E EPS</span><span class="val">$3.00–3.30</span></div>
+        <div class="scenario-row"><span>合理PE</span><span class="val">22–25×</span></div>
+        <div class="scenario-row"><span>目标价</span><span class="val" style="color:#6b46c1">$66–$82</span></div>
+        <div class="scenario-row"><span>催化剂</span><span class="val">政府补贴+消费回暖</span></div>
+      </div>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">当前$49.44的定价分析</div>
+      <p><strong>$49.44既不贵也不便宜，处于中性偏低估位置。</strong>以2025年实际EPS $2.51计算，当前PE约19.7×，处于18–22×合理区间下沿。若以2026E EPS $2.75–2.90估算，前瞻PE约17–18×，已接近"历史便宜"区域。考虑$1.5B的年度资本回报计划（股息+回购），总股东回报率约8.3%（相对市值$18B），明显高于10年美国国债收益率，具备持有合理性。</p>
+      <p>核心变量是<strong>同店销售能否持续转正</strong>。若2026年同店增速能稳定在+2–3%区间，则基准目标价$55–62，相对当前有10–25%上行空间叠加约2.4%股息，构成可接受的风险回报比。</p>
+    </div>
+  </div>
+
+  <!-- ─── 8. 2026展望 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">08</span>2026年关键催化剂与管理层指引</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>事项</th>
+          <th>管理层目标/指引</th>
+          <th>投资意义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>2万店里程碑</strong></td>
+          <td>2026年目标冲击20,000店（当前18,101，需净增约1,900店）</td>
+          <td>若完成，系统销售增量约$1B，利润增量约$100–130M</td>
+        </tr>
+        <tr>
+          <td><strong>特许经营比例提升</strong></td>
+          <td>2026–2028年KFC/PH新增门店特许占比目标40–50%，存量总占比达20%+</td>
+          <td>轻资产转型加速，ROE提升，Capex下降，FCF质量改善</td>
+        </tr>
+        <tr>
+          <td><strong>资本返还计划</strong></td>
+          <td>2026年返还目标$1.5B；$1.2B回购授权额度剩余待使用</td>
+          <td>EPS加速增长，每年减少股本约4–5%</td>
+        </tr>
+        <tr>
+          <td><strong>股息提升</strong></td>
+          <td>季度股息从$0.24→$0.29/股（已于2025.12宣布），+20.8%</td>
+          <td>2026年全年股息约$1.16/股，股息收益率约2.4%</td>
+        </tr>
+        <tr>
+          <td><strong>KCOFFEE / Lavazza扩张</strong></td>
+          <td>Lavazza目标2029年>5,000家咖啡馆；KCOFFEE已嵌入约2,200个模块</td>
+          <td>新收入来源，提升AUV，拓展早餐消费场景</td>
+        </tr>
+        <tr>
+          <td><strong>2027–2028资本回报展望</strong></td>
+          <td>年均返还$1B+，且目标2028年超过$1B</td>
+          <td>3年以上的资本回报能见度提供估值底部保护</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ─── 9. 主要风险 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">09</span>主要风险清单</div>
+
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:20px 24px;">
+      <div class="risk-item risk-high">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">人民币汇率风险【高】</div>
+          <div class="risk-desc">几乎所有营收和成本以人民币计价，美元报告价值受汇率影响显著。RMB贬值直接压缩美元EPS和市值。2025年汇兑带来正贡献（人民币升值），但2026年在中美贸易摩擦背景下存在反向风险。</div>
+        </div>
+      </div>
+      <div class="risk-item risk-high">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">中国消费环境疲软【高】</div>
+          <div class="risk-desc">同店销售2025年仅+1%（2024年曾-3%）。若消费降级持续、竞争对手价格战激烈（蜜雪冰城、塔斯汀等本土平价品牌），同店可能再次转负，压制营收和利润率。</div>
+        </div>
+      </div>
+      <div class="risk-item risk-med">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">新开门店回报率下降风险【中】</div>
+          <div class="risk-desc">激进开店（年净增1,700+）可能带来门店间自我竞争（cannibalization）。若单店模型恶化，新店盈亏平衡期延长，将拉低整体ROI和餐厅利润率。</div>
+        </div>
+      </div>
+      <div class="risk-item risk-med">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">中国利润汇回限制【中】</div>
+          <div class="risk-desc">中国子公司向境外母公司派发股息须合规，预提税5–10%。2025年子公司实际派息约$783M，已呈顺畅状态，但监管收紧仍是尾部风险，直接影响回购和分红能力。</div>
+        </div>
+      </div>
+      <div class="risk-item risk-low">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">食品安全与声誉风险【低】</div>
+          <div class="risk-desc">公司在850+供应商、34个物流中心上建立严格管理体系，历史上未出现重大系统性食品安全事件，但零星事件仍可能对品牌声誉产生短期冲击。</div>
+        </div>
+      </div>
+      <div class="risk-item risk-low">
+        <div class="risk-dot"></div>
+        <div>
+          <div class="risk-label">中美关系/政策不确定性【低但存在】</div>
+          <div class="risk-desc">百胜中国在美纽交所和港交所双重上市，2022年曾被SEC列入HFCAA合规名单（后因中美审计协议撤销）。地缘政治升温可能重新引入退市风险，但当前概率较低。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 10. 综合结论 ─── -->
+  <div class="section-gap">
+    <div class="section-title"><span class="section-num">10</span>综合投资结论</div>
+
+    <div class="conclusion-block">
+      <h3>持股逻辑：完整且有质量，当前价格中性偏有利</h3>
+      <p><strong style="color:#fff">成长能力：B+。</strong>收入增长平稳（+4%），利润率修复（OP Margin +0.6ppt），EPS在回购助力下增长+8%。门店网络CAGR 10%具备确定性，但同店销售仅+1%是短板，取决于中国宏观环境而非公司能力本身。</p>
+      <p><strong style="color:#fff">财务健康：A。</strong>几乎零有息债务，FCF $840M，净现金头寸+$1.35B，现金流质量远超同业。资本结构可称"完美的轻资产模式"。</p>
+      <p><strong style="color:#fff">资产负债表：A-。</strong>稳健，仅微调：现金余额因大规模回购有所下降，需观察2026年是否维持合理流动性储备；经营租赁负债$1.87B是实质性长期义务，但性质为店面合同而非金融杠杆。</p>
+      <p><strong style="color:#fff">$49.44是否贵？</strong>不贵，但也不是大幅低估的"买入时刻"。PE约19.7×处于合理区间下沿；若以2026E EPS估算，前瞻PE约17–18×，接近历史低位。基准情景下12个月目标价$55–62（+10–25%），加上约2.4%股息，总回报约12–27%，风险回报比可接受。</p>
+      <p><strong style="color:#fff">行动建议：</strong>当前价格适合持有，现有仓位无需调整。若跌至$43–45区域（约17× 2025 EPS），构成具吸引力的加仓机会。向上突破$55+需要同店销售超预期转正（+3%+）作为催化剂。</p>
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px;">
+        <div class="conclusion-rating"><span>综合评级：持有 / 观察加仓点</span></div>
+        <div class="conclusion-rating" style="background:var(--green);"><span>基准目标价：$55–$62（12M）</span></div>
+        <div class="conclusion-rating" style="background:#6b46c1;"><span>加仓区间：$43–$46</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<div class="report-footer">
+  <div style="max-width:1080px; margin:0 auto;">
+    数据来源：百胜中国控股 2025年度报告 Form 10-K（SEC备案日期：2026年2月28日）· KPMG华振会计师事务所审计 · 分析日期：2026年4月14日<br>
+    本报告为个人投资研究目的，不构成任何形式的投资建议或买卖邀约。投资有风险，所有决策应基于自身判断。<br>
+    档案位置：Pjaaden/Stock-Research · 报告版本：v1.0 · 2026.04.14
+  </div>
+</div>
+
+<script>
+const COLORS = {
+  red: '#c84b31',
+  green: '#2d6a4f',
+  blue: '#1a4a7c',
+  amber: '#b5590a',
+  purple: '#6b46c1',
+  redLight: 'rgba(200,75,49,0.12)',
+  greenLight: 'rgba(45,106,79,0.12)',
+  blueLight: 'rgba(26,74,124,0.12)',
+  amberLight: 'rgba(181,89,10,0.12)',
+};
+
+const commonFont = { family: "'IBM Plex Mono', monospace", size: 11 };
+const gridColor = '#e8e2d9';
+
+Chart.defaults.font = commonFont;
+Chart.defaults.color = '#9a9490';
+
+// ─── Revenue Chart ───
+new Chart(document.getElementById('revenueChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2023', '2024', '2025'],
+    datasets: [
+      {
+        label: '总收入',
+        data: [10978, 11303, 11797],
+        backgroundColor: COLORS.blueLight,
+        borderColor: COLORS.blue,
+        borderWidth: 2,
+      },
+      {
+        label: '运营利润',
+        data: [1106, 1162, 1290],
+        backgroundColor: COLORS.greenLight,
+        borderColor: COLORS.green,
+        borderWidth: 2,
+      },
+      {
+        label: '净利润(YUMC)',
+        data: [827, 911, 929],
+        backgroundColor: COLORS.redLight,
+        borderColor: COLORS.red,
+        borderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: commonFont } } },
+    scales: {
+      y: { grid: { color: gridColor }, ticks: { callback: v => '$' + (v/1000).toFixed(1) + 'B' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── EPS Chart ───
+new Chart(document.getElementById('epsChart'), {
+  type: 'line',
+  data: {
+    labels: ['2023', '2024', '2025', '2026E (低)', '2026E (高)'],
+    datasets: [{
+      label: 'Diluted EPS',
+      data: [1.97, 2.33, 2.51, 2.70, 2.90],
+      borderColor: COLORS.amber,
+      backgroundColor: COLORS.amberLight,
+      tension: 0.4,
+      fill: true,
+      pointRadius: 5,
+      pointBackgroundColor: COLORS.amber,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: commonFont } } },
+    scales: {
+      y: {
+        grid: { color: gridColor },
+        ticks: { callback: v => '$' + v.toFixed(2) },
+        min: 1.5, max: 3.2
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── CF Chart ───
+new Chart(document.getElementById('cfChart'), {
+  type: 'bar',
+  data: {
+    labels: ['经营CF', 'Capex', 'FCF', '融资CF'],
+    datasets: [
+      {
+        label: '2025',
+        data: [1466, -626, 840, -1689],
+        backgroundColor: [COLORS.green, COLORS.red, COLORS.blue, COLORS.amber].map(c => c),
+        borderColor: [COLORS.green, COLORS.red, COLORS.blue, COLORS.amber],
+        borderWidth: 2,
+      },
+      {
+        label: '2024',
+        data: [1419, -705, 714, -1636],
+        backgroundColor: ['rgba(45,106,79,0.3)', 'rgba(200,75,49,0.3)', 'rgba(26,74,124,0.3)', 'rgba(181,89,10,0.3)'],
+        borderColor: [COLORS.green, COLORS.red, COLORS.blue, COLORS.amber],
+        borderWidth: 1,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: commonFont } } },
+    scales: {
+      y: { grid: { color: gridColor }, ticks: { callback: v => '$' + v + 'M' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// ─── Return Chart ───
+new Chart(document.getElementById('returnChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['股份回购', '现金股息'],
+    datasets: [{
+      data: [1136, 353],
+      backgroundColor: [COLORS.red, COLORS.green],
+      borderColor: ['#fff', '#fff'],
+      borderWidth: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: commonFont } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': $' + ctx.parsed + 'M' } }
+    }
+  }
+});
+
+// ─── Asset Chart ───
+new Chart(document.getElementById('assetChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['现金+短投+存款', 'PP&E', '运营租赁ROU', '商誉+无形', '权益投资', '其他'],
+    datasets: [{
+      data: [2062, 2543, 2189, 2111, 387, 491],
+      backgroundColor: [COLORS.green, COLORS.blue, COLORS.amber, COLORS.red, COLORS.purple, '#aaa'],
+      borderColor: '#fff',
+      borderWidth: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: commonFont, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': $' + ctx.parsed + 'M' } }
+    }
+  }
+});
+
+// ─── Liab Chart ───
+new Chart(document.getElementById('liabChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['应付账款+流动负债', '运营租赁负债', '递延税负债', '短期借款', '其他负债', '股东权益'],
+    datasets: [{
+      data: [2127, 1823, 406, 30, 298, 5379],
+      backgroundColor: [COLORS.red, COLORS.amber, COLORS.blue, '#e74c3c', '#aaa', COLORS.green],
+      borderColor: '#fff',
+      borderWidth: 2,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: commonFont, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ctx.label + ': $' + ctx.parsed + 'M' } }
+    }
+  }
+});
+
+// ─── Valuation Range Chart ───
+new Chart(document.getElementById('valuationChart'), {
+  type: 'bar',
+  data: {
+    labels: ['PE法(2025E)', 'PE法(2026E)', 'EV/EBITDA', 'FCF收益率法'],
+    datasets: [
+      {
+        label: '熊市',
+        data: [37.7, 49.5, 41.8, 43.0],
+        backgroundColor: COLORS.redLight,
+        borderColor: COLORS.red,
+        borderWidth: 2,
+      },
+      {
+        label: '基准',
+        data: [50.2, 59.0, 57.5, 53.0],
+        backgroundColor: COLORS.greenLight,
+        borderColor: COLORS.green,
+        borderWidth: 2,
+      },
+      {
+        label: '牛市',
+        data: [62.8, 69.6, 73.1, 67.9],
+        backgroundColor: 'rgba(107,70,193,0.12)',
+        borderColor: COLORS.purple,
+        borderWidth: 2,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { font: commonFont } },
+      annotation: {}
+    },
+    scales: {
+      y: {
+        grid: { color: gridColor },
+        ticks: { callback: v => '$' + v },
+        min: 25,
+        max: 80
+      },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
