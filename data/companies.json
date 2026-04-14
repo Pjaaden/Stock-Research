@@ -1038,6 +1038,145 @@
       "shares_held": 300,
       "status": "active",
       "currency": "CNY"
+    },
+    {
+      "id": "c008",
+      "name": "百胜中国",
+      "code": "YUMC",
+      "exchange": "US",
+      "sector": "消费·连锁餐饮",
+      "research_folder": "百胜中国_NASDAQ_YUMC",
+      "price": 49.44,
+      "shares": 3.54,
+      "net_cash_bn": 1.35,
+      "eps_forecast": 2.75,
+      "discount_rate": 9,
+      "valuation_method": "PE法（EPS×PE） + EV/EBITDA（EBITDA×倍数+净现金） + FCF收益率法 三法交叉验证",
+      "signal": "hold",
+      "position_pct": 50,
+      "avg_cost": 45.16,
+      "max_position_pct": 15,
+      "rating": "hold",
+      "next_catalyst": "2026Q1业绩（2026年5月） + 2026年2万店里程碑进度 + 同店销售趋势",
+      "data_as_of": "2025 Form 10-K（KPMG审计，2026.02.27签发）",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 20,
+          "target_price": 74,
+          "assumptions": "消费政策刺激落地，同店+4%+，2026E EPS~$3.10，PE24×，EV/EBITDA14×"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 58,
+          "assumptions": "温和复苏，同店+2%，2026E EPS~$2.80，PE21×，FCF收益率4.5%，资本返还$1.5B"
+        },
+        {
+          "name": "熊市",
+          "prob": 25,
+          "target_price": 38,
+          "assumptions": "消费持续疲软，同店再转负，RMB贬值压制美元EPS，PE15×，EPS~$2.30"
+        }
+      ],
+      "position_rules": [
+        {
+          "zone": "极度低估",
+          "condition": "安全边际≥35%（≤$37.7）",
+          "action": "BUY",
+          "target_position": "满仓（15%）",
+          "trigger": "价格低于熊市目标$38×0.99"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "安全边际15–35%（$37.7–$49.3）",
+          "action": "ADD",
+          "target_position": "分批加仓",
+          "trigger": "价格低于基准$58×0.85=~$49；当前$48附近属于此区间低端"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "安全边际0–15%（$49.3–$58）",
+          "action": "HOLD",
+          "target_position": "持有",
+          "trigger": "当前$49.44处于此区间下沿"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "高估0–15%（$58–$67）",
+          "action": "HOLD",
+          "target_position": "持有不加",
+          "trigger": "等同店销售进一步验证"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "高估≥15%（>$67）",
+          "action": "TRIM",
+          "target_position": "减仓30–50%",
+          "trigger": "价格超过牛市目标$74×0.9"
+        },
+        {
+          "zone": "极度高估",
+          "condition": "高估≥30%（>$75）",
+          "action": "SELL",
+          "target_position": "止盈清仓",
+          "trigger": "价格超过$75"
+        }
+      ],
+      "checklist": [
+        {
+          "id": "yumc_chk001",
+          "priority": "high",
+          "checked": false,
+          "category": "季报验证",
+          "text": "2026Q1同店销售增速：是否延续+1%或进一步转正至+2%+",
+          "action": "≥+2%→升级信号至ADD，基准目标价上调至$62+；再次转负→降级至WATCH"
+        },
+        {
+          "id": "yumc_chk002",
+          "priority": "high",
+          "checked": false,
+          "category": "开店进度",
+          "text": "2026H1净新增门店数量（目标全年冲击20,000店，即净增~1,900店）",
+          "action": "H1净增≥900→开店节奏正常；特许占比是否达40%+（轻资产化验证）"
+        },
+        {
+          "id": "yumc_chk003",
+          "priority": "high",
+          "checked": false,
+          "category": "资本回报",
+          "text": "2026年回购执行进度（目标总返还$1.5B，剩余授权$1.2B）",
+          "action": "Q1回购额≥$250M→回购节奏正常，继续支撑EPS增长"
+        },
+        {
+          "id": "yumc_chk004",
+          "priority": "mid",
+          "checked": false,
+          "category": "利润率监控",
+          "text": "2026Q1餐厅利润率（基准≥16%，2025FY为16.3%）",
+          "action": "跌破15.5%→商品成本或人工上升压力，需重新评估盈利预测"
+        },
+        {
+          "id": "yumc_chk005",
+          "priority": "mid",
+          "checked": false,
+          "category": "汇率风险",
+          "text": "人民币兑美元汇率（当前~7.3）：若贬至7.6+对EPS影响约-5%",
+          "action": "若RMB贬值超5%，将2026E EPS下调至$2.60，熊市概率升至35%"
+        }
+      ],
+      "research_notes": "百胜中国控股（NYSE: YUMC / HK: 9987）——中国最大餐饮集团\n数据来源：2025 Form 10-K（KPMG审计，2026.02.27签发）\n\n2025核心财务数据（★原始数据）：\n・总收入 $11,797M（+4% YoY）\n・运营利润 $1,290M（+11%）；OP Margin 10.9%（+0.6ppts）\n・净利润(YUMC) $929M（+2%）\n・Diluted EPS $2.51（+8%）——回购加速EPS增速高于净利增速\n・Adj.EBITDA $1,780M（+6%）\n・经营CF $1,466M；Capex $626M；FCF ~$840M\n・门店总数 18,101（净增1,706，其中特许占比KFC 37%/PH 31%）\n・同店销售+1%（vs 2024年-3%，转正）\n・会员数5.9亿+，会员贡献系统销售61%\n・数字订单占公司销售约94%\n\n资产负债表关键数据：\n・实际有息债务$30M（短期借款），几乎零财务杠杆\n・现金+短投+长期存款合计~$2.06B\n・净现金头寸约+$1.35B\n・现金/净利润转化率~158%，现金质量极高\n\n资本回报计划：\n・2024–2026总返还目标$4.5B（$1.5B/年）\n・2025年实际：回购$1,136M（2,470万股）+股息$353M=$1,489M\n・2027–2028目标年均返还$1B+\n・季度股息已提升至$0.29/股（+20.8% vs 2024年$0.24）\n\n估值框架（三法）：\n①PE法：2025 EPS $2.51；历史区间18–22×；基准目标$50–55\n②EV/EBITDA：EBITDA$1.78B；11×基准；目标$57\n③FCF收益率：FCF $840M；4.5%目标收益率；目标$53\n综合基准目标价：$55–62（12个月）\n\n持有成本：$45.16（含分红/分拆所得10.1479股）",
+      "gradient": {
+        "buy_strong": 38,
+        "buy": 46,
+        "hold_low": 50,
+        "trim": 67,
+        "sell": 75,
+        "custom_points": []
+      },
+      "shares_held": 10.1479,
+      "status": "active",
+      "currency": "USD"
     }
   ],
   "_meta": {
