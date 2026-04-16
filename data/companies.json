@@ -837,7 +837,7 @@
           "text": "春夏新品周期：是否出现首周排队/社交媒体自发传播",
           "action": "爆款是同店GMV转正的前置条件，实地可观察",
           "priority": "mid",
-          "checked": false,
+          "checked": true,
           "category": "催化剂"
         },
         {
@@ -891,7 +891,7 @@
       "exchange": "A",
       "sector": "民用离心泵制造",
       "research_folder": "凌霄泵业_002884",
-      "price": 18.2,
+      "price": 18.77,
       "shares": 3.578,
       "net_cash_bn": 0,
       "eps_forecast": 1.27,
@@ -900,7 +900,7 @@
       "signal": "hold",
       "position_pct": 100,
       "avg_cost": 17.841,
-      "max_position_pct": 10,
+      "max_position_pct": 20,
       "rating": "hold",
       "next_catalyst": "2026Q1季报（4月30日）· 美国关税税率动态 · 出口订单趋势",
       "data_as_of": "2025年年度报告（2026-04-10）",
