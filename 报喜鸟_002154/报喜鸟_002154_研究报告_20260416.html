@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>报喜鸟控股 (002154) — 研究报告 | 2026.04.16</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;500;700&family=Syne:wght@400;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ef;
+    --bg2: #eeeae2;
+    --surface: #ffffff;
+    --border: #d9d3c8;
+    --text: #1a1714;
+    --text-muted: #6b6560;
+    --text-light: #9b948e;
+    --accent: #c0392b;
+    --accent-light: #f5e6e5;
+    --green: #1e6f45;
+    --green-light: #e6f3ec;
+    --amber: #b8750a;
+    --amber-light: #fdf3e3;
+    --blue: #1a4a7a;
+    --blue-light: #e8f0f8;
+    --mono: 'IBM Plex Mono', monospace;
+    --sans: 'IBM Plex Sans', sans-serif;
+    --serif: 'Noto Serif SC', serif;
+    --display: 'Syne', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  .report-header {
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    padding: 40px 48px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .report-header::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 6px; height: 100%;
+    background: var(--accent);
+  }
+  .header-meta {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 24px;
+  }
+  .header-left h1 {
+    font-family: var(--display);
+    font-size: 32px; font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    line-height: 1.1;
+  }
+  .header-left .subtitle {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+  .header-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .header-right .date-badge {
+    display: inline-block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .header-right .rating-bar {
+    margin-top: 10px;
+    display: flex; gap: 8px; justify-content: flex-end;
+    align-items: center;
+  }
+  .rating-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+  }
+  .tag-watch { background: var(--amber-light); color: var(--amber); border: 1px solid #e8c882; }
+  .tag-risk  { background: var(--accent-light); color: var(--accent); border: 1px solid #e8b4b0; }
+  .tag-opportunity { background: var(--green-light); color: var(--green); border: 1px solid #9ecfb8; }
+
+  .disclaimer {
+    margin-top: 14px;
+    font-size: 11px;
+    color: var(--text-light);
+    font-style: italic;
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-title {
+    font-family: var(--display);
+    font-size: 18px; font-weight: 700;
+    color: var(--text);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-title .icon {
+    width: 24px; height: 24px;
+    background: var(--accent);
+    color: white;
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    font-family: var(--mono);
+    flex-shrink: 0;
+  }
+  .section-title .icon.green { background: var(--green); }
+  .section-title .icon.amber { background: var(--amber); }
+  .section-title .icon.blue  { background: var(--blue); }
+
+  section { margin-bottom: 32px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .card h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 10px;
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--surface);
+    margin-bottom: 20px;
+  }
+  .kpi-item {
+    padding: 16px 14px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .kpi-item:last-child { border-right: none; }
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .kpi-value {
+    font-family: var(--mono);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .kpi-change {
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-top: 2px;
+  }
+  .pos { color: var(--green); }
+  .neg { color: var(--accent); }
+  .neu { color: var(--text-muted); }
+
+  /* ── BRAND TABLE ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+  }
+  td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+  .td-mono { font-family: var(--mono); font-size: 12px; }
+  .td-right { text-align: right; }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-light);
+    padding: 14px 16px;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 12px;
+    font-size: 13px;
+  }
+  .highlight-box.green { border-color: var(--green); background: var(--green-light); }
+  .highlight-box.amber { border-color: var(--amber); background: var(--amber-light); }
+  .highlight-box.blue  { border-color: var(--blue); background: var(--blue-light); }
+  .highlight-box strong { font-weight: 600; }
+
+  /* ── SCENARIO TABLE ── */
+  .scenario-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .scenario-table th {
+    padding: 10px 12px;
+    text-align: center;
+  }
+  .scenario-table td {
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .s-bull { background: var(--green-light); }
+  .s-base { background: var(--blue-light); }
+  .s-bear { background: var(--accent-light); }
+  .s-bull th, .s-bull td { border-color: #9ecfb8; }
+  .s-base th, .s-base td { border-color: #a8c4e0; }
+  .s-bear th, .s-bear td { border-color: #e8b4b0; }
+
+  /* ── RISK GRID ── */
+  .risk-item {
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 10px;
+    background: var(--surface);
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .risk-badge {
+    flex-shrink: 0;
+    width: 52px; height: 24px;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono);
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+  .risk-hi { background: var(--accent-light); color: var(--accent); }
+  .risk-mid { background: var(--amber-light); color: var(--amber); }
+  .risk-lo { background: var(--green-light); color: var(--green); }
+  .risk-text strong { display: block; font-size: 13px; margin-bottom: 3px; }
+  .risk-text span { font-size: 12px; color: var(--text-muted); }
+
+  /* ── LAFUMA TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+    border-left: 2px solid var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+    padding-left: 16px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -22px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+    outline: 1px solid var(--accent);
+  }
+  .tl-item.green::before { background: var(--green); outline-color: var(--green); }
+  .tl-item.amber::before { background: var(--amber); outline-color: var(--amber); }
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+  }
+  .tl-text { font-size: 13px; }
+
+  /* ── VALUATION BOX ── */
+  .val-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 18px;
+  }
+  .val-block h5 {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .val-row {
+    display: flex; justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed var(--border);
+    font-size: 13px;
+  }
+  .val-row:last-child { border-bottom: none; }
+  .val-row .v-label { color: var(--text-muted); }
+  .val-row .v-val { font-family: var(--mono); font-weight: 500; }
+
+  /* ── CHECKLIST ── */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex; gap: 8px; align-items: flex-start;
+    padding: 5px 0;
+    font-size: 13px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    flex-shrink: 0;
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    margin-top: 2px;
+  }
+  .ci-y { background: var(--green-light); color: var(--green); }
+  .ci-n { background: var(--accent-light); color: var(--accent); }
+  .ci-q { background: var(--amber-light); color: var(--amber); }
+
+  /* ── PRINT ── */
+  @media print {
+    body { background: white; }
+    .report-header { border: none; }
+  }
+
+  /* ── FOOTER ── */
+  .report-footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 20px 48px;
+    font-size: 11px;
+    color: var(--text-muted);
+    display: flex; justify-content: space-between;
+    gap: 20px;
+  }
+
+  .source-tag {
+    display: inline-block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--text-light);
+    margin-left: 4px;
+  }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill-red   { background: var(--accent-light); color: var(--accent); }
+  .pill-green { background: var(--green-light); color: var(--green); }
+  .pill-amber { background: var(--amber-light); color: var(--amber); }
+  .pill-blue  { background: var(--blue-light); color: var(--blue); }
+
+  .sep { height: 1px; background: var(--border); margin: 8px 0; }
+  p { margin-bottom: 10px; font-size: 13px; }
+  ul { padding-left: 18px; }
+  ul li { font-size: 13px; margin-bottom: 4px; }
+  strong { font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-meta">
+    <div class="header-left">
+      <h1>报喜鸟控股 002154</h1>
+      <div class="subtitle">BAOXINIAO HOLDING CO., LTD. &nbsp;·&nbsp; 深交所主板 &nbsp;·&nbsp; 纺织服装</div>
+      <div style="margin-top:12px; display:flex; gap:8px; flex-wrap:wrap;">
+        <span class="rating-tag tag-watch">估值观察</span>
+        <span class="rating-tag tag-risk">乐飞叶代理风险</span>
+        <span class="rating-tag tag-opportunity">哈吉斯结构性机会</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="date-badge">研究日期 · 2026.04.16</div>
+      <div style="margin-top:8px; font-family:var(--mono); font-size:11px; color:var(--text-muted);">
+        数据基准：2025H1财报 + 三季报 + 公开信息
+      </div>
+      <div style="margin-top:4px; font-family:var(--mono); font-size:12px;">
+        当前股价&nbsp;<strong>¥3.70</strong>&nbsp;·&nbsp;总市值约&nbsp;<strong>54亿</strong>
+      </div>
+    </div>
+  </div>
+  <div class="disclaimer">
+    ★ 标注来源于年报原始数据；未标注数值为推算结果。本报告仅用于个人投资研究，不构成投资建议。
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- KPI STRIP -->
+  <div class="kpi-strip">
+    <div class="kpi-item">
+      <div class="kpi-label">2025H1 营收</div>
+      <div class="kpi-value">23.9亿</div>
+      <div class="kpi-change neg">★ -3.6% YoY</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">归母净利润 H1</div>
+      <div class="kpi-value">1.97亿</div>
+      <div class="kpi-change neg">★ -42.7% YoY</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">扣非净利润 H1</div>
+      <div class="kpi-value">1.62亿</div>
+      <div class="kpi-change neg">★ -46.6% YoY</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">毛利率</div>
+      <div class="kpi-value">68.4%</div>
+      <div class="kpi-change pos">★ +0.2pp YoY</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">经营现金流</div>
+      <div class="kpi-value">0.95亿</div>
+      <div class="kpi-change neg">★ -31.9% YoY</div>
+    </div>
+    <div class="kpi-item">
+      <div class="kpi-label">每股净资产</div>
+      <div class="kpi-value">¥3.08</div>
+      <div class="kpi-change pos">★ PB≈1.2x</div>
+    </div>
+  </div>
+
+  <!-- 三季报补充数据 -->
+  <div class="highlight-box amber" style="margin-bottom:20px;">
+    <strong>⚠ 2025前三季度最新数据（三季报）</strong>：营收34.8亿（-1.6%），归母净利润2.36亿（<strong>-43.2%</strong>）；Q3单季营收10.9亿（+3.1%，同比首次转正），Q3单季净利3,873万（-45.7%）。分析师预计全年归母净利约<strong>3.9亿元</strong>（每股约0.27元）。<span class="source-tag">★三季报/卖方一致预期</span>
+  </div>
+
+  <!-- ═══ SECTION 1: 品牌矩阵分析 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon blue">01</div>
+      品牌矩阵 — 分品牌收入与趋势分析（2025H1）
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>品牌</th>
+            <th>类型</th>
+            <th class="td-right">H1收入（万元）</th>
+            <th class="td-right">YoY</th>
+            <th>门店数</th>
+            <th>核心判断</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>HAZZYS 哈吉斯</strong></td>
+            <td><span class="pill pill-green">成熟·代理</span></td>
+            <td class="td-mono td-right">93,158</td>
+            <td class="td-mono td-right pos">+8.4%</td>
+            <td>480家</td>
+            <td>★收入首超主品牌，英伦风渗透二三线，女装占比提升。代理至2031年，风险低。</td>
+          </tr>
+          <tr>
+            <td><strong>报喜鸟主品牌</strong></td>
+            <td><span class="pill pill-blue">成熟·自有</span></td>
+            <td class="td-mono td-right">69,950</td>
+            <td class="td-mono td-right neg">-9.6%</td>
+            <td>817家</td>
+            <td>传统商务男装持续承压，婚庆、运动西服等新品类转型进展中，线上连续蝉联天猫618榜首。</td>
+          </tr>
+          <tr>
+            <td><strong>宝鸟</strong></td>
+            <td><span class="pill pill-blue">成熟·自有</span></td>
+            <td class="td-mono td-right">39,262</td>
+            <td class="td-mono td-right neg">-22.5%</td>
+            <td>—</td>
+            <td>职业装团购竞争加剧，接单量增但发货收入因周期滞后下降，上海宝鸟净利YoY-50%。<span class="source-tag">★</span></td>
+          </tr>
+          <tr style="background: #fffcf0;">
+            <td><strong>乐飞叶 LAFUMA</strong></td>
+            <td><span class="pill pill-amber">成长·代理</span></td>
+            <td class="td-mono td-right">18,255</td>
+            <td class="td-mono td-right pos">+20.5%</td>
+            <td>96家</td>
+            <td>★收入加速增长，户外赛道顺风，但<strong style="color:var(--accent)">授权至2026年12月31日到期</strong>，解约风险需重点评估。</td>
+          </tr>
+          <tr>
+            <td><strong>恺米切 Camicissima</strong></td>
+            <td><span class="pill pill-amber">成长·代理</span></td>
+            <td class="td-mono td-right">7,777</td>
+            <td class="td-mono td-right neg">-11.4%</td>
+            <td>165家</td>
+            <td>意大利专业衬衫，正整合渠道、关闭低效门店，收入下行整理期。</td>
+          </tr>
+          <tr>
+            <td><strong>Woolrich 沃里奇</strong></td>
+            <td><span class="pill pill-red">培育·已购IP</span></td>
+            <td class="td-mono td-right">—</td>
+            <td class="td-mono td-right neu">起步期</td>
+            <td>刚建团队</td>
+            <td>H1完成近4亿欧洲除外全球IP收购，品牌运营刚起步。短期无贡献，中期（2026+）有想象空间。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 2: 利润下降归因 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon">02</div>
+      利润下降归因 — -42.7%背后是什么？
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="highlight-box amber">
+          <strong>表面原因：收入微降但费用刚性膨胀</strong><br>
+          营收仅-3.6%，但销售费用+5.2%达10.6亿（三费占比54%），管理费用暴增+26.9%，主因：①无形资产摊销（Woolrich IP）+相关交易费用；②温州总部生产项目升级，固定资产折旧增加；③品牌代理费+19%，广宣+8.9%。
+        </div>
+        <div class="highlight-box">
+          <strong>一次性损益拖累严重</strong><br>
+          资产减值损失+102%至6,314万（存货跌价+近一倍）；营业外支出+190%至1,374万（9号物流仓库拆除）；剔除非经常性损益后，扣非净利润仅1.62亿，较扣非口径更能体现真实经营恶化程度。
+        </div>
+      </div>
+      <div>
+        <div class="val-block">
+          <h5>费用结构 (2025H1) ★</h5>
+          <div class="val-row"><span class="v-label">营业成本</span><span class="v-val">7.88亿</span></div>
+          <div class="val-row"><span class="v-label">销售费用</span><span class="v-val">10.56亿 (+5.2%)</span></div>
+          <div class="val-row"><span class="v-label">管理费用</span><span class="v-val">2.26亿 (+26.9%)</span></div>
+          <div class="val-row"><span class="v-label">研发投入</span><span class="v-val">0.37亿 (-21.3%)</span></div>
+          <div class="val-row"><span class="v-label">财务费用</span><span class="v-val">-0.18亿（理财收益）</span></div>
+          <div class="val-row"><span class="v-label">资产减值损失</span><span class="v-val" style="color:var(--accent)">-6,314万</span></div>
+          <div class="sep"></div>
+          <div class="val-row"><span class="v-label">政府补贴（非经）</span><span class="v-val pos">+5,038万</span></div>
+          <div class="val-row"><span class="v-label">三费/营收</span><span class="v-val neg">54% (+12.7pp)</span></div>
+        </div>
+        <div class="highlight-box green" style="margin-top:12px;">
+          <strong>但毛利率仍稳健：68.4%（+0.2pp）</strong><br>
+          产品本身盈利能力未显著恶化，问题在费用端。若消费回暖、战略性费用投入退坡，利润弹性较大。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 3: 乐飞叶代理到期风险 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon">03</div>
+      核心关注：乐飞叶代理到期风险深度评估
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="card">
+          <h4>乐飞叶品牌发展历程</h4>
+          <div class="timeline">
+            <div class="tl-item">
+              <div class="tl-year">2016</div>
+              <div class="tl-text">报喜鸟开始代理法国户外品牌 Lafuma（授权方：勒夫马商贸北京），布局户外赛道</div>
+            </div>
+            <div class="tl-item">
+              <div class="tl-year">2022</div>
+              <div class="tl-text">收入1.86亿，仍处亏损期</div>
+            </div>
+            <div class="tl-item tl-item green">
+              <div class="tl-year">2023</div>
+              <div class="tl-text"><strong>扭亏为盈</strong>，收入2.62亿（+40.5%），首次单列披露</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-year">2024全年</div>
+              <div class="tl-text">★收入3.35亿（+28.0%），门店95家（净增20家）</div>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-year">2025H1</div>
+              <div class="tl-text">★收入1.83亿（+20.5%），门店96家，开拓7家新点，高质量扩张</div>
+            </div>
+            <div class="tl-item amber">
+              <div class="tl-year">2025年底</div>
+              <div class="tl-text">报喜鸟收购Woolrich（欧洲除外IP），一定程度上为乐飞叶到期提供备份</div>
+            </div>
+            <div class="tl-item" style="">
+              <div class="tl-year">2026.12.31 ⚠</div>
+              <div class="tl-text"><strong style="color:var(--accent)">乐飞叶独家代理授权到期</strong>——这是核心风险节点</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h4>续期概率 vs 解约风险 — 综合判断</h4>
+
+          <div class="highlight-box green">
+            <strong>续期支持因素（概率偏高）</strong>
+            <ul style="margin-top:6px;">
+              <li>报喜鸟已将乐飞叶运营9年，渠道、团队深度绑定，换代理商重建成本极高</li>
+              <li>乐飞叶收入持续高增，对报喜鸟和授权方LF Corp均具价值</li>
+              <li>哈吉斯先例：同为LF Corp旗下品牌，2031年续期至（即之前已完成一次续期），说明双方合作生态稳定</li>
+              <li>中高端户外赛道仍处上升期，Lafuma全球品牌方希望扩大中国份额</li>
+              <li>公司董秘表态续约将"基于谈判"，未透露解约意图</li>
+            </ul>
+          </div>
+
+          <div class="highlight-box">
+            <strong>解约风险因素（不可忽视）</strong>
+            <ul style="margin-top:6px;">
+              <li>乐飞叶已进入盈利期且收入高增，议价筹码向授权方倾斜，续约价格可能大幅提高</li>
+              <li>Lafuma母公司（法国Calida集团）战略重心在欧洲，中国市场代理权归属可能调整</li>
+              <li>正是因为乐飞叶到期风险，报喜鸟才紧急斥3.84亿收购Woolrich作为备份——管理层自身也在为最坏情形对冲</li>
+              <li>服装代理市场有解约换代理案例（如FILA中国代理权争夺），品牌方逐渐倾向直营或更具实力的代理商</li>
+            </ul>
+          </div>
+
+          <div class="val-block">
+            <h5>到期影响量化（若不续期 — 悲观情形）</h5>
+            <div class="val-row"><span class="v-label">2025年乐飞叶预计全年收入</span><span class="v-val">≈3.9亿</span></div>
+            <div class="val-row"><span class="v-label">占总营收比例</span><span class="v-val neg">≈7.5%</span></div>
+            <div class="val-row"><span class="v-label">乐飞叶利润率（估）</span><span class="v-val">≈8-12%（成长期）</span></div>
+            <div class="val-row"><span class="v-label">若流失，税后净利损失</span><span class="v-val neg">≈3,000-4,500万</span></div>
+            <div class="val-row"><span class="v-label">Woolrich替代节奏</span><span class="v-val amber">2027+才能实质填补</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box amber" style="margin-top:4px;">
+      <strong>综合判断：续期概率约60-70%，但续约条件大概率更苛刻（代理费提升、门槛更高）。</strong> 乐飞叶是2026年底的"悬剑"，建议在25年报发布时关注是否有续约相关公告。最关键的反向指标：若报喜鸟2026年H1开始大规模收缩乐飞叶门店或大幅减少进货，则解约概率上升。
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 4: 财务健康 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon green">04</div>
+      资产负债与财务健康评估
+    </div>
+
+    <div class="three-col">
+      <div class="val-block">
+        <h5>资产结构（2025H1末）★</h5>
+        <div class="val-row"><span class="v-label">总资产</span><span class="v-val">65.9亿</span></div>
+        <div class="val-row"><span class="v-label">货币资金</span><span class="v-val">14.3亿（21.7%）</span></div>
+        <div class="val-row"><span class="v-label">交易性金融资产（理财）</span><span class="v-val">2.39亿</span></div>
+        <div class="val-row"><span class="v-label">存货</span><span class="v-val">11.4亿（含计提1.3亿）</span></div>
+        <div class="val-row"><span class="v-label">应收账款</span><span class="v-val">6.34亿</span></div>
+        <div class="val-row"><span class="v-label">无形资产（Woolrich IP等）</span><span class="v-val">5.29亿（+131%）</span></div>
+        <div class="val-row"><span class="v-label">投资性房地产</span><span class="v-val">4.65亿</span></div>
+        <div class="val-row"><span class="v-label">归母净资产</span><span class="v-val">44.9亿</span></div>
+      </div>
+      <div class="val-block">
+        <h5>负债与流动性★</h5>
+        <div class="val-row"><span class="v-label">短期借款</span><span class="v-val neg">4.04亿（+26.8%）</span></div>
+        <div class="val-row"><span class="v-label">长期借款</span><span class="v-val pos">0.01亿（近乎清零）</span></div>
+        <div class="val-row"><span class="v-label">合同负债（预收）</span><span class="v-val">3.33亿</span></div>
+        <div class="val-row"><span class="v-label">有息负债合计（估）</span><span class="v-val">≈4亿</span></div>
+        <div class="val-row"><span class="v-label">净现金（货币+理财-有息债）</span><span class="v-val pos">约13亿</span></div>
+        <div class="val-row"><span class="v-label">资产负债率（估）</span><span class="v-val">≈32%（低）</span></div>
+        <div class="sep"></div>
+        <div style="font-size:12px; color:var(--green);"><strong>结论：无偿债压力。净现金充裕，流动性健康。</strong></div>
+      </div>
+      <div class="val-block">
+        <h5>存货风险</h5>
+        <div class="val-row"><span class="v-label">存货周转天数</span><span class="v-val neg">271天（偏高）★</span></div>
+        <div class="val-row"><span class="v-label">1年内</span><span class="v-val">6.52亿（正常）</span></div>
+        <div class="val-row"><span class="v-label">1-2年</span><span class="v-val amber">2.88亿</span></div>
+        <div class="val-row"><span class="v-label">2-3年</span><span class="v-val neg">1.08亿</span></div>
+        <div class="val-row"><span class="v-label">3年以上</span><span class="v-val neg">0.57亿（高危）</span></div>
+        <div class="val-row"><span class="v-label">已计提跌价准备</span><span class="v-val">1.30亿</span></div>
+        <div class="sep"></div>
+        <div style="font-size:12px; color:var(--amber);"><strong>关注：1.65亿老库存（2年以上），跌价风险尚未充分释放。</strong></div>
+      </div>
+    </div>
+
+    <div class="highlight-box blue" style="margin-top:16px;">
+      <strong>财务安全性总结：</strong>公司资产负债率低、净现金约13亿，短期无偿债压力。但注意：①货币资金从年初20.3亿骤降至14.3亿（-29%），主因Woolrich收购3.84亿+购买理财+分红；②存货271天周转，2-3年以上老库存1.65亿，历史遗留消化风险仍在；③短期借款26.8%上升，部分来自宝鸟子公司偿还长期贷款前的重分类，真实杠杆未明显恶化。
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 5: 25年报预期 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon amber">05</div>
+      25年报 / Q1 2026财报预期 — 月底披露情形推演
+    </div>
+
+    <div class="highlight-box blue" style="margin-bottom:14px;">
+      <strong>披露时间点：</strong>根据搜狐证券公告，报喜鸟拟于 <strong>2026年4月25日</strong> 披露2025年年度报告（距今约9天）；Q1 2026季报将同期或稍后披露。
+    </div>
+
+    <div class="three-col">
+      <!-- 悲观 -->
+      <div class="card">
+        <h4 style="color:var(--accent);">悲观情形 (概率约30%)</h4>
+        <div class="val-block" style="border:none; padding:0; margin-bottom:10px;">
+          <div class="val-row"><span class="v-label">2025全年归母净利</span><span class="v-val neg">&lt;3.5亿</span></div>
+          <div class="val-row"><span class="v-label">Q4单季净利</span><span class="v-val neg">&lt;1.0亿</span></div>
+          <div class="val-row"><span class="v-label">全年EPS</span><span class="v-val neg">&lt;0.24元</span></div>
+          <div class="val-row"><span class="v-label">分红</span><span class="v-val">极低或不分</span></div>
+        </div>
+        <ul>
+          <li>消费未明显改善，宝鸟Q4继续下滑</li>
+          <li>资产减值进一步计提（老库存+乐飞叶潜在损失）</li>
+          <li>Woolrich IP摊销+建设费用大幅拖累</li>
+          <li><strong>股价风险：¥3.0以下</strong></li>
+        </ul>
+      </div>
+      <!-- 基准 -->
+      <div class="card" style="border-color:var(--blue);">
+        <h4 style="color:var(--blue);">基准情形 (概率约50%)</h4>
+        <div class="val-block" style="border:none; padding:0; margin-bottom:10px;">
+          <div class="val-row"><span class="v-label">2025全年归母净利</span><span class="v-val">约3.9-4.2亿</span></div>
+          <div class="val-row"><span class="v-label">Q4单季净利</span><span class="v-val">1.5-1.8亿（回升）</span></div>
+          <div class="val-row"><span class="v-label">全年EPS</span><span class="v-val">约0.27-0.29元</span></div>
+          <div class="val-row"><span class="v-label">分红</span><span class="v-val">每10股0.5-1.0元</span></div>
+        </div>
+        <ul>
+          <li>哈吉斯维持增长，宝鸟边际改善</li>
+          <li>乐飞叶全年贡献≈3.9亿</li>
+          <li>费用投入退坡，Q4利润弹性显现</li>
+          <li><strong>股价区间：¥3.5-4.5</strong></li>
+        </ul>
+      </div>
+      <!-- 乐观 -->
+      <div class="card" style="border-color:var(--green);">
+        <h4 style="color:var(--green);">乐观情形 (概率约20%)</h4>
+        <div class="val-block" style="border:none; padding:0; margin-bottom:10px;">
+          <div class="val-row"><span class="v-label">2025全年归母净利</span><span class="v-val pos">&gt;4.5亿</span></div>
+          <div class="val-row"><span class="v-label">Q4单季净利</span><span class="v-val pos">&gt;2.0亿</span></div>
+          <div class="val-row"><span class="v-label">全年EPS</span><span class="v-val pos">&gt;0.31元</span></div>
+          <div class="val-row"><span class="v-label">分红</span><span class="v-val pos">每10股≥1.5元</span></div>
+        </div>
+        <ul>
+          <li>哈吉斯+乐飞叶双轮驱动加速</li>
+          <li>消费补贴政策刺激服装需求</li>
+          <li>乐飞叶续约公告提前释出</li>
+          <li><strong>股价潜在区间：¥4.5-6.0</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;" class="card">
+      <h4>Q1 2026季报预期（4月下旬同步披露）</h4>
+      <p>Q1服装旺季（春装上市），但消费环境仍弱。预计Q1 2026归母净利约<strong>0.8-1.2亿</strong>，YoY仍难正转（对比Q1 2025归母净利约1.3亿）。关键看哈吉斯天猫春季表现和宝鸟接单转化进度。若Q1超预期，则具有较强向上催化效应。</p>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 6: 估值与套利空间 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon">06</div>
+      ¥3.70 — "业绩反转套利"空间判断
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="val-block">
+          <h5>当前估值 (基于¥3.70)</h5>
+          <div class="val-row"><span class="v-label">总市值</span><span class="v-val">≈54亿</span></div>
+          <div class="val-row"><span class="v-label">归母净资产（H1末）</span><span class="v-val">44.9亿</span></div>
+          <div class="val-row"><span class="v-label">PB</span><span class="v-val">≈1.2x</span></div>
+          <div class="val-row"><span class="v-label">PE（基准全年3.9亿）</span><span class="v-val">≈13.8x</span></div>
+          <div class="val-row"><span class="v-label">PE（乐观全年4.5亿）</span><span class="v-val">≈12x</span></div>
+          <div class="val-row"><span class="v-label">净现金（约13亿）/ 市值</span><span class="v-val pos">≈24%</span></div>
+          <div class="val-row"><span class="v-label">剔除净现金后EV/E</span><span class="v-val">≈10x</span></div>
+          <div class="val-row"><span class="v-label">股息率（按0.5元/10股）</span><span class="v-val amber">≈1.4%（较低）</span></div>
+        </div>
+
+        <div class="highlight-box blue" style="margin-top:12px;">
+          <strong>横向对比：</strong>海澜之家PE约10x，七匹狼PE约15x，利郎约8x。报喜鸟当前估值处于行业中位偏高，但净现金占比高、品牌矩阵较优，有一定溢价合理性。
+        </div>
+      </div>
+
+      <div>
+        <div class="card">
+          <h4>业绩反转套利 — 条件清单</h4>
+          <ul class="checklist">
+            <li>
+              <div class="check-icon ci-n">✗</div>
+              <div><strong>净利润已触底？</strong> 尚未确认。三季报前三季-43%，全年预计-20%至-25%，反转确认需等Q1 2026转正。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-q">?</div>
+              <div><strong>哈吉斯持续性？</strong> 高基数效应下2026年增速必然放缓，是否能维持5-10%增长是关键。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-q">?</div>
+              <div><strong>乐飞叶续约？</strong> 12月底到期，未续约则减少约3,000-4,500万净利。最重要的待确认变量。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-n">✗</div>
+              <div><strong>宝鸟改善？</strong> 职业装竞争内卷加剧，无明显改善迹象，Q3单季-45%。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-y">✓</div>
+              <div><strong>资产负债健康？</strong> 净现金13亿，低杠杆，不存在财务困境风险。底部安全垫较强。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-q">?</div>
+              <div><strong>Woolrich什么时候贡献利润？</strong> 预计2027年才开始有实质性贡献。短期是拖累。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-q">?</div>
+              <div><strong>管理层费用投入是否退坡？</strong> "战略性费用投入"表述模糊，2026年是否收缩不明确。</div>
+            </li>
+            <li>
+              <div class="check-icon ci-n">✗</div>
+              <div><strong>催化剂？</strong> 当前无明确近期股价催化剂，乐飞叶续约公告是最大潜在正向催化。</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <div class="highlight-box amber">
+        <strong>综合判断：¥3.70是否有套利空间？</strong>
+        <br><br>
+        <strong>支持买入的理由（价值面）：</strong>PB仅1.2x，净现金占市值24%，行业地位稳固，哈吉斯品牌结构性增长，毛利率68%+高度健康，分红有保障（历史分红率较高）。技术上股价相对历史高点折损明显，有均值回归空间。
+        <br><br>
+        <strong>反对买入的理由（风险面）：</strong>①乐飞叶年底到期风险是悬而未决的"达摩克利斯之剑"，在答案揭晓前股价难以有效修复；②宝鸟持续恶化；③战略费用仍有刚性，EPS修复可能晚于预期（2027年才真正反转）；④消费环境未见实质改善；⑤Woolrich是长线故事，短期是资金消耗。
+        <br><br>
+        <strong>结论：目前属于"便宜但不够便宜、有风险但风险可控"的状态，不构成强力套利空间。</strong>更适合作为<strong>价值观察候选仓位</strong>，等待以下任一事件作为入场触发器：①乐飞叶续约公告（正向）；②25年报Q4单季利润环比改善超预期；③股价进一步下行至PB约1.0x（约¥3.08/股）附近形成更安全的安全垫。
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 7: 风险清单 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon">07</div>
+      主要风险 vs 亮点摘要
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="section-title" style="font-size:14px; border-bottom:1px solid var(--border); margin-bottom:12px;">
+          <div class="icon" style="width:18px;height:18px;font-size:10px;">↓</div> 悲观因素
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-hi">高</div>
+          <div class="risk-text">
+            <strong>乐飞叶代理2026年底到期</strong>
+            <span>续约条件可能大幅恶化，或存在解约风险。是报喜鸟当前最大不确定性。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-hi">高</div>
+          <div class="risk-text">
+            <strong>净利润持续大幅下滑</strong>
+            <span>连续两年归母净利负增长（2024:-29%，2025预计-20%+），费用刚性、消费疲软，反转时间不确定。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-mid">中</div>
+          <div class="risk-text">
+            <strong>宝鸟职业装恶化</strong>
+            <span>Q3单季-45%，接单量虽增但发货收入降，竞争加剧，短期难以改善。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-mid">中</div>
+          <div class="risk-text">
+            <strong>Woolrich整合风险</strong>
+            <span>3.84亿收购欧洲除外IP，+拟3-4亿上海研发中心，资本开支大，短期无利润贡献。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-mid">中</div>
+          <div class="risk-text">
+            <strong>老库存与存货减值</strong>
+            <span>2年以上存货1.65亿，跌价准备可能继续追加，拖累利润。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo">低</div>
+          <div class="risk-text">
+            <strong>财务与流动性风险</strong>
+            <span>净现金约13亿，低杠杆，短期偿债无压力。</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="section-title" style="font-size:14px; border-bottom:1px solid var(--border); margin-bottom:12px;">
+          <div class="icon green" style="width:18px;height:18px;font-size:10px;">↑</div> 乐观因素
+        </div>
+        <div class="risk-item" style="border-color:var(--border);">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">★</div>
+          <div class="risk-text">
+            <strong>哈吉斯结构性增长</strong>
+            <span>代理至2031年，英伦休闲品类认知度持续提升，品类延伸（女装增长），天猫618排名第六，高净值客群粘性强。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">★</div>
+          <div class="risk-text">
+            <strong>毛利率68%+高度稳健</strong>
+            <span>产品盈利能力未受损，一旦费用退坡或收入回暖，利润弹性显著，可快速放大。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">★</div>
+          <div class="risk-text">
+            <strong>净现金约13亿，PB仅1.2x</strong>
+            <span>估值底部安全垫较厚，历史低估值区间。机构资金若入场修复，弹性较大。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">+</div>
+          <div class="risk-text">
+            <strong>Woolrich品牌长期价值</strong>
+            <span>近200年历史高端户外IP，全球26个市场布局，2027年后有望成为第四个亿级品牌。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">+</div>
+          <div class="risk-text">
+            <strong>乐飞叶高增长赛道</strong>
+            <span>+20.5% H1增速，户外休闲消费趋势向好，若顺利续约将继续高增。</span>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-badge risk-lo" style="background:var(--green-light);color:var(--green);">+</div>
+          <div class="risk-text">
+            <strong>多品牌矩阵分散风险</strong>
+            <span>9个以上品牌，不依赖单一品类，抗风险能力强于纯男装公司。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ SECTION 8: 监控清单 ═══ -->
+  <section>
+    <div class="section-title">
+      <div class="icon blue">08</div>
+      后续监控要点（月底年报发布后）
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>监控指标</th>
+            <th>目标值/预警值</th>
+            <th>时间节点</th>
+            <th>重要性</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>乐飞叶续约公告</strong></td>
+            <td>有续约公告=重大正面信号；无公告且门店收缩=预警</td>
+            <td>2025年报发布 / 2026Q3前</td>
+            <td><span class="pill pill-red">极高</span></td>
+          </tr>
+          <tr>
+            <td><strong>Q4 2025单季净利</strong></td>
+            <td>&gt;1.5亿=基准达标；&gt;2.0亿=超预期</td>
+            <td>2025年报（4月25日）</td>
+            <td><span class="pill pill-red">高</span></td>
+          </tr>
+          <tr>
+            <td><strong>Q1 2026季报净利</strong></td>
+            <td>YoY转正或降幅<10%=反转确认信号</td>
+            <td>Q1季报（4月底）</td>
+            <td><span class="pill pill-red">高</span></td>
+          </tr>
+          <tr>
+            <td><strong>哈吉斯2026H1增速</strong></td>
+            <td>&gt;5% YoY=品牌健康；&lt;0%=放缓预警</td>
+            <td>2026半年报</td>
+            <td><span class="pill pill-amber">中</span></td>
+          </tr>
+          <tr>
+            <td><strong>销售费用/营收比</strong></td>
+            <td>&lt;42%=费用退坡正轨；&gt;46%=战略投入持续</td>
+            <td>年报 / 半年报</td>
+            <td><span class="pill pill-amber">中</span></td>
+          </tr>
+          <tr>
+            <td><strong>Woolrich门店进展</strong></td>
+            <td>2026年是否在上海开出首店</td>
+            <td>2026全年跟踪</td>
+            <td><span class="pill pill-blue">低</span></td>
+          </tr>
+          <tr>
+            <td><strong>宝鸟收入趋势</strong></td>
+            <td>接单量增加是否最终转化为发货收入增长</td>
+            <td>2026H1</td>
+            <td><span class="pill pill-amber">中</span></td>
+          </tr>
+          <tr>
+            <td><strong>股价PB位置</strong></td>
+            <td>PB=1.0x（约¥3.08）考虑建仓；PB=1.5x（约¥4.6）适度减仓</td>
+            <td>持续跟踪</td>
+            <td><span class="pill pill-amber">中</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div>
+    <strong>数据来源：</strong>报喜鸟2025半年度报告（2025.08，★标注原始数据）&nbsp;·&nbsp;2025三季报&nbsp;·&nbsp;21经济报道&nbsp;·&nbsp;卖方一致预期&nbsp;·&nbsp;深交所公告&nbsp;·&nbsp;公司投资者关系问答
+  </div>
+  <div style="flex-shrink:0;">
+    <strong>研究日期：</strong>2026.04.16 &nbsp;|&nbsp; 个人研究档案，仅供参考
+  </div>
+</div>
+
+</body>
+</html>
