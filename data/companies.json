@@ -7,7 +7,7 @@
       "exchange": "A",
       "sector": "商业地产·北京CBD",
       "research_folder": "中国国贸_600007",
-      "price": 21.24,
+      "price": 21.6,
       "shares": 10.07,
       "net_cash_bn": -30,
       "eps_forecast": 1.19,
@@ -167,7 +167,7 @@
         "sell": 30,
         "custom_points": []
       },
-      "shares_held": 500,
+      "shares_held": 400,
       "status": "active",
       "currency": "CNY"
     },
