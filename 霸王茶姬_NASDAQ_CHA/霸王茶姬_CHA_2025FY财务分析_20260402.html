@@ -535,10 +535,100 @@ body {
   </div>
 </div>
 
-<!-- 8. 估值框架 -->
+
+<!-- 8. 一线运营监测 -->
 <div class="section">
   <div class="section-header">
     <span class="section-num">08</span>
+    <span class="section-title">一线运营监测：坪效趋势与门店分化</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="alert alert-warn" style="margin-bottom:20px;">
+    本节数据来自实地持续监测，非公开渠道，仅供内部研究判断使用，不作引用或传播。
+  </div>
+
+  <div class="chart-card" style="margin-bottom:16px;">
+    <div class="chart-title">月度销售额与日坪效趋势（2025-03 至 2026-03）</div>
+    <div style="position:relative;width:100%;height:260px;">
+      <canvas id="fieldChart"></canvas>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:10px;font-size:11px;color:var(--text-secondary);">
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:10px;border-radius:2px;background:#1a3a6b;opacity:0.6;"></span>月度销售额（万元）</span>
+      <span style="display:flex;align-items:center;gap:4px;"><span style="width:10px;height:3px;background:#8b2020;display:inline-block;"></span>日坪效（元/㎡，右轴）</span>
+    </div>
+  </div>
+
+  <div class="two-col" style="margin-bottom:16px;">
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">坪效长期趋势（三年对比）</div>
+      <table class="kv-table">
+        <tr><td>2023年峰值</td><td style="color:var(--green);">约300元/㎡/天</td></tr>
+        <tr><td>2024年均值</td><td style="color:var(--amber);">约230元/㎡/天</td></tr>
+        <tr><td>2025年末</td><td style="color:var(--red);">约100元/㎡/天</td></tr>
+        <tr><td>2026年2月（春节）</td><td>短暂回升，约126元</td></tr>
+        <tr><td>2026年3月</td><td style="color:var(--red);">96元，低于2025年末水位</td></tr>
+        <tr><td>三年累计跌幅</td><td style="color:var(--red);font-weight:500;">−67%（300→96）</td></tr>
+        <tr><td>2024→2025年末跌幅</td><td style="color:var(--red);">−56.5%（230→100）</td></tr>
+      </table>
+    </div>
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">核心判断更新</div>
+      <ul class="obs-list">
+        <li><div class="obs-dot" style="background:#8b2020;"></div><span><strong>管理层"上半年企稳"面临压力。</strong>3月坪效96元低于2025全年100元底部，春节效应退去后重回下滑区间，企稳信号尚未出现。</span></li>
+        <li><div class="obs-dot" style="background:#8b2020;"></div><span><strong>"归云南"新品势能不足。</strong>2月销售反弹（+16%周环比）是真实的，但3月即回落，持续性未获验证。</span></li>
+        <li><div class="obs-dot" style="background:#7a4c0a;"></div><span><strong>4月是关键窗口。</strong>醒时春山（龙井）+走走系列（果茶）为春季主力，季节叙事明确。若4月坪效回到110-120区间且5月维持，才算企稳信号。</span></li>
+        <li><div class="obs-dot" style="background:#1f5c2e;"></div><span><strong>门店分化：小面积核心商圈更抗跌。</strong>静安（28㎡）坪效远高于朝阳（126.7㎡），面积小、人流密集的门店在下行周期中抗跌性更强。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">情形概率调整（基于3月实地数据）</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;">情形</th>
+          <th>此前概率</th>
+          <th>更新后概率</th>
+          <th>调整依据</th>
+          <th>4月触发条件</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--green);font-weight:500;">乐观</td>
+          <td>20%</td>
+          <td>20%</td>
+          <td>不变</td>
+          <td>坪效回升至130+且持续两个月</td>
+        </tr>
+        <tr>
+          <td style="color:var(--blue);font-weight:500;">基准</td>
+          <td>50%</td>
+          <td style="color:var(--red);">40%</td>
+          <td>3月坪效低于2025年底，管理层企稳节奏未兑现</td>
+          <td>坪效110-120区间，5月维持</td>
+        </tr>
+        <tr>
+          <td style="color:var(--red);font-weight:500;">悲观</td>
+          <td>30%</td>
+          <td style="color:var(--red);">40%</td>
+          <td>新品势能不持续；坪效3年跌67%尚无底部信号</td>
+          <td>4月坪效仍低于100元</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert alert-info" style="margin-top:12px;margin-bottom:0;">
+      <strong>加权目标价影响：</strong>基准情形概率下调10%，加权目标价从约$21下调至约$19。目标价区间（$11–40）不变，但中性预期向悲观端偏移。下一个硬校准点：4月实地坪效读数 + 5月Q1财报同店增速数据双重验证。
+    </div>
+  </div>
+</div>
+
+<!-- 9. 估值框架 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
     <span class="section-title">估值框架：当前定价与合理中枢</span>
     <div class="section-divider"></div>
   </div>
@@ -573,10 +663,10 @@ body {
   </div>
 </div>
 
-<!-- 9. 情形分析 -->
+<!-- 10. 情形分析 -->
 <div class="section">
   <div class="section-header">
-    <span class="section-num">09</span>
+    <span class="section-num">10</span>
     <span class="section-title">估值恢复情形分析</span>
     <div class="section-divider"></div>
   </div>
@@ -629,10 +719,10 @@ body {
   </div>
 </div>
 
-<!-- 10. 核心风险 -->
+<!-- 11. 核心风险 -->
 <div class="section">
   <div class="section-header">
-    <span class="section-num">10</span>
+    <span class="section-num">11</span>
     <span class="section-title">核心风险清单</span>
     <div class="section-divider"></div>
   </div>
@@ -801,6 +891,43 @@ new Chart(document.getElementById('peChart'), {
     scales: {
       y: { grid: { color: gridColor }, title: { display: true, text: 'Non-GAAP PE ×', font: { size: 10 } }, beginAtZero: true },
       x: { grid: { display: false } }
+    }
+  }
+// Field monitoring chart
+new Chart(document.getElementById('fieldChart'), {
+  data: {
+    labels: ['25-03','25-04','25-05','25-06','25-07','25-08','25-09','25-10','25-11','25-12','26-01','26-02','26-03'],
+    datasets: [
+      {
+        type: 'bar',
+        label: '月度销售额（万元）',
+        data: [954, 956, 998, 929, 1000, 803, 926, 840, 885, 844, 935, 1101, 843],
+        backgroundColor: 'rgba(26,58,107,0.18)',
+        borderColor: '#1a3a6b',
+        borderWidth: 1,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: '日坪效（元/㎡）',
+        data: [134, 138, 124, null, null, 103, 118, 105, 100, 104, 126, null, 96],
+        borderColor: '#8b2020',
+        backgroundColor: 'transparent',
+        pointBackgroundColor: '#8b2020',
+        pointRadius: 4,
+        borderWidth: 2,
+        tension: 0.3,
+        spanGaps: false,
+        yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { position: 'left', grid: { color: gridColor }, title: { display: true, text: '万元', font: { size: 10 } } },
+      y2: { position: 'right', grid: { display: false }, title: { display: true, text: '元/㎡/天', font: { size: 10 } }, min: 0, max: 180 }
     }
   }
 });
