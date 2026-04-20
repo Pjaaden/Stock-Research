@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>华夏大悦城REITs · 系统性研究框架 · 20260420</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@500;700;800&family=IBM+Plex+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  /* 米白/象牙底色 — 学术纸本感 */
+  --bg: #f5f1e8;
+  --bg2: #ebe3d2;
+  --bg3: #fffcf5;
+  --paper: #fdf9ef;
+  --ink: #1a1612;
+  --ink2: #3d342a;
+  --muted: #7a6d5c;
+  --line: #d5c9b0;
+  --line2: #c2b394;
+  --rule: #8f7f66;
+
+  /* 类别色 — 暖金+深墨+青绿+赭红 */
+  --gold: #a67c2d;
+  --gold-l: #c39a4a;
+  --gold-bg: #f1e6c9;
+  --olive: #6b7a3a;
+  --olive-bg: #e0e3c5;
+  --teal: #2e5f63;
+  --teal-bg: #d0e0dd;
+  --rust: #9c4522;
+  --rust-bg: #ecd6c7;
+  --plum: #5b3a5b;
+  --plum-bg: #e3d2e0;
+  --navy: #1f3a5c;
+  --navy-bg: #d2dae7;
+
+  --green: #5a7a3d;
+  --red: #8a3523;
+  --amber: #a66b14;
+
+  --shadow: 0 1px 0 rgba(26,22,18,.04), 0 8px 24px -8px rgba(26,22,18,.08);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: 'IBM Plex Sans SC', 'Noto Serif SC', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  background-image:
+    radial-gradient(circle at 10% 0%, rgba(166,124,45,.04) 0%, transparent 50%),
+    radial-gradient(circle at 90% 100%, rgba(46,95,99,.04) 0%, transparent 50%);
+}
+
+.wrap{max-width:1280px;margin:0 auto;padding:32px 28px 80px}
+
+/* ———— HEADER ———— */
+.hero{
+  position:relative;
+  padding:48px 52px 44px;
+  background: var(--paper);
+  border: 1px solid var(--line2);
+  border-radius: 2px;
+  margin-bottom:32px;
+  box-shadow: var(--shadow);
+  overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:6px;
+  background: linear-gradient(90deg, var(--gold) 0%, var(--gold) 20%, var(--teal) 20%, var(--teal) 45%, var(--rust) 45%, var(--rust) 62%, var(--plum) 62%, var(--plum) 80%, var(--olive) 80%);
+}
+.hero-eyebrow{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:18px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.hero-eyebrow .tag{background:var(--ink);color:var(--bg);padding:3px 10px;letter-spacing:2px;font-weight:500}
+.hero h1{
+  font-family:'Noto Serif SC',serif;
+  font-size:44px;font-weight:700;line-height:1.1;
+  margin:0 0 10px;color:var(--ink);
+  letter-spacing:-0.5px;
+}
+.hero h1 .en{
+  display:block;
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:18px;letter-spacing:2px;
+  color:var(--gold);margin-top:8px;
+}
+.hero-sub{
+  font-size:16px;color:var(--ink2);
+  margin:16px 0 22px;line-height:1.7;
+  max-width:860px;
+}
+.hero-meta{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:0;
+  border-top:1px solid var(--line);
+  padding-top:20px;margin-top:20px;
+}
+.hero-meta-item{padding-right:18px;border-right:1px solid var(--line)}
+.hero-meta-item:last-child{border-right:none}
+.hero-meta-item .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.hero-meta-item .v{font-weight:600;font-size:14px;color:var(--ink)}
+.hero-meta-item .v.gold{color:var(--gold)}
+.hero-meta-item .v.teal{color:var(--teal)}
+.hero-meta-item .v.rust{color:var(--rust)}
+
+/* ———— NAVIGATION / TOC ———— */
+.toc{
+  background: var(--paper);
+  border: 1px solid var(--line2);
+  padding: 26px 30px;
+  margin-bottom: 32px;
+  border-radius: 2px;
+}
+.toc-title{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:14px;
+  display:flex;align-items:center;gap:10px;
+}
+.toc-title::before{content:'';width:24px;height:1px;background:var(--gold)}
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 40px}
+.toc a{
+  color:var(--ink);text-decoration:none;display:flex;justify-content:space-between;
+  padding:8px 0;border-bottom:1px dotted var(--line);
+  transition:color .15s;
+}
+.toc a:hover{color:var(--gold)}
+.toc a span:first-child{font-weight:500}
+.toc a span:first-child::before{content:attr(data-n);font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-right:10px;font-size:11px}
+.toc a span:last-child{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted)}
+
+/* ———— SECTIONS ———— */
+.sec{
+  background: var(--paper);
+  border: 1px solid var(--line2);
+  margin-bottom:24px;
+  border-radius:2px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.sec-head{
+  padding:22px 32px 18px;
+  border-bottom:1px solid var(--line);
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--paper) 100%);
+  display:flex;align-items:baseline;gap:24px;
+}
+.sec-num{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:40px;line-height:1;color:var(--gold);
+  letter-spacing:-1px;
+}
+.sec-num .dot{color:var(--ink2);font-size:20px;margin-left:2px}
+.sec-head-text{flex:1}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:24px;font-weight:700;margin:0;line-height:1.25;color:var(--ink)}
+.sec-title .en{display:block;font-family:'Syne',sans-serif;font-weight:500;font-size:11px;letter-spacing:2.5px;color:var(--muted);margin-top:6px;text-transform:uppercase}
+.sec-body{padding:30px 32px}
+
+/* ———— PROSE ———— */
+.prose{font-size:14px;line-height:1.78;color:var(--ink2)}
+.prose p{margin:0 0 14px}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{color:var(--gold);font-style:normal;font-weight:600;background:linear-gradient(180deg,transparent 60%,var(--gold-bg) 60%);padding:0 2px}
+.prose .tip{background:var(--bg3);border-left:3px solid var(--gold);padding:14px 18px;margin:16px 0;font-size:13.5px;color:var(--ink2)}
+.prose .tip .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:5px}
+.prose .warn{background:var(--rust-bg);border-left:3px solid var(--rust);padding:14px 18px;margin:16px 0;font-size:13.5px;color:var(--ink2)}
+.prose .warn .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--rust);text-transform:uppercase;margin-bottom:5px}
+.prose .good{background:var(--olive-bg);border-left:3px solid var(--olive);padding:14px 18px;margin:16px 0;font-size:13.5px;color:var(--ink2)}
+.prose .good .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--olive);text-transform:uppercase;margin-bottom:5px}
+
+/* ———— TERM BOX (术语解释) ———— */
+.term{
+  background:linear-gradient(135deg, var(--bg3) 0%, var(--paper) 100%);
+  border:1px solid var(--line);
+  border-left:4px solid var(--teal);
+  padding:16px 20px;
+  margin:14px 0;
+  font-size:13.5px;
+  position:relative;
+}
+.term::before{
+  content:'TERM';
+  position:absolute;top:-9px;left:14px;
+  background:var(--teal);color:#fff;
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+  padding:2px 8px;font-weight:500;
+}
+.term .t-name{font-weight:700;color:var(--teal);margin-bottom:4px;font-size:14.5px}
+.term .t-name .en{font-family:'Syne',sans-serif;font-weight:500;color:var(--muted);font-size:11px;margin-left:8px;letter-spacing:1px}
+.term .t-def{color:var(--ink2);line-height:1.7}
+.term .t-def .hl{background:var(--gold-bg);padding:1px 5px;color:var(--ink);font-weight:500}
+
+/* ———— KPI ———— */
+.kpi-row{display:grid;gap:12px;margin:16px 0}
+.kpi-row.k2{grid-template-columns:repeat(2,1fr)}
+.kpi-row.k3{grid-template-columns:repeat(3,1fr)}
+.kpi-row.k4{grid-template-columns:repeat(4,1fr)}
+.kpi-row.k5{grid-template-columns:repeat(5,1fr)}
+.kpi{
+  padding:16px 18px;
+  background:var(--bg3);
+  border:1px solid var(--line);
+  border-top:3px solid var(--gold);
+  position:relative;
+}
+.kpi.teal{border-top-color:var(--teal)}
+.kpi.rust{border-top-color:var(--rust)}
+.kpi.olive{border-top-color:var(--olive)}
+.kpi.plum{border-top-color:var(--plum)}
+.kpi.navy{border-top-color:var(--navy)}
+.kl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;line-height:1.4;min-height:24px}
+.kv{font-family:'Syne',sans-serif;font-weight:800;font-size:26px;line-height:1;color:var(--gold);letter-spacing:-0.5px}
+.kv.small{font-size:20px}
+.kv.xs{font-size:16px}
+.kv.teal{color:var(--teal)}
+.kv.rust{color:var(--rust)}
+.kv.olive{color:var(--olive)}
+.kv.plum{color:var(--plum)}
+.kv.navy{color:var(--navy)}
+.kv.ink{color:var(--ink)}
+.ks{font-size:11.5px;color:var(--muted);margin-top:8px;line-height:1.5}
+.ks .c-g{color:var(--green);font-weight:600}
+.ks .c-r{color:var(--red);font-weight:600}
+.ks .c-a{color:var(--amber);font-weight:600}
+
+/* ———— TABLES ———— */
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:12.5px;background:var(--bg3)}
+th{
+  background:var(--ink);color:#f5f1e8;
+  padding:10px 12px;text-align:left;
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;font-weight:500;border:none;
+}
+td{padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}
+tr:hover{background:var(--gold-bg)}
+tr.hl-g{background:var(--olive-bg)}
+tr.hl-g:hover{background:var(--olive-bg)}
+tr.hl-a{background:#f5ecd4}
+tr.hl-r{background:var(--rust-bg)}
+tr.hl-t{background:var(--teal-bg)}
+tr.grand{background:var(--ink)!important;color:#f5f1e8!important;font-weight:600}
+tr.grand td{color:#f5f1e8!important;border-bottom:none}
+tr.grand:hover{background:var(--ink)!important}
+.fw6{font-weight:600}
+.c-g{color:var(--green);font-weight:600}
+.c-r{color:var(--red);font-weight:600}
+.c-a{color:var(--amber);font-weight:600}
+.c-gold{color:var(--gold);font-weight:600}
+.c-teal{color:var(--teal);font-weight:600}
+.c-rust{color:var(--rust);font-weight:600}
+.c-plum{color:var(--plum);font-weight:600}
+.num{font-family:'IBM Plex Mono',monospace;text-align:right;font-weight:500;font-size:12px}
+
+/* ———— GRID LAYOUTS ———— */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.grid2-73{display:grid;grid-template-columns:7fr 3fr;gap:24px}
+.grid2-37{display:grid;grid-template-columns:3fr 7fr;gap:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* ———— CARDS ———— */
+.card{
+  background:var(--bg3);border:1px solid var(--line);
+  padding:18px 20px;position:relative;
+}
+.card.gold{border-top:3px solid var(--gold)}
+.card.teal{border-top:3px solid var(--teal)}
+.card.rust{border-top:3px solid var(--rust)}
+.card.olive{border-top:3px solid var(--olive)}
+.card.plum{border-top:3px solid var(--plum)}
+.card .c-title{font-weight:700;font-size:13px;margin-bottom:10px;color:var(--ink);line-height:1.35}
+.card .c-title .num{float:right;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted)}
+.card .c-body{font-size:12.5px;line-height:1.7;color:var(--ink2)}
+
+/* ———— BAR CHART ———— */
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px}
+.bar-lbl{width:140px;color:var(--ink2);font-weight:500;flex-shrink:0}
+.bar-bg{flex:1;height:22px;background:var(--bg2);position:relative;overflow:hidden}
+.bar-fill{height:100%;display:flex;align-items:center;padding-left:8px;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600}
+.bar-val{width:80px;text-align:right;font-family:'IBM Plex Mono',monospace;color:var(--ink);font-weight:600;flex-shrink:0}
+
+/* ———— CALLOUT BIG ———— */
+.callout{
+  background: var(--ink);
+  color:var(--bg);
+  padding:28px 36px;
+  margin:20px 0;
+  position:relative;
+  border-left:6px solid var(--gold);
+}
+.callout::before{
+  content:'¶';position:absolute;top:8px;right:20px;
+  font-family:'Noto Serif SC',serif;font-size:60px;color:var(--gold);opacity:.25;line-height:1;
+}
+.callout .cl-eye{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--gold-l);margin-bottom:12px;text-transform:uppercase}
+.callout .cl-main{font-family:'Noto Serif SC',serif;font-size:20px;line-height:1.5;font-weight:500;color:var(--bg)}
+.callout .cl-main strong{color:#fff;font-weight:700;border-bottom:1px solid var(--gold)}
+
+/* ———— FORMULA ———— */
+.formula{
+  background: linear-gradient(180deg, var(--bg3) 0%, var(--paper) 100%);
+  border:1px dashed var(--rule);
+  padding:20px 24px;margin:14px 0;
+  text-align:center;font-family:'Noto Serif SC',serif;
+  font-size:15px;color:var(--ink);
+  letter-spacing:0.5px;
+  position:relative;
+}
+.formula::before{
+  content:'公式';position:absolute;top:-1px;left:-1px;
+  background:var(--rust);color:#fff;
+  font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:2px;
+  padding:3px 8px;font-weight:500;
+}
+.formula .f-eq{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:600;color:var(--rust);margin:6px 0}
+.formula .f-note{font-size:11.5px;color:var(--muted);margin-top:8px}
+
+/* ———— CHART HOLDER ———— */
+.chart-box{
+  background:var(--bg3);
+  border:1px solid var(--line);
+  padding:20px;
+  margin:16px 0;
+  position:relative;
+}
+.chart-title{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.chart-c{height:320px;position:relative}
+
+/* ———— RULE / DIVIDER ———— */
+.rule-label{
+  display:flex;align-items:center;gap:14px;
+  margin:28px 0 16px;
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:13px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold);
+}
+.rule-label::before,.rule-label::after{
+  content:'';flex:1;height:1px;background:var(--line2);
+}
+.rule-label::before{max-width:60px}
+
+/* ———— FOOTER ———— */
+.foot{
+  margin-top:48px;padding-top:24px;
+  border-top:2px solid var(--line2);
+  font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;
+  color:var(--muted);text-align:center;
+  text-transform:uppercase;
+}
+.foot .d{color:var(--ink);font-weight:600}
+
+/* ———— SCENARIO TABLE ———— */
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:16px 0;border:1px solid var(--line2)}
+.scen-col{padding:18px 20px;border-right:1px solid var(--line)}
+.scen-col:last-child{border-right:none}
+.scen-col.bear{background:var(--rust-bg)}
+.scen-col.base{background:var(--paper)}
+.scen-col.bull{background:var(--olive-bg)}
+.scen-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;margin-bottom:8px;font-weight:600}
+.scen-col.bear .scen-tag{color:var(--rust)}
+.scen-col.base .scen-tag{color:var(--gold)}
+.scen-col.bull .scen-tag{color:var(--olive)}
+.scen-head{font-weight:700;font-size:16px;margin-bottom:4px;color:var(--ink)}
+.scen-val{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;margin:8px 0;letter-spacing:-0.5px}
+.scen-col.bear .scen-val{color:var(--rust)}
+.scen-col.base .scen-val{color:var(--gold)}
+.scen-col.bull .scen-val{color:var(--olive)}
+.scen-body{font-size:12px;line-height:1.6;color:var(--ink2);margin-top:8px}
+.scen-body li{margin-bottom:3px}
+
+/* small */
+.tiny-mono{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span>DEEP RESEARCH · COMMERCIAL REITs FRAMEWORK</span>
+    <span class="tag">v1.0 · 2026.04.20</span>
+  </div>
+  <h1>
+    华夏大悦城购物中心REITs
+    <span class="en">HUAXIA · JOY CITY COMMERCIAL REIT · SYSTEMATIC ANALYSIS</span>
+  </h1>
+  <p class="hero-sub">
+    这是一份从零开始搭建商业地产REITs投资研究框架的系统性文档。以华夏大悦城REIT(180603)2025年年报为分析样本,全面复盘基金业务、底层资产与现金流结构,逐项讲清REITs估值模型、财务用语、现金流分派机制、风险点位,构建可迁移至其他商业REITs的完整分析方法论。面向希望系统理解"公募REITs作为独立资产类别"的研究者与配置者。
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="k">基金代码</div><div class="v">180603.SZ</div></div>
+    <div class="hero-meta-item"><div class="k">底层资产</div><div class="v">成都大悦城</div></div>
+    <div class="hero-meta-item"><div class="k">2025评估值</div><div class="v gold">32.48亿</div></div>
+    <div class="hero-meta-item"><div class="k">现金流分派率</div><div class="v teal">5.48%</div></div>
+    <div class="hero-meta-item"><div class="k">基金份额</div><div class="v">10亿份</div></div>
+    <div class="hero-meta-item"><div class="k">存续期</div><div class="v rust">至2048/9/2</div></div>
+  </div>
+</section>
+
+<!-- ═══════════ TOC ═══════════ -->
+<section class="toc">
+  <div class="toc-title">目录 · Table of Contents</div>
+  <div class="toc-grid">
+    <a href="#s1"><span data-n="01">REITs基础认知:是什么、不是什么</span><span>WHAT IS A REIT</span></a>
+    <a href="#s2"><span data-n="02">商业REITs的结构:三层嵌套与穿透持有</span><span>STRUCTURE</span></a>
+    <a href="#s3"><span data-n="03">基金与底层资产速览</span><span>FUND OVERVIEW</span></a>
+    <a href="#s4"><span data-n="04">成都大悦城:资产深度解剖</span><span>ASSET ANATOMY</span></a>
+    <a href="#s5"><span data-n="05">收入结构:租金+多经拆解</span><span>REVENUE</span></a>
+    <a href="#s6"><span data-n="06">成本结构:看懂每一笔钱去了哪里</span><span>COSTS</span></a>
+    <a href="#s7"><span data-n="07">现金流三问:可供分配金额是怎么算的</span><span>DISTRIBUTABLE CF</span></a>
+    <a href="#s8"><span data-n="08">估值模型一:DCF收益法(主方法)</span><span>DCF METHOD</span></a>
+    <a href="#s9"><span data-n="09">估值模型二:Cap Rate反推与分派率</span><span>CAP RATE &amp; YIELD</span></a>
+    <a href="#s10"><span data-n="10">估值模型三:市场比较法校验</span><span>COMPARABLES</span></a>
+    <a href="#s11"><span data-n="11">关键财务术语词典</span><span>GLOSSARY</span></a>
+    <a href="#s12"><span data-n="12">风险矩阵与监测清单</span><span>RISK MATRIX</span></a>
+    <a href="#s13"><span data-n="13">投资决策框架与结论</span><span>DECISION FRAMEWORK</span></a>
+    <a href="#s14"><span data-n="14">附:大悦城地产退市事件专项</span><span>APPENDIX</span></a>
+  </div>
+</section>
+
+<!-- ═══════════ §1 REITs基础认知 ═══════════ -->
+<section class="sec" id="s1">
+  <div class="sec-head">
+    <div class="sec-num">01<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">REITs基础认知:是什么、不是什么<span class="en">FOUNDATIONAL · WHAT IS A REIT</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>我们先放下"REIT"这三个英文字母带来的陌生感,用最朴素的语言拆开它。<strong>REIT(Real Estate Investment Trust)本质上是把一栋楼(或一组楼)切成一亿份,让你我这样的普通投资者也能"按份持有"大型不动产的金融产品。</strong>你买了一份,就相当于买了这栋楼的一亿分之一;这栋楼每年租出去收的租金,扣掉运营开支和各种管理费之后,至少90%要按份额分给所有持有人——这就是所谓的"现金流分派"。</p>
+
+      <div class="term">
+        <div class="t-name">REIT · 公募不动产投资信托基金<span class="en">Real Estate Investment Trust</span></div>
+        <div class="t-def">一种以<span class="hl">持有并运营创收型不动产</span>为核心资产、以<span class="hl">强制分派现金流(≥90%)</span>为制度特征的证券化投资工具。中国的公募REITs通过"公募基金-资产支持专项计划(ABS)-项目公司"三层结构,让普通投资者在证券交易所像买股票一样买卖"一部分不动产"。</div>
+      </div>
+
+      <p class="rule-label">REITs和它容易被混淆的东西</p>
+
+      <div class="grid3">
+        <div class="card gold">
+          <div class="c-title">REIT <span class="num">≠</span></div>
+          <div class="c-body"><strong>不是股票。</strong>股票代表公司的未来成长性和再投资决策,而REIT代表"一个具体的、不再扩张的资产包"的稳定现金流。华夏大悦城REIT只持有成都大悦城这一个项目,不能拿分红去开第二家大悦城。</div>
+        </div>
+        <div class="card teal">
+          <div class="c-title">REIT <span class="num">≠</span></div>
+          <div class="c-body"><strong>不是债券。</strong>债券票息固定、到期还本,REIT的派息随经营浮动,而且"本金"(净值)会随着评估值涨跌。大悦城REIT 2025年底净值3.1652元,就比年初的3.3225元跌了4.7%。</div>
+        </div>
+        <div class="card rust">
+          <div class="c-title">REIT <span class="num">≠</span></div>
+          <div class="c-body"><strong>不是地产股。</strong>华润置地、龙湖等地产股的估值逻辑是"开发+销售+周转",有再投资和债务杠杆;REITs是纯资产运营,没有开发业务,基金本身也不加杠杆(底层仅有项目公司股东借款)。</div>
+        </div>
+      </div>
+
+      <div class="tip">
+        <div class="tl">核心心智模型</div>
+        把公募商业REIT想象成<strong>"在交易所挂牌交易的、一栋特定购物中心的24年使用权凭证"</strong>。你买的是这栋楼未来24年的经营现金流,到期后要么展期,要么清算处置。它的收益来自两部分:<em>每年的租金派息</em>(确定性较高)和<em>评估值涨跌带来的净值变动</em>(体现在二级市场价格上)。
+      </div>
+
+      <p class="rule-label">为什么需要REITs这个工具</p>
+
+      <div class="grid2">
+        <div>
+          <p>对<strong>原始权益人(资产的原主人,本案是大悦城地产)</strong>来说:一栋购物中心动辄几十亿,压在资产负债表上占用大量资金,发REITs相当于把未来几十年的租金一次性"折现套现",拿到的现金可以用来盖新的项目、还债、扩张。这就是年报里反复提到的<em>"盘活存量资产"</em>的含义。</p>
+          <p>对<strong>普通投资者</strong>来说:原本只有保险、社保这种万亿级大资金才能直接买下一整栋A级购物中心,现在你用1000块钱就能买到成都大悦城的一亿分之三——而且它每年强制把现金分给你。</p>
+        </div>
+        <div>
+          <p>对<strong>二级市场</strong>来说:REITs提供了一个与股票、债券风险收益特征都不同的资产类别。它的历史波动低于股票、分派率高于债券,在资产配置框架里扮演<em>"类债但带通胀弹性"</em>的角色——租金通常会跟随CPI缓慢上调,这是纯债券拿不到的。</p>
+          <p>中国的公募REITs试点2021年才启动,商业类REITs更晚(2024年),华夏大悦城是首批4只消费类基础设施REITs之一。<strong>整个市场还很年轻,定价仍在探索期</strong>,这既是风险也是机会。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §2 结构 ═══════════ -->
+<section class="sec" id="s2">
+  <div class="sec-head">
+    <div class="sec-num">02<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">商业REITs的结构:三层嵌套与穿透持有<span class="en">STRUCTURE · THREE LAYERS</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>很多人第一次看REITs年报会被"基金-专项计划-SPV-项目公司"这一串概念绕晕。其实本质就一句话:<strong>因为中国法律不允许公募基金直接持有不动产,所以中间要加几层"壳公司"来实现穿透。</strong>理解这个结构对于看懂财务报表和风险点至关重要。</p>
+
+      <!-- Structure diagram -->
+      <div class="chart-box">
+        <div class="chart-title">▪ 华夏大悦城REIT的三层持有结构</div>
+        <svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#1a1612"/>
+            </marker>
+          </defs>
+          <!-- Layer 1: Investors -->
+          <rect x="40" y="20" width="820" height="54" fill="#f1e6c9" stroke="#a67c2d" stroke-width="1.5"/>
+          <text x="450" y="42" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#1a1612">第一层 · 基金份额持有人(2,833户 · 10亿份)</text>
+          <text x="450" y="62" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7a6d5c">卓远地产40% · 机构投资者59.5% · 个人投资者0.5%</text>
+
+          <!-- arrow -->
+          <line x1="450" y1="74" x2="450" y2="98" stroke="#1a1612" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="460" y="90" font-family="IBM Plex Mono" font-size="9" fill="#7a6d5c">认购/持有</text>
+
+          <!-- Layer 2: Fund -->
+          <rect x="40" y="102" width="820" height="54" fill="#d0e0dd" stroke="#2e5f63" stroke-width="1.5"/>
+          <text x="450" y="124" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#1a1612">第二层 · 华夏大悦城商业REIT(公募基金)</text>
+          <text x="450" y="144" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7a6d5c">管理人:华夏基金 · 托管人:农业银行 · 2025期末净值3.1652元</text>
+
+          <line x1="450" y1="156" x2="450" y2="180" stroke="#1a1612" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="460" y="172" font-family="IBM Plex Mono" font-size="9" fill="#7a6d5c">100%持有ABS份额</text>
+
+          <!-- Layer 3: ABS -->
+          <rect x="40" y="184" width="820" height="54" fill="#e0e3c5" stroke="#6b7a3a" stroke-width="1.5"/>
+          <text x="450" y="206" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#1a1612">第三层 · 中信证券-大悦城购物中心1号资产支持专项计划(ABS)</text>
+          <text x="450" y="226" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7a6d5c">计划管理人:中信证券 · 对项目公司:100%股权 + 22.14亿股东借款</text>
+
+          <line x1="450" y1="238" x2="450" y2="262" stroke="#1a1612" stroke-width="1.5" marker-end="url(#arr)"/>
+          <text x="460" y="254" font-family="IBM Plex Mono" font-size="9" fill="#7a6d5c">股权+债权</text>
+
+          <!-- Layer 4: PropCo -->
+          <rect x="40" y="266" width="820" height="54" fill="#ecd6c7" stroke="#9c4522" stroke-width="1.5"/>
+          <text x="450" y="288" text-anchor="middle" font-family="Noto Serif SC" font-size="14" font-weight="700" fill="#1a1612">第四层 · 成都博悦商业管理有限公司(项目公司)</text>
+          <text x="450" y="308" text-anchor="middle" font-family="IBM Plex Mono" font-size="10" fill="#7a6d5c">持有不动产资产 · 运营管理机构:大悦城商业运营管理(天津)有限公司</text>
+
+          <!-- Bottom: Property -->
+          <rect x="280" y="336" width="340" height="20" fill="#1a1612"/>
+          <text x="450" y="351" text-anchor="middle" font-family="Syne" font-size="12" font-weight="800" fill="#f5f1e8">成都大悦城 · 物业资产</text>
+        </svg>
+      </div>
+
+      <div class="term">
+        <div class="t-name">关键财务线索:为什么项目公司报表上有22.14亿"其他非流动负债"<span class="en">SHAREHOLDER LOAN</span></div>
+        <div class="t-def">专项计划在设立时,故意安排了<span class="hl">"股权+股东借款"的双层结构</span>:用少部分资金入股项目公司,用大部分资金(22.14亿)以股东借款的形式贷给项目公司。这是一种税务优化安排——<strong>借款利息可以在项目公司层面做税前抵扣,减少企业所得税</strong>。所以你会看到2025年项目公司层面财务费用高达1.82亿,其中绝大部分是支付给"自己上级(专项计划)"的股东借款利息1.48亿。但这笔钱从基金合并报表看根本没出去——它从项目公司流到专项计划,再流到基金,最终还是分给持有人。<strong>这不是真实负债,而是一种税务工具,本REIT在基金合并报表层面利息支出为0。</strong></div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-eye">Key Insight · 结构透视</div>
+        <div class="cl-main">项目公司财务报表上的<strong>22.14亿"其他非流动负债"</strong>和<strong>1.82亿"财务费用"</strong>,都是三层嵌套结构的"内部账",在基金合并层面被抵消。<strong>所以判断这只REIT"是否有真实债务",要看基金合并报表——大悦城REIT合并负债仅1.5亿(应付管理费/税金/押金等),本质是零杠杆产品。</strong></div>
+      </div>
+
+      <p class="rule-label">这个结构设计带来的三个重要后果</p>
+
+      <div class="grid3">
+        <div class="card teal">
+          <div class="c-title">① 穿透持有 <span class="num">POWER</span></div>
+          <div class="c-body">基金虽然不直接持有不动产,但通过100%持有ABS→ABS 100%持有项目公司股权→项目公司100%持有物业,<strong>经济意义上等价于持有者共同拥有了这栋楼</strong>。法律上隔离、经济上穿透。</div>
+        </div>
+        <div class="card gold">
+          <div class="c-title">② 破产隔离 <span class="num">SAFETY</span></div>
+          <div class="c-body">就算原始权益人大悦城地产破产,物业资产已经装进独立的项目公司,不会被债权人追索。2025年11月大悦城地产从港交所退市,REIT本身的资产和经营<strong>法律上完全不受影响</strong>——这是SPV结构的核心价值。</div>
+        </div>
+        <div class="card rust">
+          <div class="c-title">③ 分派路径 <span class="num">PATH</span></div>
+          <div class="c-body">现金要从项目公司流回基金持有人,要经过<strong>股东借款利息(项目公司→ABS)→ ABS分配(ABS→基金)→ 基金收益分配(基金→持有人)</strong>三个环节。理解这条路径,是判断分派可持续性的关键。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §3 基金概览 ═══════════ -->
+<section class="sec" id="s3">
+  <div class="sec-head">
+    <div class="sec-num">03<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">基金与底层资产速览<span class="en">FUND &amp; ASSET OVERVIEW</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="kpi-row k4" style="margin-bottom:20px">
+      <div class="kpi"><div class="kl">2025营业收入</div><div class="kv">3.41<span style="font-size:14px;color:var(--muted)">亿</span></div><div class="ks">基金合并口径 · 含利息收入 · <span class="c-g">较全年首个完整年度</span></div></div>
+      <div class="kpi teal"><div class="kl">2025经营CF</div><div class="kv teal">1.65<span style="font-size:14px;color:var(--muted)">亿</span></div><div class="ks">经营活动现金流净额 · 分派的根本来源</div></div>
+      <div class="kpi olive"><div class="kl">可供分配金额</div><div class="kv olive">1.82<span style="font-size:14px;color:var(--muted)">亿</span></div><div class="ks">单位 <span class="c-g">0.1821元</span> · 按招募预测完成102.9%</div></div>
+      <div class="kpi rust"><div class="kl">实际分配金额</div><div class="kv rust">1.95<span style="font-size:14px;color:var(--muted)">亿</span></div><div class="ks">全年分派4次 · 单位 <span class="c-g">0.1951元</span> · 超可供额(用上期预留)</div></div>
+    </div>
+
+    <div class="grid2">
+      <div>
+        <p class="rule-label" style="margin-top:0">基金基本信息</p>
+        <table>
+          <tbody>
+            <tr><td style="width:40%" class="fw6">基金全称</td><td>华夏大悦城购物中心封闭式基础设施证券投资基金</td></tr>
+            <tr><td class="fw6">代码 / 简称</td><td>180603 · 华夏大悦城商业REIT</td></tr>
+            <tr><td class="fw6">合同生效日</td><td>2024年9月3日</td></tr>
+            <tr><td class="fw6">存续期限</td><td>24年(至2048/9/2)可展期</td></tr>
+            <tr><td class="fw6">上市交易所</td><td>深圳证券交易所(2024/9/20上市)</td></tr>
+            <tr><td class="fw6">基金管理人</td><td>华夏基金管理有限公司</td></tr>
+            <tr><td class="fw6">运营管理机构</td><td>大悦城商业运营管理(天津)有限公司</td></tr>
+            <tr><td class="fw6">原始权益人</td><td>卓远地产(成都)有限公司 · 持40%战配份额</td></tr>
+            <tr><td class="fw6">份额总数</td><td>10亿份(不可扩募除非持有人大会决议)</td></tr>
+            <tr class="hl-g"><td class="fw6">期末净值</td><td><span class="c-gold fw6">3.1652元/份</span> (vs. 2024年末3.3225元)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <p class="rule-label" style="margin-top:0">底层资产信息</p>
+        <table>
+          <tbody>
+            <tr><td style="width:40%" class="fw6">项目名称</td><td>成都大悦城(唯一底层资产)</td></tr>
+            <tr><td class="fw6">项目地点</td><td>四川省成都市武侯区大悦路518号</td></tr>
+            <tr><td class="fw6">项目定位</td><td>AAA潮玩购物公园 · 城西商圈标杆</td></tr>
+            <tr><td class="fw6">开业时间</td><td>2015年12月(运营10年)</td></tr>
+            <tr><td class="fw6">总建面 / 商业建面</td><td>172,540.69㎡ / 137,403.86㎡</td></tr>
+            <tr><td class="fw6">可租面积</td><td>85,590.84㎡(车位633个)</td></tr>
+            <tr class="hl-g"><td class="fw6">出租率(年末)</td><td><span class="c-g fw6">98.10%</span>(2024年持平)</td></tr>
+            <tr class="hl-g"><td class="fw6">租金单价</td><td><span class="c-g fw6">362.75元/㎡/月</span>(含增值税)</td></tr>
+            <tr class="hl-g"><td class="fw6">租金收缴率</td><td><span class="c-g fw6">100.00%</span>(2024年99.97%)</td></tr>
+            <tr><td class="fw6">剩余租期</td><td>3.16年(加权平均)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="cl-eye">Three Core Metrics · 三个"铁三角"指标</div>
+      <div class="cl-main">商业REIT底层资产的健康度,首先看三个数:<strong>出租率、租金单价、收缴率</strong>。成都大悦城2025年同时给出了 <strong>98.10%、362.75元、100.00%</strong> 的组合——这是满分答卷。这三个数一旦松动,估值逻辑就要重新审视。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §4 资产深度解剖 ═══════════ -->
+<section class="sec" id="s4">
+  <div class="sec-head">
+    <div class="sec-num">04<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">成都大悦城 · 资产深度解剖<span class="en">ASSET ANATOMY · DEEP DIVE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>一栋购物中心的投资价值,不在于它的"账面净值",而在于它<strong>未来能持续赚多少钱,以及这种赚钱能力的稳定性</strong>。我们从地段、业态、租户、竞争四个维度逐一拆解。</p>
+
+      <p class="rule-label">01 · 地段 — 决定租金上限的第一变量</p>
+
+      <div class="grid2-73">
+        <div class="prose">
+          <p>成都大悦城位于<strong>武侯区城西商圈</strong>,这是一个需要专门讲清楚的位置。成都的商业格局是"双中心+多组团":</p>
+          <ul style="padding-left:20px;line-height:1.8;color:var(--ink2);font-size:13.5px">
+            <li><strong>绝对标杆区:</strong>春盐商圈(成都IFS、太古里)——高端、免税、全国销售前列,对标上海恒隆</li>
+            <li><strong>新兴增长极:</strong>交子商圈(城南新兴)——双百亿商圈、新开商业占城市38%</li>
+            <li><strong>成熟区域级商圈:</strong>城西商圈——成都大悦城所在——<em>成熟稳定、无大型新增竞品</em></li>
+          </ul>
+          <p>年报披露,项目<strong>周边5公里范围内,2025年没有大体量新增竞品开业</strong>。原本最大的潜在竞争者"武侯万达广场"转型为"尚品奥莱",截至报告期末仍在招商,定位差异化(新中产奥莱)与大悦城不构成直接竞争。另一个新开的"龙湖欢肆"(3.6万㎡)定位"全时段美食社交场",与大悦城的"潮玩购物公园"也是错位定位。</p>
+          <div class="tip">
+            <div class="tl">Why It Matters · 为什么地段稳定很重要</div>
+            购物中心和住宅不同,它的租金上限由<strong>周边3-5公里内商业存量决定</strong>。任何一个大型新项目开业,都会瓜分客流。大悦城城西商圈2025年的"供给停滞"+"消费复苏",是一个少见的"甜蜜时间窗"。
+          </div>
+        </div>
+        <div>
+          <div class="chart-box">
+            <div class="chart-title">▪ 武侯区人口密度优势</div>
+            <div style="font-family:'IBM Plex Mono';font-size:10px;color:var(--muted);line-height:1.8">
+              ◆ 武侯区常住人口密度<br>稳居成都前列<br><br>
+              ◆ 核心客群18-35岁新兴阶层<br>项目3公里范围高知从业者密集<br><br>
+              ◆ 武侯新城"产城融合"<br>距项目3公里 · 西部智谷产业聚集<br><br>
+              ◆ 产业→人口→消费正循环<br>区域级商圈稳定升级逻辑
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">02 · 业态与空间 — 决定客群粘性</p>
+
+      <div class="grid2">
+        <div>
+          <table>
+            <thead><tr><th>业态分层</th><th>面积占比</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr class="hl-g"><td class="fw6 c-gold">主力店</td><td class="num">15.83%</td><td>引流器(通常是超市、影院、旗舰零售)</td></tr>
+              <tr><td class="fw6">次主力店</td><td class="num">29.04%</td><td>带流量品牌(餐饮主力、运动、化妆品)</td></tr>
+              <tr class="hl-a"><td class="fw6">专门店</td><td class="num">55.13%</td><td>核心盈利 · <span class="c-g fw6">单位租金最高</span></td></tr>
+              <tr class="grand"><td>租户数(不含岛柜)</td><td class="num">342个</td><td>分散度充足</td></tr>
+            </tbody>
+          </table>
+          <p class="prose" style="margin-top:10px;font-size:13px">这个配比是一个<em>经典的高端购物中心结构</em>。专门店占比55%意味着租金定价权高,但依赖运营能力;主力店/次主力店接近45%,意味着引流稳定。大悦城全年品牌调改率15.76%,新引入首店42家——这个调改节奏在存量时代相当领先。</p>
+        </div>
+        <div>
+          <div style="margin-bottom:16px">
+            <div class="tiny-mono" style="margin-bottom:10px">▪ 2025年运营亮点数据</div>
+            <div class="bar-row"><div class="bar-lbl">销售额 YoY</div><div class="bar-bg"><div class="bar-fill" style="width:61.2%;background:var(--olive)">6.12%</div></div><div class="bar-val c-g">+6.12%</div></div>
+            <div class="bar-row"><div class="bar-lbl">客流 YoY</div><div class="bar-bg"><div class="bar-fill" style="width:26.1%;background:var(--teal)">2.61%</div></div><div class="bar-val c-teal">+2.61%</div></div>
+            <div class="bar-row"><div class="bar-lbl">十周年单日客流</div><div class="bar-bg"><div class="bar-fill" style="width:68%;background:var(--gold)">+68%</div></div><div class="bar-val c-gold">20万</div></div>
+            <div class="bar-row"><div class="bar-lbl">十周年单日销售</div><div class="bar-bg"><div class="bar-fill" style="width:36%;background:var(--rust)">+36%</div></div><div class="bar-val c-rust">3,000万</div></div>
+            <div class="bar-row"><div class="bar-lbl">会员总量 YoY</div><div class="bar-bg"><div class="bar-fill" style="width:50.45%;background:var(--plum)">10.09%</div></div><div class="bar-val c-plum">120万</div></div>
+            <div class="bar-row"><div class="bar-lbl">首店引入</div><div class="bar-bg"><div class="bar-fill" style="width:42%;background:var(--navy)">42家</div></div><div class="bar-val c-gold">42家</div></div>
+            <div class="bar-row"><div class="bar-lbl">品牌调改率</div><div class="bar-bg"><div class="bar-fill" style="width:15.76%;background:var(--olive)">15.76%</div></div><div class="bar-val">15.76%</div></div>
+          </div>
+          <div class="term">
+            <div class="t-name">品牌调改率<span class="en">BRAND REFRESH RATE</span></div>
+            <div class="t-def">一年内淘汰+新进的租户占总租户的比例。<span class="hl">这是购物中心最重要的运营健康度指标</span>:太低(&lt;8%)意味着业态固化缺乏活力,太高(&gt;25%)意味着招商不稳定。<strong>15-18%是优秀区间</strong>。</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">03 · 租户结构 — 收入分散度决定风险</p>
+
+      <div class="grid2-73">
+        <div>
+          <table>
+            <thead><tr><th>租户</th><th>年租金(万元)</th><th>占总租金</th><th>解读</th></tr></thead>
+            <tbody>
+              <tr><td class="fw6">租户A</td><td class="num">720.55</td><td class="num">2.39%</td><td>极低集中度</td></tr>
+              <tr><td>租户B</td><td class="num">383.06</td><td class="num">1.27%</td><td>—</td></tr>
+              <tr><td>租户C</td><td class="num">336.25</td><td class="num">1.12%</td><td>—</td></tr>
+              <tr><td>租户D</td><td class="num">334.56</td><td class="num">1.11%</td><td>—</td></tr>
+              <tr><td>租户E</td><td class="num">302.33</td><td class="num">1.00%</td><td>—</td></tr>
+              <tr class="hl-g"><td class="fw6">Top 5合计</td><td class="num fw6">2,076.75</td><td class="num c-g fw6">6.89%</td><td>单租户风险极低</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="good">
+          <div class="tl">租户集中度评分</div>
+          没有任何单一租户占比超过5%,Top 5合计不到10%。<strong>这是一个近乎理想的分散结构</strong>。作为对比:物流REITs里往往存在单租户占比20%+的情况(如京东租下80%面积),那种一旦主租户退租就会引发估值塌方——本项目完全没有这种风险。
+        </div>
+      </div>
+
+      <p class="rule-label">04 · 剩余租期 — 未来收入的可见度</p>
+
+      <div class="callout">
+        <div class="cl-eye">A Subtle but Critical Metric</div>
+        <div class="cl-main">加权平均剩余租期<strong>3.16年</strong>(2024年末3.43年,同比<strong>-7.85%</strong>)。这意味着未来3年内,大悦城有相当一部分租约要到期续签。<strong>续签能不能拿到好的租金,是未来分派能否增长的核心变量。</strong>出租率98.10%+周边无新增供给的宏观环境下,我们倾向认为续签能力较强,但必须作为监控重点。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §5 收入结构 ═══════════ -->
+<section class="sec" id="s5">
+  <div class="sec-head">
+    <div class="sec-num">05<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">收入结构 · 租金+多经拆解<span class="en">REVENUE STRUCTURE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>把项目公司3.37亿营业收入(项目公司口径,比基金合并口径的3.41亿略低,差额为基金层利息+分红)拆到业务明细,你会看到一个标准的购物中心收入画像:</p>
+
+      <div class="grid2-73">
+        <div>
+          <table>
+            <thead><tr><th>收入类别</th><th>2025金额(万元)</th><th>占比</th><th>性质</th></tr></thead>
+            <tbody>
+              <tr class="hl-g"><td class="fw6 c-gold">① 租金收入</td><td class="num fw6">28,367.87</td><td class="num">84.15%</td><td>核心 · 含固定+抽成+推广</td></tr>
+              <tr><td class="fw6">② 物业管理费</td><td class="num">5,068.27</td><td class="num">15.04%</td><td>成本加成 · 较稳</td></tr>
+              <tr><td class="fw6">③ 广告收入</td><td class="num">211.37</td><td class="num">0.63%</td><td>广告位租金</td></tr>
+              <tr><td class="fw6">④ 停车场</td><td class="num">55.34</td><td class="num">0.16%</td><td>—</td></tr>
+              <tr><td class="fw6">⑤ 其他</td><td class="num">5.51</td><td class="num">0.02%</td><td>—</td></tr>
+              <tr class="grand"><td>合计</td><td class="num">33,708.38</td><td class="num">100.00%</td><td>项目公司口径</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="term">
+            <div class="t-name">租金的三重构成<span class="en">RENT COMPOSITION</span></div>
+            <div class="t-def">购物中心的"租金"其实是个复合概念,通常包括:<br>
+              ▪ <span class="hl">固定租金</span>——每月一笔定额,确定性最高<br>
+              ▪ <span class="hl">抽成租金(提成租金)</span>——按商户销售额的一定百分比,随销售波动<br>
+              ▪ <span class="hl">推广费</span>——商户缴纳的营销合作分摊费<br>
+              <strong>抽成占比越高,REIT对零售景气度越敏感。</strong>大悦城历史抽成占固定租金约12.5%(2024年评估假设14.5%,2025年调整为12.5%),比例适中。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-eye">Revenue Quality · 收入质量审视</div>
+        <div class="cl-main">大悦城收入结构<strong>84%来自租金、15%来自物管费</strong>,广告和停车场不到1%。这意味着<strong>经营波动主要取决于"租金单价"和"出租率"两个核心变量</strong>——而这两个变量2025年都是同比微升状态(租金单价+0.74%、出租率持平98.10%)。<em>这是一个"量价齐稳"的模型,波动性天然较低。</em></div>
+      </div>
+
+      <p class="rule-label">租金单价的同店对比 — 扣除面积和基期影响</p>
+
+      <p>年报原文披露租金单价同比+0.74%(362.75 vs 360.10元/㎡/月),但注意基期只有2024年9月11日至12月31日。更有说服力的是<strong>评估机构在2025年末调整的预测参数</strong>:主力店固定租金单价从"22-122元"上调到"25-127元"/㎡/月,约<em>+13.6%~+4.1%</em>的提档。这反映了评估机构对项目持续调改后租金tier升级的认可。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §6 成本结构 ═══════════ -->
+<section class="sec" id="s6">
+  <div class="sec-head">
+    <div class="sec-num">06<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">成本结构 · 看懂每一笔钱去了哪里<span class="en">COST STRUCTURE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>成本端是区分"纯商业分析"和"REIT特有分析"的分水岭。项目公司2025年营业成本/费用合计<strong>4.65亿</strong>,看起来<em>比收入3.37亿还大</em>——如果不理解结构,你会误以为这是亏损项目。拆开看就清晰了:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>成本项</th><th>金额(万元)</th><th>占比</th><th>性质分类</th><th>是否真实现金流出</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl-g">
+            <td class="fw6 c-gold">① 折旧摊销</td>
+            <td class="num fw6">13,686.78</td>
+            <td class="num">29.44%</td>
+            <td>非现金</td>
+            <td class="c-g fw6">✗ 账面数字</td>
+          </tr>
+          <tr>
+            <td class="fw6">② 物业运营成本</td>
+            <td class="num">9,815.23</td>
+            <td class="num">21.11%</td>
+            <td>现金 · 运营</td>
+            <td class="c-r">✓ 真实流出</td>
+          </tr>
+          <tr>
+            <td class="fw6">③ 租赁成本(能源保险等)</td>
+            <td class="num">806.62</td>
+            <td class="num">1.73%</td>
+            <td>现金 · 运营</td>
+            <td class="c-r">✓ 真实流出</td>
+          </tr>
+          <tr>
+            <td class="fw6">④ 税金及附加</td>
+            <td class="num">3,921.92</td>
+            <td class="num">8.44%</td>
+            <td>现金 · 税务</td>
+            <td class="c-r">✓ 真实流出</td>
+          </tr>
+          <tr>
+            <td class="fw6">⑤ 管理费用</td>
+            <td class="num">43.01</td>
+            <td class="num">0.09%</td>
+            <td>现金 · 微小</td>
+            <td class="c-r">✓ 真实流出</td>
+          </tr>
+          <tr class="hl-r">
+            <td class="fw6 c-rust">⑥ 财务费用</td>
+            <td class="num fw6">18,220.12</td>
+            <td class="num">39.19%</td>
+            <td><strong>内部账·股东借款利息</strong></td>
+            <td class="c-g fw6">✗ 合并抵消</td>
+          </tr>
+          <tr class="grand">
+            <td>合计</td>
+            <td class="num">46,493.68</td>
+            <td class="num">100.00%</td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="callout">
+        <div class="cl-eye">The Crucial Two Bars · 两项大头的真相</div>
+        <div class="cl-main">占总成本<strong>68.6%的两项(折旧摊销29.4% + 财务费用39.2%)</strong>在基金合并层面都<em>不是真实现金流出</em>。折旧是会计对固定资产使用的账面分摊,财务费用是内部股东借款利息(从项目公司流向专项计划再到基金)。<strong>这就是为什么"看上去亏钱"的项目公司,实际上每年能派1.82亿真金白银给持有人。</strong></div>
+      </div>
+
+      <div class="formula">
+        <div>关键转换:从项目公司净利润到基金可供分配金额</div>
+        <div class="f-eq">Distributable CF = Net Profit + 折旧摊销 + 利息支出 − 资本支出 ± 营运资本变动 − 预留</div>
+        <div class="f-note">REITs估值的第一性原理:折旧是会计虚数,利息是内部账,真正的分派能力取决于"现金进来减去现金出去"</div>
+      </div>
+
+      <p class="rule-label">EBITDA视角 · 行业通用的利润表重构</p>
+
+      <div class="grid2">
+        <div>
+          <p><strong>EBITDA(息税折旧摊销前利润)</strong>把折旧、利息、所得税都加回去,还原出纯经营层面的盈利能力。大悦城2025年:</p>
+          <div class="formula">
+            <div class="f-eq">EBITDA = 营业收入 − 运营成本 − 物管费 − 租赁成本 − 税金</div>
+            <div style="font-size:13px;margin-top:10px">= 33,708 − 9,815 − 806 − 43 − 3,921 ≈ <span style="color:var(--rust);font-weight:700;font-size:17px">19,537万</span> (项目披露 <span class="c-teal fw6">19,536.71万</span>)</div>
+          </div>
+          <div class="tip" style="margin-top:14px">
+            <div class="tl">EBITDA率 = 57.96%</div>
+            即每100元收入,经营层面能留下58元现金。<strong>A级购物中心的优秀线是50-60%</strong>——大悦城已处顶部区间。华润万象生活持有的商场NOI margin约68%,大悦城不含商管服务费口径对比已相当接近。
+          </div>
+        </div>
+        <div>
+          <div class="term">
+            <div class="t-name">为什么REITs要专门看EBITDA而不是净利润<span class="en">WHY EBITDA</span></div>
+            <div class="t-def">REIT持有的固定资产(投资性房地产)账面价值巨大(30亿),<span class="hl">每年计提的折旧可以高达1.4亿</span>,但这笔钱并没有真实流出,只是会计做了"账"。如果看净利润,项目永远盈利能力"看起来"很差;但如果看EBITDA,才是真正的造血能力。<strong>同理,REITs估值也很少用PE,更多用EV/EBITDA或Cap Rate。</strong></div>
+          </div>
+          <div class="term">
+            <div class="t-name">毛利率 vs EBITDA率的差别<span class="en">GROSS MARGIN vs EBITDA</span></div>
+            <div class="t-def">毛利率(27.89%)是扣除了折旧摊销和财务费用后的;EBITDA率(57.96%)把折旧和利息加回去。<strong>对商业REIT来说,EBITDA率更有参考意义</strong>——因为折旧和利息都是"制度性"开支,反映不了真实运营。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §7 现金流三问 ═══════════ -->
+<section class="sec" id="s7">
+  <div class="sec-head">
+    <div class="sec-num">07<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">现金流三问 · 可供分配金额是怎么算的<span class="en">DISTRIBUTABLE CASH FLOW</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>这是整个REITs投研最核心的章节。<strong>"可供分配金额"不是利润,而是一个特殊调整后的现金流概念</strong>——理解了它的计算逻辑,你就理解了REITs的本质。</p>
+
+      <p>国际上类似概念叫<strong>FFO (Funds From Operations)</strong>和<strong>AFFO (Adjusted FFO)</strong>,中国REITs监管规则借鉴了这套方法,但有本土化改造。我们用大悦城2025年的真实算式走一遍:</p>
+
+      <div class="chart-box">
+        <div class="chart-title">▪ 从合并净利润到可供分配金额的瀑布(单位:元)</div>
+        <div style="font-family:'IBM Plex Mono';font-size:12px;line-height:2;padding:8px 0">
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)">
+            <span>1. 合并净利润(起点)</span>
+            <span class="c-gold fw6">+ 37,778,435</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--olive-bg);padding-left:20px;padding-right:10px">
+            <span>2. 加回折旧摊销(非现金)</span>
+            <span class="c-g fw6">+ 142,954,352</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--olive-bg);padding-left:20px;padding-right:10px">
+            <span>3. 加回利息支出(合并层面已抵消,此处为口径统一)</span>
+            <span class="c-g fw6">+ 0</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--olive-bg);padding-left:20px;padding-right:10px">
+            <span>4. 加回所得税费用</span>
+            <span class="c-g fw6">+ 1,797,913</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:2px solid var(--ink);font-weight:700">
+            <span>= EBITDA(税息折旧摊销前利润)</span>
+            <span class="c-gold">182,530,701</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);padding-left:20px;padding-right:10px">
+            <span>5. 加:其他调整(货基投资收益等)</span>
+            <span class="c-g">+ 5,696,728</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);padding-left:20px;padding-right:10px">
+            <span>6. 加:应收应付变动净额</span>
+            <span class="c-g">+ 8,858,748</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--rust-bg);padding-left:20px;padding-right:10px">
+            <span>7. 减:未来合理支出预留(运营费/税金/押金等)</span>
+            <span class="c-r fw6">− 20,875,544</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--rust-bg);padding-left:20px;padding-right:10px">
+            <span>8. 减:资本性支出(CapEx · 修缮改造)</span>
+            <span class="c-r fw6">− 13,578,874</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);background:var(--rust-bg);padding-left:20px;padding-right:10px">
+            <span>9. 减:已支付利息和所得税</span>
+            <span class="c-r fw6">− 22,243,327</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:12px 0;background:var(--ink);color:var(--bg);padding-left:20px;padding-right:10px;font-size:14px">
+            <span style="font-weight:700">▸ 可供分配金额(2025)</span>
+            <span style="color:var(--gold-l);font-weight:800;font-size:16px">= 182,139,521</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;padding-left:20px;padding-right:10px;font-size:12px;color:var(--muted)">
+            <span>单位可供分配金额 = 1.82亿 / 10亿份</span>
+            <span>= 0.1821元</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid3" style="margin-top:20px">
+        <div class="card gold">
+          <div class="c-title">第一问 <span class="num">Q1</span></div>
+          <div class="c-body"><strong>为什么加回折旧?</strong><br>因为折旧1.43亿是会计账面扣减,真实资金并没有离开项目公司。如果不加回,这些现金就"找不到"了。这是REITs分派能高于净利润的根本原因。</div>
+        </div>
+        <div class="card teal">
+          <div class="c-title">第二问 <span class="num">Q2</span></div>
+          <div class="c-body"><strong>为什么要扣除CapEx(1.36亿元)?</strong><br>购物中心每年需要修缮、改造、更换设备(电梯/空调/地面/装修等),这些是维持资产价值必需的"再投资"。如果不扣,分派就是"吃老本"。</div>
+        </div>
+        <div class="card rust">
+          <div class="c-title">第三问 <span class="num">Q3</span></div>
+          <div class="c-body"><strong>为什么要预留2,087万?</strong><br>现金流有季节性波动,预留可以应对下季度的运营费、税金、押金退还等。这种审慎做法保证了分派的可持续性,不会"本季度分光下季度发不出"。</div>
+        </div>
+      </div>
+
+      <p class="rule-label">可供分配 vs 实际分配 — 为什么2025年实际分配(1.95亿)高于可供分配(1.82亿)</p>
+
+      <div class="tip">
+        <div class="tl">超额分配的来源</div>
+        2024年9-12月项目生成的<strong>可供分配金额5,894万没有分掉</strong>(上市初期首次分红到账时间跨度短),而是预留到2025年分配。加上2025年本期的1.82亿,所以实际分了1.95亿(=1.82 + 部分2024结余)。<strong>这告诉我们:可供分配金额和实际分配金额并非一一对应,存在年度间平滑机制。</strong>
+      </div>
+
+      <div class="formula">
+        <div>两个关键派息率指标(均用"当期可供分配金额"作分子)</div>
+        <div class="f-eq">现金流分派率 = 可供分配金额 ÷ 期末市值 · 反映当下买入的派息收益率</div>
+        <div class="f-eq">按募集规模分派率 = 可供分配金额 ÷ 基金募集规模(33.23亿) × 年化</div>
+        <div class="f-note">2025年报披露:按期末市值分派率 3.96%(数据受期末市价影响),按募集规模口径 <span class="c-gold fw6">5.48%</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §8 DCF估值 ═══════════ -->
+<section class="sec" id="s8">
+  <div class="sec-head">
+    <div class="sec-num">08<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">估值模型一 · DCF收益法(主方法)<span class="en">DCF VALUATION MODEL</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>商业REITs的评估主方法是<strong>DCF(Discounted Cash Flow,现金流折现法)</strong>。逻辑很直白:这栋楼未来每年能产生多少现金流,把这些未来的现金按某个折现率折算到今天,加总就是今天的公允价值。</p>
+
+      <div class="formula">
+        <div class="f-eq">V₀ = Σ[CFₜ ÷ (1+r)^t] + TV ÷ (1+r)^n</div>
+        <div class="f-note">V₀=今日价值 · CFₜ=第t年运营净现金流 · r=折现率 · TV=终值(永续现金流现值)</div>
+      </div>
+
+      <p class="rule-label">DCF的三个核心参数:折现率、长期增长率、预测期现金流</p>
+
+      <div class="grid3">
+        <div class="card gold">
+          <div class="c-title">① 折现率(r)<span class="num">6.75%</span></div>
+          <div class="c-body">
+            <strong>2025年从7%调降至6.75%</strong>,原因是无风险利率下行。怎么理解?折现率=无风险利率+资产风险溢价。国债收益率2024-2025持续走低,所以REIT合理折现率也下调。<br><br>
+            <em>敏感性:折现率每降25bp,估值通常+3~5%;每升25bp,-3~5%。</em>
+          </div>
+        </div>
+        <div class="card teal">
+          <div class="c-title">② 长期增长率(g)<span class="num">2.25%</span></div>
+          <div class="c-body">
+            <strong>2025年从2.75%调降至2.25%</strong>,反映宏观增速预期下调。长期g是永续阶段的假设,体现"通胀+租金成长"的混合预期。<br><br>
+            <em>敏感性:g每降25bp,估值通常-3~5%。大悦城2025折现率降25bp + g降50bp,两个调整"互相抵消",所以整体估值变化很小。</em>
+          </div>
+        </div>
+        <div class="card rust">
+          <div class="c-title">③ 预测期现金流<span class="num">10年</span></div>
+          <div class="c-body">
+            <strong>预测期平均出租率从95.8%→96.2%</strong>,反映项目实际运营超预期(历史3年均98%),评估机构上调预期。<br><br>
+            <em>主力店租金单价从22-122元上调至25-127元/㎡/月,抽成比例从14.5%下调至12.5%(尊重历史数据)。</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-title">▪ 关键评估参数:2024 vs 2025对比</div>
+        <table style="margin:0">
+          <thead>
+            <tr>
+              <th>参数</th><th>2024评估值</th><th>2025评估值</th><th>变化方向</th><th>对估值影响</th><th>调整理由</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl-g">
+              <td class="fw6">主力店固定租金</td>
+              <td class="num">22-122元/㎡/月</td>
+              <td class="num">25-127元/㎡/月</td>
+              <td class="c-g">↑ 上调</td>
+              <td class="c-g">正向(较小)</td>
+              <td>内部动线优化后主力店展示面改善</td>
+            </tr>
+            <tr>
+              <td class="fw6">预测期平均出租率</td>
+              <td class="num">95.8%</td>
+              <td class="num">96.2%</td>
+              <td class="c-g">↑ 上调</td>
+              <td class="c-g">正向(较小)</td>
+              <td>历史3年实际出租率均值已达98%</td>
+            </tr>
+            <tr class="hl-r">
+              <td class="fw6">抽成占固定租金比例</td>
+              <td class="num">14.5%</td>
+              <td class="num">12.5%</td>
+              <td class="c-r">↓ 下调</td>
+              <td class="c-r">负向(较小)</td>
+              <td>反映过去3年实际经营数据</td>
+            </tr>
+            <tr class="hl-g">
+              <td class="fw6 c-gold">折现率</td>
+              <td class="num">7.00%</td>
+              <td class="num">6.75%</td>
+              <td class="c-g">↓ 下调</td>
+              <td class="c-g fw6">正向(显著)</td>
+              <td>无风险利率下行 · 参考同业新基准</td>
+            </tr>
+            <tr class="hl-r">
+              <td class="fw6 c-rust">长期增长率</td>
+              <td class="num">2.75%</td>
+              <td class="num">2.25%</td>
+              <td class="c-r">↓ 下调</td>
+              <td class="c-r fw6">负向(显著)</td>
+              <td>宏观经济增速预期调整</td>
+            </tr>
+            <tr class="grand">
+              <td>综合估值变化</td>
+              <td class="num">32.85亿</td>
+              <td class="num">32.48亿</td>
+              <td class="c-a">-1.1%</td>
+              <td>基本持平</td>
+              <td>正负影响互相抵消</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <div class="cl-eye">Insight · 评估结果的真实信息量</div>
+        <div class="cl-main">表面看估值微降1.1%,似乎没什么信息。但是<strong>把两个调整分开来看,才能读懂评估机构的真实判断</strong>:折现率下调(+估值)被长期增长率下调(-估值)抵消,意味着评估机构认为<em>"宏观增速预期转弱"与"利率下行"两个力量当前等量对冲</em>。如果未来继续降息而宏观增速企稳,估值就会进入上行通道。<strong>这是一个非常平衡但略偏谨慎的假设组合。</strong></div>
+      </div>
+
+      <p class="rule-label">DCF模型的敏感性 — 估值对假设的脆弱性</p>
+
+      <p>DCF最大的弱点是<em>"Garbage In, Garbage Out"</em>——输入假设稍变,输出天翻地覆。我们做一个简单敏感性分析,以2025年末运营净收益20,503万元为基础,假设长期稳态:</p>
+
+      <div class="chart-box">
+        <div class="chart-title">▪ 敏感性矩阵 · 估值(亿元)对折现率与长期增长率的反应</div>
+        <table style="margin:0;font-size:11.5px">
+          <thead>
+            <tr>
+              <th style="width:18%">折现率↓ / g→</th>
+              <th>g = 1.75%</th>
+              <th>g = 2.00%</th>
+              <th>g = 2.25%(当前)</th>
+              <th>g = 2.50%</th>
+              <th>g = 2.75%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="fw6">r = 6.25%</td><td class="num">45.6</td><td class="num">48.2</td><td class="num">51.3</td><td class="num c-g fw6">54.9</td><td class="num c-g fw6">59.3</td></tr>
+            <tr><td class="fw6">r = 6.50%</td><td class="num">43.2</td><td class="num">45.5</td><td class="num">48.2</td><td class="num">51.4</td><td class="num c-g">55.1</td></tr>
+            <tr class="hl-g"><td class="fw6 c-gold">r = 6.75%(当前)</td><td class="num">41.1</td><td class="num">43.2</td><td class="num fw6 c-gold">32.48(评估值)</td><td class="num">48.5</td><td class="num">51.7</td></tr>
+            <tr><td class="fw6">r = 7.00%</td><td class="num">39.2</td><td class="num">41.1</td><td class="num">43.3</td><td class="num">45.9</td><td class="num">48.8</td></tr>
+            <tr><td class="fw6">r = 7.25%</td><td class="num c-r">37.4</td><td class="num">39.2</td><td class="num">41.2</td><td class="num">43.5</td><td class="num">46.1</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.6">
+          注:上表为简化敏感性模型(Gordon模型公式V=CF/(r-g)),与戴德梁行多期DCF模型口径不同,差异来自评估还考虑了10年预测期逐年调整、CapEx、租约到期节点等细节,以及折现率包含残值假设。但<strong>相对敏感性的方向和量级可供参考</strong>。
+        </div>
+      </div>
+
+      <div class="term">
+        <div class="t-name">Gordon增长模型的理论基础<span class="en">GORDON GROWTH MODEL</span></div>
+        <div class="t-def">最简化的永续现金流估值公式:<span class="hl">V = CF / (r − g)</span>,即一笔以恒定g%增长的永续现金流的现值等于第一年现金流除以"折现率减增长率"。<strong>这个公式的直觉很重要:折现率和增长率之差(r-g),决定了估值对变化的敏感度。</strong>大悦城当前r-g = 6.75% - 2.25% = 4.5%,意味着每降低25bp,相当于r-g下降5.5%,估值上涨约5.8%。如果利率进一步下行(r→6.5%),或宏观回暖(g→2.5%),估值弹性空间相当可观。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §9 Cap Rate ═══════════ -->
+<section class="sec" id="s9">
+  <div class="sec-head">
+    <div class="sec-num">09<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">估值模型二 · Cap Rate反推与分派率<span class="en">CAP RATE &amp; DIVIDEND YIELD</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>DCF需要构建完整的未来现金流预测,复杂且假设敏感。投资者日常研究更常用的是<strong>Cap Rate(资本化率,又称资产收益率)</strong>——一个无比简洁的指标,但价值巨大。</p>
+
+      <div class="formula">
+        <div class="f-eq">Cap Rate = NOI ÷ 资产价值</div>
+        <div class="f-note">NOI (Net Operating Income,运营净收益) = 收入 − 运营相关成本(扣除财务费用和折旧之前)</div>
+      </div>
+
+      <p>大悦城2025年:<strong>NOI = 2.05亿(项目披露20,503万)</strong>,评估值32.48亿。</p>
+
+      <div class="formula">
+        <div class="f-eq">Cap Rate = 2.05 / 32.48 = <span style="color:var(--rust);font-weight:700;font-size:18px">6.31%</span></div>
+        <div class="f-note">等同说:每投入1亿买下这栋楼,每年能产生6.31%的运营净收益(税前、折旧前)</div>
+      </div>
+
+      <div class="term">
+        <div class="t-name">Cap Rate的三重用法<span class="en">THREE USES OF CAP RATE</span></div>
+        <div class="t-def">
+          ① <span class="hl">定价校验</span>:看同类优质商业资产的成交/评估Cap Rate,反推某资产的合理估值。<br>
+          ② <span class="hl">历史比较</span>:一个项目Cap Rate的变化,反映其相对其他资产类别吸引力的变化。<br>
+          ③ <span class="hl">跨类比较</span>:Cap Rate和10年期国债收益率的差,叫"风险溢价",是判断不动产是否超买/超卖的晴雨表。<br><br>
+          <strong>经验值:</strong>中国一线城市核心商圈购物中心 Cap Rate 4-5%;二线核心商圈 5-6%;区域级商圈 6-7%。成都大悦城6.31%属于"优质二线区域级"合理区间。
+        </div>
+      </div>
+
+      <p class="rule-label">REITs二级市场特有的"分派率" — 真实的投资者持有收益</p>
+
+      <p>REITs除了底层资产的Cap Rate,还有一个投资者视角的关键指标:<strong>现金流分派率</strong>。这是投资人最关心的一个数——"买这只REIT,年化能拿到多少现金"。</p>
+
+      <div class="grid2">
+        <div>
+          <div class="formula">
+            <div>用年报原始口径</div>
+            <div class="f-eq">现金流分派率 = 可供分配金额 ÷ 期末市值</div>
+            <div class="f-note">分母"期末市值"会随二级市场价格每天变化</div>
+          </div>
+          <div class="formula">
+            <div>用募集规模口径(更稳定)</div>
+            <div class="f-eq">按规模分派率 = 可供分配金额 ÷ 募集规模</div>
+            <div class="f-note">2025: 1.82亿 / 33.23亿 = <span class="c-gold fw6">5.48%</span></div>
+          </div>
+        </div>
+        <div>
+          <p class="prose" style="margin:0">这两个口径的关系很微妙。假如REIT二级市场价格大涨,意味着期末市值扩大,<strong>现金流分派率就会被动下降</strong>(分母变大)。反之若二级价格下跌,分派率上升——这是REIT价格自带的"负反馈机制":下跌买入获得更高分派率,上涨时分派率收缩抑制追涨。</p>
+          <div class="tip" style="margin-top:14px">
+            <div class="tl">记住这个心智模型</div>
+            Cap Rate 是<strong>资产本身</strong>的收益率(与市场价格无关),分派率是<strong>当前市场价位</strong>下你能拿到的收益率。两者的差来自:REIT基金层税费、管理费、预留调整等。
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">分派率与10年期国债的相对吸引力</p>
+
+      <div class="chart-box">
+        <div class="chart-title">▪ 分派率定位判断(2026年4月数据)</div>
+        <div style="font-family:'IBM Plex Mono';font-size:12px;line-height:2.2">
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)">
+            <span>▪ 10年期国债收益率(参考)</span>
+            <span style="color:var(--muted)">~1.9% · 无风险</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)">
+            <span>▪ 大悦城REIT按募集规模分派率</span>
+            <span class="c-gold fw6">5.48%</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)">
+            <span>▪ 隐含风险溢价</span>
+            <span class="c-gold fw6">≈ 358 bps</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line)">
+            <span>▪ 通常商业REIT合理风险溢价区间</span>
+            <span style="color:var(--muted)">250-400 bps</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:10px 0;background:var(--gold-bg);padding-left:10px">
+            <span class="fw6">▸ 结论</span>
+            <span class="c-gold fw6">处于合理区间中枢,既非明显低估也非高估</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="cl-eye">A Practical Rule of Thumb</div>
+        <div class="cl-main">对<strong>新开业/无扩张能力的商业REIT</strong>,合理的"分派率 − 10年国债"差在<strong>250-400bps</strong>之间。差值&lt;250bps说明市场给了成长溢价(可能偏贵);&gt;400bps说明市场在定价悲观(可能被低估)。<strong>大悦城358bps,属于中性区间</strong>——市场既没有过度乐观,也没有恐慌性抛售。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §10 比较法 ═══════════ -->
+<section class="sec" id="s10">
+  <div class="sec-head">
+    <div class="sec-num">10<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">估值模型三 · 市场比较法校验<span class="en">COMPARABLE SALES METHOD</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>DCF和Cap Rate都是基于"资产自身现金流"的估值,需要主观假设。<strong>市场比较法(Comparables)</strong>则完全依赖可观察的市场交易数据——看类似的楼最近卖多少钱,用单价比较。</p>
+
+      <div class="formula">
+        <div class="f-eq">估值 = 可比单价 × 本项目面积 × 因素修正系数</div>
+        <div class="f-note">修正因素包括:交易时间(时效)、地段差异、面积规模效应、业态差异等</div>
+      </div>
+
+      <p>大悦城评估报告披露:戴德梁行用<strong>周边临街商业物业</strong>作可比样本,经过交易时间、地段、个别因素等修正后,市场比较法得出<strong>32.99亿元</strong>——与收益法32.48亿元<em>差异在1.6%以内</em>,两种方法互相印证。</p>
+
+      <div class="grid2">
+        <div>
+          <div class="term">
+            <div class="t-name">市场比较法的局限<span class="en">LIMITATIONS</span></div>
+            <div class="t-def">① <span class="hl">缺乏直接可比:</span>成都本身大型购物中心大宗交易稀少,评估机构只能用"周边临街商业"修正,跨业态本身就带来失真。<br>② <span class="hl">市场周期扭曲:</span>房地产大宗交易价格带有强周期性,熊市时即使质地好的楼也成交困难。<br>③ <span class="hl">成交价 ≠ 运营价:</span>一栋楼的交易价格可能受短期卖方需要流动性等影响偏离内在价值。</div>
+          </div>
+        </div>
+        <div>
+          <div class="term">
+            <div class="t-name">为什么仍要看比较法<span class="en">WHY STILL USEFUL</span></div>
+            <div class="t-def">① <span class="hl">最硬的现实锚:</span>比任何模型假设更接近"买家愿意付多少"。<br>② <span class="hl">检测模型偏差:</span>如果DCF估值远高于比较法(差&gt;20%),就要警惕模型过度乐观。<br>③ <span class="hl">退出价值判断:</span>REIT 24年存续期到期如果清算,就是按市场比较法处置。</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">单价视角 — 成都大悦城 18,825 元/㎡</p>
+
+      <div class="tip">
+        <div class="tl">这个单价意味着什么</div>
+        32.48亿 / 17.25万㎡ = 约 <strong>18,825元/㎡</strong>。作为对比:<br>
+        ▪ 同区域临街商业物业约 2.5-3.5万元/㎡(但这是小单位零散交易)<br>
+        ▪ 北京一线商圈购物中心大宗交易约 5-8万元/㎡<br>
+        ▪ 成都高端商圈(春盐)大型购物中心估算 4-5万元/㎡<br>
+        <strong>大悦城18,825元/㎡处于成都区域级商圈合理区间</strong>,既反映了武侯区位价值,也反映了"非绝对标杆"的定位差。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §11 词典 ═══════════ -->
+<section class="sec" id="s11">
+  <div class="sec-head">
+    <div class="sec-num">11<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">关键财务术语词典<span class="en">GLOSSARY · TERMINOLOGY</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead>
+        <tr><th style="width:22%">术语</th><th style="width:28%">英文/全称</th><th>核心含义</th><th style="width:18%">大悦城2025值</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6 c-gold">NOI</td><td>Net Operating Income · 运营净收益</td><td>收入 - 运营相关成本(扣除财务费用和折旧之前),反映纯经营造血能力</td><td class="num fw6">2.05亿</td></tr>
+        <tr><td class="fw6 c-gold">EBITDA</td><td>息税折旧摊销前利润</td><td>净利润加回折旧、利息、所得税,是REITs核心利润指标</td><td class="num fw6">1.83亿</td></tr>
+        <tr class="hl-g"><td class="fw6 c-gold">Cap Rate</td><td>Capitalization Rate · 资本化率</td><td>NOI ÷ 资产价值,反映资产收益率,是REITs最核心的跨项目比较指标</td><td class="num fw6">6.31%</td></tr>
+        <tr><td class="fw6 c-teal">现金流分派率</td><td>Cash Flow Distribution Yield</td><td>可供分配金额 ÷ 市值(或募集规模),投资者实际拿到的年化现金回报</td><td class="num fw6">5.48%</td></tr>
+        <tr class="hl-t"><td class="fw6 c-teal">可供分配金额</td><td>Distributable Cash Flow</td><td>法律规定至少90%要分给持有人的那笔钱,由净利润经一系列调整得来</td><td class="num fw6">1.82亿</td></tr>
+        <tr><td class="fw6 c-teal">FFO</td><td>Funds From Operations</td><td>国际标准口径的REITs经营现金流指标,相当于中国可供分配金额前置概念</td><td class="num">(国内不披露)</td></tr>
+        <tr class="hl-t"><td class="fw6 c-teal">AFFO</td><td>Adjusted FFO</td><td>FFO扣除资本支出后,更接近可持续分派能力</td><td class="num">(国内不披露)</td></tr>
+        <tr><td class="fw6 c-plum">DCF</td><td>Discounted Cash Flow · 现金流折现法</td><td>未来现金流按折现率折算到今天,是REITs评估主方法</td><td>主估值方法</td></tr>
+        <tr class="hl-r"><td class="fw6 c-rust">折现率(r)</td><td>Discount Rate</td><td>把未来现金流折到今日的利率,=无风险利率+资产风险溢价</td><td class="num fw6">6.75%</td></tr>
+        <tr><td class="fw6 c-rust">长期增长率(g)</td><td>Terminal Growth Rate</td><td>永续阶段假设的现金流年增长率,反映通胀+租金长期成长</td><td class="num fw6">2.25%</td></tr>
+        <tr class="hl-r"><td class="fw6 c-rust">CapEx</td><td>Capital Expenditure · 资本性支出</td><td>维持资产价值和运营的必要再投资(装修、电梯更换等)</td><td class="num fw6">0.14亿</td></tr>
+        <tr><td class="fw6">主力店</td><td>Anchor Tenant</td><td>面积占比大的"引流"租户(如超市、影院、运动旗舰店)</td><td class="num">15.83%面积</td></tr>
+        <tr><td class="fw6">次主力店</td><td>Sub-Anchor</td><td>有一定引流能力但单店面积较小的品牌(如主流餐饮、轻奢)</td><td class="num">29.04%面积</td></tr>
+        <tr><td class="fw6">专门店</td><td>Specialty Store</td><td>单位面积小、租金单价高、核心盈利来源的标准店铺</td><td class="num">55.13%面积</td></tr>
+        <tr class="hl-a"><td class="fw6 c-amber">抽成租金</td><td>Percentage Rent</td><td>按商户销售额一定比例收取的可变租金,使REIT与消费景气挂钩</td><td>占固租12.5%</td></tr>
+        <tr><td class="fw6 c-amber">续租率</td><td>Renewal Rate</td><td>到期租户中选择续租的比例,反映租户粘性和项目议价力</td><td>(年报未披露)</td></tr>
+        <tr class="hl-a"><td class="fw6 c-amber">收缴率</td><td>Collection Rate</td><td>实际收到的租金/应收租金,反映租户经营健康和项目催收力</td><td class="num fw6">100.00%</td></tr>
+        <tr><td class="fw6 c-navy">股东借款</td><td>Shareholder Loan</td><td>专项计划向项目公司发放的借款,实现税务优化,基金合并层面抵消</td><td class="num fw6">22.14亿</td></tr>
+        <tr><td class="fw6 c-navy">SPV</td><td>Special Purpose Vehicle</td><td>为持有特定资产而设的壳公司,实现破产隔离</td><td>已合并</td></tr>
+        <tr><td class="fw6">基金存续期</td><td>Fund Term</td><td>基金到期日,到期可展期或清算处置底层资产</td><td class="num">24年(2048)</td></tr>
+        <tr><td class="fw6">份额净值</td><td>NAV per Unit</td><td>基金净资产/份额,会随评估值和可供分配金额的留存变化</td><td class="num fw6">3.1652元</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ §12 风险矩阵 ═══════════ -->
+<section class="sec" id="s12">
+  <div class="sec-head">
+    <div class="sec-num">12<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">风险矩阵与监测清单<span class="en">RISK MATRIX &amp; MONITORING</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:6%">#</th>
+          <th style="width:18%">风险类别</th>
+          <th style="width:28%">风险机制</th>
+          <th style="width:16%">量化影响</th>
+          <th style="width:14%">2025状态</th>
+          <th>监测指标</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-r">
+          <td class="fw6 c-rust">01</td>
+          <td class="fw6 c-rust">出租率下滑</td>
+          <td>周边新增竞品开业或消费大幅下行导致商户退租,核心收入直接减少</td>
+          <td>出租率每降1个百分点,租金收入约减少285万元</td>
+          <td class="c-g fw6">✓ 98.10%稳定</td>
+          <td>季度运营公告出租率 · 周边项目开业节奏</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-rust">02</td>
+          <td class="fw6 c-rust">租金单价承压</td>
+          <td>剩余租期3.16年,未来3年内大量租约到期,续签价格能否维持存疑</td>
+          <td>租金单价每降3%,收入减少约850万,NOI减少约500万,估值-3%</td>
+          <td class="c-a fw6">⚠ 关注</td>
+          <td>季度租金单价 · 品牌调改率 · 续租率(若披露)</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-amber">03</td>
+          <td class="fw6 c-amber">零售景气度下行</td>
+          <td>抽成租金占固租12.5%,销售额下行直接减少抽成收入</td>
+          <td>销售额每降5%,抽成收入约减180万</td>
+          <td class="c-a fw6">⚠ 温和</td>
+          <td>年报销售额YoY · 客流YoY · 消费信心指数</td>
+        </tr>
+        <tr>
+          <td class="fw6">04</td>
+          <td class="fw6">CapEx超预期</td>
+          <td>购物中心10年周期后进入改造高峰,CapEx突增会侵蚀可分配金额</td>
+          <td>CapEx每多5,000万,当年分派减少约5%</td>
+          <td class="c-g fw6">✓ 正常</td>
+          <td>中期/年报CapEx金额 · 是否进入10年翻新周期</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-amber">05</td>
+          <td class="fw6 c-amber">利率环境逆转</td>
+          <td>折现率每上升25bp,估值约降3-5%;无风险利率上行也会压低REIT分派率吸引力</td>
+          <td>估值年度下修可触发净值回撤(2025本来就已净值-4.7%)</td>
+          <td class="c-g fw6">✓ 当前友好</td>
+          <td>10年期国债收益率 · LPR · 评估报告折现率调整</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-rust">06</td>
+          <td class="fw6 c-rust">大悦城地产退市传导</td>
+          <td>原始权益人2025/11/27从港交所退市,虽然SPV结构隔离,但品牌、管理团队稳定性可能受影响</td>
+          <td>短期负面情绪 · 中期看母公司(中粮)实际运营承接</td>
+          <td class="c-a fw6">⚠ 已发生 · 持续观察</td>
+          <td>运营管理团队变动 · 品牌招商力 · 母公司(中粮)态度</td>
+        </tr>
+        <tr>
+          <td class="fw6">07</td>
+          <td class="fw6">业态调改失败</td>
+          <td>每年15-18%的品牌调改率,新进品牌若运营不佳,可能出现空租/租金回撤</td>
+          <td>调改率15.76%是正常值,但如果连续两年达改后销售不及预期,要警惕</td>
+          <td class="c-g fw6">✓ 成效良好</td>
+          <td>新引入品牌的月销售表现 · 首店数量(2025年42家)</td>
+        </tr>
+        <tr>
+          <td class="fw6">08</td>
+          <td class="fw6">基金规则/税务变动</td>
+          <td>REITs政策处于完善期,不排除税率、分派比例要求、资产注入规则调整</td>
+          <td>政策变化可能重塑估值逻辑</td>
+          <td class="c-g fw6">✓ 政策鼓励</td>
+          <td>证监会/交易所REIT新规 · 消费REITs政策</td>
+        </tr>
+        <tr>
+          <td class="fw6">09</td>
+          <td class="fw6">流动性风险</td>
+          <td>REIT二级市场成交量小,遇大规模赎回/出逃,价格波动放大</td>
+          <td>2025年有40%战配份额解禁,Q3后流通盘显著扩大</td>
+          <td class="c-a fw6">⚠ 流通盘扩大</td>
+          <td>日均成交量 · 战配解禁时间表 · 做市商表现</td>
+        </tr>
+        <tr>
+          <td class="fw6">10</td>
+          <td class="fw6">自然/不可抗力风险</td>
+          <td>地震、火灾、水灾等导致资产大面积停业</td>
+          <td>项目已购买财产一切险、营业中断险等足额保险</td>
+          <td class="c-g fw6">✓ 有保险覆盖</td>
+          <td>年报保险续保情况 · 重大出险事件</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════ §13 决策框架 ═══════════ -->
+<section class="sec" id="s13">
+  <div class="sec-head">
+    <div class="sec-num">13<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">投资决策框架与结论<span class="en">DECISION FRAMEWORK</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>把前面12章的分析汇聚成一个可操作的决策框架。我们分"<strong>基本面打分</strong>"→"<strong>估值位置判断</strong>"→"<strong>场景分析</strong>"→"<strong>监测清单</strong>"四步走。</p>
+
+      <p class="rule-label">STEP 1 · 基本面评分(七维模型)</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th style="width:18%">维度</th>
+            <th style="width:32%">考察项</th>
+            <th style="width:16%">大悦城表现</th>
+            <th style="width:10%">评分</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl-g"><td class="fw6 c-gold">资产质地</td><td>地段 · 开业年限 · 市场地位</td><td>武侯区城西标杆</td><td class="c-g fw6 num">9/10</td><td>区域级标杆但非绝对顶流</td></tr>
+          <tr class="hl-g"><td class="fw6 c-gold">运营指标</td><td>出租率 · 租金单价 · 收缴率</td><td>98.10% · 362.75元 · 100%</td><td class="c-g fw6 num">10/10</td><td>满分级别运营结果</td></tr>
+          <tr><td class="fw6">租户质量</td><td>集中度 · 业态平衡 · 续租能力</td><td>Top5占6.89%,342个租户</td><td class="c-g fw6 num">9/10</td><td>分散度极佳</td></tr>
+          <tr class="hl-g"><td class="fw6 c-gold">现金流</td><td>EBITDA率 · 分派率 · 派息可持续性</td><td>58% · 5.48% · 超预测</td><td class="c-g fw6 num">9/10</td><td>同业优秀水平</td></tr>
+          <tr><td class="fw6 c-amber">成长性</td><td>内生增长 · 扩募潜力 · 外延机会</td><td>单一资产,无扩募,内生为主</td><td class="c-a fw6 num">5/10</td><td>成长弹性有限</td></tr>
+          <tr class="hl-a"><td class="fw6 c-amber">管理层质量</td><td>运营机构专业度 · 调改能力</td><td>大悦城商管 · 15.76%调改率</td><td class="c-g fw6 num">8/10</td><td>国内商管一线水平</td></tr>
+          <tr class="hl-a"><td class="fw6 c-amber">治理稳定性</td><td>原始权益人 · 管理层变动</td><td>卓远持40% · 母公司退市</td><td class="c-a fw6 num">6/10</td><td>退市事件拖累评分</td></tr>
+          <tr class="grand"><td>综合评分</td><td>加权平均</td><td>7维整体</td><td class="num">7.9/10</td><td>优秀级别</td></tr>
+        </tbody>
+      </table>
+
+      <p class="rule-label">STEP 2 · 估值位置判断</p>
+
+      <div class="kpi-row k4">
+        <div class="kpi"><div class="kl">评估值(客观)</div><div class="kv small">32.48亿</div><div class="ks">戴德梁行 · DCF</div></div>
+        <div class="kpi teal"><div class="kl">每份内在价值</div><div class="kv teal small">3.248元</div><div class="ks">评估值/份额</div></div>
+        <div class="kpi olive"><div class="kl">净资产/份</div><div class="kv olive small">3.1652元</div><div class="ks">2025年末</div></div>
+        <div class="kpi rust"><div class="kl">分派率(募规)</div><div class="kv rust small">5.48%</div><div class="ks">按募集规模</div></div>
+      </div>
+
+      <div class="scen">
+        <div class="scen-col bear">
+          <div class="scen-tag">◆ BEAR · 悲观</div>
+          <div class="scen-head">估值下修 · 分派率走高</div>
+          <div class="scen-val">2.70-2.90元</div>
+          <ul class="scen-body" style="padding-left:16px">
+            <li>出租率降至95%+租金-5%</li>
+            <li>折现率回到7.5%</li>
+            <li>CapEx进入翻新高峰(年均3000万+)</li>
+            <li>大悦城地产退市拖累品牌</li>
+            <li>分派率升至6.2-6.5%</li>
+          </ul>
+        </div>
+        <div class="scen-col base">
+          <div class="scen-tag">◆ BASE · 基准</div>
+          <div class="scen-head">当前假设维持 · 稳定分派</div>
+          <div class="scen-val">3.10-3.30元</div>
+          <ul class="scen-body" style="padding-left:16px">
+            <li>出租率维持97%+</li>
+            <li>租金单价年+1~2%</li>
+            <li>折现率6.75% · g=2.25%</li>
+            <li>CapEx维持5%~6% of 收入</li>
+            <li>分派率5.3~5.6%</li>
+          </ul>
+        </div>
+        <div class="scen-col bull">
+          <div class="scen-tag">◆ BULL · 乐观</div>
+          <div class="scen-head">利率持续下行 · 估值重估</div>
+          <div class="scen-val">3.60-3.90元</div>
+          <ul class="scen-body" style="padding-left:16px">
+            <li>折现率进一步降至6.25%</li>
+            <li>长期增长率回升至2.5%</li>
+            <li>消费复苏带动抽成租金+15%</li>
+            <li>消费REITs板块获政策加持</li>
+            <li>分派率压缩至4.8~5.0%</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="rule-label">STEP 3 · 买入/加仓/减仓的量化规则</p>
+
+      <div class="chart-box">
+        <div class="chart-title">▪ 基于分派率的决策阈值(可按季度动态更新)</div>
+        <table style="margin:0">
+          <thead>
+            <tr>
+              <th>分派率区间</th>
+              <th>对应单位净值</th>
+              <th>信号</th>
+              <th>建议操作</th>
+              <th>仓位上限</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hl-g"><td class="fw6 c-gold">&gt; 6.0%</td><td class="num">&lt; 3.04元</td><td class="c-g fw6">严重低估</td><td>重点加仓</td><td class="num">主力仓位</td></tr>
+            <tr><td class="fw6">5.6% - 6.0%</td><td class="num">3.04-3.26元</td><td class="c-g">低估</td><td>逐步建仓</td><td class="num">半仓</td></tr>
+            <tr class="hl-a"><td class="fw6 c-amber">5.3% - 5.6%</td><td class="num">3.26-3.44元</td><td class="c-a">合理</td><td>观察 / 少量持有</td><td class="num">试仓</td></tr>
+            <tr><td class="fw6">5.0% - 5.3%</td><td class="num">3.44-3.64元</td><td class="c-a">略高</td><td>持有不加</td><td class="num">保持现状</td></tr>
+            <tr class="hl-r"><td class="fw6 c-rust">&lt; 5.0%</td><td class="num">&gt; 3.64元</td><td class="c-r fw6">偏贵</td><td>考虑减仓</td><td class="num">降低仓位</td></tr>
+          </tbody>
+        </table>
+        <div style="font-size:11px;color:var(--muted);margin-top:10px;line-height:1.6">
+          注:分派率 = 年度可供分配金额(1.82亿)/ 市值。分派率区间是基于当前可供分配金额的静态假设;如果未来分派能力显著改善(出租率或租金上行),阈值应相应调整。<strong>这张表的价值不在于绝对数字,而在于建立"分派率→决策"的映射关系。</strong>
+        </div>
+      </div>
+
+      <p class="rule-label">STEP 4 · 季度/年度监测清单</p>
+
+      <div class="grid3">
+        <div class="card teal">
+          <div class="c-title">季度公告必看<span class="num">QUARTERLY</span></div>
+          <div class="c-body">
+            ① 出租率(是否跌破97%)<br>
+            ② 销售额同比(是否&lt;0)<br>
+            ③ 客流同比(是否&lt;0)<br>
+            ④ 当期分派率公告<br>
+            ⑤ 运营团队变动
+          </div>
+        </div>
+        <div class="card gold">
+          <div class="c-title">半年报必看<span class="num">H1/H2</span></div>
+          <div class="c-body">
+            ① 租金单价变化<br>
+            ② 租户Top5/集中度<br>
+            ③ CapEx执行情况<br>
+            ④ 应收账款变动<br>
+            ⑤ 可供分配金额完成度
+          </div>
+        </div>
+        <div class="card rust">
+          <div class="c-title">年报必看<span class="num">ANNUAL</span></div>
+          <div class="c-body">
+            ① 评估值变动(5%预警)<br>
+            ② 折现率/长期增长率调整<br>
+            ③ 剩余租期(本年3.16)<br>
+            ④ 行业竞争格局变化<br>
+            ⑤ 税务/政策变动
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">综合结论</p>
+
+      <div class="callout">
+        <div class="cl-eye">Final Conclusion · 研究结论</div>
+        <div class="cl-main">
+          华夏大悦城REIT是一只<strong>"优质资产 + 优秀运营 + 合理估值"</strong>的标准型商业REIT。底层资产成都大悦城在武侯区城西商圈具备标杆地位,2025年三大铁三角指标(出租率98.1%、租金单价362元、收缴率100%)均处行业顶部区间,可供分配金额较招募预测超额完成2.92%。<strong>当前5.48%分派率对应10年国债358bps风险溢价,处于合理中枢。</strong><br><br>
+          <strong>值得警惕的是三点:</strong>① 加权平均剩余租期3.16年且同比收缩,未来3年续租压力显现;② 大悦城地产港交所退市带来的治理稳定性担忧;③ 成长性受单一资产+不可扩募约束较大。<br><br>
+          建议的<strong>配置定位</strong>是"稳健分派+通胀弹性"——它不会成为组合里的高回报明星,但可以作为类固收仓位里的"带成长的债",对冲纯债在通胀周期中的购买力损失。<em>当分派率上行至6%以上(对应单位净值跌破3.04元)是较清晰的加仓窗口;跌破5%则应降仓。</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ §14 附录 ═══════════ -->
+<section class="sec" id="s14">
+  <div class="sec-head">
+    <div class="sec-num">14<span class="dot">.</span></div>
+    <div class="sec-head-text">
+      <h2 class="sec-title">附 · 大悦城地产退市事件专项<span class="en">APPENDIX · DELISTING EVENT</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>2025年11月27日年报披露的第22项重大事件:<strong>"原始权益人和运营管理机构股东大悦城地产有限公司回购股份并于香港联交所撤销上市地位"</strong>。这是2025年基金面对的最大"软风险"事件,需要单独分析。</p>
+
+      <p class="rule-label">事件本身</p>
+
+      <div class="grid2">
+        <div>
+          <table>
+            <tbody>
+              <tr><td class="fw6" style="width:32%">退市主体</td><td>大悦城地产有限公司(HK 0207)</td></tr>
+              <tr><td class="fw6">退市日期</td><td>2025年11月27日</td></tr>
+              <tr><td class="fw6">退市方式</td><td>母公司(中粮)发起要约回购 · 私有化</td></tr>
+              <tr><td class="fw6">退市主体与REIT关系</td><td>REIT原始权益人卓远地产 + 运营机构(天津)股东</td></tr>
+              <tr class="hl-r"><td class="fw6 c-rust">对REIT法律效力</td><td class="c-rust fw6">无直接法律效力 · SPV结构隔离</td></tr>
+              <tr class="hl-a"><td class="fw6 c-amber">对REIT间接影响</td><td class="c-amber fw6">品牌、管理团队稳定性需观察</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="term">
+            <div class="t-name">为什么SPV结构让这次退市"对REIT无直接影响"<span class="en">BANKRUPTCY REMOTENESS</span></div>
+            <div class="t-def">成都大悦城的产权已经通过层层嵌套装入<span class="hl">独立的项目公司(成都博悦)</span>,这家项目公司100%由专项计划持有,与大悦城地产/卓远地产的日常经营完全分离。<strong>即便大悦城地产破产,也不能追索项目公司的资产</strong>——这正是SPV结构设计的核心价值。现在只是港股退市(私有化回归中粮集团),性质比破产轻得多,对REIT运营的冲击更小。</div>
+          </div>
+        </div>
+      </div>
+
+      <p class="rule-label">三个需要持续跟踪的次生风险</p>
+
+      <div class="grid3">
+        <div class="card olive">
+          <div class="c-title">①品牌价值传递 <span class="num">BRAND</span></div>
+          <div class="c-body"><strong>"大悦城"品牌由谁长期运营?</strong><br>退市后品牌归属中粮集团。中粮仍是母公司,短期不会有变化。但3-5年维度,如果中粮战略调整,商业地产业务可能重组——届时"大悦城"这块招牌的管理权是否稳定,是需要持续观察的。</div>
+        </div>
+        <div class="card gold">
+          <div class="c-title">②管理团队稳定 <span class="num">TEAM</span></div>
+          <div class="c-body"><strong>运营管理机构的人员变动?</strong><br>2025年年报披露运营机构信息披露事务负责人已从田维龙变更为王鹏,2025/11/28年又发布"代为履行基金经理职责情况"公告——这些人员调整的深层原因可能与退市有关。<em>需要关注招商、运营核心团队是否稳定。</em></div>
+        </div>
+        <div class="card teal">
+          <div class="c-title">③资源支持变化 <span class="num">SYNERGY</span></div>
+          <div class="c-body"><strong>中粮体系后续支持力度?</strong><br>原本大悦城地产作为港股上市平台,通过"商业REIT"实现部分资产证券化。退市后,中粮体系是否还会把其他优质商业资产注入REIT(扩募)?还是会探索新的退出路径?<em>扩募空间是影响长期成长性的关键变量。</em></div>
+        </div>
+      </div>
+
+      <div class="warn">
+        <div class="tl">Potential Upside · 退市其实也有一层积极面</div>
+        港股私有化退市的常见动因之一,是<strong>港股估值长期低于资产内在价值,上市成本高于收益</strong>。中粮把大悦城地产从港股摘牌,很可能是为了重新规划商业地产业务的资本路径——<em>未来通过A股REITs平台实现系统性资产证券化</em>,可能成为更清晰的选择。如果这条路径被确认,华夏大悦城REIT有望成为中粮商业地产业务的"核心证券化出口",未来扩募机会值得想象。当前这是一个不确定但存在的向上期权。
+      </div>
+
+      <p class="rule-label">最后一块拼图:12月5日的回收资金投向变更</p>
+
+      <div class="tip">
+        <div class="tl">What Happened</div>
+        2025/12/5基金发布公告:<strong>原始权益人卓远地产变更了净回收资金的投资方向</strong>,提交《回收资金投向变更报告》。<br><br>
+        <strong>这意味着什么?</strong>REIT募集的33亿中,扣除底层项目交易对价之后,卓远地产拿到的现金(回收资金)原本承诺投向某些储备项目。退市后中粮集团层面做了战略调整,所以加快了这笔资金的投资进度,改变了具体项目投向。<br><br>
+        <strong>对REIT持有人的意义:</strong>这笔资金的使用与REIT基金本身无关,但反映了大悦城系统在中粮整合下的资金调配新逻辑。<em>退市+回收资金变更,构成了观察中粮商业地产业务战略重整的两个窗口。</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <div>◆ 华夏大悦城REITs · 系统性研究框架 · <span class="d">V1.0</span> ◆</div>
+  <div style="margin-top:8px">Data Source: 基金2025年年报(2026/3/30披露) · 戴德梁行2025年评估报告 · 公开运营数据</div>
+  <div style="margin-top:8px;color:var(--muted)">Prepared on 2026-04-20 · 本文仅作研究与学习之用,不构成投资建议</div>
+</div>
+
+</div><!-- /wrap -->
+</body>
+</html>
