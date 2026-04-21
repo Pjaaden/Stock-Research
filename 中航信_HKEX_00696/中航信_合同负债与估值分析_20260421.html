@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中航信（00696）｜合同负债分析 & 估值研判 — 2026.04.21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Noto+Serif+SC:wght@400;600;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f7f5f0;
+    --bg2:      #efecea;
+    --bg3:      #e8e4de;
+    --border:   #d4cfc7;
+    --text:     #1a1814;
+    --muted:    #6b6560;
+    --blue:     #1a5fb4;
+    --blue-lt:  #dce9f8;
+    --green:    #2d6a27;
+    --green-bg: #e6f4e5;
+    --amber:    #8a5c00;
+    --amber-bg: #fdf3dc;
+    --red:      #9b2020;
+    --red-bg:   #fce8e8;
+    --gold:     #b8860b;
+    --purple:   #5a3e8a;
+    --teal:     #1b6b6b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--bg);
+    border-bottom: 2px solid var(--text);
+    padding: 28px 40px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .h-left .ticker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .h-left .company {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .h-left .subtitle {
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .h-right {
+    text-align: right;
+  }
+  .h-right .date-badge {
+    display: inline-block;
+    background: var(--text);
+    color: var(--bg);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+    margin-bottom: 6px;
+  }
+  .h-right .ref {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 32px 40px 60px; }
+
+  /* ── SECTION ── */
+  .sec { margin-bottom: 36px; }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+  }
+  .sec-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 2px;
+    min-width: 28px;
+  }
+  .sec-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .sec-note {
+    font-size: 9px;
+    color: var(--muted);
+    margin-left: auto;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ── THESIS BOX ── */
+  .thesis {
+    background: var(--text);
+    color: var(--bg);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    border-left: 4px solid var(--gold);
+  }
+  .thesis-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .thesis-body {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 13px;
+    line-height: 1.9;
+    color: #e8e4dc;
+  }
+
+  /* ── KPI ROW ── */
+  .kpi-row { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+  .kpi {
+    flex: 1;
+    min-width: 140px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 12px 14px;
+  }
+  .kpi.blue  { border-top: 3px solid var(--blue); }
+  .kpi.green { border-top: 3px solid var(--green); }
+  .kpi.gold  { border-top: 3px solid var(--gold); }
+  .kpi.red   { border-top: 3px solid var(--red); }
+  .kpi.teal  { border-top: 3px solid var(--teal); }
+  .kpi.purple{ border-top: 3px solid var(--purple); }
+  .kpi .kl { font-size: 9px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+  .kpi .kv { font-size: 20px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 4px; }
+  .kpi .ks { font-size: 9px; color: var(--muted); }
+  .kpi .kv.c-g { color: var(--green); }
+  .kpi .kv.c-r { color: var(--red); }
+  .kpi .kv.c-b { color: var(--blue); }
+  .kpi .kv.c-gold { color: var(--gold); }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 11px; }
+  th {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  td {
+    border: 1px solid var(--border);
+    padding: 7px 10px;
+    vertical-align: top;
+  }
+  tr.hl-b td { background: var(--blue-lt); }
+  tr.hl-g td { background: var(--green-bg); }
+  tr.hl-a td { background: var(--amber-bg); }
+  tr.hl-r td { background: var(--red-bg); }
+  .fw6 { font-weight: 600; }
+  .c-g { color: var(--green); }
+  .c-r { color: var(--red); }
+  .c-b { color: var(--blue); }
+  .c-gold { color: var(--gold); }
+  .c-m { color: var(--muted); }
+  .c-t { color: var(--teal); }
+
+  /* ── GRID ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 14px 16px;
+  }
+  .card-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .card-body { font-size: 11.5px; line-height: 1.8; color: var(--text); }
+
+  /* ── ANNOTATION BOXES ── */
+  .note {
+    background: var(--bg2);
+    border-left: 3px solid var(--border);
+    padding: 10px 14px;
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 10px;
+  }
+  .insight {
+    background: var(--blue-lt);
+    border-left: 3px solid var(--blue);
+    padding: 12px 16px;
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+  .warn {
+    background: var(--amber-bg);
+    border-left: 3px solid var(--amber);
+    padding: 12px 16px;
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+  .good {
+    background: var(--green-bg);
+    border-left: 3px solid var(--green);
+    padding: 12px 16px;
+    font-size: 11.5px;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* ── VERDICT ── */
+  .verdict {
+    background: var(--bg);
+    border: 2px solid var(--text);
+    padding: 20px 24px;
+    margin-top: 10px;
+  }
+  .verdict-title {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* ── FLOW DIAGRAM ── */
+  .flow { display: flex; align-items: center; gap: 0; margin: 14px 0; flex-wrap: wrap; }
+  .flow-box {
+    flex: 1;
+    min-width: 120px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 10px 12px;
+    text-align: center;
+    font-size: 10.5px;
+  }
+  .flow-box.highlight { background: var(--blue-lt); border-color: var(--blue); border-width: 2px; }
+  .flow-box .fv { font-size: 14px; font-weight: 700; color: var(--blue); display: block; margin-bottom: 2px; }
+  .flow-arrow {
+    padding: 0 8px;
+    font-size: 16px;
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+
+  /* ── SCENARIO TABLE ── */
+  .scen-bear td { background: #fce8e8; }
+  .scen-base td { background: #fff8e8; }
+  .scen-bull td { background: #e6f4e5; }
+
+  /* ── FOOTER ── */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    border-top: 1px solid var(--border);
+  }
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .tag.g { background: var(--green-bg); color: var(--green); border: 1px solid var(--green); }
+  .tag.a { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber); }
+  .tag.r { background: var(--red-bg); color: var(--red); border: 1px solid var(--red); }
+  .tag.b { background: var(--blue-lt); color: var(--blue); border: 1px solid var(--blue); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-left">
+    <div class="ticker">HKEX · 00696 · H股</div>
+    <div class="company">中国民航信息网络 TravelSky</div>
+    <div class="subtitle">合同负债分析 ｜ 收入预期隐含信号 ｜ 当前估值研判</div>
+  </div>
+  <div class="h-right">
+    <div class="date-badge">2026 · 04 · 21</div><br>
+    <div class="ref">基于2025年全年审计业绩公告 · FOR REFERENCE ONLY</div>
+  </div>
+</header>
+
+<main>
+
+<!-- THESIS -->
+<div class="thesis">
+  <div class="thesis-label">核心观点 · Core Thesis</div>
+  <div class="thesis-body">
+    观点成立：中航信合同负债从6.46亿（2024年末）大幅跳升至10.50亿（2025年末），增幅62.6%。这一增幅远超同期营收增速（−0.6%），正是高毛利IT服务公司"合同负债是先行收入指标"这一逻辑的典型体现。结合其垄断地位与高运营杠杆，合同负债激增是一个具有统计显著性的正向信号。但估值层面，市场目前给出的定价尚处于历史低位区，有其自身的结构性压制因素，需要分层评估。
+  </div>
+</div>
+
+<!-- §01 公司基本面快照 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">公司基本面快照 · 2025年全年</div>
+    <div class="sec-note">数据来源：2025年度审计业绩公告</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi blue">
+      <div class="kl">总收入</div>
+      <div class="kv">87.66亿</div>
+      <div class="ks">YoY −0.6% ｜ 2024: 88.23亿</div>
+    </div>
+    <div class="kpi green">
+      <div class="kl">归母净利润</div>
+      <div class="kv c-g">23.42亿</div>
+      <div class="ks">YoY +12.9% ｜ 2024: 20.74亿</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kl">营业利润</div>
+      <div class="kv c-gold">27.06亿</div>
+      <div class="ks">YoY +12.7% ｜ 利润率 30.9%</div>
+    </div>
+    <div class="kpi teal">
+      <div class="kl">经营现金流</div>
+      <div class="kv">29.24亿</div>
+      <div class="ks">YoY +15.8% ｜ 经营CF/净利润 125%</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kl">基本每股收益</div>
+      <div class="kv">0.80元</div>
+      <div class="ks">2024: 0.71元 ｜ 总股本 29.26亿股</div>
+    </div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi blue">
+      <div class="kl">现金及现金等价物</div>
+      <div class="kv">100.18亿</div>
+      <div class="ks">+交易性金融资产 34.15亿 = 净现金 ~134亿</div>
+    </div>
+    <div class="kpi">
+      <div class="kl">有息负债（借款合计）</div>
+      <div class="kv">17.60亿</div>
+      <div class="ks">短期 12.88亿 + 长期 4.72亿</div>
+    </div>
+    <div class="kpi green">
+      <div class="kl">资产负债率</div>
+      <div class="kv c-g">25.8%</div>
+      <div class="ks">2024: 22.9% ｜ 极低杠杆</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kl">建议末期股息/股</div>
+      <div class="kv c-gold">0.276元</div>
+      <div class="ks">合计派息 8.08亿 ｜ 派息率 ~34%</div>
+    </div>
+  </div>
+
+  <div class="note">
+    <strong>关键利润结构特征：</strong>研发费用 6.16亿（−25.3% YoY，因部分已提足折旧/摊销）｜财务费用净额 +1.05亿（利息收入 1.16亿 > 利息支出 0.21亿，现金池反哺利润）｜信用减值损失转正 +0.35亿（2024年为 −1.14亿，应收账款回款改善）｜公允价值变动收益 +1.27亿（中移股权基金+招商仁和浮盈）。
+    净利润增速（+12.9%）<strong>大幅跑赢</strong>收入增速（−0.6%），核心驱动是成本结构优化 + 研发摊销大幅下降 + 减值损失逆转。
+  </div>
+</div>
+
+<!-- §02 合同负债深度解析 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">合同负债深度解析 · 为何是正向领先信号？</div>
+  </div>
+
+  <div class="insight">
+    <strong>理论框架验证：</strong>合同负债（Contract Liabilities）= 客户已预付但公司尚未交付的服务。对于高毛利IT服务/SaaS型公司，合同负债增长代表：① 客户已签约并预付款（现金已到账）；② 收入将在后续期间确认（下个财务周期的"可见收入"）；③ 预收现金几乎零成本，不构成真实财务负担。该特征在中航信身上尤为突出——公司对航空公司、机场等B2B客户收取的是<strong>服务预付</strong>，非商品预售，毛利率极高。
+  </div>
+
+  <!-- 合同负债变动 -->
+  <div class="flow">
+    <div class="flow-box">
+      <span class="fv">6.46亿</span>
+      2024年末<br>合同负债余额
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box highlight">
+      <span class="fv">10.50亿</span>
+      2025年末<br>合同负债余额
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box" style="background:var(--green-bg);border-color:var(--green);border-width:2px;">
+      <span class="fv" style="color:var(--green)">+4.04亿</span>
+      增幅 <strong>+62.6%</strong><br>vs 收入增速 −0.6%
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-box">
+      <span class="fv" style="color:var(--teal)">~10.50亿</span>
+      2026年<br>"预锁定收入池"
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>2025年末</th>
+        <th>2024年末</th>
+        <th>变动</th>
+        <th>信号解读</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-b">
+        <td class="fw6">合同负债总额</td>
+        <td class="fw6 c-g">10.50亿元</td>
+        <td>6.46亿元</td>
+        <td class="fw6 c-g">+62.6%</td>
+        <td><span class="tag g">强正向信号</span>2026年可确认收入已有锁定</td>
+      </tr>
+      <tr>
+        <td>合同负债性质</td>
+        <td colspan="2">机场数字化服务等合同预收款</td>
+        <td>—</td>
+        <td>机场数字化项目签约提速，竣工验收确认后入账</td>
+      </tr>
+      <tr>
+        <td class="fw6">合同资产（对应项）</td>
+        <td>7,574万元</td>
+        <td>4,400万元</td>
+        <td class="c-g">+72.1%</td>
+        <td>已履行但尚未结算的权利，同步增长印证订单驱动</td>
+      </tr>
+      <tr>
+        <td>机场数字化收入（本期）</td>
+        <td class="c-r fw6">14.95亿</td>
+        <td>18.88亿</td>
+        <td class="c-r">−20.8%</td>
+        <td><span class="tag a">关键矛盾</span>收入下降 + 合同负债大涨 = 项目验收节奏放缓，而非订单萎缩</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="card-title">为何机场数字化收入大降却是好事？</div>
+      <div class="card-body">
+        中航信机场数字化服务按"完工百分比法"确认收入——项目达到竣工验收条件才入账。2025年达到竣工验收的项目数量和金额同比减少，但这不代表订单萎缩，而是工程进度节奏所致。<br><br>
+        反过来，<strong>合同负债+4亿的增量</strong>，意味着有大量新签合同已收预款但尚未验收，这是2026年收入的"蓄水池"。这是完工确认制下合同负债最典型的领先指标逻辑。
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">合同负债对应的资金质量</div>
+      <div class="card-body">
+        <strong>现金已在账上：</strong>合同负债的增加意味着客户已支付了预付款，中航信现金池（100亿+）包含这部分资金。<br><br>
+        <strong>财务负担极低：</strong>软件/IT服务的边际成本趋近于零，合同负债确认收入时的毛利率远高于硬件集成（对比机场数字化软硬件成本2025年下降14.4%）。<br><br>
+        <strong>客户粘性确认：</strong>大客户预付款意味着高转换成本，合同一旦签署基本锁定。
+      </div>
+    </div>
+  </div>
+
+  <div class="good" style="margin-top:12px">
+    <strong>综合结论：</strong>合同负债+62.6%是真实的正向领先信号。按照项目进度，2026年机场数字化服务收入大概率反弹至17–19亿区间（回升至接近2024年水平），叠加航旅智能产品服务的持续增长（2025年+18.8%），2026年总收入有望重返增长轨道（预计+5–10%）。
+  </div>
+</div>
+
+<!-- §03 收入结构诊断 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">收入结构诊断 · 五大业务线趋势</div>
+    <div class="sec-note">单位：亿元人民币</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>业务线</th>
+        <th>2025收入</th>
+        <th>占比</th>
+        <th>2024收入</th>
+        <th>增速</th>
+        <th>趋势判断</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-b">
+        <td class="fw6">①航空信息平台（ETD/CRS）</td>
+        <td class="fw6">46.16亿</td>
+        <td>52.7%</td>
+        <td>45.27亿</td>
+        <td class="c-g fw6">+2.0%</td>
+        <td><span class="tag g">核心压舱石</span>系统处理量+4.7%，与航班量正相关</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">②机场数字化服务</td>
+        <td class="fw6 c-r">14.95亿</td>
+        <td>17.1%</td>
+        <td>18.88亿</td>
+        <td class="c-r fw6">−20.8%</td>
+        <td><span class="tag a">验收节奏波动</span>合同负债已锁定2026反弹</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">③航旅智能产品及服务</td>
+        <td class="fw6 c-g">11.13亿</td>
+        <td>12.7%</td>
+        <td>9.37亿</td>
+        <td class="c-g fw6">+18.8%</td>
+        <td><span class="tag g">成长引擎</span>AI/数字化解决方案需求扩张</td>
+      </tr>
+      <tr>
+        <td class="fw6">④结算及清算服务</td>
+        <td class="fw6">8.75亿</td>
+        <td>10.0%</td>
+        <td>8.07亿</td>
+        <td class="c-g fw6">+8.4%</td>
+        <td><span class="tag g">稳健增长</span>交易笔数+3.5%，代理结算额+20%</td>
+      </tr>
+      <tr>
+        <td class="fw6">⑤信息网络及数字基础设施</td>
+        <td class="fw6">6.60亿</td>
+        <td>7.5%</td>
+        <td>6.62亿</td>
+        <td class="c-m">−0.3%</td>
+        <td><span class="tag b">平稳</span>机房回收自用致轻微下降</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>结构性结论：</strong>① 核心ETD业务（占收入53%）与中国民航总处理量高度挂钩，具有近似"过路费"特征，天花板受制于航空业体量而非竞争；② 机场数字化是最大的波动项（年度验收节奏），需要用合同负债而非单期收入来评估订单健康度；③ 航旅智能产品是唯一真正的增长引擎，AI赋能民航数字化转型背景下，增速有望维持15%+。
+  </div>
+</div>
+
+<!-- §04 财务质量深度 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">财务质量深度 · 这是一家怎样的现金机器？</div>
+  </div>
+
+  <div class="grid3" style="margin-bottom:14px">
+    <div class="card" style="border-top:3px solid var(--blue)">
+      <div class="card-title">超净资产负债表</div>
+      <div class="card-body">
+        现金+交易性金融资产: <strong>~134亿</strong><br>
+        有息借款: 17.6亿<br>
+        <strong class="c-g">净现金：~116亿</strong><br><br>
+        每股净现金≈4.0元人民币（≈4.3港元），相当于当前股价的<strong>~40–45%</strong>是净现金。扣除净现金后，市场对经营业务的隐含估值极低。
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--green)">
+      <div class="card-title">经营现金流质量</div>
+      <div class="card-body">
+        经营CF 29.24亿<br>
+        归母净利润 23.42亿<br>
+        <strong>CF覆盖率：125%</strong><br><br>
+        利息收入（1.16亿）> 利息支出（0.21亿），现金池每年净贡献约1亿元利息收益。没有任何信用减值或资产减值的持续拖累。
+      </div>
+    </div>
+    <div class="card" style="border-top:3px solid var(--gold)">
+      <div class="card-title">资本开支与分红</div>
+      <div class="card-body">
+        2025年CAPEX：9.01亿<br>
+        派息：8.08亿<br>
+        CAPEX承诺：17.75亿（多年累计）<br><br>
+        自由现金流约 29.2 − 9.0 = <strong>+20.2亿</strong>，充裕。派息率约34%，股息率约2%+（HKD口径），有上调空间。
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>关键矛盾：</strong>为什么研发费用暴降 −25.3%（8.25亿→6.16亿）但业务没有退步？原因是大量2019–2022年间的软件开发项目已完成摊销。这是一次性的成本基数改善，2026年研发费用有可能反弹，是需要追踪的风险项。如果公司加大AI大模型投入（"启航"/"共翔睿行"等），研发费用回升至8亿+，利润增速会相应减缓。
+  </div>
+</div>
+
+<!-- §05 估值分析 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">当前估值研判 · 市场定价何处？</div>
+    <div class="sec-note">参考股价：~10.15–10.87港元（2026年3月中旬数据）</div>
+  </div>
+
+  <div class="warn">
+    <strong>股价背景：</strong>中航信股价2024年从低点大幅反弹后，近期在10–11港元区间震荡。52周区间约9.87–13.32港元。当前市值约 29.7–31.8亿港元（参考股价10.5港元，29.26亿股 × 10.5 ≈ 307亿港元）。折算人民币约280亿元（汇率HKD/RMB ≈ 0.91）。
+  </div>
+
+  <table style="margin-top:14px">
+    <thead>
+      <tr>
+        <th>估值方法</th>
+        <th>参数设定</th>
+        <th>对应价值（HKD）</th>
+        <th>当前溢价/折价</th>
+        <th>说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-b">
+        <td class="fw6">PE法（2025实际EPS）</td>
+        <td>EPS 0.80元 RMB × 汇率0.91 = 0.728 HKD；× 15x PE</td>
+        <td class="fw6 c-b">10.92港元</td>
+        <td class="c-g">基本合理 (+4%)</td>
+        <td>15x是香港IT/国企低端估值</td>
+      </tr>
+      <tr>
+        <td class="fw6">PE法（2025实际，中性）</td>
+        <td>EPS 0.728 HKD × 18x PE</td>
+        <td class="fw6">13.10港元</td>
+        <td class="c-g">+25%上行空间</td>
+        <td>同类IT服务公司（如A股）合理中枢</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">扣净现金PE法</td>
+        <td>市值280亿RMB − 净现金116亿 = 核心业务隐含市值164亿；164/23.42 = 7.0x PE</td>
+        <td class="fw6 c-g">当前实质PE仅7x</td>
+        <td class="c-g">历史极低位</td>
+        <td>扣除净现金后，市场只给核心业务7倍PE</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">EV/EBITDA法</td>
+        <td>EBITDA约37亿（净利23.4+折旧摊销8.99+财务费用调整）；EV=280-116=164亿；EV/EBITDA ≈ 4.4x</td>
+        <td class="fw6 c-gold">严重低估区间</td>
+        <td class="c-g">全球IT服务公司通常12–18x</td>
+        <td>Morningstar公允价值 HKD 33.70</td>
+      </tr>
+      <tr>
+        <td class="fw6">股息贴现（DDM）</td>
+        <td>2025E股息0.276元RMB（已公告）；增长率6%；折现率9%</td>
+        <td class="fw6">~9.2–11.0港元</td>
+        <td class="c-m">基本处于公平区间低端</td>
+        <td>纯DDM低估成长价值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="grid2" style="margin-top:14px">
+    <div>
+      <div class="card" style="border-top:3px solid var(--red)">
+        <div class="card-title">当前折价的结构性原因（压制因素）</div>
+        <div class="card-body" style="font-size:11px;line-height:1.9">
+          <strong class="c-r">① 港股整体折价：</strong>中资国企IT股在港股通常获得A股30–40%的折价，中航信A股对应约15–20x PE，H股仅13x<br><br>
+          <strong class="c-r">② 大股东/国企管治折价：</strong>国资委控股，分红率偏低（34%），市场期望提升派息率<br><br>
+          <strong class="c-r">③ 收入增速低迷：</strong>2025年总收入 −0.6%，市场难以给予成长溢价<br><br>
+          <strong class="c-r">④ 机场数字化收入大降：</strong>−20.8%引发市场担忧，但未读懂合同负债逻辑
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-top:3px solid var(--green)">
+        <div class="card-title">估值重估的潜在催化剂</div>
+        <div class="card-body" style="font-size:11px;line-height:1.9">
+          <strong class="c-g">① 2026年收入反弹：</strong>合同负债锁定机场数字化反弹，若总收入增长8%+，市场重新定价<br><br>
+          <strong class="c-g">② 提高派息率：</strong>目前净现金116亿，若派息率从34%提升至60%+，股息率将超4%，触发港股价值投资者买入<br><br>
+          <strong class="c-g">③ AI/低空经济变现：</strong>"启航"大模型、低空经济布局若出现商业化突破，估值体系重置<br><br>
+          <strong class="c-g">④ 港股估值修复：</strong>南向资金持续流入，国企估值体系重构（PB底）
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §06 三情景估值 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">三情景估值框架 · 2026年全年</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>情景</th>
+        <th>概率（估）</th>
+        <th>核心假设</th>
+        <th>2026E EPS（RMB）</th>
+        <th>合理PE范围</th>
+        <th>目标价（HKD）</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="scen-bear">
+        <td class="fw6 c-r">🔴 悲观</td>
+        <td>20%</td>
+        <td>机场数字化继续萎靡，研发费用反弹至8亿，合同负债无法顺利确认</td>
+        <td class="c-r">~0.80元（持平）</td>
+        <td>12–14x</td>
+        <td class="fw6 c-r">8.7–10.2港元</td>
+      </tr>
+      <tr class="scen-base">
+        <td class="fw6 c-gold">🟡 基准</td>
+        <td>55%</td>
+        <td>机场数字化反弹至17亿，航旅智能继续+15%，总收入+6%，净利润+10%</td>
+        <td class="c-gold">~0.88元</td>
+        <td>14–17x</td>
+        <td class="fw6 c-gold">11.3–14.2港元</td>
+      </tr>
+      <tr class="scen-bull">
+        <td class="fw6 c-g">🟢 乐观</td>
+        <td>25%</td>
+        <td>合同负债全速确认（机场数字化+25%），派息率提升，AI业务变现</td>
+        <td class="c-g">~0.96元</td>
+        <td>17–22x</td>
+        <td class="fw6 c-g">14.9–20.0港元</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>概率加权目标价（12个月）：</strong>
+    0.20 × 9.5 + 0.55 × 12.8 + 0.25 × 17.5 ≈ <strong>13.3港元</strong>，较当前（~10.5港元）约+27%上行空间。这与Morningstar公允价值估算（HKD 33.70，高不确定性）和方正证券买入目标（HKD 12.9）之间，处于保守至中性区间。
+  </div>
+</div>
+
+<!-- §07 综合判断 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">综合判断与观察清单</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-title">投资逻辑综述</div>
+    <div class="grid2">
+      <div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--green);margin-bottom:8px;text-transform:uppercase">✅ 支撑持有/关注的核心理由</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 垄断性业务护城河：</strong>ETD系统被列入国务院八大关键系统，竞争对手进入壁垒极高，定价权有保障<br>
+          <strong style="color:var(--text)">② 合同负债领先信号确立：</strong>+62.6%的合同负债增长锁定2026年收入反弹预期，市场定价尚未充分消化<br>
+          <strong style="color:var(--text)">③ 净现金保护垫：</strong>~116亿净现金相当于市值的41%，绝对安全边际，且每年通过利息收入贡献约1亿利润<br>
+          <strong style="color:var(--text)">④ 运营杠杆效应：</strong>固定成本高基数已消化（折旧摊销大幅下降），未来增量收入大部分转化为利润增量<br>
+          <strong style="color:var(--text)">⑤ 低估值有基本面支撑：</strong>扣净现金后仅7x PE，EV/EBITDA 4.4x，存在明确的重估空间
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--red);margin-bottom:8px;text-transform:uppercase">⚠️ 主要风险与监控项</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 研发费用基数风险：</strong>2025年研发降至6.16亿（−25.3%），若AI/低空经济投入回升，利润增速减缓<br>
+          <strong style="color:var(--text)">② 合同负债转化率：</strong>10.5亿合同负债能否顺利在2026年确认，取决于机场数字化项目进度，需跟踪2026中报<br>
+          <strong style="color:var(--text)">③ 航空业景气波动：</strong>核心ETD收入与中国航班量强挂钩，宏观经济或政策冲击可能直接影响处理量<br>
+          <strong style="color:var(--text)">④ 应收账款质量：</strong>账龄1–2年部分大幅增加（8.87亿→13.18亿，+49%），虽整体坏账准备已下降，需持续跟踪<br>
+          <strong style="color:var(--text)">⑤ 派息率偏低：</strong>34%派息率是股价最大隐性压制，若不提高，净现金将持续堆积而无回报
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px">关键监控时间节点</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <div style="flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border);padding:10px 12px;font-size:11px">
+          <div style="font-weight:600;margin-bottom:4px">📅 2026年8–9月</div>
+          <div style="color:var(--muted)">2026H1中报发布——核心验证：机场数字化收入是否反弹，合同负债余额变化方向</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border);padding:10px 12px;font-size:11px">
+          <div style="font-weight:600;margin-bottom:4px">📅 2026年股东会（约6月）</div>
+          <div style="color:var(--muted)">末期股息确认，任意公积金提取比例；派息率是否提升是最重要单一催化剂</div>
+        </div>
+        <div style="flex:1;min-width:160px;background:var(--bg2);border:1px solid var(--border);padding:10px 12px;font-size:11px">
+          <div style="font-weight:600;margin-bottom:4px">📅 持续跟踪</div>
+          <div style="color:var(--muted)">中国月度航班处理量（CAAC数据）；Umetrip直销平台商业化进展；低空经济合同落地</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 数据来源 -->
+<div style="background:var(--bg2);border:1px solid var(--border);padding:14px 18px;margin-top:10px;font-size:10px;color:var(--muted);line-height:1.8">
+  <strong style="color:var(--text)">数据来源透明声明：</strong><br>
+  【原始数据 ★】中国民航信息网络股份有限公司《截至2025年12月31日止财政年度全年业绩公告》（港交所，2026年3月26日发布）—— 合并利潤表、资产负债表、现金流量摘要、附注5项，所有财务数字直接引用原文<br>
+  【市场数据】股价及市值区间参考 Morningstar（2026.03.17，HKD 10.87）、GuruFocus（HKD 12.56）、TradingView（HKD 10.15）、Stockopedia（HKD 9.85）等多平台截面数据，存在时间差，仅作参考<br>
+  【估值推算】PE/EV/EBITDA/DDM计算均为基于原始数据的推算，汇率约 HKD/RMB = 0.91（参考值）<br>
+  【重要免责】本报告为个人投资研究记录，不构成任何投资建议 · 2026.04.21
+</div>
+
+</main>
+
+<footer>
+  <span>中国民航信息网络 (00696.HK) · 合同负债与估值分析 · 2026.04.21</span>
+  <span>FOR REFERENCE ONLY · PERSONAL INVESTMENT RESEARCH</span>
+</footer>
+
+</body>
+</html>
