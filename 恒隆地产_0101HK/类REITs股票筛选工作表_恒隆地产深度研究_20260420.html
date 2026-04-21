@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>类REITs股票筛选工作表 + 恒隆地产深度研究 · 20260420</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@500;700;800&family=IBM+Plex+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f1e8;--bg2:#ebe3d2;--bg3:#fffcf5;--paper:#fdf9ef;
+  --ink:#1a1612;--ink2:#3d342a;--muted:#7a6d5c;
+  --line:#d5c9b0;--line2:#c2b394;--rule:#8f7f66;
+  --gold:#a67c2d;--gold-l:#c39a4a;--gold-bg:#f1e6c9;
+  --olive:#6b7a3a;--olive-bg:#e0e3c5;
+  --teal:#2e5f63;--teal-bg:#d0e0dd;
+  --rust:#9c4522;--rust-bg:#ecd6c7;
+  --plum:#5b3a5b;--plum-bg:#e3d2e0;
+  --navy:#1f3a5c;--navy-bg:#d2dae7;
+  --green:#5a7a3d;--red:#8a3523;--amber:#a66b14;
+  --shadow:0 1px 0 rgba(26,22,18,.04),0 8px 24px -8px rgba(26,22,18,.08);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:'IBM Plex Sans SC','Noto Serif SC',-apple-system,sans-serif;
+  background:var(--bg);color:var(--ink);font-size:14px;line-height:1.65;letter-spacing:.01em;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:32px 28px 80px}
+
+.hero{position:relative;padding:42px 48px 40px;background:var(--paper);border:1px solid var(--line2);border-radius:2px;margin-bottom:30px;box-shadow:var(--shadow);overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--plum) 0%,var(--plum) 33%,var(--rust) 33%,var(--rust) 66%,var(--teal) 66%)}
+.hero-eye{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--muted);margin-bottom:16px;display:flex;justify-content:space-between;text-transform:uppercase}
+.hero-eye .t{background:var(--plum);color:#fff;padding:3px 10px;letter-spacing:2px}
+.hero h1{font-family:'Noto Serif SC',serif;font-size:36px;font-weight:700;line-height:1.15;margin:0 0 12px;color:var(--ink);letter-spacing:-0.5px}
+.hero h1 .en{display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:15px;letter-spacing:2.5px;color:var(--plum);margin-top:8px}
+.hero-sub{font-size:15px;color:var(--ink2);max-width:980px;line-height:1.75;margin:14px 0 18px}
+.hero-sub strong{color:var(--ink);font-weight:600}
+.hero-sub em{color:var(--plum);font-style:normal;font-weight:600;background:linear-gradient(180deg,transparent 60%,var(--plum-bg) 60%);padding:0 2px}
+.hero-meta{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.hero-meta-item{padding-right:16px;border-right:1px solid var(--line)}
+.hero-meta-item:last-child{border-right:none}
+.hero-meta-item .k{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:4px;text-transform:uppercase}
+.hero-meta-item .v{font-weight:700;font-size:14px;color:var(--ink)}
+.hero-meta-item .v.gold{color:var(--gold)}
+.hero-meta-item .v.rust{color:var(--rust)}
+.hero-meta-item .v.plum{color:var(--plum)}
+.hero-meta-item .v.teal{color:var(--teal)}
+
+.part-banner{background:var(--ink);color:var(--bg);padding:24px 32px;margin:36px 0 22px;position:relative;border-left:6px solid var(--plum);border-radius:2px;box-shadow:var(--shadow)}
+.part-banner.rust{border-left-color:var(--rust)}
+.part-banner .eye{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:4px;color:#b98eb8;margin-bottom:8px;text-transform:uppercase}
+.part-banner.rust .eye{color:#d68866}
+.part-banner h2{font-family:'Noto Serif SC',serif;font-size:25px;font-weight:700;margin:0;line-height:1.2;color:var(--bg)}
+.part-banner h2 .en{display:block;font-family:'Syne',sans-serif;font-weight:800;font-size:12px;letter-spacing:3px;color:#b98eb8;margin-top:6px}
+.part-banner.rust h2 .en{color:#d68866}
+
+.sec{background:var(--paper);border:1px solid var(--line2);margin-bottom:22px;border-radius:2px;overflow:hidden;box-shadow:var(--shadow)}
+.sec-head{padding:20px 30px 16px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--bg3) 0%,var(--paper) 100%);display:flex;align-items:baseline;gap:22px}
+.sec-num{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;line-height:1;color:var(--plum);letter-spacing:-1px}
+.sec-num.rust{color:var(--rust)}
+.sec-num .dot{color:var(--ink2);font-size:18px}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;margin:0;line-height:1.25;color:var(--ink)}
+.sec-title .en{display:block;font-family:'Syne',sans-serif;font-weight:500;font-size:11px;letter-spacing:2.5px;color:var(--muted);margin-top:5px;text-transform:uppercase}
+.sec-body{padding:26px 30px}
+
+.prose{font-size:14px;line-height:1.78;color:var(--ink2)}
+.prose p{margin:0 0 12px}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{color:var(--plum);font-style:normal;font-weight:600;background:linear-gradient(180deg,transparent 60%,var(--plum-bg) 60%);padding:0 2px}
+.rust-prose em{color:var(--rust);background:linear-gradient(180deg,transparent 60%,var(--rust-bg) 60%)}
+
+.kpi-row{display:grid;gap:10px;margin:14px 0}
+.kpi-row.k3{grid-template-columns:repeat(3,1fr)}
+.kpi-row.k4{grid-template-columns:repeat(4,1fr)}
+.kpi-row.k5{grid-template-columns:repeat(5,1fr)}
+.kpi-row.k6{grid-template-columns:repeat(6,1fr)}
+.kpi{padding:14px 16px;background:var(--bg3);border:1px solid var(--line);border-top:3px solid var(--plum)}
+.kpi.rust{border-top-color:var(--rust)}
+.kpi.gold{border-top-color:var(--gold)}
+.kpi.olive{border-top-color:var(--olive)}
+.kpi.teal{border-top-color:var(--teal)}
+.kl{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;min-height:22px;line-height:1.4}
+.kv{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;line-height:1;color:var(--plum);letter-spacing:-0.5px}
+.kv.rust{color:var(--rust)}
+.kv.gold{color:var(--gold)}
+.kv.olive{color:var(--olive)}
+.kv.teal{color:var(--teal)}
+.kv.ink{color:var(--ink)}
+.kv.small{font-size:17px}
+.kv.xs{font-size:14px}
+.ks{font-size:11px;color:var(--muted);margin-top:7px;line-height:1.5}
+
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12.5px;background:var(--bg3)}
+th{background:var(--ink);color:#f5f1e8;padding:10px 10px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}
+tr:hover{background:var(--gold-bg)}
+tr.hl-g{background:var(--olive-bg)}
+tr.hl-g:hover{background:var(--olive-bg)}
+tr.hl-a{background:#f5ecd4}
+tr.hl-r{background:var(--rust-bg)}
+tr.hl-p{background:var(--plum-bg)}
+tr.grand{background:var(--ink)!important;color:#f5f1e8!important;font-weight:600}
+tr.grand td{color:#f5f1e8!important;border-bottom:none}
+tr.grand:hover{background:var(--ink)!important}
+.fw6{font-weight:600}
+.c-g{color:var(--green);font-weight:600}
+.c-r{color:var(--red);font-weight:600}
+.c-a{color:var(--amber);font-weight:600}
+.c-gold{color:var(--gold);font-weight:600}
+.c-rust{color:var(--rust);font-weight:600}
+.c-plum{color:var(--plum);font-weight:600}
+.c-teal{color:var(--teal);font-weight:600}
+.c-olive{color:var(--olive);font-weight:600}
+.num{font-family:'IBM Plex Mono',monospace;text-align:right;font-weight:500;font-size:12px}
+
+.callout{background:var(--ink);color:var(--bg);padding:26px 32px;margin:18px 0;position:relative;border-left:6px solid var(--plum)}
+.callout.rust{border-left-color:var(--rust)}
+.callout .cl-eye{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:3px;color:#b98eb8;margin-bottom:10px;text-transform:uppercase}
+.callout.rust .cl-eye{color:#d68866}
+.callout .cl-main{font-family:'Noto Serif SC',serif;font-size:18px;line-height:1.55;font-weight:500;color:var(--bg)}
+.callout .cl-main strong{color:#fff;font-weight:700;border-bottom:1px solid var(--plum)}
+.callout.rust .cl-main strong{border-bottom-color:var(--rust)}
+.callout .cl-main em{color:#e0b5df;font-style:normal;font-weight:600}
+.callout.rust .cl-main em{color:#f7c987}
+
+.tip{background:var(--bg3);border-left:3px solid var(--gold);padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.7;color:var(--ink2)}
+.tip .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:5px;font-weight:600}
+.warn{background:var(--rust-bg);border-left:3px solid var(--rust);padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.7;color:var(--ink2)}
+.warn .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--rust);text-transform:uppercase;margin-bottom:5px;font-weight:600}
+.good{background:var(--olive-bg);border-left:3px solid var(--olive);padding:14px 18px;margin:14px 0;font-size:13px;line-height:1.7;color:var(--ink2)}
+.good .tl{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--olive);text-transform:uppercase;margin-bottom:5px;font-weight:600}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+
+.rule-label{display:flex;align-items:center;gap:14px;margin:24px 0 14px;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--plum)}
+.rule-label.rust{color:var(--rust)}
+.rule-label::before,.rule-label::after{content:'';flex:1;height:1px;background:var(--line2)}
+.rule-label::before{max-width:50px}
+
+.formula{background:linear-gradient(180deg,var(--bg3) 0%,var(--paper) 100%);border:1px dashed var(--rule);padding:16px 22px;margin:12px 0;text-align:center;font-family:'Noto Serif SC',serif;font-size:14px;color:var(--ink)}
+.formula .f-eq{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--rust);margin:6px 0}
+.formula .f-note{font-size:11px;color:var(--muted);margin-top:6px}
+
+/* Score gauge */
+.score-gauge{display:flex;align-items:center;gap:14px;padding:14px 18px;background:var(--bg3);border:1px solid var(--line);margin:10px 0}
+.score-gauge .score-big{font-family:'Syne',sans-serif;font-weight:800;font-size:32px;line-height:1;color:var(--plum);letter-spacing:-1px;min-width:80px}
+.score-gauge .score-bar{flex:1;height:10px;background:var(--line);position:relative;overflow:hidden}
+.score-gauge .score-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--olive) 0%,var(--gold) 50%,var(--plum) 100%)}
+.score-gauge .score-text{font-size:12px;color:var(--muted);min-width:160px}
+
+/* Card */
+.card{background:var(--bg3);border:1px solid var(--line);padding:16px 18px;border-top:3px solid var(--plum)}
+.card.rust{border-top-color:var(--rust)}
+.card.gold{border-top-color:var(--gold)}
+.card.teal{border-top-color:var(--teal)}
+.card.olive{border-top-color:var(--olive)}
+.card .c-title{font-weight:700;font-size:13px;margin-bottom:8px;color:var(--ink)}
+.card .c-body{font-size:12px;line-height:1.65;color:var(--ink2)}
+
+/* TOC */
+.toc{background:var(--paper);border:1px solid var(--line2);padding:22px 28px;margin-bottom:28px;border-radius:2px}
+.toc-title{font-family:'Syne',sans-serif;font-weight:800;font-size:11px;letter-spacing:3px;color:var(--plum);margin-bottom:12px;text-transform:uppercase}
+.toc-part{font-family:'Noto Serif SC',serif;font-weight:700;font-size:13px;color:var(--ink);margin:12px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--line2)}
+.toc-list{display:grid;grid-template-columns:repeat(2,1fr);gap:2px 32px}
+.toc-list a{color:var(--ink);text-decoration:none;padding:5px 0;font-size:13px;display:flex;justify-content:space-between;border-bottom:1px dotted var(--line)}
+.toc-list a:hover{color:var(--plum)}
+.toc-list a span:first-child::before{content:attr(data-n);font-family:'IBM Plex Mono',monospace;color:var(--muted);margin-right:8px;font-size:11px}
+
+.foot{margin-top:40px;padding-top:20px;border-top:2px solid var(--line2);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;color:var(--muted);text-align:center;text-transform:uppercase}
+
+/* Large screener table */
+.screener{width:100%;border-collapse:collapse;margin:12px 0;font-size:11.5px;background:var(--bg3)}
+.screener th{padding:8px 6px;font-size:9px;text-align:center}
+.screener td{padding:7px 6px;font-size:11px;text-align:center;vertical-align:middle}
+.screener td.name{text-align:left;font-weight:600}
+.screener .score-cell{font-family:'Syne',sans-serif;font-weight:800;font-size:14px}
+
+/* Segment bar */
+.seg-bar{display:flex;height:30px;margin:10px 0;border:1px solid var(--line)}
+.seg{padding:5px 10px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#fff;display:flex;align-items:center;justify-content:center}
+
+/* Scenario table */
+.scen{display:grid;grid-template-columns:repeat(3,1fr);margin:14px 0;border:1px solid var(--line2)}
+.scen-col{padding:16px 18px;border-right:1px solid var(--line)}
+.scen-col:last-child{border-right:none}
+.scen-col.bear{background:var(--rust-bg)}
+.scen-col.base{background:var(--paper)}
+.scen-col.bull{background:var(--olive-bg)}
+.scen-tag{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:2px;margin-bottom:6px;font-weight:600}
+.scen-col.bear .scen-tag{color:var(--rust)}
+.scen-col.base .scen-tag{color:var(--gold)}
+.scen-col.bull .scen-tag{color:var(--olive)}
+.scen-head{font-weight:700;font-size:14px;margin-bottom:4px;color:var(--ink)}
+.scen-val{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;margin:6px 0;letter-spacing:-0.5px}
+.scen-col.bear .scen-val{color:var(--rust)}
+.scen-col.base .scen-val{color:var(--gold)}
+.scen-col.bull .scen-val{color:var(--olive)}
+.scen-body{font-size:11.5px;line-height:1.6;color:var(--ink2);margin-top:6px}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eye">
+    <span>REIT-LIKE STOCK SCREENING + 恒隆地产 DEEP DIVE</span>
+    <span class="t">2026.04.20 · 新增品类</span>
+  </div>
+  <h1>
+    类REITs股票筛选工作表 + 恒隆地产深度研究
+    <span class="en">REIT-LIKE STOCK SCREENING &amp; HANG LUNG PROPERTIES CASE STUDY</span>
+  </h1>
+  <p class="hero-sub">
+    本文档是《商业REITs投研方法论》的<strong>实战延伸</strong>。第一部分是<em>可复用的类REITs股票筛选工作表</em>——基于六条标准的打分卡,覆盖12只潜在候选股票的初步评估。第二部分是<em>恒隆地产(0101.HK)的深度类REITs化研究</em>——它持有10个内地恒隆广场+香港物业组合,2025年租金收入占比94.4%,派息率接近100%,是高端商业领域最纯粹的"类REITs公司"。<strong>最核心发现:恒隆2025FY租金收入93.89亿港元(+占比94%),但港股市值长期大幅折价净资产NAV,隐含股息率接近10%,完美符合"被错配类REITs"特征。</strong>
+  </p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="k">候选池</div><div class="v plum">12只</div></div>
+    <div class="hero-meta-item"><div class="k">深度研究</div><div class="v rust">恒隆地产</div></div>
+    <div class="hero-meta-item"><div class="k">恒隆类REIT得分</div><div class="v plum">47/60</div></div>
+    <div class="hero-meta-item"><div class="k">租金收入占比</div><div class="v teal">94.4%</div></div>
+    <div class="hero-meta-item"><div class="k">派息率</div><div class="v gold">~100%</div></div>
+  </div>
+</section>
+
+<!-- TOC -->
+<section class="toc">
+  <div class="toc-title">目录</div>
+
+  <div class="toc-part">PART I · 类REITs股票筛选工作表</div>
+  <div class="toc-list">
+    <a href="#s1"><span data-n="01">筛选方法论总则</span><span>METHOD</span></a>
+    <a href="#s2"><span data-n="02">六标准打分卡模板</span><span>SCORECARD</span></a>
+    <a href="#s3"><span data-n="03">12只候选池初步打分</span><span>CANDIDATES</span></a>
+    <a href="#s4"><span data-n="04">Cap Rate反推估值模板</span><span>VALUATION TEMPLATE</span></a>
+    <a href="#s5"><span data-n="05">深度研究优先级排序</span><span>PRIORITY</span></a>
+    <a href="#s6"><span data-n="06">动态跟踪与监测机制</span><span>MONITORING</span></a>
+  </div>
+
+  <div class="toc-part">PART II · 恒隆地产(0101.HK)深度研究</div>
+  <div class="toc-list">
+    <a href="#s7"><span data-n="07">公司概览与资产全景</span><span>OVERVIEW</span></a>
+    <a href="#s8"><span data-n="08">核心资产 · 10个恒隆广场+香港物业</span><span>ASSET MAP</span></a>
+    <a href="#s9"><span data-n="09">财务分析 · REITs视角重排</span><span>FINANCIALS</span></a>
+    <a href="#s10"><span data-n="10">类REITs打分与特征分析</span><span>REIT-LIKE SCORE</span></a>
+    <a href="#s11"><span data-n="11">估值:Cap Rate/NAV/股息率三维</span><span>VALUATION</span></a>
+    <a href="#s12"><span data-n="12">投资决策与价格区间</span><span>DECISION</span></a>
+    <a href="#s13"><span data-n="13">风险矩阵与监测信号</span><span>RISK</span></a>
+  </div>
+</section>
+
+<!-- ═══════════ PART I ═══════════ -->
+<div class="part-banner">
+  <div class="eye">PART I · SCREENING WORKBOOK</div>
+  <h2>类REITs股票筛选工作表<span class="en">A REUSABLE WORKBOOK FOR FINDING HIDDEN REIT-LIKE STOCKS</span></h2>
+</div>
+
+<!-- §1 方法论 -->
+<section class="sec" id="s1">
+  <div class="sec-head">
+    <div class="sec-num">01<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">筛选方法论总则<span class="en">METHOD</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose">
+      <p>"类REITs上市公司"是一个被市场系统性忽视的类别。它们<strong>以股票形式上市,但经济实质是REIT</strong>。识别它们需要三层漏斗:</p>
+    </div>
+
+    <table>
+      <thead><tr><th>筛选层</th><th>目标</th><th>方法</th><th>通过率</th></tr></thead>
+      <tbody>
+        <tr class="hl-p"><td class="fw6 c-plum">第一层 · 行业定位</td><td>粗筛"持有型物业"公司</td><td>Wind行业分类过滤 · 营收结构初判</td><td class="num">全市场→30-50只</td></tr>
+        <tr class="hl-p"><td class="fw6 c-plum">第二层 · 财务特征</td><td>符合六条REIT标准</td><td>本工作表§2的打分卡</td><td class="num">30-50只→5-10只</td></tr>
+        <tr class="hl-r"><td class="fw6 c-rust">第三层 · 估值错配</td><td>存在"REIT框架下低估"</td><td>Cap Rate反推vs当前市值</td><td class="num">5-10只→2-4只核心</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <div class="tl">筛选的根本逻辑</div>
+      "地产股"和"公募REIT"是两套独立的估值体系,<strong>市场在两个体系之间存在信息隔离</strong>。一只股票可能用地产股体系(PE/PB/NAV折价)定价在100亿市值,但如果用REIT体系(Cap Rate/分派率)定价可能应该是200亿。<em>套利机会就在这种"定价体系错配"里</em>。
+    </div>
+  </div>
+</section>
+
+<!-- §2 打分卡 -->
+<section class="sec" id="s2">
+  <div class="sec-head">
+    <div class="sec-num">02<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">六标准打分卡模板<span class="en">SIX-CRITERIA SCORECARD</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose"><p>通用六标准打分卡,可批量应用于任何候选股票:</p></div>
+
+    <table>
+      <thead><tr><th style="width:22%">标准</th><th style="width:24%">打分锚点</th><th style="width:10%">满分</th><th>评分说明</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="fw6 c-plum">① 核心资产集中度</td>
+          <td>1-3个资产贡献80%+</td>
+          <td class="num">10</td>
+          <td>1-3个资产=10分 · 4-8个=7分 · 9-15个=5分 · &gt;15个=3分</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">② 收入结构</td>
+          <td>租金/服务费占比</td>
+          <td class="num">10</td>
+          <td>&gt;90%=10 · 70-90%=8 · 50-70%=6 · 30-50%=3 · &lt;30%=0</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">③ 资产负债率</td>
+          <td>总负债/总资产</td>
+          <td class="num">10</td>
+          <td>&lt;25%=10 · 25-40%=8 · 40-55%=5 · 55-70%=2 · &gt;70%=0</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">④ 派息率</td>
+          <td>过去3年均值</td>
+          <td class="num">10</td>
+          <td>&gt;80%=10 · 60-80%=8 · 40-60%=6 · 20-40%=3 · &lt;20%=0</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">⑤ 经营稳定性</td>
+          <td>近5年营收年波动</td>
+          <td class="num">10</td>
+          <td>&lt;5%=10 · 5-10%=8 · 10-15%=6 · 15-25%=3 · &gt;25%=0</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">⑥ 再投资比例</td>
+          <td>CapEx/营业CF</td>
+          <td class="num">10</td>
+          <td>&lt;20%维持性=10 · 20-40%=7 · 40-70%=4 · &gt;70%扩张=2</td>
+        </tr>
+        <tr class="grand">
+          <td colspan="3">总分</td>
+          <td>≥45 极度类REITs · 35-45 典型类REITs · 25-35 弱类REITs · &lt;25 非类REITs</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="score-gauge">
+      <div class="score-big" style="color:var(--olive)">≥45</div>
+      <div class="score-bar"><div class="score-fill" style="width:100%"></div></div>
+      <div class="score-text">极度类REITs(国贸57)</div>
+    </div>
+    <div class="score-gauge">
+      <div class="score-big" style="color:var(--gold)">35-45</div>
+      <div class="score-bar"><div class="score-fill" style="width:75%"></div></div>
+      <div class="score-text">典型类REITs(恒隆47)</div>
+    </div>
+    <div class="score-gauge">
+      <div class="score-big" style="color:var(--amber)">25-35</div>
+      <div class="score-bar"><div class="score-fill" style="width:50%"></div></div>
+      <div class="score-text">弱类REITs · 仅部分特征</div>
+    </div>
+    <div class="score-gauge">
+      <div class="score-big" style="color:var(--red)">&lt;25</div>
+      <div class="score-bar"><div class="score-fill" style="width:25%"></div></div>
+      <div class="score-text">非类REITs · 用常规股票估值</div>
+    </div>
+  </div>
+</section>
+
+<!-- §3 候选池 -->
+<section class="sec" id="s3">
+  <div class="sec-head">
+    <div class="sec-num">03<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">12只候选池初步打分<span class="en">CANDIDATE UNIVERSE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose"><p>基于公开财报快速打分的初步候选池。<strong>分数为初步估计,需深度研究验证。</strong>红色=已验证 · 橙色=值得深度研究 · 灰色=不符合或需排除。</p></div>
+
+    <table class="screener">
+      <thead>
+        <tr>
+          <th style="width:4%">#</th>
+          <th style="width:16%" style="text-align:left">公司</th>
+          <th style="width:9%">代码</th>
+          <th>①集中度</th>
+          <th>②收入</th>
+          <th>③负债</th>
+          <th>④派息</th>
+          <th>⑤稳定</th>
+          <th>⑥再投资</th>
+          <th style="width:7%">总分</th>
+          <th>评级</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="hl-g">
+          <td>1</td>
+          <td class="name c-rust">中国国贸 ✓</td>
+          <td>600007</td>
+          <td>10</td><td>10</td><td>10</td><td>10</td><td>9</td><td>8</td>
+          <td class="score-cell c-rust">57</td>
+          <td class="c-g fw6">已验证 · 极度类REITs</td>
+        </tr>
+        <tr class="hl-a">
+          <td>2</td>
+          <td class="name">恒隆地产 ✓</td>
+          <td>0101.HK</td>
+          <td>5</td><td>10</td><td>8</td><td>10</td><td>9</td><td>5</td>
+          <td class="score-cell c-gold">47</td>
+          <td class="c-a fw6">本文深度研究</td>
+        </tr>
+        <tr class="hl-a">
+          <td>3</td>
+          <td class="name">九龙仓置业</td>
+          <td>1997.HK</td>
+          <td>7</td><td>10</td><td>9</td><td>9</td><td>9</td><td>7</td>
+          <td class="score-cell c-gold">51</td>
+          <td class="c-a fw6">香港顶级商业 · 下一研究</td>
+        </tr>
+        <tr class="hl-a">
+          <td>4</td>
+          <td class="name">太古地产</td>
+          <td>1972.HK</td>
+          <td>7</td><td>10</td><td>8</td><td>9</td><td>9</td><td>5</td>
+          <td class="score-cell c-gold">48</td>
+          <td class="c-a fw6">太古广场+三里屯</td>
+        </tr>
+        <tr class="hl-a">
+          <td>5</td>
+          <td class="name">浦东金桥</td>
+          <td>600639</td>
+          <td>8</td><td>8</td><td>6</td><td>7</td><td>8</td><td>5</td>
+          <td class="score-cell c-gold">42</td>
+          <td class="c-a fw6">上海金桥产业园</td>
+        </tr>
+        <tr class="hl-a">
+          <td>6</td>
+          <td class="name">张江高科</td>
+          <td>600895</td>
+          <td>7</td><td>7</td><td>6</td><td>6</td><td>8</td><td>4</td>
+          <td class="score-cell c-gold">38</td>
+          <td class="c-a fw6">张江园区 · 含创投不纯</td>
+        </tr>
+        <tr class="hl-a">
+          <td>7</td>
+          <td class="name">金融街</td>
+          <td>000402</td>
+          <td>6</td><td>6</td><td>4</td><td>6</td><td>6</td><td>4</td>
+          <td class="score-cell c-a">32</td>
+          <td class="c-a">弱类REITs · 含开发</td>
+        </tr>
+        <tr class="hl-a">
+          <td>8</td>
+          <td class="name">陆家嘴</td>
+          <td>600663</td>
+          <td>6</td><td>6</td><td>4</td><td>6</td><td>6</td><td>3</td>
+          <td class="score-cell c-a">31</td>
+          <td class="c-a">弱类REITs · 开发业务大</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td class="name">外高桥</td>
+          <td>600648</td>
+          <td>6</td><td>6</td><td>5</td><td>5</td><td>7</td><td>3</td>
+          <td class="score-cell">32</td>
+          <td class="c-a">弱类REITs · 保税物业</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td class="name">恒隆集团</td>
+          <td>0010.HK</td>
+          <td>5</td><td>9</td><td>8</td><td>8</td><td>9</td><td>5</td>
+          <td class="score-cell c-gold">44</td>
+          <td class="c-a">恒隆地产母公司 · 更深折价</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td class="name">置地集团 HKL</td>
+          <td>H78.SI</td>
+          <td>7</td><td>9</td><td>8</td><td>8</td><td>9</td><td>5</td>
+          <td class="score-cell c-gold">46</td>
+          <td class="c-a">中环写字楼 · 新加坡上市</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td class="name">希慎兴业</td>
+          <td>0014.HK</td>
+          <td>7</td><td>10</td><td>7</td><td>8</td><td>8</td><td>5</td>
+          <td class="score-cell c-gold">45</td>
+          <td class="c-a">铜锣湾利园系 · 最纯商业</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="rule-label">分数分布解读</div>
+
+    <div class="grid3">
+      <div class="card rust">
+        <div class="c-title">极度类REITs(&gt;50)</div>
+        <div class="c-body">
+          中国国贸(57) · 九龙仓置业(51) — <strong>这两家是"真正的类REITs"</strong>,结构最接近标准REIT。资产集中、租金收入占绝对主导、低杠杆、高派息。
+        </div>
+      </div>
+      <div class="card gold">
+        <div class="c-title">典型类REITs(40-50)</div>
+        <div class="c-body">
+          恒隆地产(47) · 太古地产(48) · 希慎(45) · 置地(46) · 恒隆集团(44) · 浦东金桥(42) — <strong>都有明显REIT特征但有些维度不完全吻合</strong>,比如恒隆资产分散10+个,但经济实质依然是REIT。
+        </div>
+      </div>
+      <div class="card olive">
+        <div class="c-title">弱类REITs(30-40)</div>
+        <div class="c-body">
+          张江高科(38) · 金融街(32) · 陆家嘴(31) · 外高桥(32) — <strong>开发业务占比较大,稀释了REIT特征</strong>。这些不适合纯REIT估值,需混合估值。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 估值模板 -->
+<section class="sec" id="s4">
+  <div class="sec-head">
+    <div class="sec-num">04<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">Cap Rate反推估值模板<span class="en">VALUATION TEMPLATE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose"><p>对得分&gt;35分的候选,用以下五步模板做估值重估:</p></div>
+
+    <table>
+      <thead><tr><th style="width:8%">步骤</th><th style="width:25%">核心动作</th><th>方法</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="fw6 c-plum">步骤1</td>
+          <td>估算NOI</td>
+          <td>租金/服务收入 − 运营成本 − 税金(不扣折旧和利息)。可用"营业溢利 + 折旧"近似</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">步骤2</td>
+          <td>确定合理Cap Rate</td>
+          <td>查同类型同能级公募REIT的Cap Rate · 考虑地段溢价/折让 · 考虑业态权重</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">步骤3</td>
+          <td>反推资产价值</td>
+          <td>NOI ÷ Cap Rate = 资产价值(亿元)</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">步骤4</td>
+          <td>加减净现金/净债务</td>
+          <td>资产价值 + 净现金 - 净债务 = 合理权益价值</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-plum">步骤5</td>
+          <td>与当前市值对比</td>
+          <td>(合理权益价值 - 当前市值) / 当前市值 = 折价/溢价幅度</td>
+        </tr>
+        <tr class="grand">
+          <td colspan="3">折价&gt;30% = 核心候选 · 折价10-30% = 值得关注 · 折价&lt;10%或溢价 = 合理或偏贵</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="formula">
+      <div>标准公式</div>
+      <div class="f-eq">合理市值 = (NOI ÷ Cap Rate) + 净现金 − 净债务</div>
+      <div class="f-note">Cap Rate取自同业公募REIT · 北京CBD核心4.0-4.8% · 上海中高端商业4.2-5.0% · 内地二线5.5-6.5%</div>
+    </div>
+  </div>
+</section>
+
+<!-- §5 优先级 -->
+<section class="sec" id="s5">
+  <div class="sec-head">
+    <div class="sec-num">05<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">深度研究优先级排序<span class="en">PRIORITY</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead><tr><th>优先级</th><th>标的</th><th>分数</th><th>优先研究理由</th><th>预计研究时间</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6 c-olive">P0 已完成</td><td class="fw6">中国国贸</td><td class="num c-g">57</td><td>已深度研究 · 发现巨大估值错配(-36%~-58%)</td><td class="num">完成</td></tr>
+        <tr class="hl-a"><td class="fw6 c-rust">P1 进行中</td><td class="fw6">恒隆地产</td><td class="num c-gold">47</td><td>租金占比94% · 10家恒隆广场 · 港股深度折价</td><td class="num">本文</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">P2 近期</td><td class="fw6">九龙仓置业</td><td class="num c-gold">51</td><td>海港城+时代广场全港顶级 · 香港资产最纯</td><td class="num">1周</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">P3 近期</td><td class="fw6">太古地产</td><td class="num c-gold">48</td><td>太古广场+三里屯+兴业太古汇三地标</td><td class="num">1-2周</td></tr>
+        <tr><td class="fw6">P4 中期</td><td class="fw6">希慎兴业</td><td class="num">45</td><td>铜锣湾利园系+上海超仕慎 · 纯商业</td><td class="num">2-3周</td></tr>
+        <tr><td class="fw6">P5 中期</td><td class="fw6">置地集团</td><td class="num">46</td><td>中环写字楼+北京王府中環</td><td class="num">2-3周</td></tr>
+        <tr><td class="fw6">P6 中期</td><td class="fw6">浦东金桥</td><td class="num">42</td><td>上海金桥产业园 · A股流动性好</td><td class="num">2-3周</td></tr>
+        <tr><td class="fw6">P7 观察</td><td class="fw6">恒隆集团</td><td class="num">44</td><td>恒隆地产控股母公司 · NAV折价更深</td><td class="num">观察</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="cl-eye">Research Strategy · 研究策略</div>
+      <div class="cl-main">优先完成P1-P3(恒隆/九龙仓/太古)后,你将拥有<strong>"内地商业(恒隆)+香港顶级(九龙仓)+跨境高端(太古)"</strong>三大类REITs股票的完整研究。这就是一个专业的商业不动产类REITs投资组合的核心底仓。<em>之后再加上国贸(A股)和恒隆地产,就形成了A股+港股双市场对冲,地域多元化的完整架构。</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- §6 动态跟踪 -->
+<section class="sec" id="s6">
+  <div class="sec-head">
+    <div class="sec-num">06<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">动态跟踪与监测机制<span class="en">MONITORING</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose"><p>筛选出的候选需要动态跟踪。以下是季度复盘模板:</p></div>
+
+    <table>
+      <thead><tr><th>监测项</th><th>频率</th><th>核心动作</th><th>触发阈值</th></tr></thead>
+      <tbody>
+        <tr><td class="fw6">分数重评</td><td>半年</td><td>财报后重新打分</td><td>分数变化±5需深度分析</td></tr>
+        <tr><td class="fw6">Cap Rate更新</td><td>季度</td><td>参考新发REIT的Cap Rate更新估值模板</td><td>Cap Rate变化±50bp需重估</td></tr>
+        <tr><td class="fw6">股息率跟踪</td><td>月度</td><td>动态监控股息率vs国债溢价</td><td>溢价&gt;300bp买入 · &lt;150bp减仓</td></tr>
+        <tr><td class="fw6">相对估值切换</td><td>月度</td><td>类REIT股息率 vs 可比REIT分派率</td><td>差距&gt;1.5%触发切换</td></tr>
+        <tr><td class="fw6">资产注入/分拆</td><td>实时</td><td>原始权益人REITs动作</td><td>重大事件即触发深度研究</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <div class="tl">工作表使用流程</div>
+      <strong>每季度一次重评:</strong><br>
+      ① 查候选名单的最新财报(3月/8月/10月)<br>
+      ② 用六标准重打分 · 更新此表<br>
+      ③ 用Cap Rate模板重估 · 更新价格锚<br>
+      ④ 生成"本季度重点跟踪"列表<br>
+      ⑤ 推送新的季度版本到GitHub存档
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PART II · 恒隆地产深度研究 ═══════════ -->
+<div class="part-banner rust">
+  <div class="eye">PART II · CASE DEEP DIVE · HANG LUNG</div>
+  <h2>恒隆地产(0101.HK) · 高端商业类REITs深度研究<span class="en">HANG LUNG PROPERTIES · PREMIUM COMMERCIAL REIT-LIKE STOCK</span></h2>
+</div>
+
+<!-- §7 公司概览 -->
+<section class="sec" id="s7">
+  <div class="sec-head">
+    <div class="sec-num rust">07<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">公司概览与资产全景<span class="en">OVERVIEW</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose rust-prose">
+      <p>恒隆地产是香港上市、专注中国内地高端商业物业的纯租金运营公司。<strong>2025年总收入99.50亿港元,其中物业租赁占93.89亿(94.4%)</strong>,是港股里租金收入占比最高的地产公司之一。母公司恒隆集团(0010.HK)持股约58%。</p>
+    </div>
+
+    <div class="kpi-row k5">
+      <div class="kpi rust"><div class="kl">2025总收入</div><div class="kv rust small">99.50亿港元</div><div class="ks c-r">-11% YoY</div></div>
+      <div class="kpi rust"><div class="kl">物业租赁收入</div><div class="kv rust small">93.89亿</div><div class="ks">占94.4%</div></div>
+      <div class="kpi rust"><div class="kl">营业溢利</div><div class="kv rust small">65.27亿</div><div class="ks c-g">+1% YoY</div></div>
+      <div class="kpi rust"><div class="kl">有息负债(2024)</div><div class="kv rust small">573.76亿</div><div class="ks">平均利率4.3%</div></div>
+      <div class="kpi rust"><div class="kl">内地恒隆广场数</div><div class="kv rust small">10个</div><div class="ks">8个城市 · 227万㎡</div></div>
+    </div>
+
+    <p class="rule-label rust">业务结构(2024年)</p>
+    <div class="seg-bar">
+      <div class="seg" style="width:58%;background:var(--rust)">内地IP租金 58%</div>
+      <div class="seg" style="width:27%;background:var(--plum)">香港IP租金 27%</div>
+      <div class="seg" style="width:13%;background:var(--gold)">香港开发 13%</div>
+      <div class="seg" style="width:2%;background:var(--teal)">酒店 2%</div>
+    </div>
+
+    <div class="tip">
+      <div class="tl">关键认知 · 恒隆 vs 大部分港股地产公司</div>
+      大部分港股地产公司是<strong>"开发+持有"混合模式</strong>,开发收入是大头,租金只是副业。恒隆正好相反——<em>开发收入仅占2.7%(物业销售2.64亿/总收入99.5亿)</em>,95%以上收入来自长期持有的物业租金。这个结构跟标准REIT的"100%租金收入"只差一点点,是港股里最接近REIT的大型地产公司。
+    </div>
+  </div>
+</section>
+
+<!-- §8 资产地图 -->
+<section class="sec" id="s8">
+  <div class="sec-head">
+    <div class="sec-num rust">08<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">核心资产 · 10个恒隆广场+香港物业组合<span class="en">ASSET MAP</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose rust-prose"><p>恒隆的资产结构有两个"梯队":<strong>A级旗舰(上海两个)</strong>是利润核心,<strong>B级城市级(8个内地+香港物业)</strong>是规模基础。</p></div>
+
+    <p class="rule-label rust">内地10个恒隆广场</p>
+
+    <table>
+      <thead><tr><th style="width:15%">城市·项目</th><th style="width:11%">业态</th><th>定位</th><th style="width:14%">2025表现</th><th>评级</th></tr></thead>
+      <tbody>
+        <tr class="hl-g">
+          <td class="fw6 c-olive">上海 · 恒隆广场(港汇)</td>
+          <td>商场+写字楼</td>
+          <td><strong>旗舰级</strong>,徐家汇核心标杆,全国前十高端商业</td>
+          <td class="c-g">租金+增长</td>
+          <td class="c-g fw6">A+</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-olive">上海 · 恒隆广场(南京西路)</td>
+          <td>商场+写字楼</td>
+          <td><strong>旗舰级</strong>,南京西路核心,和SKP/嘉里中心并列</td>
+          <td class="c-g">租金+增长</td>
+          <td class="c-g fw6">A+</td>
+        </tr>
+        <tr><td class="fw6">无锡 · 恒隆广场</td><td>商场+办公</td><td>无锡高端标杆,经营稳定</td><td class="c-g">租金同比转正</td><td class="c-g">A</td></tr>
+        <tr><td class="fw6">大连 · 恒隆广场</td><td>商场+办公+酒店</td><td>大连高端商业标杆</td><td class="c-g">租金同比转正</td><td class="c-g">A</td></tr>
+        <tr><td class="fw6">昆明 · 恒隆广场</td><td>商场+办公</td><td>昆明高端商业标杆</td><td class="c-g">租金同比转正</td><td class="c-g">A</td></tr>
+        <tr><td class="fw6">沈阳 · 市府恒隆</td><td>商场</td><td>沈阳高端商业,市场竞争压力大</td><td class="c-a">持平</td><td class="c-a">B+</td></tr>
+        <tr><td class="fw6">沈阳 · 皇城恒隆</td><td>商场</td><td>沈阳次中心商场</td><td class="c-a">持平</td><td class="c-a">B</td></tr>
+        <tr><td class="fw6">济南 · 恒隆广场</td><td>商场</td><td>济南高端商业,竞争压力</td><td class="c-a">持平偏弱</td><td class="c-a">B</td></tr>
+        <tr><td class="fw6">武汉 · 恒隆广场</td><td>商场</td><td>武汉高端,近年开业,爬坡中</td><td class="c-a">爬坡</td><td class="c-a">B(爬坡)</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">杭州 · 恒隆广场</td><td>商场(+酒店)</td><td><strong>新建</strong>,2025下半年分阶段开业</td><td class="c-teal">增量预期</td><td class="c-teal fw6">A(未开业)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="rule-label rust">香港物业组合</p>
+
+    <table>
+      <thead><tr><th>物业</th><th>区位</th><th>业态</th><th>2025表现</th></tr></thead>
+      <tbody>
+        <tr><td class="fw6">铜锣湾 · 时代广场</td><td>港岛核心</td><td>商场+办公</td><td class="c-a">租金-4%</td></tr>
+        <tr><td class="fw6">康怡广场、淘大商场等</td><td>港岛多区</td><td>社区商业</td><td class="c-a">稳健</td></tr>
+        <tr><td class="fw6">住宅及服务式寓所</td><td>港岛</td><td>租赁住宅</td><td class="c-g">+6%(政府人才计划)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="good">
+      <div class="tl">资产质量判断</div>
+      <strong>上海两个恒隆广场是"皇冠明珠"</strong>——在全国高端商业里排名前十,租金收入和营业溢利贡献占整个集团约30-40%。其他8个内地广场是"城市级标杆",质量次一档但依然是各自城市的高端商业第一梯队。<em>杭州恒隆广场2025-2026分阶段开业,将是未来2-3年最大的内生增长引擎。</em>
+    </div>
+  </div>
+</section>
+
+<!-- §9 财务分析 -->
+<section class="sec" id="s9">
+  <div class="sec-head">
+    <div class="sec-num rust">09<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">财务分析 · REITs视角重排<span class="en">REITs-LENS FINANCIALS</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <div class="prose rust-prose"><p>把恒隆2025年报按REITs口径重排,得到以下"伪REIT"视图:</p></div>
+
+    <p class="rule-label rust">收入瀑布(2025年, 亿港元)</p>
+
+    <table>
+      <tbody>
+        <tr class="hl-g"><td class="fw6">内地IP租金(商场+办公)</td><td class="num fw6">~63亿</td><td>商场抗压 · 办公承压</td></tr>
+        <tr class="hl-g"><td class="fw6">香港IP租金(商场+办公+住宅)</td><td class="num fw6">~31亿</td><td>办公-5% · 住宅+6%</td></tr>
+        <tr class="grand"><td>物业租赁合计</td><td class="num">93.89亿</td><td>占总收入94.4%</td></tr>
+        <tr><td>物业销售(尾盘)</td><td class="num c-r">2.64亿</td><td>规模极小,-83%YoY</td></tr>
+        <tr><td>酒店收入</td><td class="num c-g">2.97亿</td><td>+57% · 新酒店开业</td></tr>
+        <tr class="grand"><td>总收入</td><td class="num">99.50亿</td><td>-11% YoY(主要物业销售拖累)</td></tr>
+      </tbody>
+    </table>
+
+    <p class="rule-label rust">REITs口径可供分配金额估算(2025)</p>
+
+    <table>
+      <tbody>
+        <tr><td style="width:60%">股东应占基本纯利(2025E)</td><td class="num fw6">~31亿(估)</td></tr>
+        <tr class="hl-g"><td>加回折旧和摊销</td><td class="num c-g">+ ~5亿</td></tr>
+        <tr class="hl-g"><td>加回财务费用净额</td><td class="num c-g">+ ~8.8亿</td></tr>
+        <tr class="hl-g"><td>加回所得税费用</td><td class="num c-g">+ ~5亿</td></tr>
+        <tr class="grand"><td>= 类EBITDA</td><td class="num">~50亿</td></tr>
+        <tr class="hl-r"><td>减:已支付利息净额</td><td class="num c-r">− 8.8亿</td></tr>
+        <tr class="hl-r"><td>减:已支付所得税</td><td class="num c-r">− 5亿</td></tr>
+        <tr class="hl-r"><td>减:维持性CapEx</td><td class="num c-r">− ~5亿</td></tr>
+        <tr class="grand"><td>▸ 类REITs可供分配金额</td><td class="num">~31亿</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip">
+      <div class="tl">关键观察</div>
+      恒隆类REITs可供分配金额约<strong>31亿港元</strong>,相当于<em>每股~0.65港元</em>(按47.6亿股计)。如果按REIT强制90%分派,每股应派0.58港元。<br><br>
+      <strong>实际派息</strong>:2024末期股息0.40港元,若全年保持则派息率约62%,低于类REIT理论值,但相对行业仍属高派息水平。<strong>派息率的"欠账"留给了降负债用途</strong>(管理层2025年明确"重整策略"降低负债率)。
+    </div>
+
+    <p class="rule-label rust">负债结构分析</p>
+
+    <div class="kpi-row k4">
+      <div class="kpi"><div class="kl">有息负债(2024末)</div><div class="kv small">573.76亿</div><div class="ks c-r">+13% YoY</div></div>
+      <div class="kpi"><div class="kl">平均利率</div><div class="kv small">4.3%</div><div class="ks">与2023年持平</div></div>
+      <div class="kpi"><div class="kl">利息支出净额</div><div class="kv small">8.84亿</div><div class="ks c-r">+42% YoY</div></div>
+      <div class="kpi rust"><div class="kl">估算净负债率</div><div class="kv rust small">~33%</div><div class="ks">比国贸22%高,但低于40%</div></div>
+    </div>
+
+    <div class="warn">
+      <div class="tl">恒隆的"类REIT缺陷"</div>
+      恒隆与国贸最大的差异在于<strong>杠杆水平</strong>。国贸22%资产负债率接近零杠杆REIT,恒隆33%净负债率明显偏高。<em>2024-2025管理层"重整策略"的核心就是压降负债</em>——通过人民币贷款置换港币贷款降低融资成本、以股代息保留现金、重整派息(从100%向60-70%收敛)。<br><br>
+      <strong>这是一把双刃剑:</strong>短期派息被压制(不如预期),但长期利息成本下降会改善可分派金额。2026-2027年如果利率下行+人民币贷款替换完成+杭州恒隆开业,有望同时实现"降负债+增派息"双重改善。
+    </div>
+  </div>
+</section>
+
+<!-- §10 打分 -->
+<section class="sec" id="s10">
+  <div class="sec-head">
+    <div class="sec-num rust">10<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">类REITs打分与特征分析<span class="en">REIT-LIKE SCORE</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead><tr><th style="width:20%">标准</th><th style="width:30%">恒隆实际情况</th><th style="width:10%">打分</th><th>评分说明</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="fw6 c-rust">① 核心资产集中度</td>
+          <td>10个内地广场+多个香港物业,总计15-18个资产 · 上海两个占利润约35-40%</td>
+          <td class="num fw6">5/10</td>
+          <td>分散是扣分项,但上海两大旗舰的集中度一定程度抵消</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-rust">② 收入结构</td>
+          <td>2025物业租赁占94.4% · 销售仅2.7%</td>
+          <td class="num fw6 c-g">10/10</td>
+          <td>极度纯粹的租金收入,媲美REIT</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-rust">③ 资产负债率</td>
+          <td>有息负债/总资产约33% · 低于行业60%+平均</td>
+          <td class="num fw6">8/10</td>
+          <td>低杠杆但非零杠杆,有压降空间</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-rust">④ 派息率</td>
+          <td>基本纯利100%派息(2024) · 2025或降至60-70%以降负债</td>
+          <td class="num fw6 c-g">10/10</td>
+          <td>历史长期高派息,2024年就是100%</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-rust">⑤ 经营稳定性</td>
+          <td>租赁收入年波动在-6%~+5%,物业销售波动更大但占比低</td>
+          <td class="num fw6 c-g">9/10</td>
+          <td>租金稳定性极强</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-rust">⑥ 再投资比例</td>
+          <td>杭州恒隆新建投资+无锡扩张 · 资本支出未纯"维持性"</td>
+          <td class="num fw6">5/10</td>
+          <td>仍有扩张行为,但相对其他地产公司已经克制</td>
+        </tr>
+        <tr class="grand">
+          <td>恒隆REIT相似度</td>
+          <td colspan="3">47/60 · 典型类REITs(上段,35-45)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="score-gauge" style="margin-top:16px">
+      <div class="score-big" style="color:var(--rust)">47</div>
+      <div class="score-bar"><div class="score-fill" style="width:78%"></div></div>
+      <div class="score-text">典型类REITs · 上段</div>
+    </div>
+
+    <div class="callout rust">
+      <div class="cl-eye">Score Analysis · 47分的含义</div>
+      <div class="cl-main">恒隆47分,低于国贸57分但远高于任何传统地产公司。<strong>两个扣分项是"资产集中度(5/10)"和"再投资(5/10)",都源于它的"准多资产平台"定位</strong>——10个恒隆广场不是单一资产的REIT,而是一个"小型REIT投资组合"。<em>从另一个角度看,这恰恰是恒隆相对国贸的独特价值:风险分散 + 新项目带来的成长期权</em>。</div>
+    </div>
+  </div>
+</section>
+
+<!-- §11 估值 -->
+<section class="sec" id="s11">
+  <div class="sec-head">
+    <div class="sec-num rust">11<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">估值 · Cap Rate / NAV / 股息率三维<span class="en">VALUATION</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+
+    <p class="rule-label rust">方法一 · Cap Rate反推</p>
+
+    <div class="prose rust-prose">
+      <p>用REITs Cap Rate方法反推恒隆资产价值。恒隆资产质量分化:上海两大旗舰是<strong>全国顶级</strong>(Cap Rate 4.2-4.8%),其他内地恒隆是<strong>二线中高端</strong>(Cap Rate 5.5-6.5%),香港物业约5-6%。用加权平均Cap Rate:</p>
+    </div>
+
+    <table>
+      <thead><tr><th>场景</th><th>整体NOI</th><th>加权Cap Rate</th><th>资产价值</th><th>-净负债</th><th>合理市值</th><th>对应股价</th></tr></thead>
+      <tbody>
+        <tr class="hl-g">
+          <td class="fw6 c-g">乐观(资产优质+利率下)</td>
+          <td class="num">~65亿港元</td>
+          <td class="num">4.5%</td>
+          <td class="num fw6">1,444亿</td>
+          <td class="num c-r">-500亿</td>
+          <td class="num fw6 c-g">944亿</td>
+          <td class="num fw6 c-g">HK$19.8</td>
+        </tr>
+        <tr>
+          <td class="fw6">中性</td>
+          <td class="num">~63亿</td>
+          <td class="num">5.2%</td>
+          <td class="num fw6">1,212亿</td>
+          <td class="num c-r">-500亿</td>
+          <td class="num fw6">712亿</td>
+          <td class="num fw6">HK$14.9</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">偏保守</td>
+          <td class="num">~60亿</td>
+          <td class="num">5.8%</td>
+          <td class="num fw6">1,034亿</td>
+          <td class="num c-r">-500亿</td>
+          <td class="num fw6 c-a">534亿</td>
+          <td class="num fw6 c-a">HK$11.2</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-r">极保守(内地持续下行)</td>
+          <td class="num">~55亿</td>
+          <td class="num">6.5%</td>
+          <td class="num fw6">846亿</td>
+          <td class="num c-r">-500亿</td>
+          <td class="num fw6 c-r">346亿</td>
+          <td class="num fw6 c-r">HK$7.3</td>
+        </tr>
+        <tr class="grand"><td colspan="5">当前市值(估)</td><td class="num">~290亿</td><td class="num">HK$~6.0</td></tr>
+      </tbody>
+    </table>
+
+    <p class="rule-label rust">方法二 · NAV折价率</p>
+
+    <div class="prose rust-prose">
+      <p>港股地产股的传统估值方法是NAV折价。恒隆2025H1股东权益约<strong>1,100亿港元</strong>(投资性物业按公允价值计量已反映),每股NAV约<strong>HK$23</strong>。当前股价HK$6对应<strong>NAV折价约74%</strong>——这在港股地产股里算极端折价水平。</p>
+    </div>
+
+    <table>
+      <thead><tr><th>估值法</th><th>合理市值</th><th>对应股价</th><th>当前折价/溢价</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6 c-g">NAV 1倍</td><td class="num">1,100亿</td><td class="num fw6 c-g">HK$23</td><td class="c-g">-74%(严重折价)</td></tr>
+        <tr><td class="fw6">NAV 0.5倍(港股地产中位)</td><td class="num">550亿</td><td class="num fw6">HK$11.6</td><td class="c-a">-48%(折价)</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">NAV 0.3倍(港股地产熊市)</td><td class="num">330亿</td><td class="num fw6 c-a">HK$6.9</td><td class="c-a">-13%(接近)</td></tr>
+        <tr class="hl-r"><td class="fw6 c-r">当前交易</td><td class="num c-r fw6">~290亿</td><td class="num c-r fw6">HK$~6</td><td class="c-r fw6">NAV 0.26倍</td></tr>
+      </tbody>
+    </table>
+
+    <p class="rule-label rust">方法三 · 股息率视角</p>
+
+    <div class="formula">
+      <div>假设2025全年派息维持0.60港元/股(比2024年1.25港元降,反映降负债需求)</div>
+      <div class="f-eq">当前股息率 = 0.60 / 6.00 = 10.0%</div>
+      <div class="f-note">极端高的股息率 · 但背后是"派息率可能进一步下调"的市场担忧</div>
+    </div>
+
+    <table>
+      <thead><tr><th>派息假设</th><th>股价对应股息率</th><th>投资含义</th></tr></thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6 c-g">乐观(恢复1.25港元/股)</td><td class="num fw6 c-g">20.8%</td><td>严重低估 · 股价升至12-15元才合理</td></tr>
+        <tr><td class="fw6">中性(0.80港元/股)</td><td class="num fw6">13.3%</td><td>仍然明显低估</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">保守(0.60港元/股)</td><td class="num fw6 c-a">10.0%</td><td>合理吸引 · 稀缺的类债收益</td></tr>
+        <tr class="hl-r"><td class="fw6 c-r">悲观(0.40港元/股)</td><td class="num fw6 c-r">6.7%</td><td>相对港股其他蓝筹仍有吸引力</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout rust">
+      <div class="cl-eye">Valuation Summary · 三种方法的综合判断</div>
+      <div class="cl-main">三种方法得出的合理股价区间:<br><br>
+      ▪ <strong>Cap Rate法</strong>(最严格):HK$7.3-19.8,中枢<em>HK$11-15</em><br>
+      ▪ <strong>NAV折价法</strong>:HK$6.9-23,港股现实价格<em>HK$11-14</em>(NAV 0.5倍中位)<br>
+      ▪ <strong>股息率法</strong>(最保守):HK$8-15(对应10%以下股息率)<br><br>
+      <strong>综合合理价值区间:HK$11-15</strong>,当前HK$6隐含<em>80-150%的上涨空间</em>(视基本面走向)。但是市场给出如此极端折价也有其原因:内地商业周期性承压+港股地产整体低迷+派息可能下调的不确定性。</div>
+    </div>
+  </div>
+</section>
+
+<!-- §12 决策 -->
+<section class="sec" id="s12">
+  <div class="sec-head">
+    <div class="sec-num rust">12<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">投资决策与价格区间<span class="en">DECISION</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+
+    <div class="scen">
+      <div class="scen-col bear">
+        <div class="scen-tag">◆ BEAR · 基本面持续恶化</div>
+        <div class="scen-head">内地消费萎缩 + 派息下调</div>
+        <div class="scen-val">HK$4-5</div>
+        <div class="scen-body">
+          <strong>触发因素:</strong><br>
+          ▪ 内地租金-10%+<br>
+          ▪ 派息降至0.4港元/股<br>
+          ▪ 香港办公楼持续疲弱<br>
+          ▪ 降负债进度不及预期<br>
+          <strong>对应跌幅:-17~-33%</strong>
+        </div>
+      </div>
+      <div class="scen-col base">
+        <div class="scen-tag">◆ BASE · 基本面企稳</div>
+        <div class="scen-head">租金回正 + 杭州开业</div>
+        <div class="scen-val">HK$8-12</div>
+        <div class="scen-body">
+          <strong>触发因素:</strong><br>
+          ▪ 内地商场租金稳定<br>
+          ▪ 杭州恒隆顺利开业<br>
+          ▪ 派息稳定在0.6-0.8港元<br>
+          ▪ 利率下行降财务成本<br>
+          <strong>对应涨幅:+33~+100%</strong>
+        </div>
+      </div>
+      <div class="scen-col bull">
+        <div class="scen-tag">◆ BULL · 重估行情</div>
+        <div class="scen-head">利率+基本面+重估三重共振</div>
+        <div class="scen-val">HK$14-18</div>
+        <div class="scen-body">
+          <strong>触发因素:</strong><br>
+          ▪ 美联储降息+港币弱<br>
+          ▪ 内地消费复苏<br>
+          ▪ 派息恢复至1元+<br>
+          ▪ 市场重估港股地产<br>
+          <strong>对应涨幅:+133~+200%</strong>
+        </div>
+      </div>
+    </div>
+
+    <p class="rule-label rust">分价位决策矩阵</p>
+
+    <table>
+      <thead>
+        <tr><th>价格区间</th><th>隐含股息率(按0.6港元)</th><th>NAV折价</th><th>信号</th><th>操作建议</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-g"><td class="fw6">&lt;HK$5</td><td class="num fw6 c-g">&gt;12%</td><td class="c-g">-78%</td><td class="c-g fw6">严重低估</td><td class="c-g fw6">重点加仓</td></tr>
+        <tr class="hl-g"><td class="fw6">HK$5-6.5</td><td class="num c-g">9-12%</td><td class="c-g">-72%至-78%</td><td class="c-g">低估</td><td class="c-g">逐步建仓</td></tr>
+        <tr class="hl-a"><td class="fw6">HK$6.5-8(当前附近)</td><td class="num c-a">7.5-9%</td><td class="c-a">-65%至-72%</td><td class="c-a fw6">合理偏低</td><td class="c-a fw6">持有加仓</td></tr>
+        <tr><td class="fw6">HK$8-11</td><td class="num">5.5-7.5%</td><td>-52%至-65%</td><td>合理中性</td><td>持有不变</td></tr>
+        <tr><td class="fw6">HK$11-14</td><td class="num">4.3-5.5%</td><td>-39%至-52%</td><td>接近合理</td><td>持有观察</td></tr>
+        <tr class="hl-r"><td class="fw6 c-r">&gt;HK$14</td><td class="num c-r">&lt;4.3%</td><td>&lt;-39%</td><td class="c-r fw6">重估完成</td><td class="c-r fw6">考虑减仓</td></tr>
+      </tbody>
+    </table>
+
+    <div class="good">
+      <div class="tl">核心结论</div>
+      恒隆地产在当前HK$6附近价格,<strong>对"严重偏好分派"的投资者提供了一个罕见的高股息+资产价值双安全边际组合</strong>。即便基本面持续承压(bear情景),HK$4-5的下行空间相对HK$8-18的上行空间是<em>不对称的风险收益</em>——下行-33%,上行+133%,赔率约1:4。<br><br>
+      <strong>适合分批建仓,而非满仓一次买入</strong>。建议在HK$5-7区间分3笔建立底仓,保留HK$4以下的"极度恐慌"加仓子弹。
+    </div>
+  </div>
+</section>
+
+<!-- §13 风险 -->
+<section class="sec" id="s13">
+  <div class="sec-head">
+    <div class="sec-num rust">13<span class="dot">.</span></div>
+    <div>
+      <h2 class="sec-title">风险矩阵与监测信号<span class="en">RISK MATRIX</span></h2>
+    </div>
+  </div>
+  <div class="sec-body">
+    <table>
+      <thead><tr><th>风险</th><th>机制</th><th>量化影响</th><th>监测信号</th></tr></thead>
+      <tbody>
+        <tr class="hl-r">
+          <td class="fw6 c-r">内地高端消费持续下行</td>
+          <td>奢侈品销售下滑直接影响抽成租金;上海两个旗舰客群是高净值</td>
+          <td>内地商场租金每降5%,基本纯利减少8-10%</td>
+          <td>中期报"内地10个广场同店销售"</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6 c-r">港元利率坚挺不降</td>
+          <td>港币挂钩美元,美联储不降息=恒隆融资成本维持高位</td>
+          <td>每多维持1年4.3%利率,利息多支出约3-5亿</td>
+          <td>美联储利率路径 · HIBOR</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">派息进一步下调</td>
+          <td>降负债需要保留现金,派息优先度下降</td>
+          <td>若降至0.4港元/股,股息率压至6.7%</td>
+          <td>半年报派息公告</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">香港写字楼空置率上行</td>
+          <td>时代广场+希慎系办公楼受冲击;港岛甲写空置率已17%+</td>
+          <td>每降5%出租率,收入约-2亿</td>
+          <td>季度写字楼空置率报告</td>
+        </tr>
+        <tr>
+          <td class="fw6">杭州恒隆开业不及预期</td>
+          <td>新项目爬坡期亏损,招商不如预期</td>
+          <td>每少10%实现率,首年收入少1-2亿</td>
+          <td>2026H1杭州恒隆开业数据</td>
+        </tr>
+        <tr>
+          <td class="fw6">人民币持续贬值</td>
+          <td>内地租金计入港币后被压缩</td>
+          <td>每贬值1%,内地租金港币口径-0.6亿</td>
+          <td>USD/CNY汇率</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="rule-label rust">监测信号清单(季度)</p>
+
+    <div class="grid3">
+      <div class="card rust">
+        <div class="c-title">一类 · 宏观信号</div>
+        <div class="c-body">
+          ① 美联储降息节奏(影响港元利率)<br>
+          ② 内地社零增速(影响租金)<br>
+          ③ 美元/港元与CNY走势<br>
+          ④ 中港消费复苏动能
+        </div>
+      </div>
+      <div class="card gold">
+        <div class="c-title">二类 · 个券信号</div>
+        <div class="c-body">
+          ① 内地10个广场同店增速<br>
+          ② 香港出租率(办公95% · 零售90%)<br>
+          ③ 利息支出净额 · 有息负债变动<br>
+          ④ 中期/年报派息公告
+        </div>
+      </div>
+      <div class="card teal">
+        <div class="c-title">三类 · 事件信号</div>
+        <div class="c-body">
+          ① 杭州恒隆开业进度及首期招商<br>
+          ② 无锡恒隆扩建落地<br>
+          ③ 100亿银团贷款执行进度<br>
+          ④ 以股代息计划接受率
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      <div class="tl">与中国国贸的配置对比</div>
+      <strong>国贸(A股) vs 恒隆(港股)</strong>:<br>
+      ▪ <em>国贸</em>:资产更集中(北京CBD单体) · 负债率更低(22%) · 股息率~5% · REIT相似度57<br>
+      ▪ <em>恒隆</em>:资产分散(10+个广场) · 负债率偏高(33%) · 股息率~10% · REIT相似度47<br><br>
+      两者是<strong>"更REIT但估值被部分发现的国贸"</strong> vs <strong>"稍差的REIT特征但估值更极致折价的恒隆"</strong>。<em>最优策略是两者并持</em>——用国贸捕捉A股CBD核心资产的重估,用恒隆捕捉港股深度折价+美联储降息双重弹性。
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <div>◆ 类REITs股票筛选工作表 + 恒隆地产深度研究 · V1.0 ◆</div>
+  <div style="margin-top:8px">数据基准: 恒隆地产2025FY年报(2026/1/30发布) · 2025H1中期报告 · 筛选池12只候选</div>
+  <div style="margin-top:8px;color:var(--muted)">Prepared on 2026-04-20 · 本文仅作研究与学习之用,不构成投资建议</div>
+</div>
+
+</div>
+</body>
+</html>
