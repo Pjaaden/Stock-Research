@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>赛轮集团 · 埃及二期扩建决策分析 · 20260421</title>
+<style>
+:root {
+  --bg: #fafaf7;
+  --bg2: #f3f1ea;
+  --bg3: #ebe8dd;
+  --bg4: #e3dfd0;
+  --text: #1a1a1a;
+  --muted: #4a4a45;
+  --dim: #7a7a72;
+  --border: #d5d1c3;
+  --border2: #b8b3a2;
+  --green: #2e6b2a;
+  --green-bg: #e6efdf;
+  --amber: #a0621a;
+  --amber-bg: #f2e8d8;
+  --red: #8a2a1f;
+  --red-bg: #f0dcd8;
+  --blue: #1e4d7a;
+  --blue-bg: #dce5ef;
+  --purple: #5a2e7a;
+  --gold: #7a5a1a;
+  --hl-green: #ddebd4;
+  --hl-amber: #ebe0ca;
+  --hl-red: #e8d2cd;
+  --hl-blue: #d3dde9;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', 'Noto Sans SC', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 13px;
+}
+
+header {
+  padding: 36px 48px 26px;
+  background: var(--bg);
+  border-bottom: 2px solid var(--border2);
+}
+.h-tag {
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+h1 {
+  font-family: 'Noto Serif SC', 'Syne', serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+h1 em {
+  font-style: normal;
+  color: var(--amber);
+  font-weight: 400;
+}
+.h-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.src {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+
+main { padding: 28px 48px 36px; max-width: 1400px; margin: 0 auto; }
+
+.verdict-top {
+  background: var(--bg2);
+  border: 2px solid var(--border2);
+  border-left: 4px solid var(--green);
+  padding: 20px 24px;
+  margin-bottom: 28px;
+}
+.verdict-top-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.verdict-top-headline {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.35;
+  margin-bottom: 14px;
+}
+.verdict-top-body {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.verdict-top-body strong { color: var(--text); }
+
+.sec { margin-bottom: 36px; }
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+.sec-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--dim);
+  letter-spacing: 2px;
+  background: var(--bg3);
+  padding: 4px 10px;
+}
+.sec-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--text);
+}
+.sec-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+thead th {
+  background: var(--bg3);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-align: left;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+td {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  background: #fff;
+}
+tbody tr.hl-g td { background: var(--hl-green); }
+tbody tr.hl-a td { background: var(--hl-amber); }
+tbody tr.hl-r td { background: var(--hl-red); }
+tbody tr.hl-b td { background: var(--hl-blue); }
+tr.grand td { background: var(--bg4); font-weight: 600; }
+.c-g { color: var(--green); }
+.c-a { color: var(--amber); }
+.c-r { color: var(--red); }
+.c-b { color: var(--blue); }
+.c-p { color: var(--purple); }
+.c-m { color: var(--muted); }
+.c-gold { color: var(--gold); }
+.fw6 { font-weight: 600; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 14px 16px;
+}
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.card-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.card-val.small { font-size: 16px; }
+.card-sub {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.card.g { border-top: 3px solid var(--green); }
+.card.a { border-top: 3px solid var(--amber); }
+.card.r { border-top: 3px solid var(--red); }
+.card.b { border-top: 3px solid var(--blue); }
+.card.gold { border-top: 3px solid var(--gold); }
+
+.insight {
+  background: var(--green-bg);
+  border-left: 3px solid var(--green);
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+.insight strong { color: var(--text); }
+
+.note {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.note b { color: var(--text); }
+
+.warn {
+  background: var(--amber-bg);
+  border-left: 3px solid var(--amber);
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.warn b { color: var(--text); }
+
+.red-note {
+  background: var(--red-bg);
+  border-left: 3px solid var(--red);
+  padding: 12px 16px;
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.red-note b { color: var(--text); }
+
+.bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.bar-lbl { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); width: 120px; flex-shrink: 0; }
+.bar-bg { flex: 1; height: 18px; background: var(--bg4); position: relative; }
+.bar-fill { height: 100%; display: flex; align-items: center; padding-left: 6px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #fff; }
+.bar-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; width: 110px; text-align: right; flex-shrink: 0; }
+
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.kpi {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-top: 3px solid var(--border2);
+}
+.kpi.g { border-top-color: var(--green); }
+.kpi.a { border-top-color: var(--amber); }
+.kpi.r { border-top-color: var(--red); }
+.kpi.b { border-top-color: var(--blue); }
+.kpi.p { border-top-color: var(--purple); }
+.kpi.gold { border-top-color: var(--gold); }
+.kl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.kv {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.kv.small { font-size: 15px; }
+.kv.g { color: var(--green); }
+.kv.a { color: var(--amber); }
+.kv.r { color: var(--red); }
+.kv.b { color: var(--blue); }
+.kv.p { color: var(--purple); }
+.kv.gold { color: var(--gold); }
+.ks {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  line-height: 1.5;
+  margin-top: 3px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 24px;
+  margin: 16px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border2);
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 14px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -22px;
+  top: 6px;
+  width: 10px;
+  height: 10px;
+  background: var(--amber);
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+}
+.tl-item.g::before { background: var(--green); }
+.tl-item.r::before { background: var(--red); }
+.tl-item.b::before { background: var(--blue); }
+.tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.tl-content {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.tl-content b { color: var(--text); }
+
+footer {
+  padding: 14px 48px;
+  border-top: 1px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+}
+
+.badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 2px 7px;
+  background: var(--bg3);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  margin-right: 4px;
+}
+.badge.g { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.badge.a { background: var(--amber-bg); color: var(--amber); border-color: var(--amber); }
+.badge.r { background: var(--red-bg); color: var(--red); border-color: var(--red); }
+.badge.b { background: var(--blue-bg); color: var(--blue); border-color: var(--blue); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-tag">SAILUN GROUP · 601058 · EGYPT PHASE-II EXPANSION DECISION ANALYSIS</div>
+  <h1>赛轮埃及扩建决策分析：<em>压力周期中的资本效率跃升</em></h1>
+  <div class="h-sub">基于705万条扩建可研报告（新）与360万条一期可研（历史）对比 · 2026年4月21日</div>
+  <div>
+    <span class="src">★ 埃及705万条扩建可研报告（2026）</span>
+    <span class="src">★ 埃及360万条一期可研（2025）</span>
+    <span class="src">★ 2025Q3季报</span>
+    <span class="src">★ 四基地对比分析 20260320</span>
+    <span class="src">★ 财务压力分析 20260320</span>
+    <span class="src">★ 基本盘与增长点 20260320</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════ 顶部判断 ══════ -->
+<div class="verdict-top">
+  <div class="verdict-top-title">核心判断 · Executive Summary</div>
+  <div class="verdict-top-headline">
+    这是赛轮历史上第一次"扩建型"海外投资决策——在资本压力最大的时点，却做出了资本效率最高的一笔决定。
+  </div>
+  <div class="verdict-top-body">
+    <strong>决策要点：</strong>产能从360万条翻倍至<strong>总计1,065万条</strong>（一期+二期），但投资额基本未变（$2.91亿→$2.85亿）。<strong>单条投资从$81降至$40（-50%）</strong>，单年ROI从11.9%跃升至<strong>21.6%（+81%）</strong>。这不是一个"新基地"决定，而是在既有地基、公用工程、管理团队、认证资质基础上的增量产线投入——是赛轮海外扩张12年来资本效率最高的一次。<br><br>
+    <strong>矛盾所在：</strong>决策时点却极不友好——2025年真实资金缺口−21.6亿/年、有息负债121亿、一年内到期18亿、净利润同比下滑、墨西哥和新和平正在爬坡、柬埔寨二期未达产、印尼刚刚首胎下线。在这种情况下再上一个$2.85亿的新项目，意味着公司对<strong>埃及基地的战略价值判断压倒了短期现金流压力</strong>。<br><br>
+    <strong>对估值的净影响：</strong>全面达产后新增净利润约<strong>+4.43亿元</strong>（相当于2024年归母净利润的+10.9%）；按11x PE、75%实现率折算的中枢估值贡献约<strong>+36亿元市值</strong>；按DCF（10%折现）项目NPV约<strong>+22.7亿元</strong>（相对于$2.85亿投资的<strong>2.11x回报</strong>）。短期估值无影响（爬坡前无利润贡献），但2028-2030年的利润修复曲线被结构性拉高。
+  </div>
+</div>
+
+<!-- ══════ §1 决策事实核心对比 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">一期 vs 二期扩建：单位经济学的质变</div>
+    <div class="sec-note">★ 均为可研报告原文数据</div>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi g">
+      <div class="kl">总产能（一期+二期）</div>
+      <div class="kv g">1,065万条</div>
+      <div class="ks">PCR 900 + TBR 165<br>一期360 + 二期705</div>
+    </div>
+    <div class="kpi b">
+      <div class="kl">总投资（一期+二期）</div>
+      <div class="kv b small">$5.77亿 / 41.6亿元</div>
+      <div class="ks">一期$2.91亿 + 二期$2.85亿<br>两期投资基本相等</div>
+    </div>
+    <div class="kpi a">
+      <div class="kl">合计达产净利润</div>
+      <div class="kv a small">$0.96亿 / 6.93亿元</div>
+      <div class="ks">一期$3,477万 + 二期$6,150万<br>相当于集团2024年归母的17%</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kl">二期单条投资降幅</div>
+      <div class="kv gold">−50%</div>
+      <div class="ks">$81/条 → $40/条<br>扩建红利的量化体现</div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>核心指标</th>
+        <th>一期（360万条）</th>
+        <th>二期扩建（705万条）</th>
+        <th>变化</th>
+        <th>含义解读</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-b">
+        <td class="fw6">产能规模</td>
+        <td>PCR 300 + TBR 60 = 360万条</td>
+        <td>PCR 600 + TBR 105 = 705万条</td>
+        <td class="c-g fw6">+96%</td>
+        <td>二期规模接近一期两倍，TBR占比从16.7%小幅降至14.9%</td>
+      </tr>
+      <tr>
+        <td class="fw6">总投资</td>
+        <td>$2.91亿美元（20.99亿元）</td>
+        <td>$2.85亿美元（20.55亿元）</td>
+        <td class="c-g fw6">−2.1%</td>
+        <td><b>产能翻倍而投资反而下降</b>——这是扩建区别于新建的根本特征</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">单条投资</td>
+        <td class="c-r">$80.97</td>
+        <td class="c-g">$40.49</td>
+        <td class="c-g fw6">−50.0%</td>
+        <td>扩建避免了重复投资：土地、公用工程、管理体系一次投入，二次产出</td>
+      </tr>
+      <tr>
+        <td class="fw6">年营业收入</td>
+        <td>$1.90亿美元</td>
+        <td>$3.68亿美元</td>
+        <td class="c-g fw6">+93.7%</td>
+        <td>营收增幅基本等同产能增幅，验证产品结构一致</td>
+      </tr>
+      <tr>
+        <td class="fw6">年净利润</td>
+        <td>$3,477万美元（2.50亿元）</td>
+        <td>$6,150万美元（4.43亿元）</td>
+        <td class="c-g fw6">+76.9%</td>
+        <td>净利润增幅小于产能增幅（96% vs 77%）——税率上升的直接影响</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">净利率</td>
+        <td class="c-g">18.30%</td>
+        <td class="c-a">16.72%</td>
+        <td class="c-r">−1.58pp</td>
+        <td>表面下降，但税率影响剔除后<b>税前利润率一期21.53% vs 二期21.57%，经营效率完全一致</b></td>
+      </tr>
+      <tr class="hl-r">
+        <td class="fw6">所得税率</td>
+        <td class="c-g">15%（埃及优惠）</td>
+        <td class="c-r">22.5%（标准税率）</td>
+        <td class="c-r fw6">+7.5pp</td>
+        <td><b>关键变量</b>：一期享受的优惠税率在二期不再适用，每年多交约$620万美元税款</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">投资回收期</td>
+        <td>6.15年</td>
+        <td class="c-g">4.74年</td>
+        <td class="c-g fw6">−23%</td>
+        <td>回收期大幅缩短——资本效率跃升的最直观体现</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">单年ROI（净利/投资）</td>
+        <td>11.9%</td>
+        <td class="c-g fw6">21.6%</td>
+        <td class="c-g fw6">+81%</td>
+        <td>从"平庸"水平跃升至"优秀"水平，接近柬埔寨扩建（2.23年回收期）的资本效率区间</td>
+      </tr>
+      <tr>
+        <td class="fw6">定员</td>
+        <td>900人</td>
+        <td>1,231人</td>
+        <td class="c-g">+37%</td>
+        <td>产能+96%而人员仅+37%，单位人效大幅提升（每万条定员2.5人→1.75人，-30%）</td>
+      </tr>
+      <tr>
+        <td class="fw6">天然胶用量</td>
+        <td>21,500吨/年</td>
+        <td>35,370吨/年</td>
+        <td class="c-a">+65%</td>
+        <td>原材料全部进口，敞口随二期扩产而显著扩大</td>
+      </tr>
+      <tr>
+        <td class="fw6">资金结构</td>
+        <td>自有60% / 债务40%</td>
+        <td class="c-a">自有100%</td>
+        <td>—</td>
+        <td>二期不再使用项目融资——需全部动用集团自有资金，对短期现金流构成直接压力</td>
+      </tr>
+      <tr>
+        <td class="fw6">建设周期</td>
+        <td>18个月</td>
+        <td>18个月</td>
+        <td>—</td>
+        <td>意味着2026年H2启动→2027年底建成→2028年首胎下线→2029-2030年爬坡</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>决策质量的本质判断：</strong>如果只看净利率（18.30%→16.72%），这似乎是一个"更差"的项目；但如果看单条投资（$81→$40）和回收期（6.15→4.74年），这是一个效率跃升的典范。<strong>本质区别在于一期是"建厂成本"，二期是"产线成本"——同一笔运营基础，第二次利用。</strong>这正是制造业"规模经济"与"范围经济"的交叉点，也是为什么全球轮胎巨头倾向于"大型化基地+多期扩建"而非"小型化基地+多地布局"的根本原因。赛轮这次决策，是从"多地小厂"战略阶段向"大型化枢纽"战略阶段的正式转折。
+  </div>
+</div>
+
+<!-- ══════ §2 税率变化深度解读 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">税率从15%升至22.5%的隐含信号</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom: 14px;">
+    <div class="card b">
+      <div class="card-label">埃及一期：享受15%优惠税率</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        一期项目可研中明确写入<b>15%所得税率</b>——这是苏伊士经贸合作区最初吸引外资时常见的<b>"自由区/经济特区"阶段性优惠</b>，通常与以下条件挂钩：<br><br>
+        · 首次入区投资者<br>
+        · 项目规模达到规定门槛<br>
+        · 满足本地化雇佣要求<br>
+        · 特定出口占比要求<br><br>
+        <b>时效性：</b>此类优惠多为5-10年有限期，一期可在建设期+达产期内享受，但后续税率可能回归标准水平。
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">埃及二期：适用22.5%标准税率</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        二期可研明确采用<b>22.5%企业所得税率</b>——这是埃及2026年适用的<b>标准税率（上调自之前的22%）</b>。<br><br>
+        <b>可能原因：</b><br>
+        · 同一主体的二期项目不能重复申请优惠<br>
+        · 一期优惠窗口期临近到期<br>
+        · 埃及财政收紧，新增投资优惠收窄<br>
+        · 公司主动按保守假设测算（可能实际谈判中仍能争取优惠）<br><br>
+        <b>财务影响：</b>每年多交约$620万美元（约4,460万元人民币）所得税。
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>一个重要的投资研究细节：</b>尽管税率上升7.5pp，但二期可研<b>税前利润率几乎与一期完全一致</b>（21.57% vs 21.53%）。这说明：<br><br>
+    （1）<b>经营假设的连贯性很强</b>——两期可研使用了基本一致的原材料价格、售价、成本结构假设，没有因2025-2026年的原材料价格波动做特别调整。这意味着<b>可研中的盈利预测是"标准化条件下"的结果，不含周期性调整</b>。<br><br>
+    （2）<b>真实经营可能优于可研</b>——考虑到二期建设期内（2026-2027）可能享受部分阶段性优惠，以及公司在当地积累的政府关系，实际有效税率有望落在15%-22.5%之间，净利润可能介于4.43亿至5.70亿元之间。<br><br>
+    （3）<b>决策逻辑的稳健性</b>——即使按最保守的22.5%税率假设，项目回收期仍只有4.74年，这是一个"最坏情况下也成立"的稳健决策。
+  </div>
+</div>
+
+<!-- ══════ §3 决策时点的矛盾性 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">决策时点的矛盾性：为什么在压力最大的时候扩建？</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>压力维度</th>
+        <th>2025Q3 实际状态</th>
+        <th>对扩建决策的含义</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-r">
+        <td class="fw6">真实资金缺口</td>
+        <td>−21.6亿/年<br><span style="font-size:10px">经营CF +25亿 − 利息股利 17.7亿 − CAPEX 29亿</span></td>
+        <td class="c-r">二期$2.85亿（20.5亿元）新增投入进一步扩大缺口</td>
+      </tr>
+      <tr class="hl-r">
+        <td class="fw6">有息负债</td>
+        <td>121.2亿（2年+65%）<br>一年内到期18亿</td>
+        <td class="c-r">二期采用100%自有资金——意味着不新增债务，但挤占流动资金</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">在建工程</td>
+        <td>43.5亿（+76% vs 年初）<br>同时在建墨西哥、新和平、印尼扩建</td>
+        <td class="c-a">在建项目密度已接近极限，二期加入后CAPEX节奏将更紧张</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">净利润趋势</td>
+        <td>2025前三季度同比−11.5%<br>油价+原材料三重冲击</td>
+        <td class="c-a">在利润下行周期启动新项目，需承担2-3年"只投入不产出"的期间损益压力</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">伊朗战争地缘</td>
+        <td>布伦特油价波动区间$100-130<br>苏伊士运河通航不稳定</td>
+        <td class="c-a">埃及项目直接暴露于地区地缘风险——但这也是该项目战略价值的来源</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>为什么还要做这个决定？四重战略逻辑：</strong><br><br>
+    <strong>（1）扩建红利的稀缺性</strong>——"在已有厂区的基础上扩建"只能做一次，错过这个窗口，未来再想实现$40/条的单条投资水平就不可能了。一旦一期投产稳定运行，土建、公用工程、管理团队的沉没成本已经发生；现在同步启动二期可以让这些沉没成本"二次利用"，而延迟6-12个月，公司需要承担额外的管理费、折旧、利息，反而更不划算。<br><br>
+    <strong>（2）窗口期的紧迫性</strong>——埃及苏伊士经贸合作区优惠政策（15%税率、关税豁免、土地优惠）存在时效性，2026年埃及财政压力上升，新增投资优惠正在收窄。一期入区时拿到的优惠政策，可能通过"同一主体的二期项目"延续使用；但延迟申请会面临更严格条款。<br><br>
+    <strong>（3）非洲自贸区（AfCFTA）的卡位</strong>——AfCFTA于2024年基本完成框架谈判，2026-2028年进入关税削减兑现期。埃及作为唯一同时加入<b>欧盟伙伴协议（零关税入欧）+ 泛阿拉伯自由贸易区（GAFTA）+ AfCFTA（入非）</b>的枢纽国，其出口辐射能力在2026年之后将结构性强化。此时扩产，抢先锁定这一窗口。<br><br>
+    <strong>（4）地缘博弈的反向逻辑</strong>——伊朗战争、美国对华关税、欧盟反补贴调查正在加速"中国产地"轮胎的出口壁垒。埃及、越南、柬埔寨、印尼、墨西哥构成的"五重非中国产地矩阵"是对冲这一壁垒的唯一路径。越南、柬埔寨已接近天花板；墨西哥、印尼尚未验证；埃及是唯一可以承接欧洲市场"去中国化采购"流量的产地。从这个角度，埃及二期不是可选项，是必选项。
+  </div>
+</div>
+
+<!-- ══════ §4 对集团增长曲线的影响 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">对集团中期增长曲线的结构性影响</div>
+  </div>
+
+  <h3 style="font-family: 'Noto Serif SC', serif; font-size: 15px; margin: 10px 0 8px; color: var(--text);">全面达产后集团归母净利润重估</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>基地</th>
+        <th>原预测（旧版）</th>
+        <th>新预测（含埃及二期）</th>
+        <th>变化</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">越南（基本盘）</td>
+        <td>15.94亿</td>
+        <td>15.94亿</td>
+        <td>—</td>
+        <td>三期已满产，增量有限</td>
+      </tr>
+      <tr>
+        <td class="fw6">柬埔寨（一期）</td>
+        <td>5.65亿</td>
+        <td>5.65亿</td>
+        <td>—</td>
+        <td>已验证</td>
+      </tr>
+      <tr>
+        <td class="fw6">柬埔寨（二期扩建）</td>
+        <td>3.39亿</td>
+        <td>3.39亿</td>
+        <td>—</td>
+        <td>爬坡中，2026-2027兑现</td>
+      </tr>
+      <tr>
+        <td class="fw6">印尼</td>
+        <td>4.48亿</td>
+        <td>4.48亿</td>
+        <td>—</td>
+        <td>可研数字</td>
+      </tr>
+      <tr>
+        <td class="fw6">墨西哥</td>
+        <td>4.48亿（估）</td>
+        <td>4.48亿</td>
+        <td>—</td>
+        <td>600万半钢，可研推算</td>
+      </tr>
+      <tr>
+        <td class="fw6">新和平（沈阳）</td>
+        <td>2.31亿</td>
+        <td>2.31亿</td>
+        <td>—</td>
+        <td>达产后净利率7%</td>
+      </tr>
+      <tr>
+        <td class="fw6">埃及一期</td>
+        <td>2.50亿</td>
+        <td>2.50亿</td>
+        <td>—</td>
+        <td>15%税率</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">埃及二期扩建（新）</td>
+        <td class="c-m">0（未纳入）</td>
+        <td class="c-g fw6">+4.43亿</td>
+        <td class="c-g fw6">+4.43亿</td>
+        <td><b>本次决策新增</b>；22.5%税率</td>
+      </tr>
+      <tr>
+        <td class="fw6">国内三基地</td>
+        <td>2.0亿</td>
+        <td>2.0亿</td>
+        <td>—</td>
+        <td>估算</td>
+      </tr>
+      <tr class="grand">
+        <td>合计（全面达产）</td>
+        <td class="fw6">40.75亿</td>
+        <td class="c-g fw6">45.18亿</td>
+        <td class="c-g fw6">+10.9%</td>
+        <td>不考虑原材料冲击折扣</td>
+      </tr>
+      <tr class="grand">
+        <td>考虑原材料冲击（×75%实现率）</td>
+        <td>30.56亿</td>
+        <td class="c-g fw6">33.89亿</td>
+        <td class="c-g fw6">+10.9%</td>
+        <td>更现实的估算</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family: 'Noto Serif SC', serif; font-size: 15px; margin: 16px 0 8px; color: var(--text);">利润增量时间轴（更新版）</h3>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2026年H1-H2</div>
+      <div class="tl-content">
+        埃及二期进入决策执行期，<b>设备采购、土建施工启动</b>。此阶段对损益无影响，但对现金流构成<b>增量压力（预计年内支出$1.2-1.5亿美元）</b>。新和平仍在爬坡，柬埔寨二期为主要利润贡献者。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2027年全年</div>
+      <div class="tl-content">
+        埃及一期预计投产或爬坡中；埃及二期建设进入后半程；墨西哥、印尼扩建产能逐步释放。集团<b>在建工程规模进一步扩大</b>，但净利润因海外三基地同步贡献开始修复。
+      </div>
+    </div>
+    <div class="tl-item g">
+      <div class="tl-date">2028年H1-H2</div>
+      <div class="tl-content">
+        <b>埃及一期全面达产、二期首胎下线</b>。一期$3,477万净利润开始贡献（约2.5亿元），二期进入爬坡期。集团全面产能达1.6亿条+，海外净利润占比首次突破75%。
+      </div>
+    </div>
+    <div class="tl-item g">
+      <div class="tl-date">2029-2030年</div>
+      <div class="tl-content">
+        <b>埃及二期达产，全集团利润修复至历史新高</b>。理想情况下，集团年化归母净利润有望达40-45亿（实际冲击后），较2025年底部（约38亿）提升6-18%。此时市值"由估值修复+盈利兑现"双驱动。
+      </div>
+    </div>
+    <div class="tl-item b">
+      <div class="tl-date">2030年后</div>
+      <div class="tl-content">
+        埃及基地作为<b>欧非+阿拉伯枢纽</b>全面运营，叠加AfCFTA红利，其重要性可能逼近柬埔寨（贡献集团利润10-15%），成为<b>继越南、柬埔寨后的"第三利润支柱"</b>。
+      </div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>关键观察指标（2026-2028跟踪）：</b><br>
+    ① <b>埃及一期建设进度</b>——是否按18个月完成，关系到二期启动节奏和整体工期<br>
+    ② <b>埃及当地实际税率谈判结果</b>——若二期能争取到部分优惠（例如20%或以下），净利率可提升1-1.5pp<br>
+    ③ <b>苏伊士运河通航稳定性</b>——地缘风险直接影响出口半径的价值<br>
+    ④ <b>AfCFTA关税削减兑现</b>——埃及二期战略价值的核心变量<br>
+    ⑤ <b>欧盟对华轮胎贸易政策</b>——若2026-2027年欧盟对中国半钢胎启动新一轮反倾销，埃及的"非中国产地"价值将结构性跃升
+  </div>
+</div>
+
+<!-- ══════ §5 对估值框架的影响 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">对估值框架的影响</div>
+    <div class="sec-note">以当前市值~450亿、2024净利40.6亿、PE~11x为基准</div>
+  </div>
+
+  <h3 style="font-family: 'Noto Serif SC', serif; font-size: 15px; margin: 10px 0 8px;">情景分析：埃及二期对市值的贡献</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>估值倍数</th>
+        <th>60%实现率（悲观）</th>
+        <th>75%实现率（中性）</th>
+        <th>90%实现率（乐观）</th>
+        <th>情景说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">9x PE</td>
+        <td class="c-r">+23.9亿</td>
+        <td>+29.9亿</td>
+        <td>+35.9亿</td>
+        <td>周期下行估值压缩</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">11x PE（当前）</td>
+        <td>+29.2亿</td>
+        <td class="c-g fw6">+36.5亿</td>
+        <td>+43.8亿</td>
+        <td><b>基准情景</b>——当前市场给予的估值水平</td>
+      </tr>
+      <tr>
+        <td class="fw6">13x PE</td>
+        <td>+34.5亿</td>
+        <td>+43.2亿</td>
+        <td>+51.8亿</td>
+        <td>盈利周期修复+扩张兑现</td>
+      </tr>
+      <tr>
+        <td class="fw6">15x PE</td>
+        <td>+39.9亿</td>
+        <td>+49.8亿</td>
+        <td class="c-g">+59.8亿</td>
+        <td>海外利润占比突破75%+AfCFTA红利全兑现</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-family: 'Noto Serif SC', serif; font-size: 15px; margin: 16px 0 8px;">DCF简化测算（10%折现率）</h3>
+
+  <div class="kpi-row">
+    <div class="kpi b">
+      <div class="kl">爬坡期前6年利润现值</div>
+      <div class="kv b small">+8.9亿元</div>
+      <div class="ks">2026-2031年累计贡献<br>爬坡系数0/0/0.3/0.7/0.9/1.0</div>
+    </div>
+    <div class="kpi g">
+      <div class="kl">永续价值现值（第6年起）</div>
+      <div class="kv g small">+34.4亿元</div>
+      <div class="ks">永续增长率2%<br>假设年净利4.43亿稳定</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kl">项目总NPV</div>
+      <div class="kv gold small">+43.3亿元</div>
+      <div class="ks">扣除初始投资20.55亿<br>净NPV = +22.7亿元</div>
+    </div>
+    <div class="kpi a">
+      <div class="kl">NPV / 投资倍数</div>
+      <div class="kv a">2.11x</div>
+      <div class="ks">每投入1元创造2.11元<br>高于印尼(1.3x)，接近柬埔寨(2.9x)</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>估值框架的三个维度影响：</strong><br><br>
+    <strong>（1）PE维度 · 盈利绝对量增长10.9%</strong><br>
+    全面达产后归母净利中枢从40.75亿提升至45.18亿。如果市场维持当前11x PE，仅这一项就对应+49亿市值增量；但需要考虑2028年才开始贡献，因此需贴现。按75%实现率折算，中枢估值贡献<b>约+36亿元</b>。<br><br>
+    <strong>（2）DCF维度 · 项目本身NPV为+22.7亿</strong><br>
+    按10%折现率测算，项目本身NPV（扣除初始投资）约+22.7亿元，相当于对集团股东权益的绝对价值增量。NPV/投资=2.11x，是一个显著优于印尼（1.3x估算）的项目，略逊于柬埔寨扩建（2.9x）。<br><br>
+    <strong>（3）估值溢价维度 · 结构性影响更重要</strong><br>
+    埃及二期的真正影响不在于"多4亿净利润"，而在于<b>提升集团海外利润占比，降低"中国产地单一依赖"折价</b>。当前市场可能给予赛轮的11x PE中隐含了一定的"地缘集中度风险折价"——如果海外利润占比从60%提升至75%+，这一折价可能减少1-2x，对应市值弹性远大于单一盈利贡献。一个保守估计：若市场因此将PE中枢从11x提升至12.5x，对应<b>全集团市值+60-70亿</b>，这比项目本身的盈利贡献还要重要。
+  </div>
+</div>
+
+<!-- ══════ §6 风险与边界条件 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">风险与边界条件</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card r">
+      <div class="card-label">风险一 · 短期现金流压力进一步扩大</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        <b>量化：</b>$2.85亿投资需在18个月内到位，对应约20亿元人民币支出。以2025年真实资金缺口−21.6亿/年计算，二期实际使集团2026-2027年<b>现金流压力翻倍</b>。<br><br>
+        <b>缓冲：</b>（1）埃及一期2028年前后投产贡献约2.5亿元净利润，部分抵消二期支出；（2）越南现有产能每年贡献约15亿净利润可以部分覆盖；（3）可转债若触发转股可削减有息负债11.5%。<br><br>
+        <b>最坏情况：</b>若2026年油价维持$110+、柬埔寨二期爬坡不及预期、新和平亏损放大，公司可能被迫推迟二期启动或接受更高利息成本的融资。
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">风险二 · 埃及地缘与汇率</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        <b>地缘：</b>伊朗战争、红海航运、以色列-哈马斯冲突直接威胁埃及的物流枢纽地位。2024年苏伊士运河通行量下降约60%，若类似情况持续，二期投产后的出口效率将显著低于预期。<br><br>
+        <b>埃及镑汇率：</b>2024-2026年埃及镑兑美元持续贬值（从30→50+）。赛轮收入以美元/欧元计价，但部分本地人工和能源以埃镑支付，汇率贬值对成本端是利好，但会稀释埃及镑资产价值。<br><br>
+        <b>政策稳定性：</b>埃及政府近年财政紧张，存在单方面修改税收优惠的先例（2023年曾调整自贸区规则）。22.5%税率假设已包含这一保守考虑。
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">风险三 · 原材料全进口的敞口</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        <b>核心问题：</b>埃及不是天然胶产区（不像越南、柬埔寨、印尼本地有胶源）。二期天然胶用量35,370吨/年<b>全部依赖进口</b>，主要来自东南亚和西非，运输周期30-45天。<br><br>
+        <b>敏感性：</b>按天然胶当前价格15,000元/吨估算，35,370吨对应年采购成本约5.3亿元；若涨价20%（如当前伊朗战争周期已出现），成本冲击约+1亿元，对应可研净利润4.43亿的22.6%。<br><br>
+        <b>对比：</b>柬埔寨的"本地直采优势"（每吨节省500-1,500元）在埃及完全不可得。这是为什么埃及净利率（18.3%）永远无法达到柬埔寨（19.25%）水平的结构性原因。
+      </div>
+    </div>
+    <div class="card b">
+      <div class="card-label">风险四 · 执行风险（管理复制能力）</div>
+      <div class="card-sub" style="font-size: 12px; line-height: 1.75;">
+        <b>定员扩张：</b>从900人扩至2,131人（一期+二期），增长137%。埃及文化背景差异和宗教习俗使人员管理难度显著高于亚洲基地。<br><br>
+        <b>管理团队稀释：</b>赛轮目前同时在墨西哥、新和平、印尼、埃及一期、埃及二期5个海外/跨省基地建设或爬坡，管理团队和技术骨干的分配压力已接近历史极限。<br><br>
+        <b>可研本身承认：</b>可研文件明确将"人员稳定性"列为<b>"中概率/高严重性"</b>风险，这是公司主动披露的执行风险信号。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════ §7 综合判断与投资含义 ══════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">综合判断与对公司理解的三点更新</div>
+  </div>
+
+  <div class="kpi-row" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 14px;">
+    <div class="kpi g">
+      <div class="kl">判断 · 决策质量</div>
+      <div class="kv g small">结构正确</div>
+      <div class="ks">资本效率跃升+战略窗口期<br>+枢纽布局卡位</div>
+    </div>
+    <div class="kpi a">
+      <div class="kl">判断 · 时点选择</div>
+      <div class="kv a small">承压但可控</div>
+      <div class="ks">现金流压力显著<br>但有多重缓冲机制</div>
+    </div>
+    <div class="kpi gold">
+      <div class="kl">判断 · 估值影响</div>
+      <div class="kv gold small">中长期正面</div>
+      <div class="ks">短期无影响<br>2028-2030年利润修复曲线上移</div>
+    </div>
+  </div>
+
+  <h3 style="font-family: 'Noto Serif SC', serif; font-size: 16px; margin: 16px 0 10px; color: var(--text);">对赛轮成长性的三点认知更新</h3>
+
+  <div style="background: var(--bg2); border: 1px solid var(--border); padding: 18px 22px; margin-bottom: 14px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--green); letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase;">更新一 · 赛轮的扩张模式正在从"多地小厂"转向"大型化枢纽"</div>
+    <div style="font-size: 13px; color: var(--muted); line-height: 1.8;">
+      过去赛轮的海外扩张模式是<b>"一地一厂"</b>——越南、柬埔寨、印尼、墨西哥各一个基地，每个基地产能在300-600万条之间。埃及二期扩建是第一次出现<b>"同地连续扩建"</b>的模式，将单个基地产能推到1,065万条的规模（接近越南），这是从<b>"多元化布局"到"枢纽化深耕"</b>的战略转变。这一转变意味着未来新增产能的<b>平均资本效率会显著提升</b>，而不是像过去那样"每新增一个基地就承受一次重复的建厂成本"。这对理解公司长期资本回报率（ROIC）有重要含义：过去估算的"全面达产后ROIC"可能被系统性低估。
+    </div>
+  </div>
+
+  <div style="background: var(--bg2); border: 1px solid var(--border); padding: 18px 22px; margin-bottom: 14px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--amber); letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase;">更新二 · 管理层的战略定力远高于财务压力指引</div>
+    <div style="font-size: 13px; color: var(--muted); line-height: 1.8;">
+      在真实资金缺口−21.6亿/年、有息负债121亿、净利润同比下滑的情况下，仍决定追加$2.85亿投资，这<b>不是一个被市场情绪或短期财务指标主导的决策</b>。这释放了一个重要信号：管理层对全球轮胎行业5-10年的结构性变化有坚定判断——即"中国产地"轮胎出海能力将被贸易壁垒持续压缩，必须在海外建立真正的规模化制造能力，错过这个窗口将失去国际竞争力。<b>从这个角度，短期财务压力是对长期战略价值的必要投资</b>。这一判断的准确性尚需时间验证，但它解释了为什么赛轮在2024-2026年财务最紧张的时期反而持续加大海外CAPEX。
+    </div>
+  </div>
+
+  <div style="background: var(--bg2); border: 1px solid var(--border); padding: 18px 22px; margin-bottom: 14px;">
+    <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--gold); letter-spacing: 1.5px; margin-bottom: 8px; text-transform: uppercase;">更新三 · 估值框架应该从"当期PE"转向"达产后PE + 执行折价"</div>
+    <div style="font-size: 13px; color: var(--muted); line-height: 1.8;">
+      传统估值方式是<b>用当期PE估算</b>——2024年归母40.6亿×11x PE=450亿市值。但在一个<b>持续大规模扩张</b>的公司身上，这种方法会系统性低估价值。更合适的方法是：<br><br>
+      （1）<b>用2028-2030年全面达产预期盈利</b>（约45亿，考虑冲击折扣约34-36亿）<br>
+      （2）<b>用合理PE倍数</b>（10-13x，视宏观和海外占比）<br>
+      （3）<b>对执行风险和时间成本贴现</b>（按10%贴现3-4年，折现因子约0.7）<br>
+      （4）<b>再加上账面净资产的清算价值底部</b>（约300亿，作为估值下限）<br><br>
+      <b>结论：</b>按此框架，赛轮合理市值中枢应在<b>450-550亿元之间</b>（较当前450亿有0-20%上行空间），上行弹性取决于：<b>①海外基地达产节奏是否按可研兑现；②中国出口轮胎贸易壁垒是否如预期般加剧；③原材料周期是否在2027-2028年回落</b>。埃及二期的决策本质上是将这一估值中枢的上沿进一步抬高（从原来的≈45亿达产净利润对应500亿，提升至45亿+4.43亿对应550亿）。
+    </div>
+  </div>
+
+  <div class="red-note" style="margin-top: 18px;">
+    <b>研究观察清单（2026-2028年持续跟踪）：</b><br>
+    ① <b>2025年年报（即将发布）</b>——确认埃及二期正式获批时点、资金安排、2026年CAPEX指引<br>
+    ② <b>埃及一期投产时点</b>——这是二期启动的时间锚，也是一期可研预测准确性的验证<br>
+    ③ <b>2026年油价与原材料</b>——决定所有新基地爬坡期损益的核心变量<br>
+    ④ <b>柬埔寨二期完全达产</b>——如果柬二期兑现24.2%净利率，则埃及18-22%的预测可信度提升<br>
+    ⑤ <b>欧盟对华轮胎贸易政策</b>——若2026-2027年出现新一轮反倾销立案，埃及基地战略价值将立即跃升<br>
+    ⑥ <b>AfCFTA关税削减实际兑现节奏</b>——非洲自贸区红利的核心时间窗口<br>
+    ⑦ <b>赛轮现金流管理指标</b>——经营CF/总负债、利息覆盖率、在建工程转固节奏
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>数据来源：埃及705万条扩建可研报告（2026）· 埃及一期可研（2025）· 赛轮2025Q3季报 · 历史研究报告</span>
+  <span>SAILUN EGYPT PHASE-II DECISION ANALYSIS · v1.0 · 20260421 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
