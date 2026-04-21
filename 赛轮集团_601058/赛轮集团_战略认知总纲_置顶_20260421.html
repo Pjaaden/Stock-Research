@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>赛轮集团 · 公司性质、战略定位与估值体系 · 置顶文件 20260421</title>
+<style>
+:root {
+  --bg: #faf9f5;
+  --bg2: #f3f0e7;
+  --bg3: #ece8db;
+  --bg4: #e2ddcc;
+  --bg5: #d6d0bc;
+  --text: #1a1a1a;
+  --muted: #4a4a45;
+  --dim: #7a7a72;
+  --border: #d2cdbe;
+  --border2: #b5ae9b;
+  --green: #2d6b28;
+  --green-bg: #e4ecda;
+  --amber: #a0621a;
+  --amber-bg: #eee1cc;
+  --red: #8a2a1f;
+  --red-bg: #eed6d0;
+  --blue: #1e4d7a;
+  --blue-bg: #d7e1eb;
+  --purple: #5a2e7a;
+  --purple-bg: #e2d6e8;
+  --gold: #7a5a1a;
+  --gold-bg: #ebe1c4;
+  --deep: #0f2f4f;
+  --hl-g: #dce8d2;
+  --hl-a: #ebddc0;
+  --hl-r: #e9cfc9;
+  --hl-b: #cfd9e3;
+  --hl-p: #d9cae0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'IBM Plex Sans', 'Noto Sans SC', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  font-size: 13.5px;
+}
+
+/* ═══════════ HEADER ═══════════ */
+header {
+  padding: 40px 48px 30px;
+  background: linear-gradient(180deg, var(--bg2) 0%, var(--bg) 100%);
+  border-bottom: 3px solid var(--border2);
+}
+.pin-badge {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #fff;
+  background: var(--deep);
+  padding: 4px 10px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.h-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: var(--muted);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+h1 {
+  font-family: 'Noto Serif SC', 'Syne', serif;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+h1 em {
+  font-style: normal;
+  color: var(--amber);
+  font-weight: 400;
+}
+.h-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+.src {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--dim);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 3px 8px;
+  margin-right: 6px;
+  margin-bottom: 4px;
+}
+
+main { padding: 30px 48px 40px; max-width: 1400px; margin: 0 auto; }
+
+/* ═══════════ TOP EXECUTIVE VERDICT ═══════════ */
+.top-verdict {
+  background: var(--bg);
+  border: 2px solid var(--deep);
+  padding: 24px 28px;
+  margin-bottom: 34px;
+  position: relative;
+}
+.top-verdict::before {
+  content: 'FRAMEWORK · 定性基础';
+  position: absolute;
+  top: -11px;
+  left: 22px;
+  background: var(--bg);
+  color: var(--deep);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  padding: 0 8px;
+}
+.tv-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+.tv-title em {
+  font-style: normal;
+  color: var(--amber);
+}
+.tv-body {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+.tv-body strong { color: var(--text); font-weight: 600; }
+
+/* ═══════════ TOC ═══════════ */
+.toc {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 18px 22px;
+  margin-bottom: 34px;
+}
+.toc-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 24px;
+}
+.toc-item {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.toc-item .num {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--deep);
+  font-weight: 600;
+  margin-right: 8px;
+}
+.toc-item a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--border2);
+}
+.toc-item a:hover { color: var(--amber); }
+
+/* ═══════════ SECTIONS ═══════════ */
+.sec { margin-bottom: 40px; scroll-margin-top: 20px; }
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+.sec-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--deep);
+  letter-spacing: 2px;
+  background: var(--bg3);
+  padding: 5px 12px;
+  font-weight: 600;
+}
+.sec-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--text);
+}
+.sec-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-left: auto;
+}
+.subsec-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--text);
+  margin: 20px 0 10px;
+  padding-left: 12px;
+  border-left: 3px solid var(--amber);
+}
+
+/* ═══════════ TABLES ═══════════ */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin: 8px 0 14px;
+}
+thead th {
+  background: var(--bg3);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-align: left;
+  padding: 9px 11px;
+  border: 1px solid var(--border2);
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+td {
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  background: #fff;
+}
+tbody tr.hl-g td { background: var(--hl-g); }
+tbody tr.hl-a td { background: var(--hl-a); }
+tbody tr.hl-r td { background: var(--hl-r); }
+tbody tr.hl-b td { background: var(--hl-b); }
+tbody tr.hl-p td { background: var(--hl-p); }
+tr.grand td { background: var(--bg4); font-weight: 600; }
+.c-g { color: var(--green); }
+.c-a { color: var(--amber); }
+.c-r { color: var(--red); }
+.c-b { color: var(--blue); }
+.c-p { color: var(--purple); }
+.c-m { color: var(--muted); }
+.c-gold { color: var(--gold); }
+.c-deep { color: var(--deep); }
+.fw6 { font-weight: 600; }
+
+/* ═══════════ GRIDS & CARDS ═══════════ */
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 16px 18px;
+}
+.card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: var(--muted);
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.card-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+.card-val.small { font-size: 18px; }
+.card-sub {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.card-sub b { color: var(--text); }
+.card.g { border-top: 3px solid var(--green); }
+.card.a { border-top: 3px solid var(--amber); }
+.card.r { border-top: 3px solid var(--red); }
+.card.b { border-top: 3px solid var(--blue); }
+.card.p { border-top: 3px solid var(--purple); }
+.card.gold { border-top: 3px solid var(--gold); }
+.card.deep { border-top: 3px solid var(--deep); }
+
+/* ═══════════ KPI ROW ═══════════ */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+.kpi-row.k3 { grid-template-columns: repeat(3, 1fr); }
+.kpi-row.k2 { grid-template-columns: repeat(2, 1fr); }
+.kpi {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 13px 15px;
+  border-top: 3px solid var(--border2);
+}
+.kpi.g { border-top-color: var(--green); }
+.kpi.a { border-top-color: var(--amber); }
+.kpi.r { border-top-color: var(--red); }
+.kpi.b { border-top-color: var(--blue); }
+.kpi.p { border-top-color: var(--purple); }
+.kpi.gold { border-top-color: var(--gold); }
+.kpi.deep { border-top-color: var(--deep); }
+.kl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1.2px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.kv {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 5px;
+  color: var(--text);
+}
+.kv.small { font-size: 16px; }
+.kv.tiny { font-size: 13px; }
+.kv.g { color: var(--green); }
+.kv.a { color: var(--amber); }
+.kv.r { color: var(--red); }
+.kv.b { color: var(--blue); }
+.kv.p { color: var(--purple); }
+.kv.gold { color: var(--gold); }
+.kv.deep { color: var(--deep); }
+.ks {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: var(--dim);
+  line-height: 1.55;
+  margin-top: 4px;
+}
+
+/* ═══════════ INSIGHTS ═══════════ */
+.insight {
+  background: var(--green-bg);
+  border-left: 4px solid var(--green);
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.insight strong { color: var(--text); }
+
+.warn {
+  background: var(--amber-bg);
+  border-left: 4px solid var(--amber);
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.warn b, .warn strong { color: var(--text); }
+
+.red-note {
+  background: var(--red-bg);
+  border-left: 4px solid var(--red);
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.red-note b { color: var(--text); }
+
+.note {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 13px 17px;
+  margin: 12px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.note b { color: var(--text); }
+
+.blue-note {
+  background: var(--blue-bg);
+  border-left: 4px solid var(--blue);
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.blue-note b { color: var(--text); }
+
+/* ═══════════ TIMELINE ═══════════ */
+.timeline {
+  position: relative;
+  padding-left: 28px;
+  margin: 18px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--border2);
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 18px;
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -25px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--amber);
+  border: 2px solid var(--bg);
+  border-radius: 50%;
+}
+.tl-item.g::before { background: var(--green); }
+.tl-item.r::before { background: var(--red); }
+.tl-item.b::before { background: var(--blue); }
+.tl-item.p::before { background: var(--purple); }
+.tl-item.deep::before { background: var(--deep); }
+.tl-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.tl-content {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.tl-content b { color: var(--text); }
+
+/* ═══════════ CHAIN (for trade network) ═══════════ */
+.chain {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  margin: 14px 0;
+}
+.chain-hdr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+.chain-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  overflow-x: auto;
+}
+.chain-node {
+  flex: 1;
+  min-width: 140px;
+  background: #fff;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  border-top: 2px solid var(--deep);
+}
+.chain-arrow {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+}
+.cn-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+.cn-body {
+  font-size: 11.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ═══════════ RADAR (decision framework) ═══════════ */
+.decision-matrix {
+  display: grid;
+  grid-template-columns: 200px repeat(4, 1fr);
+  border: 1px solid var(--border2);
+  background: #fff;
+  font-size: 11.5px;
+  margin: 12px 0;
+}
+.dm-cell {
+  padding: 10px 12px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.dm-cell.hdr {
+  background: var(--bg3);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.dm-cell.label {
+  background: var(--bg2);
+  font-weight: 600;
+}
+
+.footer-bar {
+  padding: 16px 48px;
+  border-top: 2px solid var(--border);
+  background: var(--bg2);
+  display: flex;
+  justify-content: space-between;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  color: var(--dim);
+}
+
+.pill {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  padding: 2px 7px;
+  background: var(--bg3);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  margin-right: 5px;
+}
+.pill.g { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+.pill.a { background: var(--amber-bg); color: var(--amber); border-color: var(--amber); }
+.pill.r { background: var(--red-bg); color: var(--red); border-color: var(--red); }
+.pill.b { background: var(--blue-bg); color: var(--blue); border-color: var(--blue); }
+
+.correction-box {
+  background: #fff8e0;
+  border: 2px dashed var(--amber);
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.correction-box-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--amber);
+  letter-spacing: 1.5px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.correction-box b { color: var(--text); }
+
+/* 公式框 */
+.formula {
+  background: #f3f1e7;
+  border: 1px solid var(--border2);
+  padding: 12px 18px;
+  margin: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.8;
+}
+.formula b { color: var(--deep); }
+
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+<header>
+  <div class="pin-badge">📌 置顶·战略认知总纲</div>
+  <div class="h-tag">SAILUN GROUP · 601058 · COMPANY NATURE · STRATEGIC POSITIONING · VALUATION FRAMEWORK</div>
+  <h1>赛轮集团研究·总纲:<br><em>公司性质、战略定位与估值体系再认知</em></h1>
+  <div class="h-sub">v1.0 · 2026年4月21日 · 所有赛轮研究文件的前置认知文件 · 年度更新 (annual refresh)</div>
+  <div>
+    <span class="src">★ 2024年报 · 2025半年报 · 2025Q3季报</span>
+    <span class="src">★ 四份可研报告(新和平·印尼·柬埔寨·埃及一期·埃及二期)</span>
+    <span class="src">★ 2025年度对外担保公告(176亿额度)</span>
+    <span class="src">★ 赛轮转债赎回公告(2024.02)</span>
+    <span class="src">★ 越南税率调整公告(2024.01)</span>
+    <span class="src">★ Web:AfCFTA关税削减时间表(生效2026.01)</span>
+    <span class="src">★ Web:GSP/EBA/EVFTA/RCEP/USMCA/GAFTA官方文件</span>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════ 顶部判断 ═══════════════════════════════ -->
+<div class="top-verdict">
+  <div class="tv-title">赛轮本质:一家正在完成<em>跨国化蜕变</em>的全球轮胎平台+供应链生态运营商——而非传统意义上的"中国轮胎制造商"。</div>
+  <div class="tv-body">
+    <strong>这一定性是本研究框架的基石。</strong>它决定了所有估值倍数、风险权重、投资节奏判断的起点。如果把赛轮定性为"中国轮胎制造业",合理PE是8-12×,市值上限约400-500亿;如果定性为"全球轮胎平台",对标普利司通/米其林/固特异/住友橡胶,合理PE是12-15×,市值上限可达600-700亿。<strong>同样的财务数据,不同的定性,市值差异200-300亿。</strong><br><br>
+    本文件回答三个根本问题:<strong>①赛轮在做什么(战略层面的事实)?②赛轮凭什么能做到(结构性竞争优势)?③这件事应该值多少钱(估值框架)?</strong>与季度/月度的运营分析不同,本文件的有效期是<strong>年度级别</strong>——只有当公司战略方向、行业结构、估值框架发生根本变化时,才需要重写;其余时间,它是其他所有研究的"源文件"和"前置认知"。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ TOC ═══════════════════════════════ -->
+<div class="toc">
+  <div class="toc-title">目录 · 八大战略层</div>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="num">01</span><a href="#s1">公司本质重定义——从"中国造轮胎"到"全球轮胎平台"</a></div>
+    <div class="toc-item"><span class="num">02</span><a href="#s2">战略阶段定位——赛轮的1.0/2.0/3.0三阶段发展框架</a></div>
+    <div class="toc-item"><span class="num">03</span><a href="#s3">国内与海外的功能分化——分工与不可逆</a></div>
+    <div class="toc-item"><span class="num">04</span><a href="#s4">东南亚产业园业主模式——真正的三重护城河</a></div>
+    <div class="toc-item"><span class="num">05</span><a href="#s5">六大贸易协定网络——真实年限与价值内核</a></div>
+    <div class="toc-item"><span class="num">06</span><a href="#s6">融资生态与信用杠杆——母担、可转债、ROIC-WACC模型</a></div>
+    <div class="toc-item"><span class="num">07</span><a href="#s7">估值框架重构——三层估值体系与时点判断</a></div>
+    <div class="toc-item"><span class="num">08</span><a href="#s8">结构性风险清单——什么是噪音,什么是红线</a></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §1 公司本质重定义 ═══════════════════════════════ -->
+<div class="sec" id="s1">
+  <div class="sec-head">
+    <div class="sec-num">01</div>
+    <div class="sec-title">公司本质重定义</div>
+    <div class="sec-note">从"中国造轮胎"到"全球轮胎平台"的定性切换</div>
+  </div>
+
+  <div class="subsec-title">1.1 传统认知 vs 本研究的新定性</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>维度</th>
+        <th>传统认知(市场主流视角)</th>
+        <th>本研究的再定性</th>
+        <th>估值含义</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">公司性质</td>
+        <td>中国民营轮胎制造企业</td>
+        <td class="c-deep fw6">全球轮胎平台 + 东南亚供应链生态运营商</td>
+        <td>对标从"国内制造业"切换到"国际轮胎公司"</td>
+      </tr>
+      <tr>
+        <td class="fw6">竞争对手</td>
+        <td>玲珑、中策、青岛森麒麟等国内同行</td>
+        <td class="c-deep fw6">普利司通、米其林、固特异、住友橡胶</td>
+        <td>对标PE区间从8-12×→12-15×</td>
+      </tr>
+      <tr>
+        <td class="fw6">核心能力</td>
+        <td>制造成本 + 国内销售渠道</td>
+        <td class="c-deep fw6">多产地网络 + 贸易协定生态卡位 + 垂直整合</td>
+        <td>核心能力的稀缺性支撑估值溢价</td>
+      </tr>
+      <tr>
+        <td class="fw6">业务重心</td>
+        <td>国内市场存量 + 少量出口</td>
+        <td class="c-deep fw6">全球市场增量 + 国内市场维护</td>
+        <td>增长曲线看海外,而非国内</td>
+      </tr>
+      <tr>
+        <td class="fw6">利润来源</td>
+        <td>低成本制造</td>
+        <td class="c-deep fw6">税收套利 + 关税套利 + 原材料套利 + 产能套利</td>
+        <td>利润更具可持续性,受单一成本项冲击小</td>
+      </tr>
+      <tr>
+        <td class="fw6">风险画像</td>
+        <td>周期制造业 + 原材料波动</td>
+        <td class="c-deep fw6">跨境运营风险 + 地缘政治 + 贸易协定依赖</td>
+        <td>风险更复杂但也更分散</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsec-title">1.2 定性切换的三项量化证据</div>
+
+  <div class="kpi-row k3">
+    <div class="kpi deep">
+      <div class="kl">证据1·利润地理集中度</div>
+      <div class="kv deep small">海外贡献67%+</div>
+      <div class="ks">2023年海外基地营收占集团36.8%<br>却贡献净利润67.4%<br>海外ROIC是国内的2.5-3倍</div>
+    </div>
+    <div class="kpi deep">
+      <div class="kl">证据2·产能规划结构</div>
+      <div class="kv deep small">海外占比70%+</div>
+      <div class="ks">规划总产能约1.12亿条半钢<br>其中海外(越柬印墨埃)约8000万条<br>国内青/东/潍/沈约3200万条</div>
+    </div>
+    <div class="kpi deep">
+      <div class="kl">证据3·CAPEX投向</div>
+      <div class="kv deep small">海外占80%+</div>
+      <div class="ks">2025在建工程43.5亿<br>印尼+墨西哥+埃及一+二期+柬二期<br>均为海外项目</div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>"赛轮是什么"这个问题的真正答案藏在资金流向和利润地理中。</strong>看一家公司的本质不看它的名字,看它把钱投到哪里、钱从哪里来——赛轮80%的CAPEX投向海外,67%的利润来自海外。这已经不是一家中国公司了,是一家注册在中国、服务于全球市场、利润根植于东南亚+北美+北非的跨国公司。这一点在2023-2024年已经悄然完成,只是市场的估值认知还停留在2015-2020年的"民营轮胎出海故事"阶段。<br><br>
+    <strong>这种"市场认知滞后于基本面"的状态,恰恰是估值重估的预埋空间。</strong>什么时候市场会认识到这一点?通常需要三个触发条件同时出现:①一个季度的海外利润占比突破80%;②一个年度的海外基地数量超过国内基地;③一次重大贸易政策事件验证其"非中国产地"属性的价值。前两个条件已经或即将达成,第三个条件取决于2026-2028年全球贸易格局演变。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §2 战略阶段定位 ═══════════════════════════════ -->
+<div class="sec" id="s2">
+  <div class="sec-head">
+    <div class="sec-num">02</div>
+    <div class="sec-title">战略阶段定位</div>
+    <div class="sec-note">识别赛轮在哪个发展阶段,才能判断估值处于哪个位置</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item g">
+      <div class="tl-date">1.0阶段 · 2011-2020 · "出海验证期"</div>
+      <div class="tl-content">
+        <b>战略目标:</b>证明"中国轮胎企业可以在海外建厂并盈利"。<b>标志事件:</b>2011年越南基地奠基(中国第一家海外建厂的轮胎企业)、2013年越南投产、2015年越南盈利、2018年柬埔寨奠基、2020年越南三期扩建。<b>成绩单:</b>越南基地成为集团利润压舱石(2023年贡献集团约52%净利润,净利率22%),柬埔寨一期验证盈利能力。<b>核心能力积累:</b>跨国建厂、海外人员管理、本地政府关系、海外融资。<b>估值状态:</b>市场认知为"优秀的中国民营出海案例",PE中枢6-10×。
+      </div>
+    </div>
+    <div class="tl-item a">
+      <div class="tl-date">2.0阶段 · 2021-2028 · "全球化扩张期"(当前位置)</div>
+      <div class="tl-content">
+        <b>战略目标:</b>从单一海外基地→全球多基地网络,完成"跨国化蜕变"。<b>标志事件:</b>2021年柬埔寨一期投产、2023年墨西哥奠基、2024年印尼奠基+沈阳新和平并购、2025年印尼/墨西哥首胎下线+新和平首胎、2025年埃及一期建设中、2026年埃及二期扩建决策、2027-2028年墨西哥/印尼/埃及一二期陆续达产。<b>当前成绩单:</b>全球九大基地布局完成,总产能突破1.6亿条,海外利润占比约67%。<b>核心能力积累:</b>多基地协同管理("全球一个工厂"模式)、贸易协定生态运营、产业园业主模式(垂直整合)、海外融资网络。<b>当前估值状态:</b>市场认知在"出海故事"和"全球平台"之间摇摆,PE中枢约9-11×——<b>这正是估值重估正在发生但尚未完成的窗口</b>。<b>阶段性挑战:</b>财务压力大(真实资金缺口-21.6亿/年)、多基地同步爬坡期的盈利能力被稀释、越南税率上调的结构性影响(从5%→15%)。
+      </div>
+    </div>
+    <div class="tl-item deep">
+      <div class="tl-date">3.0阶段 · 2029-2035 · "全球平台成熟期"(未来)</div>
+      <div class="tl-content">
+        <b>战略预期:</b>从"扩张"切换到"精耕",进入利润收获期。<b>关键节点:</b>2029年全球九大基地全面达产、总产能稳定在1.6-1.8亿条;2030年起CAPEX大幅下降,自由现金流首次系统性转正;2030-2035年偿还扩张期债务、提高分红比例、做品牌升级。<b>预期估值状态:</b>市场认知完成切换,PE中枢12-15×,对标国际轮胎公司的估值下沿。<b>需要验证的假设:</b>①海外基地利润率能否维持在18-22%(随着免税期结束、税率正常化,会有一定回落);②全球轮胎需求是否继续稳定增长(电动车是利好但也有技术冲击);③贸易协定网络能否继续有效运转。<b>风险:</b>一旦某个主要协定被终止(如柬埔寨EBA进一步收紧),或者全球轮胎市场遭遇需求拐点(如电动车对轮胎磨损的影响),整个3.0阶段的估值逻辑可能需要重写。
+      </div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>当前(2026年)所处位置的精确判断:2.0阶段的后半程,距离3.0阶段还有3-5年。</b>这意味着:(1)<b>短期</b>(2026-2027)仍要承受"扩张期损益":爬坡亏损+CAPEX高峰+利息累计+原材料冲击,账面净利润大概率难有显著增长,可能平台或小幅下滑;(2)<b>中期</b>(2028-2029)是"拐点期",海外三基地(印尼/墨西哥/埃及)的利润兑现将决定整个2.0阶段是否成功;(3)<b>长期</b>(2030+)是"收获期",估值重估和盈利兑现共振,是股价弹性最大的阶段。<br><br>
+    <b>对持仓决策的直接含义:</b>如果目标是2026-2027年的短期收益,赛轮不是合适的标的;如果目标是2028-2030年的价值重估,当前是非常好的"潜伏期"——估值仍在2.0阶段中段水平,但基本面已接近3.0阶段前夜。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §3 国内海外功能分化 ═══════════════════════════════ -->
+<div class="sec" id="s3">
+  <div class="sec-head">
+    <div class="sec-num">03</div>
+    <div class="sec-title">国内与海外的功能分化</div>
+    <div class="sec-note">这是不可逆的结构性分工,不是暂时的成本问题</div>
+  </div>
+
+  <div class="grid2" style="margin-bottom: 14px;">
+    <div class="card r">
+      <div class="card-label">国内四基地 · 存量防守定位</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>基地:</b>青岛(总部)、东营、潍坊、沈阳新和平<br>
+        <b>合计产能:</b>约3,200万条半钢+全钢<br>
+        <b>净利率区间:</b>6-10%(新和平达产后约7%)<br>
+        <b>战略功能:</b>
+        <ul style="margin: 6px 0 0 18px; padding: 0;">
+          <li style="margin-bottom: 4px;"><b>①国内存量市场维护</b>——守住一汽、重汽、宇通等本土OEM配套关系,防止外资或竞争对手填补退出真空</li>
+          <li style="margin-bottom: 4px;"><b>②研发与技术中台</b>——专利、液体黄金等前沿技术研发集中在国内</li>
+          <li style="margin-bottom: 4px;"><b>③供应链韧性保障</b>——国内基地不受航运/关税/地缘冲击,在极端情况下能维持集团生产连续性</li>
+          <li style="margin-bottom: 4px;"><b>④人才与管理输出基地</b>——海外基地的技术骨干和中层管理均从国内选派</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card g">
+      <div class="card-label">海外五基地 · 增量利润定位</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>基地:</b>越南(三期满产)、柬埔寨(二期爬坡)、印尼(首胎下线)、墨西哥(首胎下线)、埃及(一期建设+二期决策)<br>
+        <b>合计产能:</b>约8,000万条(达产后);目前已投产约4,500万条<br>
+        <b>净利率区间:</b>18-22%(受税收优惠+原材料本地化影响)<br>
+        <b>战略功能:</b>
+        <ul style="margin: 6px 0 0 18px; padding: 0;">
+          <li style="margin-bottom: 4px;"><b>①全球市场覆盖</b>——每个基地辐射特定区域市场,形成全球无死角供货能力</li>
+          <li style="margin-bottom: 4px;"><b>②关税套利</b>——规避美国对华反倾销(66-87%)、欧盟反补贴、东南亚双反</li>
+          <li style="margin-bottom: 4px;"><b>③税收套利</b>——享受当地企业所得税优惠(柬埔寨9年免税、埃及15%、印尼22%等)</li>
+          <li style="margin-bottom: 4px;"><b>④原材料本地化</b>——越柬印位于天然胶主产区,直采成本优势500-1500元/吨</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec-title">3.1 分化为什么是不可逆的</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>不可逆驱动因素</th>
+        <th>具体机制</th>
+        <th>影响时效</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">贸易壁垒结构性</td>
+        <td>美国对华半钢胎反倾销税66-87%(2015年至今,十年未降);欧盟反补贴税6.23%(2018年);东南亚对华双反蔓延——这些壁垒是政治性的,不是经济性的,不会因短期经贸关系改善而降低</td>
+        <td class="c-r">10年+不可逆</td>
+      </tr>
+      <tr>
+        <td class="fw6">劳动力成本剪刀差</td>
+        <td>中国制造业平均月薪约1,200美元;越南约400-500美元;柬埔寨约300美元;埃及约200美元;印尼约300美元。劳动力成本差距随中国老龄化只会扩大,不会缩小</td>
+        <td class="c-r">长期扩大</td>
+      </tr>
+      <tr>
+        <td class="fw6">原材料地理位置</td>
+        <td>天然胶产区集中在东南亚(占全球80%+产量);橡胶运输到中国产生物流成本+资金占用+关税;海外基地就地取材,结构性优势</td>
+        <td class="c-r">永久性</td>
+      </tr>
+      <tr>
+        <td class="fw6">税收政策差距</td>
+        <td>中国企业所得税25%(高新技术企业15%);柬埔寨9年免税;越南优惠15-20%(含抵免);印尼22%;埃及15-22.5%。差距结构性存在</td>
+        <td class="c-a">中长期稳定</td>
+      </tr>
+      <tr>
+        <td class="fw6">能源成本差异</td>
+        <td>中国电价(工业用)约0.7-0.9元/度;埃及约0.3-0.4元/度;越南约0.6-0.8元/度;印尼约0.5-0.7元/度。这还不包括埃及的天然气成本优势</td>
+        <td class="c-a">中期趋势</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>国内基地的"6-10%净利率"不是管理不善,而是结构性定价。</strong>给定当前中国劳动力、能源、税收、壁垒条件,无论怎么优化运营,中国本土轮胎厂的净利率都无法突破10%的天花板。这不是赛轮一家的问题,是整个中国轮胎行业的共同困境——玲珑国内基地、中策国内基地、森麒麟国内基地都是类似水平。因此,<strong>投资赛轮,不要期待国内基地盈利改善;国内基地的战略价值在"存在",而不在"创造"</strong>。真正创造价值的是海外五基地,它们是赛轮未来利润增长的唯一引擎。理解这一点,就能避免被"国内基地亏损""新和平拖累"这类噪音干扰投资判断。
+  </div>
+
+  <div class="correction-box">
+    <div class="correction-box-label">⚠ 重要事实更正 · 越南税率已上调</div>
+    <b>2023年11月29日,越南国会通过《关于按照防止全球税基侵蚀规定征收额外的企业所得税的决议》,自2024年1月1日起,在越投资的大型跨国公司实际所得税率从原5%提升至15%。</b>此前我们在研究中使用"越南净利率22%"的数据是基于2023年税率背景;2024年起,赛轮越南基地实际税率已经或将要上调。公司官方回应是"通过税收筹划和抵免项,预计整体影响可控",但<b>越南基地的真实净利率可能从22%下调至18-19%区间</b>,这是我们在做集团利润预测时必须调整的参数。对全面达产后的集团归母净利润中枢,这可能意味着每年约1.5-2.5亿元的下调。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §4 产业园业主模式 ═══════════════════════════════ -->
+<div class="sec" id="s4">
+  <div class="sec-head">
+    <div class="sec-num">04</div>
+    <div class="sec-title">东南亚产业园业主模式</div>
+    <div class="sec-note">这是赛轮最被市场低估的竞争壁垒——真正的三重护城河</div>
+  </div>
+
+  <div class="blue-note">
+    <b>核心观察:</b>赛轮在越南、柬埔寨、印尼的布局,已经不是简单的"海外建厂",而是沿着天然胶产业链做<b>垂直整合+园区化运营+政策捆绑</b>。这种模式在中国轮胎行业是独一份,在全球轮胎行业(除了米其林在泰国的类似布局)也极为罕见。柬埔寨扩建可研显示的<b>回收期2.23年、净利率19.25%</b>是这个模式成功的量化证据——这种水平在全球轮胎行业是顶级的。
+  </div>
+
+  <div class="subsec-title">4.1 三重护城河的结构拆解</div>
+
+  <div class="grid3">
+    <div class="card g">
+      <div class="card-label">护城河一·垂直整合(原材料端)</div>
+      <div class="card-val g small">500-1500元/吨</div>
+      <div class="card-sub">
+        <b>什么是垂直整合:</b>赛轮越南、柬埔寨基地位于天然胶主产区,通过本地直采+与当地胶农长期合作,绕过传统贸易商环节。<br><br>
+        <b>量化优势:</b>东南亚天然胶直采比从中国进口每吨节省500-1,500元(约3-10%成本)。柬埔寨基地36,741吨/年天胶用量,每年仅这一项就节省约2,000-5,500万元。<br><br>
+        <b>真正稀缺的是:</b>与胶农的长期信任关系——这个需要5-10年的地面运营积累,不是花钱能买到的。
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">护城河二·园区化运营</div>
+      <div class="card-val a small">全球一个工厂</div>
+      <div class="card-sub">
+        <b>什么是园区化:</b>赛轮在每个海外基地都不仅建工厂,还同时建设配套的物流园、工人宿舍、培训中心,形成独立的生态系统。2024年报明确提出"全球一个工厂"管理模式。<br><br>
+        <b>核心优势:</b>减少对当地基础设施依赖,能源/物流/通讯自主可控;同时建立完整的人才培养体系,降低关键岗位流失风险。<br><br>
+        <b>量化体现:</b>海外基地单位人效(人均营收)是国内基地的1.5-2倍;埃及二期扩建单条投资比一期下降50%(从$81→$40),就是园区化后重复投资边际递减的结果。
+      </div>
+    </div>
+    <div class="card b">
+      <div class="card-label">护城河三·政策捆绑</div>
+      <div class="card-val b small">9年免税+多协定</div>
+      <div class="card-sub">
+        <b>什么是政策捆绑:</b>通过"首投首引"身份+大规模雇佣承诺+出口导向,与当地政府形成深度捆绑,获得其他企业难以复制的政策包。<br><br>
+        <b>典型案例:</b>柬埔寨基地9年企业所得税免税+后6年阶梯税率(5-15%);埃及一期15%优惠所得税率(vs 标准22.5%);越南基地长期享受5%优惠税率(2024年起调整为15%)。<br><br>
+        <b>护城河的真正厚度:</b>新进入者要获得同等政策包,需要相同规模的首期投入+类似的政府关系积累,5-10年内几乎不可能复制。
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec-title">4.2 为什么竞争对手无法复制</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>竞争对手</th>
+        <th>东南亚布局现状</th>
+        <th>与赛轮的结构性差距</th>
+        <th>复制难度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">玲珑轮胎</td>
+        <td>泰国工厂(2013年投产)+塞尔维亚工厂</td>
+        <td>东南亚仅有泰国单一基地,未形成网络;塞尔维亚是欧洲基地,不是产胶国</td>
+        <td class="c-a">中等</td>
+      </tr>
+      <tr>
+        <td class="fw6">中策橡胶</td>
+        <td>泰国基地</td>
+        <td>海外基地极少,主要依赖国内规模</td>
+        <td class="c-r">很高</td>
+      </tr>
+      <tr>
+        <td class="fw6">森麒麟</td>
+        <td>泰国工厂 + 摩洛哥工厂(建设中)</td>
+        <td>规模远小于赛轮;无垂直整合;摩洛哥类似赛轮埃及的思路但时点晚3-4年</td>
+        <td class="c-a">中高</td>
+      </tr>
+      <tr>
+        <td class="fw6">普利司通/米其林</td>
+        <td>全球布局完善,但在东南亚以"生产基地"为主</td>
+        <td>未像赛轮一样做垂直整合到胶农层面;成本结构较高</td>
+        <td class="c-g">不愿复制(低端市场不符合其品牌定位)</td>
+      </tr>
+      <tr>
+        <td class="fw6">固特异/邓禄普</td>
+        <td>部分东南亚产能</td>
+        <td>近年收缩,非扩张方向</td>
+        <td class="c-g">战略错位</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>赛轮护城河的真正稀缺性:同时具备"规模够大(养得起垂直整合)+ 定位够低(低成本市场,需要极致成本)+ 时间够早(2011年起步,已积累15年)"三个条件</strong>。国际巨头有前两个但不做第三个(品牌定位冲突);国内同行有第一个但没有第二个条件的纯粹性(不像赛轮这样完全押注海外);新进入者三个都没有。<br><br>
+    <strong>这就是为什么柬埔寨回收期2.23年、净利率19.25%这种"不合理优秀"的数字能出现</strong>——它不是周期性的幸运,是结构性的竞争优势的量化表达。只要这种结构不被打破(例如柬埔寨EBA被完全取消、越南税率追平中国、天然胶价格结构变化),这个数字就能被其他基地(印尼、埃及)复制,哪怕打折后也能维持在15-18%的水平。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §5 六大贸易协定网络 ═══════════════════════════════ -->
+<div class="sec" id="s5">
+  <div class="sec-head">
+    <div class="sec-num">05</div>
+    <div class="sec-title">六大贸易协定网络——真实年限与价值内核</div>
+    <div class="sec-note">这是赛轮海外布局的法律基础,也是最需要精准把握的变量</div>
+  </div>
+
+  <div class="correction-box">
+    <div class="correction-box-label">⚠ 重要事实澄清 · GSP相关表述需要修正</div>
+    之前研究中"柬埔寨GSP免税+9年所得税优惠"的表述合并了两个不同维度的概念,而且对GSP的描述已过时。真实情况是:<br>
+    <b>(1)柬埔寨对美国GSP:已于2020年12月31日失效</b>,至今未获重启。包括柬埔寨在内的119个国家和地区现已全部按最惠国待遇(MFN)税率对美出口;<br>
+    <b>(2)柬埔寨对欧盟EBA:2020年8月部分撤销</b>。服装、鞋类、旅游用品已受欧盟关税约束,但<b>轮胎作为工业品目前仍保留在EBA覆盖范围内</b>;<br>
+    <b>(3)柬埔寨基地19.25%的可研净利率,主要来自①9年企业所得税免税(柬埔寨国内政策,与GSP无关)②本地天然胶直采 ③低劳动力成本</b>,而非笼统的"GSP免税"。<br><br>
+    <b>含义:</b>柬埔寨基地的盈利护城河比我们之前理解的要<b>更依赖柬埔寨国内税收优惠,而非贸易协定</b>。而柬埔寨国内9年免税政策是对首投企业的承诺,稳定性高于容易受人权问题影响的GSP/EBA。
+  </div>
+
+  <div class="subsec-title">5.1 赛轮基地 × 六大贸易协定的真实映射</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>贸易协定</th>
+        <th>签署/生效</th>
+        <th>主要覆盖</th>
+        <th>优惠力度</th>
+        <th>当前状态</th>
+        <th>赛轮受益基地</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-g">
+        <td class="fw6">EU EBA(Everything But Arms,欧盟最优惠GSP)</td>
+        <td>柬埔寨1997年成为受益国</td>
+        <td>最不发达国家→欧盟</td>
+        <td>轮胎零关税</td>
+        <td class="c-a">部分撤销(2020.08起,服装/鞋类/旅游用品受影响,但轮胎仍受惠)</td>
+        <td>柬埔寨基地(对欧出口)</td>
+      </tr>
+      <tr>
+        <td class="fw6">US GSP(美国普惠制)</td>
+        <td>1997年柬埔寨获受益国身份</td>
+        <td>发展中国家→美国</td>
+        <td>部分商品零关税</td>
+        <td class="c-r">已失效(2020.12.31到期至今未重启)</td>
+        <td class="c-r">柬埔寨对美出口已按MFN税率</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">EU-Vietnam FTA(EVFTA)</td>
+        <td>2020.08生效</td>
+        <td>越南→欧盟</td>
+        <td>10年内取消99%关税(轮胎在覆盖范围内,进度已过半)</td>
+        <td class="c-g">生效中,削减中期</td>
+        <td>越南基地(对欧出口)</td>
+      </tr>
+      <tr class="hl-b">
+        <td class="fw6">AfCFTA(非洲大陆自贸区)</td>
+        <td>2019.05生效,2021.01名义启动贸易</td>
+        <td>54个非洲国家之间</td>
+        <td>5年内取消90%税目关税(最不发达国家10年)</td>
+        <td class="c-g">2026.01关税削减正式启动,2030年前完成主要税目</td>
+        <td class="c-g">埃及基地(对非洲其他国家出口)</td>
+      </tr>
+      <tr>
+        <td class="fw6">EU-Egypt Partnership(欧盟-埃及伙伴协议)</td>
+        <td>2004年生效</td>
+        <td>埃及↔欧盟</td>
+        <td>工业品大部分已零关税</td>
+        <td class="c-g">稳定运行20年+</td>
+        <td>埃及基地(对欧出口)</td>
+      </tr>
+      <tr>
+        <td class="fw6">GAFTA(泛阿拉伯自贸区)</td>
+        <td>1997年启动,2005年全面免税</td>
+        <td>17个阿拉伯国家之间</td>
+        <td>工业品免关税</td>
+        <td class="c-g">全面运行</td>
+        <td>埃及基地(对中东出口)</td>
+      </tr>
+      <tr>
+        <td class="fw6">USMCA(美墨加协定)</td>
+        <td>2020.07生效(取代NAFTA)</td>
+        <td>美国+墨西哥+加拿大</td>
+        <td>符合原产地规则可零关税</td>
+        <td class="c-g">稳定运行</td>
+        <td>墨西哥基地(对美出口)</td>
+      </tr>
+      <tr>
+        <td class="fw6">RCEP(区域全面经济伙伴关系)</td>
+        <td>2022.01生效</td>
+        <td>15国(含中日韩东盟澳新)</td>
+        <td>20年内逐步降税</td>
+        <td class="c-a">生效初期,优惠有限</td>
+        <td>越柬印多基地(区内贸易)</td>
+      </tr>
+      <tr>
+        <td class="fw6">AGOA(美国非洲增长和机会法案)</td>
+        <td>2000年启动</td>
+        <td>撒哈拉以南非洲→美国</td>
+        <td>部分商品零关税</td>
+        <td class="c-r">2025年9月到期,未获续签(注意埃及本来也不在覆盖内)</td>
+        <td>不适用赛轮</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsec-title">5.2 网络化对冲:为什么"多协定叠加"比单一协定重要</div>
+
+  <div class="chain">
+    <div class="chain-hdr">赛轮五基地的贸易协定冗余设计</div>
+    <div class="chain-flow">
+      <div class="chain-node" style="border-top-color: var(--green);">
+        <div class="cn-title">越南基地</div>
+        <div class="cn-body">
+          <b>主协定:</b>EVFTA(欧盟)<br>
+          <b>备份:</b>RCEP(亚太)<br>
+          <b>覆盖市场:</b>欧盟+东南亚<br>
+          <b>出口占比:</b>集团52%利润
+        </div>
+      </div>
+      <div class="chain-node" style="border-top-color: var(--amber);">
+        <div class="cn-title">柬埔寨基地</div>
+        <div class="cn-body">
+          <b>主协定:</b>EU EBA(轮胎仍受惠)<br>
+          <b>备份:</b>RCEP+9年免税<br>
+          <b>覆盖市场:</b>北美+欧盟<br>
+          <b>美国GSP已失效,按MFN</b>
+        </div>
+      </div>
+      <div class="chain-node" style="border-top-color: var(--blue);">
+        <div class="cn-title">印尼基地</div>
+        <div class="cn-body">
+          <b>主协定:</b>RCEP(亚太)<br>
+          <b>备份:</b>ASEAN-EU谈判中<br>
+          <b>覆盖市场:</b>ASEAN+大洋洲+欧盟<br>
+          <b>出口多元化</b>
+        </div>
+      </div>
+      <div class="chain-node" style="border-top-color: var(--purple);">
+        <div class="cn-title">墨西哥基地</div>
+        <div class="cn-body">
+          <b>主协定:</b>USMCA(北美)<br>
+          <b>备份:</b>墨西哥与欧盟FTA<br>
+          <b>覆盖市场:</b>美国+拉美<br>
+          <b>最纯粹的"避税目的地"</b>
+        </div>
+      </div>
+      <div class="chain-node" style="border-top-color: var(--red);">
+        <div class="cn-title">埃及基地</div>
+        <div class="cn-body">
+          <b>主协定:</b>EU-Egypt(欧盟)<br>
+          <b>备份:</b>GAFTA+AfCFTA(2026生效)<br>
+          <b>覆盖市场:</b>欧洲南部+中东+非洲<br>
+          <b>枢纽地位最突出</b>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>网络化设计的真正价值:期权式对冲能力。</strong>任何单一协定都可能被调整或撤销(柬埔寨EBA部分撤销已经是先例),但<strong>多个非中国产地同时拥有多个贸易协定接入点,就能形成"按下葫芦浮起瓢"的对冲能力</strong>。当柬埔寨EBA收紧时,印尼/越南可以接棒对欧出口;当USMCA原产地规则变严时,墨西哥的备份可以切换到欧洲路线;当某个基地遭遇地缘冲击时,其他基地可以承接订单。<br><br>
+    <strong>这种网络化结构的估值溢价,不应该按"单一基地盈利能力×N"线性加总,而应该按"网络的期权价值"非线性溢价</strong>。具体来说,如果一个单一基地模型值X,那么五个基地形成的网络,其价值应该是X×N + 网络期权溢价(估计20-30%)。这个溢价是赛轮相对于玲珑、中策、森麒麟等"单点海外基地企业"应享有的估值差。<br><br>
+    <strong>但这个溢价的前提是:网络要真正发挥期权作用,而不仅仅是名义上有多个基地。</strong>赛轮能不能在一个基地遭遇冲击时,48小时内把订单切换到另一个基地?这需要集团层面的订单管理、认证互通、技术标准统一——即"全球一个工厂"管理模式的真实执行力。2024年报明确提出了这个模式,2025-2027年是验证期。
+  </div>
+
+  <div class="subsec-title">5.3 AfCFTA作为2026年最重要的新增变量</div>
+
+  <div class="blue-note">
+    <b>为什么AfCFTA特别重要:</b>它是唯一<b>刚刚进入实质削减期(2026.01.01生效)</b>的协定,意味着赛轮埃及基地(2028年前后全面投产)的战略价值与AfCFTA的红利节奏完全同步。按当前时间表:<br><br>
+    <b>2026.01:</b>Category A商品开始关税削减,非最不发达国家5年内削减90%税目、最不发达国家10年内削减85%税目<br>
+    <b>2028-2029:</b>大部分Category A商品接近零关税<br>
+    <b>2030:</b>Category B(较敏感商品,包括轮胎等工业品)完成削减<br>
+    <b>2035:</b>全面实施目标<br><br>
+    <b>对赛轮埃及基地的精确含义:</b>2028年埃及一期+二期达产时,恰好赶上AfCFTA关税削减的中段红利期。埃及作为同时加入EU-Egypt(对欧零关税)+ GAFTA(对中东零关税)+ AfCFTA(对非洲削减中)+ 2024年加入BRICS的四重身份国家,其出口半径在2028-2035年将达到史上最大覆盖。<b>这就是为什么赛轮在财务压力最大的时候也要推动埃及二期——这不是"可选项",是必须卡住的战略窗口</b>。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §6 融资生态与信用杠杆 ═══════════════════════════════ -->
+<div class="sec" id="s6">
+  <div class="sec-head">
+    <div class="sec-num">06</div>
+    <div class="sec-title">融资生态与信用杠杆</div>
+    <div class="sec-note">杠杆扩张模型的前提、红线与真实信用占用测算</div>
+  </div>
+
+  <div class="subsec-title">6.1 ROIC-WACC杠杆扩张模型:理论基础</div>
+
+  <div class="formula">
+    <b>核心公式:</b><br>
+    ROIC = NOPAT ÷ 投入资本 = 税后经营利润 ÷ (股东权益 + 有息负债)<br>
+    WACC = E/(E+D) × Ke + D/(E+D) × Kd × (1-t)<br>
+    <br>
+    <b>股东价值创造条件:</b>ROIC &gt; WACC (利差为正)<br>
+    <b>扩张策略有效性:</b>每新增一项目,只要项目ROIC &gt; 融资成本,借债扩张就是价值创造
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi deep">
+      <div class="kl">集团层面ROIC(2024)</div>
+      <div class="kv deep">10.62%</div>
+      <div class="ks">NOPAT~42.6亿 ÷ 投入资本~401亿<br>(股东权益280 + 有息负债121)</div>
+    </div>
+    <div class="kpi a">
+      <div class="kl">估算WACC</div>
+      <div class="kv a">~8.64%</div>
+      <div class="ks">Ke 10.6% × 70% + Kd(1-t) 4.1% × 30%<br>β≈1.2,Rf 2.2%,MRP 7%</div>
+    </div>
+    <div class="kpi g">
+      <div class="kl">ROIC-WACC利差</div>
+      <div class="kv g">+1.98pp</div>
+      <div class="ks">正利差,价值创造中<br>但利差较窄,有改善空间</div>
+    </div>
+    <div class="kpi b">
+      <div class="kl">海外基地项目ROIC</div>
+      <div class="kv b">15-22%</div>
+      <div class="ks">柬埔寨19.25% · 印尼18.65%<br>埃及一期18.30% · 二期16.72%<br>远高于集团综合ROIC</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>一个重要洞察:集团层面ROIC只有10.62%,看起来并不突出。这是因为国内基地(ROIC估计只有6-8%)在稀释海外基地(ROIC 15-22%)的优异表现。</b>换句话说,如果能把国内基地的资本占用剥离(这当然不现实),集团纯海外ROIC可能在16-18%区间,与WACC 8.64%的利差会扩大到7-9pp,完全不是"价值微弱创造",而是"价值强创造"。<br><br>
+    <b>这也解释了为什么管理层愿意在现金流紧张时仍加码海外扩张:</b>同样一笔钱投国内可能只有6-8%回报,投海外是15-22%,决策经济学上是完全清晰的。国内基地的资本分配只是"不得已的维护性投入",不是"寻求最优回报的配置"。
+  </div>
+
+  <div class="subsec-title">6.2 融资生态:母公司担保的量化测算</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>指标</th>
+        <th>2023年度预案</th>
+        <th>2024年度预案(调整后)</th>
+        <th>2025年度预案</th>
+        <th>趋势</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">公司对控股子公司担保总额上限</td>
+        <td>约100亿</td>
+        <td>132亿</td>
+        <td class="c-a fw6">176亿</td>
+        <td class="c-a">+76%(2年)</td>
+      </tr>
+      <tr>
+        <td class="fw6">对资产负债率&gt;70%子公司担保上限</td>
+        <td>约80亿</td>
+        <td>111亿</td>
+        <td class="c-a">156亿</td>
+        <td class="c-a">+95%</td>
+      </tr>
+      <tr>
+        <td class="fw6">子公司对公司反担保上限</td>
+        <td>56亿</td>
+        <td>76亿</td>
+        <td>76亿</td>
+        <td class="c-m">持稳</td>
+      </tr>
+      <tr class="hl-b">
+        <td class="fw6">子公司间互担保上限</td>
+        <td>10亿</td>
+        <td>15亿</td>
+        <td>20亿</td>
+        <td>+100%</td>
+      </tr>
+      <tr class="grand">
+        <td>担保额度上限 / 归母股东权益(约280亿)</td>
+        <td>~36%</td>
+        <td>~47%</td>
+        <td class="c-a fw6">~63%</td>
+        <td class="c-a">接近阈值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn">
+    <b>担保额度/净资产已达63%,这是一个需要理解而非担忧的数字:</b>A股上市公司"对外担保"总额限制50%是针对"对外担保"(向非关联方提供担保),而<b>赛轮的担保对象全部是其控股子公司,属于"对内担保"</b>,法规上没有固定比例限制,但需股东大会表决且强制披露。<br><br>
+    <b>真正重要的信号是趋势:从36%→47%→63%两年跳升27pp。</b>这反映的是:(1)海外基地建设高峰期,需要母公司信用支持子公司融资;(2)母公司自身表内负债已高(121亿),只能通过担保形式扩大融资能力;(3)未来2026-2028年扩张仍将依赖这种模式,担保额度可能继续上升到70-80%区间。<br><br>
+    <b>实际已使用担保余额(不同时点数据):</b>①赛轮销售累计52.64亿;②赛轮香港累计53.37亿;③加上对越南、柬埔寨、印尼、墨西哥、埃及等海外子公司的担保,实际担保使用余额估计在<b>130-160亿</b>区间,利用率约为额度的80-90%。
+  </div>
+
+  <div class="subsec-title">6.3 赛轮转债事件复盘</div>
+
+  <div class="correction-box">
+    <div class="correction-box-label">⚠ 事实更正 · 赛轮转债已在2024年2月完成赎回</div>
+    之前研究中提到"可转债转股可削减有息负债11.5%"——这个表述的时效性需要更正。<b>实际情况:赛轮于2022年11月发行20.09亿元可转债,2024年1月股价连续触发强赎条件(130%转股价),公司决定提前赎回。至2024年2月22日最后转股日,累计99.79%(20.05亿元)已转股,仅414万元被强赎。</b><br><br>
+    <b>关键影响:</b><br>
+    <b>对公司债务:</b>20.05亿元债务直接转为股权,一次性削减有息负债13%(以当时负债150亿左右计)。转换后有息负债结构更健康,为后续海外扩张腾出信用空间。<br>
+    <b>对股东:</b>总股本由30.63亿股增至32.88亿股,<b>稀释约7.3%</b>。每股收益被摊薄7%,但同时财务杠杆下降、利息负担减轻。<br>
+    <b>时点选择的管理智慧:</b>公司选择在2024年1月触发强赎时果断提前赎回,而不是等到2028年到期,实质上是<b>利用股价高位主动完成"债转股"式降杠杆</b>。这是管理层资本运作能力的一次优秀演示。
+  </div>
+
+  <div class="subsec-title">6.4 信用杠杆的红线监控</div>
+
+  <div class="decision-matrix">
+    <div class="dm-cell hdr">监控指标</div>
+    <div class="dm-cell hdr">当前值</div>
+    <div class="dm-cell hdr">安全区</div>
+    <div class="dm-cell hdr">警戒线</div>
+    <div class="dm-cell hdr">红线</div>
+    
+    <div class="dm-cell label">利息覆盖率</div>
+    <div class="dm-cell c-g fw6">10.5×</div>
+    <div class="dm-cell c-g">&gt; 5×</div>
+    <div class="dm-cell c-a">3-5×</div>
+    <div class="dm-cell c-r">&lt; 3×</div>
+    
+    <div class="dm-cell label">净负债/EBITDA</div>
+    <div class="dm-cell c-g fw6">1.1×</div>
+    <div class="dm-cell c-g">&lt; 2×</div>
+    <div class="dm-cell c-a">2-3×</div>
+    <div class="dm-cell c-r">&gt; 3×</div>
+    
+    <div class="dm-cell label">经营现金流</div>
+    <div class="dm-cell c-g fw6">+25亿(Q3累计)</div>
+    <div class="dm-cell c-g">持续正值</div>
+    <div class="dm-cell c-a">阶段性负</div>
+    <div class="dm-cell c-r">持续负值</div>
+    
+    <div class="dm-cell label">担保额度/净资产</div>
+    <div class="dm-cell c-a fw6">63%</div>
+    <div class="dm-cell c-g">&lt; 50%</div>
+    <div class="dm-cell c-a">50-80%</div>
+    <div class="dm-cell c-r">&gt; 100%</div>
+    
+    <div class="dm-cell label">ROIC-WACC利差</div>
+    <div class="dm-cell c-g fw6">+1.98pp</div>
+    <div class="dm-cell c-g">&gt; 2pp</div>
+    <div class="dm-cell c-a">0-2pp</div>
+    <div class="dm-cell c-r">&lt; 0pp</div>
+    
+    <div class="dm-cell label">在建工程/固定资产</div>
+    <div class="dm-cell c-a fw6">~25%</div>
+    <div class="dm-cell c-g">&lt; 15%</div>
+    <div class="dm-cell c-a">15-30%</div>
+    <div class="dm-cell c-r">&gt; 30%</div>
+  </div>
+
+  <div class="insight">
+    <strong>综合判断:赛轮目前的财务状况是"扩张期紧张,但远离红线"。</strong>六个关键指标中,利息覆盖率、净负债/EBITDA、经营现金流、ROIC-WACC利差都在安全区,担保比例和在建工程在警戒区但未到红线。<strong>这是一张"典型的扩张期资产负债表"</strong>——任何快速增长的全球化制造企业在扩张高峰期都会呈现类似画像,这是必要代价,不是异常信号。<br><br>
+    <strong>真正需要警惕的转折点是:ROIC-WACC利差跌破0</strong>——一旦发生,意味着扩张开始毁灭价值,届时无论账面负债率多少,整个杠杆扩张模型就失效了。要监控这个指标,重点看<strong>①海外基地达产后实际净利率是否维持在15%+ ②原材料冲击是否持续压缩利润 ③利率环境是否推高WACC</strong>。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §7 估值框架重构 ═══════════════════════════════ -->
+<div class="sec" id="s7">
+  <div class="sec-head">
+    <div class="sec-num">07</div>
+    <div class="sec-title">估值框架重构:三层估值体系</div>
+    <div class="sec-note">从"当期PE"到"达产预期PE + 网络期权溢价 + 清算价值底部"</div>
+  </div>
+
+  <div class="subsec-title">7.1 传统估值方法的三个系统性低估</div>
+
+  <div class="grid3" style="margin-bottom: 14px;">
+    <div class="card r">
+      <div class="card-label">低估1·PE选择偏差</div>
+      <div class="card-sub" style="font-size: 12.5px;">
+        市场给赛轮8-11×PE,参照系是"中国周期制造业"。但赛轮67%利润来自海外,合理参照系应该是"国际轮胎公司",即普利司通(13-15×)、米其林(13-16×)、固特异(15-18×)。<br><br>
+        <b>误差:</b>PE被低估3-5×,对应每元净利润少定价约30-50%。
+      </div>
+    </div>
+    <div class="card a">
+      <div class="card-label">低估2·盈利时点错配</div>
+      <div class="card-sub" style="font-size: 12.5px;">
+        用当期净利润(40.6亿)做估值锚,但赛轮正处于扩张高峰期,大量CAPEX尚未转化为盈利。2028-2030年全面达产后,归母净利中枢应提升至45亿+。<br><br>
+        <b>误差:</b>盈利基数被低估10-15%,需用达产后预期做估值才合理。
+      </div>
+    </div>
+    <div class="card b">
+      <div class="card-label">低估3·网络期权价值</div>
+      <div class="card-sub" style="font-size: 12.5px;">
+        五大海外基地形成的贸易协定网络有独立于单一基地盈利的"期权价值"——多协定冗余、多产地切换能力、地缘对冲价值。这部分价值未被任何传统估值方法捕捉。<br><br>
+        <b>误差:</b>网络溢价估计20-30%,对应额外市值100-150亿未被反映。
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec-title">7.2 三层估值体系</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>估值层级</th>
+        <th>估值方法</th>
+        <th>核心假设</th>
+        <th>目标市值区间</th>
+        <th>适用场景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-r">
+        <td class="fw6">底部层(清算价值)</td>
+        <td>PB估值 + 固定资产账面</td>
+        <td>归母股东权益约280亿;考虑海外固定资产潜在减值后约250-300亿</td>
+        <td class="c-r fw6">250-300亿</td>
+        <td>极端情景下的安全边际<br>(例如:全球贸易战全面爆发)</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">当期层(传统PE)</td>
+        <td>2024归母净利 × 当期PE</td>
+        <td>40.6亿 × 9-11× PE<br>仅反映当前财务状态</td>
+        <td class="c-a fw6">365-450亿</td>
+        <td>熊市情景/短期波动窗口<br>当前市场主流估值</td>
+      </tr>
+      <tr class="hl-b">
+        <td class="fw6">中期层(达产PE)</td>
+        <td>2028-2030预期归母净利 × 合理PE</td>
+        <td>45亿(达产) × 11-13× PE<br>(海外占比突破75%后应享溢价)</td>
+        <td class="c-b fw6">495-585亿</td>
+        <td>基本面视角的合理估值<br>反映2.0→3.0阶段过渡</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">远期层(平台估值)</td>
+        <td>对标国际轮胎公司 + 网络溢价</td>
+        <td>45亿 × 13-15× PE × (1+20%网络溢价)<br>对标普利司通估值带下沿</td>
+        <td class="c-g fw6">700-810亿</td>
+        <td>3.0阶段成熟期估值<br>全球平台认知完全确立后</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="blue-note">
+    <b>三层估值体系的使用方法:</b><br>
+    <b>(1)</b>当前股价对应的市值是哪一层?——如果在250-300亿,处于底部层,买入逻辑是"安全边际";如果在365-450亿,处于当期层(传统市场认知);如果在495-585亿,表明市场开始接受中期达产逻辑。<br>
+    <b>(2)</b>股价弹性的上限在哪?——短期(2026-2027)最多到中期层下沿约500亿;中期(2028-2030)可能抵达中期层上沿约585亿;长期(2030+)才可能进入远期层700-810亿区间。<br>
+    <b>(3)</b>什么情景会让估值跌穿底部层?——极端贸易战(所有贸易协定同时失效)、海外基地遭遇战争/国有化、天然胶价格永久性翻倍吞噬利润。这些都是极小概率事件。
+  </div>
+
+  <div class="subsec-title">7.3 估值重估的三个触发条件</div>
+
+  <div class="timeline">
+    <div class="tl-item g">
+      <div class="tl-date">触发1 · 财务触发:单季度海外利润占比突破80%</div>
+      <div class="tl-content">
+        目前海外利润占比约67%。随着墨西哥/印尼/埃及一期达产,这个比例在2027-2028年某个季度有望突破75%甚至80%。<b>一旦这个数据出现在季报披露中,市场会被迫重新审视"这是中国公司还是跨国公司"的定性问题</b>——这将是第一层估值重估的触发器。
+      </div>
+    </div>
+    <div class="tl-item a">
+      <div class="tl-date">触发2 · 政策触发:又一轮对华贸易壁垒启动</div>
+      <div class="tl-content">
+        过去10年的美国反倾销、欧盟反补贴、东南亚双反,都是渐进式的。下一轮可能是<b>2026-2028年欧盟对中国产地半钢胎的新一轮反倾销立案</b>——如果发生,赛轮的"非中国产地"价值将被瞬间放大,市场会立即对比赛轮vs其他国内同行的差异化优势。这是第二层触发器,通常估值修正速度快且幅度大。
+      </div>
+    </div>
+    <div class="tl-item b">
+      <div class="tl-date">触发3 · 业绩触发:单季度归母净利创历史新高</div>
+      <div class="tl-content">
+        2024年归母净利40.6亿是当前高点。2028-2030年海外全面达产后,单季度有望突破15-18亿(年化60-70亿)。<b>当市场看到"赛轮从未有过的净利水平"时,估值锚会从"过去PE中枢"切换到"全球行业PE中枢"</b>——这是第三层触发,是前两层触发的结果显现。
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <strong>三个触发器的共同特征:它们都发生在2026-2030年之间,时点相对确定但幅度难以预判。</strong>这就是为什么赛轮是一个"时间是朋友"的投资——只要扩张故事不被证伪,3-5年的持有期大概率能看到至少一个触发器出现,对应市值从当前约450亿向600亿甚至更高区间跃迁。<br><br>
+    <strong>反过来说,如果3年内一个触发器都没出现</strong>——海外利润占比停滞、贸易壁垒未新增、业绩未创新高——那就需要警觉地思考"2.0阶段是否在停滞或失败",届时需要把估值锚重新下调回当期层365-450亿。
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ §8 结构性风险清单 ═══════════════════════════════ -->
+<div class="sec" id="s8">
+  <div class="sec-head">
+    <div class="sec-num">08</div>
+    <div class="sec-title">结构性风险清单——什么是噪音,什么是红线</div>
+    <div class="sec-note">任何研究框架都必须能区分"需要调整估值"和"需要推翻框架"的信号</div>
+  </div>
+
+  <div class="subsec-title">8.1 日常噪音(无需调整估值框架)</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>噪音类型</th>
+        <th>典型表现</th>
+        <th>为什么是噪音</th>
+        <th>应对方式</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">单季度净利波动</td>
+        <td>Q1净利环比-10%,Q3净利同比-11.5%</td>
+        <td>原材料+爬坡+季节性+税率的综合结果,不改变长期结构</td>
+        <td>关注累计趋势,忽略单季波动</td>
+      </tr>
+      <tr>
+        <td class="fw6">油价短期波动</td>
+        <td>布伦特原油在$70-120间震荡</td>
+        <td>油价是周期变量,均值回归;且有海外折价原油等对冲</td>
+        <td>只在极端情景($140+或$50-)时调整模型</td>
+      </tr>
+      <tr>
+        <td class="fw6">新和平亏损公告</td>
+        <td>2025H1新和平亏损5.6亿</td>
+        <td>国内基地战略性买单,符合预期;定位本就不是盈利引擎</td>
+        <td>完全忽略,关注亏损收窄节奏即可</td>
+      </tr>
+      <tr>
+        <td class="fw6">股价短期下跌</td>
+        <td>因宏观/行业/情绪原因下跌10-20%</td>
+        <td>估值基本面未变,波动提供买入机会</td>
+        <td>视估值层级决定加仓/减仓/持有</td>
+      </tr>
+      <tr>
+        <td class="fw6">地缘事件冲击</td>
+        <td>伊朗战争、红海航运中断</td>
+        <td>多产地网络的对冲能力应对设计范畴内</td>
+        <td>做情景分析,但不改变框架</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsec-title">8.2 需要警惕的二级信号(调整估值但不改框架)</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>信号类型</th>
+        <th>观察指标</th>
+        <th>触发阈值</th>
+        <th>调整建议</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-a">
+        <td class="fw6">海外爬坡不及预期</td>
+        <td>印尼/墨西哥/埃及可研预测净利率实现情况</td>
+        <td>任一基地达产首年净利率低于可研预测60%以下</td>
+        <td>下调中期层估值10-15%</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">柬埔寨EBA进一步收紧</td>
+        <td>欧盟对柬埔寨GSP/EBA评估结果</td>
+        <td>轮胎被纳入暂停范围</td>
+        <td>下调柬埔寨基地盈利预测30%</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">越南税率进一步上调</td>
+        <td>越南税收政策变化</td>
+        <td>从15%上调至20%以上</td>
+        <td>下调越南基地净利率预测2-3pp</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">原材料长期结构性上涨</td>
+        <td>天然胶+合成胶+炭黑三要素一年均价</td>
+        <td>综合成本同比上涨30%持续一年以上</td>
+        <td>下调ROIC模型200-300bp</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">担保额度快速扩张</td>
+        <td>对外担保额度/净资产</td>
+        <td>超过100%</td>
+        <td>警示信号,但需结合利息覆盖率判断</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsec-title">8.3 结构性红线(需要推翻整个框架)</div>
+
+  <div class="grid2" style="margin-bottom: 14px;">
+    <div class="card r">
+      <div class="card-label">红线1·ROIC-WACC利差转负</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>意义:</b>杠杆扩张模型失效,每增加一单位投资开始毁灭股东价值。<br><br>
+        <b>触发情景:</b>①海外多基地达产后净利率未达预期(集中在10-12%而非18-22%);②利率环境持续上升推高WACC至10%+;③原材料长期通胀压缩集团ROIC至8%以下。<br><br>
+        <b>框架调整:</b>从"全球平台"降格回"普通制造业",估值中枢下调30-40%,对应市值回到300-350亿。
+      </div>
+    </div>
+    <div class="card r">
+      <div class="card-label">红线2·多协定同时失效</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>意义:</b>贸易协定网络瓦解,"非中国产地"溢价消失。<br><br>
+        <b>触发情景:</b>①美国对所有海外工厂实施原产地穿透(对"中资海外工厂"按中国关税);②欧盟跟进类似规则;③ASEAN与中国关系恶化导致多边协定中止。<br><br>
+        <b>框架调整:</b>海外基地盈利结构被击穿,赛轮变回普通中国轮胎厂,估值回到底部层250-300亿。
+      </div>
+    </div>
+    <div class="card r">
+      <div class="card-label">红线3·海外基地遭战争/没收</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>意义:</b>单一基地资产被强制剥离或长期停产。<br><br>
+        <b>触发情景:</b>①越南遭遇南海冲突蔓延;②柬埔寨政变或外资政策逆转;③中东冲突直接波及埃及苏伊士湾。<br><br>
+        <b>框架调整:</b>单基地损失估算10-50亿不等(视基地重要性),对应市值下调按2-3×PE折损。<b>最核心的越南基地如果出问题,对整个集团估值的打击是毁灭性的</b>——按越南贡献52%利润+基地资产价值估算,冲击可能在150-200亿市值级别。
+      </div>
+    </div>
+    <div class="card r">
+      <div class="card-label">红线4·电动车对轮胎的结构性冲击</div>
+      <div class="card-sub" style="font-size: 12.5px; line-height: 1.8;">
+        <b>意义:</b>需求端逻辑被改变——电动车因扭矩大,轮胎磨损更快(利好),但同时电动车轻量化趋势可能推动超薄轮胎(新技术门槛)。<br><br>
+        <b>触发情景:</b>①全球电动车渗透率2030年超过50%且中国厂商失去技术主导;②欧美对电动车专用轮胎设置技术壁垒。<br><br>
+        <b>框架调整:</b>轮胎行业需求预测需要重大调整。目前看是中性偏利好(磨损加快→替换需求增加),但技术变革风险长期存在。
+      </div>
+    </div>
+  </div>
+
+  <div class="red-note">
+    <b>红线触发后的行动原则:</b>任何一条红线一旦确认触发(不是"可能触发"),本研究框架需要立即重写,持仓决策需要重新评估。<br><br>
+    <b>但更重要的是:红线触发是罕见事件,日常研究应该聚焦"验证触发条件没有出现"而不是"担心触发条件可能出现"</b>。过度担忧红线会导致研究精力错配——把80%的精力用在追踪小概率灾难,反而错过对主线逻辑(海外扩张兑现进度)的持续跟进。<br><br>
+    <b>建议的精力分配:</b>60%追踪主线逻辑(海外基地达产节奏+利润兑现),25%追踪二级信号(爬坡效果+税收政策+原材料),15%监控红线(贸易协定状态+地缘风险)。
+  </div>
+
+  <div class="subsec-title">8.4 年度复盘框架</div>
+
+  <div class="note">
+    <b>建议每年一次的"战略认知复盘"(更新本文件):</b>每年年报披露后(4-5月),重新审视以下问题:<br><br>
+    <b>①定性判断是否还成立?</b>海外利润占比、CAPEX投向、产能规划是否继续支撑"全球平台"定性?<br>
+    <b>②战略阶段是否推进?</b>是否仍在2.0阶段?是否有加速/减速信号?<br>
+    <b>③护城河是否强化?</b>三重护城河(垂直整合+园区化+政策捆绑)是否依然成立?<br>
+    <b>④协定网络是否完整?</b>六大协定有无变化?是否出现新协定或旧协定失效?<br>
+    <b>⑤财务模型是否健康?</b>ROIC-WACC利差是否扩大?担保比例是否接近红线?<br>
+    <b>⑥估值层级是否漂移?</b>市值对应哪一估值层?是否有触发器出现?<br>
+    <b>⑦红线是否被触发?</b>四条红线是否已发生或临近发生?<br>
+    <b>⑧认知是否需要迭代?</b>过去一年有哪些原先判断被证实/证伪?<br><br>
+    <b>如果以上问题的答案大多仍然是"一切如旧",本文件不需要重写,只需要微调。</b>如果有任何一个问题的答案出现结构性变化(例如"护城河开始弱化"或"估值层级出现漂移"),就需要重写对应章节。<br><br>
+    <b>这就是"置顶总纲文件"的意义:它提供一个稳定的、可复用的认知框架,让季度/月度的研究聚焦于细节验证,而不必每次都重建底层逻辑。</b>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ 底部总结 ═══════════════════════════════ -->
+<div class="top-verdict" style="margin-top: 40px; border-color: var(--amber);">
+  <div class="tv-title" style="color: var(--amber);">FINAL WORD · 一句话的战略认知</div>
+  <div class="tv-body">
+    <strong>赛轮是一家注册在中国、以东南亚为利润引擎、以五大洲五大基地为网络节点、以六大贸易协定为制度基础、正在完成从"中国制造企业"向"全球轮胎平台+供应链生态运营商"跨越的企业。</strong>她当前处于2.0扩张阶段的后半程,财务报表呈现扩张期典型的紧张状态(担保比例63%、真实资金缺口-21.6亿/年、在建工程占比25%),但内核指标(利息覆盖率10.5×、ROIC-WACC利差+2pp、网络化产地覆盖)显示基本健康。她的估值当前处于"当期层365-450亿"与"中期层495-585亿"之间的过渡区,向上突破取决于2028-2030年海外利润兑现和贸易壁垒演变;向下击穿的风险限于极端情景。<strong>这不是一家值得用"当期PE"审视的公司,而是一家值得用"跨国化蜕变兑现概率"评估的公司。</strong>
+  </div>
+</div>
+
+</main>
+
+<div class="footer-bar">
+  <span>数据来源:2024年报 · 2025Q3季报 · 四份可研报告 · 赛轮转债/担保公告 · 六大协定官方文件(web检索2026.04.21)</span>
+  <span>SAILUN COMPANY NATURE & STRATEGIC FRAMEWORK · v1.0 · 20260421 · PINNED · FOR REFERENCE ONLY</span>
+</div>
+
+</body>
+</html>
