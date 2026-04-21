@@ -601,7 +601,10 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
   <div class="pin-badge">📌 置顶·战略认知总纲</div>
   <div class="h-tag">SAILUN GROUP · 601058 · COMPANY NATURE · STRATEGIC POSITIONING · VALUATION FRAMEWORK</div>
   <h1>赛轮集团研究·总纲:<br><em>公司性质、战略定位与估值体系再认知</em></h1>
-  <div class="h-sub">v1.0 · 2026年4月21日 · 所有赛轮研究文件的前置认知文件 · 年度更新 (annual refresh)</div>
+  <div class="h-sub">v1.1 · 2026年4月21日(当日迭代) · 所有赛轮研究文件的前置认知文件 · 年度更新 (annual refresh)</div>
+  <div style="background: #fff8e0; border: 1px solid #d8b36a; padding: 10px 14px; margin-top: 12px; font-size: 11.5px; color: #5a4a20; line-height: 1.7;">
+    <b>v1.1 更新要点(v1.0 → v1.1):</b>①§6新增WACC市值权重修正与Ke参数弹性说明;②§6新增"赛轮香港 vs 赛轮销售"两类担保本质区别;③§7估值区间修正(远期上限从700-810亿下调至600-700亿);④新增§9"销售模式与品牌进化"——本次迭代的最重要新增维度。
+  </div>
   <div>
     <span class="src">★ 2024年报 · 2025半年报 · 2025Q3季报</span>
     <span class="src">★ 四份可研报告(新和平·印尼·柬埔寨·埃及一期·埃及二期)</span>
@@ -626,16 +629,17 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
 
 <!-- ═══════════════════════════════ TOC ═══════════════════════════════ -->
 <div class="toc">
-  <div class="toc-title">目录 · 八大战略层</div>
+  <div class="toc-title">目录 · 九大战略层(v1.1)</div>
   <div class="toc-grid">
     <div class="toc-item"><span class="num">01</span><a href="#s1">公司本质重定义——从"中国造轮胎"到"全球轮胎平台"</a></div>
     <div class="toc-item"><span class="num">02</span><a href="#s2">战略阶段定位——赛轮的1.0/2.0/3.0三阶段发展框架</a></div>
     <div class="toc-item"><span class="num">03</span><a href="#s3">国内与海外的功能分化——分工与不可逆</a></div>
     <div class="toc-item"><span class="num">04</span><a href="#s4">东南亚产业园业主模式——真正的三重护城河</a></div>
     <div class="toc-item"><span class="num">05</span><a href="#s5">六大贸易协定网络——真实年限与价值内核</a></div>
-    <div class="toc-item"><span class="num">06</span><a href="#s6">融资生态与信用杠杆——母担、可转债、ROIC-WACC模型</a></div>
-    <div class="toc-item"><span class="num">07</span><a href="#s7">估值框架重构——三层估值体系与时点判断</a></div>
+    <div class="toc-item"><span class="num">06</span><a href="#s6">融资生态与信用杠杆——WACC方法论、两类担保、ROIC模型</a></div>
+    <div class="toc-item"><span class="num">07</span><a href="#s7">估值框架重构——三层估值体系与修正后区间</a></div>
     <div class="toc-item"><span class="num">08</span><a href="#s8">结构性风险清单——什么是噪音,什么是红线</a></div>
+    <div class="toc-item" style="grid-column: 1 / -1; background: #fff8e0; padding: 6px 10px; border-left: 3px solid #d8b36a;"><span class="num" style="color: #a0621a;">09</span><a href="#s9" style="color: #8a5a1a;"><b>销售模式与品牌进化——赛轮2.0向3.0跨越的关键命门(v1.1新增)</b></a></div>
   </div>
 </div>
 
@@ -1134,41 +1138,180 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
   <div class="formula">
     <b>核心公式:</b><br>
     ROIC = NOPAT ÷ 投入资本 = 税后经营利润 ÷ (股东权益 + 有息负债)<br>
-    WACC = E/(E+D) × Ke + D/(E+D) × Kd × (1-t)<br>
+    WACC = E/(E+D) × Ke + D/(E+D) × Kd × (1-税率)<br>
+    <b>Ke(股权成本) = Rf(无风险利率) + β × MRP(市场风险溢价)</b><br>
     <br>
     <b>股东价值创造条件:</b>ROIC &gt; WACC (利差为正)<br>
     <b>扩张策略有效性:</b>每新增一项目,只要项目ROIC &gt; 融资成本,借债扩张就是价值创造
   </div>
 
+  <div class="subsec-title" style="margin-top: 18px;">6.1.1 方法论关键点:WACC应使用市值权重而非账面权重</div>
+
+  <div class="correction-box">
+    <div class="correction-box-label">⚠ 方法论修正 · v1.1</div>
+    <b>严格来说,WACC的股权/债务权重应该使用市值权重(market-value weights)而非账面权重(book-value weights)</b>——因为WACC衡量的是"筹集新资本的机会成本",而新筹资本是按市值定价的。这一方法论细节在v1.0中被简化处理,v1.1修正如下:<br><br>
+    <b>账面权重口径(v1.0使用):</b><br>
+    股权权重 = 归母股东权益280亿 ÷ (280+121) = 69.8%<br>
+    债务权重 = 30.2% → WACC ≈ 8.64%<br><br>
+    <b>市值权重口径(v1.1修正):</b><br>
+    股权市值权重 = 当前市值~450亿 ÷ (450+121) = <b>78.8%</b><br>
+    债务权重 = <b>21.2%</b> → <b>WACC ≈ 9.23%</b><br><br>
+    <b>修正后结论:</b>赛轮真实WACC约<b>9.2%</b>,比v1.0版本高0.6pp,对应ROIC-WACC利差从+2.0pp收窄到<b>+1.4pp</b>。价值创造幅度比初步分析显示的更薄,这进一步强化了"海外基地才是真实的价值创造引擎,国内基地在稀释价值"的核心判断。
+  </div>
+
+  <div class="subsec-title" style="margin-top: 18px;">6.1.2 Ke参数敏感性:你的立场决定你的估值</div>
+
+  <div class="note" style="margin-bottom: 12px;">
+    <b>CAPM三参数的"个性"差异:</b><br>
+    • <b>Rf(无风险利率)</b>:宏观环境决定,所有公司共用同一数字。当前中国10年期国债~2.2%,美国~4.3%<br>
+    • <b>MRP(市场风险溢价)</b>:市场整体风险偏好,不同机构估算差异大(中国A股5-8%),牛市压低熊市推高<br>
+    • <b>β(贝塔)</b>:唯一反映公司自身风险画像的参数,可用过去3-5年股价相对大盘回归系数计算
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>行业对比</th>
+        <th>典型β</th>
+        <th>典型Ke</th>
+        <th>背景逻辑</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">公用事业(长江电力等)</td>
+        <td class="c-g">0.5-0.7</td>
+        <td class="c-g">5.7-7.1%</td>
+        <td>现金流稳定,波动小,对宏观不敏感</td>
+      </tr>
+      <tr>
+        <td class="fw6">银行(工商银行等)</td>
+        <td>0.8-1.0</td>
+        <td>7.8-9.2%</td>
+        <td>规模大,相对稳定,但政策敏感</td>
+      </tr>
+      <tr>
+        <td class="fw6">消费龙头(贵州茅台等)</td>
+        <td>0.9-1.1</td>
+        <td>8.5-9.9%</td>
+        <td>需求稳定,但估值波动大</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6 c-a">赛轮(本研究基准)</td>
+        <td class="c-a fw6">1.1-1.3</td>
+        <td class="c-a fw6">9.9-11.3%</td>
+        <td>周期性制造业+国际化+中等杠杆</td>
+      </tr>
+      <tr>
+        <td class="fw6">房地产开发</td>
+        <td class="c-r">1.3-1.7</td>
+        <td class="c-r">11.3-14.1%</td>
+        <td>高杠杆+政策敏感+周期深</td>
+      </tr>
+      <tr>
+        <td class="fw6">科技成长股</td>
+        <td class="c-r">1.4-1.8</td>
+        <td class="c-r">12.0-14.8%</td>
+        <td>业绩不确定性高,估值弹性大</td>
+      </tr>
+      <tr>
+        <td class="fw6">初创生物医药</td>
+        <td class="c-r">1.5-2.0+</td>
+        <td class="c-r">12.7-16.2%</td>
+        <td>技术风险+监管风险+现金流不稳</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn" style="margin-top: 12px;">
+    <b>房地产行业作为"Ke剧烈波动"的教科书案例:</b><br>
+    • 正常周期(2018年前):β≈1.3,Ke约11.3%<br>
+    • 2020-2021政策宽松时:市场情绪好,MRP隐含压低,Ke实际反映~9-10%<br>
+    • 2022-2024出清周期:β飙升至1.8+,市场情绪恶化,Ke隐含可能13-16%<br>
+    • 极端情况(万科/融创类):加风险溢价,Ke隐含可能突破20%<br><br>
+    <b>这就是"地产股业绩没变但估值砍半"的内核——不是净利润变了,是资本成本急剧上升,DCF模型下估值直接腰斩。</b>类似的动态也适用于赛轮——如果未来某一天市场因贸易战/海外基地风险暴露开始给赛轮上调β(比如从1.2上调至1.5),估值压缩幅度会远超财务恶化的速度。
+  </div>
+
+  <div class="subsec-title" style="margin-top: 18px;">6.1.3 WACC参数敏感性:三种立场下的赛轮</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>立场</th>
+        <th>Rf</th>
+        <th>MRP</th>
+        <th>β</th>
+        <th>Ke</th>
+        <th>WACC</th>
+        <th>vs ROIC 10.62%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-g">
+        <td class="fw6">乐观版</td>
+        <td>2.0%</td>
+        <td>6%</td>
+        <td>1.0</td>
+        <td>8.0%</td>
+        <td class="c-g">6.9%</td>
+        <td class="c-g fw6">+3.7pp 强价值创造</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">中性基准(v1.1采用)</td>
+        <td>2.2%</td>
+        <td>7%</td>
+        <td>1.2</td>
+        <td>10.6%</td>
+        <td class="c-a fw6">9.2%</td>
+        <td class="c-a fw6">+1.4pp 微弱创造</td>
+      </tr>
+      <tr class="hl-r">
+        <td class="fw6">保守版(压力测试)</td>
+        <td>2.8%</td>
+        <td>8%</td>
+        <td>1.4</td>
+        <td>14.0%</td>
+        <td class="c-r">11.8%</td>
+        <td class="c-r fw6">-1.2pp 毁灭价值</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>三种立场的启示:同一家公司,参数调整后结论可以从"强创造价值"变成"毁灭价值"——这不是模型错误,是CAPM框架的本质特征,反映了"估值本质上是立场的函数"。</strong><br><br>
+    <strong>本研究建议的参数使用原则:</strong>(1)<b>中性基准</b>用于日常分析和市场对话;(2)<b>保守版</b>用于压力测试——如果保守假设下仍有价值创造,才是真正的安全边际;(3)<b>乐观版</b>仅用于"如果一切顺利能走多远"的远期参考,<b>不应作为决策依据</b>(否则任何公司都会被算成有吸引力的)。<br><br>
+    <strong>对赛轮当前的直接含义:</strong>中性基准下,集团ROIC 10.62% vs WACC 9.2%,利差+1.4pp——这是"真实但较薄"的价值创造,不足以支撑大幅估值溢价,但也不构成价值毁灭。保守压力测试下,赛轮可能滑入"价值毁灭区",这就是为什么海外扩张的效率(海外基地真实ROIC能否达到可研预期的18-22%)如此关键——它直接决定了杠杆扩张模型是否继续有效。
+  </div>
+
   <div class="kpi-row">
     <div class="kpi deep">
-      <div class="kl">集团层面ROIC(2024)</div>
+      <div class="kl">集团ROIC(2024)</div>
       <div class="kv deep">10.62%</div>
-      <div class="ks">NOPAT~42.6亿 ÷ 投入资本~401亿<br>(股东权益280 + 有息负债121)</div>
+      <div class="ks">NOPAT~42.6亿 ÷ 投入资本~401亿</div>
     </div>
     <div class="kpi a">
-      <div class="kl">估算WACC</div>
-      <div class="kv a">~8.64%</div>
-      <div class="ks">Ke 10.6% × 70% + Kd(1-t) 4.1% × 30%<br>β≈1.2,Rf 2.2%,MRP 7%</div>
+      <div class="kl">WACC(市值权重·v1.1)</div>
+      <div class="kv a">~9.2%</div>
+      <div class="ks">市值口径:78.8%股权+21.2%债务</div>
     </div>
     <div class="kpi g">
       <div class="kl">ROIC-WACC利差</div>
-      <div class="kv g">+1.98pp</div>
-      <div class="ks">正利差,价值创造中<br>但利差较窄,有改善空间</div>
+      <div class="kv g">+1.4pp</div>
+      <div class="ks">较v1.0收窄0.6pp<br>真实但较薄的价值创造</div>
     </div>
     <div class="kpi b">
       <div class="kl">海外基地项目ROIC</div>
       <div class="kv b">15-22%</div>
-      <div class="ks">柬埔寨19.25% · 印尼18.65%<br>埃及一期18.30% · 二期16.72%<br>远高于集团综合ROIC</div>
+      <div class="ks">柬19.25%·印18.65%·埃18.30%<br>远高于集团综合水平</div>
     </div>
   </div>
 
   <div class="warn">
-    <b>一个重要洞察:集团层面ROIC只有10.62%,看起来并不突出。这是因为国内基地(ROIC估计只有6-8%)在稀释海外基地(ROIC 15-22%)的优异表现。</b>换句话说,如果能把国内基地的资本占用剥离(这当然不现实),集团纯海外ROIC可能在16-18%区间,与WACC 8.64%的利差会扩大到7-9pp,完全不是"价值微弱创造",而是"价值强创造"。<br><br>
-    <b>这也解释了为什么管理层愿意在现金流紧张时仍加码海外扩张:</b>同样一笔钱投国内可能只有6-8%回报,投海外是15-22%,决策经济学上是完全清晰的。国内基地的资本分配只是"不得已的维护性投入",不是"寻求最优回报的配置"。
+    <b>一个重要洞察(v1.0延续):集团层面ROIC 10.62%看起来并不突出,是因为国内基地(ROIC估计6-8%)在稀释海外基地(15-22%)的表现。</b>如果能把国内基地资本占用剥离,纯海外ROIC可能在16-18%,与WACC 9.2%利差扩大到7-9pp,完全不是"价值微弱创造",而是"价值强创造"。<br><br>
+    <b>这解释了为什么管理层愿意在现金流紧张时仍加码海外扩张:</b>同一笔钱投国内只有6-8%回报,投海外15-22%,决策经济学上清晰无疑。国内基地资本分配是"不得已的维护性投入",不是"寻求最优回报的配置"。
   </div>
 
-  <div class="subsec-title">6.2 融资生态:母公司担保的量化测算</div>
+  <div class="subsec-title">6.2 融资生态:母公司担保体系的量化测算</div>
 
   <table>
     <thead>
@@ -1220,12 +1363,147 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
   </table>
 
   <div class="warn">
-    <b>担保额度/净资产已达63%,这是一个需要理解而非担忧的数字:</b>A股上市公司"对外担保"总额限制50%是针对"对外担保"(向非关联方提供担保),而<b>赛轮的担保对象全部是其控股子公司,属于"对内担保"</b>,法规上没有固定比例限制,但需股东大会表决且强制披露。<br><br>
-    <b>真正重要的信号是趋势:从36%→47%→63%两年跳升27pp。</b>这反映的是:(1)海外基地建设高峰期,需要母公司信用支持子公司融资;(2)母公司自身表内负债已高(121亿),只能通过担保形式扩大融资能力;(3)未来2026-2028年扩张仍将依赖这种模式,担保额度可能继续上升到70-80%区间。<br><br>
-    <b>实际已使用担保余额(不同时点数据):</b>①赛轮销售累计52.64亿;②赛轮香港累计53.37亿;③加上对越南、柬埔寨、印尼、墨西哥、埃及等海外子公司的担保,实际担保使用余额估计在<b>130-160亿</b>区间,利用率约为额度的80-90%。
+    <b>担保额度/净资产达63%,这是一个需要理解而非担忧的数字:</b>A股"对外担保"50%红线仅针对向非关联方提供担保,而<b>赛轮的担保对象全部是其控股子公司,属于"对内担保"</b>,法规上无固定比例限制,只需股东大会表决+强制披露。<br><br>
+    <b>真正重要的信号是趋势:36%→47%→63%两年跳升27pp。</b>这反映:(1)海外基地建设高峰期需要母公司信用支持子公司融资;(2)母公司自身表内负债已高(121亿),只能通过担保扩大融资能力;(3)未来2026-2028年扩张可能推高担保比例至70-80%。
   </div>
 
-  <div class="subsec-title">6.3 赛轮转债事件复盘</div>
+  <div class="subsec-title" style="margin-top: 18px;">6.2.1 担保结构拆解:两类担保的本质区别(v1.1新增)</div>
+
+  <div class="note" style="margin-bottom: 12px;">
+    <b>理解赛轮信用风险,关键在于区分"扩张型担保"与"维持型担保"两种本质不同的担保</b>——它们的风险等级、资金用途、周转周期、应对策略都完全不同。把这两类担保合并起来算"总担保额"是方法论错误。
+  </div>
+
+  <div class="grid2" style="margin-bottom: 14px;">
+    <div class="card b">
+      <div class="card-label">扩张型担保 · 赛轮香港模式</div>
+      <div class="card-val b small">~53.37亿</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>担保主体:</b>赛轮集团(香港)有限公司——Sailun International Holding (Hong Kong) Co., Limited<br><br>
+        <b>功能定位:</b><b>境外融资中心 + 境外投资控股平台</b>,全资子公司注册于香港<br><br>
+        <b>资金流向:</b>A股母公司担保 → 赛轮香港向境外银行融资(美元/港币/人民币) → 资金分拨至越南/柬埔寨/印尼/墨西哥/埃及等海外基地<br><br>
+        <b>用途性质:</b><b>长期资本开支</b>——越南三期、柬埔寨二期、印尼、墨西哥、埃及一二期建设资金;资金沉淀在固定资产里,5-10年通过运营回收<br><br>
+        <b>设立原因:</b><br>
+        ①外汇管理便利(避免每笔ODI审批)<br>
+        ②境外融资成本低于境内1-2pp<br>
+        ③美元/欧元币种匹配(海外收入)<br>
+        ④跨境税务优化<br>
+        ⑤信用隔离<br><br>
+        <b>风险画像:</b><b>相对较高</b>——跨境长期投资一旦失败,资产处置面临法律/外汇/政治障碍,变现困难
+      </div>
+    </div>
+    <div class="card g">
+      <div class="card-label">维持型担保 · 赛轮销售模式</div>
+      <div class="card-val g small">~52.64亿</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>担保主体:</b>赛轮轮胎销售有限公司——全资子公司,注册于青岛<br><br>
+        <b>功能定位:</b><b>国内市场销售渠道主体 + 轮胎贸易业务</b>(也经销非赛轮生产的轮胎,2025 Q3单季贸易收入2.4亿)<br><br>
+        <b>资金流向:</b>A股母公司担保 → 赛轮销售从商业银行获得流动资金授信 → 覆盖日常经营资金需求<br><br>
+        <b>用途性质:</b><b>营运资金</b>——不是投资,是支撑业务正常周转:<br>
+        ①向上游支付采购款(付款周期30-90天)<br>
+        ②向下游垫付应收账款(回款周期3-6月,估计余额30-50亿)<br>
+        ③维持库存(估计10-20亿)<br>
+        合计常年50-80亿营运资金需求<br><br>
+        <b>融资工具:</b>流动资金贷款+银行承兑汇票+应收账款保理<br><br>
+        <b>风险画像:</b><b>相对较低</b>——支撑成熟国内业务,应收账款有真实交易对手,库存可变现,极端情况下能收回大部分资金
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>对比维度</th>
+        <th>扩张型(赛轮香港)</th>
+        <th>维持型(赛轮销售)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">资金用途</td>
+        <td class="c-b">长期资本开支(海外建厂)</td>
+        <td class="c-g">流动资金周转(采购/应收/库存)</td>
+      </tr>
+      <tr>
+        <td class="fw6">周转周期</td>
+        <td class="c-b">5-10年(固定资产生命周期)</td>
+        <td class="c-g">30-180天(营运资金周转)</td>
+      </tr>
+      <tr>
+        <td class="fw6">风险等级</td>
+        <td class="c-a">较高(跨境+投资)</td>
+        <td class="c-g">较低(成熟经营)</td>
+      </tr>
+      <tr>
+        <td class="fw6">对集团信用的权重</td>
+        <td class="c-a fw6">重</td>
+        <td class="c-g">轻</td>
+      </tr>
+      <tr>
+        <td class="fw6">未来演变趋势</td>
+        <td class="c-a">达产后逐步下降(基地自身造血)</td>
+        <td class="c-m">随销售规模缓慢增长</td>
+      </tr>
+      <tr>
+        <td class="fw6">压力测试侧重</td>
+        <td class="c-a">海外基地盈利兑现度</td>
+        <td class="c-g">应收账款周转天数变化</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>担保结构是观察集团资源配置的"隐藏指标"。</strong>把赛轮销售(维持型)的担保规模变化和赛轮香港(扩张型)的担保规模变化<strong>放在同一张图上看,就能清晰看到集团资源在"国内存量维护 vs 海外增量扩张"之间的分配动态</strong>——这是一个比财报摘要更深入的观察维度。<br><br>
+    <strong>未来若出现异常信号:</strong>①赛轮销售担保从52亿跳到70亿+,可能意味着国内销售快速扩张(好)或应收周转变慢(坏),需结合应收账款周转天数判断;②赛轮香港担保显著下降,可能意味着海外基地已进入"自主造血"阶段(好),或扩张战略收缩(中性)。<br><br>
+    <strong>实际担保余额测算:</strong>合并赛轮销售52.64亿 + 赛轮香港53.37亿 + 沈阳/越南/柬埔寨/印尼/墨西哥/埃及等其他主体,总体实际担保余额估计在<strong>130-160亿</strong>区间,额度利用率约80-90%。</div>
+
+  <div class="subsec-title" style="margin-top: 18px;">6.2.2 赛轮香港的战略角色(v1.1新增)</div>
+
+  <div class="chain">
+    <div class="chain-hdr">赛轮跨国资本运作架构</div>
+    <div class="chain-flow">
+      <div class="chain-node" style="border-top-color: var(--deep);">
+        <div class="cn-title">A股母公司</div>
+        <div class="cn-body">
+          赛轮集团601058<br>
+          出具担保函<br>
+          53.37亿额度
+        </div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top-color: var(--amber);">
+        <div class="cn-title">香港融资中心</div>
+        <div class="cn-body">
+          赛轮香港<br>
+          向境外银行融资<br>
+          估约7-8亿美元规模
+        </div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top-color: var(--green);">
+        <div class="cn-title">海外基地分拨</div>
+        <div class="cn-body">
+          越南三期扩建<br>
+          柬埔寨二期<br>
+          印尼/墨西哥/埃及
+        </div>
+      </div>
+      <div class="chain-arrow">→</div>
+      <div class="chain-node" style="border-top-color: var(--blue);">
+        <div class="cn-title">运营现金回流</div>
+        <div class="cn-body">
+          基地净利润↑<br>
+          香港平台接收<br>
+          偿还境外银行本息
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="blue-note">
+    <b>赛轮香港规模达到53亿+担保,本身是"跨国公司架构成熟度"的量化证据。</b>这不是异常,而是标准化架构——中国任何大型跨国制造企业(宁德时代、比亚迪、隆基绿能等)都有类似的香港融资中心。从这个角度,赛轮已经形成了一个<b>"香港融资中心 + 五大洲生产基地"的典型跨国资本运作架构</b>,与置顶总纲§1"公司本质重定义"中的"全球轮胎平台"定性完全吻合。<br><br>
+    <b>重要对冲:</b>赛轮香港虽无直接经营现金流,但其持股的各海外子公司每年产生可观现金流(越南15亿+、柬印埃等合计数亿到十数亿),这些利润上调到赛轮香港,本身就能覆盖相当部分利息和本金偿还。<b>53亿担保不等于53亿亏空风险</b>——现金流支撑是存在的,担保只是名义信用责任。</div>
+
+  <div class="subsec-title" style="margin-top: 18px;">6.3 赛轮转债事件复盘</div>
 
   <div class="correction-box">
     <div class="correction-box-label">⚠ 事实更正 · 赛轮转债已在2024年2月完成赎回</div>
@@ -1322,7 +1600,13 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
     </div>
   </div>
 
-  <div class="subsec-title">7.2 三层估值体系</div>
+  <div class="subsec-title">7.2 三层估值体系(v1.1修正后区间)</div>
+
+  <div class="correction-box">
+    <div class="correction-box-label">⚠ v1.1 估值区间修正</div>
+    v1.0版本给出的远期层上限为700-810亿,基于"赛轮完全对标国际轮胎公司(普利司通/米其林估值带下沿12-15× PE)+ 网络期权溢价20%"。<b>v1.1基于§9"销售模式与品牌进化"章节的深入分析,将远期层上限修正为600-700亿</b>——因为赛轮现阶段对标的不是完整的国际轮胎平台,而是"国际轮胎平台中的制造环节+部分分销环节",缺失了品牌+终端直营两个高价值环节。合理估值应介于"纯制造业8-12×"和"全球轮胎平台12-15×"之间,现实合理PE区间约<b>10-13×</b>,远期上限对应600-700亿。<br><br>
+    <b>该修正不影响对赛轮的长期看好,但把估值弹性上限从"700-810亿"下调至"600-700亿",除非赛轮未来能证明有能力从"制造+分销"向"品牌+直营"延伸(详见§9)。</b>
+  </div>
 
   <table>
     <thead>
@@ -1352,24 +1636,31 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
       <tr class="hl-b">
         <td class="fw6">中期层(达产PE)</td>
         <td>2028-2030预期归母净利 × 合理PE</td>
-        <td>45亿(达产) × 11-13× PE<br>(海外占比突破75%后应享溢价)</td>
+        <td>45亿(达产) × 11-13× PE<br>海外占比突破75%后应享溢价</td>
         <td class="c-b fw6">495-585亿</td>
         <td>基本面视角的合理估值<br>反映2.0→3.0阶段过渡</td>
       </tr>
       <tr class="hl-g">
-        <td class="fw6">远期层(平台估值)</td>
-        <td>对标国际轮胎公司 + 网络溢价</td>
-        <td>45亿 × 13-15× PE × (1+20%网络溢价)<br>对标普利司通估值带下沿</td>
-        <td class="c-g fw6">700-810亿</td>
-        <td>3.0阶段成熟期估值<br>全球平台认知完全确立后</td>
+        <td class="fw6">远期层(v1.1修正)</td>
+        <td>对标"制造+分销"而非"全球品牌平台"</td>
+        <td>45亿 × 12-14× PE × (1+10%网络溢价)<br><b>v1.1:</b>品牌直营缺失使上限受限</td>
+        <td class="c-g fw6">600-700亿</td>
+        <td>3.0阶段成熟期估值<br><b>再上行需要品牌升级兑现</b></td>
+      </tr>
+      <tr>
+        <td class="fw6">品牌跃迁层(需附加条件)</td>
+        <td>完整对标国际轮胎平台</td>
+        <td>需直营门店网络建立 + 品牌心智占位 + 消费者数据资产</td>
+        <td class="c-m">700-810亿+</td>
+        <td>需10-20年品牌建设<br>2030年代中后期才可能达成</td>
       </tr>
     </tbody>
   </table>
 
   <div class="blue-note">
-    <b>三层估值体系的使用方法:</b><br>
-    <b>(1)</b>当前股价对应的市值是哪一层?——如果在250-300亿,处于底部层,买入逻辑是"安全边际";如果在365-450亿,处于当期层(传统市场认知);如果在495-585亿,表明市场开始接受中期达产逻辑。<br>
-    <b>(2)</b>股价弹性的上限在哪?——短期(2026-2027)最多到中期层下沿约500亿;中期(2028-2030)可能抵达中期层上沿约585亿;长期(2030+)才可能进入远期层700-810亿区间。<br>
+    <b>三层估值体系的使用方法(v1.1更新):</b><br>
+    <b>(1)</b>当前股价对应的市值是哪一层?——如果在250-300亿,处于底部层,买入逻辑是"安全边际";如果在365-450亿,处于当期层(传统市场认知);如果在495-585亿,表明市场开始接受中期达产逻辑;如果突破585亿,市场在定价品牌溢价雏形。<br>
+    <b>(2)</b>股价弹性的上限在哪?——短期(2026-2027)最多到中期层下沿约500亿;中期(2028-2030)可能抵达中期层上沿约585亿;长期(2030+)可能进入远期层600-700亿区间。<b>v1.1下调上限:要突破700亿,需要品牌+直营升级作为附加催化剂</b>。<br>
     <b>(3)</b>什么情景会让估值跌穿底部层?——极端贸易战(所有贸易协定同时失效)、海外基地遭遇战争/国有化、天然胶价格永久性翻倍吞噬利润。这些都是极小概率事件。
   </div>
 
@@ -1560,11 +1851,246 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
   </div>
 </div>
 
+<!-- ═══════════════════════════════ §9 销售模式与品牌进化(v1.1新增) ═══════════════════════════════ -->
+<div class="sec" id="s9">
+  <div class="sec-head">
+    <div class="sec-num" style="background: #fff8e0; color: #a0621a;">09 NEW</div>
+    <div class="sec-title">销售模式与品牌进化</div>
+    <div class="sec-note">v1.1新增 · 赛轮2.0向3.0跨越的关键命门</div>
+  </div>
+
+  <div class="warn">
+    <b>这是v1.1最重要的新增维度。</b>前八章主要讨论赛轮"如何生产"和"在哪儿生产",但漏掉了一个同等重要的问题——<b>赛轮如何把生产出来的轮胎卖给终端消费者?</b>这个问题的答案,决定了赛轮是"一家卖产品的公司"还是"一家建品牌的公司",两者估值差异可能比国内vs海外产能差异还要大。
+  </div>
+
+  <div class="subsec-title">9.1 赛轮海外销售的真实模式:以经销商为主,品牌运营在路上</div>
+
+  <div class="note">
+    <b>坦白说,赛轮的海外销售目前主体上仍是"生产+出口给海外经销商"的模式,距离真正的"直营品牌运营"还有相当距离。</b>这一点与国际巨头(普利司通、米其林、固特异)有本质区别,也是市场经常忽略的一个估值短板。
+  </div>
+
+  <div class="subsec-title" style="margin-top: 14px;">9.1.1 海外销售子公司的实际角色</div>
+  <table>
+    <thead>
+      <tr>
+        <th>层级</th>
+        <th>主体</th>
+        <th>实际职能</th>
+        <th>是否触达终端</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">层1·生产端</td>
+        <td>各海外基地(越南/柬埔寨/印尼/墨西哥/埃及)</td>
+        <td>生产轮胎成品</td>
+        <td class="c-r">否</td>
+      </tr>
+      <tr>
+        <td class="fw6">层2·集团分销</td>
+        <td>赛轮荷兰(ACTR前身Anchee)、美国销售公司、各基地配套销售公司</td>
+        <td>接单+清关+本地入库+大区域物流</td>
+        <td class="c-r">否</td>
+      </tr>
+      <tr class="hl-a">
+        <td class="fw6">层3·独立经销商</td>
+        <td>当地独立批发商、大型零售连锁</td>
+        <td class="c-a"><b>从赛轮处批发,再分销到终端</b></td>
+        <td class="c-a fw6">是</td>
+      </tr>
+      <tr>
+        <td class="fw6">层4·终端零售</td>
+        <td>汽修店、轮胎专卖店</td>
+        <td>面对最终消费者</td>
+        <td class="c-g fw6">消费者接触</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note" style="margin-top: 8px;"><b>关键事实:</b>真正触达终端消费者的,<b>是当地独立经销商网络,不是赛轮自己的门店</b>。赛轮海外销售子公司扮演的是"出口接单+本地物流+区域服务"角色,而非终端零售和品牌直营的角色。</div>
+
+  <div class="subsec-title" style="margin-top: 18px;">9.1.2 多品牌矩阵:量贩导向而非品牌溢价导向</div>
+  <div class="grid3">
+    <div class="card a">
+      <div class="card-label">中高端定位</div>
+      <div class="card-val a tiny">赛轮 Sailun</div>
+      <div class="card-sub">主品牌,对标中档国际品牌,走"好性价比"路线</div>
+    </div>
+    <div class="card">
+      <div class="card-label">中低端走量</div>
+      <div class="card-val tiny">路极 · 黑鹰 · 迈驰</div>
+      <div class="card-sub">Roadx / Blackhawk / Mirage等,<b>量贩型、性价比导向</b>,主走替换市场(aftermarket),通过经销商大批量销售</div>
+    </div>
+    <div class="card">
+      <div class="card-label">OEM配套</div>
+      <div class="card-val tiny">贴牌生产</div>
+      <div class="card-sub">部分产品不打赛轮品牌,直接为其他车企/品牌做代工</div>
+    </div>
+  </div>
+  <div class="insight">
+    <strong>品牌矩阵特征很清楚:赛轮走的是"多品牌+经销商"的走量路线,而非"单一品牌+直营"的溢价路线。</strong>这是中国制造企业出海的典型早期形态——先靠性价比占领市场份额,品牌溢价是后续故事。
+  </div>
+
+  <div class="subsec-title" style="margin-top: 18px;">9.2 与国际巨头的关键差距</div>
+  <table>
+    <thead>
+      <tr>
+        <th>公司</th>
+        <th>生产基地</th>
+        <th>直营门店网络</th>
+        <th>品牌溢价/护城河</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="hl-g">
+        <td class="fw6">普利司通 Bridgestone</td>
+        <td>全球多基地</td>
+        <td class="c-g fw6">Bridgestone Retail Operations<br>北美2,200+家Firestone直营店<br>日本/欧洲有类似网络</td>
+        <td class="c-g">强 · 消费者买胎+维修一站式</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">米其林 Michelin</td>
+        <td>全球多基地</td>
+        <td class="c-g fw6">自营TCI中心<br>控股ATD大型分销平台<br>Blackcircles.com在线直销</td>
+        <td class="c-g">强 · 品牌+米其林指南等生态</td>
+      </tr>
+      <tr class="hl-g">
+        <td class="fw6">固特异 Goodyear</td>
+        <td>全球多基地</td>
+        <td class="c-g fw6">Just Tires + Goodyear Auto Service<br>北美1,100+家直营店</td>
+        <td class="c-g">强 · 百年品牌认知</td>
+      </tr>
+      <tr class="hl-r">
+        <td class="fw6 c-r">赛轮(当前状态)</td>
+        <td>青岛/东营/潍坊/沈阳/越柬印墨埃</td>
+        <td class="c-r fw6">无显著直营门店网络<br>海外销售子公司职能止于"批发"</td>
+        <td class="c-r">弱 · 性价比认知,难溢价</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="subsec-title" style="margin-top: 18px;">9.3 这种模式的利与弊</div>
+  <div class="grid2">
+    <div class="card g">
+      <div class="card-label">利 · 为什么选择这种模式</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>①轻资产扩张:</b>不用投入巨额资金建设零售网络,资金集中在生产端。建一家工厂约2-3亿美元,建一个覆盖全国零售网络约5-10亿美元——以赛轮当前财务能力,必须优先选工厂<br><br>
+        <b>②快速打开市场:</b>利用当地既有经销商网络,1-2年内把产品铺到主要市场;自建渠道可能需要5-10年。1.12亿条半钢年产能规划必须靠经销商走量才能消化<br><br>
+        <b>③经销商承担存货风险:</b>轮胎库存周转压力在经销商身上,赛轮资产负债表更健康
+      </div>
+    </div>
+    <div class="card r">
+      <div class="card-label">弊 · 这个模式的核心局限</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>①品牌认知度低,难溢价:</b>通过经销商销售,消费者不会对品牌产生情感连接和忠诚度。赛轮产品永远难跳出"性价比"区间,进不了"品牌溢价"区间<br><br>
+        <b>②失去终端消费者数据:</b>不知道谁在买、车型、驾驶习惯、更换周期——这些数据在国际巨头手里是战略资源,在赛轮这里完全缺失<br><br>
+        <b>③受制于经销商议价权:</b>大型经销商能砍价、要长账期、切换品牌。赛轮对经销商控制力有限,<b>定价权相对较弱——直接压制海外基地净利率上限</b>(可研18-22%已考虑此因素)<br><br>
+        <b>④品牌建设投入不足:</b>2024年研发费用10.13亿(占营收3.18%),对比米其林年研发6.8亿欧元(约53亿人民币)、普利司通100亿+人民币规模,差距悬殊
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec-title" style="margin-top: 18px;">9.4 向"品牌+直营"跨越的难度与信号</div>
+
+  <div class="grid2">
+    <div class="card b">
+      <div class="card-label">意愿信号(已具备)</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>①战略愿景明确:</b>"提质增效重回报"行动方案提出"到2025年实现技术自主化、制造智能化、<b>品牌国际化</b>"<br><br>
+        <b>②国际体育IP赞助:</b>赞助曼联、阿根廷国家队等,提升品牌国际认知度<br><br>
+        <b>③研发投入力推"液体黄金":</b>号称显著降低滚动阻力、提升耐磨性的橡胶配方技术,申请全球专利——这是品牌差异化的技术载体
+      </div>
+    </div>
+    <div class="card r">
+      <div class="card-label">执行挑战(远未完成)</div>
+      <div class="card-sub" style="line-height: 1.8;">
+        <b>①品牌心智占位时间长:</b>米其林打造"米其林人"花了一个世纪,普利司通打造全球第一品牌花了半世纪。赛轮即使全力以赴,让海外消费者买轮胎时"主动点名赛轮",<b>至少需要到2030年代中后期</b><br><br>
+        <b>②直营门店建设资本密集:</b>全球零售网络投入可能远超一个生产基地,当前财务不允许<br><br>
+        <b>③消费者数据能力缺失:</b>从零构建CRM体系、数字化门店、会员运营等,需要制造业公司不具备的能力集
+      </div>
+    </div>
+  </div>
+
+  <div class="subsec-title" style="margin-top: 18px;">9.5 新增关键观察指标:渠道进化度</div>
+
+  <div class="note">
+    <b>这是v1.1新增的一组专门追踪"销售模式与品牌升级"的观察指标,与§8"结构性风险清单"形成互补。以前我们主要盯产能和财务数据,从v1.1开始应系统追踪以下指标:</b>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>观察指标</th>
+        <th>当前状态(估)</th>
+        <th>品牌升级信号</th>
+        <th>观察难度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw6">海外直营门店数</td>
+        <td class="c-r">基本无</td>
+        <td class="c-g">出现"Sailun Tire Center"类自有门店,数量逐年增加</td>
+        <td>需行业数据</td>
+      </tr>
+      <tr>
+        <td class="fw6">OEM vs 替换市场占比</td>
+        <td>未公开具体结构</td>
+        <td class="c-g">OEM占比提升(表示产品进入配套体系,品牌受认可)</td>
+        <td>年报附注</td>
+      </tr>
+      <tr>
+        <td class="fw6">前五大客户集中度</td>
+        <td>未详细披露</td>
+        <td class="c-g">低于20%(销售分散化,公司议价权提升)<br><span class="c-r">高于40%警示经销商议价权过强</span></td>
+        <td>年报附注</td>
+      </tr>
+      <tr>
+        <td class="fw6">应收账款周转天数</td>
+        <td>可从财报计算</td>
+        <td class="c-g">缩短(说明对下游议价权提升)</td>
+        <td>季报可得</td>
+      </tr>
+      <tr>
+        <td class="fw6">品牌营销投入占比</td>
+        <td class="c-r">估计仅1-2%营收</td>
+        <td class="c-g">提升至5-8%营收(对标国际巨头水平)</td>
+        <td>销售费用明细</td>
+      </tr>
+      <tr>
+        <td class="fw6">海外电商直销</td>
+        <td class="c-r">基本无布局</td>
+        <td class="c-g">在Amazon、eBay平台开设官方店/自建官网</td>
+        <td>网络可查</td>
+      </tr>
+      <tr>
+        <td class="fw6">单品均价变化</td>
+        <td>按产能/营收可估</td>
+        <td class="c-g">有明显上移趋势,说明产品结构向高端倾斜</td>
+        <td>间接计算</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <strong>这些指标在当前年报和投资者关系活动中披露不充分,但会通过行业数据和竞争对手信息逐步交叉验证出来。</strong>如果看到这些指标<strong>系统性改善</strong>,那才是赛轮从"2.0扩张期"向"3.0平台期"真正跨越的信号,也是估值从"10-13× PE"向"12-15× PE"切换的内在依据。<br><br>
+    <strong>反之,如果产能扩张了但销售模式原地踏步,赛轮就会陷入"产能翻倍但品牌溢价未实现"的尴尬</strong>——2028-2030年基地全面达产时,如果没有品牌升级配套,海外基地18-22%净利率可能反而会因为<strong>经销商议价权加大而被压缩</strong>。
+  </div>
+
+  <div class="red-note">
+    <b>这是赛轮2.0阶段最大的"非财务风险":产能能建起来,但渠道和品牌未必能跟上。</b>前八章主要讨论的都是产能、基地、融资、贸易协定——都是"硬实力"。但决定一家全球化制造企业最终能不能跨入"全球品牌"估值带的,是<b>产品如何触达最终消费者</b>这件事——这是"软实力",而这件事赛轮做得还很初级。<br><br>
+    <b>这也是v1.1总体估值区间下调的根本原因</b>:如果赛轮在2028年海外基地全面达产时,仍然以"批发给独立经销商"为主要销售模式,市场就不会给它全球品牌级别的估值溢价(12-15× PE),只会给它"成功的制造+分销型跨国公司"估值(10-13× PE)。差的这2-3× PE,对应的就是远期上限从800亿下调到700亿的那部分。<br><br>
+    <b>未来能否再次上调这个天花板,完全取决于赛轮能否把"液体黄金"技术、体育IP营销、海外电商直销这三件事,从"单点动作"升级为"系统性品牌建设"。</b>这件事值得在未来3-5年持续追踪,并可能是决定赛轮投资最终回报的关键变量。
+  </div>
+</div>
+
+
 <!-- ═══════════════════════════════ 底部总结 ═══════════════════════════════ -->
 <div class="top-verdict" style="margin-top: 40px; border-color: var(--amber);">
-  <div class="tv-title" style="color: var(--amber);">FINAL WORD · 一句话的战略认知</div>
+  <div class="tv-title" style="color: var(--amber);">FINAL WORD · 一句话的战略认知(v1.1)</div>
   <div class="tv-body">
-    <strong>赛轮是一家注册在中国、以东南亚为利润引擎、以五大洲五大基地为网络节点、以六大贸易协定为制度基础、正在完成从"中国制造企业"向"全球轮胎平台+供应链生态运营商"跨越的企业。</strong>她当前处于2.0扩张阶段的后半程,财务报表呈现扩张期典型的紧张状态(担保比例63%、真实资金缺口-21.6亿/年、在建工程占比25%),但内核指标(利息覆盖率10.5×、ROIC-WACC利差+2pp、网络化产地覆盖)显示基本健康。她的估值当前处于"当期层365-450亿"与"中期层495-585亿"之间的过渡区,向上突破取决于2028-2030年海外利润兑现和贸易壁垒演变;向下击穿的风险限于极端情景。<strong>这不是一家值得用"当期PE"审视的公司,而是一家值得用"跨国化蜕变兑现概率"评估的公司。</strong>
+    <strong>赛轮是一家注册在中国、以东南亚为利润引擎、以五大洲五大基地为网络节点、以六大贸易协定为制度基础、正在完成从"中国制造企业"向"全球轮胎平台+供应链生态运营商"跨越的企业。</strong>她当前处于2.0扩张阶段的后半程,财务报表呈现扩张期典型的紧张状态(担保比例63%、真实资金缺口-21.6亿/年、在建工程占比25%),但内核指标(利息覆盖率10.5×、ROIC-WACC利差+1.4pp、网络化产地覆盖)显示基本健康。她的估值当前处于"当期层365-450亿"与"中期层495-585亿"之间的过渡区,向上突破取决于2028-2030年海外利润兑现和贸易壁垒演变;向下击穿的风险限于极端情景。<br><br>
+    <strong>v1.1关键新增认知:</strong>赛轮当前仍以"生产+出口给经销商"为主,海外直营门店网络几乎空白,品牌溢价能力相比普利司通/米其林仍有代际差距。这意味着即使2.0阶段扩张成功,其合理估值上限也应定在<strong>600-700亿</strong>(对应10-13× PE的"制造+分销"定位),而非v1.0原判断的700-810亿(对应12-15× PE的"全球品牌平台"定位)。再向上突破至品牌跃迁层,需要至少10-20年的持续品牌建设,是2030年代中后期才可能达成的长期命题。<br><br>
+    <strong>这不是一家值得用"当期PE"审视的公司,而是一家值得用"跨国化蜕变兑现概率"和"销售模式能否升级"双重维度评估的公司。</strong>前者决定基础估值,后者决定天花板。
   </div>
 </div>
 
@@ -1572,7 +2098,7 @@ tr.grand td { background: var(--bg4); font-weight: 600; }
 
 <div class="footer-bar">
   <span>数据来源:2024年报 · 2025Q3季报 · 四份可研报告 · 赛轮转债/担保公告 · 六大协定官方文件(web检索2026.04.21)</span>
-  <span>SAILUN COMPANY NATURE & STRATEGIC FRAMEWORK · v1.0 · 20260421 · PINNED · FOR REFERENCE ONLY</span>
+  <span>SAILUN COMPANY NATURE & STRATEGIC FRAMEWORK · v1.1 · 20260421 · PINNED · FOR REFERENCE ONLY</span>
 </div>
 
 </body>
