@@ -1263,6 +1263,158 @@
       "shares_held": 10.1479,
       "status": "active",
       "currency": "USD"
+    },
+    {
+      "id": "c009",
+      "name": "中航信",
+      "code": "00696",
+      "exchange": "HK",
+      "currency": "HKD",
+      "sector": "民航IT·垄断基础设施",
+      "research_folder": "中航信_HKEX_00696",
+      "price": 10.5,
+      "shares": 29.26,
+      "net_cash_bn": 12.7,
+      "eps_forecast": 0.728,
+      "discount_rate": 9,
+      "valuation_method": "扣净现金PE法（核心业务隐含PE）+ EV/EBITDA + 三情景概率加权目标价",
+      "signal": "buy",
+      "position_pct": 0,
+      "avg_cost": 0,
+      "shares_held": 0,
+      "max_position_pct": 5,
+      "rating": "buy",
+      "status": "active",
+      "next_catalyst": "2026H1中报（8-9月）——核心验证合同负债转化；股东会（约6月）——派息率是否提升",
+      "data_as_of": "2025年全年审计业绩公告（港交所，2026.03.26）",
+      "scenarios": [
+        {
+          "name": "牛市",
+          "prob": 25,
+          "target_price": 17.5,
+          "assumptions": "合同负债全速确认（机场数字化+25%），派息率提升至60%+，AI/低空经济变现，PE重估至20x"
+        },
+        {
+          "name": "基准",
+          "prob": 55,
+          "target_price": 13.3,
+          "assumptions": "机场数字化反弹至17亿，总收入+6%，净利润+10%，EPS~0.88元，PE15-17x"
+        },
+        {
+          "name": "熊市",
+          "prob": 20,
+          "target_price": 9.5,
+          "assumptions": "机场数字化继续萎靡，研发费用反弹至8亿，合同负债确认延迟，PE压缩至12-13x"
+        }
+      ],
+      "position_rules": [
+        {
+          "zone": "极度低估",
+          "condition": "≤8.5港元（较基准目标折价≥36%）",
+          "action": "BUY",
+          "target_position": "满仓（5%）",
+          "trigger": "接近熊市目标价9.5×0.90，扣净现金PE≤5x，极端安全边际"
+        },
+        {
+          "zone": "合理低估",
+          "condition": "8.5–10.5港元（折价20–36%）",
+          "action": "ADD",
+          "target_position": "建仓至3–5%",
+          "trigger": "当前价位区间；扣净现金PE约6–7x；分两批买入"
+        },
+        {
+          "zone": "公允价值",
+          "condition": "10.5–13.3港元（折价0–21%）",
+          "action": "HOLD",
+          "target_position": "持有",
+          "trigger": "持有等待催化剂（派息率提升/中报收入反弹）"
+        },
+        {
+          "zone": "轻微高估",
+          "condition": "13.3–16.0港元（高估0–20%）",
+          "action": "HOLD",
+          "target_position": "持有不加",
+          "trigger": "等待合同负债确认验证，观察2026H1中报"
+        },
+        {
+          "zone": "明显高估",
+          "condition": "16.0–19.0港元（高估20–43%）",
+          "action": "TRIM",
+          "target_position": "减仓40–50%",
+          "trigger": "价格接近牛市目标，若基本面未进一步改善则获利了结"
+        },
+        {
+          "zone": "极度高估",
+          "condition": "≥19.0港元（高估≥43%）",
+          "action": "SELL",
+          "target_position": "清仓",
+          "trigger": "超过牛市目标，估值充分实现"
+        }
+      ],
+      "checklist": [
+        {
+          "id": "c009_chk001",
+          "priority": "high",
+          "checked": false,
+          "category": "核心验证",
+          "text": "2026H1中报：机场数字化收入是否反弹（基准预期：+15%至~17亿）",
+          "action": "反弹≥15%→合同负债信号得到验证，信号升级至HOLD；持续萎靡→重新评估论点"
+        },
+        {
+          "id": "c009_chk002",
+          "priority": "high",
+          "checked": false,
+          "category": "核心验证",
+          "text": "2026H1中报：合同负债余额变化方向（应维持在8亿+或继续增长）",
+          "action": "合同负债大幅下降（<6亿）且收入未同步增长→警示信号，重新评估"
+        },
+        {
+          "id": "c009_chk003",
+          "priority": "high",
+          "checked": false,
+          "category": "派息催化剂",
+          "text": "2026年股东会（约6月）：派息率是否从34%提升",
+          "action": "派息率≥50%→股息率超3.5%，触发价值投资者介入，目标价上调至15港元+"
+        },
+        {
+          "id": "c009_chk004",
+          "priority": "mid",
+          "checked": false,
+          "category": "运营监控",
+          "text": "中国民航月度总处理量（CAAC）：同比增速是否维持+3%以上",
+          "action": "处理量增速跌破+1%→核心ETD收入承压，需重新评估EPS预测"
+        },
+        {
+          "id": "c009_chk005",
+          "priority": "mid",
+          "checked": false,
+          "category": "成本监控",
+          "text": "2026H1研发费用是否反弹（2025年6.16亿，历史均值约8亿+）",
+          "action": "研发费用反弹至8亿+→利润增速减缓，调低EPS预测；若维持低位→利润弹性更强"
+        },
+        {
+          "id": "c009_chk006",
+          "priority": "low",
+          "checked": false,
+          "category": "新业务跟踪",
+          "text": "Umetrip直销平台及AI大模型（启航/共翔睿行）商业化进展",
+          "action": "出现实质性商业合同→估值体系重置，增长溢价打开"
+        }
+      ],
+      "research_notes": [
+        {
+          "date": "2026-04-21",
+          "title": "首次纳入覆盖 · 合同负债信号分析",
+          "body": "合同负债+62.6%（6.46亿→10.50亿）vs收入-0.6%，揭示机场数字化验收节奏放缓而非订单萎缩。扣净现金（~116亿RMB）后核心业务仅7x PE，EV/EBITDA约4.4x。ETD系统列入国务院八大关键系统，护城河极宽。主要风险：派息率偏低（34%）、研发费用可能反弹、港股国企折价持续。概率加权目标价：~13.3港元，买入区间：≤10.5港元。"
+        }
+      ],
+      "gradient": {
+        "buy_zone_max": 8.5,
+        "add_zone_max": 10.5,
+        "hold_zone_max": 13.3,
+        "trim_zone_max": 16.0,
+        "sell_zone_min": 19.0
+      }
     }
   ],
   "_meta": {
