@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 油价冲击 v15 · 0424</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#b4afa6;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.7;min-height:100vh;}
+
+/* HEADER */
+.hdr{background:var(--bg2);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.pill{padding:2px 9px;border:1px solid;font-weight:700;font-size:8px;letter-spacing:1px;}
+.pill-g{color:var(--g);border-color:var(--g);background:var(--gp);}
+.pill-a{color:var(--a);border-color:var(--a);background:var(--ap);}
+.pill-r{color:var(--r);border-color:var(--r);background:var(--rp);}
+.hdr-body{padding:14px 0 12px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:6px;}
+h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;letter-spacing:-0.3px;}
+h1 .hi-g{color:var(--g);}
+h1 .hi-a{color:var(--a);}
+h1 .hi-r{color:var(--r);}
+.sub{font-size:12px;color:var(--mu);margin-top:8px;max-width:800px;line-height:1.75;}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid var(--line);}
+.tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.8px;padding:3px 8px;border:1px solid;}
+.tg{color:var(--g);border-color:var(--g);background:var(--gp);}
+.ta{color:var(--a);border-color:var(--a);background:var(--ap);}
+.tr{color:var(--r);border-color:var(--r);background:var(--rp);}
+.tb{color:var(--b);border-color:var(--b);background:var(--bp);}
+.tp{color:var(--p);border-color:var(--p);background:var(--pp);}
+.tn{color:var(--mu);border-color:var(--line2);background:var(--bg3);}
+
+/* LAYOUT */
+main{padding:0 44px 56px;}
+section{margin-top:22px;}
+.sec-hd{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:12px;}
+.divider{border:none;border-top:2px solid var(--ink);margin:22px 0 0;}
+
+/* STAT ROW */
+.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:2px;}
+.stat{background:var(--bg2);padding:11px 13px;}
+.stat-l{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.5px;color:var(--di);text-transform:uppercase;margin-bottom:4px;}
+.stat-v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1;}
+.stat-s{font-family:'JetBrains Mono',monospace;font-size:9px;margin-top:3px;}
+.up{color:var(--r)}.dn{color:var(--g)}
+
+/* PRICE CORRIDOR */
+.corridor{background:var(--bg2);border:1px solid var(--line);padding:13px 17px;margin-bottom:12px;}
+.pr{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+.pr-dt{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--di);width:96px;flex-shrink:0;text-align:right;}
+.pr-bg{flex:1;height:6px;background:var(--bg4);border-radius:1px;overflow:hidden;}
+.pr-fill{height:100%;border-radius:1px;}
+.pr-v{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;width:58px;text-align:right;}
+.pr-n{font-size:8.5px;color:var(--mu);width:210px;line-height:1.4;}
+
+/* TWO MAIN STORIES */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;}
+.story-card{background:var(--bg2);border:1px solid var(--line);padding:14px 16px;}
+.sc-hd{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;padding-bottom:6px;border-bottom:2px solid;}
+.sc-body{font-size:12px;color:var(--mu);line-height:1.8;}
+.sc-body strong{color:var(--ink);}
+.sc-body .num{font-family:'JetBrains Mono',monospace;font-weight:700;}
+
+/* TIRE PRICING TABLE */
+.tire-grid{background:var(--bg2);border:1px solid var(--line);margin-bottom:12px;overflow:hidden;}
+table{width:100%;border-collapse:collapse;}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:2px;text-transform:uppercase;color:var(--mu);padding:7px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+tbody td{padding:7px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:middle;}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+
+/* SCENARIOS */
+.sc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);border:1px solid var(--line);margin-bottom:12px;}
+.sc-item{background:var(--bg2);}
+.sc-top{padding:11px 12px 9px;border-bottom:2px solid;}
+.sc-icon{font-size:17px;margin-bottom:3px;}
+.sc-nm{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px;}
+.sc-price{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;line-height:1;}
+.sc-tag{font-size:9px;color:var(--mu);margin-top:2px;line-height:1.3;}
+.sc-rows{padding:9px 12px;}
+.sc-row{display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid var(--bg4);font-family:'JetBrains Mono',monospace;font-size:9px;}
+.sc-row:last-child{border:none;}
+.sc-k{color:var(--mu);}
+.badge{font-family:'JetBrains Mono',monospace;font-size:7.5px;padding:2px 6px;border:1px solid;display:inline-block;margin-top:5px;font-weight:700;}
+
+/* VERDICT BOX */
+.verdict{background:var(--bg3);border:2px solid var(--ink);padding:16px 20px;margin-top:4px;}
+.vd-title{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);margin-bottom:12px;}
+.vd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
+.vd-item .lbl{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--mu);letter-spacing:1px;margin-bottom:3px;}
+.vd-item .val{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;line-height:1;}
+.vd-item .note{font-size:10px;color:var(--mu);margin-top:3px;line-height:1.5;}
+.vd-footer{padding-top:12px;border-top:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--mu);line-height:1.9;}
+
+/* CALLOUT BOXES */
+.box{border-left:3px solid;padding:10px 14px;margin:10px 0;font-size:12px;line-height:1.75;}
+.box strong{color:var(--ink);}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+/* GRADIENT PANEL */
+.grad{background:var(--bg2);border:1px solid var(--line);padding:14px 18px;margin-bottom:4px;}
+.grad-row{display:flex;align-items:center;gap:10px;padding:5px 0;border-bottom:1px solid var(--bg4);}
+.grad-row:last-child{border:none;}
+.grad-price{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;width:72px;flex-shrink:0;}
+.grad-bar{flex:1;height:6px;border-radius:1px;position:relative;}
+.grad-label{font-family:'Syne',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;width:90px;flex-shrink:0;}
+.grad-note{font-size:10.5px;color:var(--mu);flex:1;line-height:1.5;}
+.cur-marker{background:var(--a);color:#fff;font-family:'JetBrains Mono',monospace;font-size:7.5px;padding:1px 6px;font-weight:700;display:inline-block;margin-left:6px;vertical-align:middle;}
+
+.fw7{font-weight:700;}
+.c-g{color:var(--g)}.c-a{color:var(--a)}.c-r{color:var(--r)}.c-b{color:var(--b)}.c-p{color:var(--p)}.c-m{color:var(--mu)}.c-d{color:var(--di);}
+
+footer{padding:10px 44px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--di);letter-spacing:.8px;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>赛轮集团（601058）· 油价冲击 v15 · 涨价落地 + 停火延期</span>
+    <span class="pill pill-g">✅ 涨价已落地 · 70+品牌 · 5月1日生效</span>
+    <span class="pill pill-a">⚡ 4/22停火延期 · 伊朗扣押两船 · Brent $101.91</span>
+    <span>2026.04.24 · 战争第56天</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Oil Shock Monitor · v15 · 涨价确认 + 停火延期版</div>
+    <h1>
+      行业涨价<span class="hi-g">全面落地</span>，停火<span class="hi-a">再次延期</span><br>
+      霍尔木兹<span class="hi-r">仍未实质开放</span> · 4/30季报是下一个催化剂
+    </h1>
+    <div class="sub">两条主线同步演进：①轮胎行业涨价从"通知"到"执行"——普利司通4月14日领涨，截至4月20日70+品牌跟进，5月1日起全面落地，价格传导链条完整；②伊朗局势4月22日停火到期，Trump延期但伊朗随即扣押两艘船，Brent收$101.91，霍尔木兹通行依然受限。对赛轮：涨价改善Q2利润，但油价仍高于战前47%，成本压力尚未完全缓解。</div>
+    <div class="tags">
+      <span class="tag tg">✅ 普利司通领涨 · 4/14宣布 · 5/1生效</span>
+      <span class="tag tg">70+品牌跟进 · TBR+PCR+OTR全品类</span>
+      <span class="tag tg">赛轮TBR 3–5% · 5月1日起</span>
+      <span class="tag ta">4/22停火延期 · 3–5天窗口</span>
+      <span class="tag tr">伊朗扣押两船 · 霍尔木兹仍受限</span>
+      <span class="tag ta">Brent $101.91 · +3% · 高于战前+47%</span>
+      <span class="tag tb">4/30 Q1季报 · 关键催化剂</span>
+      <span class="tag tn">5/1 战争法授权60天法定截止</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- STATS -->
+<section>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-l">Brent 今日</div>
+      <div class="stat-v c-a">$101.91</div>
+      <div class="stat-s up">▲ +3.0% · 停火延期+扣船</div>
+    </div>
+    <div class="stat">
+      <div class="stat-l">vs 战前$70</div>
+      <div class="stat-v c-r">+47%</div>
+      <div class="stat-s c-m">仍大幅高于战前水平</div>
+    </div>
+    <div class="stat">
+      <div class="stat-l">涨价覆盖品牌</div>
+      <div class="stat-v c-g">70+</div>
+      <div class="stat-s dn">▼ 5月1日生效 · 行业共振</div>
+    </div>
+    <div class="stat">
+      <div class="stat-l">停火状态</div>
+      <div class="stat-v c-a">延期中</div>
+      <div class="stat-s c-m">3–5天窗口 · 不确定性高</div>
+    </div>
+    <div class="stat">
+      <div class="stat-l">下一关键日</div>
+      <div class="stat-v c-b">4/30</div>
+      <div class="stat-s c-m">赛轮Q1季报 + 5/1涨价落地</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE CORRIDOR -->
+<section>
+  <div class="sec-hd">BRENT 完整价格走廊（v1→v15）</div>
+  <div class="corridor">
+    <div class="pr"><div class="pr-dt">战前 2/28</div><div class="pr-bg"><div class="pr-fill" style="width:31%;background:#2a7a4a"></div></div><div class="pr-v c-g">$70</div><div class="pr-n">战前基准</div></div>
+    <div class="pr"><div class="pr-dt">战争峰值 3/8–9</div><div class="pr-bg"><div class="pr-fill" style="width:56%;background:#8b0000"></div></div><div class="pr-v c-r">$119.50</div><div class="pr-n">Dated Brent实物达$144（历史记录）</div></div>
+    <div class="pr"><div class="pr-dt">3月月均</div><div class="pr-bg"><div class="pr-fill" style="width:47%;background:#b84020"></div></div><div class="pr-v c-r">$102</div><div class="pr-n">创Brent历史最大月涨幅+55%</div></div>
+    <div class="pr"><div class="pr-dt">4/8 停火</div><div class="pr-bg"><div class="pr-fill" style="width:41%;background:#2a7a4a"></div></div><div class="pr-v c-g">$94.75</div><div class="pr-n">单日−14%·两周停火宣布</div></div>
+    <div class="pr"><div class="pr-dt">4/12 封锁+破裂</div><div class="pr-bg"><div class="pr-fill" style="width:48%;background:#b84020"></div></div><div class="pr-v c-r">$103</div><div class="pr-n">伊斯兰堡谈判破裂·美军封锁生效</div></div>
+    <div class="pr"><div class="pr-dt">4/15 延期乐观</div><div class="pr-bg"><div class="pr-fill" style="width:43%;background:#7a6020"></div></div><div class="pr-v c-a">$94.93</div><div class="pr-n">Trump"战争接近结束"·S&P创历史新高</div></div>
+    <div class="pr" style="border-top:1px solid var(--line);padding-top:6px;margin-top:3px"><div class="pr-dt fw7">4/22–24 今日</div><div class="pr-bg"><div class="pr-fill" style="width:47%;background:#b84020;border:1px solid var(--r)"></div></div><div class="pr-v c-a fw7">$101.91</div><div class="pr-n fw7" style="color:var(--r)">停火延期+伊朗扣船 → +3%</div></div>
+    <div style="margin-top:8px;display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di)">
+      <span>全程涨幅 +47% vs战前 · 当前$101.91仍大幅偏高</span>
+      <span>Goldman：封锁持续→Q3可达$120 · JPMorgan：4/20库存耗尽已过</span>
+    </div>
+  </div>
+</section>
+
+<!-- TWO MAIN STORIES -->
+<section>
+  <div class="sec-hd">本期两大主线</div>
+  <div class="two-col">
+
+    <!-- TIRE PRICE HIKE -->
+    <div class="story-card">
+      <div class="sc-hd" style="border-color:var(--g);color:var(--g)">✅ 主线一：行业涨价全面落地</div>
+      <div class="sc-body">
+        <strong>触发：普利司通4月14日领涨，打开涨价通道</strong><br>
+        全球轮胎巨头普利司通中国正式发布调价通知，5月1日起全面上调乘用车轮胎价格<span class="num">3–5%</span>。这是关键的"外资领涨"信号——外资领涨意味着价格空间已被市场验证，内资无需承担定价风险，可以放心跟进。<br><br>
+        <strong>迅速连锁：截至4月20日，70+主流品牌发布涨价函</strong><br>
+        赛轮TBR涨价<span class="num c-g">3–5%</span>（4月1日宣布，外资跟进后形成行业共振）；玲珑TBR+PCR均涨<span class="num">3–5%</span>；中策、通用、贵州、风神、双星等全线跟进，覆盖TBR、PCR、OTR、斜交全品类。<br><br>
+        <strong>这次涨价的特殊性：外资打头、行业共振、无一反向</strong><br>
+        历史上多次涨价通知发出后因终端压力而打折执行，但此次<strong>普利司通领涨改变了博弈结构</strong>——外资带头执行，国内品牌的执行压力大幅降低，终端无法只找部分品牌压价。预计实际落地率<span class="num c-g">70–80%</span>（显著高于历次约50%的平均水平）。
+      </div>
+    </div>
+
+    <!-- CEASEFIRE UPDATE -->
+    <div class="story-card">
+      <div class="sc-hd" style="border-color:var(--a);color:var(--a)">⚡ 主线二：停火延期·局势仍不稳</div>
+      <div class="sc-body">
+        <strong>4月21–22日：Trump延期·条件模糊</strong><br>
+        Trump在4月21日宣布延期，称是"应巴基斯坦要求给伊朗提交提案时间"，给伊朗<span class="num">3–5天</span>解决内部IRGC与外交部分歧后再恢复谈判。Omani外长在延期前宣称取得"历史性突破"，但随即被证明过度乐观。<br><br>
+        <strong>4月22日：伊朗扣押两船·霍尔木兹仍受限</strong><br>
+        就在停火延期宣布后数小时，伊朗革命卫队宣布扣押两艘"未经授权"穿越海峡的集装箱船。Rapidan Energy总裁Bob McNally：<strong>"伊朗认为自己在谈判中占据上风，准备再熬六个月维持对霍尔木兹的控制权。"</strong>Brent收<span class="num c-r">$101.91</span>（+3%）。<br><br>
+        <strong>5月1日：战争法授权60天法定截止</strong><br>
+        4月29日是战争法授权60天届满（2月28日开战），Trump需向国会提交申请或寻求授权。全体共和党参议员（除Rand Paul外）投票反对国会授权动议——给了Trump继续军事行动的政治空间。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIRE PRICING IMPACT ON SAILUN -->
+<section>
+  <div class="sec-hd">涨价对赛轮Q2利润的量化影响</div>
+  <div class="tire-grid">
+    <table>
+      <thead>
+        <tr><th>涨价品类</th><th>涨幅</th><th>估计落地率</th><th>赛轮年营收基数</th><th>Q2增量利润估算</th><th>信心程度</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hg">
+          <td class="fw7">全钢TBR（主力）</td>
+          <td class="c-g fw7">3–5%</td>
+          <td class="c-g">75%（外资领涨·落地率高）</td>
+          <td>约130亿/年·Q2约33亿</td>
+          <td class="c-g fw7">Q2增量约+0.8–1.3亿</td>
+          <td><span class="badge" style="color:var(--g);border-color:var(--g)">HIGH · 行业共振</span></td>
+        </tr>
+        <tr class="hg">
+          <td class="fw7">半钢PCR</td>
+          <td class="c-g fw7">3–5%</td>
+          <td class="c-g">65%（竞争更激烈）</td>
+          <td>约90亿/年·Q2约23亿</td>
+          <td class="c-g fw7">Q2增量约+0.5–0.7亿</td>
+          <td><span class="badge" style="color:var(--g);border-color:var(--g)">MED-HIGH</span></td>
+        </tr>
+        <tr class="ha">
+          <td class="fw7">OTR/斜交（玲珑+2%）</td>
+          <td class="c-a">2–3%</td>
+          <td class="c-a">60%</td>
+          <td>约40亿/年·Q2约10亿</td>
+          <td class="c-a">Q2增量约+0.1–0.2亿</td>
+          <td><span class="badge" style="color:var(--a);border-color:var(--a)">MEDIUM</span></td>
+        </tr>
+        <tr class="tot">
+          <td>合计（Q2增量·赛轮）</td>
+          <td colspan="2">加权落地率约70%</td>
+          <td>Q2营收基数约66亿</td>
+          <td class="c-g fw7">+1.4–2.2亿净利润增量</td>
+          <td>换算EPS +0.04–0.07元/季度</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="box box-g">
+    <strong>涨价与成本的对冲分析：</strong>当前Brent $101.91，较战前+47%，合成橡胶/炭黑成本压力仍显著。以赛轮的成本结构，原材料占营收约55–60%，油价每+10%约使净利润率下降约1.5–2ppt。粗略估算：战争导致的成本增量约每季度3–5亿元，而涨价带来的增量约1.4–2.2亿元——<strong>涨价能覆盖约30–50%的成本冲击，但不能完全对冲</strong>。油价回落至$80以下才是成本端真正的转折点。
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section>
+  <div class="sec-hd">情景概率 · v15 · 停火延期后</div>
+  <div class="sc-grid">
+    <div class="sc-item">
+      <div class="sc-top" style="border-color:var(--g);background:var(--gp)">
+        <div class="sc-icon">🤝</div>
+        <div class="sc-nm c-g">情景A · 真正协议</div>
+        <div class="sc-price c-g">$80–90</div>
+        <div class="sc-tag">3–5天窗口内伊朗提交方案·达成框架</div>
+      </div>
+      <div class="sc-rows">
+        <div class="sc-row"><span class="sc-k">概率</span><span class="fw7 c-g">15% ↓ 下调</span></div>
+        <div class="sc-row"><span class="sc-k">触发</span><span style="font-size:8.5px;max-width:100px;text-align:right">IRGC内部分歧解决·核铀浓缩达成妥协</span></div>
+        <div class="sc-row"><span class="sc-k">赛轮净利2026</span><span class="c-g fw7">约32–40亿</span></div>
+        <div class="sc-row"><span class="sc-k">股价</span><span class="c-g">↑ 15–18元</span></div>
+        <span class="badge c-g" style="border-color:var(--g)">IRGC是关键障碍</span>
+      </div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-top" style="border-color:var(--p);background:var(--pp)">
+        <div class="sc-icon">🔄</div>
+        <div class="sc-nm c-p">情景B · 朝战拖延</div>
+        <div class="sc-price c-a">$90–110</div>
+        <div class="sc-tag">反复延期·高油价常态·涨价持续覆盖部分成本</div>
+      </div>
+      <div class="sc-rows">
+        <div class="sc-row"><span class="sc-k">概率</span><span class="fw7 c-p">50% ← 最高</span></div>
+        <div class="sc-row"><span class="sc-k">触发</span><span style="font-size:8.5px;max-width:100px;text-align:right">再次延期·部分开放霍尔木兹·半停火常态化</span></div>
+        <div class="sc-row"><span class="sc-k">赛轮净利2026</span><span class="c-a fw7">约18–26亿</span></div>
+        <div class="sc-row"><span class="sc-k">股价</span><span class="c-a">→ 12–15元震荡</span></div>
+        <span class="badge c-p" style="border-color:var(--p)">含涨价对冲↑较v14改善</span>
+      </div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-top" style="border-color:var(--r);background:var(--rp)">
+        <div class="sc-icon">💥</div>
+        <div class="sc-nm c-r">情景C · 停火崩溃</div>
+        <div class="sc-price c-r">$115–145</div>
+        <div class="sc-tag">3–5天窗口无果·美军恢复打击·伊朗全面报复</div>
+      </div>
+      <div class="sc-rows">
+        <div class="sc-row"><span class="sc-k">概率</span><span class="fw7 c-r">27% ↑ 微升</span></div>
+        <div class="sc-row"><span class="sc-k">触发</span><span style="font-size:8.5px;max-width:100px;text-align:right">IRGC强硬·伊朗拒绝方案·Trump恢复轰炸</span></div>
+        <div class="sc-row"><span class="sc-k">赛轮净利2026</span><span class="c-r fw7">约5–14亿</span></div>
+        <div class="sc-row"><span class="sc-k">股价</span><span class="c-r">↓ 9–11元</span></div>
+        <span class="badge c-r" style="border-color:var(--r)">扣船事件是警示信号</span>
+      </div>
+    </div>
+    <div class="sc-item">
+      <div class="sc-top" style="border-color:#6a0000;background:#fff4f4">
+        <div class="sc-icon">☢️</div>
+        <div class="sc-nm" style="color:#6a0000">情景D · 极端升级</div>
+        <div class="sc-price" style="font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:#6a0000">$150–200</div>
+        <div class="sc-tag c-m">沙特Abqaiq·Houthi·全球衰退·Oxford $190</div>
+      </div>
+      <div class="sc-rows">
+        <div class="sc-row"><span class="sc-k">概率</span><span class="fw7" style="color:#6a0000">8%</span></div>
+        <div class="sc-row"><span class="sc-k">触发</span><span style="font-size:8.5px;max-width:100px;text-align:right">中国介入·核设施打击·能源基础设施连锁互毁</span></div>
+        <div class="sc-row"><span class="sc-k">赛轮净利2026</span><span style="color:#6a0000;font-weight:700">≈0</span></div>
+        <div class="sc-row"><span class="sc-k">股价</span><span style="color:#6a0000">↓↓ 系统性</span></div>
+        <span class="badge" style="color:#6a0000;border-color:#6a0000">尾部风险·非基准</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAILUN VALUATION UPDATE -->
+<section>
+  <div class="sec-hd">赛轮估值更新 · v15 · 涨价+延期后</div>
+  <div class="box box-p">
+    <strong>情景B（最高概率50%）含义修订：</strong>朝战拖延模式下，<strong>此前没有算进去的涨价贡献</strong>使情景B的净利润区间从"15–22亿"上调至<strong>"18–26亿"</strong>。涨价覆盖约1/3的成本冲击，Q2、Q3各贡献约1.4–2.2亿增量净利润（全年约+3–4亿）。情景B下赛轮EPS区间：<strong>约0.55–0.79元</strong>（较v14的0.46–0.67元有所改善）。14元当前股价对应PE约18–25x——按战争损益层偏贵，按成长层（达产EPS 1.4元）约10x，合理。
+  </div>
+
+  <!-- PRICE GRADIENT -->
+  <div class="grad">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--di);letter-spacing:1.5px;margin-bottom:10px">成长性价格梯度 · 基于达产EPS 1.4–2.0元 · 更新于2026.04.24</div>
+    <div class="grad-row">
+      <div class="grad-price c-g">≤8元</div>
+      <div class="grad-bar"><div style="height:6px;width:44%;background:var(--g);border-radius:1px"></div></div>
+      <div class="grad-label c-g">强力买入</div>
+      <div class="grad-note">PB 1.54x · 成长溢价归零 · 极度低估 · 按达产EPS 1.4元的<strong>5.7x PE</strong></div>
+    </div>
+    <div class="grad-row">
+      <div class="grad-price c-g">10元</div>
+      <div class="grad-bar"><div style="height:6px;width:55%;background:#3a9a5a;border-radius:1px"></div></div>
+      <div class="grad-label c-g">买入</div>
+      <div class="grad-note">PB 1.92x · 达产EPS 1.4元的<strong>7x PE</strong> · 成长折价充分</div>
+    </div>
+    <div class="grad-row">
+      <div class="grad-price c-g">12元</div>
+      <div class="grad-bar"><div style="height:6px;width:66%;background:#7aba6a;border-radius:1px"></div></div>
+      <div class="grad-label c-g">持有下沿</div>
+      <div class="grad-note">PB 2.31x · 达产EPS 1.4元的<strong>8.6x PE</strong> · 战争折价已充分</div>
+    </div>
+    <div class="grad-row" style="background:linear-gradient(90deg,var(--ap) 0%,transparent 100%);margin:0 -18px;padding:5px 18px;border-bottom:1px solid var(--bg4);">
+      <div class="grad-price c-a">14元 <span class="cur-marker">当前</span></div>
+      <div class="grad-bar"><div style="height:6px;width:77%;background:var(--a);border-radius:1px"></div></div>
+      <div class="grad-label c-a">持有</div>
+      <div class="grad-note">PB 2.69x · 达产EPS 1.4元的<strong>10x PE</strong> · 合理但无折价 · 等季报催化</div>
+    </div>
+    <div class="grad-row">
+      <div class="grad-price c-r">15.5元</div>
+      <div class="grad-bar"><div style="height:6px;width:86%;background:#e07040;border-radius:1px"></div></div>
+      <div class="grad-label c-r">减仓</div>
+      <div class="grad-note">PB 2.98x · 达产EPS 1.7元的<strong>9.1x PE</strong> · 好消息开始充分定价</div>
+    </div>
+    <div class="grad-row">
+      <div class="grad-price c-r">≥18元</div>
+      <div class="grad-bar"><div style="height:6px;width:100%;background:var(--r);border-radius:1px"></div></div>
+      <div class="grad-label c-r">止盈清仓</div>
+      <div class="grad-note">PB 3.46x · 达产EPS 2.0元的<strong>9x PE</strong> · 完美情景完全定价</div>
+    </div>
+  </div>
+</section>
+
+<!-- UPCOMING CATALYSTS -->
+<section>
+  <div class="sec-hd">接下来关键节点</div>
+  <div class="two-col">
+    <div>
+      <div class="box box-b">
+        <strong>4月30日 · 赛轮Q1季报（最重要）</strong><br>
+        三个验证指标：①EPS是否≥0.15元（海外工厂成本对冲有效性）；②海外营收增速是否维持（柬二期、印尼爬坡进度）；③新和平亏损是否较2025Q4收窄。季报好于预期→股价向15元方向；低于预期（EPS<0.10元）→测试12元支撑。
+      </div>
+      <div class="box box-g">
+        <strong>5月1日 · 涨价正式执行</strong><br>
+        这是价格从"通知"到"收款"的分界线。若终端渠道验证落地率达70%+，则Q2利润展望将显著改善，市场对Q2盈利的悲观预期将被修正。普利司通同步执行是最重要的护盾——外资不降价，国内品牌就有定价权。
+      </div>
+    </div>
+    <div>
+      <div class="box box-a">
+        <strong>4月25–27日 · 伊朗3–5天窗口到期</strong><br>
+        Trump给了3–5天时间让伊朗提交方案并解决IRGC内部分歧。若有方案提交→油价下行、赛轮受益；若无进展→Trump"不愿再延期"的压力升级，Brent可能反弹至$105–110。扣押两船的举动已经显示伊朗谈判心态较强硬。
+      </div>
+      <div class="box box-a">
+        <strong>4月29日 · 战争法60天授权法定截止</strong><br>
+        若Trump未寻求国会授权，战争法律基础存在争议。但共和党参议院已全票支持Trump继续军事行动（Rand Paul除外），实际法律风险较低。市场对此关注度不高，但若触发宪法挑战，可能产生外交格局变化。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERDICT -->
+<div class="verdict">
+  <div class="vd-title">赛轮2026年归母净利润 · v15概率加权 · 含涨价修订</div>
+  <div class="vd-grid">
+    <div class="vd-item">
+      <div class="lbl">情景A · 真正协议（15%）</div>
+      <div class="val c-g">32–40亿</div>
+      <div class="note">涨价+油价回落双重利好<br>目标股价15–18元</div>
+    </div>
+    <div class="vd-item">
+      <div class="lbl">情景B · 朝战+涨价（50%）</div>
+      <div class="val c-a">18–26亿 ↑</div>
+      <div class="note">较v14上调3–4亿（涨价贡献）<br>14元持有区间合理</div>
+    </div>
+    <div class="vd-item">
+      <div class="lbl">情景C/D · 升级/极端（35%）</div>
+      <div class="val c-r">0–14亿</div>
+      <div class="note">涨价被成本暴涨淹没<br>股价下行9元甚至更低</div>
+    </div>
+  </div>
+  <div class="vd-footer">
+    <strong style="color:var(--ink)">概率加权净利润：约19–24亿元</strong>（较v14上调约2–3亿，涨价贡献显现）· 加权EPS约0.58–0.73元<br>
+    <strong style="color:var(--g)">今日最大正面变化：</strong>行业涨价从"宣布"升级至"行业共振·高落地率·5月1日执行"，是v15最重要的基本面改善<br>
+    <strong style="color:var(--r)">持续风险：</strong>Brent $101.91仍高于战前+47%，完全成本对冲需$80以下 · 扣船事件显示伊朗谈判态度强硬 · 停火延期≠实质性进展<br>
+    <strong style="color:var(--b)">操作建议：</strong>14元持有，不追仓；等4/30季报信号——若EPS≥0.15元且涨价落地验证，可小量加仓；若EPS不及预期，12元是更好的买点
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <span>来源：新浪财经·CNBC·Reuters·OilPrice.com·Wikipedia·AP·CBS News·Washington Times · 2026.04.24</span>
+  <span>油价上涨影响估算_20260424 · v15 · 涨价落地+停火延期版 · D+56 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>

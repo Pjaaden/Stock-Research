@@ -178,10 +178,10 @@
       "exchange": "A",
       "sector": "轮胎制造·全球化产能布局",
       "research_folder": "赛轮集团_601058",
-      "price": 13.3,
+      "price": 14.0,
       "shares": 28,
       "net_cash_bn": -121.2,
-      "eps_forecast": 0.7,
+      "eps_forecast": 0.65,
       "discount_rate": 8,
       "valuation_method": "PE×EPS + 海外工厂税收溢价 + 油价情景概率加权",
       "signal": "hold",
@@ -189,8 +189,8 @@
       "avg_cost": 13.799,
       "max_position_pct": 20,
       "rating": "hold",
-      "next_catalyst": "4月20日·JPMorgan战前库存耗尽临界点 | 4月22日·两周停火截止日 | 4月30日·Q1季报",
-      "data_as_of": "2025Q3 + 2026年3-4月伊朗战争系列分析（v1-v14·伊斯兰堡谈判破裂+封锁版）",
+      "next_catalyst": "4月25–27日伊朗方案窗口 | 4月29日战争法截止 | 4月30日Q1季报 | 5月1日涨价执行",
+      "data_as_of": "2025Q3 + v1–v15伊朗战争系列（涨价落地+停火延期版）",
       "baseline_data": {
         "interest_bearing_debt_bn": 121.2,
         "operating_cf_bn": 25,
@@ -203,21 +203,21 @@
       "scenarios": [
         {
           "name": "牛市",
-          "prob": 18,
+          "prob": 15,
           "target_price": 16.5,
-          "assumptions": "情景A（4/22前达成协议）：封锁压力迫使伊朗做出核问题建设性承诺，全年Brent均价$82–92，2026E EPS约1.0–1.2元，目标价15–18元"
+          "assumptions": "情景A·真正协议·全年Brent $80–90·涨价+油价双利好·2026E EPS约1.0–1.2元"
         },
         {
           "name": "基准",
-          "prob": 47,
-          "target_price": 13,
-          "assumptions": "情景B（朝鲜战争模式）：反复谈判/破裂，高油价$95–115拖延，2026E EPS约0.46–0.67元，成长逻辑支撑13元，2027–28年达产后EPS 1.67–2.13元对应PE 6–8x"
+          "prob": 50,
+          "target_price": 13.5,
+          "assumptions": "情景B·朝战拖延+涨价对冲·全年Brent $90–110·2026E净利18–26亿（含涨价+3–4亿）·EPS约0.55–0.79元"
         },
         {
           "name": "熊市",
           "prob": 35,
-          "target_price": 9,
-          "assumptions": "情景C/D（封锁升级/能源设施互毁）：全年Brent $120–145+，2026E净利润约5–14亿，股价下行至9–11元甚至更低，极端情景需求崩溃则接近归零"
+          "target_price": 9.0,
+          "assumptions": "情景C/D·停火崩溃/极端升级·全年Brent $115–145+·涨价被成本暴涨淹没·EPS约0–0.43元"
         }
       ],
       "position_rules": [
