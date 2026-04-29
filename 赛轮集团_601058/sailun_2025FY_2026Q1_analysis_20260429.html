@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮集团 601058 | 全方位深度分析 2025FY + 2026Q1</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f7f6f2;
+    --surface: #ffffff;
+    --surface2: #f0ede8;
+    --border: #e0dbd2;
+    --text-primary: #1a1714;
+    --text-secondary: #5c5650;
+    --text-muted: #9c9690;
+    --accent: #c84b2f;
+    --accent-light: #f5e8e4;
+    --green: #2d6a4f;
+    --green-light: #e4f0eb;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --blue: #1e40af;
+    --blue-light: #eff6ff;
+    --red: #c84b2f;
+    --red-light: #fef2f0;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Georgia', 'Noto Serif SC', serif;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  /* Header */
+  .report-header {
+    background: var(--text-primary);
+    color: white;
+    padding: 40px 48px 32px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  .ticker-badge {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #aaa;
+    background: rgba(255,255,255,0.08);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .report-date {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #aaa;
+  }
+  .company-name {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .report-title {
+    font-size: 15px;
+    color: #ccc;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .header-summary {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+  .kpi-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .kpi-label { font-size: 10px; color: #999; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .kpi-value { font-size: 20px; font-weight: 700; font-family: 'Courier New', monospace; }
+  .kpi-change { font-size: 10px; margin-top: 2px; }
+  .pos { color: #4ade80; }
+  .neg { color: #f87171; }
+  .flat { color: #aaa; }
+  /* Layout */
+  .main-content { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+  /* Section headers */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .section-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-num {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 3px;
+  }
+  .section-title { font-size: 16px; font-weight: 700; }
+  .section-body { padding: 24px; }
+  /* Data tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .data-table th {
+    background: var(--surface2);
+    padding: 8px 12px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 11px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid var(--border);
+  }
+  .data-table th:first-child { text-align: left; }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+  }
+  .data-table td:first-child {
+    text-align: left;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table .total-row td {
+    font-weight: 700;
+    background: var(--surface2);
+    color: var(--text-primary);
+  }
+  .data-table .highlight-row td { background: var(--blue-light); }
+  .data-table .alert-row td { background: var(--red-light); }
+  .data-table .good-row td { background: var(--green-light); }
+  /* Badge */
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue { background: var(--blue-light); color: var(--blue); }
+  .badge-gray { background: var(--surface2); color: var(--text-secondary); }
+  /* Source annotation */
+  .src { font-size: 10px; color: var(--text-muted); font-family: 'Courier New', monospace; }
+  .src-primary::before { content: "★ "; color: var(--accent); }
+  /* Charts */
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .chart-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .chart-box {
+    background: var(--surface2);
+    border-radius: 6px;
+    padding: 16px;
+  }
+  .chart-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-secondary); margin-bottom: 12px; }
+  canvas { max-height: 220px; }
+  /* Prose */
+  p { margin-bottom: 12px; color: var(--text-secondary); }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--text-primary); }
+  /* Callout boxes */
+  .callout {
+    border-left: 4px solid;
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  .callout-red { border-color: var(--red); background: var(--red-light); }
+  .callout-green { border-color: var(--green); background: var(--green-light); }
+  .callout-amber { border-color: var(--amber); background: var(--amber-light); }
+  .callout-blue { border-color: var(--blue); background: var(--blue-light); }
+  .callout-title { font-weight: 700; margin-bottom: 4px; }
+  /* Three-col layout */
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  /* Scenario table */
+  .scenario-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 12px; }
+  .scenario-table th { background: var(--text-primary); color: white; padding: 8px 12px; text-align: center; font-size: 11px; }
+  .scenario-table td { padding: 8px 12px; border: 1px solid var(--border); text-align: center; }
+  .scenario-table .scenario-name { text-align: left; font-weight: 600; }
+  .s-bull { background: #e4f0eb; }
+  .s-base { background: #f0ede8; }
+  .s-bear { background: #fef2f0; }
+  /* Verification checks */
+  .check-item {
+    display: flex;
+    gap: 12px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  .check-status { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+  .check-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .check-detail { font-size: 12px; color: var(--text-secondary); }
+  /* Risk table */
+  .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .risk-item {
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid;
+  }
+  .risk-high { border-color: #fca5a5; background: #fff5f5; }
+  .risk-med { border-color: #fed7aa; background: #fffbeb; }
+  .risk-low { border-color: #a7f3d0; background: #f0fff4; }
+  .risk-level { font-size: 10px; font-weight: 700; letter-spacing: 1px; margin-bottom: 4px; }
+  .risk-name { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .risk-desc { font-size: 12px; color: var(--text-secondary); }
+  /* Footer */
+  .report-footer {
+    background: var(--text-primary);
+    color: #666;
+    padding: 24px 48px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    line-height: 1.8;
+  }
+  @media print {
+    body { background: white; }
+    .section { box-shadow: none; break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="header-top">
+    <div>
+      <div class="ticker-badge">SH: 601058 | SAILUN GROUP</div>
+      <div style="height:8px"></div>
+      <div class="company-name">赛轮集团股份有限公司</div>
+      <div class="report-title">深度研究报告 · 2025年报 + 2026年一季报全方位更新分析</div>
+    </div>
+    <div class="report-date">报告日期: 2026-04-29<br>数据截止: 2026-03-31<br>研究周期: 第四轮更新</div>
+  </div>
+  <div class="header-summary">
+    <div class="kpi-card">
+      <div class="kpi-label">2025全年营收</div>
+      <div class="kpi-value">367.9<span style="font-size:13px">亿</span></div>
+      <div class="kpi-change pos">▲ +15.7% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2025归母净利润</div>
+      <div class="kpi-value">35.2<span style="font-size:13px">亿</span></div>
+      <div class="kpi-change neg">▼ -13.3% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">2026Q1营收</div>
+      <div class="kpi-value">94.6<span style="font-size:13px">亿</span></div>
+      <div class="kpi-change pos">▲ +12.5% YoY</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">有息负债(Q1末)</div>
+      <div class="kpi-value">143.7<span style="font-size:13px">亿</span></div>
+      <div class="kpi-change neg">▲ +25亿 单季</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">资产负债率(Q1)</div>
+      <div class="kpi-value">51.2<span style="font-size:13px">%</span></div>
+      <div class="kpi-change neg">▲ +1.2pp</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">00</span>
+    <span class="section-title">执行摘要 · Executive Summary</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <p><strong>2025年报核心信号：</strong>营收创历史新高达367.9亿（+15.7%），但盈利能力承压——归母净利润35.2亿，同比下滑13.3%。根本矛盾在于原材料成本大幅上涨（营业成本+20.3%），导致毛利率从2024年的27.7%压缩至24.6%，全年毛利率损失约11.3亿。与此同时，全球产能扩张持续推进，资本支出达31.6亿，产量突破8,254万条（+10.3%）。</p>
+        <p><strong>2026Q1信号混合：</strong>营收94.6亿（+12.5%）保持增势，净利润10.6亿（+1.7%）基本持平。关键亮点是毛利率显著回升至26.9%（Q1 2025为24.7%），运营现金流转正至1.76亿（去年同期-4.08亿）。但有息负债单季激增25亿至143.7亿，为本轮追踪以来最大单季债务跳升，需高度关注。</p>
+        <p><strong>三项核实验证结果：</strong>前期设定的三项跟踪验证中，资金缺口改善基本实现（-8.7亿 vs 预期-21.6亿），债务总量未收窄但结构趋稳，沈阳新和平基地不仅未缩减损失反而新增投资——三项结论均有修正或更新，详见第三节。</p>
+      </div>
+      <div>
+        <div class="callout callout-amber">
+          <div class="callout-title">⚠ 核心关注：Q1 2026债务急升</div>
+          有息负债从118.6亿（FY2025末）飙升至143.7亿（Q1 2026末），单季净新增26亿借款。主因是资本开支继续高企（季度CAPEX 14.1亿）叠加运营现金流偏弱，滚动融资填洞的模式加速。若全年CAPEX维持类似速度，全年债务可能突破160亿。
+        </div>
+        <div class="callout callout-green">
+          <div class="callout-title">✓ 亮点：毛利率反转，Q1扭转2025趋势</div>
+          Q1 2026毛利率26.9%，较Q1 2025提升2.2个百分点，显示原材料成本压力阶段性缓解，或产品结构改善（OTR/全钢胎占比提升）正在显效。这是2025年盈利压缩后首个趋势逆转信号。
+        </div>
+        <div class="callout callout-blue">
+          <div class="callout-title">↗ 关税背景下的差异化优势</div>
+          特朗普政府2025-2026年对华加征关税背景下，赛轮在越南（已成熟）、印尼（2025年5月首胎，2026年产能调整至600万条）、墨西哥（2025年5月首胎）的多基地布局形成天然的关税规避护城河，差异化竞争优势持续凸显。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 1: P&L ANALYSIS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">损益分析 · Profit & Loss</span>
+  </div>
+  <div class="section-body">
+    <div class="chart-grid" style="margin-bottom:24px">
+      <div class="chart-box">
+        <div class="chart-title">营收 vs 净利润趋势（亿元）</div>
+        <canvas id="revenueChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">毛利率季度走势</div>
+        <canvas id="marginChart"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>项目</th>
+          <th>2023年</th>
+          <th>2024年</th>
+          <th>2025年</th>
+          <th>YoY%</th>
+          <th>2026Q1</th>
+          <th>Q1 YoY%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营业收入（亿元）★</td>
+          <td>259.8</td>
+          <td>318.0</td>
+          <td>367.9</td>
+          <td class="pos">+15.7%</td>
+          <td>94.6</td>
+          <td class="pos">+12.5%</td>
+        </tr>
+        <tr>
+          <td>营业成本（亿元）★</td>
+          <td>—</td>
+          <td>230.3</td>
+          <td>277.1</td>
+          <td class="neg">+20.3%</td>
+          <td>69.2</td>
+          <td class="neg">+9.3%</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>毛利率 ★</td>
+          <td>—</td>
+          <td>27.71%</td>
+          <td>24.63%</td>
+          <td class="neg">-3.08pp</td>
+          <td>26.9%</td>
+          <td class="pos">+2.2pp</td>
+        </tr>
+        <tr>
+          <td>销售费用（亿元）★</td>
+          <td>—</td>
+          <td>15.3</td>
+          <td>19.2</td>
+          <td class="neg">+25.3%</td>
+          <td>4.5</td>
+          <td class="neg">+27.7%</td>
+        </tr>
+        <tr>
+          <td>管理费用（亿元）★</td>
+          <td>—</td>
+          <td>10.1</td>
+          <td>12.3</td>
+          <td class="neg">+21.2%</td>
+          <td>3.1</td>
+          <td class="neg">+21.0%</td>
+        </tr>
+        <tr>
+          <td>研发费用（亿元）★</td>
+          <td>—</td>
+          <td>10.1</td>
+          <td>11.5</td>
+          <td class="neg">+13.3%</td>
+          <td>2.7</td>
+          <td class="neg">+5.8%</td>
+        </tr>
+        <tr>
+          <td>财务费用（净，亿元）★</td>
+          <td>—</td>
+          <td>3.5</td>
+          <td>4.0</td>
+          <td class="neg">+12.8%</td>
+          <td>2.3</td>
+          <td class="neg">+345%</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;其中：利息费用★</td>
+          <td>—</td>
+          <td>3.9</td>
+          <td>4.75</td>
+          <td class="neg">+22.0%</td>
+          <td>1.11</td>
+          <td class="pos">+3.7%</td>
+        </tr>
+        <tr class="total-row">
+          <td>归母净利润（亿元）★</td>
+          <td>30.9</td>
+          <td>40.6</td>
+          <td>35.2</td>
+          <td class="neg">-13.3%</td>
+          <td>10.6</td>
+          <td class="pos">+1.7%</td>
+        </tr>
+        <tr>
+          <td>净利率 ★</td>
+          <td>11.9%</td>
+          <td>12.8%</td>
+          <td>9.6%</td>
+          <td class="neg">-3.2pp</td>
+          <td>11.2%</td>
+          <td class="neg">-1.1pp</td>
+        </tr>
+        <tr>
+          <td>EPS 基本（元/股）★</td>
+          <td>1.01</td>
+          <td>1.26</td>
+          <td>1.08</td>
+          <td class="neg">-14.3%</td>
+          <td>0.32</td>
+          <td class="flat">0%</td>
+        </tr>
+        <tr>
+          <td>ROE（加权）★</td>
+          <td>23.35%</td>
+          <td>22.81%</td>
+          <td>17.04%</td>
+          <td class="neg">-5.77pp</td>
+          <td>4.80%*</td>
+          <td class="neg">-0.39pp</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="src" style="margin-top:8px">★ = 一手数据（2025年报、2026Q1季报），* = 季度数字不可直接比较全年ROE | 财务费用Q1 2026高企主要系汇兑损失，非利息增加</p>
+
+    <div class="callout callout-amber" style="margin-top:20px">
+      <div class="callout-title">盈利压缩的根因分解（2025年报）</div>
+      <strong>毛利率-3.08pp = 约损失11.3亿净利润。</strong>原材料（天胶、合成橡胶、炭黑）价格2024-2025年持续上涨，成本增速（+20.3%）远超收入增速（+15.7%）。Q1 2026毛利率已反转至26.9%，若后续季度维持，2026年盈利有望回升。但销售费用持续超速增长（+27.7% vs 收入+12.5%），反映海外市场开拓费用刚性化，需密切跟踪。
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: CASH FLOW -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">现金流深度解析 · True Cash Flow Framework</span>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px">沿用本研究框架的"真实资金缺口"分析法：<strong>经营现金流 − 利息股利 − 资本开支 = 真实自由资金盈余/缺口</strong>。此框架区分表面CF与实际融资需求。</p>
+
+    <table class="data-table" style="margin-bottom:20px">
+      <thead>
+        <tr>
+          <th>现金流科目</th>
+          <th>2024年★</th>
+          <th>2025年★</th>
+          <th>2026Q1★</th>
+          <th>Q1 YoY</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="good-row">
+          <td>经营活动净现金流（亿元）</td>
+          <td>22.9</td>
+          <td>41.8</td>
+          <td>1.76</td>
+          <td class="pos">↑（去年-4.08）</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;销售商品收现（亿元）</td>
+          <td>296.4</td>
+          <td>346.0</td>
+          <td>83.5</td>
+          <td class="pos">+14.8%</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;采购支出（亿元）</td>
+          <td>238.1</td>
+          <td>261.9</td>
+          <td>69.4</td>
+          <td class="neg">+7.6%</td>
+        </tr>
+        <tr>
+          <td>资本支出CAPEX 购建（亿元）</td>
+          <td>65.7</td>
+          <td>31.6</td>
+          <td>14.1</td>
+          <td class="flat">—</td>
+        </tr>
+        <tr>
+          <td>股权投资支出（亿元）</td>
+          <td>—</td>
+          <td>22.8</td>
+          <td>4.8</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>利息+股利支出（筹资CF）（亿元）</td>
+          <td>14.2</td>
+          <td>18.9</td>
+          <td>0.92</td>
+          <td class="neg">-1.9%</td>
+        </tr>
+        <tr class="alert-row">
+          <td><strong>真实资金缺口</strong>（经营CF−利息股利−CAPEX）</td>
+          <td class="neg"><strong>-57.0</strong></td>
+          <td class="neg"><strong>-8.7</strong></td>
+          <td class="neg"><strong>-13.3</strong></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>融资活动净现金流（亿元）★</td>
+          <td>18.7</td>
+          <td>2.6</td>
+          <td>24.1</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;取得借款（亿元）★</td>
+          <td>147.2</td>
+          <td>147.3</td>
+          <td>47.8</td>
+          <td class="neg">+14.5%</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;偿还借款（亿元）★</td>
+          <td>118.9</td>
+          <td>129.6</td>
+          <td>21.8</td>
+          <td class="neg">+0.4%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="chart-box" style="margin-bottom:20px">
+      <div class="chart-title">真实资金缺口趋势（亿元）</div>
+      <canvas id="cashGapChart" style="max-height:180px"></canvas>
+    </div>
+
+    <div class="callout callout-green">
+      <div class="callout-title">✓ 验证结论1：2025年资金缺口大幅收窄至-8.7亿</div>
+      此前Q3 2025数据推算全年缺口约-21.6亿。年报披露后，2025全年实际缺口仅-8.7亿，主要因为：①H2经营现金流显著改善（Q3+Q4经营CF共43.6亿，占全年41.8亿的104%，抵消Q1季节性负值）；②CAPEX边际放缓（全年购建31.6亿，低于2024年65.7亿）；③利息支出相对可控。这一改善是实质性的，不是会计调整所致。
+    </div>
+
+    <div class="callout callout-red">
+      <div class="callout-title">⚠ 新警示：2026Q1缺口季度化达-53亿/年</div>
+      Q1 2026单季真实缺口-13.3亿，若全年维持该节奏相当于-53亿/年，远超2025年-8.7亿的全年水平。但需注意Q1历来是赛轮经营现金流最弱季度（2025年Q1也是-4.08亿）。关键观察点是Q2 2026运营CF能否回升，以及CAPEX是否仍维持14亿/季的高位。
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: BALANCE SHEET / LEVERAGE -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">资产负债与杠杆结构 · Balance Sheet & Leverage</span>
+  </div>
+  <div class="section-body">
+    <div class="chart-grid" style="margin-bottom:20px">
+      <div class="chart-box">
+        <div class="chart-title">有息负债分拆（亿元）</div>
+        <canvas id="debtChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">负债率与流动比率趋势</div>
+        <canvas id="leverageChart"></canvas>
+      </div>
+    </div>
+
+    <table class="data-table" style="margin-bottom:20px">
+      <thead>
+        <tr>
+          <th>资产负债表关键指标</th>
+          <th>FY2024末★</th>
+          <th>FY2025末★</th>
+          <th>2026Q1末★</th>
+          <th>单季变动</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>总资产（亿元）</td>
+          <td>402.8</td>
+          <td>467.7</td>
+          <td>495.5</td>
+          <td class="neg">+27.8</td>
+        </tr>
+        <tr>
+          <td>货币资金（亿元）</td>
+          <td>55.2</td>
+          <td>45.8</td>
+          <td>59.6</td>
+          <td class="pos">+13.8</td>
+        </tr>
+        <tr>
+          <td>应收账款（亿元）</td>
+          <td>47.9</td>
+          <td>61.5</td>
+          <td>66.7</td>
+          <td class="neg">+5.2</td>
+        </tr>
+        <tr>
+          <td>存货（亿元）</td>
+          <td>65.2</td>
+          <td>71.4</td>
+          <td>76.1</td>
+          <td class="neg">+4.7</td>
+        </tr>
+        <tr>
+          <td>固定资产（亿元）</td>
+          <td>140.3</td>
+          <td>165.6</td>
+          <td>167.6</td>
+          <td>+2.0</td>
+        </tr>
+        <tr>
+          <td>在建工程（亿元）</td>
+          <td>20.9</td>
+          <td>29.2</td>
+          <td>28.7</td>
+          <td class="pos">-0.5（转固）</td>
+        </tr>
+        <tr>
+          <td>短期借款（亿元）★</td>
+          <td>58.1</td>
+          <td>59.6</td>
+          <td>69.2</td>
+          <td class="neg">+9.6</td>
+        </tr>
+        <tr>
+          <td>一年内到期非流动负债（亿元）★</td>
+          <td>10.6</td>
+          <td>15.5</td>
+          <td>14.7</td>
+          <td class="pos">-0.8</td>
+        </tr>
+        <tr>
+          <td>长期借款（亿元）★</td>
+          <td>33.7</td>
+          <td>43.5</td>
+          <td>59.8</td>
+          <td class="neg">+16.3（融资重大调整）</td>
+        </tr>
+        <tr>
+          <td>应付票据（亿元）★</td>
+          <td>30.2</td>
+          <td>27.5</td>
+          <td>26.9</td>
+          <td class="pos">-0.6</td>
+        </tr>
+        <tr>
+          <td>应付账款（亿元）★</td>
+          <td>39.1</td>
+          <td>60.0</td>
+          <td>56.0</td>
+          <td class="pos">-4.0</td>
+        </tr>
+        <tr class="alert-row">
+          <td><strong>有息负债合计（短+长+一年内）★</strong></td>
+          <td><strong>102.4</strong></td>
+          <td><strong>118.6</strong></td>
+          <td><strong>143.7</strong></td>
+          <td class="neg"><strong>+25.1 ⚠</strong></td>
+        </tr>
+        <tr>
+          <td>归母净资产（亿元）★</td>
+          <td>195.1</td>
+          <td>216.1</td>
+          <td>224.2</td>
+          <td class="pos">+8.1</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>资产负债率 ★</td>
+          <td>48.9%</td>
+          <td>50.0%</td>
+          <td>51.2%</td>
+          <td class="neg">+1.2pp</td>
+        </tr>
+        <tr>
+          <td>净负债/EBITDA（估算）</td>
+          <td>~1.0x</td>
+          <td>~1.4x</td>
+          <td>~2.5x*</td>
+          <td class="neg">显著恶化</td>
+        </tr>
+        <tr>
+          <td>利息覆盖率（EBIT/利息费用）</td>
+          <td>~11x</td>
+          <td>8.8x</td>
+          <td>11.3x*</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="src">* Q1 2026净负债/EBITDA使用季度EBIT年化估算，含较大不确定性 | ★ = 原始报告一手数据</p>
+
+    <div class="two-col" style="margin-top:20px">
+      <div class="callout callout-red">
+        <div class="callout-title">⚠ 债务结构变化：长期借款单季+16亿</div>
+        Q1 2026长期借款从43.5亿急升至59.8亿（+16.3亿），结合短期借款+9.6亿，有息负债单季净增25.1亿，筹资活动净流入24.1亿完整印证。这是本轮研究中观察到的最大单季债务跳升，表明公司在Q1主动开展了一次大规模长期融资，可能对应2026年拟建项目（埃及扩产、国内OTR项目）的前期资金储备。
+      </div>
+      <div class="callout callout-amber">
+        <div class="callout-title">短期偿债能力评估</div>
+        Q1 2026一年内到期14.7亿（较FY2025的15.5亿略降），货币资金59.6亿，理论上短期偿债无压力。流动资产230.4亿 vs 流动负债187.0亿，流动比率约1.23x（FY2025为1.13x），较此前略有改善。<strong>无近期违约风险</strong>，但连续债务扩张趋势需长期监控。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: THREE VERIFICATION CHECKS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">前期三项验证检查 · Prior Research Verification</span>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px">基于2025Q3分析阶段设定的三项年报验证检查项，现以2025年报数据逐项核实。</p>
+
+    <div class="check-item" style="background:#f0fff4; border-color:#a7f3d0">
+      <div class="check-status">✅</div>
+      <div>
+        <div class="check-title">验证1：真实资金缺口是否收窄</div>
+        <div class="check-detail"><strong>结论：基本验证，缺口大幅改善。</strong>Q3年化推算约-21.6亿/年，2025全年实际为-8.7亿。改善来自H2运营现金流强劲回升（Q3+Q4单季合计+43.6亿），以及CAPEX边际下降（2024年65.7亿 → 2025年31.6亿购建部分）。需注意2025年另有股权投资支出22.8亿未计入CAPEX，但并非必须年年重现的项目。Q1 2026单季缺口-13.3亿，全年节奏仍需Q2数据确认。</div>
+      </div>
+    </div>
+
+    <div class="check-item" style="background:#fffbeb; border-color:#fed7aa">
+      <div class="check-status">⚠️</div>
+      <div>
+        <div class="check-title">验证2：有息负债是否通过新增借款滚续（真实资金缺口填补方式）</div>
+        <div class="check-detail"><strong>结论：验证，且加速。</strong>2025全年取得借款147.3亿，偿还129.6亿，净新增17.7亿，年末IBD=118.6亿（较Q3121.2亿实际略降）。但进入2026年后Q1单季净新增26亿，滚动融资强度明显提速。2026年全年借款规模按Q1节奏年化将超越2025年，债务扩张趋势明确。这是核心风险来源，但目前利息覆盖率8.8x（2025年）仍提供安全边际。</div>
+      </div>
+    </div>
+
+    <div class="check-item" style="background:#fff5f5; border-color:#fca5a5">
+      <div class="check-status">❌</div>
+      <div>
+        <div class="check-title">验证3：沈阳新和平（赛轮新和平）损失是否收窄至-5亿以内</div>
+        <div class="check-detail"><strong>结论：无法验证，且公司新增大规模投资。</strong>年报未单独披露沈阳新和平盈亏（未超过10%归母净利润披露门槛，意味损失应小于3.5亿）。但公司于2025年9月宣布在沈阳新和平工厂新增投资330万条全钢胎+2万吨非公路轮胎项目，显示公司对该基地的战略价值判断积极。若年报未披露亏损，该基地损失或已缩减至"不重大"区间（即<-3.5亿）。原预期的"-5亿内"可能已接近实现，但无法精确确认。监控继续维持。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: PRODUCTION & GEOGRAPHICAL -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">产能布局与地理分布 · Capacity & Geography</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4 style="margin-bottom:12px;font-size:14px">2025年度经营数据</h4>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>指标</th>
+              <th>2025年</th>
+              <th>2024年</th>
+              <th>YoY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>轮胎产量（万条）★</td>
+              <td>8,254</td>
+              <td>7,481*</td>
+              <td class="pos">+10.3%</td>
+            </tr>
+            <tr>
+              <td>轮胎销量（万条）★</td>
+              <td>8,113</td>
+              <td>7,217*</td>
+              <td class="pos">+12.4%</td>
+            </tr>
+            <tr>
+              <td>库存量（万条）★</td>
+              <td>1,319</td>
+              <td>1,178*</td>
+              <td class="neg">+11.9%</td>
+            </tr>
+            <tr>
+              <td>境内营收（亿元）★</td>
+              <td>81.8</td>
+              <td>75.5</td>
+              <td class="pos">+8.3%</td>
+            </tr>
+            <tr>
+              <td>境外营收（亿元）★</td>
+              <td>282.3</td>
+              <td>238.1</td>
+              <td class="pos">+18.5%</td>
+            </tr>
+            <tr class="highlight-row">
+              <td>境外收入占比 ★</td>
+              <td>77.5%</td>
+              <td>74.9%</td>
+              <td class="pos">+2.6pp</td>
+            </tr>
+            <tr>
+              <td>境内毛利率★</td>
+              <td>20.77%</td>
+              <td>20.86%</td>
+              <td class="flat">-0.09pp</td>
+            </tr>
+            <tr>
+              <td>境外毛利率★</td>
+              <td>25.75%</td>
+              <td>29.88%</td>
+              <td class="neg">-4.13pp</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="src" style="margin-top:6px">★ 2025年报一手数据 | * 从YoY%反算</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:12px;font-size:14px">全球基地布局（截至2026Q1）</h4>
+        <table class="data-table">
+          <thead>
+            <tr><th>基地</th><th>主要产品</th><th>状态</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>中国东营</td>
+              <td>半钢/全钢/OTR</td>
+              <td><span class="badge badge-green">成熟运营</span></td>
+            </tr>
+            <tr>
+              <td>中国沈阳（新和平）</td>
+              <td>全钢/OTR（新增）</td>
+              <td><span class="badge badge-amber">投入+新扩建</span></td>
+            </tr>
+            <tr>
+              <td>中国青岛董家口</td>
+              <td>多品类</td>
+              <td><span class="badge badge-amber">建设中</span></td>
+            </tr>
+            <tr>
+              <td>越南（ACTR）</td>
+              <td>半钢/全钢</td>
+              <td><span class="badge badge-green">成熟 关税优势</span></td>
+            </tr>
+            <tr>
+              <td>印尼</td>
+              <td>半钢/全钢/OTR/内胎</td>
+              <td><span class="badge badge-blue">2025首胎→600万条</span></td>
+            </tr>
+            <tr>
+              <td>墨西哥</td>
+              <td>半钢为主</td>
+              <td><span class="badge badge-blue">2025年5月首胎</span></td>
+            </tr>
+            <tr>
+              <td>柬埔寨（二期）</td>
+              <td>全钢（165万条）</td>
+              <td><span class="badge badge-blue">2025年1月扩建</span></td>
+            </tr>
+            <tr>
+              <td>埃及（一期+扩建）</td>
+              <td>半钢+全钢→900万条</td>
+              <td><span class="badge badge-amber">2025建设+2026扩建</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="callout callout-blue" style="margin-top:12px">
+          <div class="callout-title">关税护城河分析</div>
+          越南、印尼、墨西哥三地均规避美国对中国产品加征关税，是当前贸易格局下的核心竞争优势。2025年印尼产能调整后，赛轮东南亚+美洲产能将成为面向北美市场的主要出口来源，直接受益于竞争对手关税负担的相对上升。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: Q1 2026 DEEP DIVE -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">2026年一季报深度解读 · Q1 2026 Deep Dive</span>
+  </div>
+  <div class="section-body">
+    <div class="three-col" style="margin-bottom:20px">
+      <div style="background:var(--green-light);border:1px solid #a7f3d0;border-radius:6px;padding:14px">
+        <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:1px;margin-bottom:6px">POSITIVE</div>
+        <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px;line-height:1.8">
+          <li>毛利率26.9% ↑ 大幅反转</li>
+          <li>经营CF转正（+1.76亿）</li>
+          <li>营收+12.5%延续增长</li>
+          <li>货币资金59.6亿充裕</li>
+          <li>流动比率1.23x改善</li>
+          <li>税收返还4.38亿（+86%）</li>
+        </ul>
+      </div>
+      <div style="background:var(--red-light);border:1px solid #fca5a5;border-radius:6px;padding:14px">
+        <div style="font-size:10px;color:var(--red);font-weight:700;letter-spacing:1px;margin-bottom:6px">CONCERN</div>
+        <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px;line-height:1.8">
+          <li>IBD单季+25亿至143.7亿</li>
+          <li>财务费用暴增（汇兑损失）</li>
+          <li>OCI -2.57亿（汇率折算损）</li>
+          <li>资产减值损失转为负2709万</li>
+          <li>销售费用超速增长+27.7%</li>
+          <li>净利率-1.1pp至11.2%</li>
+        </ul>
+      </div>
+      <div style="background:var(--amber-light);border:1px solid #fed7aa;border-radius:6px;padding:14px">
+        <div style="font-size:10px;color:var(--amber);font-weight:700;letter-spacing:1px;margin-bottom:6px">WATCH</div>
+        <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px;line-height:1.8">
+          <li>Q2毛利率是否维持27%+</li>
+          <li>印尼/墨西哥产能爬坡节奏</li>
+          <li>美元汇率vs人民币走势</li>
+          <li>特朗普关税政策落地细节</li>
+          <li>新和平基地H1盈亏情况</li>
+          <li>全年CAPEX实际节奏</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4 style="margin-bottom:12px;font-size:14px">Q1 2026 vs Q1 2025 逐项对比</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>损益项目（亿元）</th>
+          <th>2026Q1★</th>
+          <th>2025Q1★</th>
+          <th>变动</th>
+          <th>解读</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>营业收入</td>
+          <td>94.6</td>
+          <td>84.1</td>
+          <td class="pos">+12.5%</td>
+          <td>稳健增长，海外量价齐升</td>
+        </tr>
+        <tr>
+          <td>营业成本</td>
+          <td>69.2</td>
+          <td>63.3</td>
+          <td class="neg">+9.3%</td>
+          <td>成本增速低于收入 → 毛利率扩张</td>
+        </tr>
+        <tr class="good-row">
+          <td><strong>毛利率</strong></td>
+          <td><strong>26.9%</strong></td>
+          <td><strong>24.7%</strong></td>
+          <td class="pos"><strong>+2.2pp</strong></td>
+          <td>关键正信号：原料成本压力缓解</td>
+        </tr>
+        <tr>
+          <td>销售费用</td>
+          <td>4.51</td>
+          <td>3.53</td>
+          <td class="neg">+27.7%</td>
+          <td>超速增长，境外市场开拓费用</td>
+        </tr>
+        <tr>
+          <td>管理费用</td>
+          <td>3.10</td>
+          <td>2.56</td>
+          <td class="neg">+21.0%</td>
+          <td>组织扩张刚性费用增加</td>
+        </tr>
+        <tr>
+          <td>研发费用</td>
+          <td>2.74</td>
+          <td>2.59</td>
+          <td class="neg">+5.8%</td>
+          <td>增速放缓，可接受</td>
+        </tr>
+        <tr class="alert-row">
+          <td>财务费用（净）</td>
+          <td>2.26</td>
+          <td>0.51</td>
+          <td class="neg">+345%</td>
+          <td>主要系汇兑损失（非利息）！</td>
+        </tr>
+        <tr>
+          <td>&nbsp;&nbsp;其中：利息费用</td>
+          <td>1.11</td>
+          <td>1.07</td>
+          <td class="flat">+3.7%</td>
+          <td>利息支出基本稳定</td>
+        </tr>
+        <tr>
+          <td>资产减值损失</td>
+          <td>-0.27</td>
+          <td>+0.18</td>
+          <td class="neg">转负</td>
+          <td>存货或投资减值，非现金</td>
+        </tr>
+        <tr class="total-row">
+          <td>归母净利润</td>
+          <td>10.56</td>
+          <td>10.39</td>
+          <td class="flat">+1.7%</td>
+          <td>基本持平，汇兑损失拖累利润</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout-amber" style="margin-top:16px">
+      <div class="callout-title">财务费用暴增解读：汇兑损失，不是利息增加</div>
+      Q1 2026财务费用净额2.26亿 vs Q1 2025仅0.51亿，增幅高达345%。但利息费用仅+3.7%（1.11亿 vs 1.07亿）。差额2.26-1.11+0.12（利息收入）≈1.27亿来自<strong>外币财务报表折算损失</strong>，对应OCI中-2.57亿折算差额的损益表部分。这是人民币升值背景下，海外子公司（越南、印尼等）资产/负债的账面折算损失，为<strong>非现金项目</strong>，不影响实际业务盈利能力。
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: SCENARIOS -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">情景分析 · Scenario Framework 2026</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col" style="margin-bottom:20px">
+      <div>
+        <p><strong>核心变量：</strong>2026年业绩及财务健康度主要取决于以下驱动因子：①原材料价格走势（天胶/合成胶）；②关税政策落地（特朗普25%对华轮胎税的具体豁免/执行细节）；③汇率（美元/人民币）；④海外新基地产能爬坡速度；⑤国内替换市场需求。</p>
+      </div>
+      <div>
+        <p><strong>伊朗-美国地缘风险：</strong>此前研究中的伊朗-美国冲突变量，当前仍是活跃因素。若Hormuz海峡中断，油价急升→天然橡胶成本进一步承压（天胶价格已受东南亚供应影响，与原油相关性较低，但合成胶直接联动）；同时OTR重建需求受益赛轮非公路业务。当前情景权重：直接冲突低（15%），制裁升级中（40%），紧张持续高（45%）。</p>
+      </div>
+    </div>
+
+    <table class="scenario-table">
+      <thead>
+        <tr>
+          <th>情景</th>
+          <th>概率</th>
+          <th>关键假设</th>
+          <th>2026E营收</th>
+          <th>2026E净利润</th>
+          <th>2026E毛利率</th>
+          <th>年末IBD</th>
+          <th>结论</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="s-bull">
+          <td class="scenario-name">乐观：关税护城河兑现+原料平稳</td>
+          <td>25%</td>
+          <td>越南/印尼产能快速爬坡，天胶价格稳定，汇率企稳</td>
+          <td>420亿</td>
+          <td>42亿</td>
+          <td>27.5%+</td>
+          <td>~150亿</td>
+          <td><span class="badge badge-green">优于预期</span></td>
+        </tr>
+        <tr class="s-base">
+          <td class="scenario-name">基准：增长延续+压力持续</td>
+          <td>50%</td>
+          <td>收入+10-12%，毛利率维持26-27%，CAPEX温和放缓</td>
+          <td>400亿</td>
+          <td>37亿</td>
+          <td>26.5%</td>
+          <td>~155亿</td>
+          <td><span class="badge badge-amber">符合预期</span></td>
+        </tr>
+        <tr class="s-bear">
+          <td class="scenario-name">悲观：关税冲击+原料反弹</td>
+          <td>25%</td>
+          <td>美国加税执行，天胶价格反弹，汇兑损失持续</td>
+          <td>370亿</td>
+          <td>29亿</td>
+          <td>24.5%</td>
+          <td>~165亿</td>
+          <td><span class="badge badge-red">下行风险</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="src" style="margin-top:8px">注：以上预测为分析师推算，非公司指引 | IBD = 有息负债总额</p>
+  </div>
+</div>
+
+<!-- SECTION 8: RISK REGISTER -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">风险矩阵 · Risk Register</span>
+  </div>
+  <div class="section-body">
+    <div class="risk-grid">
+      <div class="risk-item risk-high">
+        <div class="risk-level" style="color:#dc2626">🔴 高风险</div>
+        <div class="risk-name">债务加速膨胀</div>
+        <div class="risk-desc">IBD从2024年102亿增至2026Q1末143.7亿，两年+40%。若CAPEX维持，2026年末可能突破160亿，净负债/EBITDA或超3x。需监控借款成本上行及再融资压力。</div>
+      </div>
+      <div class="risk-item risk-high">
+        <div class="risk-level" style="color:#dc2626">🔴 高风险</div>
+        <div class="risk-name">美国关税政策不确定性</div>
+        <div class="risk-desc">特朗普政府2025-2026年关税政策存在重大不确定性。若美国对东南亚产出补征关税，赛轮越南/印尼的护城河将大幅缩窄，出口美国市场收入受威胁。</div>
+      </div>
+      <div class="risk-item risk-med">
+        <div class="risk-level" style="color:#d97706">🟡 中等风险</div>
+        <div class="risk-name">毛利率持续性存疑</div>
+        <div class="risk-desc">Q1 2026毛利率26.9%的反转令人鼓舞，但若原料价格反弹（天胶受泰国供应扰动），或产品降价竞争加剧，2025年-3pp的压缩可能重现。</div>
+      </div>
+      <div class="risk-item risk-med">
+        <div class="risk-level" style="color:#d97706">🟡 中等风险</div>
+        <div class="risk-name">汇率风险敞口扩大</div>
+        <div class="risk-desc">Q1 2026 OCI汇兑损失-2.57亿，单季规模已接近2025全年（-3.44亿）。随着海外资产持续扩张，人民币升值将持续压缩归母净资产报告价值。</div>
+      </div>
+      <div class="risk-item risk-med">
+        <div class="risk-level" style="color:#d97706">🟡 中等风险</div>
+        <div class="risk-name">海外新基地爬坡风险</div>
+        <div class="risk-desc">印尼、墨西哥、埃及均处于建设/初期运营阶段，爬坡期亏损将继续拖累合并利润（类似此前越南的贡献路径）。若爬坡慢于预期，短期净利率仍承压。</div>
+      </div>
+      <div class="risk-item risk-low">
+        <div class="risk-level" style="color:#16a34a">🟢 低风险</div>
+        <div class="risk-name">短期流动性/违约风险</div>
+        <div class="risk-desc">货币资金59.6亿覆盖一年内到期负债14.7亿，利息覆盖率8.8x（FY2025），流动比率1.23x。近期违约风险极低，信用质量稳定。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: MONITORING AGENDA -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">后续监控议程 · Next Monitoring Agenda</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <h4 style="font-size:13px;margin-bottom:10px;font-weight:700">2026H1报告（8月发布）关注点</h4>
+        <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px;line-height:2.0">
+          <li><strong>毛利率：</strong>是否维持26%+，是否全年可见性</li>
+          <li><strong>有息负债：</strong>H1末能否稳定在150亿以内</li>
+          <li><strong>CAPEX：</strong>H1是否放缓（预计仍高，埃及+潍坊+国内项目）</li>
+          <li><strong>销售费用率：</strong>是否从4.8%回落至历史水平（约4%）</li>
+          <li><strong>沈阳新和平：</strong>关注是否新增重大亏损披露</li>
+          <li><strong>印尼工厂：</strong>产量和利润率情况（首次实质性贡献？）</li>
+          <li><strong>应收账款：</strong>Q1末66.7亿，需跟踪账期是否拉长</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:13px;margin-bottom:10px;font-weight:700">宏观/地缘持续监控</h4>
+        <ul style="font-size:12px;color:var(--text-secondary);padding-left:16px;line-height:2.0">
+          <li><strong>特朗普关税：</strong>东南亚轮胎产品是否被纳入下一轮关税清单</li>
+          <li><strong>天然橡胶价格：</strong>泰国/印度尼西亚产量及价格走势</li>
+          <li><strong>人民币/美元汇率：</strong>直接影响OCI和财务费用</li>
+          <li><strong>伊朗-美国紧张局势：</strong>油价及Hormuz风险对成本和OTR需求的传导</li>
+          <li><strong>中国新能源汽车出口：</strong>配套轮胎需求持续催化</li>
+        </ul>
+        <div class="callout callout-blue" style="margin-top:12px">
+          <div class="callout-title">与中策橡胶对比分析</div>
+          中策橡胶2025年报尚未纳入本次分析，建议在中策报告发布后开展更新对比，重点核实：①天胶锁价缓冲是否兑现；②IPO后资本结构变化；③Q1 2026毛利率是否同样呈现反转。
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main-content -->
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <div>赛轮集团（601058）深度研究报告 · 2025FY + 2026Q1更新版 · 生成日期：2026-04-29</div>
+  <div>数据来源：★ 赛轮集团2025年年度报告（已审计）| ★ 赛轮集团2026年第一季度报告（未经审计）| 衍生数据为分析师计算，非公司官方口径</div>
+  <div>本报告仅供研究参考，不构成投资建议。所有前瞻性预测均含不确定性，实际结果可能与预测存在重大差异。</div>
+  <div style="margin-top:4px">GitHub: Pjaaden/Stock-Research | 研究框架版本: v4.0 | 分析师: Zhijian / Claude Sonnet 4.6</div>
+</div>
+
+<script>
+// Chart 1: Revenue vs Net Profit
+new Chart(document.getElementById('revenueChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2023', '2024', '2025', '2026Q1×4'],
+    datasets: [
+      {
+        label: '营业收入',
+        data: [259.8, 318.0, 367.9, 378.4],
+        backgroundColor: 'rgba(30, 64, 175, 0.7)',
+        borderRadius: 3,
+      },
+      {
+        label: '归母净利润',
+        data: [30.9, 40.6, 35.2, 42.2],
+        backgroundColor: 'rgba(200, 75, 47, 0.7)',
+        borderRadius: 3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: { size: 11 }, color: '#5c5650' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#9c9690', font: { size: 10 } } },
+      y: { grid: { color: '#e0dbd2' }, ticks: { color: '#9c9690', font: { size: 10 }, callback: v => v + '亿' } }
+    }
+  }
+});
+
+// Chart 2: Gross Margin quarterly
+new Chart(document.getElementById('marginChart'), {
+  type: 'line',
+  data: {
+    labels: ['FY2024', 'Q1 2025', 'Q2 2025', 'Q3 2025', 'Q4 2025', 'Q1 2026'],
+    datasets: [{
+      label: '毛利率',
+      data: [27.71, 24.7, 24.5, 24.6, 24.7, 26.9],
+      borderColor: '#2d6a4f',
+      backgroundColor: 'rgba(45,106,79,0.1)',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 4,
+      pointBackgroundColor: '#2d6a4f',
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: { size: 11 }, color: '#5c5650' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#9c9690', font: { size: 10 } } },
+      y: { 
+        grid: { color: '#e0dbd2' }, 
+        ticks: { color: '#9c9690', font: { size: 10 }, callback: v => v + '%' },
+        min: 22,
+        max: 30
+      }
+    }
+  }
+});
+
+// Chart 3: Cash gap
+new Chart(document.getElementById('cashGapChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Q3 2025\n(年化推算)', 'FY2025\n(实际)', 'Q1 2026\n(季度)'],
+    datasets: [{
+      label: '真实资金缺口（亿元）',
+      data: [-21.6, -8.7, -13.3],
+      backgroundColor: ['rgba(200,75,47,0.6)', 'rgba(180,83,9,0.6)', 'rgba(200,75,47,0.6)'],
+      borderRadius: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#9c9690', font: { size: 10 } } },
+      y: { grid: { color: '#e0dbd2' }, ticks: { color: '#9c9690', font: { size: 10 }, callback: v => v + '亿' } }
+    }
+  }
+});
+
+// Chart 4: Debt structure
+new Chart(document.getElementById('debtChart'), {
+  type: 'bar',
+  data: {
+    labels: ['FY2024', 'FY2025', 'Q1 2026'],
+    datasets: [
+      { label: '短期借款', data: [58.1, 59.6, 69.2], backgroundColor: 'rgba(200,75,47,0.8)', borderRadius: 2 },
+      { label: '一年内到期', data: [10.6, 15.5, 14.7], backgroundColor: 'rgba(200,75,47,0.5)', borderRadius: 2 },
+      { label: '长期借款', data: [33.7, 43.5, 59.8], backgroundColor: 'rgba(30,64,175,0.6)', borderRadius: 2 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: { size: 10 }, color: '#5c5650' } } },
+    scales: {
+      x: { stacked: true, grid: { display: false }, ticks: { color: '#9c9690', font: { size: 10 } } },
+      y: { stacked: true, grid: { color: '#e0dbd2' }, ticks: { color: '#9c9690', font: { size: 10 }, callback: v => v + '亿' } }
+    }
+  }
+});
+
+// Chart 5: Leverage
+new Chart(document.getElementById('leverageChart'), {
+  type: 'line',
+  data: {
+    labels: ['FY2023', 'FY2024', 'Q3 2025', 'FY2025', 'Q1 2026'],
+    datasets: [
+      {
+        label: '资产负债率(%)',
+        data: [44.0, 48.9, 50.3, 50.0, 51.2],
+        borderColor: '#c84b2f',
+        tension: 0.3,
+        pointRadius: 4,
+        yAxisID: 'y',
+      },
+      {
+        label: '有息负债(亿元)',
+        data: [73, 102.4, 121.2, 118.6, 143.7],
+        borderColor: '#1e40af',
+        tension: 0.3,
+        pointRadius: 4,
+        borderDash: [5,3],
+        yAxisID: 'y2',
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { labels: { font: { size: 10 }, color: '#5c5650' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#9c9690', font: { size: 10 } } },
+      y: { 
+        grid: { color: '#e0dbd2' }, 
+        ticks: { color: '#c84b2f', font: { size: 10 }, callback: v => v + '%' },
+        position: 'left',
+        min: 40, max: 60
+      },
+      y2: {
+        ticks: { color: '#1e40af', font: { size: 10 }, callback: v => v + '亿' },
+        position: 'right',
+        grid: { display: false },
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
