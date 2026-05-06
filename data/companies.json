@@ -178,10 +178,10 @@
       "exchange": "A",
       "sector": "轮胎制造·全球化产能布局",
       "research_folder": "赛轮集团_601058",
-      "price": 14.0,
+      "price": 13.7,
       "shares": 28,
       "net_cash_bn": -121.2,
-      "eps_forecast": 0.65,
+      "eps_forecast": 1.2,
       "discount_rate": 8,
       "valuation_method": "PE×EPS + 海外工厂税收溢价 + 油价情景概率加权",
       "signal": "hold",
@@ -189,8 +189,8 @@
       "avg_cost": 13.799,
       "max_position_pct": 20,
       "rating": "hold",
-      "next_catalyst": "4月25–27日伊朗方案窗口 | 4月29日战争法截止 | 4月30日Q1季报 | 5月1日涨价执行",
-      "data_as_of": "2025Q3 + v1–v15伊朗战争系列（涨价落地+停火延期版）",
+      "next_catalyst": "6月18日欧盟反倾销终裁 | 7月底Q2季报 | 霍尔木兹常态化时点 | 2026Q2原材料拐点",
+      "data_as_of": "2025年报+2026Q1已发 + 欧盟反倾销+Q2成本+油价反弹（v16）",
       "baseline_data": {
         "interest_bearing_debt_bn": 121.2,
         "operating_cf_bn": 25,
@@ -203,21 +203,21 @@
       "scenarios": [
         {
           "name": "牛市",
-          "prob": 15,
-          "target_price": 16.5,
-          "assumptions": "情景A·真正协议·全年Brent $80–90·涨价+油价双利好·2026E EPS约1.0–1.2元"
+          "prob": 25,
+          "target_price": 17.0,
+          "assumptions": "霍尔木兹稳定·欧盟反倾销维持·产能爬坡超预期·2026E EPS 1.30–1.46元·目标PB 2.4–2.6x"
         },
         {
           "name": "基准",
           "prob": 50,
-          "target_price": 13.5,
-          "assumptions": "情景B·朝战拖延+涨价对冲·全年Brent $90–110·2026E净利18–26亿（含涨价+3–4亿）·EPS约0.55–0.79元"
+          "target_price": 14.5,
+          "assumptions": "朝战模式延续·油价$95–115·产能按计划·2026E净利36–42亿·EPS 1.10–1.28元·目标PB 2.1–2.3x"
         },
         {
           "name": "熊市",
-          "prob": 35,
-          "target_price": 9.0,
-          "assumptions": "情景C/D·停火崩溃/极端升级·全年Brent $115–145+·涨价被成本暴涨淹没·EPS约0–0.43元"
+          "prob": 25,
+          "target_price": 10.5,
+          "assumptions": "霍尔木兹严重升级·Q3油价>$130·原材料持续高位·2026E净利24–32亿·EPS 0.73–0.97元"
         }
       ],
       "position_rules": [
@@ -349,32 +349,32 @@
           {
             "price": 8.0,
             "label": "强力买入",
-            "note": "PB 1.54x · 成长溢价归零 · 相当于0x成长期权 · 极度低估"
+            "note": "PB 1.22x · 极度低估"
           },
           {
             "price": 10.0,
             "label": "买入",
-            "note": "PB 1.92x · 按达产EPS 1.4元的7x PE · 成长折价充分"
+            "note": "PB 1.52x · 2026E EPS 1.2元的8.3x"
           },
           {
             "price": 12.0,
             "label": "持有下沿",
-            "note": "PB 2.31x · 战争压力EPS 0.55元的22x PE · 含成长溢价"
+            "note": "PB 1.83x · 合理偏低"
           },
           {
-            "price": 14.0,
-            "label": "当前股价",
-            "note": "PB 2.69x · 达产EPS 1.4元的10x PE · 合理但无折价"
+            "price": 13.7,
+            "label": "当前",
+            "note": "PB 2.09x · 2026E EPS 1.2元的11.4x"
           },
           {
             "price": 15.5,
             "label": "减仓",
-            "note": "PB 2.98x · 达产EPS 1.7元的9x PE · 好消息开始充分定价"
+            "note": "PB 2.36x · 偏高"
           },
           {
             "price": 18.0,
             "label": "卖出",
-            "note": "PB 3.46x · 达产EPS 2.0元的9x PE · 完美情景完全定价"
+            "note": "PB 2.74x · 充分定价"
           }
         ]
       },
@@ -405,6 +405,33 @@
           "tax_saving": "海外税收优惠vs国内25%·每年节省5–8亿·结构性·不受周期影响"
         },
         "last_updated": "2026-04-16"
+      },
+      "key_financials_2025": {
+        "revenue": 367.92,
+        "net_profit": 35.22,
+        "net_profit_yoy": -13.3,
+        "operating_cash_flow": 41.79,
+        "ocf_yoy": 82.58,
+        "gross_margin": 24.68,
+        "roe": 17.04,
+        "eps": 1.08,
+        "bps": 6.57,
+        "tire_volume_yoy": 12.44,
+        "tire_price_yoy": 3.57,
+        "asset_impairment_2025Q4": 1.96,
+        "construction_in_progress_impairment": 0
+      },
+      "key_financials_2026Q1": {
+        "revenue": 94.61,
+        "revenue_yoy": 12.48,
+        "net_profit": 10.56,
+        "net_profit_yoy": 1.72,
+        "operating_cash_flow": 1.76,
+        "gross_margin": 26.86,
+        "gross_margin_change_yoy": 2.12,
+        "eps": 0.32,
+        "raw_material_yoy": -12.12,
+        "exchange_loss": 2.57
       }
     },
     {
