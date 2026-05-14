@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>天然橡胶 · 多维数据仪表盘 · 2025–2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#b4afa6;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.65;}
+.hdr{background:var(--bg2);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:14px 0 13px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:6px;}
+h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);}
+.sub{font-size:12px;color:var(--mu);margin-top:7px;max-width:830px;line-height:1.7;}
+main{padding:0 44px 50px;}
+section{margin-top:22px;}
+.sec-hd{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:12px;display:flex;justify-content:space-between;align-items:baseline;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+/* TILES */
+.tiles{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:2px;}
+.tile{background:var(--bg2);padding:11px 13px;}
+.tl{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.5px;color:var(--di);text-transform:uppercase;margin-bottom:4px;}
+.tv{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;line-height:1;}
+.ts{font-family:'JetBrains Mono',monospace;font-size:8.5px;margin-top:3px;color:var(--mu);}
+.up{color:var(--r);}.dn{color:var(--g);}
+
+/* CHART CONTAINERS */
+.chart-card{background:var(--bg2);border:1px solid var(--line);padding:14px 18px;margin-bottom:14px;}
+.chart-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.chart-title{font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.chart-sub{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--mu);letter-spacing:1px;}
+.chart-controls{display:flex;gap:5px;}
+.chart-btn{background:var(--bg3);border:1px solid var(--line);padding:3px 9px;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--mu);cursor:pointer;letter-spacing:.5px;}
+.chart-btn:hover{background:var(--bg4);}
+.chart-btn.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.chart-canvas{height:330px;position:relative;}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+
+.box{border-left:3px solid;padding:10px 14px;margin:10px 0;font-size:11.5px;line-height:1.7;}
+.box strong{color:var(--ink);}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11px;margin:8px 0;}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:6px 11px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+tbody td{padding:6px 11px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:10.5px;}
+tr:hover td{background:var(--bg3);}
+
+.legend-inline{display:flex;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);margin-top:6px;padding-top:6px;border-top:1px solid var(--line);}
+.li-dot{display:inline-block;width:10px;height:3px;vertical-align:middle;margin-right:4px;}
+
+footer{padding:11px 44px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:.8px;}
+
+.fw7{font-weight:700;}
+.c-r{color:var(--r);}.c-g{color:var(--g);}.c-a{color:var(--a);}.c-b{color:var(--b);}.c-p{color:var(--p);}.c-m{color:var(--mu);}
+
+/* Annotation pills on charts */
+.annot{position:absolute;background:var(--ink);color:#fff;font-family:'JetBrains Mono',monospace;font-size:8px;padding:2px 6px;letter-spacing:.5px;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>天然橡胶 · 全球价格仪表盘 · 用于赛轮成本传导分析</span>
+    <span>数据：ANRPC日度+SHFE/SGX期货 · 共351个交易日+38个期货日</span>
+    <span>2026.05.14</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Natural Rubber Price Dashboard · 2025–2026</div>
+    <h1>橡胶价格已突破<em>近十年同期高点</em>·赛轮成本中枢<span class="g">永久性上移</span></h1>
+    <div class="sub">基于ANRPC官方日度数据（2025年1月至2026年5月）+ SHFE/SGX期货数据。展示5个主要等级+2个期货合约的完整价格走势、跨年对比、季节性偏离、相对涨幅、价差结构。所有图表交互式可调时间窗口。</div>
+  </div>
+</div>
+
+<main>
+
+<!-- KEY TILES -->
+<section>
+  <div class="sec-hd"><span>关键指标 · 截至2026年5月6日</span><span class="meta">DATA AS OF 20260506</span></div>
+  <div class="tiles">
+    <div class="tile">
+      <div class="tl">RSS3 (Bangkok)</div>
+      <div class="tv c-r">$289.53/kg</div>
+      <div class="ts up">▲ +36.5% YTD · +24% YoY</div>
+    </div>
+    <div class="tile">
+      <div class="tl">STR20 (Bangkok)</div>
+      <div class="tv c-r">$236.74/kg</div>
+      <div class="ts up">主力商业级·赛轮主要采购品种</div>
+    </div>
+    <div class="tile">
+      <div class="tl">SMR20 (Malaysia)</div>
+      <div class="tv c-r">$224.80/kg</div>
+      <div class="ts up">马来基准·全钢胎核心原料</div>
+    </div>
+    <div class="tile">
+      <div class="tl">Latex (Malaysia)</div>
+      <div class="tv c-r">$194.72/kg</div>
+      <div class="ts up">医疗手套核心原料</div>
+    </div>
+    <div class="tile">
+      <div class="tl">SHFE RSS3 主力</div>
+      <div class="tv c-r">17,950 ¥/T</div>
+      <div class="ts up">▲ +17.6% 自2025年12月起</div>
+    </div>
+    <div class="tile">
+      <div class="tl">SGX TSR20</div>
+      <div class="tv c-r">$2.30/kg</div>
+      <div class="ts up">▲ +34% 自2025年12月起</div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN PRICE CHART -->
+<section>
+  <div class="sec-hd"><span>1 · 主要现货价格走势 · 跨2025–2026年</span><span class="meta">5 BENCHMARK GRADES · DAILY</span></div>
+  <div class="chart-card">
+    <div class="chart-hd">
+      <div>
+        <div class="chart-title">五大基准等级日度FOB价格</div>
+        <div class="chart-sub">所有等级单位：USD cents/kg · 2025-01-01 至 2026-05-06</div>
+      </div>
+      <div class="chart-controls">
+        <button class="chart-btn active" onclick="setMainPeriod(this, 'all')">全部</button>
+        <button class="chart-btn" onclick="setMainPeriod(this, '2026')">仅2026</button>
+        <button class="chart-btn" onclick="setMainPeriod(this, '6m')">最近6月</button>
+        <button class="chart-btn" onclick="setMainPeriod(this, '3m')">最近3月</button>
+      </div>
+    </div>
+    <div class="chart-canvas"><canvas id="mainChart"></canvas></div>
+    <div class="legend-inline">
+      <span><span class="li-dot" style="background:#c41a08"></span>RSS3 Bangkok·烟胶片3号·最高等级</span>
+      <span><span class="li-dot" style="background:#1a3870"></span>RSS4 Kottayam·印度烟片胶</span>
+      <span><span class="li-dot" style="background:#1a6030"></span>STR20 Bangkok·标准胶20·赛轮主采</span>
+      <span><span class="li-dot" style="background:#8c4800"></span>SMR20 Malaysia·马来标胶</span>
+      <span><span class="li-dot" style="background:#521a80"></span>Latex Malaysia·浓缩乳胶</span>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURES + SPOT-FUTURES BASIS -->
+<section>
+  <div class="sec-hd"><span>2 · 期货市场表现 · SHFE & SGX</span><span class="meta">FUTURES MARKETS · 6 MONTHS</span></div>
+  <div class="two-col">
+    <div class="chart-card">
+      <div class="chart-hd">
+        <div>
+          <div class="chart-title">SHFE 主力合约 (RSS3)</div>
+          <div class="chart-sub">人民币/吨 · 上海期货交易所</div>
+        </div>
+      </div>
+      <div class="chart-canvas" style="height:280px"><canvas id="shfeChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-hd">
+        <div>
+          <div class="chart-title">SGX (SICOM) TSR20</div>
+          <div class="chart-sub">USD/kg · 新加坡交易所</div>
+        </div>
+      </div>
+      <div class="chart-canvas" style="height:280px"><canvas id="sgxChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<!-- CROSS-GRADE SPREAD ANALYSIS -->
+<section>
+  <div class="sec-hd"><span>3 · 跨等级价差结构 · 质量溢价</span><span class="meta">GRADE PREMIUMS</span></div>
+  <div class="chart-card">
+    <div class="chart-hd">
+      <div>
+        <div class="chart-title">RSS3 vs STR20 价差 · 高级别溢价指标</div>
+        <div class="chart-sub">价差扩大 = 高质量胶供应紧张 · 价差收窄 = 供应正常化</div>
+      </div>
+    </div>
+    <div class="chart-canvas" style="height:260px"><canvas id="spreadChart"></canvas></div>
+    <div class="box box-b">
+      <strong>价差变化的含义：</strong>RSS3（烟胶片3号）和STR20（标准胶20）的价差近期持续扩大，2025年初约$25/kg，2026年5月扩大至$50+/kg。这反映出<strong>高级别天然橡胶（用于乘用车胎、航空胎等高端应用）的供应特别紧张</strong>。对赛轮而言：①若赛轮主要采购STR20，相对成本压力小于使用RSS3的高端品牌；②若赛轮试图升级产品结构（半钢胎使用更多RSS3），原料成本将面临额外溢价。
+    </div>
+  </div>
+</section>
+
+<!-- YEAR OVER YEAR COMPARISON -->
+<section>
+  <div class="sec-hd"><span>4 · 同比对比 · 2026 vs 2025</span><span class="meta">YEAR-OVER-YEAR OVERLAY</span></div>
+  <div class="chart-card">
+    <div class="chart-hd">
+      <div>
+        <div class="chart-title">RSS3 同期对比（按日历日叠加）</div>
+        <div class="chart-sub">直观看出2026年的偏离幅度·所有月份均显著高于2025年</div>
+      </div>
+      <div class="chart-controls">
+        <button class="chart-btn active" onclick="setYoYGrade(this,'RSS3')">RSS3</button>
+        <button class="chart-btn" onclick="setYoYGrade(this,'STR20')">STR20</button>
+        <button class="chart-btn" onclick="setYoYGrade(this,'SMR20')">SMR20</button>
+        <button class="chart-btn" onclick="setYoYGrade(this,'Latex')">Latex</button>
+      </div>
+    </div>
+    <div class="chart-canvas" style="height:280px"><canvas id="yoyChart"></canvas></div>
+  </div>
+</section>
+
+<!-- ALL 2026 GRADES -->
+<section>
+  <div class="sec-hd"><span>5 · 2026年全等级走势 · 含SIR20/SVR10</span><span class="meta">2026 ONLY · 7 GRADES</span></div>
+  <div class="chart-card">
+    <div class="chart-hd">
+      <div>
+        <div class="chart-title">2026年1月-5月 · 全等级日度价格</div>
+        <div class="chart-sub">最大涨幅Latex Malaysia·5个月+27%·结构性需求驱动</div>
+      </div>
+    </div>
+    <div class="chart-canvas" style="height:320px"><canvas id="all2026Chart"></canvas></div>
+    <div class="legend-inline">
+      <span><span class="li-dot" style="background:#c41a08"></span>RSS3 (TRA)</span>
+      <span><span class="li-dot" style="background:#1a3870"></span>RSS4 (Kottayam)</span>
+      <span><span class="li-dot" style="background:#1a6030"></span>STR20 (TRA)</span>
+      <span><span class="li-dot" style="background:#8c4800"></span>SMR20 (MRE)</span>
+      <span><span class="li-dot" style="background:#521a80"></span>Latex Malaysia</span>
+      <span><span class="li-dot" style="background:#d68a4a"></span>SIR20 (GAPKINDO)</span>
+      <span><span class="li-dot" style="background:#7a3a8a"></span>SVR10 (VRA)</span>
+    </div>
+  </div>
+</section>
+
+<!-- COST IMPACT TABLE -->
+<section>
+  <div class="sec-hd"><span>6 · 对赛轮成本端的量化影响</span><span class="meta">COST IMPACT ANALYSIS</span></div>
+  <div class="three-col">
+    <div class="chart-card" style="padding:14px 18px">
+      <div class="chart-title" style="margin-bottom:8px">天胶价格 → 总成本</div>
+      <div style="font-size:11.5px;color:var(--mu);line-height:1.8">
+        天胶占赛轮总成本约 <strong style="color:var(--ink)">25%</strong>（加权TBR+PCR）<br>
+        天胶涨10%·总成本上升约 <strong style="color:var(--ink)">2.5%</strong><br>
+        毛利率压缩 <strong style="color:var(--r)">~2.5pp</strong>
+      </div>
+    </div>
+    <div class="chart-card" style="padding:14px 18px">
+      <div class="chart-title" style="margin-bottom:8px">当前涨幅折算</div>
+      <div style="font-size:11.5px;color:var(--mu);line-height:1.8">
+        STR20 2026 YTD: <strong style="color:var(--r)">+18.5%</strong><br>
+        总成本影响约 <strong style="color:var(--r)">+4.6%</strong><br>
+        Q2毛利率预计 <strong style="color:var(--r)">22-24%</strong>（Q1: 26.86%）
+      </div>
+    </div>
+    <div class="chart-card" style="padding:14px 18px">
+      <div class="chart-title" style="margin-bottom:8px">价格回落情景</div>
+      <div style="font-size:11.5px;color:var(--mu);line-height:1.8">
+        若Q3 STR20回落至$2.10/kg<br>
+        总成本回落约 <strong style="color:var(--g)">-3.5%</strong><br>
+        毛利率恢复 <strong style="color:var(--g)">~25%</strong>·EPS压力缓解
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>情景</th><th>STR20均价</th><th>RSS3均价</th><th>总成本影响</th><th>Q2-Q4毛利率</th><th>2026E净利润</th><th>2026E EPS</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7 c-g">乐观·季节性回落</td><td>$2.10/kg</td><td>$2.50/kg</td><td class="c-g">-1.5%</td><td class="c-g">25.5%</td><td class="c-g fw7">40-44亿</td><td class="c-g fw7">1.22-1.34元</td></tr>
+      <tr><td class="fw7 c-a">基准·当前价格延续</td><td>$2.30/kg</td><td>$2.80/kg</td><td class="c-a">基准</td><td class="c-a">23-24%</td><td class="c-a fw7">34-38亿</td><td class="c-a fw7">1.03-1.16元</td></tr>
+      <tr><td class="fw7 c-r">悲观·继续上涨</td><td>$2.60/kg</td><td>$3.20/kg</td><td class="c-r">+4.0%</td><td class="c-r">20-22%</td><td class="c-r fw7">26-32亿</td><td class="c-r fw7">0.79-0.97元</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- KEY OBSERVATIONS -->
+<section>
+  <div class="sec-hd"><span>7 · 数据驱动的核心结论</span><span class="meta">KEY OBSERVATIONS</span></div>
+  <div class="two-col">
+    <div>
+      <div class="box box-r">
+        <strong>结论①·近十年同期最高位是确凿事实</strong><br><br>
+        ANRPC日度数据确认：2026年5月6日RSS3报$2.90/kg，是2025年同期（约$2.13/kg）的<strong>1.36倍</strong>。STR20、SMR20等所有等级同步处于历史高位。这不是单一品种异动，而是<strong>整个天胶定价体系的整体性抬升</strong>。
+      </div>
+      <div class="box box-r">
+        <strong>结论②·SHFE中国市场涨幅领先全球</strong><br><br>
+        SHFE RSS3主力从2025年12月15,265元/吨涨至17,950元/吨（+17.6%），同期SGX TSR20涨幅+34%。中国期货市场涨幅小于国际，反映<strong>中国库存相对充裕+人民币升值缓冲</strong>——但赛轮主要采购泰国/印尼现货，承担的是国际价格。
+      </div>
+      <div class="box box-b">
+        <strong>结论③·跨等级价差扩大说明高端胶最紧张</strong><br><br>
+        RSS3-STR20价差从2025年初约$25/kg扩大至2026年5月约$53/kg。这意味着<strong>用于乘用车高端胎、航空胎的烟胶片严重紧缺</strong>，而工业用标准胶相对宽松。赛轮若以STR20为主，相对受影响较小。
+      </div>
+    </div>
+    <div>
+      <div class="box box-a">
+        <strong>结论④·乳胶涨幅最猛指向医疗手套需求</strong><br><br>
+        Latex Malaysia 2026 YTD涨幅+34%，超过其他所有等级。这与<strong>后疫情时代医疗手套结构性需求</strong>相关，与轮胎行业关联较小。但同一种胶树同时供应轮胎胶和乳胶，乳胶涨价会挤压轮胎用胶供应。
+      </div>
+      <div class="box box-g">
+        <strong>结论⑤·关键季节性窗口在5-9月</strong><br><br>
+        历史规律：东南亚6-9月是丰割季，传统上Q3价格回落10-13%。但2026年遭遇<strong>泰国南部降雨缺口69%+老化树+病害</strong>三重压制。这次季节性回落的力度可能远小于历史平均，甚至完全不出现。<strong>这是赛轮Q3-Q4成本走向的最关键变量</strong>。
+      </div>
+      <div class="box box-p">
+        <strong>结论⑥·赛轮的"成本中枢永久上移"假设</strong><br><br>
+        即便季节性回落出现，回落起点已经是历史最高位。当前价格在十年同期最高位+30%以上的水平。<strong>赛轮投资者应将$2.20/kg STR20作为新的成本基准</strong>（vs 历史平均$1.50/kg），这是估值模型需要永久性修正的参数。
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据源：ANRPC月度报告+日度价格表 · SHFE上海期货交易所 · SGX/SICOM新加坡交易所</span>
+  <span>天然橡胶仪表盘_20260514 · v1 · 用于赛轮601058成本分析 · FOR REFERENCE ONLY</span>
+</footer>
+
+<script>
+const RUBBER_DATA = {"Latex":[{"date":"2025-01-01","value":158.53},{"date":"2025-01-02","value":157.58},{"date":"2025-01-03","value":156.04},{"date":"2025-01-06","value":155.25},{"date":"2025-01-07","value":154.47},{"date":"2025-01-08","value":153.75},{"date":"2025-01-09","value":153.02},{"date":"2025-01-10","value":153.03},{"date":"2025-01-13","value":151.93},{"date":"2025-01-14","value":151.71},{"date":"2025-01-15","value":151.28},{"date":"2025-01-16","value":151.84},{"date":"2025-01-17","value":151.46},{"date":"2025-01-20","value":151.63},{"date":"2025-01-21","value":153.03},{"date":"2025-01-22","value":155.33},{"date":"2025-01-23","value":155.2},{"date":"2025-01-24","value":156.61},{"date":"2025-01-27","value":157.71},{"date":"2025-01-28","value":157.71},{"date":"2025-01-29","value":157.71},{"date":"2025-01-30","value":157.71},{"date":"2025-01-31","value":156.08},{"date":"2025-02-03","value":154.81},{"date":"2025-02-04","value":157.06},{"date":"2025-02-05","value":157.31},{"date":"2025-02-06","value":158.11},{"date":"2025-02-07","value":157.89},{"date":"2025-02-10","value":156.42},{"date":"2025-02-11","value":156.42},{"date":"2025-02-12","value":156.73},{"date":"2025-02-13","value":156.89},{"date":"2025-02-14","value":157.28},{"date":"2025-02-17","value":157.37},{"date":"2025-02-18","value":157.44},{"date":"2025-02-19","value":157.89},{"date":"2025-02-20","value":159.12},{"date":"2025-02-21","value":160.17},{"date":"2025-02-24","value":161.3},{"date":"2025-02-25","value":161.91},{"date":"2025-02-26","value":161.87},{"date":"2025-02-27","value":162.39},{"date":"2025-02-28","value":162.18},{"date":"2025-03-03","value":163.32},{"date":"2025-03-04","value":163.19},{"date":"2025-03-05","value":162.92},{"date":"2025-03-06","value":163.47},{"date":"2025-03-07","value":162.23},{"date":"2025-03-10","value":161.67},{"date":"2025-03-11","value":161.07},{"date":"2025-03-12","value":160.57},{"date":"2025-03-13","value":159.85},{"date":"2025-03-14","value":159.53},{"date":"2025-03-17","value":158.4},{"date":"2025-03-18","value":158.4},{"date":"2025-03-19","value":158.68},{"date":"2025-03-20","value":159.32},{"date":"2025-03-21","value":158.12},{"date":"2025-03-24","value":157.61},{"date":"2025-03-25","value":156.65},{"date":"2025-03-26","value":155.49},{"date":"2025-03-27","value":154.98},{"date":"2025-03-28","value":154.0},{"date":"2025-03-31","value":154.0},{"date":"2025-04-01","value":154.0},{"date":"2025-04-02","value":153.41},{"date":"2025-04-03","value":151.6},{"date":"2025-04-04","value":153.52},{"date":"2025-04-07","value":151.02},{"date":"2025-04-08","value":151.02},{"date":"2025-04-09","value":148.14},{"date":"2025-04-10","value":149.24},{"date":"2025-04-11","value":150.36},{"date":"2025-04-14","value":151.19},{"date":"2025-04-15","value":150.86},{"date":"2025-04-16","value":149.5},{"date":"2025-04-17","value":150.17},{"date":"2025-04-18","value":150.17},{"date":"2025-04-21","value":149.87},{"date":"2025-04-22","value":148.94},{"date":"2025-04-23","value":146.4},{"date":"2025-04-24","value":146.15},{"date":"2025-04-25","value":145.38},{"date":"2025-04-28","value":144.5},{"date":"2025-04-29","value":144.76},{"date":"2025-04-30","value":144.58},{"date":"2025-05-01","value":144.58},{"date":"2025-05-02","value":144.24},{"date":"2025-05-05","value":146.61},{"date":"2025-05-06","value":144.38},{"date":"2025-05-07","value":143.48},{"date":"2025-05-08","value":142.98},{"date":"2025-05-09","value":142.41},{"date":"2025-05-12","value":142.41},{"date":"2025-05-13","value":144.58},{"date":"2025-05-14","value":145.24},{"date":"2025-05-15","value":145.04},{"date":"2025-05-16","value":145.19},{"date":"2025-05-19","value":144.3},{"date":"2025-05-20","value":145.04},{"date":"2025-05-21","value":146.86},{"date":"2025-05-22","value":148.82},{"date":"2025-05-23","value":150.04},{"date":"2025-05-26","value":151.03},{"date":"2025-05-27","value":151.57},{"date":"2025-05-28","value":149.81},{"date":"2025-05-29","value":150.36},{"date":"2025-05-30","value":148.89},{"date":"2025-06-02","value":148.89},{"date":"2025-06-03","value":146.95},{"date":"2025-06-04","value":145.83},{"date":"2025-06-05","value":145.58},{"date":"2025-06-06","value":144.76},{"date":"2025-06-09","value":142.96},{"date":"2025-06-10","value":141.92},{"date":"2025-06-11","value":140.29},{"date":"2025-06-12","value":140.29},{"date":"2025-06-13","value":138.86},{"date":"2025-06-16","value":139.3},{"date":"2025-06-17","value":140.03},{"date":"2025-06-18","value":140.62},{"date":"2025-06-19","value":140.94},{"date":"2025-06-20","value":140.82},{"date":"2025-06-23","value":140.32},{"date":"2025-06-24","value":139.96},{"date":"2025-06-25","value":140.78},{"date":"2025-06-26","value":141.04},{"date":"2025-06-27","value":141.04},{"date":"2025-06-30","value":140.75},{"date":"2025-07-01","value":141.4},{"date":"2025-07-02","value":140.43},{"date":"2025-07-03","value":139.07},{"date":"2025-07-04","value":137.33},{"date":"2025-07-07","value":136.16},{"date":"2025-07-08","value":135.71},{"date":"2025-07-09","value":135.11},{"date":"2025-07-10","value":135.17},{"date":"2025-07-11","value":135.3},{"date":"2025-07-14","value":134.95},{"date":"2025-07-15","value":134.84},{"date":"2025-07-16","value":134.91},{"date":"2025-07-17","value":135.64},{"date":"2025-07-18","value":137.05},{"date":"2025-07-21","value":136.78},{"date":"2025-07-22","value":137.93},{"date":"2025-07-23","value":137.86},{"date":"2025-07-24","value":139.77},{"date":"2025-07-25","value":139.57},{"date":"2025-07-28","value":138.97},{"date":"2025-07-29","value":138.79},{"date":"2025-07-30","value":137.85},{"date":"2025-07-31","value":136.71},{"date":"2025-08-01","value":134.77},{"date":"2025-08-04","value":135.75},{"date":"2025-08-05","value":136.48},{"date":"2025-08-06","value":136.1},{"date":"2025-08-07","value":136.17},{"date":"2025-08-08","value":136.77},{"date":"2025-08-11","value":137.89},{"date":"2025-08-12","value":137.89},{"date":"2025-08-13","value":138.91},{"date":"2025-08-14","value":138.25},{"date":"2025-08-15","value":138.01},{"date":"2025-08-18","value":137.21},{"date":"2025-08-19","value":137.66},{"date":"2025-08-20","value":136.53},{"date":"2025-08-21","value":137.04},{"date":"2025-08-22","value":136.51},{"date":"2025-08-25","value":137.2},{"date":"2025-08-26","value":137.87},{"date":"2025-08-27","value":137.33},{"date":"2025-08-28","value":137.84},{"date":"2025-08-29","value":137.68},{"date":"2025-09-01","value":137.68},{"date":"2025-09-02","value":138.41},{"date":"2025-09-03","value":138.4},{"date":"2025-09-04","value":138.64},{"date":"2025-09-05","value":138.64},{"date":"2025-09-08","value":139.24},{"date":"2025-09-09","value":138.94},{"date":"2025-09-10","value":139.32},{"date":"2025-09-11","value":139.0},{"date":"2025-09-12","value":139.27},{"date":"2025-09-15","value":139.27},{"date":"2025-09-16","value":139.27},{"date":"2025-09-17","value":140.2},{"date":"2025-09-18","value":140.34},{"date":"2025-09-19","value":139.99},{"date":"2025-09-22","value":140.64},{"date":"2025-09-23","value":140.57},{"date":"2025-09-24","value":140.75},{"date":"2025-09-25","value":140.81},{"date":"2025-09-26","value":140.53},{"date":"2025-09-29","value":140.34},{"date":"2025-09-30","value":140.11},{"date":"2025-10-01","value":138.84},{"date":"2025-10-02","value":137.63},{"date":"2025-10-03","value":138.08},{"date":"2025-10-06","value":138.73},{"date":"2025-10-07","value":138.32},{"date":"2025-10-08","value":138.29},{"date":"2025-10-09","value":138.77},{"date":"2025-10-10","value":138.59},{"date":"2025-10-13","value":138.04},{"date":"2025-10-14","value":138.11},{"date":"2025-10-15","value":137.87},{"date":"2025-10-16","value":137.45},{"date":"2025-10-17","value":137.25},{"date":"2025-10-20","value":137.25},{"date":"2025-10-21","value":137.08},{"date":"2025-10-22","value":136.77},{"date":"2025-10-23","value":136.68},{"date":"2025-10-24","value":136.97},{"date":"2025-10-27","value":137.2},{"date":"2025-10-28","value":137.53},{"date":"2025-10-29","value":137.48},{"date":"2025-10-30","value":136.87},{"date":"2025-10-31","value":137.43},{"date":"2025-11-03","value":137.44},{"date":"2025-11-04","value":137.28},{"date":"2025-11-05","value":137.28},{"date":"2025-11-06","value":137.72},{"date":"2025-11-07","value":139.18},{"date":"2025-11-10","value":139.65},{"date":"2025-11-11","value":139.62},{"date":"2025-11-12","value":140.37},{"date":"2025-11-13","value":140.86},{"date":"2025-11-14","value":140.18},{"date":"2025-11-17","value":140.4},{"date":"2025-11-18","value":140.3},{"date":"2025-11-19","value":141.29},{"date":"2025-11-20","value":140.86},{"date":"2025-11-21","value":141.82},{"date":"2025-11-24","value":141.69},{"date":"2025-11-25","value":141.64},{"date":"2025-11-26","value":141.69},{"date":"2025-11-27","value":142.75},{"date":"2025-11-28","value":142.71},{"date":"2025-12-01","value":142.51},{"date":"2025-12-02","value":142.35},{"date":"2025-12-03","value":142.56},{"date":"2025-12-04","value":142.14},{"date":"2025-12-05","value":142.53},{"date":"2025-12-08","value":142.92},{"date":"2025-12-09","value":142.66},{"date":"2025-12-10","value":142.66},{"date":"2025-12-11","value":142.9},{"date":"2025-12-12","value":143.0},{"date":"2025-12-15","value":143.75},{"date":"2025-12-16","value":143.83},{"date":"2025-12-17","value":144.59},{"date":"2025-12-18","value":143.71},{"date":"2025-12-19","value":143.75},{"date":"2025-12-22","value":144.33},{"date":"2025-12-23","value":144.38},{"date":"2025-12-24","value":144.38},{"date":"2025-12-25","value":144.38},{"date":"2025-12-26","value":145.03},{"date":"2025-12-29","value":144.94},{"date":"2025-12-30","value":144.84},{"date":"2025-12-31","value":144.84},{"date":"2026-01-01","value":144.84},{"date":"2026-01-02","value":144.43},{"date":"2026-01-05","value":144.79},{"date":"2026-01-06","value":145.23},{"date":"2026-01-07","value":145.22},{"date":"2026-01-08","value":144.26},{"date":"2026-01-09","value":144.26},{"date":"2026-01-12","value":144.36},{"date":"2026-01-13","value":144.49},{"date":"2026-01-14","value":145.08},{"date":"2026-01-15","value":145.09},{"date":"2026-01-16","value":144.73},{"date":"2026-01-19","value":144.77},{"date":"2026-01-20","value":144.7},{"date":"2026-01-21","value":144.8},{"date":"2026-01-22","value":145.18},{"date":"2026-01-23","value":146.45},{"date":"2026-01-26","value":148.06},{"date":"2026-01-27","value":148.35},{"date":"2026-01-28","value":149.59},{"date":"2026-01-29","value":149.91},{"date":"2026-01-30","value":149.8},{"date":"2026-02-02","value":149.8},{"date":"2026-02-03","value":148.98},{"date":"2026-02-04","value":149.91},{"date":"2026-02-05","value":149.91},{"date":"2026-02-06","value":149.25},{"date":"2026-02-09","value":149.87},{"date":"2026-02-10","value":150.44},{"date":"2026-02-11","value":151.14},{"date":"2026-02-12","value":151.39},{"date":"2026-02-13","value":151.14},{"date":"2026-02-16","value":151.14},{"date":"2026-02-17","value":151.14},{"date":"2026-02-18","value":151.14},{"date":"2026-02-19","value":152.11},{"date":"2026-02-20","value":152.81},{"date":"2026-02-23","value":155.28},{"date":"2026-02-24","value":156.31},{"date":"2026-02-25","value":158.32},{"date":"2026-02-26","value":159.96},{"date":"2026-02-27","value":161.29},{"date":"2026-03-02","value":163.17},{"date":"2026-03-03","value":163.93},{"date":"2026-03-04","value":164.68},{"date":"2026-03-05","value":166.37},{"date":"2026-03-06","value":167.36},{"date":"2026-03-09","value":168.84},{"date":"2026-03-10","value":170.0},{"date":"2026-03-11","value":170.37},{"date":"2026-03-12","value":171.39},{"date":"2026-03-13","value":172.73},{"date":"2026-03-16","value":173.84},{"date":"2026-03-17","value":175.28},{"date":"2026-03-18","value":176.48},{"date":"2026-03-19","value":175.7},{"date":"2026-03-20","value":175.7},{"date":"2026-03-23","value":175.7},{"date":"2026-03-24","value":175.26},{"date":"2026-03-25","value":176.09},{"date":"2026-03-26","value":175.0},{"date":"2026-03-27","value":175.6},{"date":"2026-03-30","value":176.69},{"date":"2026-03-31","value":178.3},{"date":"2026-04-01","value":180.85},{"date":"2026-04-02","value":184.12},{"date":"2026-04-03","value":184.12},{"date":"2026-04-06","value":186.3},{"date":"2026-04-07","value":188.61},{"date":"2026-04-08","value":191.37},{"date":"2026-04-09","value":192.37},{"date":"2026-04-10","value":195.0},{"date":"2026-04-13","value":196.34},{"date":"2026-04-14","value":197.85},{"date":"2026-04-15","value":198.82},{"date":"2026-04-16","value":198.8},{"date":"2026-04-17","value":197.95},{"date":"2026-04-20","value":197.49},{"date":"2026-04-21","value":197.6},{"date":"2026-04-22","value":195.89},{"date":"2026-04-23","value":195.19},{"date":"2026-04-24","value":194.65},{"date":"2026-04-27","value":195.65},{"date":"2026-04-28","value":195.39},{"date":"2026-04-29","value":194.75},{"date":"2026-04-30","value":193.08},{"date":"2026-05-01","value":193.08},{"date":"2026-05-04","value":193.35},{"date":"2026-05-05","value":194.34},{"date":"2026-05-06","value":194.72}],"RSS3":[{"date":"2025-01-01","value":231.02},{"date":"2025-01-02","value":231.61},{"date":"2025-01-03","value":225.17},{"date":"2025-01-06","value":219.75},{"date":"2025-01-07","value":216.35},{"date":"2025-01-08","value":217.71},{"date":"2025-01-09","value":222.49},{"date":"2025-01-10","value":230.94},{"date":"2025-01-13","value":236.54},{"date":"2025-01-14","value":242.96},{"date":"2025-01-15","value":250.26},{"date":"2025-01-16","value":254.92},{"date":"2025-01-17","value":250.88},{"date":"2025-01-20","value":246.05},{"date":"2025-01-21","value":243.99},{"date":"2025-01-22","value":244.53},{"date":"2025-01-23","value":242.65},{"date":"2025-01-24","value":240.84},{"date":"2025-01-27","value":242.04},{"date":"2025-01-28","value":242.49},{"date":"2025-01-29","value":245.7},{"date":"2025-01-30","value":247.3},{"date":"2025-01-31","value":251.42},{"date":"2025-02-03","value":245.67},{"date":"2025-02-04","value":243.71},{"date":"2025-02-05","value":239.56},{"date":"2025-02-06","value":239.74},{"date":"2025-02-07","value":236.04},{"date":"2025-02-10","value":231.16},{"date":"2025-02-11","value":226.21},{"date":"2025-02-12","value":226.21},{"date":"2025-02-13","value":233.62},{"date":"2025-02-14","value":240.48},{"date":"2025-02-17","value":239.56},{"date":"2025-02-18","value":239.94},{"date":"2025-02-19","value":241.18},{"date":"2025-02-20","value":241.84},{"date":"2025-02-21","value":243.79},{"date":"2025-02-24","value":243.17},{"date":"2025-02-25","value":242.74},{"date":"2025-02-26","value":239.25},{"date":"2025-02-27","value":235.72},{"date":"2025-02-28","value":236.19},{"date":"2025-03-03","value":236.21},{"date":"2025-03-04","value":239.51},{"date":"2025-03-05","value":235.98},{"date":"2025-03-06","value":236.23},{"date":"2025-03-07","value":237.4},{"date":"2025-03-10","value":232.39},{"date":"2025-03-11","value":228.7},{"date":"2025-03-12","value":231.07},{"date":"2025-03-13","value":233.19},{"date":"2025-03-14","value":236.37},{"date":"2025-03-17","value":239.55},{"date":"2025-03-18","value":242.03},{"date":"2025-03-19","value":239.97},{"date":"2025-03-20","value":240.07},{"date":"2025-03-21","value":240.11},{"date":"2025-03-24","value":241.39},{"date":"2025-03-25","value":243.75},{"date":"2025-03-26","value":244.04},{"date":"2025-03-27","value":243.81},{"date":"2025-03-28","value":241.3},{"date":"2025-03-31","value":238.4},{"date":"2025-04-01","value":234.61},{"date":"2025-04-02","value":234.17},{"date":"2025-04-03","value":232.2},{"date":"2025-04-04","value":228.68},{"date":"2025-04-07","value":228.68},{"date":"2025-04-08","value":197.62},{"date":"2025-04-09","value":196.56},{"date":"2025-04-10","value":205.5},{"date":"2025-04-11","value":216.02},{"date":"2025-04-14","value":216.02},{"date":"2025-04-15","value":216.02},{"date":"2025-04-16","value":216.02},{"date":"2025-04-17","value":219.23},{"date":"2025-04-18","value":219.04},{"date":"2025-04-21","value":223.22},{"date":"2025-04-22","value":223.18},{"date":"2025-04-23","value":220.96},{"date":"2025-04-24","value":221.53},{"date":"2025-04-25","value":224.4},{"date":"2025-04-28","value":225.5},{"date":"2025-04-29","value":230.83},{"date":"2025-04-30","value":233.87},{"date":"2025-05-01","value":233.87},{"date":"2025-05-02","value":235.71},{"date":"2025-05-05","value":235.71},{"date":"2025-05-06","value":242.64},{"date":"2025-05-07","value":246.07},{"date":"2025-05-08","value":247.04},{"date":"2025-05-09","value":247.04},{"date":"2025-05-12","value":247.04},{"date":"2025-05-13","value":241.33},{"date":"2025-05-14","value":239.68},{"date":"2025-05-15","value":239.05},{"date":"2025-05-16","value":239.05},{"date":"2025-05-19","value":235.62},{"date":"2025-05-20","value":233.77},{"date":"2025-05-21","value":234.36},{"date":"2025-05-22","value":234.85},{"date":"2025-05-23","value":236.87},{"date":"2025-05-26","value":233.23},{"date":"2025-05-27","value":236.58},{"date":"2025-05-28","value":234.02},{"date":"2025-05-29","value":231.24},{"date":"2025-05-30","value":231.24},{"date":"2025-06-02","value":231.24},{"date":"2025-06-03","value":231.24},{"date":"2025-06-04","value":220.93},{"date":"2025-06-05","value":224.98},{"date":"2025-06-06","value":226.45},{"date":"2025-06-09","value":228.36},{"date":"2025-06-10","value":232.07},{"date":"2025-06-11","value":236.13},{"date":"2025-06-12","value":236.6},{"date":"2025-06-13","value":233.8},{"date":"2025-06-16","value":231.71},{"date":"2025-06-17","value":230.35},{"date":"2025-06-18","value":232.57},{"date":"2025-06-19","value":234.5},{"date":"2025-06-20","value":227.98},{"date":"2025-06-23","value":224.9},{"date":"2025-06-24","value":225.22},{"date":"2025-06-25","value":226.26},{"date":"2025-06-26","value":226.9},{"date":"2025-06-27","value":229.92},{"date":"2025-06-30","value":228.19},{"date":"2025-07-01","value":228.18},{"date":"2025-07-02","value":228.83},{"date":"2025-07-03","value":227.82},{"date":"2025-07-04","value":226.93},{"date":"2025-07-07","value":224.96},{"date":"2025-07-08","value":224.89},{"date":"2025-07-09","value":223.27},{"date":"2025-07-10","value":223.27},{"date":"2025-07-11","value":223.27},{"date":"2025-07-14","value":226.0},{"date":"2025-07-15","value":226.07},{"date":"2025-07-16","value":226.42},{"date":"2025-07-17","value":227.48},{"date":"2025-07-18","value":228.93},{"date":"2025-07-21","value":230.41},{"date":"2025-07-22","value":231.44},{"date":"2025-07-23","value":231.09},{"date":"2025-07-24","value":228.69},{"date":"2025-07-25","value":226.6},{"date":"2025-07-28","value":226.6},{"date":"2025-07-29","value":226.6},{"date":"2025-07-30","value":219.9},{"date":"2025-07-31","value":197.23},{"date":"2025-08-01","value":205.1},{"date":"2025-08-04","value":204.34},{"date":"2025-08-05","value":208.68},{"date":"2025-08-06","value":212.38},{"date":"2025-08-07","value":215.17},{"date":"2025-08-08","value":214.83},{"date":"2025-08-11","value":214.83},{"date":"2025-08-12","value":214.83},{"date":"2025-08-13","value":219.29},{"date":"2025-08-14","value":219.79},{"date":"2025-08-15","value":218.82},{"date":"2025-08-18","value":213.35},{"date":"2025-08-19","value":208.61},{"date":"2025-08-20","value":208.3},{"date":"2025-08-21","value":209.03},{"date":"2025-08-22","value":213.53},{"date":"2025-08-25","value":216.27},{"date":"2025-08-26","value":219.74},{"date":"2025-08-27","value":215.74},{"date":"2025-08-28","value":214.86},{"date":"2025-08-29","value":213.19},{"date":"2025-09-01","value":213.71},{"date":"2025-09-02","value":214.97},{"date":"2025-09-03","value":216.32},{"date":"2025-09-04","value":214.48},{"date":"2025-09-05","value":216.35},{"date":"2025-09-08","value":217.21},{"date":"2025-09-09","value":216.26},{"date":"2025-09-10","value":218.16},{"date":"2025-09-11","value":216.55},{"date":"2025-09-12","value":214.63},{"date":"2025-09-15","value":215.64},{"date":"2025-09-16","value":216.28},{"date":"2025-09-17","value":216.02},{"date":"2025-09-18","value":214.75},{"date":"2025-09-19","value":212.93},{"date":"2025-09-22","value":212.13},{"date":"2025-09-23","value":212.72},{"date":"2025-09-24","value":212.17},{"date":"2025-09-25","value":210.71},{"date":"2025-09-26","value":208.15},{"date":"2025-09-29","value":206.76},{"date":"2025-09-30","value":205.15},{"date":"2025-10-01","value":211.61},{"date":"2025-10-02","value":204.35},{"date":"2025-10-03","value":203.55},{"date":"2025-10-06","value":203.02},{"date":"2025-10-07","value":203.83},{"date":"2025-10-08","value":203.54},{"date":"2025-10-09","value":204.86},{"date":"2025-10-10","value":206.05},{"date":"2025-10-13","value":206.05},{"date":"2025-10-14","value":200.4},{"date":"2025-10-15","value":199.85},{"date":"2025-10-16","value":199.85},{"date":"2025-10-17","value":200.18},{"date":"2025-10-20","value":200.64},{"date":"2025-10-21","value":201.5},{"date":"2025-10-22","value":202.15},{"date":"2025-10-23","value":202.15},{"date":"2025-10-24","value":202.15},{"date":"2025-10-27","value":207.56},{"date":"2025-10-28","value":208.45},{"date":"2025-10-29","value":207.85},{"date":"2025-10-30","value":207.33},{"date":"2025-10-31","value":207.33},{"date":"2025-11-03","value":210.12},{"date":"2025-11-04","value":206.66},{"date":"2025-11-05","value":204.21},{"date":"2025-11-06","value":204.88},{"date":"2025-11-07","value":206.32},{"date":"2025-11-10","value":207.75},{"date":"2025-11-11","value":210.95},{"date":"2025-11-12","value":210.62},{"date":"2025-11-13","value":210.57},{"date":"2025-11-14","value":211.22},{"date":"2025-11-17","value":211.29},{"date":"2025-11-18","value":211.53},{"date":"2025-11-19","value":213.52},{"date":"2025-11-20","value":216.14},{"date":"2025-11-21","value":218.02},{"date":"2025-11-24","value":214.67},{"date":"2025-11-25","value":214.67},{"date":"2025-11-26","value":213.63},{"date":"2025-11-27","value":213.61},{"date":"2025-11-28","value":214.49},{"date":"2025-12-01","value":209.81},{"date":"2025-12-02","value":210.63},{"date":"2025-12-03","value":209.24},{"date":"2025-12-04","value":209.64},{"date":"2025-12-05","value":209.64},{"date":"2025-12-08","value":208.29},{"date":"2025-12-09","value":206.65},{"date":"2025-12-10","value":206.65},{"date":"2025-12-11","value":210.19},{"date":"2025-12-12","value":210.55},{"date":"2025-12-15","value":210.45},{"date":"2025-12-16","value":212.12},{"date":"2025-12-17","value":212.88},{"date":"2025-12-18","value":213.32},{"date":"2025-12-19","value":212.04},{"date":"2025-12-22","value":211.26},{"date":"2025-12-23","value":211.12},{"date":"2025-12-24","value":212.65},{"date":"2025-12-25","value":213.64},{"date":"2025-12-26","value":214.06},{"date":"2025-12-29","value":214.03},{"date":"2025-12-30","value":212.04},{"date":"2025-12-31","value":212.04},{"date":"2026-01-01","value":212.04},{"date":"2026-01-02","value":212.04},{"date":"2026-01-05","value":212.54},{"date":"2026-01-06","value":215.05},{"date":"2026-01-07","value":218.52},{"date":"2026-01-08","value":219.69},{"date":"2026-01-09","value":217.48},{"date":"2026-01-12","value":216.5},{"date":"2026-01-13","value":217.39},{"date":"2026-01-14","value":219.05},{"date":"2026-01-15","value":218.74},{"date":"2026-01-16","value":216.96},{"date":"2026-01-19","value":217.36},{"date":"2026-01-20","value":215.94},{"date":"2026-01-21","value":216.63},{"date":"2026-01-22","value":219.37},{"date":"2026-01-23","value":220.63},{"date":"2026-01-26","value":221.48},{"date":"2026-01-27","value":221.27},{"date":"2026-01-28","value":220.63},{"date":"2026-01-29","value":225.53},{"date":"2026-01-30","value":221.33},{"date":"2026-02-02","value":218.81},{"date":"2026-02-03","value":218.58},{"date":"2026-02-04","value":222.79},{"date":"2026-02-05","value":218.15},{"date":"2026-02-06","value":218.76},{"date":"2026-02-09","value":221.91},{"date":"2026-02-10","value":228.13},{"date":"2026-02-11","value":232.5},{"date":"2026-02-12","value":235.31},{"date":"2026-02-13","value":232.5},{"date":"2026-02-16","value":236.6},{"date":"2026-02-17","value":236.6},{"date":"2026-02-18","value":238.38},{"date":"2026-02-19","value":239.12},{"date":"2026-02-20","value":240.22},{"date":"2026-02-23","value":244.47},{"date":"2026-02-24","value":250.05},{"date":"2026-02-25","value":254.98},{"date":"2026-02-26","value":257.38},{"date":"2026-02-27","value":257.38},{"date":"2026-03-02","value":258.49},{"date":"2026-03-03","value":258.49},{"date":"2026-03-04","value":258.49},{"date":"2026-03-05","value":258.49},{"date":"2026-03-06","value":249.08},{"date":"2026-03-09","value":250.58},{"date":"2026-03-10","value":248.96},{"date":"2026-03-11","value":253.31},{"date":"2026-03-12","value":257.92},{"date":"2026-03-13","value":257.44},{"date":"2026-03-16","value":255.44},{"date":"2026-03-17","value":255.39},{"date":"2026-03-18","value":257.02},{"date":"2026-03-19","value":253.9},{"date":"2026-03-20","value":250.84},{"date":"2026-03-23","value":254.22},{"date":"2026-03-24","value":253.42},{"date":"2026-03-25","value":260.06},{"date":"2026-03-26","value":262.42},{"date":"2026-03-27","value":264.61},{"date":"2026-03-30","value":264.73},{"date":"2026-03-31","value":266.35},{"date":"2026-04-01","value":266.35},{"date":"2026-04-02","value":273.95},{"date":"2026-04-03","value":273.95},{"date":"2026-04-06","value":273.95},{"date":"2026-04-07","value":283.98},{"date":"2026-04-08","value":280.28},{"date":"2026-04-09","value":282.27},{"date":"2026-04-10","value":278.99},{"date":"2026-04-13","value":278.99},{"date":"2026-04-14","value":278.99},{"date":"2026-04-15","value":278.99},{"date":"2026-04-16","value":278.99},{"date":"2026-04-17","value":274.06},{"date":"2026-04-20","value":273.44},{"date":"2026-04-21","value":271.37},{"date":"2026-04-22","value":272.04},{"date":"2026-04-23","value":274.01},{"date":"2026-04-24","value":273.97},{"date":"2026-04-27","value":277.21},{"date":"2026-04-28","value":282.03},{"date":"2026-04-29","value":283.75},{"date":"2026-04-30","value":285.63},{"date":"2026-05-01","value":285.63},{"date":"2026-05-04","value":285.63},{"date":"2026-05-05","value":289.53},{"date":"2026-05-06","value":289.53}],"RSS4":[{"date":"2025-01-01","value":222.85},{"date":"2025-01-02","value":223.8},{"date":"2025-01-03","value":223.9},{"date":"2025-01-06","value":221.35},{"date":"2025-01-07","value":220.5},{"date":"2025-01-08","value":219.0},{"date":"2025-01-09","value":218.9},{"date":"2025-01-10","value":220.05},{"date":"2025-01-13","value":220.95},{"date":"2025-01-14","value":221.85},{"date":"2025-01-15","value":221.95},{"date":"2025-01-16","value":222.0},{"date":"2025-01-17","value":221.75},{"date":"2025-01-20","value":220.7},{"date":"2025-01-21","value":220.75},{"date":"2025-01-22","value":220.65},{"date":"2025-01-23","value":220.9},{"date":"2025-01-24","value":221.35},{"date":"2025-01-27","value":221.0},{"date":"2025-01-28","value":220.7},{"date":"2025-01-29","value":221.75},{"date":"2025-01-30","value":221.75},{"date":"2025-01-31","value":221.6},{"date":"2025-02-03","value":220.4},{"date":"2025-02-04","value":220.4},{"date":"2025-02-05","value":220.1},{"date":"2025-02-06","value":218.15},{"date":"2025-02-07","value":218.35},{"date":"2025-02-10","value":218.05},{"date":"2025-02-11","value":218.7},{"date":"2025-02-12","value":218.8},{"date":"2025-02-13","value":218.7},{"date":"2025-02-14","value":218.7},{"date":"2025-02-17","value":219.55},{"date":"2025-02-18","value":219.05},{"date":"2025-02-19","value":219.05},{"date":"2025-02-20","value":219.7},{"date":"2025-02-21","value":220.45},{"date":"2025-02-24","value":220.9},{"date":"2025-02-25","value":220.7},{"date":"2025-02-26","value":220.7},{"date":"2025-02-27","value":220.15},{"date":"2025-02-28","value":219.7},{"date":"2025-03-03","value":219.85},{"date":"2025-03-04","value":220.3},{"date":"2025-03-05","value":221.05},{"date":"2025-03-06","value":221.6},{"date":"2025-03-07","value":222.25},{"date":"2025-03-10","value":222.4},{"date":"2025-03-11","value":222.75},{"date":"2025-03-12","value":223.45},{"date":"2025-03-13","value":223.9},{"date":"2025-03-14","value":225.05},{"date":"2025-03-17","value":227.0},{"date":"2025-03-18","value":228.45},{"date":"2025-03-19","value":231.2},{"date":"2025-03-20","value":231.75},{"date":"2025-03-21","value":233.15},{"date":"2025-03-24","value":237.65},{"date":"2025-03-25","value":237.65},{"date":"2025-03-26","value":237.55},{"date":"2025-03-27","value":238.45},{"date":"2025-03-28","value":239.55},{"date":"2025-03-31","value":239.55},{"date":"2025-04-01","value":240.7},{"date":"2025-04-02","value":241.8},{"date":"2025-04-03","value":241.7},{"date":"2025-04-04","value":241.7},{"date":"2025-04-07","value":235.4},{"date":"2025-04-08","value":232.8},{"date":"2025-04-09","value":227.45},{"date":"2025-04-10","value":227.45},{"date":"2025-04-11","value":228.7},{"date":"2025-04-14","value":228.7},{"date":"2025-04-15","value":229.9},{"date":"2025-04-16","value":230.0},{"date":"2025-04-17","value":230.2},{"date":"2025-04-18","value":230.2},{"date":"2025-04-21","value":231.9},{"date":"2025-04-22","value":232.65},{"date":"2025-04-23","value":231.75},{"date":"2025-04-24","value":231.55},{"date":"2025-04-25","value":231.35},{"date":"2025-04-28","value":233.55},{"date":"2025-04-29","value":233.55},{"date":"2025-04-30","value":233.95},{"date":"2025-05-01","value":233.95},{"date":"2025-05-02","value":236.1},{"date":"2025-05-05","value":233.85},{"date":"2025-05-06","value":231.85},{"date":"2025-05-07","value":231.75},{"date":"2025-05-08","value":230.95},{"date":"2025-05-09","value":230.95},{"date":"2025-05-12","value":228.85},{"date":"2025-05-13","value":230.95},{"date":"2025-05-14","value":230.35},{"date":"2025-05-15","value":229.6},{"date":"2025-05-16","value":229.65},{"date":"2025-05-19","value":229.85},{"date":"2025-05-20","value":229.95},{"date":"2025-05-21","value":229.7},{"date":"2025-05-22","value":229.95},{"date":"2025-05-23","value":229.9},{"date":"2025-05-26","value":233.2},{"date":"2025-05-27","value":233.25},{"date":"2025-05-28","value":233.4},{"date":"2025-05-29","value":233.9},{"date":"2025-05-30","value":233.9},{"date":"2025-06-02","value":234.1},{"date":"2025-06-03","value":232.85},{"date":"2025-06-04","value":230.35},{"date":"2025-06-05","value":230.25},{"date":"2025-06-06","value":230.2},{"date":"2025-06-09","value":230.4},{"date":"2025-06-10","value":230.15},{"date":"2025-06-11","value":230.55},{"date":"2025-06-12","value":230.3},{"date":"2025-06-13","value":228.8},{"date":"2025-06-16","value":229.6},{"date":"2025-06-17","value":229.95},{"date":"2025-06-18","value":230.6},{"date":"2025-06-19","value":230.7},{"date":"2025-06-20","value":230.9},{"date":"2025-06-23","value":230.95},{"date":"2025-06-24","value":232.85},{"date":"2025-06-25","value":233.5},{"date":"2025-06-26","value":233.8},{"date":"2025-06-27","value":234.9},{"date":"2025-06-30","value":234.95},{"date":"2025-07-01","value":234.75},{"date":"2025-07-02","value":235.15},{"date":"2025-07-03","value":236.2},{"date":"2025-07-04","value":237.15},{"date":"2025-07-07","value":236.55},{"date":"2025-07-08","value":238.0},{"date":"2025-07-09","value":238.35},{"date":"2025-07-10","value":239.55},{"date":"2025-07-11","value":239.55},{"date":"2025-07-14","value":241.3},{"date":"2025-07-15","value":242.35},{"date":"2025-07-16","value":243.6},{"date":"2025-07-17","value":243.25},{"date":"2025-07-18","value":243.6},{"date":"2025-07-21","value":245.3},{"date":"2025-07-22","value":245.75},{"date":"2025-07-23","value":246.6},{"date":"2025-07-24","value":246.75},{"date":"2025-07-25","value":246.15},{"date":"2025-07-28","value":244.95},{"date":"2025-07-29","value":242.95},{"date":"2025-07-30","value":239.5},{"date":"2025-07-31","value":236.4},{"date":"2025-08-01","value":235.85},{"date":"2025-08-04","value":233.15},{"date":"2025-08-05","value":232.35},{"date":"2025-08-06","value":232.6},{"date":"2025-08-07","value":232.65},{"date":"2025-08-08","value":231.7},{"date":"2025-08-11","value":231.7},{"date":"2025-08-12","value":229.5},{"date":"2025-08-13","value":228.05},{"date":"2025-08-14","value":227.45},{"date":"2025-08-15","value":227.45},{"date":"2025-08-18","value":225.35},{"date":"2025-08-19","value":224.85},{"date":"2025-08-20","value":222.75},{"date":"2025-08-21","value":217.3},{"date":"2025-08-22","value":217.3},{"date":"2025-08-25","value":216.2},{"date":"2025-08-26","value":215.4},{"date":"2025-08-27","value":216.65},{"date":"2025-08-28","value":215.6},{"date":"2025-08-29","value":215.15},{"date":"2025-09-01","value":215.85},{"date":"2025-09-02","value":217.0},{"date":"2025-09-03","value":217.35},{"date":"2025-09-04","value":217.2},{"date":"2025-09-05","value":217.2},{"date":"2025-09-08","value":216.8},{"date":"2025-09-09","value":217.25},{"date":"2025-09-10","value":216.75},{"date":"2025-09-11","value":214.15},{"date":"2025-09-12","value":212.95},{"date":"2025-09-15","value":210.7},{"date":"2025-09-16","value":211.25},{"date":"2025-09-17","value":211.95},{"date":"2025-09-18","value":211.05},{"date":"2025-09-19","value":210.65},{"date":"2025-09-22","value":211.0},{"date":"2025-09-23","value":209.6},{"date":"2025-09-24","value":209.55},{"date":"2025-09-25","value":210.9},{"date":"2025-09-26","value":211.9},{"date":"2025-09-29","value":212.4},{"date":"2025-09-30","value":212.3},{"date":"2025-10-01","value":212.3},{"date":"2025-10-02","value":212.3},{"date":"2025-10-03","value":210.65},{"date":"2025-10-06","value":209.5},{"date":"2025-10-07","value":209.6},{"date":"2025-10-08","value":209.5},{"date":"2025-10-09","value":210.05},{"date":"2025-10-10","value":210.85},{"date":"2025-10-13","value":210.65},{"date":"2025-10-14","value":210.05},{"date":"2025-10-15","value":210.65},{"date":"2025-10-16","value":212.15},{"date":"2025-10-17","value":212.15},{"date":"2025-10-20","value":212.15},{"date":"2025-10-21","value":213.0},{"date":"2025-10-22","value":213.6},{"date":"2025-10-23","value":213.2},{"date":"2025-10-24","value":213.6},{"date":"2025-10-27","value":214.6},{"date":"2025-10-28","value":214.6},{"date":"2025-10-29","value":214.65},{"date":"2025-10-30","value":212.75},{"date":"2025-10-31","value":210.75},{"date":"2025-11-03","value":208.25},{"date":"2025-11-04","value":207.6},{"date":"2025-11-05","value":207.6},{"date":"2025-11-06","value":207.65},{"date":"2025-11-07","value":207.45},{"date":"2025-11-10","value":208.6},{"date":"2025-11-11","value":209.7},{"date":"2025-11-12","value":210.95},{"date":"2025-11-13","value":210.8},{"date":"2025-11-14","value":210.7},{"date":"2025-11-17","value":209.85},{"date":"2025-11-18","value":208.7},{"date":"2025-11-19","value":209.15},{"date":"2025-11-20","value":209.7},{"date":"2025-11-21","value":209.85},{"date":"2025-11-24","value":208.55},{"date":"2025-11-25","value":208.45},{"date":"2025-11-26","value":207.8},{"date":"2025-11-27","value":207.75},{"date":"2025-11-28","value":207.35},{"date":"2025-12-01","value":206.15},{"date":"2025-12-02","value":205.8},{"date":"2025-12-03","value":204.95},{"date":"2025-12-04","value":204.0},{"date":"2025-12-05","value":204.6},{"date":"2025-12-08","value":204.05},{"date":"2025-12-09","value":204.55},{"date":"2025-12-10","value":204.7},{"date":"2025-12-11","value":203.6},{"date":"2025-12-12","value":203.55},{"date":"2025-12-15","value":202.25},{"date":"2025-12-16","value":201.6},{"date":"2025-12-17","value":202.6},{"date":"2025-12-18","value":203.05},{"date":"2025-12-19","value":202.9},{"date":"2025-12-22","value":204.35},{"date":"2025-12-23","value":203.7},{"date":"2025-12-24","value":203.85},{"date":"2025-12-25","value":203.85},{"date":"2025-12-26","value":204.3},{"date":"2025-12-29","value":205.05},{"date":"2025-12-30","value":205.7},{"date":"2025-12-31","value":205.75},{"date":"2026-01-01","value":205.6},{"date":"2026-01-02","value":205.25},{"date":"2026-01-05","value":206.05},{"date":"2026-01-06","value":206.8},{"date":"2026-01-07","value":207.9},{"date":"2026-01-08","value":208.6},{"date":"2026-01-09","value":208.0},{"date":"2026-01-12","value":207.9},{"date":"2026-01-13","value":208.25},{"date":"2026-01-14","value":209.55},{"date":"2026-01-15","value":210.65},{"date":"2026-01-16","value":210.15},{"date":"2026-01-19","value":211.05},{"date":"2026-01-20","value":212.0},{"date":"2026-01-21","value":211.9},{"date":"2026-01-22","value":214.0},{"date":"2026-01-23","value":216.1},{"date":"2026-01-26","value":218.3},{"date":"2026-01-27","value":218.35},{"date":"2026-01-28","value":218.65},{"date":"2026-01-29","value":219.1},{"date":"2026-01-30","value":220.35},{"date":"2026-02-02","value":222.6},{"date":"2026-02-03","value":226.1},{"date":"2026-02-04","value":227.15},{"date":"2026-02-05","value":228.45},{"date":"2026-02-06","value":228.95},{"date":"2026-02-09","value":229.55},{"date":"2026-02-10","value":230.2},{"date":"2026-02-11","value":231.3},{"date":"2026-02-12","value":231.8},{"date":"2026-02-13","value":231.3},{"date":"2026-02-16","value":234.8},{"date":"2026-02-17","value":234.65},{"date":"2026-02-18","value":231.3},{"date":"2026-02-19","value":236.6},{"date":"2026-02-20","value":236.95},{"date":"2026-02-23","value":239.15},{"date":"2026-02-24","value":240.75},{"date":"2026-02-25","value":243.0},{"date":"2026-02-26","value":243.1},{"date":"2026-02-27","value":243.1},{"date":"2026-03-02","value":241.65},{"date":"2026-03-03","value":241.65},{"date":"2026-03-04","value":237.3},{"date":"2026-03-05","value":237.9},{"date":"2026-03-06","value":237.9},{"date":"2026-03-09","value":237.9},{"date":"2026-03-10","value":237.9},{"date":"2026-03-11","value":233.9},{"date":"2026-03-12","value":233.35},{"date":"2026-03-13","value":233.1},{"date":"2026-03-16","value":234.3},{"date":"2026-03-17","value":234.7},{"date":"2026-03-18","value":234.7},{"date":"2026-03-19","value":234.7},{"date":"2026-03-20","value":234.7},{"date":"2026-03-23","value":231.1},{"date":"2026-03-24","value":231.7},{"date":"2026-03-25","value":232.55},{"date":"2026-03-26","value":232.55},{"date":"2026-03-27","value":232.05},{"date":"2026-03-30","value":233.5},{"date":"2026-03-31","value":234.55},{"date":"2026-04-01","value":236.65},{"date":"2026-04-02","value":242.45},{"date":"2026-04-03","value":242.45},{"date":"2026-04-06","value":246.1},{"date":"2026-04-07","value":248.5},{"date":"2026-04-08","value":249.55},{"date":"2026-04-09","value":249.55},{"date":"2026-04-10","value":249.35},{"date":"2026-04-13","value":247.4},{"date":"2026-04-14","value":247.4},{"date":"2026-04-15","value":247.4},{"date":"2026-04-16","value":247.5},{"date":"2026-04-17","value":249.65},{"date":"2026-04-20","value":250.35},{"date":"2026-04-21","value":250.45},{"date":"2026-04-22","value":251.5},{"date":"2026-04-23","value":253.0},{"date":"2026-04-24","value":250.35},{"date":"2026-04-27","value":257.9},{"date":"2026-04-28","value":260.05},{"date":"2026-04-29","value":261.65},{"date":"2026-04-30","value":261.45},{"date":"2026-05-01","value":261.45},{"date":"2026-05-04","value":264.35},{"date":"2026-05-05","value":263.21},{"date":"2026-05-06","value":263.21}],"STR20":[{"date":"2025-01-01","value":206.75},{"date":"2025-01-02","value":206.11},{"date":"2025-01-03","value":203.27},{"date":"2025-01-06","value":196.79},{"date":"2025-01-07","value":198.69},{"date":"2025-01-08","value":190.04},{"date":"2025-01-09","value":193.47},{"date":"2025-01-10","value":190.35},{"date":"2025-01-13","value":191.69},{"date":"2025-01-14","value":197.46},{"date":"2025-01-15","value":195.92},{"date":"2025-01-16","value":198.02},{"date":"2025-01-17","value":202.85},{"date":"2025-01-20","value":202.84},{"date":"2025-01-21","value":206.74},{"date":"2025-01-22","value":206.12},{"date":"2025-01-23","value":204.45},{"date":"2025-01-24","value":202.56},{"date":"2025-01-27","value":204.52},{"date":"2025-01-28","value":206.52},{"date":"2025-01-29","value":207.71},{"date":"2025-01-30","value":211.03},{"date":"2025-01-31","value":210.08},{"date":"2025-02-03","value":212.64},{"date":"2025-02-04","value":217.18},{"date":"2025-02-05","value":215.21},{"date":"2025-02-06","value":212.76},{"date":"2025-02-07","value":212.18},{"date":"2025-02-10","value":213.86},{"date":"2025-02-11","value":209.49},{"date":"2025-02-12","value":209.49},{"date":"2025-02-13","value":215.96},{"date":"2025-02-14","value":212.72},{"date":"2025-02-17","value":216.98},{"date":"2025-02-18","value":216.62},{"date":"2025-02-19","value":221.97},{"date":"2025-02-20","value":220.05},{"date":"2025-02-21","value":227.12},{"date":"2025-02-24","value":232.13},{"date":"2025-02-25","value":229.75},{"date":"2025-02-26","value":229.6},{"date":"2025-02-27","value":224.67},{"date":"2025-02-28","value":224.98},{"date":"2025-03-03","value":216.27},{"date":"2025-03-04","value":227.14},{"date":"2025-03-05","value":229.04},{"date":"2025-03-06","value":224.43},{"date":"2025-03-07","value":228.45},{"date":"2025-03-10","value":225.04},{"date":"2025-03-11","value":218.26},{"date":"2025-03-12","value":220.77},{"date":"2025-03-13","value":223.04},{"date":"2025-03-14","value":216.03},{"date":"2025-03-17","value":214.88},{"date":"2025-03-18","value":214.73},{"date":"2025-03-19","value":214.84},{"date":"2025-03-20","value":214.87},{"date":"2025-03-21","value":214.79},{"date":"2025-03-24","value":222.08},{"date":"2025-03-25","value":217.98},{"date":"2025-03-26","value":225.74},{"date":"2025-03-27","value":219.42},{"date":"2025-03-28","value":229.06},{"date":"2025-03-31","value":212.96},{"date":"2025-04-01","value":210.1},{"date":"2025-04-02","value":220.65},{"date":"2025-04-03","value":217.52},{"date":"2025-04-04","value":213.16},{"date":"2025-04-07","value":213.16},{"date":"2025-04-08","value":206.34},{"date":"2025-04-09","value":178.94},{"date":"2025-04-10","value":182.0},{"date":"2025-04-11","value":188.87},{"date":"2025-04-14","value":188.87},{"date":"2025-04-15","value":188.87},{"date":"2025-04-16","value":188.87},{"date":"2025-04-17","value":182.09},{"date":"2025-04-18","value":181.31},{"date":"2025-04-21","value":181.31},{"date":"2025-04-22","value":189.78},{"date":"2025-04-23","value":198.03},{"date":"2025-04-24","value":197.35},{"date":"2025-04-25","value":191.67},{"date":"2025-04-28","value":186.21},{"date":"2025-04-29","value":202.34},{"date":"2025-04-30","value":205.23},{"date":"2025-05-01","value":205.23},{"date":"2025-05-02","value":202.49},{"date":"2025-05-05","value":202.49},{"date":"2025-05-06","value":201.43},{"date":"2025-05-07","value":207.87},{"date":"2025-05-08","value":207.87},{"date":"2025-05-09","value":207.87},{"date":"2025-05-12","value":207.87},{"date":"2025-05-13","value":200.9},{"date":"2025-05-14","value":207.97},{"date":"2025-05-15","value":203.1},{"date":"2025-05-16","value":211.47},{"date":"2025-05-19","value":213.25},{"date":"2025-05-20","value":200.45},{"date":"2025-05-21","value":216.59},{"date":"2025-05-22","value":208.75},{"date":"2025-05-23","value":208.66},{"date":"2025-05-26","value":202.1},{"date":"2025-05-27","value":199.27},{"date":"2025-05-28","value":211.24},{"date":"2025-05-29","value":200.42},{"date":"2025-05-30","value":214.64},{"date":"2025-06-02","value":214.64},{"date":"2025-06-03","value":214.64},{"date":"2025-06-04","value":214.64},{"date":"2025-06-05","value":214.64},{"date":"2025-06-06","value":214.64},{"date":"2025-06-09","value":181.43},{"date":"2025-06-10","value":185.6},{"date":"2025-06-11","value":190.59},{"date":"2025-06-12","value":190.19},{"date":"2025-06-13","value":193.35},{"date":"2025-06-16","value":189.64},{"date":"2025-06-17","value":194.66},{"date":"2025-06-18","value":192.62},{"date":"2025-06-19","value":187.47},{"date":"2025-06-20","value":192.05},{"date":"2025-06-23","value":185.71},{"date":"2025-06-24","value":191.54},{"date":"2025-06-25","value":190.14},{"date":"2025-06-26","value":187.09},{"date":"2025-06-27","value":186.69},{"date":"2025-06-30","value":194.59},{"date":"2025-07-01","value":192.55},{"date":"2025-07-02","value":193.26},{"date":"2025-07-03","value":190.33},{"date":"2025-07-04","value":192.39},{"date":"2025-07-07","value":187.29},{"date":"2025-07-08","value":187.9},{"date":"2025-07-09","value":186.58},{"date":"2025-07-10","value":186.58},{"date":"2025-07-11","value":186.58},{"date":"2025-07-14","value":186.0},{"date":"2025-07-15","value":185.3},{"date":"2025-07-16","value":188.55},{"date":"2025-07-17","value":187.14},{"date":"2025-07-18","value":188.98},{"date":"2025-07-21","value":190.51},{"date":"2025-07-22","value":192.43},{"date":"2025-07-23","value":194.21},{"date":"2025-07-24","value":191.83},{"date":"2025-07-25","value":199.14},{"date":"2025-07-28","value":199.14},{"date":"2025-07-29","value":199.14},{"date":"2025-07-30","value":192.71},{"date":"2025-07-31","value":132.99},{"date":"2025-08-01","value":187.71},{"date":"2025-08-04","value":185.34},{"date":"2025-08-05","value":185.35},{"date":"2025-08-06","value":188.37},{"date":"2025-08-07","value":188.7},{"date":"2025-08-08","value":190.15},{"date":"2025-08-11","value":190.15},{"date":"2025-08-12","value":190.15},{"date":"2025-08-13","value":188.98},{"date":"2025-08-14","value":194.61},{"date":"2025-08-15","value":205.17},{"date":"2025-08-18","value":193.69},{"date":"2025-08-19","value":191.35},{"date":"2025-08-20","value":192.83},{"date":"2025-08-21","value":186.63},{"date":"2025-08-22","value":190.6},{"date":"2025-08-25","value":188.43},{"date":"2025-08-26","value":188.35},{"date":"2025-08-27","value":193.46},{"date":"2025-08-28","value":193.19},{"date":"2025-08-29","value":194.89},{"date":"2025-09-01","value":194.43},{"date":"2025-09-02","value":192.92},{"date":"2025-09-03","value":196.44},{"date":"2025-09-04","value":195.4},{"date":"2025-09-05","value":197.71},{"date":"2025-09-08","value":199.69},{"date":"2025-09-09","value":200.62},{"date":"2025-09-10","value":205.69},{"date":"2025-09-11","value":199.72},{"date":"2025-09-12","value":202.08},{"date":"2025-09-15","value":199.24},{"date":"2025-09-16","value":197.04},{"date":"2025-09-17","value":200.31},{"date":"2025-09-18","value":197.73},{"date":"2025-09-19","value":195.31},{"date":"2025-09-22","value":192.66},{"date":"2025-09-23","value":193.97},{"date":"2025-09-24","value":200.09},{"date":"2025-09-25","value":197.93},{"date":"2025-09-26","value":192.53},{"date":"2025-09-29","value":194.07},{"date":"2025-09-30","value":195.13},{"date":"2025-10-01","value":193.19},{"date":"2025-10-02","value":190.14},{"date":"2025-10-03","value":191.82},{"date":"2025-10-06","value":190.57},{"date":"2025-10-07","value":192.5},{"date":"2025-10-08","value":195.72},{"date":"2025-10-09","value":195.69},{"date":"2025-10-10","value":196.53},{"date":"2025-10-13","value":196.53},{"date":"2025-10-14","value":196.43},{"date":"2025-10-15","value":192.98},{"date":"2025-10-16","value":192.98},{"date":"2025-10-17","value":195.36},{"date":"2025-10-20","value":193.8},{"date":"2025-10-21","value":190.53},{"date":"2025-10-22","value":193.93},{"date":"2025-10-23","value":193.93},{"date":"2025-10-24","value":193.93},{"date":"2025-10-27","value":197.65},{"date":"2025-10-28","value":198.29},{"date":"2025-10-29","value":199.08},{"date":"2025-10-30","value":200.06},{"date":"2025-10-31","value":200.06},{"date":"2025-11-03","value":200.31},{"date":"2025-11-04","value":195.96},{"date":"2025-11-05","value":193.97},{"date":"2025-11-06","value":189.63},{"date":"2025-11-07","value":189.24},{"date":"2025-11-10","value":188.55},{"date":"2025-11-11","value":195.64},{"date":"2025-11-12","value":194.47},{"date":"2025-11-13","value":192.45},{"date":"2025-11-14","value":197.47},{"date":"2025-11-17","value":191.87},{"date":"2025-11-18","value":194.76},{"date":"2025-11-19","value":197.23},{"date":"2025-11-20","value":199.04},{"date":"2025-11-21","value":196.37},{"date":"2025-11-24","value":194.27},{"date":"2025-11-25","value":194.27},{"date":"2025-11-26","value":192.68},{"date":"2025-11-27","value":191.91},{"date":"2025-11-28","value":195.41},{"date":"2025-12-01","value":189.66},{"date":"2025-12-02","value":189.09},{"date":"2025-12-03","value":189.88},{"date":"2025-12-04","value":182.48},{"date":"2025-12-05","value":182.48},{"date":"2025-12-08","value":186.23},{"date":"2025-12-09","value":189.88},{"date":"2025-12-10","value":189.88},{"date":"2025-12-11","value":185.89},{"date":"2025-12-12","value":187.9},{"date":"2025-12-15","value":187.46},{"date":"2025-12-16","value":194.0},{"date":"2025-12-17","value":196.32},{"date":"2025-12-18","value":195.39},{"date":"2025-12-19","value":195.46},{"date":"2025-12-22","value":193.1},{"date":"2025-12-23","value":195.35},{"date":"2025-12-24","value":193.8},{"date":"2025-12-25","value":194.79},{"date":"2025-12-26","value":194.66},{"date":"2025-12-29","value":196.81},{"date":"2025-12-30","value":196.81},{"date":"2025-12-31","value":196.81},{"date":"2026-01-01","value":196.81},{"date":"2026-01-02","value":196.81},{"date":"2026-01-05","value":189.96},{"date":"2026-01-06","value":198.92},{"date":"2026-01-07","value":200.16},{"date":"2026-01-08","value":202.98},{"date":"2026-01-09","value":201.66},{"date":"2026-01-12","value":201.75},{"date":"2026-01-13","value":202.81},{"date":"2026-01-14","value":198.82},{"date":"2026-01-15","value":198.89},{"date":"2026-01-16","value":198.92},{"date":"2026-01-19","value":200.76},{"date":"2026-01-20","value":200.0},{"date":"2026-01-21","value":198.62},{"date":"2026-01-22","value":198.23},{"date":"2026-01-23","value":202.62},{"date":"2026-01-26","value":203.76},{"date":"2026-01-27","value":204.54},{"date":"2026-01-28","value":203.95},{"date":"2026-01-29","value":206.88},{"date":"2026-01-30","value":206.26},{"date":"2026-02-02","value":204.3},{"date":"2026-02-03","value":200.25},{"date":"2026-02-04","value":206.07},{"date":"2026-02-05","value":204.52},{"date":"2026-02-06","value":201.98},{"date":"2026-02-09","value":200.72},{"date":"2026-02-10","value":204.59},{"date":"2026-02-11","value":208.38},{"date":"2026-02-12","value":211.33},{"date":"2026-02-13","value":208.38},{"date":"2026-02-16","value":209.07},{"date":"2026-02-17","value":209.07},{"date":"2026-02-18","value":214.43},{"date":"2026-02-19","value":213.14},{"date":"2026-02-20","value":213.8},{"date":"2026-02-23","value":215.52},{"date":"2026-02-24","value":218.18},{"date":"2026-02-25","value":221.06},{"date":"2026-02-26","value":224.0},{"date":"2026-02-27","value":224.0},{"date":"2026-03-02","value":227.46},{"date":"2026-03-03","value":227.46},{"date":"2026-03-04","value":227.46},{"date":"2026-03-05","value":227.46},{"date":"2026-03-06","value":220.63},{"date":"2026-03-09","value":221.72},{"date":"2026-03-10","value":218.76},{"date":"2026-03-11","value":222.15},{"date":"2026-03-12","value":221.89},{"date":"2026-03-13","value":220.94},{"date":"2026-03-16","value":220.11},{"date":"2026-03-17","value":216.94},{"date":"2026-03-18","value":219.38},{"date":"2026-03-19","value":216.06},{"date":"2026-03-20","value":215.11},{"date":"2026-03-23","value":213.32},{"date":"2026-03-24","value":213.94},{"date":"2026-03-25","value":221.51},{"date":"2026-03-26","value":224.25},{"date":"2026-03-27","value":221.65},{"date":"2026-03-30","value":216.56},{"date":"2026-03-31","value":216.22},{"date":"2026-04-01","value":216.22},{"date":"2026-04-02","value":222.31},{"date":"2026-04-03","value":222.31},{"date":"2026-04-06","value":222.31},{"date":"2026-04-07","value":219.06},{"date":"2026-04-08","value":227.21},{"date":"2026-04-09","value":227.65},{"date":"2026-04-10","value":226.31},{"date":"2026-04-13","value":226.31},{"date":"2026-04-14","value":226.31},{"date":"2026-04-15","value":226.31},{"date":"2026-04-16","value":226.31},{"date":"2026-04-17","value":226.35},{"date":"2026-04-20","value":229.53},{"date":"2026-04-21","value":224.27},{"date":"2026-04-22","value":228.61},{"date":"2026-04-23","value":231.79},{"date":"2026-04-24","value":227.45},{"date":"2026-04-27","value":228.89},{"date":"2026-04-28","value":233.24},{"date":"2026-04-29","value":237.5},{"date":"2026-04-30","value":236.78},{"date":"2026-05-01","value":236.78},{"date":"2026-05-04","value":236.78},{"date":"2026-05-05","value":236.74},{"date":"2026-05-06","value":236.74}],"SMR20":[{"date":"2025-01-01","value":202.2},{"date":"2025-01-02","value":199.7},{"date":"2025-01-03","value":196.35},{"date":"2025-01-06","value":193.1},{"date":"2025-01-07","value":189.85},{"date":"2025-01-08","value":191.7},{"date":"2025-01-09","value":194.1},{"date":"2025-01-10","value":198.15},{"date":"2025-01-13","value":196.9},{"date":"2025-01-14","value":199.45},{"date":"2025-01-15","value":201.25},{"date":"2025-01-16","value":202.15},{"date":"2025-01-17","value":199.8},{"date":"2025-01-20","value":198.45},{"date":"2025-01-21","value":202.3},{"date":"2025-01-22","value":202.8},{"date":"2025-01-23","value":205.9},{"date":"2025-01-24","value":204.9},{"date":"2025-01-27","value":205.4},{"date":"2025-01-28","value":205.4},{"date":"2025-01-29","value":205.4},{"date":"2025-01-30","value":205.4},{"date":"2025-01-31","value":203.8},{"date":"2025-02-03","value":204.15},{"date":"2025-02-04","value":202.0},{"date":"2025-02-05","value":200.0},{"date":"2025-02-06","value":202.35},{"date":"2025-02-07","value":203.8},{"date":"2025-02-10","value":200.9},{"date":"2025-02-11","value":200.9},{"date":"2025-02-12","value":204.3},{"date":"2025-02-13","value":207.25},{"date":"2025-02-14","value":210.85},{"date":"2025-02-17","value":210.05},{"date":"2025-02-18","value":209.65},{"date":"2025-02-19","value":208.35},{"date":"2025-02-20","value":212.0},{"date":"2025-02-21","value":211.95},{"date":"2025-02-24","value":212.4},{"date":"2025-02-25","value":214.15},{"date":"2025-02-26","value":209.35},{"date":"2025-02-27","value":208.4},{"date":"2025-02-28","value":208.15},{"date":"2025-03-03","value":210.5},{"date":"2025-03-04","value":210.95},{"date":"2025-03-05","value":207.85},{"date":"2025-03-06","value":208.25},{"date":"2025-03-07","value":206.1},{"date":"2025-03-10","value":203.15},{"date":"2025-03-11","value":202.6},{"date":"2025-03-12","value":202.95},{"date":"2025-03-13","value":200.35},{"date":"2025-03-14","value":202.3},{"date":"2025-03-17","value":199.2},{"date":"2025-03-18","value":199.2},{"date":"2025-03-19","value":199.75},{"date":"2025-03-20","value":203.2},{"date":"2025-03-21","value":202.1},{"date":"2025-03-24","value":204.15},{"date":"2025-03-25","value":204.75},{"date":"2025-03-26","value":202.05},{"date":"2025-03-27","value":201.7},{"date":"2025-03-28","value":200.7},{"date":"2025-03-31","value":200.7},{"date":"2025-04-01","value":200.7},{"date":"2025-04-02","value":198.9},{"date":"2025-04-03","value":194.05},{"date":"2025-04-04","value":192.25},{"date":"2025-04-07","value":180.6},{"date":"2025-04-08","value":174.7},{"date":"2025-04-09","value":166.9},{"date":"2025-04-10","value":171.95},{"date":"2025-04-11","value":174.5},{"date":"2025-04-14","value":176.1},{"date":"2025-04-15","value":174.6},{"date":"2025-04-16","value":170.35},{"date":"2025-04-17","value":173.1},{"date":"2025-04-18","value":173.1},{"date":"2025-04-21","value":176.3},{"date":"2025-04-22","value":173.1},{"date":"2025-04-23","value":173.1},{"date":"2025-04-24","value":175.35},{"date":"2025-04-25","value":174.9},{"date":"2025-04-28","value":173.8},{"date":"2025-04-29","value":173.4},{"date":"2025-04-30","value":175.55},{"date":"2025-05-01","value":175.55},{"date":"2025-05-02","value":174.8},{"date":"2025-05-05","value":176.8},{"date":"2025-05-06","value":178.35},{"date":"2025-05-07","value":179.5},{"date":"2025-05-08","value":178.6},{"date":"2025-05-09","value":178.1},{"date":"2025-05-12","value":178.1},{"date":"2025-05-13","value":182.2},{"date":"2025-05-14","value":183.9},{"date":"2025-05-15","value":182.25},{"date":"2025-05-16","value":180.95},{"date":"2025-05-19","value":180.4},{"date":"2025-05-20","value":178.9},{"date":"2025-05-21","value":177.95},{"date":"2025-05-22","value":178.25},{"date":"2025-05-23","value":177.2},{"date":"2025-05-26","value":175.6},{"date":"2025-05-27","value":177.8},{"date":"2025-05-28","value":171.6},{"date":"2025-05-29","value":172.2},{"date":"2025-05-30","value":167.6},{"date":"2025-06-02","value":167.6},{"date":"2025-06-03","value":164.7},{"date":"2025-06-04","value":167.25},{"date":"2025-06-05","value":166.15},{"date":"2025-06-06","value":166.3},{"date":"2025-06-09","value":166.85},{"date":"2025-06-10","value":169.8},{"date":"2025-06-11","value":168.95},{"date":"2025-06-12","value":168.95},{"date":"2025-06-13","value":168.6},{"date":"2025-06-16","value":169.6},{"date":"2025-06-17","value":168.9},{"date":"2025-06-18","value":171.4},{"date":"2025-06-19","value":169.75},{"date":"2025-06-20","value":168.2},{"date":"2025-06-23","value":166.9},{"date":"2025-06-24","value":165.35},{"date":"2025-06-25","value":166.1},{"date":"2025-06-26","value":169.1},{"date":"2025-06-27","value":169.1},{"date":"2025-06-30","value":170.0},{"date":"2025-07-01","value":170.65},{"date":"2025-07-02","value":171.7},{"date":"2025-07-03","value":170.1},{"date":"2025-07-04","value":170.85},{"date":"2025-07-07","value":168.55},{"date":"2025-07-08","value":169.55},{"date":"2025-07-09","value":169.3},{"date":"2025-07-10","value":172.65},{"date":"2025-07-11","value":173.4},{"date":"2025-07-14","value":171.8},{"date":"2025-07-15","value":171.3},{"date":"2025-07-16","value":172.85},{"date":"2025-07-17","value":175.5},{"date":"2025-07-18","value":176.5},{"date":"2025-07-21","value":176.65},{"date":"2025-07-22","value":178.85},{"date":"2025-07-23","value":175.9},{"date":"2025-07-24","value":180.2},{"date":"2025-07-25","value":181.75},{"date":"2025-07-28","value":177.05},{"date":"2025-07-29","value":176.4},{"date":"2025-07-30","value":174.75},{"date":"2025-07-31","value":172.35},{"date":"2025-08-01","value":169.95},{"date":"2025-08-04","value":170.35},{"date":"2025-08-05","value":173.3},{"date":"2025-08-06","value":174.25},{"date":"2025-08-07","value":173.05},{"date":"2025-08-08","value":174.5},{"date":"2025-08-11","value":176.8},{"date":"2025-08-12","value":176.8},{"date":"2025-08-13","value":177.15},{"date":"2025-08-14","value":176.2},{"date":"2025-08-15","value":177.7},{"date":"2025-08-18","value":175.95},{"date":"2025-08-19","value":177.85},{"date":"2025-08-20","value":174.45},{"date":"2025-08-21","value":177.05},{"date":"2025-08-22","value":174.75},{"date":"2025-08-25","value":174.75},{"date":"2025-08-26","value":181.45},{"date":"2025-08-27","value":179.3},{"date":"2025-08-28","value":181.3},{"date":"2025-08-29","value":179.75},{"date":"2025-09-01","value":179.75},{"date":"2025-09-02","value":181.1},{"date":"2025-09-03","value":181.85},{"date":"2025-09-04","value":181.2},{"date":"2025-09-05","value":181.2},{"date":"2025-09-08","value":184.45},{"date":"2025-09-09","value":180.65},{"date":"2025-09-10","value":180.0},{"date":"2025-09-11","value":178.1},{"date":"2025-09-12","value":178.35},{"date":"2025-09-15","value":178.35},{"date":"2025-09-16","value":178.35},{"date":"2025-09-17","value":180.2},{"date":"2025-09-18","value":176.55},{"date":"2025-09-19","value":175.95},{"date":"2025-09-22","value":178.4},{"date":"2025-09-23","value":177.35},{"date":"2025-09-24","value":180.3},{"date":"2025-09-25","value":180.45},{"date":"2025-09-26","value":179.4},{"date":"2025-09-29","value":178.45},{"date":"2025-09-30","value":176.5},{"date":"2025-10-01","value":174.15},{"date":"2025-10-02","value":175.55},{"date":"2025-10-03","value":177.05},{"date":"2025-10-06","value":178.55},{"date":"2025-10-07","value":176.65},{"date":"2025-10-08","value":177.5},{"date":"2025-10-09","value":178.9},{"date":"2025-10-10","value":178.55},{"date":"2025-10-13","value":176.5},{"date":"2025-10-14","value":176.55},{"date":"2025-10-15","value":178.4},{"date":"2025-10-16","value":180.25},{"date":"2025-10-17","value":177.65},{"date":"2025-10-20","value":177.65},{"date":"2025-10-21","value":179.4},{"date":"2025-10-22","value":179.15},{"date":"2025-10-23","value":179.55},{"date":"2025-10-24","value":180.5},{"date":"2025-10-27","value":180.8},{"date":"2025-10-28","value":181.15},{"date":"2025-10-29","value":181.85},{"date":"2025-10-30","value":182.05},{"date":"2025-10-31","value":177.65},{"date":"2025-11-03","value":177.75},{"date":"2025-11-04","value":174.35},{"date":"2025-11-05","value":173.75},{"date":"2025-11-06","value":177.15},{"date":"2025-11-07","value":175.8},{"date":"2025-11-10","value":175.8},{"date":"2025-11-11","value":176.85},{"date":"2025-11-12","value":177.65},{"date":"2025-11-13","value":180.2},{"date":"2025-11-14","value":178.8},{"date":"2025-11-17","value":178.7},{"date":"2025-11-18","value":179.0},{"date":"2025-11-19","value":180.45},{"date":"2025-11-20","value":177.7},{"date":"2025-11-21","value":179.55},{"date":"2025-11-24","value":178.95},{"date":"2025-11-25","value":178.65},{"date":"2025-11-26","value":178.35},{"date":"2025-11-27","value":181.0},{"date":"2025-11-28","value":179.25},{"date":"2025-12-01","value":177.95},{"date":"2025-12-02","value":179.6},{"date":"2025-12-03","value":178.1},{"date":"2025-12-04","value":176.65},{"date":"2025-12-05","value":177.2},{"date":"2025-12-08","value":178.15},{"date":"2025-12-09","value":178.15},{"date":"2025-12-10","value":180.75},{"date":"2025-12-11","value":179.15},{"date":"2025-12-12","value":179.9},{"date":"2025-12-15","value":180.9},{"date":"2025-12-16","value":180.5},{"date":"2025-12-17","value":183.3},{"date":"2025-12-18","value":181.35},{"date":"2025-12-19","value":180.75},{"date":"2025-12-22","value":182.85},{"date":"2025-12-23","value":183.6},{"date":"2025-12-24","value":183.6},{"date":"2025-12-25","value":183.6},{"date":"2025-12-26","value":187.85},{"date":"2025-12-29","value":189.55},{"date":"2025-12-30","value":189.6},{"date":"2025-12-31","value":189.6},{"date":"2026-01-01","value":189.6},{"date":"2026-01-02","value":186.75},{"date":"2026-01-05","value":189.7},{"date":"2026-01-06","value":190.95},{"date":"2026-01-07","value":192.4},{"date":"2026-01-08","value":190.3},{"date":"2026-01-09","value":190.8},{"date":"2026-01-12","value":192.1},{"date":"2026-01-13","value":190.35},{"date":"2026-01-14","value":192.85},{"date":"2026-01-15","value":189.55},{"date":"2026-01-16","value":187.95},{"date":"2026-01-19","value":188.0},{"date":"2026-01-20","value":186.6},{"date":"2026-01-21","value":186.9},{"date":"2026-01-22","value":187.15},{"date":"2026-01-23","value":192.05},{"date":"2026-01-26","value":192.4},{"date":"2026-01-27","value":191.95},{"date":"2026-01-28","value":195.9},{"date":"2026-01-29","value":199.1},{"date":"2026-01-30","value":198.3},{"date":"2026-02-02","value":198.3},{"date":"2026-02-03","value":195.15},{"date":"2026-02-04","value":196.65},{"date":"2026-02-05","value":194.25},{"date":"2026-02-06","value":196.2},{"date":"2026-02-09","value":197.05},{"date":"2026-02-10","value":198.8},{"date":"2026-02-11","value":201.05},{"date":"2026-02-12","value":199.6},{"date":"2026-02-13","value":198.1},{"date":"2026-02-16","value":198.1},{"date":"2026-02-17","value":198.1},{"date":"2026-02-18","value":198.1},{"date":"2026-02-19","value":200.85},{"date":"2026-02-20","value":199.0},{"date":"2026-02-23","value":202.1},{"date":"2026-02-24","value":206.05},{"date":"2026-02-25","value":209.95},{"date":"2026-02-26","value":209.6},{"date":"2026-02-27","value":208.05},{"date":"2026-03-02","value":210.5},{"date":"2026-03-03","value":206.15},{"date":"2026-03-04","value":203.3},{"date":"2026-03-05","value":202.75},{"date":"2026-03-06","value":202.1},{"date":"2026-03-09","value":204.1},{"date":"2026-03-10","value":205.5},{"date":"2026-03-11","value":205.35},{"date":"2026-03-12","value":205.15},{"date":"2026-03-13","value":203.9},{"date":"2026-03-16","value":202.9},{"date":"2026-03-17","value":202.55},{"date":"2026-03-18","value":198.8},{"date":"2026-03-19","value":196.85},{"date":"2026-03-20","value":196.85},{"date":"2026-03-23","value":196.85},{"date":"2026-03-24","value":200.2},{"date":"2026-03-25","value":203.45},{"date":"2026-03-26","value":204.4},{"date":"2026-03-27","value":204.5},{"date":"2026-03-30","value":206.75},{"date":"2026-03-31","value":204.75},{"date":"2026-04-01","value":206.5},{"date":"2026-04-02","value":207.4},{"date":"2026-04-03","value":207.4},{"date":"2026-04-06","value":209.95},{"date":"2026-04-07","value":212.35},{"date":"2026-04-08","value":214.0},{"date":"2026-04-09","value":212.85},{"date":"2026-04-10","value":211.3},{"date":"2026-04-13","value":209.05},{"date":"2026-04-14","value":209.45},{"date":"2026-04-15","value":210.45},{"date":"2026-04-16","value":209.65},{"date":"2026-04-17","value":207.1},{"date":"2026-04-20","value":212.2},{"date":"2026-04-21","value":212.6},{"date":"2026-04-22","value":215.1},{"date":"2026-04-23","value":217.45},{"date":"2026-04-24","value":216.1},{"date":"2026-04-27","value":219.4},{"date":"2026-04-28","value":219.0},{"date":"2026-04-29","value":222.0},{"date":"2026-04-30","value":220.85},{"date":"2026-05-01","value":220.85},{"date":"2026-05-04","value":223.25},{"date":"2026-05-05","value":224.45},{"date":"2026-05-06","value":224.8}],"SIR20":[{"date":"2026-01-01","value":180.0},{"date":"2026-01-02","value":179.8},{"date":"2026-01-05","value":182.8},{"date":"2026-01-06","value":184.7},{"date":"2026-01-07","value":185.6},{"date":"2026-01-08","value":185.1},{"date":"2026-01-09","value":183.2},{"date":"2026-01-12","value":185.1},{"date":"2026-01-13","value":183.1},{"date":"2026-01-14","value":185.2},{"date":"2026-01-15","value":182.7},{"date":"2026-01-16","value":182.7},{"date":"2026-01-19","value":180.9},{"date":"2026-01-20","value":179.5},{"date":"2026-01-21","value":180.6},{"date":"2026-01-22","value":180.6},{"date":"2026-01-23","value":180.6},{"date":"2026-01-26","value":180.6},{"date":"2026-01-27","value":186.1},{"date":"2026-01-28","value":187.8},{"date":"2026-01-29","value":191.5},{"date":"2026-01-30","value":195.0},{"date":"2026-02-02","value":184.6},{"date":"2026-02-03","value":187.8},{"date":"2026-02-04","value":190.4},{"date":"2026-02-05","value":188.4},{"date":"2026-02-06","value":187.6},{"date":"2026-02-09","value":189.5},{"date":"2026-02-10","value":190.5},{"date":"2026-02-11","value":192.8},{"date":"2026-02-12","value":192.4},{"date":"2026-02-13","value":192.8},{"date":"2026-02-16","value":192.8},{"date":"2026-02-17","value":192.8},{"date":"2026-02-18","value":192.0},{"date":"2026-02-19","value":192.1},{"date":"2026-02-20","value":191.9},{"date":"2026-02-23","value":194.1},{"date":"2026-02-24","value":198.1},{"date":"2026-02-25","value":202.0},{"date":"2026-02-26","value":201.5},{"date":"2026-02-27","value":201.5},{"date":"2026-03-02","value":203.1},{"date":"2026-03-03","value":198.5},{"date":"2026-03-04","value":197.2},{"date":"2026-03-05","value":194.4},{"date":"2026-03-06","value":195.6},{"date":"2026-03-09","value":196.7},{"date":"2026-03-10","value":198.0},{"date":"2026-03-11","value":197.9},{"date":"2026-03-12","value":198.1},{"date":"2026-03-13","value":195.0},{"date":"2026-03-16","value":195.5},{"date":"2026-03-17","value":195.3},{"date":"2026-03-18","value":195.3},{"date":"2026-03-19","value":195.3},{"date":"2026-03-20","value":195.3},{"date":"2026-03-23","value":195.3},{"date":"2026-03-24","value":195.3},{"date":"2026-03-25","value":196.0},{"date":"2026-03-26","value":196.5},{"date":"2026-03-27","value":197.6},{"date":"2026-03-30","value":199.3},{"date":"2026-03-31","value":196.4},{"date":"2026-04-01","value":198.7},{"date":"2026-04-02","value":201.0},{"date":"2026-04-03","value":201.0},{"date":"2026-04-06","value":203.0},{"date":"2026-04-07","value":204.3},{"date":"2026-04-08","value":206.1},{"date":"2026-04-09","value":205.5},{"date":"2026-04-10","value":202.4},{"date":"2026-04-13","value":202.3},{"date":"2026-04-14","value":202.5},{"date":"2026-04-15","value":203.2},{"date":"2026-04-16","value":203.2},{"date":"2026-04-17","value":200.2},{"date":"2026-04-20","value":204.8},{"date":"2026-04-21","value":205.8},{"date":"2026-04-22","value":207.5},{"date":"2026-04-23","value":207.8},{"date":"2026-04-24","value":209.9},{"date":"2026-04-27","value":212.4},{"date":"2026-04-28","value":212.3},{"date":"2026-04-29","value":215.9},{"date":"2026-04-30","value":214.8},{"date":"2026-05-01","value":214.8},{"date":"2026-05-04","value":216.3},{"date":"2026-05-05","value":216.7},{"date":"2026-05-06","value":216.7}],"SVR10":[{"date":"2026-01-01","value":189.5},{"date":"2026-01-02","value":189.5},{"date":"2026-01-05","value":189.8},{"date":"2026-01-06","value":189.8},{"date":"2026-01-07","value":189.8},{"date":"2026-01-08","value":189.8},{"date":"2026-01-09","value":189.8},{"date":"2026-01-12","value":189.8},{"date":"2026-01-13","value":189.8},{"date":"2026-01-14","value":189.8},{"date":"2026-01-15","value":189.8},{"date":"2026-01-16","value":189.8},{"date":"2026-01-19","value":189.8},{"date":"2026-01-20","value":189.8},{"date":"2026-01-21","value":189.8},{"date":"2026-01-22","value":189.8},{"date":"2026-01-23","value":189.8},{"date":"2026-01-26","value":194.4},{"date":"2026-01-27","value":192.5},{"date":"2026-01-28","value":194.0},{"date":"2026-01-29","value":198.5},{"date":"2026-01-30","value":198.0},{"date":"2026-02-02","value":199.5},{"date":"2026-02-03","value":199.3},{"date":"2026-02-04","value":199.8},{"date":"2026-02-05","value":199.7},{"date":"2026-02-06","value":200.0},{"date":"2026-02-09","value":200.0},{"date":"2026-02-10","value":203.0},{"date":"2026-02-11","value":205.0},{"date":"2026-02-12","value":203.5},{"date":"2026-02-13","value":205.0},{"date":"2026-02-16","value":205.0},{"date":"2026-02-17","value":205.0},{"date":"2026-02-18","value":205.0},{"date":"2026-02-19","value":205.0},{"date":"2026-02-20","value":205.0},{"date":"2026-02-23","value":205.3},{"date":"2026-02-24","value":207.3},{"date":"2026-02-25","value":208.3},{"date":"2026-02-26","value":208.2},{"date":"2026-02-27","value":208.2},{"date":"2026-03-02","value":210.8},{"date":"2026-03-03","value":208.8},{"date":"2026-03-04","value":207.3},{"date":"2026-03-05","value":206.8},{"date":"2026-03-06","value":206.7},{"date":"2026-03-09","value":207.0},{"date":"2026-03-10","value":208.0},{"date":"2026-03-11","value":208.0},{"date":"2026-03-12","value":208.0},{"date":"2026-03-13","value":207.0},{"date":"2026-03-16","value":206.5},{"date":"2026-03-17","value":206.5},{"date":"2026-03-18","value":206.4},{"date":"2026-03-19","value":206.3},{"date":"2026-03-20","value":206.3},{"date":"2026-03-23","value":206.3},{"date":"2026-03-24","value":203.3},{"date":"2026-03-25","value":205.3},{"date":"2026-03-26","value":206.2},{"date":"2026-03-27","value":206.3},{"date":"2026-03-30","value":208.3},{"date":"2026-03-31","value":206.3},{"date":"2026-04-01","value":208.0},{"date":"2026-04-02","value":208.9},{"date":"2026-04-03","value":208.9},{"date":"2026-04-06","value":210.9},{"date":"2026-04-07","value":213.0},{"date":"2026-04-08","value":214.6},{"date":"2026-04-09","value":213.5},{"date":"2026-04-10","value":212.0},{"date":"2026-04-13","value":210.0},{"date":"2026-04-14","value":210.4},{"date":"2026-04-15","value":211.4},{"date":"2026-04-16","value":210.6},{"date":"2026-04-17","value":208.1},{"date":"2026-04-20","value":212.6},{"date":"2026-04-21","value":213.0},{"date":"2026-04-22","value":215.5},{"date":"2026-04-23","value":218.0},{"date":"2026-04-24","value":217.0},{"date":"2026-04-27","value":217.0},{"date":"2026-04-28","value":219.2},{"date":"2026-04-29","value":222.2},{"date":"2026-04-30","value":222.2},{"date":"2026-05-01","value":222.2},{"date":"2026-05-04","value":224.0},{"date":"2026-05-05","value":225.0},{"date":"2026-05-06","value":225.0}],"SHFE_RSS3":[{"date":"2025-12-01","value":15265},{"date":"2025-12-04","value":15080},{"date":"2025-12-09","value":15050},{"date":"2025-12-12","value":15100},{"date":"2025-12-17","value":15300},{"date":"2025-12-22","value":15200},{"date":"2025-12-25","value":15170},{"date":"2025-12-30","value":15650},{"date":"2026-01-02","value":15800},{"date":"2026-01-06","value":16000},{"date":"2026-01-09","value":16200},{"date":"2026-01-14","value":16100},{"date":"2026-01-19","value":15650},{"date":"2026-01-22","value":15750},{"date":"2026-01-27","value":16200},{"date":"2026-01-30","value":16450},{"date":"2026-02-04","value":16100},{"date":"2026-02-09","value":16450},{"date":"2026-02-12","value":16550},{"date":"2026-02-25","value":17200},{"date":"2026-03-02","value":17150},{"date":"2026-03-05","value":16800},{"date":"2026-03-10","value":16900},{"date":"2026-03-13","value":17200},{"date":"2026-03-18","value":16650},{"date":"2026-03-23","value":16050},{"date":"2026-03-26","value":16350},{"date":"2026-03-31","value":16500},{"date":"2026-04-03","value":16450},{"date":"2026-04-09","value":17050},{"date":"2026-04-14","value":16800},{"date":"2026-04-17","value":16700},{"date":"2026-04-22","value":17400},{"date":"2026-04-27","value":17200},{"date":"2026-04-30","value":17500},{"date":"2026-05-05","value":17600},{"date":"2026-05-08","value":18000},{"date":"2026-05-13","value":17950}],"SGX_TSR20":[{"date":"2025-12-01","value":1.71},{"date":"2025-12-04","value":1.7},{"date":"2025-12-09","value":1.72},{"date":"2025-12-12","value":1.75},{"date":"2025-12-17","value":1.75},{"date":"2025-12-22","value":1.78},{"date":"2025-12-25","value":1.78},{"date":"2025-12-30","value":1.8},{"date":"2026-01-02","value":1.81},{"date":"2026-01-06","value":1.85},{"date":"2026-01-09","value":1.87},{"date":"2026-01-14","value":1.84},{"date":"2026-01-19","value":1.82},{"date":"2026-01-22","value":1.83},{"date":"2026-01-27","value":1.89},{"date":"2026-01-30","value":1.93},{"date":"2026-02-04","value":1.87},{"date":"2026-02-09","value":1.9},{"date":"2026-02-12","value":1.92},{"date":"2026-02-25","value":2.01},{"date":"2026-03-02","value":1.98},{"date":"2026-03-05","value":1.95},{"date":"2026-03-10","value":1.99},{"date":"2026-03-13","value":1.99},{"date":"2026-03-18","value":1.92},{"date":"2026-03-23","value":1.89},{"date":"2026-03-26","value":1.96},{"date":"2026-03-31","value":1.97},{"date":"2026-04-03","value":1.98},{"date":"2026-04-09","value":2.03},{"date":"2026-04-14","value":2.06},{"date":"2026-04-17","value":2.03},{"date":"2026-04-22","value":2.1},{"date":"2026-04-27","value":2.13},{"date":"2026-04-30","value":2.15},{"date":"2026-05-05","value":2.18},{"date":"2026-05-08","value":2.2},{"date":"2026-05-13","value":2.3}]};
+
+// Color scheme
+const COLORS = {
+  RSS3:'#c41a08', RSS4:'#1a3870', STR20:'#1a6030', SMR20:'#8c4800', Latex:'#521a80',
+  SIR20:'#d68a4a', SVR10:'#7a3a8a', SHFE_RSS3:'#c41a08', SGX_TSR20:'#1a6030'
+};
+
+// Chart.js default config
+Chart.defaults.font.family = "'JetBrains Mono', 'Noto Sans SC', monospace";
+Chart.defaults.font.size = 10;
+Chart.defaults.color = '#706a60';
+Chart.defaults.borderColor = '#d0ccc3';
+Chart.defaults.plugins.legend.display = false;
+
+// Helper: Convert series to {x, y} for Chart.js time scale
+function toXY(series) {
+  return series.map(p => ({x: p.date, y: p.value}));
+}
+
+// MAIN CHART
+let mainChart = null;
+function buildMain(period='all') {
+  const ctx = document.getElementById('mainChart').getContext('2d');
+  if (mainChart) mainChart.destroy();
+  
+  let filterFn = p => true;
+  const today = '2026-05-06';
+  if (period === '2026') filterFn = p => p.date >= '2026-01-01';
+  else if (period === '6m') filterFn = p => p.date >= '2025-11-06';
+  else if (period === '3m') filterFn = p => p.date >= '2026-02-06';
+  
+  const grades = ['RSS3','RSS4','STR20','SMR20','Latex'];
+  const datasets = grades.map(g => ({
+    label: g,
+    data: RUBBER_DATA[g].filter(filterFn).map(p => ({x:p.date, y:p.value})),
+    borderColor: COLORS[g],
+    backgroundColor: COLORS[g]+'15',
+    borderWidth: 1.5,
+    pointRadius: 0,
+    pointHoverRadius: 3,
+    tension: 0.1
+  }));
+  
+  mainChart = new Chart(ctx, {
+    type: 'line',
+    data: {datasets},
+    options: {
+      responsive:true, maintainAspectRatio:false,
+      interaction: {mode:'index', intersect:false},
+      scales: {
+        x: {type:'time', time:{unit: period==='3m'?'week':'month', displayFormats:{month:'MMM yy', week:'MMM dd'}}, grid:{display:false}},
+        y: {position:'right', title:{display:true,text:'USD cents/kg',font:{size:9}}, grid:{color:'#ece9e2'}}
+      },
+      plugins: {
+        legend: {display:false},
+        tooltip: {
+          backgroundColor:'#0c0a08', titleFont:{size:10}, bodyFont:{size:10},
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: $${(ctx.parsed.y/100).toFixed(3)}/kg (${ctx.parsed.y.toFixed(1)}¢)`
+          }
+        }
+      }
+    }
+  });
+}
+
+function setMainPeriod(btn, p) {
+  document.querySelectorAll('.chart-controls .chart-btn').forEach(b => {
+    if (b.parentElement === btn.parentElement) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  buildMain(p);
+}
+
+// SHFE CHART
+function buildSHFE() {
+  const ctx = document.getElementById('shfeChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets:[{
+        label:'SHFE RSS3 主力',
+        data: RUBBER_DATA.SHFE_RSS3.map(p=>({x:p.date,y:p.value})),
+        borderColor:'#c41a08', backgroundColor:'#c41a0820',
+        borderWidth:1.8, pointRadius:0, pointHoverRadius:4, tension:0.15,
+        fill:true
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        x:{type:'time', time:{unit:'month',displayFormats:{month:'MMM yy'}}, grid:{display:false}},
+        y:{position:'right', title:{display:true,text:'¥/吨',font:{size:9}}, grid:{color:'#ece9e2'}}
+      },
+      plugins:{
+        tooltip:{backgroundColor:'#0c0a08',
+          callbacks:{label:c=>`${c.parsed.y.toLocaleString()} ¥/T`}}
+      }
+    }
+  });
+}
+
+// SGX CHART
+function buildSGX() {
+  const ctx = document.getElementById('sgxChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets:[{
+        label:'SGX TSR20',
+        data: RUBBER_DATA.SGX_TSR20.map(p=>({x:p.date,y:p.value})),
+        borderColor:'#1a6030', backgroundColor:'#1a603020',
+        borderWidth:1.8, pointRadius:0, pointHoverRadius:4, tension:0.15,
+        fill:true
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        x:{type:'time', time:{unit:'month',displayFormats:{month:'MMM yy'}}, grid:{display:false}},
+        y:{position:'right', title:{display:true,text:'USD/kg',font:{size:9}}, grid:{color:'#ece9e2'}}
+      },
+      plugins:{
+        tooltip:{backgroundColor:'#0c0a08',
+          callbacks:{label:c=>`$${c.parsed.y.toFixed(3)}/kg`}}
+      }
+    }
+  });
+}
+
+// SPREAD CHART
+function buildSpread() {
+  const ctx = document.getElementById('spreadChart').getContext('2d');
+  // Build RSS3 - STR20 spread
+  const rss3Map = {}; RUBBER_DATA.RSS3.forEach(p=>rss3Map[p.date]=p.value);
+  const str20Map = {}; RUBBER_DATA.STR20.forEach(p=>str20Map[p.date]=p.value);
+  const spread = [];
+  RUBBER_DATA.RSS3.forEach(p => {
+    if (str20Map[p.date]) {
+      spread.push({x:p.date, y: p.value - str20Map[p.date]});
+    }
+  });
+  
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets:[{
+        label:'RSS3 - STR20 Spread',
+        data: spread,
+        borderColor:'#1a3870', backgroundColor:'#1a387020',
+        borderWidth:1.8, pointRadius:0, pointHoverRadius:4, tension:0.15,
+        fill:true
+      }]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      scales:{
+        x:{type:'time', time:{unit:'month',displayFormats:{month:'MMM yy'}}, grid:{display:false}},
+        y:{position:'right', title:{display:true,text:'¢/kg 价差',font:{size:9}}, grid:{color:'#ece9e2'}, beginAtZero:false}
+      },
+      plugins:{
+        tooltip:{backgroundColor:'#0c0a08',
+          callbacks:{label:c=>`价差: ${c.parsed.y.toFixed(1)}¢/kg`}}
+      }
+    }
+  });
+}
+
+// YoY CHART
+let yoyChart = null;
+function buildYoY(grade='RSS3') {
+  const ctx = document.getElementById('yoyChart').getContext('2d');
+  if (yoyChart) yoyChart.destroy();
+  
+  // Map by month-day for overlay
+  const data2025 = RUBBER_DATA[grade].filter(p=>p.date<'2026-01-01').map(p=>{
+    const md = p.date.slice(5); // MM-DD
+    return {x: '2026-' + md, y: p.value};
+  });
+  const data2026 = RUBBER_DATA[grade].filter(p=>p.date>='2026-01-01').map(p=>({x:p.date,y:p.value}));
+  
+  yoyChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [
+        {label:'2025', data: data2025, borderColor:'#a09890', borderWidth:1.5,
+         pointRadius:0, pointHoverRadius:3, tension:0.1, borderDash:[3,3]},
+        {label:'2026', data: data2026, borderColor: COLORS[grade], borderWidth:2,
+         pointRadius:0, pointHoverRadius:3, tension:0.1}
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction: {mode:'index', intersect:false},
+      scales:{
+        x:{type:'time', time:{unit:'month', displayFormats:{month:'MMM'}}, grid:{display:false}},
+        y:{position:'right', title:{display:true,text:'USD cents/kg',font:{size:9}}, grid:{color:'#ece9e2'}}
+      },
+      plugins:{
+        legend:{display:true, position:'top', align:'end', labels:{boxWidth:12,font:{size:9}}},
+        tooltip:{backgroundColor:'#0c0a08',
+          callbacks:{label:c=>`${c.dataset.label}: $${(c.parsed.y/100).toFixed(3)}/kg`}}
+        }
+    }
+  });
+}
+
+function setYoYGrade(btn, g) {
+  document.querySelectorAll('.chart-controls .chart-btn').forEach(b => {
+    if (b.parentElement === btn.parentElement) b.classList.remove('active');
+  });
+  btn.classList.add('active');
+  buildYoY(g);
+}
+
+// ALL 2026 CHART
+function buildAll2026() {
+  const ctx = document.getElementById('all2026Chart').getContext('2d');
+  const grades = ['RSS3','RSS4','STR20','SMR20','Latex','SIR20','SVR10'];
+  const datasets = grades.map(g => ({
+    label:g,
+    data: RUBBER_DATA[g].filter(p=>p.date>='2026-01-01').map(p=>({x:p.date,y:p.value})),
+    borderColor: COLORS[g],
+    borderWidth:1.5, pointRadius:0, pointHoverRadius:3, tension:0.1
+  }));
+  
+  new Chart(ctx, {
+    type:'line',
+    data: {datasets},
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      interaction: {mode:'index', intersect:false},
+      scales:{
+        x:{type:'time', time:{unit:'month',displayFormats:{month:'MMM dd'}}, grid:{display:false}},
+        y:{position:'right', title:{display:true,text:'USD cents/kg',font:{size:9}}, grid:{color:'#ece9e2'}}
+      },
+      plugins:{
+        legend:{display:false},
+        tooltip:{
+          backgroundColor:'#0c0a08',
+          callbacks:{label:c=>`${c.dataset.label}: $${(c.parsed.y/100).toFixed(3)}/kg`}
+        }
+      }
+    }
+  });
+}
+
+// Build all charts on load
+window.addEventListener('load', () => {
+  buildMain('all');
+  buildSHFE();
+  buildSGX();
+  buildSpread();
+  buildYoY('RSS3');
+  buildAll2026();
+});
+</script>
+
+</body>
+</html>
