@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>中国国贸 600007 · 估值分析 · 自由现金口径重估 · 2026.05.15</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg:#f7f5f1;--bg2:#f0ede7;--bg3:#e8e3da;--surface:#fff;
+  --border:#d4cfc7;--border2:#c2bcb2;
+  --text:#1a1816;--muted:#686460;--dim:#9a938c;
+  --gold:#9a7000;--gold-lt:#c49820;--gold-bg:#fdf6e0;
+  --green:#166334;--green-bg:#eaf6ee;
+  --red:#a81c1c;--red-bg:#fdf0f0;
+  --amber:#b06a00;--amber-bg:#fef2e0;
+  --blue:#174d88;--blue-bg:#edf2fb;
+  --teal:#0d6060;--teal-bg:#e6f4f4;
+  --purple:#522878;--purple-bg:#f2ecfa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans SC',sans-serif;font-size:12.5px;line-height:1.7}
+
+.cover{background:var(--surface);border-bottom:3px solid var(--gold);padding:26px 30px 20px;display:flex;justify-content:space-between;align-items:flex-end}
+.c-eye{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:4px}
+.c-title{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;line-height:1.2;margin-bottom:4px}
+.c-sub{font-size:11px;color:var(--muted);line-height:1.9}
+.c-right{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--dim);line-height:2}
+.c-date{font-size:13px;font-weight:600;color:var(--gold)}
+
+.banner{margin:13px 22px;background:var(--gold-bg);border:1px solid var(--gold-lt);border-left:4px solid var(--gold);padding:11px 17px;font-size:12px;line-height:1.8}
+.b-tag{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;font-weight:600}
+
+.toc{background:var(--bg2);border:1px solid var(--border);margin:12px 22px;padding:12px 16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px 20px}
+.toc-t{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;grid-column:1/-1}
+.toc-i{font-size:11px;color:var(--muted);padding:1px 0;display:flex;gap:6px}
+.toc-n{font-family:'IBM Plex Mono',monospace;color:var(--gold);min-width:24px;font-size:10px}
+
+main{padding:0 22px 32px}
+.sec{background:var(--surface);border:1px solid var(--border);margin-bottom:14px}
+.sec-head{display:flex;align-items:baseline;gap:10px;padding:9px 14px 7px;border-bottom:2px solid var(--border);background:var(--bg2)}
+.sec-num{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--gold);letter-spacing:2px;min-width:24px}
+.sec-title{font-family:'Noto Serif SC',serif;font-size:13.5px;font-weight:700;flex:1}
+.sec-note{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);white-space:nowrap}
+.sec-body{padding:14px 16px}
+
+table{width:100%;border-collapse:collapse;font-size:11.5px;margin-bottom:12px}
+thead tr{background:var(--bg3)}
+th{padding:6px 9px;text-align:left;font-weight:600;font-size:11px;border-bottom:2px solid var(--border2)}
+td{padding:6px 9px;border-bottom:1px solid var(--border);vertical-align:middle}
+.ta-r{text-align:right}
+tr.hl-g td{background:#edf8f2}
+tr.hl-r td{background:#fdf4f4}
+tr.hl-gold td{background:var(--gold-bg)}
+tr.hl-b td{background:var(--blue-bg)}
+tr.hl-a td{background:var(--amber-bg)}
+tr.hl-p td{background:var(--purple-bg)}
+tr.hl-t td{background:var(--teal-bg)}
+tr.sub td{background:var(--bg3);font-weight:600;border-top:2px solid var(--border2)}
+tr.grand td{background:#dedad2;font-weight:700;border-top:2px solid var(--border2)}
+tr.yr td{background:#f5f2ee}
+.fw6{font-weight:600}.mono{font-family:'IBM Plex Mono',monospace}
+.c-g{color:var(--green)}.c-r{color:var(--red)}.c-a{color:var(--amber)}
+.c-gold{color:var(--gold)}.c-b{color:var(--blue)}.c-m{color:var(--muted)}
+.c-t{color:var(--teal)}.c-p{color:var(--purple)}
+.star{color:var(--gold);font-weight:700}
+
+.kpi-row{display:grid;gap:9px;margin-bottom:12px}
+.k3{grid-template-columns:repeat(3,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k5{grid-template-columns:repeat(5,1fr)}.k6{grid-template-columns:repeat(6,1fr)}
+.kpi{background:var(--bg2);border:1px solid var(--border);padding:9px 11px}
+.kpi.gold{border-top:3px solid var(--gold)}.kpi.g{border-top:3px solid var(--green)}
+.kpi.r{border-top:3px solid var(--red)}.kpi.a{border-top:3px solid var(--amber)}
+.kpi.b{border-top:3px solid var(--blue)}.kpi.t{border-top:3px solid var(--teal)}
+.kpi.p{border-top:3px solid var(--purple)}
+.kl{font-size:10px;color:var(--muted);margin-bottom:2px}
+.kv{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:600;line-height:1.15}
+.kv.sm{font-size:13px}.ks{font-size:10px;color:var(--dim);margin-top:2px}
+
+.green-box{background:var(--green-bg);border:1px solid #a8d8ba;border-left:3px solid var(--green);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.amber-box{background:var(--amber-bg);border:1px solid #e0b060;border-left:3px solid var(--amber);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.red-box{background:var(--red-bg);border:1px solid #e0a8a8;border-left:3px solid var(--red);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.blue-box{background:var(--blue-bg);border:1px solid #a8c4e0;border-left:3px solid var(--blue);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.gold-box{background:var(--gold-bg);border:1px solid var(--gold-lt);border-left:3px solid var(--gold);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.purple-box{background:var(--purple-bg);border:1px solid #c0a8e0;border-left:3px solid var(--purple);padding:10px 14px;font-size:11.5px;line-height:1.8;margin-bottom:10px}
+.insight{background:var(--bg3);border:1px solid var(--border2);border-left:4px solid var(--gold);padding:12px 15px;font-size:12px;line-height:1.8;margin-bottom:12px}
+.ins-lbl{font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.note{font-size:10.5px;color:var(--muted);line-height:1.7;margin-top:8px;padding-top:6px;border-top:1px dashed var(--border)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.card{background:var(--bg2);border:1px solid var(--border);padding:11px 13px}
+.card-t{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
+.card-v{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;line-height:1.2}
+.card-s{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.6}
+
+.tag{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1px;display:inline-block;padding:2px 5px}
+.tg{background:var(--green-bg);color:var(--green)}.tr{background:var(--red-bg);color:var(--red)}
+.ta{background:var(--amber-bg);color:var(--amber)}.tb{background:var(--blue-bg);color:var(--blue)}
+.tn{background:var(--bg3);color:var(--muted)}.tgold{background:var(--gold-bg);color:var(--gold)}
+.tp{background:var(--purple-bg);color:var(--purple)}
+
+.wf{background:var(--bg2);border:1px solid var(--border);padding:13px 15px;margin-bottom:12px}
+.wf-t{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.wf-r{display:flex;align-items:center;gap:10px;margin-bottom:5px}
+.wf-l{font-size:11px;color:var(--muted);min-width:180px}
+.wf-b{height:18px;display:flex;align-items:center;padding:0 7px;font-size:10px;font-weight:600;font-family:'IBM Plex Mono',monospace;white-space:nowrap}
+.wfp{background:var(--green-bg);color:var(--green);border:1px solid #a8d8ba}
+.wfn{background:var(--red-bg);color:var(--red);border:1px solid #e0a8a8}
+.wfr{background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-lt)}
+.wf-v{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;min-width:65px;text-align:right}
+
+.trendbar{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.tb-l{font-size:10.5px;color:var(--muted);min-width:80px;font-family:'IBM Plex Mono',monospace}
+.tb-track{flex:1;height:15px;background:var(--bg3);border-radius:2px;overflow:hidden;position:relative}
+.tb-f{height:100%;border-radius:2px;display:flex;align-items:center;padding:0 6px;font-size:9px;font-family:'IBM Plex Mono',monospace;font-weight:600;color:#fff;white-space:nowrap}
+.tb-f.pos{background:var(--green)}.tb-f.neg{background:var(--red)}.tb-f.neu{background:var(--amber)}
+.tb-v{font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;min-width:60px;text-align:right}
+
+.scenario{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:14px}
+.sc{background:var(--surface);padding:14px 16px}
+.sc.opt{border-top:4px solid var(--green)}.sc.base{border-top:4px solid var(--gold)}.sc.pes{border-top:4px solid var(--red)}
+.sc-l{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.sc-v{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:600;line-height:1.1;margin-bottom:4px}
+.sc-s{font-size:10.5px;color:var(--muted);line-height:1.7;margin-top:6px}
+
+.source{background:var(--bg3);border:1px solid var(--border2);margin:12px 22px 0;padding:10px 14px;font-size:10.5px;color:var(--muted);line-height:1.9}
+footer{margin:8px 22px 0;padding:8px 13px;background:var(--bg3);border:1px solid var(--border);display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim)}
+
+.chart-container{position:relative;height:240px;margin-bottom:12px}
+
+@media print{body{background:#fff;font-size:11px}main{padding:0 12px}.sec{break-inside:avoid}}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<div class="cover">
+  <div>
+    <div class="c-eye">600007 · A股 · 估值分析 · v3 · 自由现金口径重估</div>
+    <div class="c-title">中国国际贸易中心<br>估值分析（自由现金重估版）</div>
+    <div class="c-sub">
+      关键修正：押金不属于自由现金 · 重估真实可支配现金<br>
+      季度追踪验证 · 写字楼下行 · 商城超预期 · REITs框架对标<br>
+      偿债压力归零 · 红利ETF增持 · 估值结论的精确化更新
+    </div>
+  </div>
+  <div class="c-right">
+    <div class="c-date">2026年5月15日</div>
+    <div>原始数据：Q1 2026季报 + 经营简报</div>
+    <div>前次更新：综合估值更新_20260430 (v2)</div>
+    <div>核心修正：押金占用约10亿应剔除</div>
+    <div style="color:var(--gold);font-weight:600;margin-top:4px">FOR REFERENCE ONLY</div>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="b-tag">▪ 本版核心修正</div>
+  <strong>关键发现：押金不应被计入"自由现金"。</strong>此前所有估值版本均按"净现金 = 货币资金 − 有息负债"计算（36.6亿），但<strong>"其他应付款"10.14亿中约9亿是租户押金（3个月租金惯例），这部分对应资金必须随时可退还，本质上是受托管理资金，不构成公司可自由支配现金。</strong>剔除押金1.4亿受限资金后，<strong>真实自由现金约25-26亿（每股~2.5元），而非36.6亿（每股3.63元）</strong>。这一修正使估值参数精确化：EV从174.9亿调整至186.4亿，EV/E从14.5x升至15.5x，PE框架更显偏贵；但REITs框架下分配能力不变（分红能力基于经营CF流量，与押金存量无关），核心结论不变。<strong>21元股价中尚未充分定价"潜在现金释放期权"和"特别分红弹性"，仍处于REITs框架的合理底部。</strong>
+</div>
+
+<div class="toc">
+  <div class="toc-t">▪ 报告目录</div>
+  <div class="toc-i"><span class="toc-n">§01</span>Q1 2026核心数据快览</div>
+  <div class="toc-i"><span class="toc-n">§02</span>损益表深度拆解</div>
+  <div class="toc-i"><span class="toc-n">§03</span>三业态季度追踪验证</div>
+  <div class="toc-i"><span class="toc-n">§04</span>写字楼悲观情景触发</div>
+  <div class="toc-i"><span class="toc-n">§05</span>商城超预期正面信号</div>
+  <div class="toc-i"><span class="toc-n">§06</span>现金流回升+债务清零</div>
+  <div class="toc-i"><span class="toc-n">§07</span>股东结构：红利ETF大举增持</div>
+  <div class="toc-i"><span class="toc-n">§08</span>2026年全年业绩预测修正</div>
+  <div class="toc-i"><span class="toc-n">§09</span>分红可持续性分析</div>
+  <div class="toc-i"><span class="toc-n">§10</span>双框架估值：PE vs REITs</div>
+  <div class="toc-i"><span class="toc-n">§11</span>类REITs横向对标补充</div>
+  <div class="toc-i"><span class="toc-n">§12</span>综合结论与Q2观察点</div>
+</div>
+
+<main>
+
+<!-- §01 Q1快览 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§01</div>
+    <div class="sec-title">Q1 2026核心数据快览</div>
+    <div class="sec-note">★ 全部来自Q1 2026季报原文</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k6">
+      <div class="kpi r">
+        <div class="kl">营业收入</div>
+        <div class="kv c-r sm">9.0043亿</div>
+        <div class="ks c-r">YoY −5.23%</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">归母净利润</div>
+        <div class="kv c-a sm">3.0551亿</div>
+        <div class="ks c-a">YoY −1.92%（小于收入降幅）</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">基本EPS</div>
+        <div class="kv c-gold">0.30元</div>
+        <div class="ks">YoY −1.92%</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">货币资金</div>
+        <div class="kv c-g sm">39.043亿</div>
+        <div class="ks c-g">较年末+4.19亿↑</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">长期借款</div>
+        <div class="kv c-g sm">2.000亿</div>
+        <div class="ks c-g">持平，无新偿债</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">归母权益</div>
+        <div class="kv c-b sm">100.529亿</div>
+        <div class="ks c-g">+3.13%（=Q1净利润）</div>
+      </div>
+    </div>
+
+    <div class="amber-box">
+      <strong>三个关键反差信号：</strong><br>
+      ① <strong>收入−利润分化</strong>：收入降−5.23%，归母净利仅降−1.92%，营业利润率从43.51%升至45.31%（+1.8pt），成本管控能力超预期<br>
+      ② <strong>写字楼−商城分化</strong>：写字楼出租率89.6%跌破90%确认悲观触发，但商城出租率反而升至95.7%且租金创新高1,324元<br>
+      ③ <strong>债务−现金分化</strong>：长期借款维持2亿不偿还（无必要），但货币资金大幅回升+4.19亿，债务压力归零叠加现金扩张
+    </div>
+  </div>
+</div>
+
+<!-- §02 损益表深度拆解 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§02</div>
+    <div class="sec-title">损益表深度拆解：为何利润降幅远小于收入</div>
+    <div class="sec-note">★ Q1 2026季报利润表原文</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>损益表项目</th><th>Q1 2026</th><th>Q1 2025</th><th>YoY变动</th><th>对利润影响</th><th>解读</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="fw6">营业收入</td>
+          <td class="mono">9.0043亿</td>
+          <td class="mono">9.5010亿</td>
+          <td class="c-r">−5.23%</td>
+          <td class="c-r mono">−0.497亿</td>
+          <td>写字楼下行主导</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">营业成本</td>
+          <td class="mono">3.6568亿</td>
+          <td class="mono">3.9025亿</td>
+          <td class="c-g">−6.30%</td>
+          <td class="c-g mono">+0.246亿</td>
+          <td><strong>成本降幅超收入</strong>（折旧+维修节约）</td>
+        </tr>
+        <tr>
+          <td class="fw6">税金及附加</td>
+          <td class="mono">0.8871亿</td>
+          <td class="mono">0.9013亿</td>
+          <td class="c-g">−1.58%</td>
+          <td class="c-g mono">+0.014亿</td>
+          <td>房产税、土地使用税平稳</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">销售费用</td>
+          <td class="mono">0.1795亿</td>
+          <td class="mono">0.2195亿</td>
+          <td class="c-g fw6">−18.2%</td>
+          <td class="c-g mono">+0.040亿</td>
+          <td>显著节约</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">管理费用</td>
+          <td class="mono">0.2965亿</td>
+          <td class="mono">0.3226亿</td>
+          <td class="c-g fw6">−8.10%</td>
+          <td class="c-g mono">+0.026亿</td>
+          <td>管理效率提升</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">财务费用</td>
+          <td class="mono">+0.0463亿</td>
+          <td class="mono">−0.0286亿</td>
+          <td class="c-r">由负转正</td>
+          <td class="c-r mono">−0.075亿</td>
+          <td>利息收入−6.7%（货币资金减少）</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">　其中：利息费用</td>
+          <td class="mono">0.0199亿</td>
+          <td class="mono">0.1004亿</td>
+          <td class="c-g fw6">−80.2%</td>
+          <td class="c-g mono">+0.081亿</td>
+          <td><strong>偿债后利息支出骤降</strong></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">信用减值损失转回</td>
+          <td class="mono">+0.0294亿</td>
+          <td class="mono">−0.0001亿</td>
+          <td class="c-g">大额转回</td>
+          <td class="c-g mono">+0.030亿</td>
+          <td><strong>租户违约改善</strong>，2025年坏账已收回</td>
+        </tr>
+        <tr class="sub">
+          <td class="fw6">营业利润</td>
+          <td class="mono fw6">4.0774亿</td>
+          <td class="mono">4.1354亿</td>
+          <td class="c-a">−1.40%</td>
+          <td colspan="2">利润率45.3% vs 43.5%（+1.8pt）</td>
+        </tr>
+        <tr>
+          <td class="fw6">所得税费用</td>
+          <td class="mono">1.0211亿</td>
+          <td class="mono">1.0417亿</td>
+          <td class="c-g">−1.98%</td>
+          <td class="c-g mono">+0.021亿</td>
+          <td>有效税率25.0%稳定</td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">归母净利润</td>
+          <td class="mono fw6">3.0551亿</td>
+          <td class="mono">3.1150亿</td>
+          <td class="c-a fw6">−1.92%</td>
+          <td colspan="2" class="fw6">收入−5.23% vs 利润−1.92%，<strong>正向运营杠杆</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div class="green-box">
+        <strong>成本超弹性的来源拆解：</strong><br>
+        营业成本下降−6.30%（节约0.246亿），主要来自折旧摊销减少（建筑物部分资产折旧已接近完成）+ 维修保养支出节约（2025年集中翻新后2026年自然回落）+ 员工成本控制。叠加销售费用−18.2%和管理费用−8.1%，三费合计节约约0.135亿。<br><br>
+        <strong>利息支出骤降是利润维持的关键：</strong>利息费用从0.1004亿降至0.0199亿（−80.2%），节约0.081亿。这是2025年偿债8.85亿的实质效果。
+      </div>
+      <div class="blue-box">
+        <strong>信用减值转回是反转信号：</strong>Q1转回0.029亿坏账准备，与2025年全年计提0.088亿（同比+4204%）方向完全相反。说明此前担心的"租户违约扩大"风险并未实质性恶化，部分2025年计提的坏账已收回或不再需要。<br><br>
+        <strong>租户违约罚款收入：</strong>Q1还录得506,045元租户违约罚款收入（非经常性损益项），间接说明部分租户已支付违约金，租约管理处于正常状态。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- §03 三业态季度追踪验证 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§03</div>
+    <div class="sec-title">三业态季度追踪：完整序列+Q1验证</div>
+    <div class="sec-note">★ 五份经营简报 + 2025年报数据</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>季度</th><th>写字楼收入</th><th>商城收入</th><th>公寓收入</th><th>三项合计</th></tr>
+      </thead>
+      <tbody>
+        <tr class="yr"><td class="fw6 c-m">2024全年（参考）</td><td class="mono c-m">15.113</td><td class="mono c-m">12.862</td><td class="mono c-m">1.871</td><td class="mono c-m">29.846</td></tr>
+        <tr><td class="fw6">2025 Q1</td><td class="mono">3.6026</td><td class="mono">3.0912</td><td class="mono">0.4540</td><td class="mono">7.1478</td></tr>
+        <tr><td class="fw6">2025 Q2</td><td class="mono">3.5044</td><td class="mono">2.9645</td><td class="mono">0.4694</td><td class="mono">6.9383</td></tr>
+        <tr><td class="fw6">2025 Q3</td><td class="mono">3.3975</td><td class="mono">2.9889</td><td class="mono">0.4828</td><td class="mono">6.8692</td></tr>
+        <tr><td class="fw6">2025 Q4</td><td class="mono">3.6528</td><td class="mono">3.6401</td><td class="mono">0.4717</td><td class="mono">7.7646</td></tr>
+        <tr class="hl-gold">
+          <td class="fw6"><span class="star">★</span>2026 Q1</td>
+          <td class="mono fw6 c-r">3.2289</td>
+          <td class="mono fw6 c-g">3.0700</td>
+          <td class="mono fw6">0.4539</td>
+          <td class="mono fw6">6.7528</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6">2026Q1 vs 2025Q1</td>
+          <td class="c-r fw6">−10.37% ❌</td>
+          <td class="c-a">−0.69% ≈持平</td>
+          <td class="c-a">−0.02% ≈持平</td>
+          <td class="c-r">−5.52%</td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6">2026Q1 vs 2025Q4</td>
+          <td class="c-r">−11.61%</td>
+          <td class="c-r">−15.66%</td>
+          <td class="c-a">−3.78%</td>
+          <td class="c-r">−13.04%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px">▪ 三业态收入季度趋势可视化</div>
+    <div class="chart-container">
+      <canvas id="quarterlyChart"></canvas>
+    </div>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 关键观察：环比与同比的真相</div>
+      <strong>同比角度：</strong>写字楼−10.37%确认下行趋势，商城和公寓近乎持平（−0.7%/−0.02%），分化清晰。<br>
+      <strong>环比角度：</strong>三业态全部Q1 vs Q4下降，但<strong>这是季节性而非趋势性</strong>——Q4含年底续约效应和消费旺季，Q1是淡季（春节假期）。需要看YoY而非环比判断趋势。<br>
+      <strong>Q4 2025的"假信号"验证：</strong>此前Q4写字楼YoY −2.3%被部分认为是触底信号，但Q1迅速反弹至−10%以上，证实<strong>Q4的好转主要是年底续约的季节性脉冲</strong>，不构成趋势性反转。这一发现对2026年预测有重要意义。
+    </div>
+  </div>
+</div>
+
+<!-- §04 写字楼悲观情景 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§04</div>
+    <div class="sec-title">写字楼：悲观情景已确认触发</div>
+    <div class="sec-note">出租率89.6% · 跌破90%心理防线</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>时间点</th><th>租金（元/㎡/月）</th><th>出租率</th><th>同比租金</th><th>同比出租率</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="yr"><td class="fw6 c-m">2024全年</td><td class="mono c-m">639</td><td class="mono c-m">93.1%</td><td class="c-m">—</td><td class="c-m">—</td><td></td></tr>
+        <tr class="yr"><td class="fw6 c-m">2025 Q1（对照基准）</td><td class="mono c-m">627</td><td class="mono c-m">92.7%</td><td class="c-m">—</td><td class="c-m">—</td><td></td></tr>
+        <tr><td class="fw6">2025 Q3</td><td class="mono">613</td><td class="mono">92.3%</td><td class="c-r">−4.96%</td><td class="c-r">−0.9pt</td><td><span class="tag ta">下行中</span></td></tr>
+        <tr><td class="fw6">2025全年</td><td class="mono">609</td><td class="mono">91.8%</td><td class="c-r">−4.69%</td><td class="c-r">−1.3pt</td><td><span class="tag ta">临界</span></td></tr>
+        <tr class="hl-r">
+          <td class="fw6"><span class="star">★</span>2026 Q1</td>
+          <td class="mono fw6 c-r">588</td>
+          <td class="mono fw6 c-r">89.6%</td>
+          <td class="c-r fw6">−6.22%</td>
+          <td class="c-r fw6">−3.1pt</td>
+          <td><span class="tag tr">悲观触发</span></td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">Q1变动幅度</td>
+          <td colspan="4">租金588元创近期新低；出租率89.6%首次跌破90%心理防线；同比出租率下降3.1pt，幅度大于2025全年的−1.3pt</td>
+          <td><span class="tag tr">恶化加速</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="red-box">
+      <strong>悲观情景的精确触发：</strong>此前§09设定的悲观情景触发条件——"写字楼出租率跌破90%或租金同比−6%+"——<strong>Q1 2026同时触发两项：出租率89.6%（跌破）+ 租金同比−6.22%（达到阈值）</strong>。这意味着估值模型应在此基础上调整。<br><br>
+      <strong>但有一个对冲因素：</strong>租金588元绝对值仍高于2024年同期水平的−7%以内，且北京CBD写字楼市场全年新增供应量创近年新低（年报管理层表述），供给侧约束意味着租金下行幅度有上限。
+    </div>
+
+    <div class="amber-box">
+      <strong>为何收入降幅−10.37%远大于"租金−6.22% × 出租率−3.1pt"的简单乘积？</strong><br>
+      简单算法：(1−6.22%)×(1−3.1pt/92.7%)−1 = −9.43%，与实际−10.37%接近但有差距。差距来源：① 已出租面积变化（运营数据基于已出租面积，出租率下降意味着实际出租面积减少更多）；② 部分老租户续约价格大幅低于原合同价；③ 季度内出租率可能进一步波动（季度均值89.6%可能Q1末更低）。<br><br>
+      <strong>含义：</strong>账面租金588元可能是"虚高"的（含老租约的高价部分），实际新签合同价格可能更低。这意味着<strong>租金均值仍有进一步下行空间</strong>，老租约逐步到期会拖累整体均值。
+    </div>
+  </div>
+</div>
+
+<!-- §05 商城超预期 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§05</div>
+    <div class="sec-title">商城：超预期正面信号确认</div>
+    <div class="sec-note">租金创新高 · 出租率逆势提升</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>时间点</th><th>租金（元/㎡/月）</th><th>出租率</th><th>同比租金</th><th>同比出租率</th><th>收入YoY</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="yr"><td class="fw6 c-m">2024全年</td><td class="mono c-m">1,309</td><td class="mono c-m">96.5%</td><td class="c-m">—</td><td class="c-m">—</td><td class="c-m">—</td><td></td></tr>
+        <tr class="yr"><td class="fw6 c-m">2025 Q1（对照）</td><td class="mono c-m">1,345</td><td class="mono c-m">94.9%</td><td class="c-m">—</td><td class="c-m">—</td><td class="c-m">−5.6%</td><td></td></tr>
+        <tr><td class="fw6">2025 Q3（拐点）</td><td class="mono">1,308</td><td class="mono">95.5%</td><td class="c-a">−2.0%</td><td class="c-r">−1.1pt</td><td class="c-g fw6">+9.4% ✓</td><td><span class="tag tg">拐点确认</span></td></tr>
+        <tr><td class="fw6">2025全年</td><td class="mono">1,300</td><td class="mono">95.5%</td><td class="c-a">−0.7%</td><td class="c-r">−1.0pt</td><td class="c-a">−1.4%</td><td><span class="tag ta">H1拖累</span></td></tr>
+        <tr class="hl-g">
+          <td class="fw6"><span class="star">★</span>2026 Q1</td>
+          <td class="mono fw6 c-g">1,324</td>
+          <td class="mono fw6 c-g">95.7%</td>
+          <td class="c-a">−1.6%</td>
+          <td class="c-g fw6">+0.8pt ↑</td>
+          <td class="c-a">−0.7%</td>
+          <td><span class="tag tg">超预期</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="green-box">
+      <strong>三个超预期信号：</strong><br>
+      ① <strong>租金1,324元高于2025全年均值1,300元</strong>，且高于Q3 2025的1,308元，反映新消费业态租金承租能力强劲<br>
+      ② <strong>出租率95.7%同比+0.8pt</strong>，是2024年以来首次同比出租率上升的季度，新消费业态填补完成<br>
+      ③ <strong>收入−0.7%接近持平</strong>，在Q1淡季（无消费旺季）能维持持平已属难得，意味着2026年全年收入正增长概率超过70%
+    </div>
+
+    <div class="purple-box">
+      <strong>商城的"剪刀差"修复路径已基本确认：</strong>2025年H1（−5.6%/−5.9%）→ Q3（+9.4%）→ Q4（+6.2%）→ 2026 Q1（−0.7%，但租金创新高）。表面看Q1由正转负是退步，实质上：<br>
+      ① Q3/Q4正增长是高基数对比（2024H2基数偏低）<br>
+      ② Q1 2026对比的是2025Q1的高基数（旧业态尚未完全收缩，租金水平较高）<br>
+      ③ <strong>新业态承租能力</strong>已在租金1,324元和出租率95.7%中体现，是结构性而非偶然<br><br>
+      预测：2026 Q2/Q3/Q4将延续轻微正增长（1-5%），全年商城收入约13.0-13.3亿，是国贸2026年最确定的正向贡献来源。
+    </div>
+  </div>
+</div>
+
+<!-- §06 现金流与债务 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§06</div>
+    <div class="sec-title">现金流回升与债务压力归零</div>
+    <div class="sec-note">★ Q1 2026现金流量表 + 资产负债表</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k4">
+      <div class="kpi g">
+        <div class="kl">Q1经营CF</div>
+        <div class="kv c-g sm">4.376亿</div>
+        <div class="ks c-r">YoY −10.64%（仍偏强）</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">Q1货币资金净增</div>
+        <div class="kv c-g sm">+4.228亿</div>
+        <div class="ks">无大额流出</div>
+      </div>
+      <div class="kpi gold">
+        <div class="kl">Q1末货币资金</div>
+        <div class="kv c-gold sm">39.043亿</div>
+        <div class="ks c-g">回升至接近年初水平</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">Q1偿债支出</div>
+        <div class="kv c-b sm">~0元</div>
+        <div class="ks">仅子公司付少数股东0.016亿</div>
+      </div>
+    </div>
+
+    <div class="wf">
+      <div class="wf-t">▪ Q1 2026现金流全图（亿元）</div>
+      <div class="wf-r">
+        <div class="wf-l">期初货币资金（2025年末）</div>
+        <div class="wf-b wfp" style="width:220px">★ 年报：34.851亿</div>
+        <div class="wf-v c-g">+34.851</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">+ Q1经营CF</div>
+        <div class="wf-b wfp" style="width:80px">主营造血</div>
+        <div class="wf-v c-g">+4.376</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− Q1资本支出</div>
+        <div class="wf-b wfn" style="width:5px"></div>
+        <div class="wf-v c-r">−0.128</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 偿还借款本金</div>
+        <div class="wf-b" style="width:3px;background:var(--bg3)"></div>
+        <div class="wf-v c-m">0</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 分配股利（Q1零星）</div>
+        <div class="wf-b wfn" style="width:3px"></div>
+        <div class="wf-v c-r">−0.016</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 其他筹资</div>
+        <div class="wf-b wfn" style="width:2px"></div>
+        <div class="wf-v c-r">−0.004</div>
+      </div>
+      <div class="wf-r" style="border-top:1px solid var(--border2);padding-top:6px;margin-top:4px">
+        <div class="wf-l fw6">Q1末货币资金</div>
+        <div class="wf-b wfr" style="width:235px">★ 资产负债表：39.043亿（✓匹配）</div>
+        <div class="wf-v c-gold fw6">+39.043</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>债务结构</th><th>2025Q3末</th><th>2025年末</th><th>2026Q1末（★）</th><th>变动方向</th></tr></thead>
+      <tbody>
+        <tr><td class="fw6">长期借款</td><td class="mono">4.000亿</td><td class="mono">2.000亿</td><td class="mono fw6">2.000亿</td><td class="c-g">不再偿还</td></tr>
+        <tr><td class="fw6">租赁负债</td><td class="mono">0.410亿</td><td class="mono">0.381亿</td><td class="mono">0.368亿</td><td class="c-a">缓慢偿还</td></tr>
+        <tr><td class="fw6">一年内到期非流动负债</td><td class="mono">0.039亿</td><td class="mono">0.038亿</td><td class="mono">0.034亿</td><td class="c-a">极小</td></tr>
+        <tr class="sub"><td class="fw6">有息负债合计</td><td class="mono">4.449亿</td><td class="mono">2.419亿</td><td class="mono fw6 c-g">2.402亿</td><td class="c-g">基本不变</td></tr>
+        <tr class="hl-g"><td class="fw6 c-g">名义净现金（货币资金−有息负债）</td><td class="mono">+30.245亿</td><td class="mono">+32.432亿</td><td class="mono fw6 c-g">+36.641亿</td><td class="c-g fw6">+4.21亿↑</td></tr>
+        <tr><td class="fw6">资产负债率</td><td class="mono">~17.5%</td><td class="mono">14.85%</td><td class="mono fw6">14.72%</td><td class="c-g">持续优化</td></tr>
+      </tbody>
+    </table>
+
+    <!-- v3 ADDED: Free cash correction -->
+    <div class="red-box">
+      <strong>★★★ 关键修正：净现金 ≠ 自由现金</strong><br>
+      传统计算"净现金 = 货币资金39.04 − 有息负债2.40 = 36.64亿"是<strong>账面口径</strong>，但这一数字高估了公司可自主支配的现金。从分红、回购、再投资的角度看，<strong>必须剔除经营性受托资金</strong>：<br><br>
+      ① <strong>押金对应资金约9亿</strong>：写字楼/商城/公寓租户按3个月租金缴纳押金，全年租金约33亿×3/12 = 8.25亿，加上酒店押金及其他经营性占款 ≈ 9亿。这部分资金必须随时可退还，本质是<strong>受托管理资金</strong>，账列"其他应付款10.14亿"<br>
+      ② <strong>受限资金1.40亿</strong>：年报披露的物业管理项目代管资金，专款专用
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>现金口径</th><th>计算</th><th>金额（亿元）</th><th>每股</th><th>性质</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="fw6">货币资金（账面）</td><td class="mono">★年报披露</td><td class="mono">39.043</td><td class="mono">3.876元</td><td class="c-m">所有现金</td></tr>
+        <tr><td class="fw6 c-r">− 受限资金</td><td class="mono">物业代管</td><td class="mono c-r">1.400</td><td class="mono">0.139元</td><td class="c-r">不可动用</td></tr>
+        <tr><td class="fw6 c-r">− 押金对应资金</td><td class="mono">3个月租金惯例</td><td class="mono c-r">~9.000</td><td class="mono">0.894元</td><td class="c-r">受托管理</td></tr>
+        <tr class="hl-a"><td class="fw6 c-a">= 可调度现金</td><td class="mono">公司自主使用</td><td class="mono fw6 c-a">28.643</td><td class="mono fw6 c-a">2.844元</td><td>含有息负债压力</td></tr>
+        <tr><td class="fw6">− 有息负债</td><td class="mono">长期借款+租赁负债等</td><td class="mono c-r">2.402</td><td class="mono">0.238元</td><td>需偿还</td></tr>
+        <tr class="hl-gold"><td class="fw6 c-gold">= 真实自由现金</td><td class="mono">剔除全部约束</td><td class="mono fw6 c-gold">~26.24</td><td class="mono fw6 c-gold">~2.61元</td><td class="c-gold">真正可分配/再投资</td></tr>
+        <tr><td class="fw6 c-m">对比：传统"净现金"口径</td><td class="mono c-m">货币资金−有息负债</td><td class="mono c-m">36.64</td><td class="mono c-m">3.64元</td><td class="c-r">高估10.4亿/股1.03元</td></tr>
+      </tbody>
+    </table>
+
+    <div class="amber-box">
+      <strong>三种口径的适用场景：</strong><br>
+      <strong>① 账面净现金36.6亿：</strong>用于资产负债率、债务/EBITDA等财务安全指标（无错），不应用于估值<br>
+      <strong>② 可调度现金28.6亿：</strong>用于EV调整、流动性压力测试。剔除受限资金和押金后，理论上"立即可动用"的现金<br>
+      <strong>③ 真实自由现金26.2亿（每股2.61元）：</strong>用于估值、分红能力评估、再投资测算。<strong>这是最严格的口径，本报告后续所有估值采用此口径。</strong>
+    </div>
+
+    <div class="green-box">
+      <strong>但有一个对冲考虑：押金有"沉淀效应"。</strong>租户流动率在稳定经营期内有限，押金存量在长期内基本稳定（新签合同押金 ≈ 退租合同押金返还），不需要保留全额对应现金。但<strong>极端情景下（大量租户同时退租）需要兑付能力</strong>，严格估值仍应假设押金对应资金不可用。<br><br>
+      <strong>核心结论不变：</strong>这一修正不改变国贸"零杠杆+高现金"的本质——26.2亿真实自由现金（占总资产22%）在A股商业地产中仍属罕见。但<strong>每股自由现金从3.64元修正为2.61元，对估值敏感参数有1元/股的精度影响</strong>。
+    </div>
+
+    <div class="green-box">
+      <strong>债务压力归零的实质：</strong>2025年提前还款8.85亿是一次性事件，2026 Q1未再偿还，长期借款维持2亿。建行贷款利率3.20%，到期2035年8月，剩余9.5年。<br><br>
+      <strong>2026年现金流预测验证：</strong>此前§11预测2026年货币资金将"止跌回升"，Q1已实现+4.21亿净增长（净现金口径），完全验证。按Q1节奏外推，2026年全年净现金增长约8-12亿（剔除分红流出），分红支付后货币资金仍将止跌或微升。<br><br>
+      <strong>这意味着分红提升空间真实存在</strong>：偿债释放的7.85亿FCF + 2026年经营CF回升 = 充足的可分配现金。
+    </div>
+  </div>
+</div>
+
+<!-- §07 股东结构变化 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§07</div>
+    <div class="sec-title">股东结构：红利ETF大幅增持是关键信号</div>
+    <div class="sec-note">★ Q1 2026季报股东信息</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead><tr><th>股东类型</th><th>Q3 2025末持股</th><th>Q1 2026末持股</th><th>变动</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td class="fw6">控股股东（中国国际贸易中心有限公司）</td><td class="mono">80.65%</td><td class="mono">80.65%</td><td class="c-m">持平</td><td>稳定不变</td></tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">华泰柏瑞中证红利低波ETF</td>
+          <td class="mono">1.40%</td>
+          <td class="mono fw6 c-g">3.13%</td>
+          <td class="c-g fw6">+1.73pt</td>
+          <td>红利ETF龙头大幅增持</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">易方达中证红利低波ETF</td>
+          <td class="mono c-m">未在前十</td>
+          <td class="mono fw6 c-g">0.75%</td>
+          <td class="c-g">新进入前十</td>
+          <td>红利策略基金扩大配置</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">创金合信中证红利低波</td>
+          <td class="mono">0.26%</td>
+          <td class="mono">0.40%</td>
+          <td class="c-g">+0.14pt</td>
+          <td>持续增持</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">华宝标普中国A股红利机会ETF</td>
+          <td class="mono c-m">未在前十</td>
+          <td class="mono fw6 c-g">0.25%</td>
+          <td class="c-g">新进入前十</td>
+          <td>红利策略覆盖扩大</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-b">中华联合财产保险</td>
+          <td class="mono c-m">未在前十</td>
+          <td class="mono c-b">0.74%</td>
+          <td class="c-b">新进入前十</td>
+          <td>保险资金配置</td>
+        </tr>
+        <tr>
+          <td class="fw6 c-r">景顺长城红利低波100 ETF</td>
+          <td class="mono">0.27%</td>
+          <td class="mono c-m">退出前十</td>
+          <td class="c-a">未在前十</td>
+          <td>部分调仓</td>
+        </tr>
+        <tr class="sub">
+          <td class="fw6">红利ETF合计</td>
+          <td class="mono">~1.93%</td>
+          <td class="mono fw6 c-g">~4.53%</td>
+          <td class="c-g fw6">+2.6pt</td>
+          <td><strong>规模显著扩大</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 红利ETF大幅增持的市场含义</div>
+      <strong>4.53%的红利ETF持仓比例 = 公众流通股的约23.4%</strong>（公众流通股约19.35%，红利ETF占其约1/4）。这是市场用脚投票确认国贸"类REITs"属性的最直接证据。<br><br>
+      <strong>关键含义：</strong><br>
+      ① 国贸的定价权正在从"成长股投资者"向"红利价值投资者"转移<br>
+      ② 红利ETF的买入逻辑是股息率筛选（中证红利低波等指数），对EPS增长不敏感，对股息率敏感<br>
+      ③ <strong>这种持股结构变化本身就支持REITs估值框架</strong>——当主要边际买家是红利策略基金时，市场更愿意接受"成长性折价、股息率溢价"的定价逻辑<br>
+      ④ 中证红利低波动指数每年6月、12月调仓，若国贸2026年继续提升DPS，下一次调仓时被动权重将进一步上升
+    </div>
+  </div>
+</div>
+
+<!-- §08 2026预测修正 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§08</div>
+    <div class="sec-title">2026年全年业绩预测：Q1后精确修正</div>
+    <div class="sec-note">基于Q1实际数据外推</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>业态/项目</th><th>2025实际</th><th>Q1 2026</th><th>2026E（基于Q1外推）</th><th>同比假设</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-r">
+          <td class="fw6">写字楼收入</td>
+          <td class="mono">14.157亿</td>
+          <td class="mono">3.229亿</td>
+          <td class="mono fw6 c-r">12.9-13.3亿</td>
+          <td class="c-r">−6%到−9%</td>
+          <td>Q1降幅−10.4%，预期Q2-Q4略改善但仍降</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">商城收入</td>
+          <td class="mono">12.685亿</td>
+          <td class="mono">3.070亿</td>
+          <td class="mono fw6 c-g">12.8-13.2亿</td>
+          <td class="c-g">+1%到+4%</td>
+          <td>租金创新高+出租率回升，全年正增长</td>
+        </tr>
+        <tr>
+          <td class="fw6">公寓收入</td>
+          <td class="mono">1.878亿</td>
+          <td class="mono">0.454亿</td>
+          <td class="mono">1.85-1.92亿</td>
+          <td class="c-a">−1%到+2%</td>
+          <td>稳定</td>
+        </tr>
+        <tr>
+          <td class="fw6">酒店收入</td>
+          <td class="mono">4.944亿</td>
+          <td>Q1未单独披露</td>
+          <td class="mono">4.65-4.85亿</td>
+          <td class="c-r">−2%到−6%</td>
+          <td>市场分化承压</td>
+        </tr>
+        <tr>
+          <td class="fw6">其他</td>
+          <td class="mono">4.024亿</td>
+          <td>Q1隐含约1.10亿</td>
+          <td class="mono">4.00-4.10亿</td>
+          <td class="c-a">±0%</td>
+          <td>停车场等稳定</td>
+        </tr>
+        <tr class="sub">
+          <td class="fw6">总营收</td>
+          <td class="mono">37.700亿</td>
+          <td class="mono">9.004亿</td>
+          <td class="mono fw6">36.2-37.4亿</td>
+          <td class="c-r">−4%到−1%</td>
+          <td>整体小幅下行</td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">归母净利润</td>
+          <td class="mono">12.023亿</td>
+          <td class="mono">3.055亿</td>
+          <td class="mono fw6 c-gold">11.5-12.0亿</td>
+          <td class="c-a">−4%到−0.2%</td>
+          <td><strong>成本管控对冲收入下行</strong></td>
+        </tr>
+        <tr class="grand">
+          <td class="fw6">EPS</td>
+          <td class="mono">1.19元</td>
+          <td class="mono">0.30元</td>
+          <td class="mono fw6 c-gold">1.14-1.19元</td>
+          <td class="c-a">−4%到持平</td>
+          <td>下行有限</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="amber-box">
+      <strong>Q1利润降幅−1.92%的可持续性评估：</strong>Q1的成本超弹性主要来自折旧自然减少+季节性低基数（销售/管理费用）+利息支出骤降。这些因素在Q2-Q4将持续：① 折旧将继续减少（建筑物部分资产折旧完毕）；② 利息支出降幅在Q2-Q4环比稳定（贷款余额已降至2亿）；③ 销售/管理费用全年节约约0.15-0.20亿。<br><br>
+      <strong>因此假设2026年归母净利的降幅可控在−4%以内，落在11.5-12.0亿，EPS约1.14-1.19元。</strong>这比此前Q1前预测的1.10-1.18元略偏乐观，主要因为低估了成本管控的弹性。
+    </div>
+  </div>
+</div>
+
+<!-- §09 分红可持续性 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§09</div>
+    <div class="sec-title">分红可持续性：Q1后再次验证</div>
+    <div class="sec-note">偿债压力归零 + 现金流改善 → DPS提升基础牢固</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="wf">
+      <div class="wf-t">▪ 2026年可分配现金测算（基于Q1实际外推）</div>
+      <div class="wf-r">
+        <div class="wf-l">2026E经营CF（Q1×4倍修正）</div>
+        <div class="wf-b wfp" style="width:170px">Q1 4.376亿 × ~3.6 = 15.7亿</div>
+        <div class="wf-v c-g">+15.5亿</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 资本支出（Q1×4倍）</div>
+        <div class="wf-b wfn" style="width:5px"></div>
+        <div class="wf-v c-r">−0.6亿</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">= FCF</div>
+        <div class="wf-b wfp" style="width:163px">vs 2025年14.99亿</div>
+        <div class="wf-v c-g fw6">14.9亿</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 偿还借款（实际已无）</div>
+        <div class="wf-b" style="width:3px;background:var(--bg3)"></div>
+        <div class="wf-v c-m">~0</div>
+      </div>
+      <div class="wf-r">
+        <div class="wf-l">− 租赁等其他筹资</div>
+        <div class="wf-b wfn" style="width:4px"></div>
+        <div class="wf-v c-r">−0.4亿</div>
+      </div>
+      <div class="wf-r" style="border-top:1px solid var(--border2);padding-top:6px;margin-top:4px">
+        <div class="wf-l fw6">2026年可分红FCF上限</div>
+        <div class="wf-b wfr" style="width:235px">vs 2025年约6亿（FCF扣偿债后）</div>
+        <div class="wf-v c-gold fw6">14.5亿</div>
+      </div>
+    </div>
+
+    <div class="scenario">
+      <div class="sc pes">
+        <div class="sc-l">保守情景</div>
+        <div class="sc-v c-r">DPS 1.07-1.10元</div>
+        <div class="sc-s">维持2025年DPS或微升，派息率91%。常规分红约10.78-11.08亿，留存约3.5亿用于现金扩张<br><strong>股息率@21元：5.10-5.24%</strong></div>
+      </div>
+      <div class="sc base">
+        <div class="sc-l">基案情景（概率55%）</div>
+        <div class="sc-v c-gold">DPS 1.15-1.30元</div>
+        <div class="sc-s">常规DPS提升至1.10-1.15元（派息率95-101%）+ 小额特别分红0.05-0.15元。总分红11.6-13.1亿<br><strong>股息率@21元：5.48-6.19%</strong></div>
+      </div>
+      <div class="sc opt">
+        <div class="sc-l">乐观情景（特别分红）</div>
+        <div class="sc-v c-g">DPS 1.40-1.70元</div>
+        <div class="sc-s">参考2023年大额特别分红模式（每10股5元）。常规1.10+特别0.30-0.60。总分红14.1-17.1亿<br><strong>股息率@21元：6.67-8.10%</strong></div>
+      </div>
+    </div>
+
+    <div class="green-box">
+      <strong>Q1后分红判断的两个加强论据：</strong><br>
+      ① <strong>偿债压力实证归零</strong>：Q1未偿还任何长期借款，长期借款维持2亿不变。此前预测的"2026年偿债释放7.85亿FCF"已被Q1实际数据完全验证<br>
+      ② <strong>货币资金回升+4.19亿</strong>：Q1货币资金从34.85亿增至39.04亿，说明经营造血能力足以覆盖所有非分红支出，留存现金可用于分红。预计Q2分红约10.78亿支付后，年中货币资金约28亿；下半年再增加约8亿，年末预计34-36亿，与2025年末持平或微升<br><br>
+      <strong>核心结论：</strong>2026年常规DPS提升至1.10-1.15元是高概率事件（不需要业绩超预期）。特别分红是最大弹性来源，存量未分配利润62.7亿提供充足弹药。
+    </div>
+  </div>
+</div>
+
+<!-- §10 双框架估值 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§10</div>
+    <div class="sec-title">双框架估值：PE vs REITs 的对比与选择</div>
+    <div class="sec-note">21元股价的两种解读</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="kpi-row k4">
+      <div class="kpi gold">
+        <div class="kl">当前股价</div>
+        <div class="kv c-gold sm">21.0元</div>
+        <div class="ks">2026年5月</div>
+      </div>
+      <div class="kpi b">
+        <div class="kl">总市值</div>
+        <div class="kv c-b sm">211.5亿</div>
+        <div class="ks">21 × 10.073亿股</div>
+      </div>
+      <div class="kpi g">
+        <div class="kl">真实自由现金</div>
+        <div class="kv c-g sm">26.2亿</div>
+        <div class="ks c-r">原口径36.6亿，剔押金/受限</div>
+      </div>
+      <div class="kpi a">
+        <div class="kl">EV（自由现金口径）</div>
+        <div class="kv c-a sm">185.3亿</div>
+        <div class="ks c-r">211.5 − 26.2（原174.9）</div>
+      </div>
+    </div>
+
+    <table style="margin-bottom:14px">
+      <thead>
+        <tr><th>估值框架</th><th>核心逻辑</th><th>当前对应（自由现金口径）</th><th>合理水平</th><th>判断</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-r">
+          <td class="fw6 c-r">框架一：传统PE</td>
+          <td>21元 ÷ EPS 1.19元 = 17.6x PE<br>EV/E = 185.3 ÷ 12.02 = <strong>15.4x</strong></td>
+          <td class="mono">PE 17.6x<br>EV/E 15.4x</td>
+          <td class="mono c-a">12-13x（成熟红利）</td>
+          <td><span class="tag tr">看似偏贵</span></td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">框架二：REITs股息率</td>
+          <td>1.07元 ÷ 21元 = 5.10%股息率<br>2026E 1.15元 → 5.48%</td>
+          <td class="mono">5.10-5.48%</td>
+          <td class="mono c-g">4-5%（优质REITs）</td>
+          <td><span class="tag tg">略有上行空间</span></td>
+        </tr>
+        <tr class="hl-a">
+          <td class="fw6 c-a">EV/E修正说明</td>
+          <td colspan="4">押金修正后EV从174.9亿升至185.3亿，EV/E从14.5x升至15.4x（+6%）。PE框架下估值更显偏贵；REITs框架下因分红能力由经营CF流量决定，不受押金存量影响，结论不变。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div class="red-box" style="margin-bottom:0">
+        <strong>PE框架的局限：</strong><br>
+        ① 假设国贸是一家经营性公司，EPS连续下滑应该折价定价<br>
+        ② 但忽视了：真实自由现金26.2亿（每股2.61元）的安全垫价值<br>
+        ③ 忽视了：投资性房地产57亿账面 vs 市场价值约170-220亿的隐性资产<br>
+        ④ 忽视了：商业地产现金流的"债券化"特征（稳定可预测）<br>
+        ⑤ 忽视了：写字楼下行有底（北京CBD稀缺性、新增供应受限）
+      </div>
+      <div class="green-box" style="margin-bottom:0">
+        <strong>REITs框架的优势：</strong><br>
+        ① 直接对标分配收益率，对EPS增长不敏感<br>
+        ② 将净现金视为"待分配股息池"，而非简单的EV扣减项<br>
+        ③ 隐含承认了商业地产的"无成长但有现金流"本质<br>
+        ④ 红利ETF持仓4.53%的市场结构变化已经在确认这一定价逻辑<br>
+        ⑤ <strong>2026年若实现特别分红，REITs框架将被进一步强化</strong>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>REITs框架下的目标价测算</th><th>对应股息率4%</th><th>对应股息率4.5%</th><th>对应股息率5%</th><th>对应股息率5.5%</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-a">
+          <td class="fw6">DPS 1.07元（2025年）</td>
+          <td class="mono c-g">26.75元</td>
+          <td class="mono c-g">23.78元</td>
+          <td class="mono c-a">21.40元</td>
+          <td class="mono">19.45元</td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">DPS 1.15元（2026E基案）</td>
+          <td class="mono fw6 c-g">28.75元</td>
+          <td class="mono fw6 c-g">25.56元</td>
+          <td class="mono fw6 c-a">23.00元</td>
+          <td class="mono">20.91元</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">DPS 1.30元（含小额特别）</td>
+          <td class="mono fw6 c-g">32.50元</td>
+          <td class="mono fw6 c-g">28.89元</td>
+          <td class="mono fw6 c-g">26.00元</td>
+          <td class="mono c-g">23.64元</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6 c-g">DPS 1.50元（特别分红）</td>
+          <td class="mono fw6 c-g">37.50元</td>
+          <td class="mono fw6 c-g">33.33元</td>
+          <td class="mono fw6 c-g">30.00元</td>
+          <td class="mono fw6 c-g">27.27元</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 两个框架的本质差异</div>
+      <strong>当真实自由现金被视为"待分配股息"时，REITs框架完胜PE框架。</strong>事实上，若国贸将26.2亿真实自由现金通过特别分红一次性分配（每股2.61元），股价将理性调整至约18.4元，但累计回报（18.4+2.61=21.0元）与持有不动无异，只是提前兑现了现金价值。受押金约束，<strong>实际可特别分红的规模约10-15亿（每股1.0-1.5元）</strong>，需保留10-15亿运营缓冲。<br><br>
+      <strong>当前21元的真实定价逻辑：</strong>用REITs框架（5.0-5.5%股息率定价DPS 1.07元）得到的合理区间是19.4-21.4元，与当前股价匹配。这说明<strong>市场已经在用REITs框架定价国贸</strong>，而非PE框架。<br><br>
+      <strong>上行催化剂：</strong>① 管理层宣布特别分红 → DPS跳升至1.30-1.50元 → REITs框架下重定价至26-30元；② 国贸资产被注入公募REITs → 资产重估释放隐性价值。
+    </div>
+  </div>
+</div>
+
+<!-- §11 类REITs横向对标 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§11</div>
+    <div class="sec-title">类REITs横向对标：国贸 vs 市场REITs</div>
+    <div class="sec-note">REITs估值框架在国贸的适用性论证</div>
+  </div>
+  <div class="sec-body">
+
+    <table>
+      <thead>
+        <tr><th>标的</th><th>类型</th><th>当前分配收益率</th><th>杠杆率</th><th>资产稀缺性</th><th>分配增长性</th><th>对国贸的对标价值</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-b">
+          <td class="fw6">华夏华润商业REIT（180601）</td>
+          <td>商业不动产</td>
+          <td class="mono">约4.0-4.5%</td>
+          <td class="mono c-r">~40-50%</td>
+          <td>购物中心，二三线</td>
+          <td class="c-a">弱（NOI稳定）</td>
+          <td><span class="tag tg">高度对标</span></td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6">中金印力消费REIT（180602）</td>
+          <td>购物中心</td>
+          <td class="mono">约4.5-5.0%</td>
+          <td class="mono c-r">~45-55%</td>
+          <td>核心城市购物中心</td>
+          <td class="c-a">弱</td>
+          <td><span class="tag tg">高度对标</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">华夏中国交建REIT（508018）</td>
+          <td>基础设施（高速公路）</td>
+          <td class="mono">约4.5-5.0%</td>
+          <td class="mono c-r">~30-40%</td>
+          <td>区域性公路</td>
+          <td class="c-r">递减（车流费）</td>
+          <td><span class="tag ta">部分对标</span></td>
+        </tr>
+        <tr>
+          <td class="fw6">博时蛇口产园REIT（180101）</td>
+          <td>产业园</td>
+          <td class="mono">约3.5-4.5%</td>
+          <td class="mono c-r">~35-45%</td>
+          <td>深圳蛇口</td>
+          <td class="c-r">压力（空置率上升）</td>
+          <td><span class="tag ta">部分对标</span></td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6">汇贤产业信托（87001.HK）</td>
+          <td>商业物业（东方广场）</td>
+          <td class="mono">约6-7%</td>
+          <td class="mono c-r">~30%</td>
+          <td>北京CBD（与国贸同区）</td>
+          <td class="c-a">稳定</td>
+          <td><span class="tag tg">直接可比</span></td>
+        </tr>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">中国国贸（600007 · 类REITs视角）</td>
+          <td class="fw6">核心CBD商业综合体</td>
+          <td class="mono fw6 c-g">5.10%（DPS 1.07）<br>5.48%（DPS 1.15预测）</td>
+          <td class="mono fw6 c-g">14.85%（极低）</td>
+          <td class="fw6 c-g">北京国贸CBD核心</td>
+          <td class="c-a">基本持平</td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid3">
+      <div class="card">
+        <div class="card-t">国贸的结构性溢价①</div>
+        <div class="card-v c-g" style="font-size:14px">零杠杆</div>
+        <div class="card-s" style="margin-top:6px">公募REITs通常带40-55%杠杆，国贸资产负债率仅14.85%。在LPR上行或信贷收缩情景下，零杠杆资产享有显著估值溢价（约+50-100bp分配收益率压缩空间）</div>
+      </div>
+      <div class="card">
+        <div class="card-t">国贸的结构性溢价②</div>
+        <div class="card-v c-g" style="font-size:14px">真实自由现金背书</div>
+        <div class="card-s" style="margin-top:6px">每股真实自由现金2.61元（占股价12.4%），剔除押金和受限资金后口径。公募REITs通常无大额现金留存，分配完全依赖NOI，国贸的现金缓冲（即使按严格口径）仍是稀缺优势</div>
+      </div>
+      <div class="card">
+        <div class="card-t">国贸的结构性溢价③</div>
+        <div class="card-v c-g" style="font-size:14px">资产稀缺</div>
+        <div class="card-s" style="margin-top:6px">北京国贸CBD是唯一的、不可复制的核心地块。同区域汇贤产业信托（东方广场）香港上市，分配收益率6-7%。国贸应享有比公募REITs更低的分配收益率定价</div>
+      </div>
+    </div>
+
+    <div class="purple-box">
+      <strong>国贸的合理分配收益率定价：</strong><br>
+      考虑到① 零杠杆溢价（−50bp）+ ② 真实自由现金溢价（−20bp，因押金修正后溢价缩减）+ ③ 北京CBD稀缺性溢价（−30bp）= 合计约−100bp优势。<br><br>
+      公募REITs中位数分配收益率约4.5%，叠加国贸的结构性优势，<strong>国贸合理分配收益率定价区间应在3.4-4.0%</strong>。<br><br>
+      <strong>对应目标价：</strong><br>
+      · 按3.5%定价DPS 1.07元 = 30.6元<br>
+      · 按4.0%定价DPS 1.07元 = 26.75元<br>
+      · 按3.5%定价DPS 1.15元（2026E）= 32.9元<br>
+      · 按4.0%定价DPS 1.15元（2026E）= 28.75元<br><br>
+      <strong>结论：在严格的REITs对标框架下，国贸的合理价值区间在26-32元，远高于当前21元。</strong>市场尚未充分定价其REITs属性。
+    </div>
+
+    <div class="amber-box">
+      <strong>但需注意：A股公司 vs 公募REITs的结构性差异：</strong><br>
+      ① 公募REITs有强制分配机制（90%以上），A股公司分配是管理层决定<br>
+      ② 公募REITs收益按红利所得免税，A股股息有20%个税（持有1年以上免征）<br>
+      ③ 公募REITs估值由市场确定NAV，A股按市值定价，无强制重估机制<br>
+      ④ <strong>因此实际定价应介于纯REITs和纯股票之间，国贸合理区间约24-28元</strong>
+    </div>
+  </div>
+</div>
+
+<!-- §12 综合结论 -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-num">§12</div>
+    <div class="sec-title">综合结论与Q2观察点</div>
+    <div class="sec-note">基于Q1 2026全数据的最终判断</div>
+  </div>
+  <div class="sec-body">
+
+    <div class="grid2" style="margin-bottom:14px">
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600">正面验证（5项）</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 成本管控超预期：</strong>营业成本−6.30%超过收入−5.23%，毛利率提升至59.4%<br>
+          <strong style="color:var(--text)">② 利息支出骤降：</strong>从0.1004亿降至0.0199亿（−80.2%），偿债红利显现<br>
+          <strong style="color:var(--text)">③ 商城超预期：</strong>租金1,324元创新高，出租率95.7%同比+0.8pt<br>
+          <strong style="color:var(--text)">④ 现金回升：</strong>货币资金+4.19亿至39.04亿，债务压力归零<br>
+          <strong style="color:var(--text)">⑤ 红利ETF增持：</strong>合计持仓从1.93%大幅升至4.53%
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px;font-weight:600">负面验证（2项）</div>
+        <div style="font-size:11.5px;line-height:1.9;color:var(--muted)">
+          <strong style="color:var(--text)">① 写字楼悲观情景触发：</strong>出租率89.6%跌破90%心理防线，租金588元创近期新低<br>
+          <strong style="color:var(--text)">② Q4季节性假信号被验证：</strong>2025Q4写字楼−2.3%曾被部分认为是触底信号，Q1 2026迅速反弹至−10.4%，证实Q4只是年底续约的脉冲<br><br>
+          <strong style="color:var(--text)">中性观察：</strong>经营CF同比−10.64%，但绝对值仍较强（4.376亿），全年外推约15.5亿，与基案预期一致
+        </div>
+      </div>
+    </div>
+
+    <div class="insight">
+      <div class="ins-lbl">▪ 估值的双轨判断</div>
+      <strong>传统PE框架下：</strong>国贸2026E EPS约1.14-1.19元，对应当前21元PE约17.6-18.4x，明显偏贵。EV/E约14.5-15.3x，仍高于成熟红利股的合理区间（12-13x）。基于此判断，21元股价对成长性透支较多。<br><br>
+      <strong>REITs框架下：</strong>2026E DPS 1.15元（基案）对应当前21元股息率5.48%，处于REITs合理区间（4.5-5.5%）。考虑结构性溢价（零杠杆+真实自由现金+稀缺资产），合理价值区间在23-27元（押金修正后较前次24-28元微调）。当前股价仍有约10-29%的上行空间。<br><br>
+      <strong>最终判断：</strong>市场已实质性采用REITs框架定价（红利ETF持仓4.53%是直接证据）。21元是合理的下限定价，<strong>真正的上行催化剂是2026年特别分红的宣布</strong>。即使无特别分红，2026年常规DPS提升至1.10-1.15元也能支撑22-23元的合理价值。
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Q2 2026观察点</th><th>关键指标</th><th>触发条件</th><th>对估值的影响</th></tr>
+      </thead>
+      <tbody>
+        <tr class="hl-gold">
+          <td class="fw6 c-gold">2025年度分红实际执行</td>
+          <td>DPS 1.07元支付时间和金额</td>
+          <td>支付完成（约10.78亿流出）</td>
+          <td>验证常规分红能力，对估值中性</td>
+        </tr>
+        <tr class="hl-r">
+          <td class="fw6">Q2写字楼经营简报</td>
+          <td>H1 2026写字楼累计收入</td>
+          <td>低于6.0亿（同比−15%）= 极悲观<br>6.0-6.4亿 = 悲观延续<br>6.4-6.7亿 = 基案改善<br>高于6.7亿 = 乐观触底</td>
+          <td>决定2026E EPS的关键变量</td>
+        </tr>
+        <tr class="hl-g">
+          <td class="fw6">Q2商城收入</td>
+          <td>H1 2026商城累计收入</td>
+          <td>高于6.0亿 = 正增长延续<br>5.8-6.0亿 = 持平<br>低于5.8亿 = 回落</td>
+          <td>决定商城修复叙事是否成立</td>
+        </tr>
+        <tr class="hl-b">
+          <td class="fw6 c-b">Q2末货币资金水位</td>
+          <td>分红支付后货币资金余额</td>
+          <td>高于28亿 = 经营造血强劲<br>26-28亿 = 符合预期<br>低于26亿 = 现金压力</td>
+          <td>决定特别分红可行性</td>
+        </tr>
+        <tr class="hl-p">
+          <td class="fw6 c-p">公募REITs政策动向</td>
+          <td>消费基础设施REITs扩容</td>
+          <td>新发商业REITs上市</td>
+          <td>影响国贸REITs估值锚定，触发REITs化预期</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</main>
+
+<div class="source">
+  <strong style="color:var(--text)">数据来源透明声明</strong><br>
+  【★ 原文确认数据】中国国际贸易中心股份有限公司2026年第一季度报告 · 2026年第一季度房地产行业经营性信息简报（编号2026-016，2026.04.29）· 2025年年度报告（德勤华永审计）· 2025年Q1/H1/Q3经营简报<br>
+  【精确推算数据】各业态单季收入精确相减 · Q1 2026各类同比YoY计算 · 现金流全图重建 · 2026E业绩外推（基于Q1实际×季节性系数） · 双框架估值矩阵 · <strong>真实自由现金口径重估（剔除押金约9亿、受限资金1.4亿、有息负债2.4亿）</strong><br>
+  【REITs对标数据】华夏华润商业REIT、中金印力消费REIT、华夏中国交建REIT、博时蛇口产园REIT当前公开市场分配收益率（一般市场认知，非实时报价） · 汇贤产业信托（87001.HK）历史分配收益率参考<br>
+  【v3关键修正】押金（其他应付款10.14亿中约9亿）不属于公司可自由支配现金，修正后真实自由现金从原36.6亿调整至26.2亿，每股从3.64元调整至2.61元。EV从174.9亿升至185.3亿，EV/E从14.5x升至15.4x。REITs框架结论不变，PE框架估值更显偏贵。<br>
+  <strong style="color:var(--amber)">【重要提示】</strong>本报告为研究分析，不构成投资建议 · 当前股价约21元（2026年5月）· FOR REFERENCE ONLY · NOT FOR DISTRIBUTION
+</div>
+
+<footer>
+  <span>中国国贸_估值分析_260515 · v3 · 自由现金口径重估 · 前次：Q1_2026综合更新_260430 v2</span>
+  <span>FOR REFERENCE ONLY · 2026.05.15</span>
+</footer>
+
+<script>
+const mono = "'IBM Plex Mono', monospace";
+
+new Chart(document.getElementById('quarterlyChart'), {
+  type: 'line',
+  data: {
+    labels: ['2025 Q1', '2025 Q2', '2025 Q3', '2025 Q4', '2026 Q1'],
+    datasets: [{
+      label: '写字楼（亿元）',
+      data: [3.6026, 3.5044, 3.3975, 3.6528, 3.2289],
+      borderColor: '#a81c1c',
+      backgroundColor: 'rgba(168,28,28,0.08)',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#a81c1c',
+      tension: 0.3,
+    }, {
+      label: '商城（亿元）',
+      data: [3.0912, 2.9645, 2.9889, 3.6401, 3.0700],
+      borderColor: '#166334',
+      backgroundColor: 'rgba(22,99,52,0.08)',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#166334',
+      tension: 0.3,
+    }, {
+      label: '公寓（亿元）',
+      data: [0.4540, 0.4694, 0.4828, 0.4717, 0.4539],
+      borderColor: '#174d88',
+      backgroundColor: 'rgba(23,77,136,0.08)',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#174d88',
+      tension: 0.3,
+      borderDash: [4, 3],
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { labels: { font: { family: mono, size: 10 }, boxWidth: 12 } },
+      tooltip: {
+        callbacks: {
+          label: (ctx) => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(3)}亿`,
+        }
+      }
+    },
+    scales: {
+      y: {
+        grid: { color: 'rgba(0,0,0,0.06)' },
+        ticks: { font: { family: mono, size: 9 }, callback: (v) => v.toFixed(1) + '亿' }
+      },
+      x: { grid: { display: false }, ticks: { font: { family: mono, size: 10 } } }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
