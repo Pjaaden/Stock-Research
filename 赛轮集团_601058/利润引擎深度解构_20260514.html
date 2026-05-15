@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮利润引擎深度解构 · 越南为核 · 财务压力时间线 · 2026-05-14</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#b4afa6;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.75;}
+.hdr{background:var(--bg2);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.pill{padding:2px 9px;border:1px solid;font-weight:700;font-size:8px;letter-spacing:1px;}
+.pill-g{color:var(--g);border-color:var(--g);background:var(--gp);}
+.pill-a{color:var(--a);border-color:var(--a);background:var(--ap);}
+.hdr-body{padding:14px 0 13px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:6px;}
+h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--g);font-style:normal;}
+h1 .a{color:var(--a);}
+h1 .r{color:var(--r);}
+.sub{font-size:12px;color:var(--mu);margin-top:8px;max-width:830px;line-height:1.75;}
+
+main{padding:0 44px 50px;}
+section{margin-top:24px;}
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+.lede{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.5;letter-spacing:-.2px;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:14px;}
+.lede em{color:var(--g);font-style:normal;}
+.lede .a{color:var(--a);}
+
+.box{border-left:3px solid;padding:12px 16px;margin:12px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:8px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.6;}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hp td{background:var(--pp);}
+tr.hb td{background:var(--bp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+
+.factor-card{background:var(--bg2);border:1px solid var(--line);padding:13px 16px;}
+.fc-num{font-family:'JetBrains Mono',monospace;font-size:24px;font-weight:700;line-height:1;color:var(--r);margin-bottom:6px;}
+.fc-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:1px;margin-bottom:8px;}
+.fc-body{font-size:11.5px;color:var(--mu);line-height:1.8;}
+.fc-body strong{color:var(--ink);}
+.fc-quant{margin-top:8px;padding:6px 9px;background:var(--rp);border-left:2px solid var(--r);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--r);font-weight:700;}
+
+.timeline{margin:14px 0;padding-left:0;}
+.tl-row{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--bg4);align-items:flex-start;}
+.tl-row:last-child{border:none;}
+.tl-yr{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;color:var(--ink);width:90px;flex-shrink:0;padding-top:1px;}
+.tl-state{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;padding:2px 7px;font-weight:700;height:fit-content;flex-shrink:0;width:70px;text-align:center;}
+.tl-state.g{color:#fff;background:var(--g);}
+.tl-state.a{color:#fff;background:var(--a);}
+.tl-state.r{color:#fff;background:var(--r);}
+.tl-state.b{color:#fff;background:var(--b);}
+.tl-state.m{color:#fff;background:var(--mu);}
+.tl-body{flex:1;font-size:11.5px;color:var(--mu);line-height:1.7;}
+.tl-body strong{color:var(--ink);}
+
+.cf-table th{text-align:right;}
+.cf-table td:first-child{text-align:left;}
+.cf-table td:not(:first-child){text-align:right;}
+
+.fw7{font-weight:700;}
+.c-r{color:var(--r);}.c-g{color:var(--g);}.c-a{color:var(--a);}.c-b{color:var(--b);}.c-p{color:var(--p);}.c-m{color:var(--mu);}
+
+footer{padding:11px 44px;border-top:2px solid var(--ink);background:var(--bg2);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--di);letter-spacing:.8px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>赛轮601058 · 利润引擎深度解构 · 越南为核 · 财务压力时间线</span>
+    <span class="pill pill-g">基于可研数据+越南12年实际+财务测算</span>
+    <span>2026.05.14</span>
+  </div>
+  <div class="hdr-body">
+    <div class="eyebrow">Sailun Profit Engine Deep Dive · Why Vietnam Is The Core</div>
+    <h1>
+      越南22%是<em>天花板</em>不是基准·印尼/埃及<span class="a">18%是天花板</span>需要熬<br>
+      财务压力2-3年集中·真正的检验在<span class="r">2027-2028</span>
+    </h1>
+    <div class="sub">本份报告系统回答四个相互关联的问题：①印尼为什么利润率不及越南；②越南成功的真正配方是什么，能否复制；③柬埔寨/埃及的时间线和爬坡期财务负担；④2026-2028年财务压力的真实量级。所有数字基于可研报告原文+2024-2025年实际数据。</div>
+  </div>
+</div>
+
+<main>
+
+<!-- LEDE -->
+<div class="lede">
+  关键认知重构：越南22%净利率不是赛轮所有海外基地的"基准水平"，而是<em>四个不可复制条件叠加的天花板</em>。其他基地（印尼/埃及/墨西哥）的实际可达水平在<span class="a">14-18%</span>之间，并且需要<span class="a">3-5年爬坡</span>才能验证。这意味着<strong>2026-2028年是赛轮的"利润空窗期"——产能在投入但贡献尚未到来</strong>。
+</div>
+
+<!-- ═══ PART I · 越南成功配方 ═══ -->
+<section>
+  <div class="sec-hd"><span>第一部分 · 越南22%是怎么来的：四个不可复制的条件</span><span class="meta">VIETNAM SUCCESS FORMULA</span></div>
+
+  <div class="box box-g">
+    <strong>越南工厂数据（2024年实际）：</strong>营收72.33亿，净利润15.94亿，净利润率约22%。<strong>贡献集团约52%的净利润</strong>，但仅占集团总营收约25%。这是赛轮整个估值锚的核心，理解越南为什么能做到22%才能真正判断其他基地能做到什么水平。
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>成功要素</th><th>具体内容</th><th>贡献净利率（估）</th><th>其他基地是否可复制</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">①税收优惠（最重要）</td>
+        <td>4-9-15阶梯优惠包：前4年免税 + 后9年5% + 再15年10%。当前在10%档位。</td>
+        <td class="c-g fw7">+6-7pp</td>
+        <td class="c-r">不能完全复制·印尼22%/墨西哥30%/埃及15%</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">②市场半径与单价</td>
+        <td>主出口美国、欧洲、东南亚成熟市场，能拿到较高单价（普通车胎+25-30%premium）</td>
+        <td class="c-g fw7">+3-4pp</td>
+        <td class="c-a">部分可复制·但被双反挤压·墨西哥/埃及辐射更优</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">③12年运营成熟度</td>
+        <td>自动化程度高、人员效率达到行业领先、固定资产折旧基本完成</td>
+        <td class="c-g fw7">+2-3pp</td>
+        <td class="c-r">不可短期复制·新基地需要3-5年</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">④规模与渠道</td>
+        <td>越南是赛轮最大的单一基地·客户关系最深·物流路径最优</td>
+        <td class="c-g fw7">+1-2pp</td>
+        <td class="c-a">规模效应需要爬坡时间</td>
+      </tr>
+      <tr class="tot">
+        <td>合计</td>
+        <td colspan="2">叠加形成约+12-16pp的"越南溢价"</td>
+        <td class="fw7">越南22% vs 行业基准约6-10%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-a">
+    <strong>关键洞察：</strong>越南22%是<strong>"特殊政策窗口+特殊时点+特殊运营成熟度"</strong>三重叠加的结果，且<strong>前两项随时间会逐步消退</strong>——越南税收优惠包是有期限的，<strong>2031年后将完全恢复至标准税率20%</strong>。即便不考虑外部因素，越南自身的净利率在2031年之后也会自然向行业均值收敛。这也是为什么赛轮必须建埃及/印尼/墨西哥——不是为了追求更高利润率，而是为了"接棒"越南即将到期的优惠红利。
+  </div>
+</section>
+
+<!-- ═══ PART II · 印尼为什么不及越南 ═══ -->
+<section>
+  <div class="sec-hd"><span>第二部分 · 印尼为什么只有18.65%：四个具体差距</span><span class="meta">INDONESIA SHORTFALL ANALYSIS</span></div>
+
+  <div class="three-col">
+    <div class="factor-card" style="border-top:3px solid var(--r)">
+      <div class="fc-num">①</div>
+      <div class="fc-title">税率差距是最大的（也最容易被忽略）</div>
+      <div class="fc-body">
+        越南目前所得税率约<strong>5-10%</strong>（优惠期内），印尼是<strong>22%标准税率，无特殊优惠</strong>。<br><br>
+        这背后是国家产业政策的差异：印尼希望保护本国轮胎企业，不愿给中国企业额外优惠。<strong>中策和赛轮宣布印尼建厂后不到一年，印尼轮胎制造商协会就因产能过剩担忧而希望印尼拒绝中国再建轮胎厂</strong>。这是结构性的、不会改变的。
+      </div>
+      <div class="fc-quant">税率差12-17pp → 净利率压缩约3-4pp</div>
+    </div>
+
+    <div class="factor-card" style="border-top:3px solid var(--r)">
+      <div class="fc-num">②</div>
+      <div class="fc-title">原材料采购意外不占便宜</div>
+      <div class="fc-body">
+        印尼虽是天胶主产国，但实际情况：<br>
+        • 小农经济为主，质量不稳定，需从外部采购更高品质胶料<br>
+        • 苏门答腊割胶工流失到棕榈油产业，劳动力成本上行<br>
+        • <strong>白根病已影响超过15%的苏门答腊成熟橡胶园</strong>，印尼2025年产量同比下降9.8%<br><br>
+        越南管理体系成熟+运输便利，反而比印尼"高产但混乱"更可靠。
+      </div>
+      <div class="fc-quant">原料成本端 → 净利率压缩约1-1.5pp</div>
+    </div>
+
+    <div class="factor-card" style="border-top:3px solid var(--r)">
+      <div class="fc-num">③</div>
+      <div class="fc-title">市场定位导致售价差异</div>
+      <div class="fc-body">
+        越南工厂主要出口美/欧/东南亚成熟市场，单价较高。<br><br>
+        印尼工厂可研定位是ASEAN+大洋洲+欧盟，但<strong>本地市场（印尼内销）占比预计较高</strong>——印尼本地市场单价显著低于欧美市场（约低15-20%）。<br><br>
+        市场半径不同直接传导到营收端。
+      </div>
+      <div class="fc-quant">售价端 → 净利率压缩约1-2pp</div>
+    </div>
+
+    <div class="factor-card" style="border-top:3px solid var(--r)">
+      <div class="fc-num">④</div>
+      <div class="fc-title">规模效应未到位</div>
+      <div class="fc-body">
+        越南工厂经过<strong>12年发展，规模、自动化、人员效率都达到稳定优化的状态</strong>。<br><br>
+        印尼是新基地，前3-5年的产能利用率、单位人工效率都不如越南。可研报告的18.65%是"达产后"数字，意味着<strong>至少到2027-2028年才能真正达到</strong>。<br><br>
+        当前爬坡期实际净利率可能只有10-13%。
+      </div>
+      <div class="fc-quant">规模端 → 净利率压缩约1-2pp（前3-5年）</div>
+    </div>
+  </div>
+
+  <div class="box box-r">
+    <strong>四个差距加总：约3.5-4个百分点的净利率差距，正好对应可研预测的18.65% vs 越南22%。</strong><br><br>
+    <strong>这告诉我们一个关键的认知：</strong>不要把越南的22%当作其他基地的"基准"，应该把<strong>14-18%</strong>当作中国轮胎企业海外新基地的合理预期区间。越南是这个区间的天花板，因为它叠加了所有最有利的条件。任何其他基地都不可能复制越南的所有优势，所以净利率必然低于22%。
+  </div>
+</section>
+
+<!-- ═══ PART III · 各基地达产时间线 ═══ -->
+<section>
+  <div class="sec-hd"><span>第三部分 · 各基地的达产时间线 · 你说的"很长时间要熬"</span><span class="meta">CAPACITY RAMP TIMELINE</span></div>
+
+  <div class="timeline">
+    <div class="tl-row">
+      <div class="tl-yr c-g">越南</div>
+      <div class="tl-state g">运营中</div>
+      <div class="tl-body">
+        <strong>2013年投产·12年track record·当前22%净利率·贡献集团约52%净利润。</strong><br>
+        优惠期至2031年完全到期。在此之前是赛轮估值锚的核心。<strong>越南健康度（不被美国额外加税、本地运营不出问题）是赛轮长期估值的核心检验指标。</strong>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-yr c-g">柬埔寨二期</div>
+      <div class="tl-state a">爬坡中</div>
+      <div class="tl-body">
+        <strong>2024年投产·爬坡中·可研净利率19.25%·9年免税期（至2033年）。</strong><br>
+        2026年开始贡献增量净利润约+3-4亿/年，2027全面达产年净利润约5-6亿。这是最确定的近期利润增量来源。<strong>回收期2.23年是所有基地中最短的，反映资本效率最高。</strong>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-yr c-a">印尼</div>
+      <div class="tl-state a">爬坡中</div>
+      <div class="tl-body">
+        <strong>2025年首胎下线·目前爬坡中·可研净利率18.65%（达产后）。</strong><br>
+        2026-2027爬坡期，可能微利状态；2028达到稳态净利率。<strong>这是赛轮"成长逻辑"的第一次外部验证——如果印尼能达到18%+净利率，证明赛轮的盈利模型可以从越南扩展到其他基地。</strong>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-yr c-a">墨西哥</div>
+      <div class="tl-state a">爬坡中</div>
+      <div class="tl-body">
+        <strong>2025年首条胎下线·正在产能爬坡·USMCA豁免对美关税。</strong><br>
+        重点是规避美国对东南亚双反，对美出口竞争力反而上升。但所得税率30%（最高），原料全进口，<strong>可研净利率预计较低（约12-15%），但战略意义大于利润意义</strong>。
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-yr c-r">埃及</div>
+      <div class="tl-state r">未投产</div>
+      <div class="tl-body">
+        <strong>2025年9月奠基·一期2026投产（300万乘用车+60万卡客车）·可研净利率18.30%·回收期6.15年。</strong><br>
+        2027爬坡期，可能仍亏损或微利。2028-2029才能达到可研预测水平。<strong>全面达产可能要等到2030年。</strong><br>
+        埃及的真正价值不在单基地利润率，而在<strong>市场辐射</strong>——苏伊士运河枢纽+欧盟/中东/非洲FTA。
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-a">
+    <strong>核心判断：在2026-2027这两年，集团利润完全靠越南+柬埔寨二期支撑，而印尼/埃及/墨西哥都在"烧钱状态"。</strong><br><br>
+    这就是"很长时间要熬"的具体含义：①新基地的CAPEX在持续投入（每年30-40亿）；②新基地的爬坡期净利率显著低于稳态；③利息和折旧先行而收入不足。三层压力叠加，意味着2026-2028年集团层面可能持续呈现<strong>"营收增长但利润停滞"</strong>的态势。
+  </div>
+</section>
+
+<!-- ═══ PART IV · 财务压力测算 ═══ -->
+<section>
+  <div class="sec-hd"><span>第四部分 · 财务压力的真实量级 · 用2025Q1实际数据测算</span><span class="meta">FINANCIAL STRESS QUANTIFICATION</span></div>
+
+  <div class="box box-b">
+    <strong>财务压力是一个被市场低估的问题。</strong>市场看到Q1 EPS 0.32元就乐观了，但忽略了赛轮当前正处于"扩张密集期"，资金缺口会持续2-3年。这是基于Q1实际数据的资金消耗结构测算。
+  </div>
+
+  <table class="cf-table">
+    <thead>
+      <tr><th>项目</th><th>2024年实际</th><th>2025年实际</th><th>2026E（估）</th><th>2027E（估）</th><th>性质</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">经营现金流</td>
+        <td class="c-g">+22.89亿</td>
+        <td class="c-g fw7">+41.79亿</td>
+        <td class="c-a">+30-35亿</td>
+        <td class="c-a">+32-38亿</td>
+        <td>Q2-Q3原料压力·可能回落</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">CAPEX（资本支出）</td>
+        <td class="c-r">-28.95亿</td>
+        <td class="c-r">-约35亿</td>
+        <td class="c-r fw7">-约40亿</td>
+        <td class="c-r fw7">-约35亿</td>
+        <td>埃及/印尼/柬二期密集投入期</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">利息支付</td>
+        <td class="c-r">-5.5亿</td>
+        <td class="c-r">-约6亿</td>
+        <td class="c-r">-约7-8亿</td>
+        <td class="c-r">-约8亿</td>
+        <td>有息负债从121亿涨至143亿+</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">现金股利</td>
+        <td class="c-r">-约5亿</td>
+        <td class="c-r">-约5-6亿</td>
+        <td class="c-r">-约5-6亿</td>
+        <td class="c-r">-约5亿</td>
+        <td>维持当前派息</td>
+      </tr>
+      <tr class="tot">
+        <td>净自由现金流（缺口）</td>
+        <td class="c-r">-16.6亿</td>
+        <td class="c-a">-5至-6亿</td>
+        <td class="c-r fw7">-15至-20亿</td>
+        <td class="c-r fw7">-10至-15亿</td>
+        <td class="c-r">需融资填补</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="two-col">
+    <div class="box box-a">
+      <strong>2025年发生了什么：</strong>经营现金流大幅改善至41.79亿（+82.6%），缺口从-16.6亿大幅收窄至-5-6亿。这是赛轮整个故事中最容易被忽略的"亮点"。<br><br>
+      <strong>原因：</strong>① 海外工厂销售回款好转；② 库存周转改善；③ 应付账款扩大（占用上游资金）。<br><br>
+      <strong>但</strong>这种改善很大程度上依赖海外销售的持续性，<strong>2026年Q2-Q3的原料压力可能让经营CF回落至30-35亿区间</strong>。
+    </div>
+    <div class="box box-r">
+      <strong>2026-2027的危险信号：</strong>资金缺口可能扩大至-15-20亿/年。这意味着每年需要新增15-20亿有息负债来填补。<br><br>
+      Q1已经看到：长期借款从43.47亿增至59.81亿（+16亿）。这是用<strong>长期债务在覆盖资金缺口</strong>——结构上比短期借款好，但实质上是债务在累积。<br><br>
+      <strong>如果有息负债从143.7亿升至180亿以上</strong>，市场会开始紧张，估值会受压。
+    </div>
+  </div>
+
+  <div class="box box-r">
+    <strong>真正危险的组合（值得跟踪的红线）：</strong><br>
+    ① Q2毛利率掉至22%以下（vs Q1 26.86%）+<br>
+    ② 埃及二期超支或印尼爬坡不及预期 +<br>
+    ③ 人民币继续升值（汇兑损失扩大）<br><br>
+    三者同时发生，经营CF降至25亿，CAPEX 40亿，缺口直接拉到-15亿/年。这种情况下，赛轮可能需要进一步增加债务，或者推迟某些扩张项目——<strong>无论哪种，对股价都是负面催化剂</strong>。
+  </div>
+</section>
+
+<!-- ═══ PART V · 三层时间维度的真正担忧 ═══ -->
+<section>
+  <div class="sec-hd"><span>第五部分 · 三层时间维度的真正担忧</span><span class="meta">RISK STACK BY HORIZON</span></div>
+
+  <div class="three-col">
+    <div class="factor-card" style="border-top:3px solid var(--a)">
+      <div class="fc-num c-a">短期</div>
+      <div class="fc-title">2026-2027年 · 财务压力</div>
+      <div class="fc-body">
+        海外扩张密集期+原料压力+汇兑损失三重挤压经营现金流。可能需要进一步举债。<br><br>
+        <strong>跟踪指标：</strong>有息负债从143.7亿升至180亿以上→市场开始紧张。Q2-Q3季报的经营现金流是关键检验。
+      </div>
+    </div>
+
+    <div class="factor-card" style="border-top:3px solid var(--r)">
+      <div class="fc-num c-r">中期</div>
+      <div class="fc-title">2027-2028年 · 真正的检验</div>
+      <div class="fc-body">
+        印尼/埃及爬坡是否符合预期。如果实际净利率达不到18-19%（比如只有12-15%），那么<strong>"赛轮成长逻辑"会被部分证伪</strong>，股价会有一次重新定价。<br><br>
+        <strong>跟踪指标：</strong>2027年报印尼净利率第一次有完整年度数据·埃及一期是否如期投产·2028年报埃及是否开始贡献正利润。
+      </div>
+    </div>
+
+    <div class="factor-card" style="border-top:3px solid var(--p)">
+      <div class="fc-num c-p">长期</div>
+      <div class="fc-title">2028-2030年 · 结构性问题</div>
+      <div class="fc-body">
+        海外产能挤兑显化。其他企业的埃及/墨西哥工厂集中投产，赛轮的相对优势缩小，<strong>行业ROE中枢下移</strong>。<br><br>
+        <strong>同时</strong>越南税收优惠2031年完全到期，越南净利率会自然回落至15-18%区间。这是赛轮"长期估值锚"的最大挑战。
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-p">
+    <strong>分时间窗口的不同风险特征：</strong>短期不会爆发（经营CF仍有41亿正向流入·债务结构在优化）；中期是真正的检验（印尼/埃及兑现度决定逻辑成立与否）；长期是结构性问题（行业ROE中枢必然下移）。<strong>这意味着赛轮的投资周期应当与这三层时间窗口对齐</strong>——短期可以持有，中期需要严密跟踪基本面，长期需要在2028-2029年根据实际数据重新校准估值锚。
+  </div>
+</section>
+
+<!-- ═══ PART VI · 对13.7元持仓的具体含义 ═══ -->
+<section>
+  <div class="sec-hd"><span>第六部分 · 对13.7元持仓的具体含义</span><span class="meta">PORTFOLIO IMPLICATIONS</span></div>
+
+  <div class="box box-b">
+    <strong>这次深度梳理之后，对操作逻辑有四点重要的调整：</strong>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>认知调整</th><th>之前的判断</th><th>校准后的判断</th><th>对操作的具体影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hb">
+        <td class="fw7">越南的地位</td>
+        <td>越南是核心利润源</td>
+        <td class="c-g fw7">越南是不可复制的天花板·占集团52%净利润·2031年优惠到期是关键长期变量</td>
+        <td>越南健康度是赛轮估值锚的"单一关键变量"</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">印尼/埃及的产能贡献</td>
+        <td>产能扩张=利润同步增长</td>
+        <td class="c-a fw7">前3-5年贡献有限·实际净利率可能只有可研的60-70%（即10-13%而非18%）</td>
+        <td>不应假设产能扩张立即带来利润增长</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">财务压力</td>
+        <td>可控</td>
+        <td class="c-a fw7">将持续2-3年·2026-2027资金缺口可能-15至-20亿/年·债务持续累积</td>
+        <td>关注Q2-Q3经营CF·有息负债红线180亿</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">买点机会的来源</td>
+        <td>主要来自伊朗战争升级</td>
+        <td class="c-g fw7">更可能来自财务压力显化或印尼/埃及爬坡不及预期</td>
+        <td>等待"市场情绪恶化但基本面OK"的不一致窗口</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>对13.7元持仓的最终建议（重申且强化）：</strong><br><br>
+    <strong>不需要止损，但坚决不追高。</strong>13.7元的位置反映了Q1业绩好+海外护城河+成长逻辑的部分定价，但<strong>没有充分反映2026-2027的"利润空窗期"和财务压力</strong>。<br><br>
+    <strong>预留充足现金等加仓机会。</strong>如果7月底Q2季报现金流明显恶化（经营CF低于8亿），市场反应可能比想象的更激烈，股价可能砸到11-12元区间——<strong>那是合理建仓机会但不是底部</strong>。如果同时叠加印尼/埃及消息不利或Section 301负面进展，股价可能进一步跌至9-10.5元的底部交叉验证区间——<strong>那才是真正的大力建仓机会</strong>。<br><br>
+    <strong>长期跟踪三个最重要的指标：</strong>① 越南工厂的净利率是否维持22%（每个季报都要看）；② 印尼净利率是否在2027年初步显示≥15%；③ 集团有息负债是否突破180亿。
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据源：可研报告原文(印尼/柬埔寨/埃及/新和平) · 2024年审计 · 2025年报 · 2026Q1季报 · 行业研报 · 2026.05.14</span>
+  <span>利润引擎深度解构_20260514 · v18 · 越南为核·财务压力时间线 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
