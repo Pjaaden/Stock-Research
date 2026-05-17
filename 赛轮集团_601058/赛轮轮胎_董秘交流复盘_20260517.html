@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 董秘交流复盘 · 产能与时局影响更新 · 2026-05-17</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;--bg5:#dad6cc;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;--rl:#e8c4be;
+  --a:#8c4800;--ap:#fdf7f0;--al:#e8d4b8;
+  --g:#1a6030;--gp:#f0faf4;--gl:#bcdbc6;
+  --b:#1a3870;--bp:#f0f4fb;--bl:#bdc8df;
+  --p:#521a80;--pp:#f5f0fc;--pl:#d4c0e0;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.75;}
+
+/* HEADER */
+.hdr{background:var(--bg2);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:16px 0 14px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:9px;max-width:780px;line-height:1.78;}
+.hdr-stamp{font-family:'JetBrains Mono',monospace;font-size:9px;text-align:right;letter-spacing:1.2px;color:var(--mu);line-height:1.7;}
+.hdr-stamp .big{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ink);letter-spacing:1px;}
+
+main{padding:0 44px 50px;}
+section{margin-top:26px;}
+
+/* SECTION HEADER */
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;}
+.sec-hd .num{font-family:'JetBrains Mono',monospace;color:var(--r);font-weight:700;margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+.sec-sub-hd{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--ink);margin:14px 0 8px;padding-left:8px;border-left:3px solid var(--ink);}
+
+/* BOXES */
+.box{border-left:3px solid;padding:13px 16px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr.hp td{background:var(--pp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);} .c-g{color:var(--g);} .c-a{color:var(--a);} .c-b{color:var(--b);} .c-p{color:var(--p);} .c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.tnum{font-family:'JetBrains Mono',monospace;font-weight:700;}
+
+/* GRID */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+
+/* KPI CARDS */
+.kpi{background:var(--bg2);border:1px solid var(--line);padding:13px 14px;border-top:3px solid var(--ink);}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:5px;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);} .kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);} .kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);} .kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);} .kpi-b .kpi-v{color:var(--b);}
+.kpi-p{border-top-color:var(--p);} .kpi-p .kpi-v{color:var(--p);}
+
+/* TIMELINE / EVENT */
+.evt{display:grid;grid-template-columns:90px 1fr;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);}
+.evt:last-child{border:none;}
+.evt-dt{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;color:var(--ink);letter-spacing:.5px;padding-top:2px;}
+.evt-body{font-size:11.5px;color:var(--mu);line-height:1.75;}
+.evt-body strong{color:var(--ink);}
+.evt-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;padding:1.5px 6px;letter-spacing:.5px;text-transform:uppercase;margin-right:6px;}
+.tag-g{color:#fff;background:var(--g);}
+.tag-r{color:#fff;background:var(--r);}
+.tag-a{color:#fff;background:var(--a);}
+.tag-b{color:#fff;background:var(--b);}
+.tag-p{color:#fff;background:var(--p);}
+
+/* HIGHLIGHT TABLE FOR NEW INFO */
+.new-info{background:var(--bg2);border:1.5px solid var(--ink);padding:0;margin:14px 0;}
+.new-info-hd{background:var(--ink);color:var(--bg);padding:8px 14px;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;}
+.new-info-bd{padding:14px 16px;}
+
+/* CALLOUT */
+.callout{background:var(--bg3);border:1px solid var(--line2);padding:12px 16px;margin:10px 0;}
+.callout-l{font-family:'Syne',sans-serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--r);font-weight:700;margin-bottom:6px;}
+.callout-bd{font-size:11.5px;color:var(--mu);line-height:1.8;}
+.callout-bd strong{color:var(--ink);}
+
+/* QUOTE */
+.qq{background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--b);padding:11px 15px;margin:8px 0;font-family:'Noto Serif SC',serif;font-size:11.5px;font-style:italic;color:var(--mu);line-height:1.85;}
+.qq-attr{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;color:var(--di);text-transform:uppercase;margin-top:4px;font-style:normal;}
+
+/* DELTA */
+.delta{display:inline-block;padding:1px 6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.delta-up{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.delta-dn{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.delta-neu{background:var(--bg3);color:var(--mu);border:1px solid var(--line);}
+
+/* SCORECARD */
+.sc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:10px 0;}
+.sc{background:var(--bg2);border:1px solid var(--line);padding:10px 11px;border-top:3px solid var(--g);}
+.sc-l{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:4px;}
+.sc-v{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--g);line-height:1.1;}
+.sc-s{font-size:9.5px;color:var(--mu);margin-top:4px;line-height:1.5;}
+.sc-r{border-top-color:var(--r);} .sc-r .sc-v{color:var(--r);}
+.sc-a{border-top-color:var(--a);} .sc-a .sc-v{color:var(--a);}
+.sc-b{border-top-color:var(--b);} .sc-b .sc-v{color:var(--b);}
+.sc-p{border-top-color:var(--p);} .sc-p .sc-v{color:var(--p);}
+.sc-neu{border-top-color:var(--mu);} .sc-neu .sc-v{color:var(--ink);}
+
+/* FOOTER */
+footer{margin-top:40px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+/* MISC */
+.divider-dot{display:flex;align-items:center;gap:8px;margin:16px 0;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--di);letter-spacing:2px;}
+.divider-dot::before,.divider-dot::after{content:'';flex:1;border-bottom:1px dashed var(--line2);}
+
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:1px 6px;border-radius:2px;font-weight:700;letter-spacing:.5px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--al);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--bl);}
+.pill-p{background:var(--pp);color:var(--p);border:1px solid var(--pl);}
+.pill-neu{background:var(--bg3);color:var(--mu);border:1px solid var(--line);}
+
+ul.tight{list-style:none;padding-left:0;}
+ul.tight li{padding:4px 0 4px 14px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.7;}
+ul.tight li::before{content:'▸';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+
+.tg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);margin:10px 0;}
+.tg{padding:11px 13px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);}
+.tg:nth-child(3n){border-right:none;}
+.tg-l{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.3px;text-transform:uppercase;color:var(--mu);margin-bottom:5px;}
+.tg-v{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;color:var(--ink);line-height:1.2;}
+.tg-s{font-size:10px;color:var(--mu);margin-top:4px;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>SAILUN · 601058.SH · 董秘交流复盘</span>
+    <span>BD INVESTOR RELATIONS DEBRIEF · CITIC SECURITIES CALL · 2026.05.14</span>
+    <span>20260517 · LAYER 10 UPDATE</span>
+  </div>
+  <div class="hdr-body">
+    <div>
+      <div class="eyebrow">SAILUN TIRE · IR EXCHANGE DEBRIEF · MAY 17</div>
+      <h1>赛轮轮胎 · <em>0517</em> 董秘交流复盘<br><span class="g">产能与时局影响更新</span></h1>
+      <div class="sub">基于2026年5月14日中信建投与赛轮轮胎董秘李总线上交流纪要，对此前研究框架进行系统性更新——补充供货数据、涨价进展、海外产能爬坡节奏、印尼/墨西哥扭亏路径、资本开支强度、运营管理能力来源、产业链协同等关键维度。本次纪要内容与v19、综合更新v20260506、2025年报+2026Q1分析等既有研究形成完整对照。</div>
+    </div>
+    <div class="hdr-stamp">
+      <div class="big">2026 · 05 · 17</div>
+      <div>SUNDAY DEBRIEF</div>
+      <div>FOR REFERENCE ONLY</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══════════════════════════════════════════════
+     §0 一句话核心结论
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§0</span>一句话核心结论 · ONE-PAGE TAKEAWAY</span><span class="meta">EXECUTIVE SUMMARY</span></div>
+
+  <div class="box box-g">
+    <strong>本次纪要给出的最强信号：</strong>赛轮的<strong>真实经营节奏明显好于市场担忧</strong>——4月发货条数突破800万创历史新高（同比超20%）、印尼工厂4月毛利已转正、墨西哥单月产量达21万条（一季度仅28万条的近4倍）、欧盟双反订单饱满、TBR/半钢/非公路三轮涨价已全部落地。但与此同时，<strong>三项隐忧也被实锤</strong>——汇兑损失Q1已损1亿+/4月再损约2,000万、印尼+墨西哥Q1合计仍亏4,000万（去年合计亏1.2亿）、2026-2027资本开支预算仍处高位（埃及+董家口+沈阳新和平三线并进）。
+  </div>
+
+  <div class="sc-grid">
+    <div class="sc"><div class="sc-l">4月条数</div><div class="sc-v">800万+</div><div class="sc-s">历史新高·三品类全部+20%</div></div>
+    <div class="sc sc-b"><div class="sc-l">三品类涨价</div><div class="sc-v">+3-9%</div><div class="sc-s">全钢×2/半钢×2/非公路+7-9%</div></div>
+    <div class="sc sc-a"><div class="sc-l">Q1汇兑损失</div><div class="sc-v">~1亿+</div><div class="sc-s">4月再损2,000万</div></div>
+    <div class="sc sc-r"><div class="sc-l">印尼+墨西哥Q1</div><div class="sc-v">-4,000万</div><div class="sc-s">vs 2025全年-1.2亿</div></div>
+    <div class="sc sc-p"><div class="sc-l">印尼4月毛利</div><div class="sc-v">转正</div><div class="sc-s">扣费后小亏·全年盈利可期</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">三大研究框架更新</div>
+    <div class="callout-bd">
+      <strong>① 印尼/墨西哥扭亏路径首次清晰化：</strong>此前v19、综合更新v20260506中"印尼/墨西哥仍处爬坡亏损期"的判断，现在可以更新为"4-5月毛利转正，7-8月（印尼）/8-9月（墨西哥）达产，全年合计盈利"——这比此前预期提前6-12个月。<br>
+      <strong>② 涨价传导落地率好于此前40-60%假设：</strong>4月份"基本符合预期"+三轮提价持续推进，是相对此前"涨价能否落地"质疑的有力反驳；非公路一次性提价7-9%是最具定价权的品类。<br>
+      <strong>③ 欧盟双反正在变成赛轮的结构性礼物：</strong>"公司在海外的半钢产能在中国轮胎企业里是最多的"——这句话首次明确了赛轮在<strong>欧盟双反受益排序的第一名</strong>，叠加越南/柬埔寨产地证，是2026下半年最强催化剂。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §1 七大信息维度分类复盘
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>纪要七大信息维度系统化分类</span><span class="meta">SEVEN INFORMATION DIMENSIONS</span></div>
+
+  <table>
+    <thead>
+      <tr><th>维度</th><th>纪要原文要点（董秘陈述）</th><th>对现有框架的影响</th><th>信号强度</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">① 供货与需求</td>
+        <td>4月条数800万+创历史新高；三品类发货增幅均超20%；非公路按条数+50%以上；国外开工率/订单非常充足；国内全钢好于半钢；半钢内销受新能源补贴退坡拖累</td>
+        <td class="c-g fw7">+ 验证海外需求强劲；半钢国内偏弱与新能源补贴退坡关联（此前未量化）；新增"国内全钢>半钢"结构</td>
+        <td><span class="pill pill-g">强正向</span></td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">② 涨价进展</td>
+        <td>全钢/半钢国内已两次提价；非公路前两天发函+7-9%；4月落地"符合预期"；不排除继续涨；涨价有1-2月滞后</td>
+        <td class="c-g fw7">+ 落地率好于此前40-60%假设；非公路+7-9%是首次大幅提价（此前未披露）；TBR+PCR双线涨价已二轮</td>
+        <td><span class="pill pill-g">强正向</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">③ 印尼/墨西哥扭亏</td>
+        <td>印尼4月半钢30万条/天1万条；墨西哥4月21万条/天7,000条；印尼半钢全年450-500万条；印尼7-8月达产、墨西哥8-9月达产；去年各亏6,000万；Q1再亏4,000万；4月印尼毛利已转正；全年合计预计盈利</td>
+        <td class="c-g fw7">+ 时间表首次明确；扭亏比v20260506预期提前6-12个月；但全年盈利幅度估计仅2-4亿（合计），低于可研18.65%达产净利率</td>
+        <td><span class="pill pill-g">中正向</span></td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">④ 欧盟双反</td>
+        <td>6月或有正式仲裁税率；公司海外半钢产能国内最大；欧盟订单非常充足；尽量提产</td>
+        <td class="c-b fw7">+ 首次明确赛轮"国内出海半钢产能最大"的产能优势；为下半年欧盟双反兑现期提供量化基础</td>
+        <td><span class="pill pill-b">结构性利好</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">⑤ 资本开支强度</td>
+        <td>2026-2027资本开支"预算应该还是保持相对高位"；今年重点：沈阳新和平+董家口1260万条半钢（Q4投产）+埃及（Q3首台下线）</td>
+        <td class="c-a fw7">+ 2026年仍处资本开支高峰；与"财务压力v20260320"中-21.6亿/年资金缺口逻辑一致；新和平实际为收购普利司通工厂（此前理解一致）</td>
+        <td><span class="pill pill-a">中性偏负</span></td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">⑥ 产业链与运营</td>
+        <td>14家轮胎企业技术输出（含越南/泰国/缅甸）；上游软控股份同一实控人；投资额与同行比"相对较低"；2028年目标进入产能前列；可同时管理3-4个项目</td>
+        <td class="c-b fw7">+ 14家技术输出企业是赛轮"模块化扩张能力"的实证；软控关联是隐性成本优势（约5-8%装备成本）；强化"先行者结构性护城河"逻辑</td>
+        <td><span class="pill pill-b">中正向</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">⑦ 原材料与汇率</td>
+        <td>天胶/合胶最大两块；库存≤2个月；20%量长约锁定；不做期货套保；总裁亲自定采购策略；Q1汇兑损失1亿+；4月再损2,000万</td>
+        <td class="c-a fw7">+ 锁定比例20%首次披露（vs中策约50-60%）；汇兑损失是Q1净利+1.72%的最大压制项；不做期货是结构性弱点</td>
+        <td><span class="pill pill-a">中性偏负</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §2 供货与发货数据：4月奇点
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>供货端：4月发货数据全维度更新</span><span class="meta">APRIL SHIPMENT BREAKTHROUGH</span></div>
+
+  <div class="qq">"4月份整体从条数看已经超过800万条，创了历史新高。排除去年4月美国关税导致的一周左右暂停发货的基数影响，实际也有15%以上的增长。三类产品（全钢、半钢、非公路）的发货量都超过了20%的增长，非公路如果按条数算增长了50%多，按重量算也增长超过20%。"
+    <div class="qq-attr">—— 赛轮董秘李总 · 2026.05.14 中信建投电话会</div>
+  </div>
+
+  <div class="sec-sub-hd">2.1 三品类发货增速分解（4月单月）</div>
+
+  <table>
+    <thead>
+      <tr><th>品类</th><th>4月单月增长（同比）</th><th>剔除2024年4月关税基数后</th><th>对应年化营收增量（估）</th><th>结构性解读</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">全钢胎 (TBR)</td>
+        <td class="c-g fw7">+20%以上</td>
+        <td>+15%以上</td>
+        <td class="c-g">~+18-25亿（按全钢年营收100-130亿测算）</td>
+        <td>沈阳新和平+越南/柬埔寨支撑；欧盟双反受益最直接</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">半钢胎 (PCR)</td>
+        <td class="c-g fw7">+20%以上</td>
+        <td>+15%以上</td>
+        <td class="c-g">~+25-32亿（按半钢年营收160-200亿测算）</td>
+        <td>印尼+墨西哥爬坡贡献；欧盟半钢双反订单转移</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">非公路 (OTR)</td>
+        <td class="c-g fw7">+50%（按条数）<br>+20%以上（按重量）</td>
+        <td>—</td>
+        <td class="c-g">~+5-7亿（按OTR年营收30-40亿测算）</td>
+        <td><span class="pill pill-g">中东重建</span> 条数大幅领先重量说明小尺寸/工程胎需求爆发</td>
+      </tr>
+      <tr class="tot">
+        <td>合计</td>
+        <td colspan="2">三品类均+20%以上，剔除基数后+15%</td>
+        <td class="c-g fw7">~+48-64亿/年（按4月水平年化）</td>
+        <td>4月可视为"产能利用率全面拐点"</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>对非公路+50%（条数）vs+20%（重量）背离的判断：</strong>OTR按条数比按重量增速差距30个百分点，说明<strong>小尺寸工程胎/装载机胎/农用胎贡献了主要增量</strong>——这与中东重建后非道路工程机械需求拉动逻辑一致（v9~v10多次提及），同时也意味着OTR本季度的<strong>毛利率提升空间小于销量增长幅度</strong>（因为大尺寸巨型矿山胎的单价/毛利远高于小尺寸装载机胎）。但即便如此，OTR的毛利率仍在所有品类中最高（参考3月12日董秘披露OTR毛利率约30%+），是2026年最值得关注的利润弹性来源。
+  </div>
+
+  <div class="sec-sub-hd">2.2 一季度整体经营情况与4月对照</div>
+
+  <div class="four-col">
+    <div class="kpi kpi-g"><div class="kpi-l">2026Q1 营收</div><div class="kpi-v">94.61亿</div><div class="kpi-s"><span class="delta delta-up">+12.48%</span>同比 · 已含汇兑1亿+拖累</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">Q1 归母净利</div><div class="kpi-v">10.56亿</div><div class="kpi-s"><span class="delta delta-up">+1.72%</span>低增主因汇兑1亿+</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">Q1 毛利率</div><div class="kpi-v">26.86%</div><div class="kpi-s"><span class="delta delta-up">+2.12pp</span>原材料Q1降12%支撑</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">4月条数</div><div class="kpi-v">800万+</div><div class="kpi-s">vs Q1月均约600-680万<span class="delta delta-up">+18-33%</span></div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">关键判断 · 4月vs Q1的环比含义</div>
+    <div class="callout-bd">
+      Q1月均发货条数约600-680万（按Q1营收94.61亿+约13.2元/条均价反推），4月单月直接跃升至800万+，<strong>环比涨幅+18-33%</strong>是不容忽视的信号。这意味着4月当月营收有望达<strong>34-36亿+水平</strong>（按4月汇率+少量提价测算），如果5-6月维持此节奏，<strong>Q2营收有望突破100-110亿区间</strong>，将是上市以来首次单季破百亿。
+      <br><br>
+      但要保留两点警惕：<strong>① 800万条不能简单线性外推全年</strong>，4月本身就含一季度积压订单的释放因素；<strong>② 涨价的全季度落地节奏</strong>会让Q2 ASP有所提升（半钢2次×3-5%+全钢2次×3-5%），但同时Q2汇兑损失仍未完全消除（4月再损2,000万）。中性情景下Q2归母净利预计在<strong>11-13亿区间</strong>（vs Q1 10.56亿），有望同比+15-25%。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §3 涨价进展：四轮提价的传导监测
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>涨价：四轮提价的完整传导监测</span><span class="meta">PRICING TRANSMISSION SCORECARD</span></div>
+
+  <div class="new-info">
+    <div class="new-info-hd">⚡ 纪要新披露 · 2026年Q1-Q2四轮提价完整序列</div>
+    <div class="new-info-bd">
+      <div class="evt">
+        <div class="evt-dt">3.12 (首轮)</div>
+        <div class="evt-body"><span class="evt-tag tag-r">TBR 首涨</span><strong>全钢胎首轮提价 +3-5%</strong>（4月1日起执行）。彼时已纳入v6/v7/v8油价影响系列分析，落地率假设60-70%。</div>
+      </div>
+      <div class="evt">
+        <div class="evt-dt">3月底</div>
+        <div class="evt-body"><span class="evt-tag tag-r">PCR 首涨</span><strong>半钢胎首轮提价 +3-5%</strong>（4月起执行）。配合行业67家集体涨价潮。</div>
+      </div>
+      <div class="evt">
+        <div class="evt-dt">4-5月</div>
+        <div class="evt-body"><span class="evt-tag tag-r">TBR/PCR 二涨</span><strong>全钢/半钢均完成第二轮提价</strong>（董秘5/14披露："国内全钢、半钢都提了两次，未来也不排除可能还要再提"）。这是<strong>v8/v9系列未捕获的关键新信息</strong>。</div>
+      </div>
+      <div class="evt">
+        <div class="evt-dt">5.12-13</div>
+        <div class="evt-body"><span class="evt-tag tag-r">OTR 首涨</span><strong>非公路前两天发函，国内+7-9%</strong>。这是非公路2024年以来首次官宣大幅提价，反映赛轮在OTR的强定价权（毛利率30%++中东重建订单饱满）。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">3.1 四轮涨价对2026年营收/利润的精确量化（更新版）</div>
+
+  <table>
+    <thead>
+      <tr><th>提价轮次</th><th>品类</th><th>幅度</th><th>预估落地率</th><th>影响营收基数</th><th>对全年营收增量</th><th>对全年净利增量（估）</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw7">第1轮</td>
+        <td>TBR 全钢</td>
+        <td class="c-g">+3-5%</td>
+        <td class="c-g">70-80%</td>
+        <td>~100-130亿/年</td>
+        <td class="c-g">+2.1-5.2亿</td>
+        <td class="c-g">+1.0-2.4亿</td>
+      </tr>
+      <tr>
+        <td class="fw7">第2轮</td>
+        <td>PCR 半钢</td>
+        <td class="c-g">+3-5%</td>
+        <td class="c-a">50-65%</td>
+        <td>~160-200亿/年</td>
+        <td class="c-g">+2.4-6.5亿</td>
+        <td class="c-g">+1.1-3.0亿</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">第3轮</td>
+        <td>TBR+PCR 二涨</td>
+        <td class="c-g">+3-5%（再次）</td>
+        <td class="c-a">40-55%（边际递减）</td>
+        <td>~260-330亿/年</td>
+        <td class="c-g fw7">+3.1-9.1亿</td>
+        <td class="c-g fw7">+1.4-4.2亿</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">第4轮</td>
+        <td>OTR 非公路</td>
+        <td class="c-b fw7">+7-9%</td>
+        <td class="c-g fw7">75-85%</td>
+        <td>~30-40亿/年</td>
+        <td class="c-b fw7">+1.6-3.1亿</td>
+        <td class="c-b fw7">+1.0-2.0亿（毛利率最高）</td>
+      </tr>
+      <tr class="tot">
+        <td>全年累计影响</td>
+        <td colspan="4">假设全年按当前价格水平测算</td>
+        <td class="c-g fw7">+9.2-23.9亿</td>
+        <td class="c-g fw7">+4.5-11.6亿</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>对比v9系列的关键升级：</strong>v9系列（2026年4月）只测算了第1轮TBR提价对净利+1.0-2.4亿的影响。本次纪要披露后，加入PCR首涨+TBR/PCR二涨+OTR首涨，<strong>2026全年涨价对净利的累计正贡献从+1.0-2.4亿提升到+4.5-11.6亿</strong>，中性情景下约<strong>+7-8亿净利</strong>——这是赛轮2026年最关键的边际改善变量，超过印尼/墨西哥扭亏的合计贡献（~+3-4亿）。
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">涨价落地率的现实警示</div>
+    <div class="callout-bd">
+      董秘原话："4月份的落地情况符合预期，后期能不能持续落下去还要看5、6月份的实际运营情况。"——这是<strong>外交辞令但含有真实信号</strong>。"符合预期"意味着首轮+部分二轮已落地，但二涨边际递减是必然规律（经销商库存压力+消费者价格敏感度）。<strong>稳健的假设：第2轮的落地率应低于第1轮约20-30个百分点。</strong>因此本表中第3轮"40-55%"较第1轮的"70-80%"已包含递减预期。如果5-6月行业涨价潮停滞，本表估算中位数应取下限。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §4 印尼+墨西哥扭亏路径
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>印尼/墨西哥：扭亏路径首次清晰化</span><span class="meta">INDONESIA &amp; MEXICO TURNAROUND</span></div>
+
+  <div class="qq">"印尼半钢胎4月份基本上做了30万条（一天1万条），1到3月份一共才40万条；全钢胎4月份做了差不多5万条，1到3月份一共生产了7万条。墨西哥4月份实际量到了21万多条（一天7,000多条），一季度前三个月一共做了28万条。去年每个工厂大概亏了6,000万左右，今年第一季度两块又亏了大概4,000万。但4月份印尼工厂的毛利已经转正了，叠加费用后还会差一些，但毛利转正了。如果达到刚才讲的产量目标，今年全年肯定是盈利的。"
+    <div class="qq-attr">—— 董秘李总 · 关于印尼/墨西哥扭亏路径</div>
+  </div>
+
+  <div class="sec-sub-hd">4.1 印尼/墨西哥月度产量数据：从龟速到全速</div>
+
+  <table>
+    <thead>
+      <tr><th>基地/品类</th><th>2025全年量(估)</th><th>2026Q1合计 (3月)</th><th>4月单月</th><th>4月日产</th><th>环比加速倍数</th><th>2026全年指引</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">印尼 · 半钢</td>
+        <td>少量爬坡</td>
+        <td>40万条</td>
+        <td class="c-g fw7">30万条</td>
+        <td>1万条/天</td>
+        <td class="c-g fw7">~2.25倍 (vs Q1月均13.3万)</td>
+        <td class="c-g fw7">450-500万条</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">印尼 · 全钢</td>
+        <td>少量爬坡</td>
+        <td>7万条</td>
+        <td class="c-g fw7">5万条</td>
+        <td>~1,700条/天</td>
+        <td class="c-g fw7">~2.1倍 (vs Q1月均2.3万)</td>
+        <td class="c-g fw7">~70万条</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">墨西哥 · 半钢</td>
+        <td>少量爬坡</td>
+        <td>28万条</td>
+        <td class="c-b fw7">21万条+</td>
+        <td>7,000条/天</td>
+        <td class="c-b fw7">~2.25倍 (vs Q1月均9.3万)</td>
+        <td class="c-b fw7">~450万条</td>
+      </tr>
+      <tr class="tot">
+        <td>合计 (印尼+墨西哥)</td>
+        <td>~30-50万条</td>
+        <td>75万条 (3月合计)</td>
+        <td class="c-g fw7">56万条+</td>
+        <td>—</td>
+        <td>—</td>
+        <td class="c-g fw7">~970-1,020万条</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">4.2 扭亏路径与达产时间表（董秘指引 vs 此前预期）</div>
+
+  <div class="two-col">
+    <div class="kpi kpi-r">
+      <div class="kpi-l">2025年合计亏损（董秘披露）</div>
+      <div class="kpi-v">-1.2亿</div>
+      <div class="kpi-s">印尼-6,000万 + 墨西哥-6,000万</div>
+    </div>
+    <div class="kpi kpi-a">
+      <div class="kpi-l">2026Q1合计亏损（董秘披露）</div>
+      <div class="kpi-v">-4,000万</div>
+      <div class="kpi-s">vs Q1-2025估约-3,000万 · 同比小幅扩大</div>
+    </div>
+  </div>
+
+  <div class="four-col" style="margin-top:10px">
+    <div class="kpi kpi-g"><div class="kpi-l">印尼 4月毛利</div><div class="kpi-v">转正</div><div class="kpi-s">扣费后仍小亏</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">印尼 达产时间</div><div class="kpi-v">7-8月</div><div class="kpi-s">较此前2028预期大幅提前</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">墨西哥 达产</div><div class="kpi-v">8-9月</div><div class="kpi-s">较此前2027预期提前</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">2026全年</div><div class="kpi-v">合计盈利</div><div class="kpi-s">估+1-3亿净利贡献</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">关键判断 · 扭亏比此前预期提前6-12个月</div>
+    <div class="callout-bd">
+      <strong>v20260506综合更新中预判：</strong>"印尼2028年稳态、墨西哥2027年稳态"——按当时基地达产爬坡周期推算。<br>
+      <strong>本次纪要明确：</strong>"印尼7-8月、墨西哥8-9月达产"——即<strong>2026年下半年就可以达到设计产能</strong>，比此前预期提前6-12个月。<br>
+      <strong>差异原因：</strong>① 印尼/墨西哥并非完全新建，部分利用现有设备（赛轮印尼为原有印尼基地的扩建/改造，墨西哥首胎已于2025年下线）；② 海外订单饱满使爬坡顺畅（不需要从零拓客）；③ 公司"同时管理3-4个项目"的运营能力得到验证。<br><br>
+      但需注意：<strong>"达产"不等于"达到可研18.65%净利率"</strong>。董秘指引"今年全年肯定是盈利"——按印尼450万条半钢×约260元/条+70万条全钢×650元/条≈14亿营收，加墨西哥450万条×260元/条≈11.7亿合计25亿+营收，假设净利率8-12%（爬坡期初始阶段），净利贡献约<strong>+2-3亿/年</strong>——已经远好于2025年-1.2亿，但仍未达到可研稳态净利率。可研稳态需等2027-2028年。
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">4.3 印尼/墨西哥年度营收贡献预测（修订版）</div>
+
+  <table>
+    <thead>
+      <tr><th>基地</th><th>2025年（实际/估）</th><th>2026年（纪要指引）</th><th>2027年（推算）</th><th>稳态达产（可研）</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ha">
+        <td class="fw7">印尼·营收</td>
+        <td>~5-8亿</td>
+        <td class="c-g">~14-16亿</td>
+        <td class="c-g">~20-22亿</td>
+        <td class="c-g fw7">24亿</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">印尼·净利</td>
+        <td class="c-r">-6,000万</td>
+        <td class="c-g">+1-1.5亿</td>
+        <td class="c-g">+2.5-3.5亿</td>
+        <td class="c-g fw7">+4.48亿（18.65%）</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">墨西哥·营收</td>
+        <td>~2-3亿</td>
+        <td class="c-g">~11-13亿</td>
+        <td class="c-g">~13-14亿</td>
+        <td class="c-g fw7">13.2亿</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">墨西哥·净利</td>
+        <td class="c-r">-6,000万</td>
+        <td class="c-g">+0.5-1.5亿</td>
+        <td class="c-g">+1.5-2亿</td>
+        <td class="c-g fw7">+2-2.5亿</td>
+      </tr>
+      <tr class="tot">
+        <td>合计净利贡献</td>
+        <td class="c-r">-1.2亿</td>
+        <td class="c-g fw7">+1.5-3亿 <span class="delta delta-up">同比+2.7-4.2亿</span></td>
+        <td class="c-g">+4-5.5亿</td>
+        <td class="c-g fw7">+6.48-6.98亿</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §5 欧盟双反与海外订单
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>欧盟双反：赛轮的产能优势首次量化</span><span class="meta">EU ANTI-DUMPING WINDFALL</span></div>
+
+  <div class="qq">"欧盟对中国半钢胎反倾销税已经有初步税率，到6月份可能会有正式仲裁税率。这对赛轮应该是比较有促进作用的，因为公司目前在海外的半钢产能在中国轮胎企业里是最多的，所以欧盟订单现在非常充足。公司也在想办法把海外工厂的产能尽量往上提。"
+    <div class="qq-attr">—— 董秘对欧盟双反的解读</div>
+  </div>
+
+  <div class="sec-sub-hd">5.1 中国主要轮胎企业海外半钢产能对比</div>
+
+  <table>
+    <thead>
+      <tr><th>企业</th><th>海外半钢产能（估）</th><th>主要基地</th><th>欧盟订单承接能力</th><th>双反受益排序</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">赛轮 (601058)</td>
+        <td class="c-g fw7">~2,500-3,000万条/年</td>
+        <td>越南+柬埔寨+印尼+墨西哥</td>
+        <td class="c-g fw7">极强（董秘明确"国内最多"）</td>
+        <td class="c-g fw7">#1 · 主受益方</td>
+      </tr>
+      <tr>
+        <td class="fw7">玲珑 (601966)</td>
+        <td>~1,500-2,000万条/年</td>
+        <td>泰国+塞尔维亚</td>
+        <td>较强（塞尔维亚直供欧盟）</td>
+        <td class="c-a">#2 · 但泰国部分受双反</td>
+      </tr>
+      <tr>
+        <td class="fw7">森麒麟 (002984)</td>
+        <td>~1,200万条/年</td>
+        <td>泰国+西班牙(建设中)</td>
+        <td>中等（泰国2025受双反114%）</td>
+        <td class="c-a">#3 · 西班牙未投产</td>
+      </tr>
+      <tr>
+        <td class="fw7">中策橡胶 (603049)</td>
+        <td>~800-1,000万条/年</td>
+        <td>泰国（主要）+ 国内为主</td>
+        <td>较弱（海外基地有限）</td>
+        <td class="c-r">#5 · 国内产能受欧盟直接冲击</td>
+      </tr>
+      <tr>
+        <td class="fw7">玉柴 / 浪马 / 风神等</td>
+        <td>较小</td>
+        <td>国内为主+局部东南亚</td>
+        <td>弱</td>
+        <td class="c-r">#6+ · 几乎无承接能力</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>欧盟双反的差异化影响逻辑：</strong>欧盟对<strong>中国本土生产</strong>的半钢胎征反倾销税，而越南/柬埔寨/印尼/墨西哥生产的轮胎只要满足产地证规则，<strong>不受此次双反约束</strong>。这意味着：① 全行业欧盟订单将<strong>从国内产能向海外产能转移</strong>；② 海外半钢产能越多的企业受益越大；③ 赛轮的海外半钢产能为行业最大（>2,500万条），按"国内最多"的董秘表述，<strong>赛轮可承接的欧盟订单转移规模可能达到几亿欧元水平</strong>。
+  </div>
+
+  <div class="sec-sub-hd">5.2 欧盟双反对赛轮的量化测算</div>
+
+  <table>
+    <thead>
+      <tr><th>情景</th><th>欧盟双反税率（最终）</th><th>赛轮可承接订单转移</th><th>对赛轮2026H2营收增量</th><th>对净利增量（估）</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ha">
+        <td class="fw7">悲观</td>
+        <td class="c-a">10-15%</td>
+        <td class="c-a">较少（替代效应弱）</td>
+        <td class="c-a">+5-8亿</td>
+        <td class="c-a">+1-1.5亿</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">基准</td>
+        <td class="c-g">20-30%</td>
+        <td class="c-g">中等（赛轮接到大部分流出订单）</td>
+        <td class="c-g fw7">+10-15亿</td>
+        <td class="c-g fw7">+2.5-4亿</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">乐观</td>
+        <td class="c-g fw7">30%+</td>
+        <td class="c-g fw7">大量（部分国内厂直接退出欧盟市场）</td>
+        <td class="c-g fw7">+15-25亿</td>
+        <td class="c-g fw7">+4-7亿</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">监测信号 · 6月正式仲裁</div>
+    <div class="callout-bd">
+      欧盟初步税率已公布，6月将有正式仲裁。<strong>关键观察点：</strong>① 初步税率与正式税率的差异；② 是否对赛轮越南/柬埔寨主体豁免；③ 是否覆盖全钢/OTR（目前主要针对半钢）。如果6月正式税率维持20-30%中位区间，赛轮全年净利将再多+2.5-4亿增量。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §6 资本开支与扩张节奏
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>资本开支：2026-2027仍处高位但节奏可控</span><span class="meta">CAPEX INTENSITY UPDATE</span></div>
+
+  <div class="qq">"根据2028年的目标，2026、2027年的资本开支从预算看应该还是保持相对高位。今年重点包括沈阳收购的普利司通工厂（全钢胎和半钢胎，需要一些投资）、青岛董家口1260万条半钢项目（计划今年四季度投产）、埃及项目（今年处于建设期，三季度投产，这块资本开支会多一些）。"
+    <div class="qq-attr">—— 董秘对2026-2027年资本开支强度的指引</div>
+  </div>
+
+  <div class="sec-sub-hd">6.1 2026年三大资本开支项目分解</div>
+
+  <table>
+    <thead>
+      <tr><th>项目</th><th>性质</th><th>预计资本开支</th><th>投产时间</th><th>对2026经营影响</th><th>对2027后影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ha">
+        <td class="fw7">沈阳新和平 (普利司通收购)</td>
+        <td>国内·收购改造</td>
+        <td class="c-a">~10-15亿（剩余）</td>
+        <td>2026年内全钢/半钢分批爬坡</td>
+        <td class="c-a">亏损收窄至-3至-5亿（vs 2025年-10亿）</td>
+        <td class="c-g">2027达产盈利~+1.5-2亿</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">青岛董家口 1260万条半钢</td>
+        <td>国内·新建</td>
+        <td class="c-a">~20-25亿</td>
+        <td class="c-g">2026 Q4投产</td>
+        <td class="c-a">投产初期亏损小幅</td>
+        <td class="c-g">2027爬坡 · 2028达产+约8-10亿净利</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">埃及一期</td>
+        <td>海外·新建</td>
+        <td class="c-b fw7">~15-20亿（2026集中）</td>
+        <td class="c-b">2026 Q3首台下线</td>
+        <td class="c-a">投产初期-1至-1.5亿</td>
+        <td class="c-g fw7">2027爬坡 · 2028-30达产+3-5亿/年</td>
+      </tr>
+      <tr class="tot">
+        <td>2026合计</td>
+        <td>—</td>
+        <td class="c-r fw7">~45-60亿</td>
+        <td>—</td>
+        <td class="c-a">-4.5至-6.5亿短期亏损/费用</td>
+        <td class="c-g fw7">2028后+12-17亿/年增量净利</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-a">
+    <strong>财务压力相对v20260320的更新：</strong>v20260320分析指出"赛轮真实资金缺口约-21.6亿/年（经营CF 25亿 - 利息+股利17.71亿 - 资本支出28.95亿）"。本次纪要披露2026年三大资本开支项目合计约45-60亿，<strong>显著高于2025年的28.95亿</strong>。但有三个缓解因素：① 2026年Q1经营CF已扭转至+1.76亿（vs 2025Q1 -4.08亿），全年经营CF有望达40-50亿；② 涨价+扭亏带来的净利改善约+8-10亿；③ 长期借款替代短期借款已优化债务期限结构（长期借款+16亿）。<strong>结论：资金缺口在2026年仍存在，但相对压力小于2025年</strong>，有息负债红线180亿在2026年内仍是安全的（当前143.7亿）。
+  </div>
+
+  <div class="sec-sub-hd">6.2 2028年产能目标与达产时间表</div>
+
+  <table>
+    <thead>
+      <tr><th>基地</th><th>当前产能 (2026)</th><th>2028目标 (董秘指引)</th><th>达产时间</th><th>2028净利贡献 (估)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">越南</td><td>三期全达产</td><td>稳定运营</td><td>已达产</td><td class="c-g fw7">~17-20亿/年（已稳定）</td></tr>
+      <tr class="hg"><td class="fw7">柬埔寨一期</td><td>已达产</td><td>稳定运营</td><td>已达产</td><td class="c-g fw7">~7-8亿/年</td></tr>
+      <tr class="hg"><td class="fw7">柬埔寨二期</td><td>爬坡中</td><td>全面达产</td><td>2027</td><td class="c-g fw7">~5-7亿/年（增量）</td></tr>
+      <tr class="ha"><td class="fw7">印尼</td><td>爬坡中</td><td>稳态</td><td>2026下半年达产·2028稳态</td><td class="c-g">~4-5亿/年</td></tr>
+      <tr class="hb"><td class="fw7">墨西哥</td><td>爬坡中</td><td>稳态</td><td>2026下半年达产·2027爬坡稳态</td><td class="c-g">~2-3亿/年</td></tr>
+      <tr class="hp"><td class="fw7">埃及一期</td><td>建设中</td><td>全面达产</td><td>2030</td><td class="c-g">~3.5亿/年（达产后）</td></tr>
+      <tr class="ha"><td class="fw7">沈阳新和平</td><td>爬坡中</td><td>达产</td><td>2027</td><td class="c-g">~1.5-2亿/年</td></tr>
+      <tr class="ha"><td class="fw7">青岛董家口</td><td>建设中（Q4投产）</td><td>爬坡中</td><td>2028</td><td class="c-g">~8-10亿/年（达产）</td></tr>
+      <tr class="hp"><td class="fw7">埃及二期/未定</td><td>—</td><td>规划中</td><td>2030+</td><td class="c-p">看决策</td></tr>
+      <tr class="tot">
+        <td>2028整体净利</td>
+        <td colspan="3">基于上述达产时间表+涨价稳态</td>
+        <td class="c-g fw7">~55-65亿/年（vs 2025约35亿）</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §7 产业链与运营管理
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§7</span>产业链协同：14家技术输出+软控关联</span><span class="meta">SUPPLY-CHAIN MOAT</span></div>
+
+  <div class="qq">"赛轮虽然是民营企业，但创始人团队基本上都是从科技大学出来的⋯⋯公司在上市之前（2011年）就以赛轮的名义对外输出了14家轮胎企业，其中还有几家是国外的（越南、泰国、缅甸）⋯⋯公司的上游软控股份与实际控制人是同一人，主要做相关装备。所以在国内外建厂时，投资金额和同行比相对比较低。"
+    <div class="qq-attr">—— 董秘对赛轮"先行者结构性护城河"的解释</div>
+  </div>
+
+  <div class="sec-sub-hd">7.1 14家技术输出企业的隐性价值</div>
+
+  <div class="three-col">
+    <div class="kpi kpi-b">
+      <div class="kpi-l">行业知识沉淀</div>
+      <div class="kpi-v">14家企业</div>
+      <div class="kpi-s">14种不同环境/路况/法规下的建厂经验，使每一个新基地都能跳过30-50%的学习成本</div>
+    </div>
+    <div class="kpi kpi-b">
+      <div class="kpi-l">国际化布局基础</div>
+      <div class="kpi-v">越南/泰国/缅甸</div>
+      <div class="kpi-s">东南亚国家的渠道与政府关系，使赛轮能够最快锁定优质地块和政策窗口</div>
+    </div>
+    <div class="kpi kpi-b">
+      <div class="kpi-l">模块化能力</div>
+      <div class="kpi-v">同时3-4项目</div>
+      <div class="kpi-s">同时管理印尼+墨西哥+埃及+董家口+沈阳5个项目仍能按节奏推进，反映系统化运营成熟度</div>
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">7.2 软控股份关联：装备成本优势的量化</div>
+
+  <table>
+    <thead>
+      <tr><th>对比维度</th><th>赛轮（关联软控）</th><th>同行非关联企业</th><th>差异化优势</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">轮胎成型机</td><td class="c-g">软控直供，内部价</td><td>需向米其林/普利司通技术合作或多供应商招标</td><td class="c-g fw7">~10-15%成本优势</td></tr>
+      <tr><td class="fw7">硫化机</td><td class="c-g">软控直供</td><td>主要进口德国/日本设备</td><td class="c-g fw7">~15-20%成本优势</td></tr>
+      <tr><td class="fw7">混炼线</td><td class="c-g">软控直供</td><td>采购法尔来/科伯林等进口</td><td class="c-g fw7">~10-15%成本优势</td></tr>
+      <tr><td class="fw7">物流装备</td><td class="c-g">软控直供</td><td>分散采购</td><td class="c-g">~5-10%成本优势</td></tr>
+      <tr class="tot"><td>整体投资额优势</td><td colspan="2">据董秘表述"投资金额和同行比相对比较低"</td><td class="c-g fw7">综合5-12%总投资优势</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>软控关联的财务意义量化：</strong>以印尼基地总投资29,964万美元为例，5-12%成本优势意味着<strong>节省1,500-3,600万美元（约1.1-2.6亿元）</strong>。叠加埃及2.9亿美元、墨西哥（估约2亿美元）、董家口（约25亿元）等项目，整个2026-2028年扩张周期里，赛轮在装备采购上至少有<strong>5-8亿元的综合成本节省</strong>。同时软控股份本身有公开披露的财务数据，这部分"内部利润"对赛轮报表无直接影响，但<strong>是真实的结构性护城河</strong>。
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §8 原材料与汇率风险
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§8</span>原材料与汇率：Q1已确认的拖累项</span><span class="meta">FX &amp; MATERIAL RISK</span></div>
+
+  <div class="qq">"汇率方面，现在人民币持续在升值，1到3月份产生了大概一个多亿的汇率损失。4月份这块损失差不多还在2000万左右⋯⋯公司库存一般最多两个月左右，消化完原有库存后基本以随行就市为主，有一部分会做长约（比如一个月用五六万吨天然胶，拿出20%左右锁定一部分价格）。公司目前不做期货套保。"
+    <div class="qq-attr">—— 董秘对原材料/汇率策略的披露</div>
+  </div>
+
+  <div class="sec-sub-hd">8.1 汇兑损失的全年估算</div>
+
+  <table>
+    <thead>
+      <tr><th>时段</th><th>汇兑损失/收益（已披露）</th><th>对应人民币升值幅度（估）</th><th>对净利率影响</th><th>对全年累计</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">2026Q1</td><td class="c-r">-1.0至-1.5亿</td><td>~1.5-2.5%</td><td class="c-r">-1.0-1.5pp</td><td class="c-r">-1.0-1.5亿</td></tr>
+      <tr class="ha"><td class="fw7">2026年4月</td><td class="c-a">-2,000万</td><td>~0.3-0.5%</td><td class="c-a">-0.2pp</td><td class="c-r">累计-1.2-1.7亿</td></tr>
+      <tr class="ha"><td class="fw7">2026Q2 (预估)</td><td class="c-a">-3,000至-6,000万</td><td>持续小幅升值</td><td class="c-a">-0.3-0.6pp</td><td class="c-r">累计-1.5-2.3亿</td></tr>
+      <tr class="ha"><td class="fw7">2026下半年（预估）</td><td class="c-a">-2,000至-5,000万</td><td>升值幅度趋缓</td><td class="c-a">-0.2-0.5pp</td><td class="c-r">累计-1.7-2.8亿</td></tr>
+      <tr class="tot"><td>2026全年汇兑影响（中性）</td><td colspan="3">人民币持续小幅升值情境</td><td class="c-r fw7">约-2亿</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">关键警示 · 不做期货套保是结构性弱点</div>
+    <div class="callout-bd">
+      董秘明确："公司目前不做期货套保。"<strong>对比中策橡胶</strong>，中策橡胶在2025H1已经大规模锁价天胶（16,000-17,000元/吨锁定），形成3-6亿元成本缓冲（参考v20260320赛轮vs中策对比）。<strong>而赛轮只有20%量做长约</strong>，意味着80%量随行就市，2026Q1原材料同比-12.12%（毛利率+2.12pp）的红利是<strong>因为天胶价格自然回落</strong>而非主动锁价。如果天胶进入新一轮上涨（5月14日记忆已确认RSS3$2.90/kg近十年同期高点+SHFE+17.6%），赛轮没有期货对冲将在Q3-Q4直接承压。<strong>这是赛轮vs中策最大的策略差异，也是2026下半年最大变量。</strong>
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">8.2 天胶价格目前位置与对2026 Q3-Q4压力</div>
+
+  <table>
+    <thead>
+      <tr><th>价格指标</th><th>当前水平 (2026.05.14)</th><th>vs 2025同期</th><th>2026Q1平均价</th><th>对Q3-Q4毛利的潜在影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">RSS3 (ANRPC)</td><td class="c-r fw7">$2.90/kg</td><td class="c-r">vs $2.13 <span class="delta delta-dn">+36%</span></td><td>~$2.50/kg</td><td class="c-r">如维持，Q3-Q4毛利-1.5至-2.5pp</td></tr>
+      <tr class="hr"><td class="fw7">STR20</td><td class="c-r fw7">$2.30/kg</td><td>YTD +18.5%</td><td>~$2.05/kg</td><td class="c-r">合成胶+炭黑也将随油价上涨</td></tr>
+      <tr class="hr"><td class="fw7">SHFE RSS3主力</td><td class="c-r fw7">17,950元/吨</td><td>+17.6% YTD</td><td>~15,500元/吨</td><td class="c-r">国内基地直接承受</td></tr>
+      <tr class="ha"><td class="fw7">青岛保税库存</td><td class="c-a">~72.2万吨</td><td>+66%自去年低点</td><td>~45-50万吨</td><td class="c-a">高库存意外不抑价，囤货式需求</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-r">
+    <strong>对Q3-Q4毛利压力的判断：</strong>当前天胶价格相对2026Q1已上涨15-25%，按赛轮天胶用量约20万吨/年测算，<strong>年化新增成本约4-5亿元</strong>，对净利率影响约-1.0-1.5pp。如果Q3-Q4天胶维持高位+合成胶/炭黑随油价上涨，赛轮全年毛利率可能从Q1的26.86%回落至24-25%水平（仍高于2025年的22.84%，但低于此前26.86%的高点）。这意味着<strong>毛利率"前高后低"是大概率事件</strong>，全年综合毛利率约24-25.5%。
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §9 维度叠加：2026年净利润盘点
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§9</span>维度叠加：2026年净利润预测重构</span><span class="meta">2026 NET INCOME REVAMP</span></div>
+
+  <table>
+    <thead>
+      <tr><th>影响因子</th><th>2025基数</th><th>2026变化</th><th>对净利影响 (中性)</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">2025年报基准净利</td><td class="c-mu">35.22亿</td><td>—</td><td class="c-mu">35.22亿（起点）</td><td>已披露，确认</td></tr>
+      <tr class="hg"><td class="fw7">+ 涨价四轮累计</td><td>—</td><td>TBR/PCR各2次+OTR一次</td><td class="c-g fw7">+7-8亿</td><td>取中性区间</td></tr>
+      <tr class="hg"><td class="fw7">+ 印尼/墨西哥扭亏</td><td>-1.2亿</td><td>合计盈利</td><td class="c-g fw7">+2.7-4.2亿</td><td>同比改善幅度</td></tr>
+      <tr class="hg"><td class="fw7">+ 欧盟双反受益</td><td>—</td><td>6月正式仲裁，H2显著</td><td class="c-g fw7">+2.5-4亿</td><td>基准情景</td></tr>
+      <tr class="hg"><td class="fw7">+ 海外发货+15-20%</td><td>—</td><td>越南/柬埔寨产能利用率提升</td><td class="c-g fw7">+3-5亿</td><td>稳定区间</td></tr>
+      <tr class="ha"><td class="fw7">- 沈阳新和平亏损延续</td><td>-10亿</td><td>亏损收窄</td><td class="c-a">+3-5亿（减亏）</td><td>但仍亏-5至-7亿</td></tr>
+      <tr class="hr"><td class="fw7">- 汇兑损失全年</td><td>较小</td><td>人民币升值</td><td class="c-r fw7">-2亿</td><td>低估时为-1.5亿</td></tr>
+      <tr class="hr"><td class="fw7">- 天胶涨价Q3-Q4压力</td><td>—</td><td>当前胶价+15-25%</td><td class="c-r fw7">-3-4亿</td><td>下半年集中体现</td></tr>
+      <tr class="hr"><td class="fw7">- 资本开支推升财务费用</td><td>—</td><td>有息负债持续高位</td><td class="c-r">-1-1.5亿</td><td>利息小幅上行</td></tr>
+      <tr class="ha"><td class="fw7">- 海运/物流</td><td>—</td><td>持续高位</td><td class="c-a">-0.5-1亿</td><td>影响有限</td></tr>
+      <tr class="tot">
+        <td>2026年中性预测</td>
+        <td colspan="2">中性情景下各项叠加</td>
+        <td class="c-g fw7">~46-50亿</td>
+        <td class="c-g fw7">同比 +30-42%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">9.1 三情景净利预测</div>
+
+  <div class="three-col">
+    <div class="kpi kpi-r">
+      <div class="kpi-l">悲观情景</div>
+      <div class="kpi-v">~38-42亿</div>
+      <div class="kpi-s">涨价仅落地一半 + 天胶涨幅持续 + 欧盟双反低于预期</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-l">基准情景</div>
+      <div class="kpi-v">~46-50亿</div>
+      <div class="kpi-s">涨价+扭亏+双反三重正贡献抵消胶价+汇率压力</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-l">乐观情景</div>
+      <div class="kpi-v">~52-58亿</div>
+      <div class="kpi-s">涨价充分落地 + 欧盟订单大量流入 + 天胶回落</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">关键差异点 · 2025年报基础上的修订</div>
+    <div class="callout-bd">
+      2025年报基准35.22亿（已确认）<strong>是低于此前预期的</strong>——v9系列预测过2026年净利约30-38亿，现在中性情景上修至46-50亿，<strong>核心差异在三处</strong>：① 涨价四轮的累计正贡献（v9只看了一轮）；② 印尼/墨西哥扭亏比预期早；③ 欧盟双反正式落地的可能性提升。<br><br>
+      <strong>但要注意：</strong>本估算仍基于"汇率温和升值+天胶维持当前高位+无新关税冲击"假设。如果出现Trump政府对Sailun越南/柬埔寨突发双反、或天胶突破18,000元/吨等极端情景，悲观情景可能下行至30-35亿。
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §10 估值与操作启示
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§10</span>估值与操作启示</span><span class="meta">VALUATION &amp; ACTION</span></div>
+
+  <div class="sec-sub-hd">10.1 当前估值水平测算</div>
+
+  <table>
+    <thead>
+      <tr><th>估值方法</th><th>计算逻辑</th><th>对应股价</th><th>vs 当前股价</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">PE方法</td><td>2026E净利46-50亿 × 12-14x PE</td><td class="c-g fw7">16.8-21.3元</td><td>—</td></tr>
+      <tr class="hg"><td class="fw7">PB方法</td><td>BPS 6.57元 × ROE 25%/股权成本10% × 修正系数</td><td class="c-g">13.1-16.4元 (PB 2.0-2.5x)</td><td>—</td></tr>
+      <tr class="ha"><td class="fw7">DCF方法</td><td>2028达产稳态55-65亿 × WACC 9.23% 折现</td><td class="c-g">14-18元</td><td>—</td></tr>
+      <tr><td class="fw7">底部产能挤兑</td><td>PB底×EV/EBITDA×重置成本×DCF四维交叉</td><td class="c-r">9-10.5元</td><td>—</td></tr>
+      <tr class="tot"><td>综合判断</td><td colspan="2">中性估值区间</td><td class="c-g fw7">14-18元（中位16元左右）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">10.2 六档价格区间应对策略（继承v20260506）</div>
+
+  <table>
+    <thead>
+      <tr><th>价格区间</th><th>定性</th><th>建议动作</th><th>本次纪要后是否调整</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="c-r fw7">&lt; 9.5元</td><td class="c-r">极端低估</td><td>大幅加仓（产能挤兑底部）</td><td>不变</td></tr>
+      <tr class="ha"><td class="c-a">9.5-11元</td><td class="c-a">深度价值</td><td>分批建仓</td><td>不变</td></tr>
+      <tr class="hg"><td class="c-g">11-13元</td><td class="c-g">合理偏低</td><td>持有，少量加仓</td><td class="c-g fw7">区间上沿可能上修</td></tr>
+      <tr class="hb"><td class="c-b">13-15.5元</td><td class="c-b">中性</td><td>持有观察</td><td class="c-b fw7">中枢上移至14-16</td></tr>
+      <tr class="ha"><td class="c-a">15.5-17元</td><td class="c-a">稳健止盈</td><td>开始分批减仓</td><td class="c-a">上修至16-18</td></tr>
+      <tr class="hr"><td class="c-r">&gt; 17元</td><td class="c-r">乐观上限</td><td>全部止盈</td><td class="c-r">上修至18-19</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>本次纪要后的整体判断：</strong>赛轮的<strong>2026年盈利改善确定性显著上升</strong>，但<strong>2028年稳态盈利目标（55-65亿）的可信度也得到加强</strong>。这两个因素叠加，使中性估值中枢从此前的13-15.5元上修至14-16元；乐观上限从17元上修至18-19元。<strong>关键监测节点：</strong>① 6月欧盟双反正式仲裁；② Q2业绩公告（预计8月中）确认涨价落地与扭亏进度；③ 天胶价格是否突破18,000元/吨/进一步上涨；④ 沈阳新和平年内亏损收窄程度。
+  </div>
+
+  <div class="sec-sub-hd">10.3 必须监测的三个关键变量</div>
+
+  <ul class="tight">
+    <li><strong>5-6月天胶价格走势：</strong>若RSS3突破$3.0/kg或SHFE突破18,500元/吨，赛轮Q3-Q4毛利率压力将显著加大，悲观情景概率上升。</li>
+    <li><strong>6月欧盟双反正式仲裁：</strong>这是2026下半年最大催化剂，正式税率20%+将使赛轮H2营收/净利明显上行。</li>
+    <li><strong>印尼/墨西哥7-9月达产兑现：</strong>若按时达产，全年扭亏目标无虞；若推迟2个月，扭亏目标可能滑至2027。</li>
+  </ul>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     §11 信息变化对照
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§11</span>本次纪要对照之前研究的全面修订</span><span class="meta">DELTA SUMMARY</span></div>
+
+  <table>
+    <thead>
+      <tr><th>研究维度</th><th>纪要前认知</th><th>纪要后认知</th><th>修订方向</th><th>相关报告</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">海外发货增速</td>
+        <td>未量化4月数据</td>
+        <td>三品类均+20%，OTR按条数+50%</td>
+        <td class="c-g">显著正向</td>
+        <td>综合更新v20260506</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">涨价进展</td>
+        <td>v9：TBR一轮+3-5%</td>
+        <td>四轮：TBR×2+PCR×2+OTR×1</td>
+        <td class="c-g fw7">显著超预期</td>
+        <td>v6-v9</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">印尼/墨西哥扭亏</td>
+        <td>v19：2027-2028达产</td>
+        <td>2026Q3达产 · 全年合计盈利</td>
+        <td class="c-g fw7">提前6-12个月</td>
+        <td>v19</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">欧盟双反受益</td>
+        <td>知道但未量化赛轮位置</td>
+        <td>赛轮海外半钢产能"国内最多"</td>
+        <td class="c-b fw7">结构性利好首次明确</td>
+        <td>v20260506</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">2026资本开支</td>
+        <td>预期高位但具体未拆解</td>
+        <td>沈阳+董家口+埃及三项约45-60亿</td>
+        <td class="c-a">压力略大于v20260320估算</td>
+        <td>财务压力v20260320</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">产业链护城河</td>
+        <td>知道软控关联</td>
+        <td>14家技术输出+模块化能力</td>
+        <td class="c-b">结构性优势量化</td>
+        <td>战略认知总纲v20260421</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">汇兑损失</td>
+        <td>未量化</td>
+        <td>Q1已损1亿+，4月再损2,000万</td>
+        <td class="c-r">新增结构性压力</td>
+        <td>—</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">期货套保策略</td>
+        <td>未明确披露</td>
+        <td>公司明确不做期货套保</td>
+        <td class="c-r">结构性弱点首次确认</td>
+        <td>赛轮vs中策v20260320</td>
+      </tr>
+      <tr class="tot">
+        <td>整体方向</td>
+        <td colspan="3"><strong>2026年盈利改善确定性大幅提升 + 2028产能蓝图清晰化 + 一些隐性压力实锤化</strong></td>
+        <td class="c-g fw7">中长期偏正向</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源：中信建投/赛轮董秘交流（2026.05.14）· 赛轮2025年报+2026Q1（已分析）· v6-v19 油价系列 · v20260506综合更新 · 财务压力v20260320 · 赛轮vs中策v20260320</span>
+  <span>赛轮轮胎_董秘交流复盘_20260517 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION</span>
+</footer>
+
+</body>
+</html>
