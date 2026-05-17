@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 全球产能与资本开支量化 · 2026-05-17</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.7;}
+
+.hdr{background:var(--bg2);border-bottom:2px solid var(--ink);padding:18px 44px 16px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:8px;max-width:840px;line-height:1.75;}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--di);letter-spacing:1px;margin-top:5px;}
+
+main{padding:0 44px 50px;}
+section{margin-top:28px;}
+
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;font-weight:700;}
+.sec-hd .num{color:var(--r);margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1px;font-weight:400;text-transform:none;}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11.5px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.6;}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr.hp td{background:var(--pp);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);}.c-g{color:var(--g);}.c-a{color:var(--a);}.c-b{color:var(--b);}.c-p{color:var(--p);}.c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.right{text-align:right;}
+
+.box{border-left:3px solid;padding:13px 16px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0;}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:13px 14px;}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:5px;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);} .kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);} .kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);} .kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);} .kpi-b .kpi-v{color:var(--b);}
+.kpi-p{border-top-color:var(--p);} .kpi-p .kpi-v{color:var(--p);}
+
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:1px 6px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--g);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--a);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--r);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--b);}
+.pill-p{background:var(--pp);color:var(--p);border:1px solid var(--p);}
+
+.bar-row{display:grid;grid-template-columns:120px 1fr 80px;gap:10px;align-items:center;padding:5px 0;}
+.bar-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);}
+.bar-bg{height:14px;background:var(--bg4);border-radius:2px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:2px;display:flex;align-items:center;justify-content:flex-end;padding-right:6px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;}
+.bar-val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-align:right;}
+
+footer{margin-top:40px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+.note{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--mu);line-height:1.7;padding:8px 12px;background:var(--bg3);border-left:2px solid var(--line2);margin:8px 0;}
+.note strong{color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="eyebrow">SAILUN · 601058 · CAPACITY &amp; CAPEX QUANTIFICATION</div>
+  <h1>赛轮轮胎 · <em>全球产能</em>与<span class="g">资本开支</span>量化</h1>
+  <div class="sub">基于既有测算（全球产能结构估算v3.0 / 四基地可研报告 / 财务压力v20260320 / 埃及二期决策v20260421 / 5/14 董秘交流），用最简洁的方式整合九大基地的产能数据与资本投入路径。</div>
+  <div class="stamp">2026·05·17 · 数据汇总简报</div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════
+     §1 全球产能一表概览
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>全球九大基地·产能一表概览</span><span class="meta">CAPACITY OVERVIEW</span></div>
+
+  <div class="kpi-row">
+    <div class="kpi kpi-b"><div class="kpi-l">全钢胎总规划</div><div class="kpi-v">3,170万条</div><div class="kpi-s">国内2,180 + 海外990</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">半钢胎总规划</div><div class="kpi-v">1.12亿条</div><div class="kpi-s">国内6,000 + 海外5,200(万条)</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">非公路胎总规划</div><div class="kpi-v">49.14万吨</div><div class="kpi-s">国内38.14 + 海外11(万吨)</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">全面达产营收</div><div class="kpi-v">~430-450亿</div><div class="kpi-s">vs 2025年化~370亿 +17-22%</div></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>基地</th><th>属性</th><th>全钢(万条)</th><th>半钢(万条)</th><th>OTR(万吨)</th><th>状态</th><th>当前营收(估)</th><th>达产增量(估)</th></tr>
+    </thead>
+    <tbody>
+      <!-- 国内 -->
+      <tr><td class="fw7">青岛</td><td><span class="pill pill-a">国内</span></td><td class="right">~800-900</td><td class="right">~2,200-2,600</td><td class="right">~15-20</td><td class="c-g">运营</td><td class="right c-g">~130-150亿</td><td class="right c-mu">有限</td></tr>
+      <tr><td class="fw7">东营</td><td><span class="pill pill-a">国内</span></td><td class="right">~600-700</td><td class="right">~1,800-2,200</td><td class="right">~12-16</td><td class="c-g">运营</td><td class="right c-g">~80-100亿</td><td class="right c-mu">有限</td></tr>
+      <tr><td class="fw7">潍坊</td><td><span class="pill pill-a">国内</span></td><td class="right">~380-500</td><td class="right">~1,200-1,600</td><td class="right">—</td><td class="c-g">运营</td><td class="right c-g">~50-70亿</td><td class="right c-a">新能源配套</td></tr>
+      <tr class="ha"><td class="fw7">沈阳新和平</td><td><span class="pill pill-a">国内</span></td><td class="right c-a fw7">330 ★</td><td class="right">—</td><td class="right c-a fw7">2 ★</td><td class="c-a">爬坡中</td><td class="right c-r">亏损</td><td class="right c-a fw7">+21亿</td></tr>
+      <!-- 海外 -->
+      <tr class="hg"><td class="fw7">越南</td><td><span class="pill pill-g">海外</span></td><td class="right">~550-650</td><td class="right">~2,000-2,400</td><td class="right">~6-8</td><td class="c-g fw7">运营·12年验证</td><td class="right c-g fw7">~60-80亿</td><td class="right c-mu">有限</td></tr>
+      <tr class="hg"><td class="fw7">柬埔寨</td><td><span class="pill pill-g">海外</span></td><td class="right">~150-200</td><td class="right">~1,200(二期1,200)</td><td class="right">—</td><td class="c-g">运营·二期爬坡</td><td class="right c-g">~30-50亿</td><td class="right c-g fw7">+20-30亿</td></tr>
+      <tr class="hp"><td class="fw7">印尼(扩建)</td><td><span class="pill pill-p">海外</span></td><td class="right c-p fw7">75 ◆</td><td class="right c-p fw7">600 ◆</td><td class="right c-p fw7">1 ◆</td><td class="c-p">爬坡·7-8月达产</td><td class="right">~5-15亿</td><td class="right c-p fw7">+21亿</td></tr>
+      <tr class="hp"><td class="fw7">墨西哥</td><td><span class="pill pill-p">海外</span></td><td class="right">—</td><td class="right c-p fw7">600</td><td class="right">—</td><td class="c-p">爬坡·8-9月达产</td><td class="right">~1-5亿</td><td class="right c-p fw7">+13亿</td></tr>
+      <tr class="hp"><td class="fw7">埃及一期</td><td><span class="pill pill-p">海外</span></td><td class="right c-p fw7">60 ◆</td><td class="right c-p fw7">300 ◆</td><td class="right">—</td><td class="c-b">建设·Q3首胎</td><td class="right c-mu">0</td><td class="right c-p fw7">+10亿</td></tr>
+      <tr class="hp"><td class="fw7">埃及二期(规划)</td><td><span class="pill pill-p">海外</span></td><td class="right c-p fw7">165 ◆</td><td class="right c-p fw7">900 ◆</td><td class="right">—</td><td class="c-b">2026启动</td><td class="right c-mu">—</td><td class="right c-p fw7">+25-30亿</td></tr>
+      <tr class="tot">
+        <td>🌐 全球合计(规划)</td><td>10基地</td>
+        <td class="right">3,170万条</td>
+        <td class="right">1.12亿条</td>
+        <td class="right">49.14万吨</td>
+        <td>—</td>
+        <td class="right c-g fw7">~370亿/年</td>
+        <td class="right c-p fw7">+90-100亿全达产</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">★ = 官方明确披露 · ◆ = 可研报告原文 · 其余推算 · 青岛/东营/潍坊未单独披露，按国内合计倒推</div>
+</section>
+
+<!-- ════════════════════════════════════
+     §2 产能·按品类的全球分布
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>产能分布·按品类拆解</span><span class="meta">PRODUCT-LEVEL BREAKDOWN</span></div>
+
+  <table>
+    <thead>
+      <tr><th>品类</th><th>国内产能(规划)</th><th>海外产能(规划)</th><th>合计</th><th>国内占比</th><th>海外占比</th><th>主要意义</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw7">全钢胎 TBR</td>
+        <td class="right">2,180万条</td>
+        <td class="right">990万条</td>
+        <td class="right fw7">3,170万条</td>
+        <td class="right">68.8%</td>
+        <td class="right c-g">31.2%</td>
+        <td>国内为主·重卡/客车配套</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">半钢胎 PCR</td>
+        <td class="right">6,000万条</td>
+        <td class="right c-g fw7">5,200万条</td>
+        <td class="right fw7">11,200万条 (1.12亿)</td>
+        <td class="right">53.6%</td>
+        <td class="right c-g fw7">46.4%</td>
+        <td><strong>海外占比最高·欧盟双反受益核心</strong></td>
+      </tr>
+      <tr>
+        <td class="fw7">非公路胎 OTR</td>
+        <td class="right">38.14万吨</td>
+        <td class="right">11万吨</td>
+        <td class="right fw7">49.14万吨</td>
+        <td class="right">77.6%</td>
+        <td class="right">22.4%</td>
+        <td>国内主导·毛利率30%+最优品类</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>结构性洞察：</strong>半钢胎是赛轮唯一海外占比近半的品类——5,200万条海外半钢产能（约46.4%）是<strong>中国轮胎企业中海外产能最多</strong>的（董秘5/14原话）。这是欧盟2026年6月对中国半钢胎正式仲裁双反后，赛轮订单承接能力的量化基础。全钢胎(31.2%海外占比)+OTR(22.4%海外占比)虽不能像半钢一样规避欧盟双反，但OTR受中东重建订单驱动，4月份按条数已+50%同比。
+  </div>
+
+  <div style="margin:14px 0;background:var(--bg2);border:1px solid var(--line);padding:14px 16px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-weight:700">国内 vs 海外·产能可视化（占比）</div>
+    <div class="bar-row">
+      <div class="bar-lbl">全钢胎</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:68.8%;background:var(--a)">国内 68.8%</div></div>
+      <div class="bar-val c-g">海外 31.2%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-lbl">半钢胎</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:53.6%;background:var(--a)">国内 53.6%</div></div>
+      <div class="bar-val c-g fw7">海外 46.4%</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-lbl">非公路胎</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:77.6%;background:var(--a)">国内 77.6%</div></div>
+      <div class="bar-val c-g">海外 22.4%</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §3 资本开支·历史与已发生
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>资本开支·历史四基地总投资额</span><span class="meta">HISTORICAL CAPEX</span></div>
+
+  <table>
+    <thead>
+      <tr><th>项目</th><th>总投资(原文)</th><th>折人民币(7.2汇率)</th><th>预计净利率</th><th>回收期</th><th>状态</th><th>资本效率评级</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">柬埔寨扩建(全钢)</td>
+        <td class="right c-g">$9,348万</td>
+        <td class="right fw7">~6.7亿</td>
+        <td class="right c-g fw7">19.25%</td>
+        <td class="right c-g fw7">2.23年</td>
+        <td>运营中</td>
+        <td><span class="pill pill-g">最高·已验证</span></td>
+      </tr>
+      <tr class="hp">
+        <td class="fw7">印尼扩建</td>
+        <td class="right c-p">$29,964万</td>
+        <td class="right fw7">~21.6亿</td>
+        <td class="right c-p">18.65%</td>
+        <td class="right c-p">5.21年</td>
+        <td>7-8月达产</td>
+        <td><span class="pill pill-p">高·待验证</span></td>
+      </tr>
+      <tr class="hp">
+        <td class="fw7">埃及一期(360万条)</td>
+        <td class="right c-p">$29,148万</td>
+        <td class="right fw7">~21.0亿</td>
+        <td class="right c-p">18.30%</td>
+        <td class="right c-p">6.15年</td>
+        <td>Q3首胎</td>
+        <td><span class="pill pill-p">高·建设中</span></td>
+      </tr>
+      <tr class="hp">
+        <td class="fw7">埃及二期(705万条)</td>
+        <td class="right c-p fw7">$28,500万</td>
+        <td class="right fw7">~20.5亿</td>
+        <td class="right c-p">16.72%</td>
+        <td class="right c-g fw7">4.74年</td>
+        <td>2026启动</td>
+        <td><span class="pill pill-g">最高·扩建效率</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">沈阳新和平</td>
+        <td class="right">¥170,093万</td>
+        <td class="right fw7">~17.0亿</td>
+        <td class="right c-r">7.02%</td>
+        <td class="right c-r">长(具体未披露)</td>
+        <td>爬坡中</td>
+        <td><span class="pill pill-r">低·战略卡位</span></td>
+      </tr>
+      <tr class="tot">
+        <td>四项海外可研合计</td>
+        <td class="right c-g fw7">$9.7亿美元</td>
+        <td class="right c-g fw7">~70亿元</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>不含中早期越南/柬埔寨一期</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="kpi-row" style="grid-template-columns:repeat(3,1fr)">
+    <div class="kpi kpi-g">
+      <div class="kpi-l">埃及二期·单条投资</div>
+      <div class="kpi-v">$40/条</div>
+      <div class="kpi-s">vs 一期$81/条 <strong style="color:var(--g)">下降50%</strong>·制造业范围经济典范</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-l">埃及二期·年化ROI</div>
+      <div class="kpi-v">21.6%</div>
+      <div class="kpi-s">vs 一期11.9% <strong style="color:var(--g)">+81%</strong>·公司12年最高资本效率</div>
+    </div>
+    <div class="kpi kpi-r">
+      <div class="kpi-l">沈阳新和平·投资强度</div>
+      <div class="kpi-v">17亿元</div>
+      <div class="kpi-s">达产净利2.31亿 · 7.02%最低净利率 · 战略卡位非利润</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §4 资本开支·当前与未来
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>资本开支·节奏与压力</span><span class="meta">FORWARD CAPEX</span></div>
+
+  <table>
+    <thead>
+      <tr><th>年份</th><th>当年CAPEX</th><th>同比</th><th>在建工程余额</th><th>主要项目</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="fw7">2023</td>
+        <td class="right">~12-15亿</td>
+        <td class="right c-mu">基准</td>
+        <td class="right">~25亿</td>
+        <td>柬埔寨二期 + 印尼前期</td>
+      </tr>
+      <tr>
+        <td class="fw7">2024</td>
+        <td class="right">~19.7亿</td>
+        <td class="right c-a">+30%+</td>
+        <td class="right">~24.7亿</td>
+        <td>印尼建设 + 沈阳收购 + 墨西哥前期</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">2025 (Q1-3+Q4估)</td>
+        <td class="right c-a fw7">~38-40亿</td>
+        <td class="right c-r fw7">+47%</td>
+        <td class="right c-a fw7">43.5亿</td>
+        <td>印尼首胎 + 墨西哥建设 + 沈阳爬坡 + 埃及奠基</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">2026 (董秘指引)</td>
+        <td class="right c-r fw7">~45-60亿</td>
+        <td class="right c-r">+15-50%</td>
+        <td class="right c-r">维持高位</td>
+        <td><strong>埃及Q3首胎 + 董家口Q4投产 + 沈阳爬坡 + 埃及二期启动</strong></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">2027 (董秘指引)</td>
+        <td class="right c-a fw7">~40-50亿</td>
+        <td class="right c-mu">高位</td>
+        <td class="right">高位</td>
+        <td>埃及二期主建设期 + 各基地爬坡尾声</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">2028后 (推算)</td>
+        <td class="right c-g">~25-30亿</td>
+        <td class="right c-g">大幅下降</td>
+        <td class="right c-g">回落</td>
+        <td>仅维护性+小规模技改</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-r">
+    <strong>2026年CAPEX压力点分解（董秘5/14指引）：</strong>
+    <ul style="margin:8px 0;padding-left:20px;list-style:disc;color:var(--mu)">
+      <li><strong>埃及一期：</strong>Q3首台下线，2026集中投入约15-20亿元</li>
+      <li><strong>青岛董家口1260万条半钢：</strong>Q4投产，2026集中投入约20-25亿元</li>
+      <li><strong>沈阳新和平：</strong>剩余改造投入约10-15亿元</li>
+      <li><strong>埃及二期(若启动)：</strong>$2.85亿即~20.5亿，分2026-2028三年摊销，2026承担约5-8亿</li>
+    </ul>
+    合计2026年CAPEX压力约<strong>45-60亿+5-8亿</strong>，预计达<strong>50-68亿区间</strong>，是2025年的1.3-1.7倍。
+  </div>
+
+  <div class="box box-a">
+    <strong>资金缺口分析（财务压力v20260320）：</strong>2025年Q1-3经营CF +25.06亿、利息+股利 -17.71亿、CAPEX -28.95亿 → <strong>真实资金缺口约-21.6亿/年</strong>。2026年三大变化：① 经营CF有望升至40-50亿(Q1已扭转至+1.76亿)；② 利息+股利仍17-18亿+ 略升；③ CAPEX升至50-60亿 → <strong>2026年缺口约-15至-25亿/年</strong>，与2025年同量级。<br><br>
+    缺口需通过<strong>新增长期借款</strong>填补。当前有息负债143.7亿（Q1末），按2026年净新增约15-20亿测算，年末达到<strong>160-165亿</strong>，仍在180亿警戒线内。<strong>2026年是资本开支与负债的双高峰，2027年后开始回落。</strong>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §5 产能-资本-营收-利润对应关系
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>产能·资本·营收·利润的对应关系</span><span class="meta">CAPACITY-CAPEX-PROFIT MAP</span></div>
+
+  <table>
+    <thead>
+      <tr><th>基地</th><th>总投资</th><th>达产营收</th><th>投入产出比<br>(亿元营收/亿元投资)</th><th>达产净利率</th><th>每元投资·年化净利</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">柬埔寨扩建</td><td class="right">6.7亿</td><td class="right">~24亿</td><td class="right c-g fw7">3.58x</td><td class="right c-g fw7">19.25%</td><td class="right c-g fw7">0.69</td></tr>
+      <tr class="hg"><td class="fw7">埃及二期</td><td class="right">20.5亿</td><td class="right">~30亿</td><td class="right c-g">1.46x</td><td class="right c-a">16.72%</td><td class="right c-g">0.24</td></tr>
+      <tr><td class="fw7">印尼扩建</td><td class="right">21.6亿</td><td class="right">~24亿</td><td class="right">1.11x</td><td class="right c-g">18.65%</td><td class="right c-g">0.21</td></tr>
+      <tr><td class="fw7">埃及一期</td><td class="right">21.0亿</td><td class="right">~14亿</td><td class="right c-r">0.67x</td><td class="right c-g">18.30%</td><td class="right c-r">0.12</td></tr>
+      <tr><td class="fw7">墨西哥</td><td class="right">~14亿(估)</td><td class="right">~13亿</td><td class="right c-a">0.93x</td><td class="right">~15%(估)</td><td class="right">0.14</td></tr>
+      <tr class="hr"><td class="fw7">沈阳新和平</td><td class="right">17.0亿</td><td class="right">~33亿</td><td class="right">1.94x</td><td class="right c-r">7.02%</td><td class="right c-r">0.14</td></tr>
+      <tr><td class="fw7">董家口1260万条半钢</td><td class="right">~25亿(估)</td><td class="right">~33亿</td><td class="right">1.32x</td><td class="right c-a">~8-10%(估)</td><td class="right c-a">~0.12</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>资本效率排序结论：</strong>
+    <ol style="margin:8px 0;padding-left:22px;color:var(--mu)">
+      <li><strong style="color:var(--g)">柬埔寨扩建</strong>(0.69 元净利/元投资) — 9年免税+回收期2.23年，所有项目中资本效率最高，赛轮"先行者结构性护城河"的最佳证明</li>
+      <li><strong style="color:var(--g)">埃及二期</strong>(0.24) — 扩建红利使投入产出比比一期翻一番，资本效率第二</li>
+      <li><strong style="color:var(--g)">印尼扩建</strong>(0.21) — 待验证，可研18.65%净利率是天花板，2026下半年是关键</li>
+      <li><strong style="color:var(--a)">沈阳新和平</strong>(0.14) — 投入大但净利率天花板仅7%，是赛轮CAPEX中"战略卡位"性质最重的</li>
+      <li><strong style="color:var(--a)">埃及一期</strong>(0.12) — 投入产出比最低的海外项目，但二期通过"基地共享"显著拉高整体收益</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §6 关键判断
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>三句话总结</span><span class="meta">KEY TAKEAWAYS</span></div>
+
+  <div class="box box-b">
+    <strong>① 产能：</strong>全球9基地+埃及二期合计规划产能约<strong>全钢3,170万条+半钢1.12亿条+OTR 49.14万吨</strong>，对应营收<strong>~370亿(当前年化) → 430-450亿(全面达产)</strong>。半钢海外占比46.4%是行业第一，是欧盟双反受益的产能基础。
+  </div>
+
+  <div class="box box-g">
+    <strong>② 资本开支：</strong>2023-2030年累计CAPEX预计约<strong>250-300亿</strong>，集中于2025-2027三年。其中海外四项可研合计<strong>~70亿元</strong>(柬+印+埃一+埃二)，国内沈阳+董家口约<strong>42亿元</strong>。<strong>2026年是CAPEX峰值年</strong>(50-60亿+)。
+  </div>
+
+  <div class="box box-a">
+    <strong>③ 资本效率分化：</strong>柬埔寨扩建是赛轮历史上资本效率最高的项目(0.69)，埃及二期通过"扩建红利"成为新的高资本效率代表(0.24)。沈阳新和平投入大但净利率天花板仅7%，是<strong>战略卡位而非利润项目</strong>——这一定性必须贯穿2026-2027年所有阶段性业绩跟踪。
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源：全球产能结构估算v3.0(2026.02.27) · 四基地可研报告 · 财务压力与破局v20260320 · 埃及二期决策v20260421 · 中信建投5/14董秘交流 · 赛轮2025年报+2026Q1</span>
+  <span>赛轮全球产能与资本开支量化_20260517 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
