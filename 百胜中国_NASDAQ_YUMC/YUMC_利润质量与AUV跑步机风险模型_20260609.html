@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百胜中国 — 利润质量 · 创利能力 · AUV跑步机风险模型</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#f7f5f1;--surface:#fff;--surface-alt:#f2efe9;--border:#e6e0d6;
+    --ink:#1a1714;--ink2:#5a5550;--muted:#9a9490;
+    --red:#c0392b;--green:#1e7a54;--blue:#1a4a7c;--amber:#b5590a;--purple:#6b46c1;
+    --redL:rgba(192,57,43,.10);--greenL:rgba(30,122,84,.10);--blueL:rgba(26,74,124,.10);--amberL:rgba(181,89,10,.10);
+    --mono:'IBM Plex Mono',monospace;--serif:'Noto Serif SC',serif;--sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.7}
+  .head{background:var(--ink);color:#fff;padding:48px 60px 40px;position:relative;overflow:hidden}
+  .head::before{content:'';position:absolute;top:-80px;right:-40px;width:300px;height:300px;border-radius:50%;background:rgba(192,57,43,.16)}
+  .head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:14px}
+  .head h1{font-family:var(--serif);font-size:32px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .head .sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:24px}
+  .badges{display:flex;gap:9px;flex-wrap:wrap}
+  .badge{padding:5px 13px;border-radius:18px;font-family:var(--mono);font-size:11px;font-weight:500}
+  .badge-a{background:var(--red);color:#fff}
+  .badge-o{border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.8)}
+  .wrap{max-width:1040px;margin:0 auto;padding:44px 38px}
+  .stamp{background:#faf5e4;border:1px solid #d4b96a;border-radius:6px;padding:8px 15px;font-family:var(--mono);font-size:11px;color:#9a7528;letter-spacing:.06em;display:inline-block;margin-bottom:32px}
+  .sec{margin-bottom:46px}
+  .sec-t{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:18px;padding-bottom:9px;border-bottom:2px solid var(--red);display:flex;align-items:center;gap:10px}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--red);background:var(--redL);padding:3px 9px;border-radius:4px}
+  .lead{font-size:14px;color:var(--ink2);margin-bottom:20px}
+  .verdict{background:var(--ink);color:#fff;border-radius:12px;padding:32px 36px;margin-bottom:44px}
+  .verdict h3{font-family:var(--serif);font-size:19px;margin-bottom:14px;color:#fff}
+  .verdict p{color:rgba(255,255,255,.82);font-size:14px;line-height:1.8;margin-bottom:11px}
+  .verdict .hl{color:#fff;font-weight:600}
+  .vtag{display:inline-flex;gap:8px;background:var(--red);border-radius:8px;padding:9px 18px;margin-top:6px;margin-right:10px}
+  .vtag span{font-family:var(--mono);font-size:12px;font-weight:500;color:#fff}
+  table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:13px;background:var(--surface);border-radius:8px;overflow:hidden}
+  th{background:var(--surface-alt);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);padding:10px 13px;text-align:left;border-bottom:2px solid var(--border)}
+  th.r,td.r{text-align:right}
+  td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  td.m{font-family:var(--mono)}
+  .up{color:var(--green)}.down{color:var(--red)}.neu{color:var(--muted)}
+  .chartbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:24px}
+  .chartbox.row{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:none;border:none;padding:0}
+  .chartbox.row>div{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px}
+  .ct{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .call{border-radius:8px;padding:16px 20px;margin-bottom:18px;border-left:4px solid}
+  .call-g{background:var(--greenL);border-color:var(--green)}
+  .call-a{background:var(--amberL);border-color:var(--amber)}
+  .call-r{background:var(--redL);border-color:var(--red)}
+  .call-b{background:var(--blueL);border-color:var(--blue)}
+  .call-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+  .call-g .call-t{color:var(--green)}.call-a .call-t{color:var(--amber)}.call-r .call-t{color:var(--red)}.call-b .call-t{color:var(--blue)}
+  .call p{font-size:13px;line-height:1.65}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:17px 16px;position:relative;overflow:hidden}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .kpi.r::before{background:var(--red)}.kpi.g::before{background:var(--green)}.kpi.b::before{background:var(--blue)}.kpi.a::before{background:var(--amber)}
+  .kpi .l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:7px}
+  .kpi .v{font-family:var(--mono);font-size:23px;font-weight:600;line-height:1;margin-bottom:4px}
+  .kpi .c{font-family:var(--mono);font-size:10.5px}
+  .scoregrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:8px}
+  .score{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:16px 18px}
+  .score .lab{font-size:12px;color:var(--ink2);margin-bottom:8px}
+  .score .bar{height:8px;border-radius:4px;background:var(--surface-alt);overflow:hidden;margin-bottom:6px}
+  .score .fill{height:100%;border-radius:4px}
+  .score .val{font-family:var(--mono);font-size:11px;color:var(--muted)}
+  .foot{background:var(--surface-alt);border-top:1px solid var(--border);padding:24px 60px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8}
+  strong{font-weight:600;color:var(--ink)}
+  .star{color:var(--amber);font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="meta">深度分析 · 利润质量与增长引擎拆解 · Pjaaden/Stock-Research</div>
+  <h1>百胜中国 (YUMC) — 利润质量 · 创利能力 · AUV跑步机风险模型</h1>
+  <div class="sub">换框架分析：不看估值，只看"赚的钱有多真"与"增长引擎有多脆弱"</div>
+  <div class="badges">
+    <span class="badge badge-a">NYSE: YUMC</span>
+    <span class="badge badge-o">数据：FY2025 10-K + 1Q2026 10-Q</span>
+    <span class="badge badge-o">现价 ~$42</span>
+    <span class="badge badge-o">分析日：2026.06.09</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stamp">★ 日期标记：2026年6月9日 · 数据源：2025 Form 10-K（KPMG审计）+ 2026 Q1 Form 10-Q</div>
+
+  <!-- 核心论点 -->
+  <div class="verdict">
+    <h3>核心结论：利润"水平"是高质量的，但利润"增长"正在被金融工程化</h3>
+    <p>这是理解百胜当前困境的关键二分法，市场与多数研报把这两件事混为一谈：</p>
+    <p><span class="hl">① 利润水平质量 = A级。</span>经营CF/净利润 <strong style="color:#fff">158%</strong>、FCF/净利润 <strong style="color:#fff">90%</strong>，几乎零应计利润、零财务杠杆。账面赚的每一块钱都能变成现金，不存在利润注水。</p>
+    <p><span class="hl">② 利润增长质量 = C级，且在恶化。</span>系统销售年增仅+4%，但门店数年增+10.4% —— <strong style="color:#fff">单店系统AUV每年缩水约6%</strong>。同店销售两年近乎零增长。EPS之所以仍录得+8~13%，是因为回购单独贡献了约 <strong style="color:#fff">7.4pp</strong>。换言之，公司正在用"开店数量 + 注销股本"来对冲"单店产出萎缩"。</p>
+    <p><span class="hl">③ 下沉市场扩张的定量风险：跑步机加速。</span>越往低线城市/高速服务区开店，新店边际AUV越低，系统AUV摊薄速度会从-6%加速。当开店ROI跌破阈值，三引擎（开店+回购+利润率）中任一熄火，EPS增长将塌缩至个位数。</p>
+    <div style="margin-top:14px">
+      <div class="vtag"><span>利润水平质量：A</span></div>
+      <div class="vtag" style="background:var(--amber)"><span>利润增长质量：C（恶化中）</span></div>
+      <div class="vtag" style="background:var(--purple)"><span>引擎脆弱性：中高</span></div>
+    </div>
+  </div>
+
+  <!-- 模型A -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">模型 A</span>利润的真实质量：现金背书与利润构成拆解</div>
+    <p class="lead">判断利润"真不真"的第一性原理：会计利润能否转化为现金，以及利润增长来自哪里（可持续的运营杠杆 vs 一次性的成本红利）。</p>
+
+    <div class="kpis">
+      <div class="kpi g"><div class="l">经营CF/净利润</div><div class="v">158%</div><div class="c up">★ 现金利润远超账面</div></div>
+      <div class="kpi g"><div class="l">FCF/净利润</div><div class="v">90%</div><div class="c up">高现金背书，低应计</div></div>
+      <div class="kpi b"><div class="l">FCF (2025)</div><div class="v">$840M</div><div class="c up">↑ +18% YoY</div></div>
+      <div class="kpi a"><div class="l">运营利润增速</div><div class="v">+11%</div><div class="c neu">vs 收入+4.4%</div></div>
+    </div>
+
+    <div class="chartbox">
+      <div class="ct">运营利润 +11% 增长归因拆解（vs 收入仅 +4.4%）—— 哪些可持续？</div>
+      <canvas id="opBridge" height="150"></canvas>
+    </div>
+
+    <table>
+      <thead><tr><th>利润增长来源</th><th>性质</th><th class="r">贡献估算</th><th>可持续性</th></tr></thead>
+      <tbody>
+        <tr><td>收入自然增长（开店+同店）</td><td>运营性</td><td class="r m">~+4.4pp</td><td><span class="up">★ 可持续（但依赖开店，见模型C）</span></td></tr>
+        <tr><td>餐厅利润率改善（15.7%→16.3%）</td><td>运营杠杆+采购</td><td class="r m">~+3.5pp</td><td><span class="neu">半可持续：规模效率可持续，大宗商品通缩不可持续</span></td></tr>
+        <tr><td>原材料/大宗商品成本下行</td><td>周期性红利</td><td class="r m">~+2pp</td><td><span class="down">不可持续：鸡肉/包材价格已处低位，2026或反转</span></td></tr>
+        <tr><td>G&A费用杠杆 + 门店运营效率</td><td>运营性</td><td class="r m">~+1pp</td><td><span class="up">可持续：数字化、自动化提效</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div class="call call-g">
+        <div class="call-t">★ 利润水平：无注水</div>
+        <p>经营CF $1,466M 比净利润 $929M 高出 58%，差额来自折旧摊销 $448M + 非现金租赁调整，均为正常会计项，无激进确认。FCF $840M 真实覆盖全部资本回报，利润"含金量"在消费板块中属顶级。</p>
+      </div>
+      <div class="call call-a">
+        <div class="call-t">利润增长的隐忧：红利正在退潮</div>
+        <p>2025年OP +11% 中，约 2pp 来自大宗商品通缩，这是不可复制的周期红利。Q1 2026 已现端倪：核心运营利润率仅 13.6%，且管理层明确"骑手成本是最大逆风"，外卖占比上升正在侵蚀利润率。2026年利润率顺风大概率转为逆风。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 模型B -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">模型 B</span>创造利润的能力：ROIC 与资本效率</div>
+    <p class="lead">"创利能力"最干净的度量是投入资本回报率（ROIC）。更关键的是特许加盟转型如何改变资本效率——这是被市场低估的结构性变化。</p>
+
+    <div class="chartbox row">
+      <div>
+        <div class="ct">回报率体系（2025）</div>
+        <canvas id="roicChart" height="200"></canvas>
+      </div>
+      <div>
+        <div class="ct">资产负债表："懒惰的现金" 占比19%</div>
+        <canvas id="cashChart" height="200"></canvas>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>资本效率指标</th><th class="r">2025</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td>NOPAT（税后运营利润）</td><td class="r m">$939M</td><td>OP $1,290M ×(1−27.2%税率)</td></tr>
+        <tr><td>投入资本（含租赁，扣超额现金）</td><td class="r m">$5,221M</td><td>权益+债+租赁负债−现金短投−长期存款</td></tr>
+        <tr><td><strong>ROIC</strong></td><td class="r m up"><strong>~18.0%</strong></td><td><span class="up">★ 高质量，远超约9%的资本成本</span></td></tr>
+        <tr><td>ROE</td><td class="r m">17.3%</td><td>被约$2B闲置现金压低，回购在修复此项</td></tr>
+        <tr><td>闲置现金+短投+长期存款</td><td class="r m">$2,062M</td><td><span class="down">占总资产19% → 低效资产，回购的根本动因</span></td></tr>
+        <tr><td>新店资本支出（KFC/PH）</td><td class="r m">¥130万/¥100万</td><td>极低单店投资，回收期约2年</td></tr>
+        <tr><td>特许加盟占新增门店比</td><td class="r m">40–50%</td><td><span class="up">★ 关键结构变化（见下）</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-b">
+      <div class="call-t">★ 被低估的正面信号：特许转型在系统性抬高资本效率</div>
+      <p>百胜2025年净开1,706店，但<strong>自有资本性支出反而同比下降12%</strong>（$705M→$626M）。原因：特许门店由加盟商出资，百胜只收取约系统销售3%的抽成费，几乎零资本占用。这意味着随特许占比从约15%向20%+提升，<strong>增量投入资本回报率（Incremental ROIC）在结构性上升</strong>——公司在用越来越少的自有资本驱动门店扩张。这是"轻资产复利"逻辑成立的财务基础，也是18×PE能成立的核心支撑之一。</p>
+    </div>
+
+    <div class="call call-a">
+      <div class="call-t">但创利能力的"分母陷阱"</div>
+      <p>ROIC高、资本效率改善是真的；但它衡量的是"每块投入资本赚多少"，<strong>不衡量"还能投多少块资本"</strong>。当下沉市场的优质点位被开发殆尽，高ROIC的再投资机会会枯竭——届时多余现金只能转向回购（已在发生）。回购虽能托EPS，但不创造新的经营利润。这是从"成长股"向"现金牛+回购机器"过渡的临界点信号。</p>
+    </div>
+  </div>
+
+  <!-- 模型C 核心 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">模型 C</span>AUV 跑步机模型：单店持平 + 下沉扩张的定量风险</div>
+    <p class="lead">这是本次分析的核心。把"门店增速"与"系统销售增速"放在一起，就能量化"单店产出萎缩"的真实速度，以及增长对开店数量的依赖程度。</p>
+
+    <div class="chartbox">
+      <div class="ct">★ 跑步机效应：门店每年多开 ~10%，系统销售只多 4% → 单店AUV年缩 ~6%</div>
+      <canvas id="treadmill" height="160"></canvas>
+    </div>
+
+    <table>
+      <thead><tr><th>年份</th><th class="r">门店增速</th><th class="r">系统销售增速(ex-FX)</th><th class="r">同店销售</th><th class="r">系统AUV变化</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>2024</td><td class="r m">+12.0%</td><td class="r m">+5%</td><td class="r m down">−3%</td><td class="r m down">−6.2%</td><td>疫后高基数+消费弱</td></tr>
+        <tr><td>2025</td><td class="r m">+10.4%</td><td class="r m">+4%</td><td class="r m up">+1%</td><td class="r m down">−5.8%</td><td>同店转正但AUV仍快速摊薄</td></tr>
+        <tr><td>1Q2026</td><td class="r m">+ (年化~10%)</td><td class="r m">中高个位数</td><td class="r m neu">~持平(指数100–102)</td><td class="r m down">≈−5~6%(估)</td><td>同店动能再度走平</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-r">
+      <div class="call-t">★ 定量核心发现</div>
+      <p>2025年门店数增长 +10.4%，仅换来系统销售 +4% —— 即<strong>每新增一家店，平均拉动系统销售的边际效率在下降</strong>。同店销售剔除新店后仅 +1%，意味着<strong>增长的约75%来自"开店数量"，仅约25%来自"existing门店变好"</strong>。这就是跑步机：必须越跑越快（开更多店）才能维持原地（个位数系统增长）。一旦开店速度因点位枯竭而放缓，系统销售增速将直接坍塌。</p>
+    </div>
+
+    <div class="chartbox">
+      <div class="ct">EPS增长桥：回购托底 + 单店萎缩 —— 三情景敏感性（买回率假设7%）</div>
+      <canvas id="epsScenario" height="150"></canvas>
+    </div>
+
+    <table>
+      <thead><tr><th>情景</th><th class="r">同店</th><th class="r">系统销售</th><th class="r">利润率变化</th><th class="r">回购贡献</th><th class="r">EPS增长</th><th>解读</th></tr></thead>
+      <tbody>
+        <tr><td><span class="down">熊市</span></td><td class="r m">−2%</td><td class="r m">+1%</td><td class="r m down">−1.0%</td><td class="r m">+7.4pp</td><td class="r m">+8.0%</td><td>骑手成本侵蚀+消费降级，仍靠回购撑两位数边缘</td></tr>
+        <tr><td><span class="up">基准</span></td><td class="r m">0%</td><td class="r m">+4%</td><td class="r m up">+0.5%</td><td class="r m">+7.4pp</td><td class="r m">+12.9%</td><td>开店+回购，同店零增长也能两位数EPS</td></tr>
+        <tr><td><span style="color:var(--purple)">牛市</span></td><td class="r m">+2%</td><td class="r m">+6%</td><td class="r m up">+1.0%</td><td class="r m">+7.4pp</td><td class="r m">+15.6%</td><td>消费回暖叠加，但需外部催化</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-b">
+      <div class="call-t">这张表说明的本质</div>
+      <p>注意三种情景的<strong>共同点</strong>：回购都贡献约 7.4pp。这意味着即使同店销售为零，EPS仍能增长约13%——<strong>但这13%里有超过一半（7.4pp）是"注销股本"制造的，而非新创造的经营利润</strong>。对长期持有者，这在数学上有利（每股权益占比上升）；但对成长性估值（18×PE）的支撑在变弱——市场正用14×重新定价，正是在剔除"开店+回购"中不属于真实成长的部分。</p>
+    </div>
+  </div>
+
+  <!-- 下沉市场专项 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">模型 C-2</span>下沉市场扩张的边际收益递减：runway 量化</div>
+    <p class="lead">下沉是当前唯一的开店增量来源（低线城市+高速服务区）。问题是：这条跑道还能跑多久，边际AUV会衰减到什么程度？</p>
+
+    <table>
+      <thead><tr><th>维度</th><th>现状/数据</th><th>定量风险评估</th></tr></thead>
+      <tbody>
+        <tr><td>当前覆盖</td><td>18,737店 / 2,600+城市（截至1Q26）</td><td>一二线已接近饱和，增量100%来自下沉</td></tr>
+        <tr><td>2026目标</td><td>年底冲20,000店（需再净增~1,263店）</td><td>剩余空间仅+6.7%，今年内可达，但之后？</td></tr>
+        <tr><td>下沉店特征</td><td>低线城市/高速服务区，小店型</td><td><span class="down">边际AUV显著低于一二线，系统AUV摊薄将加速</span></td></tr>
+        <tr><td>边际AUV衰减情景</td><td>若摊薄从−6%加速至−8%/年</td><td><span class="down">即便门店仍+10%，系统销售增速将跌至+1~2%</span></td></tr>
+        <tr><td>单店模型保护</td><td>下沉店租金/人工更低，回收期仍约2年</td><td><span class="up">★ 关键缓冲：低AUV ≠ 低ROI，单店仍可盈利</span></td></tr>
+        <tr><td>临界点信号</td><td>新店首年AUV / 成熟店AUV 比值</td><td>若该比值跌破约25%，或新店关店率上升，即引擎熄火预警</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid2">
+      <div class="call call-r">
+        <div class="call-t">下行风险（量化）</div>
+        <p>若同店持续0%、下沉摊薄加速至−8%、骑手成本压利润率−1.5%、且开店因点位枯竭放缓至+6%：系统销售或仅 +1~2%，EPS增长将从13%坍缩至 <strong>约+5~7%</strong>（几乎全靠回购）。届时14×PE都可能显得贵，估值或进一步下探至12×，对应股价约 <strong>$33–36</strong>。</p>
+      </div>
+      <div class="call call-g">
+        <div class="call-t">缓冲与保护（量化）</div>
+        <p>下沉店的核心保护是<strong>单店经济模型未被破坏</strong>：低AUV伴随低租金低人工，回收期维持约2年，餐厅利润率2025年反而升至16.3%。只要新店ROI>资本成本，"低AUV扩张"就是价值创造而非毁灭。叠加每年约7%的回购，<strong>EPS增长的下限被锁在约+7~8%</strong>，提供了估值底部的硬支撑。</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 综合评分 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">综合</span>定量风险评分卡</div>
+    <div class="scoregrid">
+      <div class="score"><div class="lab">利润水平质量（现金背书）</div><div class="bar"><div class="fill" style="width:92%;background:var(--green)"></div></div><div class="val">9.2 / 10 · 优秀</div></div>
+      <div class="score"><div class="lab">创利能力（ROIC/资本效率）</div><div class="bar"><div class="fill" style="width:82%;background:var(--green)"></div></div><div class="val">8.2 / 10 · 良好（特许转型加分）</div></div>
+      <div class="score"><div class="lab">利润增长质量（有机 vs 工程化）</div><div class="bar"><div class="fill" style="width:42%;background:var(--amber)"></div></div><div class="val">4.2 / 10 · 偏弱（高度依赖回购+开店）</div></div>
+      <div class="score"><div class="lab">单店模型健康度（AUV趋势）</div><div class="bar"><div class="fill" style="width:38%;background:var(--red)"></div></div><div class="val">3.8 / 10 · 承压（系统AUV年缩6%）</div></div>
+      <div class="score"><div class="lab">增长引擎脆弱性（runway/集中度）</div><div class="bar"><div class="fill" style="width:48%;background:var(--amber)"></div></div><div class="val">4.8 / 10 · 中高（依赖下沉单一引擎）</div></div>
+      <div class="score"><div class="lab">资本回报可持续性（FCF覆盖）</div><div class="bar"><div class="fill" style="width:85%;background:var(--green)"></div></div><div class="val">8.5 / 10 · 强（FCF+净现金充裕）</div></div>
+    </div>
+  </div>
+
+  <!-- 最终结论 -->
+  <div class="verdict">
+    <h3>给持仓者的判断：这不是一个"变坏"的公司，而是一个"成长属性正在转换"的公司</h3>
+    <p><span class="hl">本质定性：</span>百胜赚的钱是真金白银（A级现金质量），创利的资本效率甚至在变好（特许转型）。但它的<strong style="color:#fff">增长来源正从"同店有机增长"（最高质量）迁移到"开店数量 + 股本注销"（工程化质量）</strong>。市场把估值从19×压到14×，正是在为这种"成长降级"定价——这是<strong style="color:#fff">合理的重定价，不是错杀</strong>。</p>
+    <p><span class="hl">对加仓决策的含义：</span>$42对应约14×前瞻PE，已price-in大部分"成长降级"。下行硬底由两点锁定——① 单店模型未破坏（回收期约2年，餐厅利润率仍升）；② 回购锁定EPS增长下限约+7~8%。但<strong style="color:#fff">向上弹性需要同店销售实质转正（+3%+）作为催化，目前没有信号</strong>。</p>
+    <p><span class="hl">最锋利的风险点：</span>盯住<strong style="color:#fff">"新店首年AUV/成熟店AUV比值"与"骑手成本对利润率的侵蚀幅度"</strong>。前者跌破约25%，意味着下沉跑道接近尽头；后者若使餐厅利润率2026年掉头向下，则模型A中的利润率红利彻底反转——两者任一恶化，14×都不再便宜。</p>
+    <div style="margin-top:14px">
+      <div class="vtag"><span>定性：成长降级，非基本面恶化</span></div>
+      <div class="vtag" style="background:var(--green)"><span>下行硬底：~$33–36（12×悲观）</span></div>
+      <div class="vtag" style="background:var(--purple)"><span>监控锚：新店AUV比值 + 骑手成本</span></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <div style="max-width:1040px;margin:0 auto">
+    数据源：百胜中国 2025 Form 10-K（KPMG审计，2026.02.27）+ 2026 Q1 Form 10-Q · 部分系统销售/门店增速为基于披露口径的推算（已标注估算）· 分析日期：2026.06.09<br>
+    AUV为"系统口径"近似（系统销售÷门店数变化推导），非公司披露的单店绝对值；旨在度量趋势而非绝对水平。<br>
+    本报告为个人研究用途，不构成投资建议。档案：Pjaaden/Stock-Research / 百胜中国_NASDAQ_YUMC · v2.0
+  </div>
+</div>
+
+<script>
+const C={red:'#c0392b',green:'#1e7a54',blue:'#1a4a7c',amber:'#b5590a',purple:'#6b46c1',grid:'#e6e0d6'};
+const F={family:"'IBM Plex Mono', monospace",size:11};
+Chart.defaults.font=F;Chart.defaults.color='#9a9490';
+
+// OP bridge — waterfall-ish stacked
+new Chart(document.getElementById('opBridge'),{
+  type:'bar',
+  data:{labels:['收入增长','利润率改善','大宗通缩红利','G&A杠杆'],
+    datasets:[{label:'对OP增长贡献(pp)',data:[4.4,3.5,2.0,1.0],
+      backgroundColor:[C.green,C.amber,C.red,C.green],borderWidth:0}]},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'+'+c.parsed.y+'pp'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'+'+v+'pp'}},x:{grid:{display:false}}}}
+});
+
+// ROIC
+new Chart(document.getElementById('roicChart'),{
+  type:'bar',
+  data:{labels:['ROIC','ROE','资本成本'],
+    datasets:[{data:[18.0,17.3,9.0],backgroundColor:[C.green,C.blue,C.red],borderWidth:0}]},
+  options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'%'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>v+'%'},max:22},x:{grid:{display:false}}}}
+});
+
+// cash composition
+new Chart(document.getElementById('cashChart'),{
+  type:'doughnut',
+  data:{labels:['闲置现金+短投+长存(低效)','PP&E','运营租赁ROU','商誉+无形','其他'],
+    datasets:[{data:[2062,2543,2189,2111,1878],
+      backgroundColor:[C.red,C.blue,C.amber,C.purple,'#bbb'],borderColor:'#fff',borderWidth:2}]},
+  options:{responsive:true,plugins:{legend:{position:'bottom',labels:{font:{family:"'IBM Plex Mono'",size:10},boxWidth:9}},
+    tooltip:{callbacks:{label:c=>c.label+': $'+c.parsed+'M'}}}}
+});
+
+// Treadmill — units vs system sales
+new Chart(document.getElementById('treadmill'),{
+  type:'bar',
+  data:{labels:['2024','2025'],
+    datasets:[
+      {label:'门店数增速',data:[12.0,10.4],backgroundColor:C.blue,borderWidth:0},
+      {label:'系统销售增速',data:[5,4],backgroundColor:C.green,borderWidth:0},
+      {label:'系统AUV变化',data:[-6.2,-5.8],backgroundColor:C.red,borderWidth:0}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+(c.parsed.y>0?'+':'')+c.parsed.y+'%'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>(v>0?'+':'')+v+'%'}},x:{grid:{display:false}}}}
+});
+
+// EPS scenario
+new Chart(document.getElementById('epsScenario'),{
+  type:'bar',
+  data:{labels:['熊市','基准','牛市'],
+    datasets:[
+      {label:'回购贡献(pp)',data:[7.4,7.4,7.4],backgroundColor:C.purple,borderWidth:0,stack:'s'},
+      {label:'经营贡献(pp)',data:[0.6,5.5,8.2],backgroundColor:C.green,borderWidth:0,stack:'s'}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': +'+c.parsed.y+'pp'},
+      footer:items=>{let t=items.reduce((a,b)=>a+b.parsed.y,0);return '合计EPS增长: +'+t.toFixed(1)+'%';}}},
+    scales:{y:{stacked:true,grid:{color:C.grid},ticks:{callback:v=>'+'+v+'pp'}},x:{stacked:true,grid:{display:false}}}}
+});
+</script>
+
+</body>
+</html>
