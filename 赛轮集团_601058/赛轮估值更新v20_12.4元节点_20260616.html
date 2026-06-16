@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 估值更新 v20·12.4元节点 · 2026-06-16</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;--bg5:#dad6cc;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;--rl:#e8c4be;
+  --a:#8c4800;--ap:#fdf7f0;--al:#e8d4b8;
+  --g:#1a6030;--gp:#f0faf4;--gl:#bcdbc6;
+  --b:#1a3870;--bp:#f0f4fb;--bl:#bdc8df;
+  --p:#521a80;--pp:#f5f0fc;--pl:#d4c0e0;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.7;}
+
+/* HEADER */
+.hdr{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg2) 92%,var(--bg3) 100%);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:18px 0 16px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:8px;}
+h1{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1.05;letter-spacing:-.5px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:10px;max-width:820px;line-height:1.78;}
+.price-stamp{text-align:right;font-family:'JetBrains Mono',monospace;}
+.price-stamp .px-l{font-size:8.5px;letter-spacing:1.8px;color:var(--mu);text-transform:uppercase;font-weight:700;}
+.price-stamp .px-v{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--r);line-height:1;margin:3px 0;}
+.price-stamp .px-s{font-size:10px;color:var(--mu);letter-spacing:0.5px;}
+
+main{padding:0 44px 50px;}
+section{margin-top:30px;}
+
+/* SECTION HEADER */
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:9px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;}
+.sec-hd .num{font-family:'JetBrains Mono',monospace;color:var(--r);font-weight:700;margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+.sec-sub-hd{font-family:'Noto Serif SC',serif;font-size:14.5px;font-weight:700;color:var(--ink);margin:18px 0 10px;padding-left:9px;border-left:3px solid var(--ink);}
+
+/* BOXES */
+.box{border-left:3px solid;padding:14px 17px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+/* TABLE */
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr.hp td{background:var(--pp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);}.c-g{color:var(--g);}.c-a{color:var(--a);}.c-b{color:var(--b);}.c-p{color:var(--p);}.c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.right{text-align:right;}
+.center{text-align:center;}
+
+/* KPI */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:14px 0;}
+.kpi-row-5{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:12px 0;}
+.kpi-row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:14px 0;}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:13px 14px;}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);} .kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);} .kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);} .kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);} .kpi-b .kpi-v{color:var(--b);}
+.kpi-p{border-top-color:var(--p);} .kpi-p .kpi-v{color:var(--p);}
+
+/* DELTA */
+.delta{display:inline-block;padding:2px 7px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.3px;border-radius:2px;line-height:1.2;}
+.delta-up{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.delta-dn{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.delta-neu{background:var(--bg3);color:var(--mu);border:1px solid var(--line);}
+
+/* PILL */
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:2px 7px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--al);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--bl);}
+.pill-p{background:var(--pp);color:var(--p);border:1px solid var(--pl);}
+
+/* COMPARISON CARDS */
+.cmp-grid{display:grid;grid-template-columns:1fr 60px 1fr;gap:12px;margin:14px 0;align-items:stretch;}
+.cmp-card{background:var(--bg2);border:1px solid var(--line);padding:14px 16px;}
+.cmp-then{border-left:3px solid var(--mu);}
+.cmp-now{border-left:3px solid var(--r);}
+.cmp-arrow{display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--mu);}
+.cmp-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.cmp-dt{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;color:var(--ink);margin-bottom:7px;}
+.cmp-list{font-size:11.5px;line-height:1.8;color:var(--mu);}
+.cmp-list strong{color:var(--ink);}
+
+/* PRICE LADDER */
+.ladder{background:var(--bg2);border:1px solid var(--ink);padding:0;margin:14px 0;}
+.ladder-hd{background:var(--ink);color:var(--bg);padding:8px 16px;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;}
+.ladder-bd{padding:0;}
+.lad-row{display:grid;grid-template-columns:140px 90px 1fr 100px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font-size:11px;}
+.lad-row:last-child{border-bottom:none;}
+.lad-row.current{background:var(--rp);font-weight:700;}
+.lad-px{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;}
+.lad-tag{font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:2px 7px;letter-spacing:.5px;text-transform:uppercase;font-weight:700;text-align:center;display:inline-block;}
+.lad-desc{font-size:11px;color:var(--mu);line-height:1.6;}
+.lad-act{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;text-align:right;}
+
+/* CALLOUT */
+.callout{background:var(--bg3);border:1px solid var(--line2);padding:13px 18px;margin:11px 0;}
+.callout-l{font-family:'Syne',sans-serif;font-size:9.5px;letter-spacing:2.8px;text-transform:uppercase;color:var(--r);font-weight:700;margin-bottom:7px;}
+.callout-bd{font-size:11.5px;color:var(--mu);line-height:1.85;}
+.callout-bd strong{color:var(--ink);}
+
+/* VARIABLES PANEL */
+.var-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);margin:12px 0;background:var(--bg2);}
+.var-cell{padding:13px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.var-cell:nth-child(4n){border-right:none;}
+.var-cell:nth-child(n+5){border-bottom:none;}
+.var-name{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.var-then{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);text-decoration:line-through;}
+.var-now{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin:2px 0;}
+.var-delta{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.3px;}
+.var-impact{font-size:9.5px;color:var(--mu);margin-top:4px;font-style:italic;line-height:1.5;}
+
+/* QUOTE */
+.qq{background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--b);padding:11px 16px;margin:8px 0;font-family:'Noto Serif SC',serif;font-size:11.5px;font-style:italic;color:var(--mu);line-height:1.85;}
+.qq-attr{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;color:var(--di);text-transform:uppercase;margin-top:5px;font-style:normal;}
+
+/* FOOTER */
+footer{margin-top:42px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+ul.tight{list-style:none;padding-left:0;margin:6px 0;}
+ul.tight li{padding:4px 0 4px 16px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.75;}
+ul.tight li::before{content:'▸';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+
+/* VALUATION RANGE BAR */
+.val-bar{margin:18px 0;background:var(--bg2);border:1px solid var(--line);padding:18px 20px;}
+.val-bar-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;font-weight:700;}
+.val-track{position:relative;height:12px;background:linear-gradient(90deg,var(--rp) 0%,var(--ap) 20%,var(--gp) 40%,var(--bp) 65%,var(--ap) 85%,var(--rp) 100%);border:1px solid var(--line);margin:12px 0 30px;}
+.val-mark{position:absolute;top:-6px;width:2px;height:24px;background:var(--ink);}
+.val-mark::after{content:attr(data-px);position:absolute;top:26px;left:-20px;width:48px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink);font-weight:700;text-align:center;}
+.val-mark.current::before{content:"当前";position:absolute;top:-22px;left:-12px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;color:var(--r);background:var(--bg);padding:1px 4px;border:1px solid var(--r);}
+.val-mark.current{background:var(--r);width:3px;}
+.val-labels{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);margin-top:8px;}
+.val-labels span{text-align:center;flex:1;}
+
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>SAILUN · 601058.SH · VALUATION UPDATE v20</span>
+    <span>POST · 5/14 IR · POST · 6/12 OIL CRASH · POST · 6/18 EU DELAY</span>
+    <span>20260616 · LAYER 11</span>
+  </div>
+  <div class="hdr-body">
+    <div>
+      <div class="eyebrow">SAILUN VALUATION UPDATE · 12.4 PRICE NODE</div>
+      <h1>赛轮轮胎 · <em>估值更新 v20</em><br><span class="g">12.4元节点</span> · 环球局势·原材料·汇率·政策的四维重估</h1>
+      <div class="sub">自5/17董秘交流复盘以来一个月：①油价从~95美元跌至80-85美元区间，丁二烯橡胶累跌30%；②天胶高位震荡但未续涨(SHFE 17,200);③人民币持续升值至6.8130中间价(累计升值约2.4%);④欧盟双反终裁推迟至7月18日(原6月19日)；⑤股价从5/14的12.94元跌至12.4元。本份更新对四大变量做精确量化重估，并给出当前价位的应对策略。</div>
+    </div>
+    <div class="price-stamp">
+      <div class="px-l">当前股价 · 2026.06.16</div>
+      <div class="px-v">¥12.40</div>
+      <div class="px-s">总市值约 409 亿 · 较 5/14 −4.2%</div>
+      <div class="px-s" style="margin-top:6px;color:var(--mu)">vs 5/14 ¥12.94 · vs 年初 ¥16.04</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════════════
+     §0 核心结论·三句话
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§0</span>核心结论·三句话总结</span><span class="meta">EXECUTIVE SUMMARY</span></div>
+
+  <div class="box box-g">
+    <strong>① 基本面边际变化偏正向但被两个负面因素抵消，2026年净利预测维持46-50亿不变。</strong>油价从95美元跌至80-85美元、丁二烯橡胶累跌30%大幅释放合成胶成本压力(+2-3亿净利)，但同时人民币持续升值(汇兑全年从-2亿扩至-3亿)和欧盟双反落地推迟到7月18日(年内贡献时间窗口缩短)抵消了大部分利好。
+  </div>
+
+  <div class="box box-b">
+    <strong>② 12.4元已落入"合理偏低"上沿，对应隐含市场预期=2026净利仅35-38亿。</strong>当前总市值409亿，按2025年报基准35.22亿计PE 11.6x；按中性预测46-50亿计动态PE 8.2-8.9x。市场目前给的隐含估值假设是<strong>"涨价不充分落地+欧盟双反不及预期+爬坡延后+汇率持续升值"</strong>，本质上是一份过度悲观的隐含定价。
+  </div>
+
+  <div class="box box-a">
+    <strong>③ 12.4元是建仓窗口而非减仓信号——7月18日欧盟终裁是H2最强催化。</strong>本次更新维持中性估值中枢14-16元，乐观上限18-19元。当前价格隐含的下行空间有限(底部支撑9-10.5元仍较远)，而上行空间至少+12-30%。如果7月欧盟终裁税率落在20-30%基准区间，单一事件可推动股价回到14-15元区间。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §1 四大变量更新对照
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>四大变量·5/14 → 6/16 一个月变化</span><span class="meta">FOUR-VARIABLE DELTA</span></div>
+
+  <div class="var-grid">
+    <div class="var-cell">
+      <div class="var-name">布伦特原油</div>
+      <div class="var-then">~$95/桶 (5/14)</div>
+      <div class="var-now">~$82/桶</div>
+      <div class="var-delta c-g">−14% <span class="delta delta-up">利好</span></div>
+      <div class="var-impact">中东停火谈判推进，霍尔木兹海峡有望7月底重新开放</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">丁二烯橡胶</div>
+      <div class="var-then">高点 ¥18,656</div>
+      <div class="var-now">~¥13,270</div>
+      <div class="var-delta c-g">−29% <span class="delta delta-up">大利好</span></div>
+      <div class="var-impact">合成胶核心原料大跌，半钢胎(占成本24%)成本释放显著</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">天然橡胶 SHFE</div>
+      <div class="var-then">¥17,950 (5/14)</div>
+      <div class="var-now">~¥17,200</div>
+      <div class="var-delta c-a">−4% <span class="delta delta-neu">中性</span></div>
+      <div class="var-impact">高位震荡但未续涨，仍处近十年同期高位</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">人民币中间价</div>
+      <div class="var-then">~6.95 (5/14)</div>
+      <div class="var-now">6.8130</div>
+      <div class="var-delta c-r">−2.0% <span class="delta delta-dn">利空</span></div>
+      <div class="var-impact">年初 6.97 → 6/16 6.81，半年累计升值2.7%</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">欧盟双反终裁</div>
+      <div class="var-then">原定 6/19</div>
+      <div class="var-now">推迟至 7/18</div>
+      <div class="var-delta c-a">+1月 <span class="delta delta-dn">情绪利空</span></div>
+      <div class="var-impact">催化时点延后，年内贡献从H2缩至Q4</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">5月出口数据</div>
+      <div class="var-then">4月800万+条创新高</div>
+      <div class="var-now">5月出口环比12%+</div>
+      <div class="var-delta c-g">+19.4% <span class="delta delta-up">利好</span></div>
+      <div class="var-impact">出口欧盟同比+26.3%·抢出口效应明显</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">国内开工率</div>
+      <div class="var-then">5月好转中</div>
+      <div class="var-now">半钢70%/全钢63.6%</div>
+      <div class="var-delta c-a">−2pp <span class="delta delta-neu">中性</span></div>
+      <div class="var-impact">6月行业进入淡季，但赛轮订单仍饱满</div>
+    </div>
+    <div class="var-cell">
+      <div class="var-name">赛轮股价</div>
+      <div class="var-then">¥12.94 (5/14)</div>
+      <div class="var-now">¥12.40</div>
+      <div class="var-delta c-r">−4.2% <span class="delta delta-dn">承压</span></div>
+      <div class="var-impact">vs 年初 ¥16.04 累计 −22.7%</div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">变量影响净汇总</div>
+    <div class="callout-bd">
+      <strong>正向(共+3.5-5亿净利)：</strong>油价-14%+丁二烯-29% → 合成胶/炭黑成本释放，预估+2-3亿；天胶未续涨 → 维持Q1原材料-12%的红利，+1-1.5亿；5月出口同比+19.4% → 海外订单饱满，+0.5亿。<br><br>
+      <strong>负向(共-3至-4亿净利)：</strong>人民币持续升值 → 全年汇兑损失从-2亿扩大至-3亿，-1亿；欧盟双反推迟+抢出口透支 → H2订单存在回落风险，年内贡献缩窄1-1.5亿；天胶高位维持 → 国内基地+新和平直接采购仍承压，-0.5亿。<br><br>
+      <strong>净影响：</strong>+/-基本对冲，2026年净利预测中性区间维持<strong>46-50亿</strong>不变。<strong>但市场以股价下跌4.2%回应——这暗示市场只看到了利空(双反推迟+汇率升值)而忽略了利好(油价/丁二烯橡胶大跌)。</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §2 油价回落与丁二烯橡胶崩盘的深度解读
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>油价回落 + 丁二烯橡胶崩盘的深度解读</span><span class="meta">FEEDSTOCK COLLAPSE</span></div>
+
+  <div class="sec-sub-hd">2.1 油价路径：从战时高点到停火预期</div>
+
+  <table>
+    <thead>
+      <tr><th>时点</th><th>布伦特价位</th><th>事件驱动</th><th>对赛轮影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">2026.05.14</td><td class="right c-r">~$95</td><td>美伊冲突高位 · 霍尔木兹封锁第60+天</td><td>合成胶/炭黑成本压力顶峰</td></tr>
+      <tr class="ha"><td class="fw7">2026.06.07</td><td class="right c-a">~$95</td><td>美伊冲突第100天 · 油价反弹</td><td>压力延续</td></tr>
+      <tr class="hg"><td class="fw7">2026.06.12</td><td class="right c-g">$84.88</td><td>美伊和平协议预期 · 周线-6%</td><td>压力大幅释放</td></tr>
+      <tr class="hg"><td class="fw7">2026.06.16(当前)</td><td class="right c-g fw7">~$82</td><td>停火谈判推进 · 霍尔木兹7月底有望开放</td><td>合成胶/炭黑成本回落</td></tr>
+      <tr><td class="fw7">2026下半年预期</td><td class="right">$80-87/桶均价</td><td>霍尔木兹开放 + OPEC+继续增产</td><td>持续利好</td></tr>
+    </tbody>
+  </table>
+
+  <div class="qq">"天然橡胶已经接近17200，石油那边丁二烯橡胶已经破位跌到13270（最高18656，跌去将近30%）⋯⋯最重要的，还差一周到6.18日欧洲双反落地催化。"
+  <div class="qq-attr">—— 雪球用户对赛轮关键变量的实时跟踪</div></div>
+
+  <div class="sec-sub-hd">2.2 合成胶成本传导的精确量化</div>
+
+  <table>
+    <thead>
+      <tr><th>项目</th><th>5/14水平</th><th>6/16水平</th><th>变化</th><th>对赛轮影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">布伦特原油</td><td class="right">~$95</td><td class="right">~$82</td><td class="right c-g fw7">−14%</td><td>合成胶/炭黑原料压力释放</td></tr>
+      <tr class="hg"><td class="fw7">丁二烯橡胶(BR)</td><td class="right">~¥18,000+ (高点)</td><td class="right c-g fw7">~¥13,270</td><td class="right c-g fw7">−29%</td><td><strong>核心利好</strong>·合成胶BR是半钢胎核心</td></tr>
+      <tr><td class="fw7">SBR(丁苯橡胶)</td><td class="right">估高位</td><td class="right">伴随BR回落约-15-20%</td><td class="right c-g">−15-20%</td><td>半钢胎合成胶用量24%</td></tr>
+      <tr><td class="fw7">炭黑</td><td class="right">高位</td><td class="right">小幅回落约-10%</td><td class="right c-g">−10%</td><td>全钢胎用量20.5%</td></tr>
+      <tr class="tot"><td>对赛轮净利影响</td><td colspan="3">按半钢成本25亿合成胶+15亿炭黑测算</td><td class="c-g fw7">+2.5-3.5亿/年</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>丁二烯橡胶崩盘的战略意义：</strong>这是<strong>5/17报告至今最被市场忽视的变化</strong>。BR价格从18,656高点跌至13,270，30%的跌幅相当于把<strong>5月以来油价上涨对赛轮的全部冲击在合成胶端完全抵消</strong>。在油价仍处80-87美元区间的情况下，合成胶价格已先于油价回落，反映两点：
+    <ol style="margin:8px 0 0 22px;color:var(--mu);line-height:1.85">
+      <li>BR国内自给率高，受国内化工开工率主导，与油价脱钩</li>
+      <li>下游轮胎行业需求阶段性走弱(国内开工降至70%以下)，BR采购需求疲软</li>
+    </ol>
+    对赛轮而言，<strong>半钢胎(合成胶用量24%)的成本压力已大幅缓解</strong>，是Q3-Q4毛利率维持26%+的关键支撑。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §3 人民币升值的累计冲击
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>人民币升值·从年初到6月的累计冲击</span><span class="meta">FX HEADWIND</span></div>
+
+  <table>
+    <thead>
+      <tr><th>时点</th><th>中间价</th><th>vs 年初变化</th><th>赛轮汇兑损失累计</th><th>注释</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">2026年初(1月)</td><td class="right">6.9700</td><td class="right c-mu">基准</td><td class="right c-mu">基准</td><td>2025年报基准汇率</td></tr>
+      <tr><td class="fw7">2026Q1末(3月)</td><td class="right">~6.92</td><td class="right c-r">−0.7%</td><td class="right c-r">Q1已损-1亿+</td><td>董秘5/14披露</td></tr>
+      <tr class="ha"><td class="fw7">2026.05.14</td><td class="right">~6.95</td><td class="right c-r">−0.3%</td><td class="right c-r">至5月累计-1.5亿</td><td>5/14当时点</td></tr>
+      <tr class="hr"><td class="fw7">2026.06.10(中间价)</td><td class="right c-r fw7">6.8130</td><td class="right c-r fw7">−2.3%</td><td class="right c-r fw7">至6月累计-1.8-2.2亿</td><td>5月以来加速升值</td></tr>
+      <tr><td class="fw7">2026下半年预期</td><td class="right">6.65-6.75</td><td class="right c-r">−4-5%</td><td class="right c-r fw7">全年-2.8-3.5亿</td><td>预测仍升值</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-r">
+    <strong>对赛轮的精确量化：</strong>赛轮海外营收占比约76%，按2025年全年海外营收约310亿测算，人民币每升值1%，汇兑损失约+3.1亿(直接折算)+约+0.5亿(应收账款折算)，合计每升值1%对应净利-0.8到-1.0亿。<strong>年初到6月累计升值2.3% → 已实现汇兑损失约-1.8到-2.2亿。</strong>下半年若再升值2-3%，全年汇兑损失将达-3-3.5亿，比5/17报告时预估的-2亿扩大1-1.5亿。<br><br>
+    更糟的是<strong>不做期货套保的策略缺陷暴露</strong>(董秘5/14原话)。中策橡胶通过原材料锁价对冲了升值的部分影响，但赛轮没有期货对冲，汇兑损失全部体现在当期损益中。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §4 欧盟双反推迟的影响
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>欧盟双反推迟·从6/19到7/18</span><span class="meta">EU DUMPING TIMELINE</span></div>
+
+  <table>
+    <thead>
+      <tr><th>关键时点</th><th>原计划</th><th>实际/最新</th><th>对赛轮影响</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">反倾销初裁实施</td><td class="right c-mu">2025.12.21</td><td class="right c-g">暂不实施(2025.12.18宣布)</td><td class="c-g">利好·缓冲期约6个月</td></tr>
+      <tr><td class="fw7">终裁公布</td><td class="right c-mu">2026.06.19</td><td class="right c-a fw7">2026.07.18</td><td class="c-a">推迟1月·情绪利空</td></tr>
+      <tr><td class="fw7">反补贴调查启动</td><td class="right c-mu">已于2025.11.06启动</td><td class="right c-r">并行推进</td><td class="c-r">"双反"叠加风险</td></tr>
+      <tr class="ha"><td class="fw7">海关追溯登记</td><td class="right c-mu">已生效</td><td class="right c-a">2025.07.29起强制登记</td><td class="c-a">终裁前激增可追溯90天</td></tr>
+      <tr class="hg"><td class="fw7">5月抢出口</td><td class="right c-mu">—</td><td class="right c-g fw7">5月出口欧盟+26.3%</td><td class="c-g">短期Q2业绩支撑</td></tr>
+      <tr class="hr"><td class="fw7">6-8月预期</td><td class="right c-mu">—</td><td class="right c-r">出口可能回落</td><td class="c-r">Q3业绩或承压</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">4.1 终裁三情景</div>
+
+  <table>
+    <thead>
+      <tr><th>情景</th><th>概率</th><th>终裁税率</th><th>对赛轮H2营收增量</th><th>对赛轮净利增量</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ha"><td class="fw7">悲观(温和)</td><td class="right">25%</td><td class="right">10-15%</td><td class="right c-a">+3-5亿</td><td class="right c-a">+0.7-1.2亿</td></tr>
+      <tr class="hg"><td class="fw7">基准</td><td class="right c-g fw7">55%</td><td class="right">20-30%</td><td class="right c-g">+8-12亿</td><td class="right c-g fw7">+2-3.5亿</td></tr>
+      <tr class="hg"><td class="fw7">乐观</td><td class="right">15%</td><td class="right c-g">30%+</td><td class="right c-g fw7">+12-18亿</td><td class="right c-g fw7">+3.5-5.5亿</td></tr>
+      <tr class="hr"><td class="fw7">推迟/无</td><td class="right">5%</td><td class="right c-mu">推迟或不实施</td><td class="right c-mu">中性</td><td class="right c-mu">−</td></tr>
+      <tr class="tot"><td>概率加权净利贡献</td><td colspan="3">基准55%×2.75 + 悲观25%×1 + 乐观15%×4.5 + 推迟5%×0</td><td class="c-g fw7">~+2.1亿/年</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">关键判断·欧盟双反推迟的双向效应</div>
+    <div class="callout-bd">
+      <strong>表面利空：</strong>催化时点从6/19推迟到7/18，市场原预期落空导致股价承压(雪球用户原话："还差一周到6.18日欧洲双反落地催化")。<br><br>
+      <strong>实质中性偏利好：</strong>① 推迟意味着<strong>欧盟在反复权衡反倾销的法律基础</strong>，最终税率可能温和(20-30%基准区间)；② 多出一个月让中国企业继续<strong>抢出口</strong>(5月已+26.3%)，Q2业绩已锁定改善；③ 7/18终裁如落地在20-30%税率，对赛轮(海外半钢产能国内最大)是<strong>结构性利好</strong>，不依赖催化时点。<br><br>
+      <strong>对赛轮个股的判断：</strong>催化时点推迟降低市场短期博弈热度，但<strong>对中长期估值影响微乎其微</strong>。当前12.4元已经price-in了"双反推迟+部分落空"的悲观情景，反而是潜在反弹的低吸窗口。
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §5 2026年净利预测重构
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>2026年净利预测·四维度重构</span><span class="meta">EARNINGS REBUILD</span></div>
+
+  <table>
+    <thead>
+      <tr><th>影响因子</th><th>5/17 报告中估算</th><th>6/16 修订后</th><th>变化</th><th>说明</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">基准·2025年报净利</td><td class="right">35.22亿</td><td class="right">35.22亿</td><td class="right c-mu">不变</td><td>已确认</td></tr>
+      <tr class="hg"><td class="fw7">+ 涨价四轮累计</td><td class="right c-g">+7-8亿</td><td class="right c-g">+7-8亿</td><td class="right c-mu">不变</td><td>四轮提价已落地，无新变化</td></tr>
+      <tr class="hg"><td class="fw7">+ 印尼/墨西哥扭亏</td><td class="right c-g">+2.7-4.2亿</td><td class="right c-g">+2.7-4.2亿</td><td class="right c-mu">不变</td><td>4月毛利转正，按计划推进</td></tr>
+      <tr class="hg"><td class="fw7">+ 欧盟双反受益</td><td class="right c-g">+2.5-4亿</td><td class="right c-a">+1.5-2.5亿</td><td class="right c-r">−1-1.5亿</td><td>终裁推迟至7/18，年内贡献时间缩短</td></tr>
+      <tr class="hg"><td class="fw7">+ 海外发货+15-20%</td><td class="right c-g">+3-5亿</td><td class="right c-g">+3-5亿</td><td class="right c-mu">不变</td><td>5月出口数据验证</td></tr>
+      <tr class="hg"><td class="fw7">+ <strong>合成胶/丁二烯崩盘</strong></td><td class="right c-mu">未计</td><td class="right c-g fw7">+2.5-3.5亿</td><td class="right c-g fw7">+2.5-3.5亿</td><td><strong>新增·6月以来最大正向变量</strong></td></tr>
+      <tr class="ha"><td class="fw7">+ 沈阳新和平亏损收窄</td><td class="right c-a">+3-5亿(减亏)</td><td class="right c-a">+3-5亿(减亏)</td><td class="right c-mu">不变</td><td>仍亏损-5至-7亿</td></tr>
+      <tr class="hr"><td class="fw7">− 汇兑损失</td><td class="right c-r">-2亿</td><td class="right c-r fw7">-3至-3.5亿</td><td class="right c-r fw7">−1至-1.5亿</td><td>人民币持续升值超预期</td></tr>
+      <tr class="hg"><td class="fw7">− 天胶涨价Q3-Q4压力</td><td class="right c-r">-3-4亿</td><td class="right c-a">-2-3亿</td><td class="right c-g">+1亿</td><td>天胶价格小幅回落</td></tr>
+      <tr class="hr"><td class="fw7">− 资本开支推升财务费用</td><td class="right c-r">-1-1.5亿</td><td class="right c-r">-1-1.5亿</td><td class="right c-mu">不变</td><td>有息负债持续高位</td></tr>
+      <tr><td class="fw7">− 海运/物流</td><td class="right c-a">-0.5-1亿</td><td class="right c-a">-0.5-1亿</td><td class="right c-mu">不变</td><td>持续高位</td></tr>
+      <tr class="tot">
+        <td>2026年中性预测</td>
+        <td class="right c-g fw7">46-50亿</td>
+        <td class="right c-g fw7">46-50亿</td>
+        <td class="right c-mu">维持</td>
+        <td class="fw7">利好/利空相互抵消，区间不变</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="kpi-row-3">
+    <div class="kpi kpi-r">
+      <div class="kpi-l">悲观情景</div>
+      <div class="kpi-v">~38-42亿</div>
+      <div class="kpi-s">汇率续升至6.65 + 双反低于预期(10-15%) + 抢出口透支Q3</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-l">基准情景 (维持)</div>
+      <div class="kpi-v">~46-50亿</div>
+      <div class="kpi-s">基本面正负相抵 · 同比2025+30-42%</div>
+    </div>
+    <div class="kpi kpi-g">
+      <div class="kpi-l">乐观情景</div>
+      <div class="kpi-v">~52-58亿</div>
+      <div class="kpi-s">油价跌至$70 + 双反30%+ + 天胶回落 + 汇率企稳</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §6 估值矩阵·当前12.4元的隐含解读
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>估值矩阵·12.4元到底意味着什么</span><span class="meta">VALUATION MATRIX</span></div>
+
+  <div class="sec-sub-hd">6.1 当前价格的隐含估值反推</div>
+
+  <table>
+    <thead>
+      <tr><th>估值口径</th><th>当前股价</th><th>市值</th><th>对应假设</th><th>合理性判断</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">PE法(2025静态)</td><td class="right">12.4元</td><td class="right">409亿</td><td>PE 11.6x × 净利35.22亿</td><td class="c-a">略低于行业均值</td></tr>
+      <tr class="hg"><td class="fw7">PE法(2026动态-基准)</td><td class="right">12.4元</td><td class="right">409亿</td><td>动态PE 8.2-8.9x × 中性净利46-50亿</td><td class="c-g fw7">显著低估</td></tr>
+      <tr class="ha"><td class="fw7">PB法</td><td class="right">12.4元</td><td class="right">409亿</td><td>PB ~1.89x × BPS 6.57(2025年报)</td><td class="c-a">略低于历史中枢2.1-2.5x</td></tr>
+      <tr class="hr"><td class="fw7">市场隐含预期</td><td class="right">12.4元</td><td class="right">409亿</td><td>假设2026净利仅35-38亿(PE 11x)</td><td class="c-r">过度悲观</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">6.2 估值情景矩阵</div>
+
+  <table>
+    <thead>
+      <tr><th>方法</th><th>悲观情景</th><th>基准情景</th><th>乐观情景</th><th>权重均值</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">PE法 (净利 × PE)</td><td class="right">38亿×10x = ~11.5元</td><td class="right c-g">48亿×12-14x = 17.5-20.4元</td><td class="right c-g">55亿×14x = ~23.3元</td><td class="right c-g fw7">~17-18元</td></tr>
+      <tr><td class="fw7">PB法 (BPS × PB)</td><td class="right">6.57×1.5x = ~9.9元</td><td class="right c-g">6.57×2.0-2.5x = 13.1-16.4元</td><td class="right c-g">6.57×2.7x = ~17.7元</td><td class="right">~14-15元</td></tr>
+      <tr><td class="fw7">DCF (稳态55-65亿/WACC 9.2%)</td><td class="right">~12元</td><td class="right c-g">~14-18元</td><td class="right c-g">~20元</td><td class="right">~15-16元</td></tr>
+      <tr class="hr"><td class="fw7">底部产能挤兑(四维交叉)</td><td class="right c-r fw7">9-10.5元</td><td class="right">—</td><td class="right">—</td><td class="right c-r">极端底部</td></tr>
+      <tr class="tot"><td>综合判断</td><td class="right c-r">10-12元区间</td><td class="right c-g fw7">14-18元区间</td><td class="right c-g">18-21元区间</td><td class="right c-g fw7">中性中枢 15-16元</td></tr>
+    </tbody>
+  </table>
+
+  <div class="val-bar">
+    <div class="val-bar-title">估值轴线 · 当前12.4元在合理偏低区间</div>
+    <div class="val-track">
+      <div class="val-mark" style="left:0%" data-px="9元"></div>
+      <div class="val-mark" style="left:18%" data-px="11元"></div>
+      <div class="val-mark current" style="left:32%" data-px="12.4元"></div>
+      <div class="val-mark" style="left:40%" data-px="13元"></div>
+      <div class="val-mark" style="left:55%" data-px="14.5元"></div>
+      <div class="val-mark" style="left:72%" data-px="16元"></div>
+      <div class="val-mark" style="left:88%" data-px="18元"></div>
+      <div class="val-mark" style="left:100%" data-px="20元"></div>
+    </div>
+    <div class="val-labels">
+      <span>底部支撑<br>产能挤兑</span>
+      <span>深度价值</span>
+      <span>合理偏低<br><strong style="color:var(--r)">当前</strong></span>
+      <span>中性</span>
+      <span>稳健止盈</span>
+      <span>乐观目标</span>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §7 操作建议·六档价格区间(更新版)
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§7</span>操作建议·六档价格区间应对策略</span><span class="meta">ACTION LADDER</span></div>
+
+  <div class="ladder">
+    <div class="ladder-hd">价格阶梯·基于46-50亿基准净利预测</div>
+    <div class="ladder-bd">
+      <div class="lad-row">
+        <div class="lad-px c-r">&lt; 9.5元</div>
+        <div><span class="lad-tag pill-r">极端低估</span></div>
+        <div class="lad-desc">产能挤兑底部·DCF/PB/重置成本四维交叉支撑·历史不可见</div>
+        <div class="lad-act c-r">大幅加仓</div>
+      </div>
+      <div class="lad-row">
+        <div class="lad-px c-a">9.5-11元</div>
+        <div><span class="lad-tag pill-a">深度价值</span></div>
+        <div class="lad-desc">PB 1.5x以下·相当于2026E净利35亿×PE 10x·明显错杀</div>
+        <div class="lad-act c-a">分批建仓</div>
+      </div>
+      <div class="lad-row current">
+        <div class="lad-px c-g">11-13元 ★</div>
+        <div><span class="lad-tag pill-g">合理偏低 · 当前</span></div>
+        <div class="lad-desc">PB 1.7-2.0x·当前12.4元位于此区间上沿·建仓窗口期·上行空间≥20%</div>
+        <div class="lad-act c-g fw7">持有+加仓</div>
+      </div>
+      <div class="lad-row">
+        <div class="lad-px c-b">13-15.5元</div>
+        <div><span class="lad-tag pill-b">中性</span></div>
+        <div class="lad-desc">PB 2.0-2.4x·业绩兑现预期已部分反映·按计划持有</div>
+        <div class="lad-act c-b">持有观察</div>
+      </div>
+      <div class="lad-row">
+        <div class="lad-px c-a">15.5-17元</div>
+        <div><span class="lad-tag pill-a">稳健止盈</span></div>
+        <div class="lad-desc">PB 2.4-2.6x·接近合理估值上沿·分批减仓锁定收益</div>
+        <div class="lad-act c-a">分批减仓</div>
+      </div>
+      <div class="lad-row">
+        <div class="lad-px c-r">&gt; 17元</div>
+        <div><span class="lad-tag pill-r">乐观上限</span></div>
+        <div class="lad-desc">PB &gt;2.6x·乐观情景净利兑现+市场情绪推升·全部止盈</div>
+        <div class="lad-act c-r">全部止盈</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="box box-g">
+    <strong>当前12.4元的具体操作建议：</strong>
+    <ul class="tight">
+      <li><strong>定性：</strong>"合理偏低"上沿，是2026年最后一个有把握的建仓窗口。</li>
+      <li><strong>仓位建议：</strong>对于既有持仓(300股 @平均13.80)，12.4元已低于持仓成本，可考虑加仓20-30%摊低成本。</li>
+      <li><strong>预期回报：</strong>3-6个月目标15-16元(+21-29%)；12个月乐观目标18元(+45%)；底部支撑9.5-10.5元(-15-23%)，<strong>风险/收益比约1:2 至 1:3</strong>。</li>
+      <li><strong>分批策略：</strong>12.4-12.0元区间分2-3次加仓；若跌破12元支持，可在11.5元附近再加；跌破11元后转为深度价值区间，逐步加仓至目标仓位。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §8 关键监测节点
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§8</span>关键监测节点·H2催化时间表</span><span class="meta">CATALYST CALENDAR</span></div>
+
+  <table>
+    <thead>
+      <tr><th>时点</th><th>事件</th><th>关键观察点</th><th>对股价潜在影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">2026.07.18</td><td><strong>欧盟反倾销终裁公布</strong></td><td>税率20-30%为基准·赛轮可豁免越南/柬埔寨</td><td class="c-g fw7">+15-25%(若基准/乐观)</td></tr>
+      <tr class="hg"><td class="fw7">2026.07-08</td><td>印尼工厂达产</td><td>月产量是否达到40-45万条半钢</td><td class="c-g">+5-10%(若按时)</td></tr>
+      <tr class="hg"><td class="fw7">2026.08-09</td><td>墨西哥工厂达产</td><td>月产量是否达到35-40万条半钢</td><td class="c-g">+5-10%(若按时)</td></tr>
+      <tr class="hb"><td class="fw7">2026.08中</td><td><strong>Q2业绩公告</strong></td><td>营收破百亿/单季净利破12亿/扭亏验证</td><td class="c-b fw7">+10-20%(强催化)</td></tr>
+      <tr class="ha"><td class="fw7">2026.09-10</td><td>欧盟反补贴调查终裁</td><td>是否叠加"双反"税率</td><td class="c-a">±5-10%</td></tr>
+      <tr class="hg"><td class="fw7">2026.10</td><td>埃及一期投产</td><td>Q3首胎下线后产能爬坡</td><td class="c-g">+3-5%</td></tr>
+      <tr class="ha"><td class="fw7">2026.10-11</td><td>Q3业绩(中报后跟踪)</td><td>原材料成本下行兑现 + 涨价完全落地</td><td class="c-a">±10%</td></tr>
+      <tr class="hp"><td class="fw7">2026.12</td><td>2026年报预告</td><td>验证46-50亿基准能否兑现</td><td class="c-p">±15%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">距离最近的两大强催化</div>
+    <div class="callout-bd">
+      <strong>① 7月18日欧盟终裁(距今约32天)</strong> — 三个判断锚点：a) 税率落在20-30%基准 → 股价大概率回归14-15元; b) 税率15%以下温和 → 涨幅5%以内; c) 30%+激进 → 短期冲到16+元。<br><br>
+      <strong>② 8月中Q2业绩公告(距今约60天)</strong> — Q2实际可能是赛轮上市以来首次单季营收破百亿+净利超12亿。这两个数字一旦验证，市场会重新估值。<br><br>
+      <strong>策略建议：</strong>这两大催化前的低点是优质建仓窗口，<strong>不要等待"确定性消息"才动作</strong>——届时价格已经Price-in。
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     §9 总结表
+══════════════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§9</span>一表流总结</span><span class="meta">ONE-PAGE SUMMARY</span></div>
+
+  <table>
+    <thead>
+      <tr><th>维度</th><th>5/14 状态</th><th>6/16 状态</th><th>方向</th><th>对赛轮净利影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">油价</td><td>~$95高位</td><td>~$82</td><td class="c-g">↓ -14%</td><td class="c-g">+1-2亿(合成胶/炭黑成本释放)</td></tr>
+      <tr class="hg"><td class="fw7">丁二烯橡胶</td><td>历史高位</td><td>-29%崩盘</td><td class="c-g fw7">↓↓ -29%</td><td class="c-g fw7">+1.5-2亿(半钢成本释放)</td></tr>
+      <tr><td class="fw7">天胶</td><td>17,950高位</td><td>17,200</td><td class="c-a">↓ -4%</td><td class="c-g">+0.5-1亿(压力小幅缓解)</td></tr>
+      <tr class="hr"><td class="fw7">人民币汇率</td><td>~6.95</td><td>6.8130</td><td class="c-r">↑ +2%</td><td class="c-r">-1-1.5亿(汇兑损失加大)</td></tr>
+      <tr class="ha"><td class="fw7">欧盟双反</td><td>预期6/19终裁</td><td>推迟至7/18</td><td class="c-a">-1月</td><td class="c-a">-1-1.5亿(年内贡献缩短)</td></tr>
+      <tr class="hg"><td class="fw7">5月出口</td><td>4月800万条</td><td>5月出口+19.4%</td><td class="c-g">↑</td><td class="c-g">+0.5亿(订单饱满)</td></tr>
+      <tr><td class="fw7">国内开工率</td><td>—</td><td>半钢70%/全钢63.6%</td><td class="c-a">↓</td><td class="c-mu">中性</td></tr>
+      <tr class="hr"><td class="fw7">赛轮股价</td><td>12.94元</td><td>12.40元</td><td class="c-r">↓ -4.2%</td><td class="c-r">市场过度反应</td></tr>
+      <tr class="tot">
+        <td>2026年净利预测</td>
+        <td class="right">46-50亿</td>
+        <td class="right c-g fw7">46-50亿(维持)</td>
+        <td class="right c-mu">不变</td>
+        <td class="c-g fw7">利好利空对冲</td>
+      </tr>
+      <tr class="tot">
+        <td>估值中性中枢</td>
+        <td class="right">14-16元</td>
+        <td class="right c-g fw7">14-16元(维持)</td>
+        <td class="right c-mu">不变</td>
+        <td class="c-g fw7">隐含+13-29%上行</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>最终判断：</strong>12.4元处于估值轴线的"合理偏低"区间(11-13元)上沿，市场已经Price-in过度悲观的预期。<strong>基本面边际变化偏中性</strong>(油价/丁二烯橡胶利好对冲汇率/双反推迟利空)，<strong>2026年净利预测维持46-50亿</strong>，对应估值中枢14-16元、乐观上限18-19元。<strong>当前位置是建仓窗口而非减仓信号</strong>——7月18日欧盟终裁和8月中Q2业绩是H2两大强催化，分批建仓可以最大化抓住这两个事件驱动。
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源：5/14中信建投董秘交流·5/17复盘报告·公开市场数据(布伦特/SHFE橡胶/中间价/欧盟商务部·6/16截止)·赛轮2025年报+2026Q1·5/17全球产能与CAPEX量化</span>
+  <span>赛轮估值更新v20_12.4元节点_20260616 · FOR REFERENCE ONLY · NOT FOR DISTRIBUTION</span>
+</footer>
+
+</body>
+</html>
