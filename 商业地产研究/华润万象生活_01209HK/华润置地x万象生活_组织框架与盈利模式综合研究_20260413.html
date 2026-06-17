@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>华润置地 × 万象生活 — 双主体组织框架与盈利模式综合研究 · 2026.04</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=IBM+Plex+Sans+SC:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg0:#fbfbf9;--bg1:#fff;--bg2:#f4f3ef;--bg3:#eae8e1;--bg4:#dddad0;
+  --border:#d8d4c8;--border2:#bdb8a8;
+  --ink:#1a1815;--text:#2a2722;--muted:#5a554a;--dim:#8a8478;
+  --blue:#1a5299;--green:#1a7548;--amber:#9a6800;--red:#b02a24;
+  --purple:#5a3f96;--teal:#0f6e64;
+  --green-bg:rgba(26,117,72,.07);--amber-bg:rgba(154,104,0,.08);
+  --red-bg:rgba(176,42,36,.06);--blue-bg:rgba(26,82,153,.06);
+  --purple-bg:rgba(90,63,150,.06);
+  --gold:#8a6200;--gold-bg:rgba(138,98,0,.07);--gold-lt:rgba(138,98,0,.22);
+  --crland:#1a5299;--crland-bg:rgba(26,82,153,.07);
+  --mixc:#8a6200;--mixc-bg:rgba(138,98,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:13px;background:var(--bg0);color-scheme:light}
+body{font-family:'IBM Plex Sans SC',sans-serif;color:var(--text);line-height:1.65}
+
+/* ── PAGE / PRINT ── */
+.page{max-width:880px;margin:0 auto;padding:32px 36px;background:var(--bg1)}
+@media print{
+  @page{size:A4;margin:14mm 12mm}
+  html{font-size:10.5px;background:#fff}
+  body{background:#fff}
+  .page{max-width:none;margin:0;padding:0;background:#fff}
+  .no-print{display:none!important}
+  .sec{break-inside:avoid}
+  .kpi,.card,.flowbox,table,.callout,.insight,.good,.warn,.amber-box,.gold-box{break-inside:avoid}
+  .page-break{break-before:page}
+  h2.sec-h{break-after:avoid}
+  tr{break-inside:avoid}
+  a{color:var(--text);text-decoration:none}
+}
+
+/* ── COVER ── */
+.cover{border:2px solid var(--ink);padding:36px 40px;margin-bottom:28px;position:relative}
+.cover-tag{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:4px;color:var(--muted);text-transform:uppercase;margin-bottom:18px}
+.cover-title{font-family:'Noto Serif SC';font-size:30px;font-weight:700;color:var(--ink);line-height:1.3;margin-bottom:8px;letter-spacing:1px}
+.cover-sub{font-family:'Noto Serif SC';font-size:15px;color:var(--muted);font-weight:400;margin-bottom:24px}
+.cover-rule{height:3px;background:var(--ink);width:60px;margin-bottom:24px}
+.cover-meta{display:grid;grid-template-columns:1fr 1fr;gap:14px 30px;font-family:'IBM Plex Mono';font-size:11px}
+.cover-meta div span{display:block}
+.cover-meta .cm-l{color:var(--dim);font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.cover-meta .cm-v{color:var(--text);font-weight:600;font-size:12px}
+
+/* ── TOC ── */
+.toc{background:var(--bg2);border:1px solid var(--border);padding:22px 26px;margin-bottom:28px}
+.toc-title{font-family:'IBM Plex Mono';font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:14px}
+.toc-list{list-style:none;font-family:'IBM Plex Mono';font-size:12px;line-height:2.2}
+.toc-list li{display:flex;align-items:baseline;gap:10px}
+.toc-num{color:var(--gold);font-weight:600;min-width:24px}
+.toc-txt{color:var(--text)}
+.toc-dot{flex:1;border-bottom:1px dotted var(--border2);margin:0 4px;transform:translateY(-3px)}
+
+/* ── SECTION ── */
+.sec{margin-bottom:30px}
+h2.sec-h{font-family:'IBM Plex Mono';font-size:15px;font-weight:700;color:var(--ink);letter-spacing:.5px;padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:6px;display:flex;align-items:baseline;gap:12px}
+h2.sec-h .sn{font-size:13px;color:var(--gold)}
+.sec-lead{font-size:12.5px;color:var(--muted);line-height:1.8;margin-bottom:16px;font-style:italic}
+h3.sub-h{font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:var(--text);letter-spacing:.5px;margin:18px 0 9px;padding-left:10px;border-left:3px solid var(--gold)}
+
+/* ── PROSE ── */
+.prose{font-size:12.5px;color:var(--text);line-height:1.85;margin-bottom:12px}
+.prose p{margin-bottom:10px}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{color:var(--gold);font-style:normal;font-weight:500}
+
+/* ── KPI ── */
+.kpi-row{display:grid;gap:9px;margin:14px 0}
+.k2{grid-template-columns:1fr 1fr}.k3{grid-template-columns:repeat(3,1fr)}.k4{grid-template-columns:repeat(4,1fr)}.k5{grid-template-columns:repeat(5,1fr)}
+.kpi{background:var(--bg2);border:1px solid var(--border);padding:10px 12px}
+.kpi.gold{border-top:3px solid var(--gold)}.kpi.b{border-top:3px solid var(--blue)}.kpi.g{border-top:3px solid var(--green)}.kpi.a{border-top:3px solid var(--amber)}.kpi.r{border-top:3px solid var(--red)}
+.kl{font-family:'IBM Plex Mono';font-size:8.5px;color:var(--dim);letter-spacing:.5px;margin-bottom:4px;line-height:1.4}
+.kv{font-family:'IBM Plex Mono';font-size:18px;font-weight:600;line-height:1;margin-bottom:3px}
+.kv.sm{font-size:14px}.kv.gold{color:var(--gold)}.kv.b{color:var(--blue)}.kv.g{color:var(--green)}.kv.a{color:var(--amber)}.kv.r{color:var(--red)}
+.ks{font-size:9px;color:var(--dim);line-height:1.4}
+
+/* ── TABLE ── */
+table{width:100%;border-collapse:collapse;font-family:'IBM Plex Mono';font-size:10.5px;margin:10px 0}
+thead th{padding:6px 9px;background:var(--bg3);border-bottom:2px solid var(--border2);text-align:left;color:var(--muted);letter-spacing:.5px;font-weight:600;white-space:nowrap}
+tbody td{padding:6px 9px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr.hl-g td{background:var(--green-bg)}tr.hl-a td{background:var(--amber-bg)}tr.hl-r td{background:var(--red-bg)}tr.hl-b td{background:var(--blue-bg)}tr.hl-gold td{background:var(--gold-bg)}tr.hl-p td{background:var(--purple-bg)}
+tr.sub td{background:var(--bg3);font-weight:600;border-top:1px solid var(--border2)}
+tr.grand td{font-weight:700;border-top:2px solid var(--border2);background:var(--bg2)}
+
+/* ── FLOW BOX ── */
+.flowbox{background:var(--bg2);border:1px solid var(--border);padding:16px;margin:14px 0;font-family:'IBM Plex Mono';font-size:11px}
+.flow-tier{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.flow-ent{border:1.5px solid var(--border2);background:var(--bg1);padding:8px 14px;min-width:200px}
+.flow-ent.crgroup{border-color:var(--ink);background:var(--bg3)}
+.flow-ent.crland{border-color:var(--crland);background:var(--crland-bg)}
+.flow-ent.mixc{border-color:var(--mixc);background:var(--mixc-bg)}
+.flow-ent .fe-name{font-weight:700;font-size:12px;color:var(--ink)}
+.flow-ent .fe-detail{font-size:9.5px;color:var(--muted);margin-top:2px}
+.flow-conn{padding-left:30px;color:var(--dim);font-size:14px;line-height:1.2}
+.flow-pct{font-size:10px;color:var(--gold);font-weight:600}
+
+/* ── CARD ── */
+.card{background:var(--bg2);border:1px solid var(--border);padding:12px 14px;margin-bottom:9px}
+.card.crland{border-left:3px solid var(--crland)}.card.mixc{border-left:3px solid var(--mixc)}
+.card-t{font-family:'IBM Plex Mono';font-size:9px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;font-weight:600}
+.card-b{font-size:11.5px;color:var(--text);line-height:1.75}
+.card-b strong{color:var(--ink)}
+
+/* ── CALLOUTS ── */
+.callout{padding:11px 15px;font-size:11.5px;line-height:1.75;margin:10px 0;border:1px solid var(--border)}
+.insight{background:var(--blue-bg);border-left:3px solid var(--blue)}
+.insight strong{color:var(--blue)}
+.good{background:var(--green-bg);border-left:3px solid var(--green)}
+.good strong{color:var(--green)}
+.warn{background:var(--red-bg);border-left:3px solid var(--red)}
+.warn strong{color:var(--red)}
+.amber-box{background:var(--amber-bg);border-left:3px solid var(--amber)}
+.amber-box strong{color:var(--amber)}
+.gold-box{background:var(--gold-bg);border:1px solid var(--gold-lt);border-left:3px solid var(--gold)}
+.gold-box strong{color:var(--gold)}
+.callout-t{font-family:'IBM Plex Mono';font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+
+/* ── TWO COL ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+
+/* ── CODE/MONO BLOCK ── */
+.mono{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--border2);padding:11px 14px;font-family:'IBM Plex Mono';font-size:10.5px;color:var(--text);line-height:1.85;margin:10px 0;white-space:pre-wrap}
+.mono .hl{color:var(--ink);font-weight:600}.mono .g{color:var(--green)}.mono .r{color:var(--red)}.mono .a{color:var(--amber)}.mono .b{color:var(--blue)}.mono .gold{color:var(--gold)}.mono .dim{color:var(--dim)}
+
+/* ── BAR ── */
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:5px;font-family:'IBM Plex Mono'}
+.bar-lbl{font-size:10px;color:var(--muted);width:150px;flex-shrink:0}
+.bar-bg{flex:1;height:14px;background:var(--bg3);overflow:hidden}
+.bar-fill{height:100%;display:flex;align-items:center;padding-left:6px;font-size:9px;font-weight:600;color:#fff;white-space:nowrap}
+
+/* ── NOTE ── */
+.note{padding:8px 12px;font-family:'IBM Plex Mono';font-size:9.5px;color:var(--muted);line-height:1.75;border-left:3px solid var(--border2);background:var(--bg2);margin:8px 0}
+.note b{color:var(--ink)}
+
+/* ── UTIL ── */
+.fw6{font-weight:600}.fw7{font-weight:700}
+.c-g{color:var(--green)}.c-a{color:var(--amber)}.c-r{color:var(--red)}.c-b{color:var(--blue)}.c-m{color:var(--muted)}.c-d{color:var(--dim)}.c-gold{color:var(--gold)}.c-p{color:var(--purple)}.c-ink{color:var(--ink)}
+.tag{display:inline-block;padding:1px 6px;font-family:'IBM Plex Mono';font-size:8.5px;font-weight:600;letter-spacing:.5px}
+.tag.crland{background:var(--crland-bg);color:var(--crland)}.tag.mixc{background:var(--mixc-bg);color:var(--mixc)}.tag.g{background:var(--green-bg);color:var(--green)}.tag.r{background:var(--red-bg);color:var(--red)}
+hr.div{border:none;border-top:1px solid var(--border);margin:14px 0}
+
+/* ── FOOTER ── */
+.foot{margin-top:32px;padding-top:14px;border-top:2px solid var(--ink);font-family:'IBM Plex Mono';font-size:9px;color:var(--dim);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px}
+
+/* ── PRINT BUTTON ── */
+.print-bar{position:fixed;top:16px;right:16px;z-index:200}
+.print-btn{background:var(--ink);color:#fff;border:none;padding:9px 18px;font-family:'IBM Plex Mono';font-size:11px;letter-spacing:1px;cursor:pointer;border-radius:2px}
+.print-btn:hover{background:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="print-bar no-print"><button class="print-btn" onclick="window.print()">⎙ 打印 / 导出PDF</button></div>
+
+<div class="page">
+
+<!-- ══════════ COVER ══════════ -->
+<div class="cover">
+  <div class="cover-tag">Integrated Equity Research · 综合深度研究</div>
+  <div class="cover-title">华润置地 × 华润万象生活<br>双主体组织框架与盈利模式</div>
+  <div class="cover-sub">从甲乙方架构到财务报表 · 一份完整的轻重资产分拆解剖</div>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <div><span class="cm-l">研究标的</span><span class="cm-v">华润万象生活 01209.HK</span></div>
+    <div><span class="cm-l">关联主体</span><span class="cm-v">华润置地 01109.HK（控股62%）</span></div>
+    <div><span class="cm-l">数据基准</span><span class="cm-v">2025FY审计 · 2025H1</span></div>
+    <div><span class="cm-l">参考股价</span><span class="cm-v">万象 47港元 · PE 24.9x</span></div>
+    <div><span class="cm-l">报告日期</span><span class="cm-v">2026年4月</span></div>
+    <div><span class="cm-l">用途</span><span class="cm-v">个人研究存档 · 非投资建议</span></div>
+  </div>
+</div>
+
+<!-- ══════════ TOC ══════════ -->
+<div class="toc">
+  <div class="toc-title">目录 · Contents</div>
+  <ul class="toc-list">
+    <li><span class="toc-num">01</span><span class="toc-txt">组织框架：华润集团→置地→万象的三层股权结构</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">02</span><span class="toc-txt">分拆逻辑：为什么把"轻"与"重"拆成两家公司</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">03</span><span class="toc-txt">业务端管理模式：万象的"2+1"与租金流动</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">04</span><span class="toc-txt">直营vs加盟：置地项目与第三方外拓的本质差异</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">05</span><span class="toc-txt">盈利能力对比：轻资产vs重资产的财务镜像</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">06</span><span class="toc-txt">万象生活财务报表全解（2025FY审计）</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">07</span><span class="toc-txt">估值框架：为什么PB失效，应该用什么</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">08</span><span class="toc-txt">置地财务压力与风险传导评估</span><span class="toc-dot"></span></li>
+    <li><span class="toc-num">09</span><span class="toc-txt">综合结论与投资监控清单</span><span class="toc-dot"></span></li>
+  </ul>
+</div>
+
+<!-- ══════════ §01 组织框架 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">01</span>组织框架：三层股权结构</h2>
+  <div class="sec-lead">理解华润万象生活，必须先理解它在华润体系中的位置——它不是一家独立公司，而是一个精心设计的"轻资产壳"，嵌套在央企集团的三层架构之中。</div>
+
+  <div class="flowbox">
+    <div class="flow-tier"><div class="flow-ent crgroup"><div class="fe-name">中国华润有限公司</div><div class="fe-detail">最终控股公司 · 中央企业 · 注册于中国</div></div></div>
+    <div class="flow-conn">│ 直接/间接持有 <span class="flow-pct">71.55%</span></div>
+    <div class="flow-tier"><div class="flow-ent crland"><div class="fe-name">华润置地有限公司（01109.HK）</div><div class="fe-detail">直接控股公司 · 重资产开发商 · 持有购物中心实物产权</div></div></div>
+    <div class="flow-conn">│ 直接持有 <span class="flow-pct">70.12%</span>（最大单一股东，控制）</div>
+    <div class="flow-tier"><div class="flow-ent mixc"><div class="fe-name">华润万象生活有限公司（01209.HK）</div><div class="fe-detail">本报告标的 · 轻资产管理平台 · 2020.12.09上市</div></div></div>
+    <div class="flow-conn">│ 公众流通股约 <span class="flow-pct">28.45%</span></div>
+    <div class="flow-tier"><div class="flow-ent"><div class="fe-name">公众投资者</div><div class="fe-detail">小股东 · 与母公司利益高度一致</div></div></div>
+  </div>
+
+  <div class="two-col">
+    <div class="card crland">
+      <div class="card-t">甲方 · 华润置地（重资产端）</div>
+      <div class="card-b">
+        <strong>角色：</strong>购物中心、写字楼的法律产权所有者与开发商。<br>
+        <strong>承担：</strong>土地获取、开发建设、资产折旧、贷款利息、资本支出、资产减值风险。<br>
+        <strong>收取：</strong>购物中心全部租金的大头（约90%+），扣除上述成本后形成净租金收益。<br>
+        <strong>财务特征：</strong>重资产、有息负债数百亿、净利率受折旧压低、PB有意义。
+      </div>
+    </div>
+    <div class="card mixc">
+      <div class="card-t">乙方 · 华润万象生活（轻资产端）</div>
+      <div class="card-b">
+        <strong>角色：</strong>受托运营管理方，输出品牌与运营能力。<br>
+        <strong>承担：</strong>运营团队人工、IT系统、营销费用——几乎无资产沉淀。<br>
+        <strong>收取：</strong>管理费 + 流水分成（约占全部租金的6-10%）。<br>
+        <strong>财务特征：</strong>轻资产、净现金134亿、几乎无有息负债、ROE/PB失真、毛利率高。
+      </div>
+    </div>
+  </div>
+
+  <div class="callout insight">
+    <div class="callout-t">核心认知</div>
+    一座购物中心，在<strong>两套报表里出现两次</strong>：在置地报表里是"投资性房地产+租金收入"（重资产、含折旧）；在万象报表里是"管理服务收入"（轻资产、无折旧）。两者相加才是这座购物中心的完整经济价值——但市场用完全不同的估值体系给它们定价。
+  </div>
+</div>
+
+<!-- ══════════ §02 分拆逻辑 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">02</span>分拆逻辑：为什么拆成两家</h2>
+  <div class="sec-lead">2020年12月万象生活独立上市，是中国地产行业最成功的一次价值分拆。它的本质是把同一块业务按资本属性拆开，让市场分别以匹配的估值体系定价。</div>
+
+  <div class="mono"><span class="hl">分离前：华润置地（混合体）</span>
+  开发 + 持有 + 运营 + 品牌  全部混在一张报表
+  → 运营能力无法单独定价，被重资产估值拖累
+  → 扩张受限于自身资产负债表
+
+<span class="hl">分离后：</span>
+  <span class="b">华润置地</span>（甲方）            <span class="gold">华润万象生活</span>（乙方）
+  ───────────────────       ────────────────────
+  开发 + 持有                 运营 + 品牌 + 大会员
+  重资产 / PB 5-8x相关        轻资产 / PE 20-25x
+  收租金大头                  收管理费分成
+  ───────────────────────────────────────────────
+  集团持有62% → 同时享受：① 轻资产高估值溢价
+                          ② 每年约22亿分红回流
+                          ③ 住宅开发的商业配套溢价</div>
+
+  <h3 class="sub-h">为什么只有华润做成了：三个前提缺一不可</h3>
+  <table>
+    <thead><tr><th>前提条件</th><th>华润</th><th>万达</th><th>龙湖</th><th>新城</th></tr></thead>
+    <tbody>
+      <tr><td>持续高质量资产供给</td><td class="c-g fw6">✓ 强</td><td class="c-a">△ 质参差</td><td class="c-a">△ 住宅重心</td><td class="c-r">✗ 流动性危机</td></tr>
+      <tr><td>母公司信用稳定（央企背书）</td><td class="c-g fw6">✓ 央企</td><td class="c-r">✗ 民企</td><td class="c-r">✗ 民企</td><td class="c-r">✗ 已爆雷</td></tr>
+      <tr><td>高端品牌真实溢价</td><td class="c-g fw6">✓ 万象城</td><td class="c-a">△ 偏大众</td><td class="c-a">△ 规模小</td><td class="c-a">△ 偏低端</td></tr>
+      <tr class="hl-gold"><td class="fw6">综合判断</td><td class="c-g fw7">唯一成立</td><td class="c-a">港股折戟</td><td class="c-a">尚在探索</td><td class="c-r">无法剥离</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>时机选择：</b>万象2020年底上市，恰好在2021年地产暴雷潮之前完成分拆。置地承受了行业下行压力，万象完全隔离在外，两者股价走势此后彻底分化——若晚三年，估值将大打折扣。</div>
+</div>
+
+<!-- ══════════ §03 业务端管理模式 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">03</span>业务端管理模式："2+1"与租金流动</h2>
+  <div class="sec-lead">万象生活的业务结构是"商管+物管+大会员"的"2+1"模式。理解其盈利的关键，在于看清一座购物中心的租金究竟如何在甲乙方之间分配。</div>
+
+  <h3 class="sub-h">一座购物中心的租金流动（核心机制）</h3>
+  <div class="mono"><span class="hl">商户（租户）缴纳全额租金</span>  假设某万象城年租金10亿
+       │
+       ↓
+  <span class="b">华润置地（业主/甲方）</span>  留存 <span class="a">~7-8亿</span>（基础租金大头，不进万象报表）
+       │                       承担折旧、贷款利息、资本支出
+       ↓ 支付管理费/分成
+  <span class="gold">华润万象生活（运营/乙方）</span>  收取 <span class="g">~2-3亿</span>（管理费+流水分成，进入万象收入）
+                              ├─ 固定管理费（按面积/固定比例）
+                              └─ 浮动分成（零售额超基准后按比例）</div>
+
+  <div class="callout amber-box">
+    <div class="callout-t">分成比例估算（公开报告未直接披露）</div>
+    2025年129座购物中心商管收入37.1亿，<strong>单座均值约2877万/年</strong>。行业单座年租金约5亿估算，<strong>有效费率约6-10%</strong>（高端项目偏高）。分层结构：固定管理费3-5% + 超额流水分成5-8%。<strong>万象拿小头（6-10%），但小头里近78%是毛利；置地拿大头（90%+），但要扛折旧、利息和资本支出。</strong>
+  </div>
+
+  <h3 class="sub-h">"2+1"三大业务板块（2025FY）</h3>
+  <table>
+    <thead><tr><th>板块</th><th>2025收入</th><th>占比</th><th>YoY</th><th>毛利率</th><th>战略定位</th></tr></thead>
+    <tbody>
+      <tr class="hl-gold"><td class="fw6">商业航道（购物中心+写字楼）</td><td class="fw6">69.06亿</td><td>38.3%</td><td class="c-g">+10.1%</td><td class="c-g fw6">63.1%</td><td>利润核心引擎</td></tr>
+      <tr class="hl-b"><td class="fw6">物业航道（社区+城市空间）</td><td class="fw6">108.47亿</td><td>60.2%</td><td class="c-a">+1.1%</td><td>18.0%</td><td>规模基本盘</td></tr>
+      <tr class="hl-p"><td class="fw6">生态圈（大会员+自营）</td><td class="fw6">2.69亿</td><td>1.5%</td><td class="c-g">+72.2%</td><td class="c-g">36.9%</td><td>数据资产培育</td></tr>
+      <tr class="grand"><td class="fw6">合计</td><td class="fw6">180.2亿</td><td>100%</td><td class="c-g">+5.1%</td><td class="c-g">35.5%</td><td>—</td></tr>
+    </tbody>
+  </table>
+  <div class="callout good">
+    <div class="callout-t">利润 ≠ 收入：结构的力量</div>
+    商业航道收入占比仅38.3%，但贡献了<strong>68%的毛利</strong>（4.36亿 / 6.41亿）。物业航道收入占60.2%，毛利贡献仅30%。这意味着万象的利润高度依赖购物中心——而购物中心正是当前消费环境下表现最稳健的资产类别。大会员8300万会员（+36%）是尚未在估值中充分定价的数据资产期权。
+  </div>
+</div>
+
+<!-- ══════════ §04 直营vs加盟 ══════════ -->
+<div class="sec page-break">
+  <h2 class="sec-h"><span class="sn">04</span>直营 vs 加盟：两类项目的本质差异</h2>
+  <div class="sec-lead">万象的购物中心来自两个渠道：华润置地项目（类"直营"）和第三方外拓项目（类"加盟"）。两者的收益质量和增长可控性截然不同。</div>
+
+  <table>
+    <thead><tr><th>维度</th><th>华润置地项目（直营）</th><th>第三方项目（加盟）</th></tr></thead>
+    <tbody>
+      <tr><td>在营座数（2025）</td><td class="c-gold fw6">98座</td><td>31座</td></tr>
+      <tr><td>在管面积</td><td>11,681千㎡</td><td>2,637千㎡</td></tr>
+      <tr><td>商管收入（2025）</td><td class="fw6">31.92亿</td><td>5.18亿</td></tr>
+      <tr class="hl-a"><td class="fw6">单项目年均收益</td><td class="c-gold fw6">3,257万</td><td class="c-a fw6">1,671万（约直营51%）</td></tr>
+      <tr><td>扩张节奏控制权</td><td class="c-r">取决于置地开发</td><td class="c-g">万象自主谈判</td></tr>
+      <tr><td>项目质量</td><td class="c-g">高（置地选址能力强）</td><td class="c-a">参差（业主实力不一）</td></tr>
+      <tr><td>类比</td><td>直营店</td><td>加盟店</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout insight">
+    <div class="callout-t">增长来源的二元性</div>
+    万象的增长由两股力量驱动：<strong>直营增量取决于置地（外生，不可控）</strong>——这是增速天花板的来源；<strong>加盟增量取决于万象自身拓展（内生，可控）</strong>——但单项目收益仅为直营的51%，质量偏弱。2025年新开14座购物中心、在管合同达207座（在营129座，<strong>78座储备</strong>），说明供给管道远比"6座/年"的悲观预期充裕。
+  </div>
+</div>
+
+<!-- ══════════ §05 盈利能力对比 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">05</span>盈利能力对比：轻重资产的财务镜像</h2>
+  <div class="sec-lead">同一座购物中心，在甲乙方报表里呈现出完全不同的盈利面貌。理解这种"镜像"，是避免被净利率和ROE误导的关键。</div>
+
+  <h3 class="sub-h">同一座购物中心的双报表呈现（以年租金5亿项目为例）</h3>
+  <table>
+    <thead><tr><th>项目</th><th>华润置地（业主/重资产）</th><th>华润万象（运营/轻资产）</th></tr></thead>
+    <tbody>
+      <tr><td>收入来源</td><td>租金 ~4.7亿</td><td class="c-g">管理费+分成 ~0.3亿</td></tr>
+      <tr><td>主要成本</td><td>折旧~1亿 + 利息~0.8亿 + 资本支出~0.3亿</td><td class="c-g">人工运营 ~0.07亿</td></tr>
+      <tr class="hl-g"><td class="fw6">净利润率</td><td>~53%</td><td class="c-g fw6">~77%</td></tr>
+      <tr class="hl-r"><td class="fw6">承担风险</td><td class="c-r">资产减值、空置、利率风险</td><td class="c-a">收入波动（有保底管理费）</td></tr>
+      <tr><td>估值有效指标</td><td>PB、NAV、EV/EBITDA</td><td class="c-gold">PE、股息率、EV/EBITDA</td></tr>
+      <tr><td>估值失效指标</td><td>单看净利率（被折旧压低）</td><td class="c-r">PB、ROE（净资产被抽空）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-h">折旧的关键作用：利润表 vs 现金流表</h3>
+  <div class="two-col">
+    <div class="mono"><span class="hl">利润表（折旧压低净利）：</span>
+  收入
+  − 直接成本
+  − <span class="r">折旧摊销</span>     ← 扣减，拉低净利率
+  = 经营利润
+  − 利息
+  = 净利润</div>
+    <div class="mono"><span class="hl">现金流表（折旧加回）：</span>
+  净利润
+  + <span class="g">折旧摊销</span>     ← 非现金，加回
+  ± 营运资本
+  ────────────
+  = <span class="g">经营现金流</span></div>
+  </div>
+  <div class="callout good">
+    <div class="callout-t">两个误导性指标的破解</div>
+    <strong>① 重资产公司的"低净利率"是假象：</strong>折旧是非现金支出，不消耗现金。置地真实造血能力应看经营现金流和EBITDA，而非被折旧压低的净利率。<br>
+    <strong>② 轻资产公司的"高ROE"是假象：</strong>万象ROE约30%，但净资产被轻资产结构"抽空"（购物中心产权在置地）。若并表置地资产，ROE会降至5-8%。<strong>这30%不代表经营效率特别突出，只代表资产沉淀在母公司。</strong>
+  </div>
+</div>
+
+<!-- ══════════ §06 财务报表全解 ══════════ -->
+<div class="sec page-break">
+  <h2 class="sec-h"><span class="sn">06</span>万象生活财务报表全解（2025FY审计）</h2>
+  <div class="sec-lead">2025年是增速换挡后的首份全年审计报告。核心答卷：量增速放缓（+5.1%），但质持续改善（毛利率+2.5pt，核心净利润+13.7%）。</div>
+
+  <div class="kpi-row k5">
+    <div class="kpi gold"><div class="kl">全年收入</div><div class="kv gold sm">180.2亿</div><div class="ks">+5.1% YoY</div></div>
+    <div class="kpi g"><div class="kl">毛利率</div><div class="kv g sm">35.5%</div><div class="ks">+2.5pt</div></div>
+    <div class="kpi b"><div class="kl">核心净利润</div><div class="kv b sm">39.5亿</div><div class="ks">+13.7%</div></div>
+    <div class="kpi gold"><div class="kl">核心EPS</div><div class="kv gold sm">1.731元</div><div class="ks">100%派息</div></div>
+    <div class="kpi g"><div class="kl">净现金</div><div class="kv g sm">134.4亿</div><div class="ks">CNY·无银行贷款</div></div>
+  </div>
+
+  <h3 class="sub-h">综合损益表（关键行项）</h3>
+  <table>
+    <thead><tr><th>损益项目</th><th>2025FY</th><th>2024FY</th><th>增幅</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr class="hl-gold"><td class="fw6">总收入</td><td class="fw6">180.22亿</td><td>171.54亿</td><td class="c-g fw6">+5.1%</td><td>增速换挡（2024:+15.4%）</td></tr>
+      <tr><td>销售成本</td><td>116.16亿</td><td>115.01亿</td><td class="c-g">+1.0%</td><td>成本增速远低于收入</td></tr>
+      <tr class="hl-g"><td class="fw6">毛利润</td><td class="fw6 c-g">64.06亿</td><td>56.53亿</td><td class="c-g fw6">+13.3%</td><td>毛利率35.5%</td></tr>
+      <tr><td>投资物业公允价值变动</td><td>2.64亿</td><td>0.41亿</td><td class="c-g">+547%</td><td>分租项目重估，非经常</td></tr>
+      <tr><td>其他收入及收益</td><td>3.38亿</td><td>7.05亿</td><td class="c-r">-52.1%</td><td>或然对价损失+利息↓</td></tr>
+      <tr class="hl-r"><td class="fw6">其他支出（含ECL）</td><td class="fw6 c-r">1.88亿</td><td>0.90亿</td><td class="c-r fw6">+109%</td><td>⚠ 信用减值大增</td></tr>
+      <tr><td>财务费用</td><td>1.11亿</td><td>1.16亿</td><td class="c-g">-4.2%</td><td>仅租赁负债利息</td></tr>
+      <tr class="hl-b"><td class="fw6">税前利润</td><td class="fw6 c-b">53.53亿</td><td>48.64亿</td><td class="c-g fw6">+10.1%</td><td>实际税率23.7%</td></tr>
+      <tr class="hl-g"><td class="fw6">归母净利润</td><td class="fw6 c-g">39.69亿</td><td>35.98亿</td><td class="c-g fw6">+10.3%</td><td></td></tr>
+      <tr class="hl-gold"><td class="fw7">核心净利润</td><td class="fw7 c-gold">39.50亿</td><td>34.74亿</td><td class="c-gold fw7">+13.7%</td><td>★剔除重估等非经常项</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>利润弹性：</b>收入+5.1%，核心净利润+13.7%——毛利率提升2.5pt与费用率压降0.3pt协同，体现"有利润的营收"经营方针。</div>
+
+  <h3 class="sub-h">资产负债表（净现金结构与无杠杆特征）</h3>
+  <table>
+    <thead><tr><th>项目</th><th>2025FY</th><th>2024FY</th><th>变动</th></tr></thead>
+    <tbody>
+      <tr><td>现金及等价物</td><td>55.4亿</td><td>96.0亿</td><td class="c-r">-40.6亿（分红耗用）</td></tr>
+      <tr><td>定期存款（流+非流）</td><td>51.0亿</td><td>45.7亿</td><td class="c-g">+5.3亿</td></tr>
+      <tr><td>理财产品（流+非流）</td><td>50.2亿</td><td>26.1亿</td><td class="c-g">+24.1亿</td></tr>
+      <tr class="hl-b"><td class="fw6">总流动性</td><td class="fw6 c-b">156.5亿</td><td>171.4亿</td><td class="c-r">-14.9亿</td></tr>
+      <tr><td>租赁负债（流+非流）</td><td>22.1亿</td><td>23.1亿</td><td class="c-g">-1.0亿</td></tr>
+      <tr><td>银行贷款</td><td class="c-g fw6">0</td><td class="c-g fw6">0</td><td class="c-g">无</td></tr>
+      <tr class="hl-gold"><td class="fw7">净现金</td><td class="fw7 c-gold">134.4亿</td><td>148.3亿</td><td class="c-a">-13.9亿（分红）</td></tr>
+      <tr class="sub"><td class="fw6">净资产</td><td class="fw6">156.9亿</td><td>167.0亿</td><td class="c-r">-10.1亿</td></tr>
+      <tr><td>资产负债率</td><td>46.0%</td><td>42.7%</td><td class="c-a">+3.3pt（派息节奏）</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-h">⚠ ECL（预期信用损失）：核心风险量化</h3>
+  <div class="two-col">
+    <table>
+      <thead><tr><th>ECL拨备</th><th>2025</th><th>2024</th><th>增量</th></tr></thead>
+      <tbody>
+        <tr class="hl-r"><td>贸易应收ECL</td><td class="c-r">2.38亿</td><td>1.42亿</td><td class="c-r">+67.6%</td></tr>
+        <tr class="hl-r"><td>其他应收ECL</td><td class="c-r">1.26亿</td><td>0.39亿</td><td class="c-r">+225%</td></tr>
+        <tr class="sub"><td class="fw6">合计</td><td class="c-r fw6">3.64亿</td><td>1.81亿</td><td class="c-r fw6">+101%</td></tr>
+        <tr class="hl-r"><td>2-3年账龄应收</td><td class="c-r">1.62亿</td><td>0.56亿</td><td class="c-r">+189%</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn" style="margin:0">
+      <div class="callout-t">ECL风险评估</div>
+      2025年ECL增量约1.83亿，占核心净利润约4.6%——<strong>单年影响有限，但+101%的增速是警示信号</strong>。账龄2年以上应收从0.96亿升至2.30亿（+140%），物业客户回款迟滞。<strong>正面：</strong>ECL属非现金支出，加回后经营现金流不受影响，有效净现金流覆盖倍数仍达1.1x。需在2026H1验证是否触顶。
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ §07 估值框架 ══════════ -->
+<div class="sec page-break">
+  <h2 class="sec-h"><span class="sn">07</span>估值框架：PB为何失效，应该用什么</h2>
+  <div class="sec-lead">万象的净资产是"经营性净资产"而非"资产性净资产"——不含购物中心产权、品牌价值、管理合同现金流、8300万会员数据。PB因此基本失效。</div>
+
+  <table>
+    <thead><tr><th>估值指标</th><th>逻辑</th><th>当前（47港元）</th><th>有效性</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td class="fw6">PE（2025实际）</td><td>管理型公司核心是盈利能力</td><td>24.9x</td><td class="c-g fw6">✓ 核心</td></tr>
+      <tr class="hl-g"><td class="fw6">PE（2026E）</td><td>+10%增速假设</td><td>22.7x</td><td class="c-g fw6">✓ 核心</td></tr>
+      <tr class="hl-g"><td class="fw6">股息率</td><td>100%派息=股息即真实回报</td><td>4.0%</td><td class="c-g fw6">✓ 核心</td></tr>
+      <tr class="hl-b"><td class="fw6">EV/EBITDA</td><td>剥离现金与折旧干扰</td><td>15.5x</td><td class="c-b fw6">✓ 首选</td></tr>
+      <tr class="hl-r"><td class="fw6">PB</td><td>净资产不含核心资产</td><td>~6.8x（虚高）</td><td class="c-r fw6">✗ 失效</td></tr>
+      <tr class="hl-r"><td class="fw6">ROE</td><td>净资产被轻资产结构抽空</td><td>~30%（失真）</td><td class="c-r fw6">✗ 失效</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sub-h">净现金拆分法（首选框架）</h3>
+  <div class="mono"><span class="hl">合理市值 = 经营业务价值 + 净现金</span>
+            = EBITDA × 期望倍数 + 净现金
+
+  EBITDA约55亿CNY ≈ 60亿港元；净现金134亿CNY ≈ 146亿港元
+
+  期望倍数   经营业务价值    +净现金      =合理市值    对应股价
+  ─────────────────────────────────────────────────────────
+  15x        900亿港元      146亿        1046亿       <span class="a">~45.8港元</span>
+  18x        1080亿港元     146亿        1226亿       <span class="g">~53.7港元</span>
+  22x        1320亿港元     146亿        1466亿       <span class="g">~64.2港元</span>
+
+  <span class="dim">当前47港元隐含EV/EBITDA约15.5x，对标麦当劳~20x、万豪~18x偏低</span></div>
+
+  <h3 class="sub-h">本质类比：品牌特许经营公司</h3>
+  <table>
+    <thead><tr><th>公司</th><th>模式</th><th>不持有</th><th>PE</th></tr></thead>
+    <tbody>
+      <tr><td>麦当劳</td><td>品牌特许</td><td>餐厅物业</td><td>~25x</td></tr>
+      <tr><td>万豪国际</td><td>酒店管理</td><td>酒店资产</td><td>~22x</td></tr>
+      <tr class="hl-gold"><td class="fw6 c-gold">华润万象生活</td><td>商业运营</td><td>购物中心</td><td class="c-gold fw6">~24x</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>认知差即阿尔法：</b>用物管板块尺子量（同业PE 8-14x），万象贵；用品牌特许经营尺子量，24x合理。市场用哪把尺子，决定了估值天花板能否打开。</div>
+
+  <h3 class="sub-h">三情景估值（HKD）</h3>
+  <table>
+    <thead><tr><th>情景</th><th>概率</th><th>目标价</th><th>核心假设</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td class="fw6 c-g">牛市</td><td>25%</td><td class="c-g fw6">58港元</td><td>207座储备加速开业，可比零售额+10%+，ECL拐点确认，EV/EBITDA扩至18x</td></tr>
+      <tr class="hl-gold"><td class="fw6 c-gold">基准</td><td>55%</td><td class="c-gold fw6">48港元</td><td>商管+10%，ECL稳定，净现金拆分法15x EBITDA+净现金≈47-49港元</td></tr>
+      <tr class="hl-r"><td class="fw6 c-r">熊市</td><td>20%</td><td class="c-r fw6">36港元</td><td>ECL扩大至5亿+，增值服务持续下滑，可比增速跌破5%，PE压缩至16x；净现金支撑底部</td></tr>
+    </tbody>
+  </table>
+  <div class="note"><b>概率加权目标价 ≈ 47.9港元</b>（58×0.25 + 48×0.55 + 36×0.20）——与当前47港元基本吻合，市场定价处于均衡状态。</div>
+</div>
+
+<!-- ══════════ §08 置地风险传导 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">08</span>置地财务压力与风险传导</h2>
+  <div class="sec-lead">万象的"干净"建立在置地"稳健"的前提上。评估这个隐性前提，是判断万象长期增长可持续性的关键。</div>
+
+  <div class="kpi-row k4">
+    <div class="kpi b"><div class="kl">置地现金储备</div><div class="kv b sm">1202亿</div><div class="ks">2025H1·充裕</div></div>
+    <div class="kpi a"><div class="kl">净有息负债率</div><div class="kv a sm">39.2%</div><div class="ks">行业低位</div></div>
+    <div class="kpi g"><div class="kl">融资成本</div><div class="kv g sm">2.79%</div><div class="ks">行业最低</div></div>
+    <div class="kpi gold"><div class="kl">信用评级</div><div class="kv gold sm">BBB+</div><div class="ks">三大机构投资级</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>置地压力来源</th><th>对万象传导</th><th>风险等级</th></tr></thead>
+    <tbody>
+      <tr class="hl-g"><td>住宅销售-11.5%/写字楼/酒店承压</td><td>与万象管理业务无直接关联</td><td class="c-g fw6">无风险</td></tr>
+      <tr class="hl-a"><td>新开购物中心节奏</td><td>影响直营增量（但2025实际新开14座超预期）</td><td class="c-a fw6">中等·已知</td></tr>
+      <tr class="hl-a"><td>核心净利润-8.5%（2024）</td><td>间接压缩新增投资意愿</td><td class="c-a fw6">中等·观察</td></tr>
+      <tr class="hl-r"><td>销售回款持续下滑（未发生）</td><td>3-5年后土储耗尽→新开工减少</td><td class="c-r fw6">低概率·长期</td></tr>
+    </tbody>
+  </table>
+  <div class="callout good">
+    <div class="callout-t">风险性质判断</div>
+    置地2025H1购物中心零售额<strong>+20.2%</strong>、经营利润率65.9%创新高，且主动推进REIT/轻资产转型——更多资产委托万象管理，对万象是<strong>增量而非减量</strong>。置地对万象的风险性质是"增速天花板"（供给放缓）而非"暴雷"。央企信用+1202亿现金+投资级评级，排除流动性危机情景。
+  </div>
+</div>
+
+<!-- ══════════ §09 综合结论 ══════════ -->
+<div class="sec">
+  <h2 class="sec-h"><span class="sn">09</span>综合结论与监控清单</h2>
+
+  <div class="callout gold-box">
+    <div class="callout-t">五条核心认知</div>
+    <strong>①</strong> 万象报表只含管理费分成（约6-10%），购物中心核心资产收益仍在置地——这是双主体架构的本质。<br><br>
+    <strong>②</strong> 万象是"乙方品牌壳"：净资产不含产权，PB/ROE失效；真实价值在管理合同现金流、品牌溢价、8300万会员生态。<br><br>
+    <strong>③</strong> 折旧是会计概念非现金支出——重资产（置地）净利率被压低，轻资产（万象）ROE被抬高，都需还原看现金流。<br><br>
+    <strong>④</strong> 母公司持股62%，分红利益完全一致，连续三年100%派息是结构性承诺而非偶然。<br><br>
+    <strong>⑤</strong> 正确估值：期望市值 = EBITDA × 倍数 + 净现金。当前47港元处于基准情景，概率加权目标价47.9港元，估值均衡。
+  </div>
+
+  <div class="two-col">
+    <div class="card mixc">
+      <div class="card-t">支撑逻辑</div>
+      <div class="card-b">
+        · 购物中心207座在管合同（78座储备），增长管道充裕<br>
+        · 毛利率持续改善（35.5%，仍有空间）<br>
+        · 100%派息+净现金134亿，股息率4.0%<br>
+        · 净现金公司，零银行负债，无利率风险<br>
+        · 商管为利润核心，受益消费结构升级
+      </div>
+    </div>
+    <div class="card crland">
+      <div class="card-t">风险与监控</div>
+      <div class="card-b">
+        · ECL拨备+101%，需2026H1确认是否触顶<br>
+        · 增值服务-27%，何时触底回升<br>
+        · 第三方项目收益仅直营51%，质量待提升<br>
+        · 消费环境承压，可比增速需持续跟踪<br>
+        · 置地长期土储消耗（3-5年观察）
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sub-h">2026H1关键监控指标</h3>
+  <table>
+    <thead><tr><th>监控指标</th><th>健康信号</th><th>预警线</th></tr></thead>
+    <tbody>
+      <tr class="hl-r"><td class="fw6">ECL拨备合计</td><td class="c-g">同比收窄</td><td class="c-r fw6">&gt;5亿</td></tr>
+      <tr><td>2-3年账龄应收</td><td class="c-g">开始下降</td><td class="c-r">继续上升</td></tr>
+      <tr><td>新开购物中心</td><td class="c-g">≥6座</td><td class="c-a">&lt;4座</td></tr>
+      <tr><td>可比零售额增速</td><td class="c-g">&gt;8%</td><td class="c-r">&lt;5%</td></tr>
+      <tr><td>增值服务收入</td><td class="c-g">降幅收窄至-10%内</td><td class="c-r">继续-20%+</td></tr>
+      <tr><td>中期派息率</td><td class="c-g">维持100%</td><td class="c-r">&lt;90%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout insight">
+    <div class="callout-t">投资结论（2026.04，47港元）</div>
+    当前47港元对应24.9x PE（2025实际）/ 22.7x（2026E）、4.0%股息率、15.5x EV/EBITDA，估值处于基准情景，<strong>无明显高估或低估</strong>。综合判断<strong>持有（HOLD）</strong>，核心逻辑完整。上行催化剂：储备项目加速开业 + 增值服务触底 + ECL稳定。重点跟踪2026H1的ECL趋势和可比零售额——这两项决定估值能否从基准向牛市切换。
+  </div>
+</div>
+
+<div class="foot">
+  <span>数据来源：华润万象生活2025年度业绩公告（审计）· 2025H1中报 · 华润置地2025H1中报 · 综合此前全部研究</span>
+  <span>华润置地×万象生活_综合研究报告 · 2026.04 · FOR REFERENCE ONLY · 不构成投资建议</span>
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
