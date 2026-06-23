@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 两条IR披露的认知校准 · 2026-06-23</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;--rl:#e8c4be;
+  --a:#8c4800;--ap:#fdf7f0;--al:#e8d4b8;
+  --g:#1a6030;--gp:#f0faf4;--gl:#bcdbc6;
+  --b:#1a3870;--bp:#f0f4fb;--bl:#bdc8df;
+  --p:#521a80;--pp:#f5f0fc;--pl:#d4c0e0;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.72;}
+
+.hdr{background:linear-gradient(180deg,#fefbf3 0%,var(--bg2) 100%);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:18px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:8px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+h1 .b{color:var(--b);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:11px;max-width:870px;line-height:1.78;}
+.hdr-stamp{font-family:'JetBrains Mono',monospace;font-size:9px;text-align:right;letter-spacing:1px;color:var(--mu);line-height:1.7;}
+.hdr-stamp .big{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);letter-spacing:1px;}
+.hdr-stamp .price{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;color:var(--r);}
+
+main{padding:0 44px 50px;}
+section{margin-top:26px;}
+
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;font-weight:700;}
+.sec-hd .num{color:var(--r);margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+.sec-sub-hd{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--ink);margin:14px 0 9px;padding-left:9px;border-left:3px solid var(--ink);}
+
+.box{border-left:3px solid;padding:13px 16px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11.5px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr.hp td{background:var(--pp);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);} .c-g{color:var(--g);} .c-a{color:var(--a);} .c-b{color:var(--b);} .c-p{color:var(--p);} .c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.right{text-align:right;}
+
+.kpi-row{display:grid;gap:10px;margin:12px 0;}
+.kpi-4{grid-template-columns:repeat(4,1fr);}
+.kpi-3{grid-template-columns:repeat(3,1fr);}
+.kpi-5{grid-template-columns:repeat(5,1fr);}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:13px 14px;}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:5px;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:19px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);} .kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);} .kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);} .kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);} .kpi-b .kpi-v{color:var(--b);}
+
+.callout{background:var(--bg3);border:1px solid var(--line2);padding:13px 16px;margin:11px 0;}
+.callout-l{font-family:'Syne',sans-serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--r);font-weight:700;margin-bottom:7px;}
+.callout-bd{font-size:11.5px;color:var(--mu);line-height:1.82;}
+.callout-bd strong{color:var(--ink);}
+
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:1px 6px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--g);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--a);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--r);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--b);}
+
+ul.tight{list-style:none;padding-left:0;}
+ul.tight li{padding:4px 0 4px 16px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.72;}
+ul.tight li::before{content:'▸';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+
+.qq{background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--b);padding:11px 15px;margin:9px 0;font-family:'Noto Serif SC',serif;font-size:11.5px;font-style:italic;color:var(--mu);line-height:1.85;}
+.qq-attr{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1px;color:var(--di);text-transform:uppercase;margin-top:5px;font-style:normal;}
+
+.delta{display:inline-block;padding:1px 6px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.delta-up{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.delta-dn{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.delta-neu{background:var(--bg3);color:var(--mu);border:1px solid var(--line);}
+
+footer{margin-top:40px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+/* PROJECT BREAK GRID */
+.disclosure-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0;}
+.disc{background:var(--bg2);border:1px solid var(--line);border-top:3px solid;padding:14px 16px;}
+.disc-1{border-top-color:var(--g);}
+.disc-2{border-top-color:var(--b);}
+.disc-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;font-weight:700;margin-bottom:8px;}
+.disc-t{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;line-height:1.2;margin-bottom:8px;color:var(--ink);}
+.disc-bd{font-size:11px;color:var(--mu);line-height:1.7;}
+.disc-bd strong{color:var(--ink);}
+
+/* PRICE PATH TIMELINE */
+.timeline{background:var(--bg2);border:1px solid var(--line);padding:14px 18px;margin:11px 0;}
+.timeline-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+.tl-row{display:grid;grid-template-columns:80px 70px 1fr 80px;gap:12px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);font-size:11px;}
+.tl-row:last-child{border:none;}
+.tl-dt{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink);font-weight:700;}
+.tl-pr{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
+.tl-ev{font-size:11px;color:var(--mu);}
+.tl-ev strong{color:var(--ink);}
+.tl-dt-chg{font-family:'JetBrains Mono',monospace;font-size:10px;text-align:right;font-weight:700;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>SAILUN · 601058.SH · COGNITIVE RECALIBRATION</span>
+    <span>2 IR DISCLOSURES · MEXICO + EGYPT</span>
+    <span>2026·06·23 TUESDAY · CLOSE 11.72</span>
+  </div>
+  <div class="hdr-body">
+    <div>
+      <div class="eyebrow">SAILUN · TWO IR DISCLOSURES · COGNITIVE RECALIBRATION</div>
+      <h1>赛轮轮胎·两条IR披露的<em>认知校准</em><br>墨西哥<span class="b">零关税</span>+埃及资金<span class="g">分批使用</span></h1>
+      <div class="sub">投资者关系最新口径揭示两个被市场忽视的关键事实：① <strong>墨西哥工厂出口美国关税为0</strong>（USMCA框架下，已是2025年6月官方确认）；② <strong>埃及$11.41亿超级产能项目资金按工程进度分批使用</strong>，非一次性投入。叠加近期股价大幅震荡（6/17 -4.14% → 6/22 11.80 → 6/23收11.72元），本报告进行系统性认知校准。</div>
+    </div>
+    <div class="hdr-stamp">
+      <div class="big">2026·06·23</div>
+      <div>SHARE PRICE</div>
+      <div class="price">¥ 11.72</div>
+      <div style="font-size:9px;color:var(--di);margin-top:2px">vs 6/22 ¥11.80 <span class="delta delta-dn">-0.7%</span> · 5日累计<span class="delta delta-dn">-7.0%</span></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ════════════════════════════════════
+     §0 一句话核心结论
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§0</span>核心校准 · ONE-PAGE</span><span class="meta">EXECUTIVE SUMMARY</span></div>
+
+  <div class="box box-g">
+    <strong>两条IR披露揭示的真相：市场对赛轮的悲观判断包含两处重大认知错误。</strong><br>
+    <strong>校准①·墨西哥零关税被严重低估：</strong>赛轮墨西哥工厂在USMCA框架下对美出口享受 <strong>0%关税</strong>，而越南/柬埔寨基地对美出口适用<strong>"232条款25%+对等关税10%"=约35%综合税率</strong>。这意味着墨西哥的<strong>每条轮胎相对越南基地有约$8-12的关税成本优势</strong>。<br>
+    <strong>校准②·埃及$11.41亿不是一次性砸下：</strong>资金按工程进度分批使用（Shams 15个月、Senro 24个月），实际2026年承担约25亿RMB，2027年35亿，2028年22亿，<strong>单年现金流压力远低于市场恐慌定价</strong>。<br><br>
+    <strong>校准后净利预测调整：</strong>2026年由6/22版的46-50亿微调至 <strong>48-52亿</strong>；2028年由55-62亿上修至 <strong>58-66亿</strong>（墨西哥USMCA下美国市场放量贡献）。当前11.72元对应2026E PE <strong>7.6倍</strong>，相对正常区间已有<strong>30-40%上行空间</strong>。
+  </div>
+
+  <div class="kpi-row kpi-5">
+    <div class="kpi kpi-g"><div class="kpi-l">墨西哥对美关税</div><div class="kpi-v">0%</div><div class="kpi-s">vs 越南/柬 综合~35%</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">墨西哥年产能</div><div class="kpi-v">600万条</div><div class="kpi-s">8-9月达产</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">墨西哥潜在净利</div><div class="kpi-v">$8-12/条</div><div class="kpi-s">关税套利空间</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">埃及2026实际支出</div><div class="kpi-v">~25亿</div><div class="kpi-s">vs 总额82亿分3年</div></div>
+    <div class="kpi kpi-r"><div class="kpi-l">当前股价</div><div class="kpi-v">¥11.72</div><div class="kpi-s">PE-2026E 7.6x</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §1 两条IR披露详解
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>两条IR披露详解</span><span class="meta">TWO DISCLOSURES DECODE</span></div>
+
+  <div class="disclosure-grid">
+    <div class="disc disc-1">
+      <div class="disc-l">IR DISCLOSURE 1 · MEXICO</div>
+      <div class="disc-t">墨西哥工厂出口至美国关税为0</div>
+      <div class="disc-bd">
+        <strong>关键事实：</strong><br>
+        ① USMCA框架下，赛轮墨西哥工厂半钢胎符合区域价值成分≥75%的原产地规则；<br>
+        ② 已于2025年6月获得USMCA零关税资格（媒体公开报道）；<br>
+        ③ 美国乘用车轮胎市场年需求超 <strong>2亿条</strong>，长期被米其林/固特异/普利司通垄断；<br>
+        ④ 中策、玲珑也在墨西哥布局，但赛轮投产最早。<br><br>
+        <strong>对比关税壁垒：</strong><br>
+        <strong>·</strong> 中国直接出口美国：<strong>反倾销税+反补贴税</strong>（综合60%+，因企业而异）<br>
+        <strong>·</strong> 越南/柬埔寨出口美国：<strong>25%</strong>（232条款）+ <strong>10%</strong>（对等关税延缓90天内）= <strong>35%</strong><br>
+        <strong>·</strong> 墨西哥出口美国：<strong>0%</strong>（USMCA）<br>
+        <strong>·</strong> 印尼出口美国：等同泰国受双反，<strong>约25%</strong>
+      </div>
+    </div>
+    <div class="disc disc-2">
+      <div class="disc-l">IR DISCLOSURE 2 · EGYPT</div>
+      <div class="disc-t">埃及新产能资金按工程进度分批使用</div>
+      <div class="disc-bd">
+        <strong>关键事实：</strong><br>
+        ① 自筹$6.25亿+银行借款$5.17亿合计 <strong>$11.41亿</strong>；<br>
+        ② Shams El Sherouk部分：<strong>15个月</strong>建设周期（约2026年底完成）；<br>
+        ③ Senro Tyre部分：<strong>24个月</strong>建设周期（约2028年中完成）；<br>
+        ④ 资金按工程进度分批使用，<strong>非一次性投入</strong>。<br><br>
+        <strong>分期估算 (按工程节奏)：</strong><br>
+        <strong>·</strong> 2026: 投入约$3.5亿 (~25亿RMB) <span class="pill pill-g">可控</span><br>
+        <strong>·</strong> 2027: 投入约$4.9亿 (~35亿RMB) <span class="pill pill-a">峰值</span><br>
+        <strong>·</strong> 2028: 投入约$3.0亿 (~22亿RMB) <span class="pill pill-g">尾声</span><br><br>
+        <strong>·</strong> 借款发生时点匹配工程进度，<strong>有息负债增长速度比一次性低60%以上</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §2 墨西哥零关税的真实价值
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>墨西哥零关税·真实价值量化</span><span class="meta">MEXICO ZERO-TARIFF VALUE</span></div>
+
+  <div class="qq">
+    "公司目前主要通过越南和柬埔寨工厂对美出口轮胎产品，根据现有的关税政策来看，公司的乘用车及轻卡车轮胎适用于汽车零部件232条款中25%的税率；其他轮胎产品适用'对等关税'，在延缓90天内适用10%的税率。"
+    <div class="qq-attr">—— 赛轮轮胎 2025年5月 投资者交流</div>
+  </div>
+
+  <div class="sec-sub-hd">2.1 单条轮胎关税成本对比 (出口美国)</div>
+
+  <table>
+    <thead>
+      <tr><th>出口基地</th><th>关税框架</th><th>关税率</th><th>每条PCR胎关税成本(估)</th><th>vs 墨西哥优势</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">中国直接出口</td><td>双反高税率</td><td class="c-r fw7">60%+</td><td class="right c-r">~$30/条</td><td class="right c-r">-$30/条</td></tr>
+      <tr class="ha"><td class="fw7">越南</td><td>232条款+对等关税</td><td class="c-a">25%+10%=35%</td><td class="right c-a">~$8-12/条</td><td class="right c-a">-$8-12/条</td></tr>
+      <tr class="ha"><td class="fw7">柬埔寨</td><td>232条款+对等关税</td><td class="c-a">35%</td><td class="right c-a">~$8-12/条</td><td class="right c-a">-$8-12/条</td></tr>
+      <tr class="ha"><td class="fw7">印尼</td><td>对中国转移产能监控</td><td class="c-a">25%+10%=35%</td><td class="right c-a">~$8-12/条</td><td class="right c-a">-$8-12/条</td></tr>
+      <tr class="hg"><td class="fw7">墨西哥 ★</td><td>USMCA零关税</td><td class="c-g fw7">0%</td><td class="right c-g fw7">$0</td><td class="right c-g fw7">基准</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">2.2 美国市场的潜在贡献量化</div>
+
+  <table>
+    <thead>
+      <tr><th>情景</th><th>对美出口规模</th><th>市场份额</th><th>净利贡献</th><th>实现时点</th></tr>
+    </thead>
+    <tbody>
+      <tr class="ha">
+        <td class="fw7">2025年实际</td>
+        <td class="right">~420万条 (估)</td>
+        <td class="right">~0.21%</td>
+        <td class="right c-g">~2.8亿元 <span class="pill pill-g">已实现</span></td>
+        <td>2025下半年开始</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">2026E (达产首年)</td>
+        <td class="right c-g">~600万条</td>
+        <td class="right c-g">~0.30%</td>
+        <td class="right c-g fw7">~4-5亿元</td>
+        <td>下半年达产+全年验证</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">2027E</td>
+        <td class="right c-g">~600万条+部分转移</td>
+        <td class="right c-g">~0.5%</td>
+        <td class="right c-g fw7">~6-8亿元</td>
+        <td>稳态运营+渠道深化</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">2028E (目标)</td>
+        <td class="right c-g fw7">~1,000-1,200万条<br>(墨西哥扩产可能)</td>
+        <td class="right c-g fw7">~5% (公司目标)</td>
+        <td class="right c-g fw7">~10-15亿元</td>
+        <td>公司明确目标</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>关键洞察：墨西哥工厂的真实战略价值远超净利率(15%估)的表面。</strong>市场原本担心墨西哥工厂净利率低于越南22%、低于柬埔寨24%，所以给的估值溢价不高。但<strong>墨西哥的真实价值不在净利率而在"美国市场的独家入场券"</strong>：<br>
+    ① 美国是全球最大的轮胎替换市场（2亿条PCR+全钢/年）；<br>
+    ② 米其林/固特异/普利司通主导，但价格区间宽，中国品牌"性价比+合规"切入空间大；<br>
+    ③ 关税壁垒下，<strong>赛轮墨西哥是赛轮全部基地中唯一可以"零关税"进入美国市场的</strong>——这是<strong>结构性垄断地位</strong>；<br>
+    ④ 公司明确目标3年内美国市场份额>5%，对应净利贡献10-15亿元/年 —— 这是<strong>当前40亿净利的25-37%</strong>，是估值最大的增量来源。<br><br>
+    <strong>市场的盲点：</strong>5月IR披露的"越南/柬埔寨对美出口适用232条款25%+对等关税10%"+本次"墨西哥0%"的对比信息<strong>没有被券商和市场充分定价</strong>，是当前最被低估的alpha来源。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §3 埃及资金分批使用·压力缓解
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>埃及资金分批·财务压力大幅缓解</span><span class="meta">EGYPT FINANCING PHASED</span></div>
+
+  <div class="sec-sub-hd">3.1 资金分期使用估算</div>
+
+  <table>
+    <thead>
+      <tr><th>年份</th><th>预估投入(USD)</th><th>预估投入(RMB)</th><th>占总额比</th><th>资金来源 (自筹/借款)</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">2026 (启动+主建期)</td><td class="right">$3.5亿</td><td class="right c-a">~25亿</td><td class="right">31%</td><td>自筹$2.0亿+借款$1.5亿</td></tr>
+      <tr class="ha"><td class="fw7">2027 (峰值年)</td><td class="right c-a">$4.9亿</td><td class="right c-r fw7">~35亿</td><td class="right">43%</td><td>自筹$2.5亿+借款$2.4亿</td></tr>
+      <tr><td class="fw7">2028 (尾声+收尾)</td><td class="right">$3.0亿</td><td class="right">~22亿</td><td class="right">26%</td><td>自筹$1.75亿+借款$1.27亿</td></tr>
+      <tr class="tot">
+        <td>合计</td>
+        <td class="right">$11.41亿</td>
+        <td class="right c-r">~82亿</td>
+        <td class="right">100%</td>
+        <td>自筹$6.25亿+借款$5.17亿</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">3.2 有息负债演化路径 (校准版)</div>
+
+  <table>
+    <thead>
+      <tr><th>时点</th><th>6/18报告估算</th><th>分批使用校准后</th><th>差异</th><th>vs 180亿警戒</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">2026 Q1末 (已知)</td><td class="right">143.7亿</td><td class="right">143.7亿</td><td class="right c-mu">-</td><td class="c-g">-36亿</td></tr>
+      <tr><td class="fw7">2026 Q4 (估)</td><td class="right c-a">155-165亿</td><td class="right c-g">150-158亿</td><td class="right c-g">-5-7亿</td><td class="c-g">-22-30亿</td></tr>
+      <tr class="hg"><td class="fw7">2027 Q4 (估)</td><td class="right c-r">175-185亿</td><td class="right c-a">165-175亿</td><td class="right c-g fw7">-10亿</td><td class="c-a">-5-15亿</td></tr>
+      <tr class="hg"><td class="fw7">2028 Q4 (估)</td><td class="right c-r">180-195亿</td><td class="right c-a fw7">168-178亿</td><td class="right c-g fw7">-12-17亿</td><td class="c-g fw7">维持警戒线下</td></tr>
+      <tr class="hg"><td class="fw7">2029-2030</td><td class="right">回落170-180亿</td><td class="right c-g">回落160-170亿</td><td class="right c-g">-10亿</td><td class="c-g">回到安全区</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-g">
+    <strong>关键校准结论：</strong>6/18报告中"2027-2028年突破180亿警戒线"的判断，在<strong>"埃及资金分批使用"修正后变为"在180亿警戒线下方保持运行"</strong>。这是<strong>实质性的安全垫差异</strong>——之前担心的"安全垫消失"现在确认仍然存在5-15亿的缓冲空间。<br><br>
+    更重要的是：<strong>分批使用意味着借款的实际付息周期分散</strong>，财务费用对短期净利的拖累从此前估算的-1.5亿/年降到约-0.8-1亿/年，对2026年净利的拖累显著降低。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §4 全球关税地图·赛轮护城河
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>全球关税地图·赛轮独有护城河</span><span class="meta">GLOBAL TARIFF MAP</span></div>
+
+  <table>
+    <thead>
+      <tr><th>目标市场</th><th>越南</th><th>柬埔寨</th><th>印尼</th><th>墨西哥</th><th>埃及</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">美国市场</td>
+        <td class="c-a">35%</td>
+        <td class="c-a">35%</td>
+        <td class="c-a">25%</td>
+        <td class="c-g fw7">0% ★</td>
+        <td class="c-mu">~10-15% (待定)</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">欧盟市场</td>
+        <td class="c-g fw7">不受双反 ★</td>
+        <td class="c-g fw7">不受双反 ★</td>
+        <td class="c-g">不受双反 (待定)</td>
+        <td class="c-a">需符合EBA</td>
+        <td class="c-g fw7">AfCFTA+欧盟优惠 ★</td>
+      </tr>
+      <tr>
+        <td class="fw7">中东市场</td>
+        <td class="c-a">海运成本中等</td>
+        <td class="c-a">海运成本中等</td>
+        <td class="c-g">海运近</td>
+        <td class="c-r">海运远</td>
+        <td class="c-g fw7">区位优势最强 ★</td>
+      </tr>
+      <tr>
+        <td class="fw7">东南亚市场</td>
+        <td class="c-g fw7">本地基地 ★</td>
+        <td class="c-g fw7">本地基地 ★</td>
+        <td class="c-g fw7">本地基地 ★</td>
+        <td class="c-r">海运远</td>
+        <td class="c-a">海运中等</td>
+      </tr>
+      <tr>
+        <td class="fw7">非洲市场</td>
+        <td class="c-a">海运中等</td>
+        <td class="c-a">海运中等</td>
+        <td class="c-a">海运中等</td>
+        <td class="c-r">海运远</td>
+        <td class="c-g fw7">本地基地+AfCFTA ★</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>赛轮的"五地+一矩阵"战略全貌：</strong>每一个海外基地都对应着一个特定关税壁垒/区域优势的最佳解决方案：<br>
+    <strong>·</strong> <strong>越南 + 柬埔寨</strong> → 欧盟市场免双反（5,200万条半钢产能） + 东南亚本地市场<br>
+    <strong>·</strong> <strong>印尼</strong> → 东南亚本地市场+部分欧盟<br>
+    <strong>·</strong> <strong>墨西哥</strong> → <strong>美国市场独家零关税通道</strong>（被市场低估）<br>
+    <strong>·</strong> <strong>埃及</strong> → 中东市场区位+欧盟优惠+非洲AfCFTA<br><br>
+    这种<strong>"每个基地都解决一个关税问题"</strong>的布局，使得赛轮全球任何市场的客户都可以找到"最低关税路径"。在中美贸易摩擦+欧盟反规避调查+泰国/印尼对美双反的复杂关税地图中，<strong>赛轮事实上是中国轮胎企业中"关税地图最完整"的一家</strong>——这是真正难以复制的护城河。
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §5 股价震荡解读 + 净利预测调整
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>股价震荡解读 + 净利预测调整</span><span class="meta">PRICE &amp; FORECAST UPDATE</span></div>
+
+  <div class="timeline">
+    <div class="timeline-title">近5个交易日股价路径</div>
+    <div class="tl-row">
+      <div class="tl-dt">6/16 周一</div>
+      <div class="tl-pr c-a">¥12.40</div>
+      <div class="tl-ev">前期股价 · 三因素叠加压制区间</div>
+      <div class="tl-dt-chg c-mu">-</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt">6/17 周二</div>
+      <div class="tl-pr c-r">¥11.80</div>
+      <div class="tl-ev"><strong>埃及$11.41亿超级CAPEX公告</strong>·主力净流出820万</div>
+      <div class="tl-dt-chg c-r">-4.14%</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt">6/18 周三</div>
+      <div class="tl-pr c-mu">¥11.78-11.95</div>
+      <div class="tl-ev">震荡修复·消化公告</div>
+      <div class="tl-dt-chg c-mu">±持平</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt">6/19 周四</div>
+      <div class="tl-pr c-mu">¥11.80-12.10</div>
+      <div class="tl-ev">波动加大·欧盟双反预期升温</div>
+      <div class="tl-dt-chg c-mu">±持平</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt">6/20 周五</div>
+      <div class="tl-pr c-mu">¥11.65-11.95</div>
+      <div class="tl-ev">大幅震荡·情绪反复</div>
+      <div class="tl-dt-chg c-mu">±持平</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt">6/22 周一</div>
+      <div class="tl-pr c-mu">¥11.80</div>
+      <div class="tl-ev">5月社零数据后估值锚定 (见6/22报告)</div>
+      <div class="tl-dt-chg c-mu">±持平</div>
+    </div>
+    <div class="tl-row">
+      <div class="tl-dt fw7">6/23 周二</div>
+      <div class="tl-pr c-r fw7">¥11.72</div>
+      <div class="tl-ev"><strong>今日收盘·近一周新低</strong>·浮亏-15.1% vs 持仓成本13.80</div>
+      <div class="tl-dt-chg c-r fw7">-0.7%</div>
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">5.1 2026E-2030E 净利预测·最新校准版</div>
+
+  <table>
+    <thead>
+      <tr><th>年份</th><th>5/17版</th><th>6/16版</th><th>6/22版</th><th>6/23校准版 (本次)</th><th>vs 5/17变化</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="fw7">2026E</td><td class="right">46-50亿</td><td class="right">48-52亿</td><td class="right">46-50亿</td><td class="right c-g fw7">48-52亿</td><td class="c-g">+2亿 (埃及资金分批+0.8亿利息)</td></tr>
+      <tr class="hg"><td class="fw7">2027E</td><td class="right">52-58亿</td><td class="right">52-58亿</td><td class="right">52-58亿</td><td class="right c-g fw7">54-60亿</td><td class="c-g">+2亿 (墨西哥稳态贡献)</td></tr>
+      <tr class="hg"><td class="fw7">2028E</td><td class="right">55-62亿</td><td class="right">55-62亿</td><td class="right">55-62亿</td><td class="right c-g fw7">58-66亿</td><td class="c-g fw7">+3-4亿 (墨西哥美国市场放量)</td></tr>
+      <tr class="hg"><td class="fw7">2029E</td><td class="right">60-68亿</td><td class="right">60-68亿</td><td class="right">60-68亿</td><td class="right c-g fw7">63-72亿</td><td class="c-g fw7">+3-4亿</td></tr>
+      <tr class="hg"><td class="fw7">2030E (稳态)</td><td class="right">62-72亿</td><td class="right">62-72亿</td><td class="right">62-72亿</td><td class="right c-g fw7">65-78亿</td><td class="c-g fw7">+3-6亿 (美国份额5%)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">5.2 估值定位</div>
+
+  <div class="kpi-row kpi-4">
+    <div class="kpi kpi-r"><div class="kpi-l">当前股价</div><div class="kpi-v">¥11.72</div><div class="kpi-s">市值~387亿</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">PE-2026E</div><div class="kpi-v">7.6x</div><div class="kpi-s">深度低估·历史10-14x</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">PE-2028E</div><div class="kpi-v">6.2x</div><div class="kpi-s">非常深度低估</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">中性估值中枢</div><div class="kpi-v">¥15-17</div><div class="kpi-s"><span class="delta delta-up">+28-45%</span>较当前</div></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §6 操作建议·精修版
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>操作建议·精修版</span><span class="meta">REVISED ACTION</span></div>
+
+  <div class="sec-sub-hd">6.1 价格区间·6/23 校准版</div>
+
+  <table>
+    <thead>
+      <tr><th>区间</th><th>定性</th><th>操作</th><th>触发条件</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr"><td class="c-r fw7">&lt; 10</td><td class="c-r">极端低估</td><td>大幅加仓</td><td>大盘恐慌+多重利空叠加</td></tr>
+      <tr class="ha"><td class="c-a">10-11</td><td class="c-a">深度价值</td><td>分批建仓</td><td>2026E PE 6.5-7.0x · 历史底</td></tr>
+      <tr class="hg fw7"><td class="c-g">11-12 ★ (当前)</td><td class="c-g">合理偏低 (建议加仓区)</td><td>积极加仓</td><td><strong>当前11.72元 · 三因素叠加压制 · 校准后双重利好</strong></td></tr>
+      <tr class="hb"><td class="c-b">12-14</td><td class="c-b">合理偏低-中性</td><td>持有, 12.5以下小幅加仓</td><td>催化兑现前过渡区</td></tr>
+      <tr class="hb"><td class="c-b">14-16</td><td class="c-b">中性</td><td>持有观察</td><td>双反落地+Q2预喜后正常区间</td></tr>
+      <tr class="ha"><td class="c-a">16-18</td><td class="c-a">稳健止盈</td><td>分批减仓</td><td>2027E净利兑现</td></tr>
+      <tr class="hr"><td class="c-r">&gt; 18</td><td class="c-r">乐观上限</td><td>全部止盈</td><td>透支2028-2029</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">6.2 持仓建议 (基于300股@~13.80)</div>
+
+  <div class="box box-g">
+    <strong>建议·当前是更积极的加仓时机：</strong>
+    <ul class="tight">
+      <li><strong>核心持仓不动</strong>：300股@13.80元浮亏-15.1%，但<strong>基本面校准后向好</strong>(墨西哥USMCA+埃及分批使用)，<strong>非但不应减仓，反而应该加仓</strong>。</li>
+      <li><strong>11.5-12.0元区间积极加仓100-200股</strong>：相对前几日的"小幅加仓"建议，本次更明确加仓必要性。理由：① 7月初Q2业绩预喜窗口(15-20天内)；② 7/18欧盟双反终裁(25天内)；③ 墨西哥USMCA价值被严重低估；④ 埃及资金压力实质性缓解。</li>
+      <li><strong>跌破11.0元再加仓200-300股</strong>：如出现大盘进一步调整或情绪过度悲观，11.0元以下对应2026E PE 7.1x，是历史底部+基本面健康的极佳建仓机会。</li>
+      <li><strong>不要追求10元以下</strong>：基本面校准后股价跌破11元的概率明显降低，过度等待可能错过加仓窗口。</li>
+      <li><strong>止盈节点上修</strong>：中期目标15-17元(原14.5-15.5)，长期目标18-20元(2027-2028)。</li>
+    </ul>
+  </div>
+
+  <div class="sec-sub-hd">6.3 监测信号 (未来30天)</div>
+
+  <table>
+    <thead>
+      <tr><th>时点</th><th>事件</th><th>预期</th><th>对股价影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg fw7"><td class="fw7">6月底-7月初</td><td>Q2业绩预告窗口</td><td class="c-g">大概率预喜 (H1净利≥25亿+15%)</td><td class="c-g">+5-10% 重大催化</td></tr>
+      <tr><td class="fw7">7/16</td><td>6月社零数据</td><td class="c-a">汽车类继续-15%左右</td><td class="c-mu">情绪面+/-2%</td></tr>
+      <tr class="hg fw7"><td class="fw7">7/18</td><td><strong>欧盟双反终裁</strong></td><td class="c-g">基准20-30%税率</td><td class="c-g fw7">+8-15% 关键催化</td></tr>
+      <tr class="ha"><td class="fw7">7/底</td><td>特朗普可能访华</td><td class="c-a">中美贸易摩擦缓和+USMCA续约预期</td><td class="c-g">+2-5%</td></tr>
+      <tr class="hg"><td class="fw7">7-8月</td><td>印尼/墨西哥达产兑现</td><td class="c-g">如期推进</td><td class="c-g">+3-5% (墨西哥USMCA首批兑现)</td></tr>
+      <tr class="hg fw7"><td class="fw7">8月底</td><td>2026中报披露</td><td class="c-g">H1业绩超预期 + 墨西哥USMCA数字披露</td><td class="c-g fw7">+5-10% 重大催化</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ════════════════════════════════════
+     §7 风险点·USMCA续签
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§7</span>关键风险点·USMCA续签</span><span class="meta">USMCA RENEWAL RISK</span></div>
+
+  <div class="box box-a">
+    <strong>2026年USMCA重新审议、2027年正式续签 — 这是墨西哥战略的关键风险点。</strong><br>
+    <strong>·</strong> 特朗普曾威胁对墨西哥汽车征收100-200%关税；<br>
+    <strong>·</strong> 美国海关5月1日已确认加拿大/墨西哥制造汽车零部件免于25%关税(自5/3起生效)，但条件是符合USMCA区域价值成分≥75%规则；<br>
+    <strong>·</strong> 2027年正式续签时，焦点之一是"与中国的贸易问题"，<strong>"中国零部件墨西哥组装"可能受到更严格限制</strong>；<br>
+    <strong>·</strong> 但赛轮墨西哥工厂是<strong>本土化生产</strong>(已通过USMCA原产地审核)，与"组装"性质不同，相对安全。<br><br>
+    <strong>对冲措施 (公司已布局)：</strong>赛轮越南基地年产800万条仍是核心海外基地；柬埔寨二期1,260万条进入爬坡；这两个基地+埃及形成"墨西哥若受阻则可替代"的备份方案。即便最悲观情景(墨西哥对美关税升至25%)，公司净利冲击约-3-5亿/年，但<strong>替代基地的产能仍然完整保留</strong>。
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">关键监测信号</div>
+    <div class="callout-bd">
+      <strong>·</strong> 2026下半年USMCA审议进展(美墨加三方谈判);<br>
+      <strong>·</strong> 特朗普关于墨西哥的关税表态(法院5月7日已裁定其"对等关税"缺乏法律依据);<br>
+      <strong>·</strong> 中策、玲珑等同行在墨西哥的进展(行业整体规模扩大可能引发美方反制);<br>
+      <strong>·</strong> 赛轮墨西哥工厂产能利用率与利润数据(中报披露重点关注)。
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     §8 三句话总结
+═════════════════════════════════════ -->
+<section>
+  <div class="sec-hd"><span><span class="num">§8</span>三句话总结</span><span class="meta">FINAL TAKEAWAYS</span></div>
+
+  <div class="box box-g">
+    <strong>① 墨西哥USMCA零关税被严重低估：</strong>赛轮墨西哥年产600万条对美零关税出口是结构性垄断地位——这是赛轮全部基地中唯一可以零关税进入美国市场的工厂。2025年70%产能利用率已贡献2.8亿净利，2028年公司目标5%美国份额对应净利10-15亿/年，是最大的alpha来源。
+  </div>
+
+  <div class="box box-g">
+    <strong>② 埃及$11.41亿资金分批使用大幅缓解短期压力：</strong>2026年实际投入约25亿RMB(非82亿)，2027年35亿，2028年22亿。校准后2027-2028年有息负债维持在180亿警戒线下方运行，<strong>"安全垫消失"的担忧解除</strong>。
+  </div>
+
+  <div class="box box-b">
+    <strong>③ 当前11.72元 = 三因素叠加压制下的深度低估机会：</strong>对应2026E PE 7.6x、2028E PE 6.2x，相对中性估值中枢15-17元有28-45%上行空间。<strong>校准后的估值再上修</strong>：2028E净利从55-62亿上修至58-66亿，2030E稳态从62-72亿上修至65-78亿。<strong>11-12元区间是更明确的加仓窗口，未来30天3-4个催化兑现的概率极高。</strong>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源：赛轮IR最新交流(墨西哥USMCA+埃及分批使用) · 6/17公告(临2026-019) · 5/14董秘交流 · 2025年报 · 6/16统计局5月社零数据 · 既往v17-v20系列研究 · 媒体报道(炭黑产业网/财经网)</span>
+  <span>赛轮认知校准_两条IR披露_20260623 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
