@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百胜中国 (YUMC) — 估值分析：市值、历史回顾、资本回报率与合理价格</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#f7f5f1;--surface:#fff;--surface-alt:#f2efe9;--border:#e6e0d6;
+    --ink:#1a1714;--ink2:#5a5550;--muted:#9a9490;
+    --red:#c0392b;--green:#1e7a54;--blue:#1a4a7c;--amber:#b5590a;--purple:#6b46c1;
+    --redL:rgba(192,57,43,.10);--greenL:rgba(30,122,84,.10);--blueL:rgba(26,74,124,.10);--amberL:rgba(181,89,10,.10);
+    --mono:'IBM Plex Mono',monospace;--serif:'Noto Serif SC',serif;--sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.7}
+  .head{background:var(--ink);color:#fff;padding:48px 60px 40px;position:relative;overflow:hidden}
+  .head::before{content:'';position:absolute;top:-80px;right:-40px;width:300px;height:300px;border-radius:50%;background:rgba(30,122,84,.16)}
+  .head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:14px}
+  .head h1{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .head .sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:24px}
+  .badges{display:flex;gap:9px;flex-wrap:wrap}
+  .badge{padding:5px 13px;border-radius:18px;font-family:var(--mono);font-size:11px;font-weight:500}
+  .badge-a{background:var(--green);color:#fff}.badge-o{border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.8)}
+  .wrap{max-width:1040px;margin:0 auto;padding:44px 38px}
+  .stamp{background:#faf5e4;border:1px solid #d4b96a;border-radius:6px;padding:8px 15px;font-family:var(--mono);font-size:11px;color:#9a7528;letter-spacing:.06em;display:inline-block;margin-bottom:32px}
+  .sec{margin-bottom:44px}
+  .sec-t{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:18px;padding-bottom:9px;border-bottom:2px solid var(--green);display:flex;align-items:center;gap:10px}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--green);background:var(--greenL);padding:3px 9px;border-radius:4px}
+  .lead{font-size:14px;color:var(--ink2);margin-bottom:20px}
+  .verdict{background:var(--ink);color:#fff;border-radius:12px;padding:32px 36px;margin-bottom:44px}
+  .verdict h3{font-family:var(--serif);font-size:19px;margin-bottom:14px;color:#fff}
+  .verdict p{color:rgba(255,255,255,.82);font-size:14px;line-height:1.8;margin-bottom:11px}
+  .verdict .hl{color:#fff;font-weight:600}
+  .vtag{display:inline-flex;gap:8px;background:var(--green);border-radius:8px;padding:9px 18px;margin-top:6px;margin-right:10px}
+  .vtag span{font-family:var(--mono);font-size:12px;font-weight:500;color:#fff}
+  table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:13px;background:var(--surface);border-radius:8px;overflow:hidden}
+  th{background:var(--surface-alt);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);padding:10px 13px;text-align:left;border-bottom:2px solid var(--border)}
+  th.r,td.r{text-align:right}
+  td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  td.m{font-family:var(--mono)}
+  .up{color:var(--green)}.down{color:var(--red)}.neu{color:var(--muted)}
+  .hl-row{background:var(--greenL)!important}
+  .chartbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:24px}
+  .chartbox.row{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:none;border:none;padding:0}
+  .chartbox.row>div{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px}
+  .ct{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .call{border-radius:8px;padding:16px 20px;margin-bottom:18px;border-left:4px solid}
+  .call-g{background:var(--greenL);border-color:var(--green)}.call-a{background:var(--amberL);border-color:var(--amber)}
+  .call-r{background:var(--redL);border-color:var(--red)}.call-b{background:var(--blueL);border-color:var(--blue)}
+  .call-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+  .call-g .call-t{color:var(--green)}.call-a .call-t{color:var(--amber)}.call-r .call-t{color:var(--red)}.call-b .call-t{color:var(--blue)}
+  .call p{font-size:13px;line-height:1.65}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:17px 16px;position:relative;overflow:hidden}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .kpi.r::before{background:var(--red)}.kpi.g::before{background:var(--green)}.kpi.b::before{background:var(--blue)}.kpi.a::before{background:var(--amber)}
+  .kpi .l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:7px}
+  .kpi .v{font-family:var(--mono);font-size:22px;font-weight:600;line-height:1;margin-bottom:4px}
+  .kpi .c{font-family:var(--mono);font-size:10.5px}
+  .price-ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:22px}
+  .pl-cell{padding:14px 10px;text-align:center;border-right:1px solid var(--border)}
+  .pl-cell:last-child{border-right:none}
+  .pl-zone{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+  .pl-price{font-family:var(--mono);font-size:18px;font-weight:600;margin-bottom:4px}
+  .pl-note{font-size:10.5px;color:var(--ink2);line-height:1.4}
+  .foot{background:var(--surface-alt);border-top:1px solid var(--border);padding:24px 60px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8}
+  strong{font-weight:600;color:var(--ink)}
+  .big-yield{font-family:var(--mono);font-size:42px;font-weight:600;color:var(--green);line-height:1}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="meta">估值分析 · 市值 / 历史回顾 / 资本回报率 / 合理价格 · Pjaaden/Stock-Research</div>
+  <h1>百胜中国 (YUMC) — 估值分析：多少钱合适？</h1>
+  <div class="sub">含必胜客中国并购(2026.06.16)影响 · 资本回报率视角 · 四方法交叉验证</div>
+  <div class="badges">
+    <span class="badge badge-a">NYSE: YUMC / HK: 9987</span>
+    <span class="badge badge-o">现价 ~$41</span>
+    <span class="badge badge-o">市值 ~$14.3B</span>
+    <span class="badge badge-o">分析日：2026.06.25</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stamp">★ 日期标记：2026年6月25日 · 数据源：2025 10-K + 1Q26 10-Q + 6.16并购公告 + 股东大会股本(~351M股)</div>
+
+  <!-- 结论 -->
+  <div class="verdict">
+    <h3>结论：$41 显著低于合理价值，安全边际充足；合理价值区间 $48–55</h3>
+    <p>四种估值方法收敛到 <span class="hl">$46–55</span> 的合理价值区间，当前 ~$41 提供约 <span class="hl">15–30% 上行空间</span>，外加一个极具吸引力的资本回报率。</p>
+    <p><span class="hl">最锋利的估值抓手 = 资本回报率。</span>$41 价位，2026年$15亿分红+回购相当于市值的 <span class="hl">约10.5%</span>。这是一家几乎零有息负债、EPS仍双位数增长的公司——拿到10%+的"内含收益率"，在当前利率环境下极具性价比。即使按2027年起归一化的~$10亿/年回报计，前瞻回报率仍约7%。</p>
+    <p><span class="hl">必胜客并购是估值的净加分项。</span>$12亿赎回必胜客中国所有权，取消授权费，对EPS立即增厚、2027–28中个位数增厚——市场短期因"现金+杠杆+押注弱品牌"而担忧，但中长期提升利润率与每股收益，反而夯实了估值底部。</p>
+    <div style="margin-top:14px">
+      <div class="vtag"><span>合理价值：$48–55</span></div>
+      <div class="vtag" style="background:var(--blue)"><span>$41资本回报率：~10.5%</span></div>
+      <div class="vtag" style="background:var(--purple)"><span>加仓区间：$38–44</span></div>
+    </div>
+  </div>
+
+  <!-- 1 市值快照 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">01</span>市值与估值快照</div>
+    <div class="kpis">
+      <div class="kpi b"><div class="l">当前股价</div><div class="v">~$41</div><div class="c neu">52周区间 $41.7–58.4</div></div>
+      <div class="kpi b"><div class="l">市值</div><div class="v">~$14.3B</div><div class="c neu">约350M股 × $41</div></div>
+      <div class="kpi g"><div class="l">PE (2025 EPS)</div><div class="v">16.3×</div><div class="c up">↓ 较年初~19×大幅压缩</div></div>
+      <div class="kpi g"><div class="l">前瞻PE (2026E)</div><div class="v">14.4×</div><div class="c up">↓ 历史低位区</div></div>
+      <div class="kpi a"><div class="l">股息率</div><div class="v">2.8%</div><div class="c neu">$1.16/年 ($0.29×4)</div></div>
+      <div class="kpi r"><div class="l">资本回报率</div><div class="v">10.5%</div><div class="c up">★ 分红+回购/市值</div></div>
+      <div class="kpi b"><div class="l">FCF收益率</div><div class="v">~5.9%</div><div class="c up">FCF $840M/市值</div></div>
+      <div class="kpi a"><div class="l">Jefferies目标价</div><div class="v">$64.5</div><div class="c up">买入评级(6月上调)</div></div>
+    </div>
+
+    <table>
+      <thead><tr><th>股价</th><th class="r">市值</th><th class="r">PE25</th><th class="r">PE26E</th><th class="r">PE27E</th><th class="r">资本回报率</th><th class="r">股息率</th></tr></thead>
+      <tbody>
+        <tr><td class="down">$38 (悲观)</td><td class="r m">$13.3B</td><td class="r m">15.1×</td><td class="r m">13.3×</td><td class="r m">12.3×</td><td class="r m up">11.3%</td><td class="r m">3.1%</td></tr>
+        <tr class="hl-row"><td><strong>$41 (现价)</strong></td><td class="r m">$14.3B</td><td class="r m">16.3×</td><td class="r m">14.4×</td><td class="r m">13.2×</td><td class="r m up"><strong>10.5%</strong></td><td class="r m">2.8%</td></tr>
+        <tr><td>$44</td><td class="r m">$15.4B</td><td class="r m">17.5×</td><td class="r m">15.4×</td><td class="r m">14.2×</td><td class="r m">9.7%</td><td class="r m">2.6%</td></tr>
+        <tr><td class="up">$50 (合理中值)</td><td class="r m">$17.5B</td><td class="r m">19.9×</td><td class="r m">17.5×</td><td class="r m">16.1×</td><td class="r m">8.6%</td><td class="r m">2.3%</td></tr>
+        <tr><td class="up">$55 (合理上沿)</td><td class="r m">$19.2B</td><td class="r m">21.9×</td><td class="r m">19.3×</td><td class="r m">17.7×</td><td class="r m">7.8%</td><td class="r m">2.1%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);font-family:var(--mono)">EPS假设：2025实际$2.51；2026E~$2.85(有机+必胜客增厚)；2027E~$3.10(增长+PH全年增厚+回购)。股本约350M(股东大会274.99M=78.3%反推~351M，持续回购中)。</p>
+  </div>
+
+  <!-- 2 历史业绩 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">02</span>历史业绩回顾(2016分拆上市以来)</div>
+    <p class="lead">百胜中国2016年11月从百胜餐饮分拆独立上市。十年维度看：收入与门店稳步复利，EPS近年加速，但股价与盈利出现明显背离——这正是当前低估的来源。</p>
+
+    <div class="chartbox row">
+      <div><div class="ct">收入轨迹 ($B) — 8年CAGR ~6.4%</div><canvas id="revChart" height="200"></canvas></div>
+      <div><div class="ct">门店数 & 摊薄EPS</div><canvas id="epsChart" height="200"></canvas></div>
+    </div>
+
+    <table>
+      <thead><tr><th>指标</th><th class="r">2020</th><th class="r">2021</th><th class="r">2022</th><th class="r">2023</th><th class="r">2024</th><th class="r">2025</th></tr></thead>
+      <tbody>
+        <tr><td>收入($B)</td><td class="r m">8.3</td><td class="r m">9.9</td><td class="r m">9.6</td><td class="r m">11.0</td><td class="r m">11.3</td><td class="r m">11.8</td></tr>
+        <tr><td>运营利润($M)</td><td class="r m">—</td><td class="r m">—</td><td class="r m">~700</td><td class="r m">1,106</td><td class="r m">1,162</td><td class="r m">1,290</td></tr>
+        <tr><td>摊薄EPS($)</td><td class="r m">1.40</td><td class="r m">1.20</td><td class="r m">1.10</td><td class="r m">1.97</td><td class="r m">2.33</td><td class="r m">2.51</td></tr>
+        <tr><td>门店(千家)</td><td class="r m">10.5</td><td class="r m">11.8</td><td class="r m">12.9</td><td class="r m">14.6</td><td class="r m">16.4</td><td class="r m">18.1</td></tr>
+        <tr><td>餐厅利润率</td><td class="r m">—</td><td class="r m">—</td><td class="r m">13.0%</td><td class="r m">16.0%</td><td class="r m">15.7%</td><td class="r m">16.3%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-b">
+      <div class="call-t">盈利与股价的背离 = 当前低估的本质</div>
+      <p>过去三年摊薄EPS年均增长约15%（$1.97→$2.51），但股价同期年均下跌约8%。市值从2016年10月的$9.83B升至2026年4月的$16.62B，10年CAGR仅约5.7%，远落后于盈利增速。市场用"同店停滞+消费弱"压缩了估值倍数，制造了"盈利涨、股价跌"的剪刀差——这是逆向投资的典型信号，但需要催化剂修复。</p>
+    </div>
+  </div>
+
+  <!-- 3 资本回报率 (核心) -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">03</span>分红+回购计划：资本回报率深度拆解【核心】</div>
+    <p class="lead">这是判断"$41贵不贵"最有力的角度。百胜把"赚到的现金"大规模返还股东，在低股价下，这个回报率被动放大。</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:24px;margin-bottom:24px;align-items:center">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center">
+        <div class="ct" style="margin-bottom:10px">2026年资本回报率 @ $41</div>
+        <div class="big-yield">10.5%</div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:10px">$15亿 ÷ $143亿市值<br>(股息 $4亿 + 回购 $11亿)</div>
+      </div>
+      <div>
+        <div class="chartbox" style="margin:0"><div class="ct">资本回报构成与历史($M)</div><canvas id="returnChart" height="150"></canvas></div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>资本回报承诺</th><th>金额/计划</th><th>对应回报率 @ $41</th></tr></thead>
+      <tbody>
+        <tr><td><strong>2026年总返还</strong></td><td class="m">$1.5B（股息$0.4B + 回购$1.1B）</td><td class="m up">★ 约10.5%（≈市值的1/10）</td></tr>
+        <tr><td>2024–2026三年计划</td><td class="m">合计 $4.5B</td><td class="m">三年累计约市值的31%</td></tr>
+        <tr><td>2027年起政策</td><td class="m">返还约100%自由现金流(扣NCI分红)</td><td class="m">约$0.9–1B+/年 → 归一化约7%</td></tr>
+        <tr><td>2027–2028年指引</td><td class="m">年均$0.9B至超$1B，2028超$1B</td><td class="m">持续两位数EPS增长支撑</td></tr>
+        <tr><td>分红增长</td><td class="m">$0.29/季(2026)，9年CAGR约13%</td><td class="m">股息率2.8%且持续提升</td></tr>
+        <tr><td>上市以来累计返还</td><td class="m">2017年至今约 $5.8B</td><td class="m">占当前市值约40%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-g">
+      <div class="call-t">★ 资本回报率为什么是估值底部的硬支撑</div>
+      <p>$41时10.5%的资本回报率，意味着即使股价原地不动，公司每年也通过"分红到手+回购缩股(提升你的每股权益)"给你约10%的回报。回购在低股价下尤其高效——同样$11亿，股价越低注销的股份越多，对剩余股东越有利。这给股价提供了机械式的下行保护：股价越跌、回购回报率越高、买盘越强。</p>
+    </div>
+    <div class="call call-a">
+      <div class="call-t">需注意的可持续性细节</div>
+      <p>2026年$15亿返还 > FCF约$8.4亿，差额由资产负债表现金补足（属一次性高位）。叠加必胜客并购消耗$12亿现金+举债，2026年是"高返还+大并购"双重支出年。从2027年起，返还降至与FCF匹配的~$10亿/年——归一化前瞻资本回报率约7%，仍然强劲，但10.5%不是永久水平，定价时用7%更稳健。</p>
+    </div>
+  </div>
+
+  <!-- 4 必胜客并购 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">04</span>必胜客中国并购对估值的影响</div>
+    <table>
+      <thead><tr><th>要素</th><th>数据/影响</th></tr></thead>
+      <tbody>
+        <tr><td>交易对价</td><td class="m">$1.2B 现金（现金+债务融资）</td></tr>
+        <tr><td>取消的授权费(税后LTM)</td><td class="m up">约$62M/年 → 立即增厚利润率与EPS</td></tr>
+        <tr><td>隐含估值</td><td class="m">$1.2B / $62M = 约19.5× LTM PE，较可比公司中值(23.5×)折价约17%</td></tr>
+        <tr><td>EPS增厚节奏</td><td class="m">2026年起立即增厚；2027–2028 中个位数(约+5%)增厚</td></tr>
+        <tr><td>必胜客基本面</td><td class="m">2025收入$2.3B/OP$183M；连续13季同店交易增长、8季利润率扩张</td></tr>
+        <tr><td>增长目标</td><td class="m">门店4,375→2028年超6,000家；OP到2029年较2024翻倍</td></tr>
+        <tr><td>对资本回报的影响</td><td class="m up">★ 明确维持2026年$15亿返还计划不变</td></tr>
+      </tbody>
+    </table>
+    <div class="call call-b">
+      <div class="call-t">估值净效应：短空长多</div>
+      <p><strong>短期利空</strong>：消耗净现金缓冲、引入有息负债（削弱"零杠杆"估值溢价）、押注复苏期的弱势品牌——花旗明确表示"不预期交易后倍数立即重估"。<strong>中长期利多</strong>：取消授权费直接增厚利润率和EPS，必胜客获得菜单/店型自主权；晨星预期必胜客OP到2030翻三倍。对你的估值模型，这把2027E EPS从约$2.95抬升至约$3.10，合理价值上沿相应抬高。</p>
+    </div>
+  </div>
+
+  <!-- 5 多方法估值 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">05</span>四方法交叉验证 → 合理价值区间</div>
+    <div class="chartbox"><div class="ct">合理价值区间汇总 ($/股) — 现价$41 vs 各方法</div><canvas id="valChart" height="130"></canvas></div>
+
+    <table>
+      <thead><tr><th>估值方法</th><th>关键假设</th><th class="r">保守</th><th class="r">中性</th><th class="r">乐观</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PE法 (2026E)</strong></td><td>EPS $2.85；15×/16×/18×</td><td class="r m">$42.8</td><td class="r m">$45.6</td><td class="r m">$51.3</td></tr>
+        <tr><td><strong>PE法 (2027E)</strong></td><td>EPS $3.10(含PH增厚)；15×/16×/18×</td><td class="r m">$46.5</td><td class="r m">$49.6</td><td class="r m">$55.8</td></tr>
+        <tr><td><strong>EV/EBITDA</strong></td><td>Pro-forma EBITDA $1.9B；9×/10×/11×</td><td class="r m">$48.3</td><td class="r m">$53.7</td><td class="r m">$59.1</td></tr>
+        <tr><td><strong>资本回报率反推</strong></td><td>归一化$1B/年；要求8%/7%/6%</td><td class="r m">$35.7</td><td class="r m">$40.8</td><td class="r m">$47.6</td></tr>
+        <tr><td><strong>FCF收益率</strong></td><td>FCF $840M；5.5%/—/4.5%</td><td class="r m">$43.6</td><td class="r m">—</td><td class="r m">$53.3</td></tr>
+        <tr class="hl-row"><td><strong>综合合理价值</strong></td><td>四法收敛(剔除极端)</td><td class="r m"><strong>$46</strong></td><td class="r m"><strong>$50</strong></td><td class="r m"><strong>$55</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);font-family:var(--mono)">资本回报率反推法给出最保守区间(它本质是"无增长"的债券化估值)；PE/EV-EBITDA考虑了增长，给出更高值。合理价值取四法中枢约$48–55。</p>
+  </div>
+
+  <!-- 6 价格阶梯 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">06</span>多少钱合适：价格阶梯与操作区间</div>
+    <div class="price-ladder">
+      <div class="pl-cell" style="background:var(--redL)">
+        <div class="pl-zone" style="color:var(--red)">深度低估</div>
+        <div class="pl-price" style="color:var(--red)">&lt;$38</div>
+        <div class="pl-note">PE&lt;13×<br>资本回报率&gt;11%<br>重仓买入</div>
+      </div>
+      <div class="pl-cell" style="background:#fbf3e8">
+        <div class="pl-zone" style="color:var(--amber)">低估·加仓</div>
+        <div class="pl-price" style="color:var(--amber)">$38–44</div>
+        <div class="pl-note">现价落此区<br>资本回报率~10%<br>分批建仓</div>
+      </div>
+      <div class="pl-cell" style="background:var(--greenL)">
+        <div class="pl-zone" style="color:var(--green)">合理·持有</div>
+        <div class="pl-price" style="color:var(--green)">$45–52</div>
+        <div class="pl-note">PE 16–18×<br>合理价值中枢<br>持有</div>
+      </div>
+      <div class="pl-cell" style="background:#f4f0fb">
+        <div class="pl-zone" style="color:var(--purple)">合理上沿</div>
+        <div class="pl-price" style="color:var(--purple)">$53–58</div>
+        <div class="pl-note">PE 18–20×<br>需同店转正支撑<br>分批减</div>
+      </div>
+      <div class="pl-cell" style="background:var(--surface-alt)">
+        <div class="pl-zone" style="color:var(--ink2)">高估</div>
+        <div class="pl-price" style="color:var(--ink2)">&gt;$60</div>
+        <div class="pl-note">PE&gt;21×<br>需消费强复苏<br>止盈</div>
+      </div>
+    </div>
+
+    <div class="call call-g">
+      <div class="call-t">一句话回答"多少钱合适"</div>
+      <p><strong>合理价值 $48–55；当前 $41 明显偏低，安全边际约15–30%。</strong>$38–44 是理想加仓区间——这里既有约10%的资本回报率托底，又有必胜客并购的EPS增厚预期。向上催化需要：① 7月30日Q2电话会披露并购融资结构良性 + 利润率提升路径；② 同店销售实质转正(+2~3%)。在催化兑现前，把它当作"高现金回报的价值股"持有，而非"高成长股"——按这个属性，$41是个划算的价格。</p>
+    </div>
+  </div>
+
+</div>
+
+<div class="foot">
+  <div style="max-width:1040px;margin:0 auto">
+    数据源：百胜中国 2025 Form 10-K + 2026 Q1 10-Q + 6.16必胜客并购公告(8-K) + 股东大会公告(股本~351M) · 现价/市值为2026年6月近似 · EPS 2026E/2027E及部分历史值为推算(已标注) · 分析日：2026.06.25<br>
+    本报告为个人研究用途，不构成投资建议。投资有风险，决策需基于自身判断。档案：Pjaaden/Stock-Research / 百胜中国_NASDAQ_YUMC · 估值分析 v1.0
+  </div>
+</div>
+
+<script>
+const C={red:'#c0392b',green:'#1e7a54',blue:'#1a4a7c',amber:'#b5590a',purple:'#6b46c1',grid:'#e6e0d6'};
+const F={family:"'IBM Plex Mono', monospace",size:11};
+Chart.defaults.font=F;Chart.defaults.color='#9a9490';
+
+new Chart(document.getElementById('revChart'),{type:'line',
+  data:{labels:['2020','2021','2022','2023','2024','2025'],
+    datasets:[{label:'收入($B)',data:[8.3,9.9,9.6,11.0,11.3,11.8],borderColor:C.green,backgroundColor:C.greenL,fill:true,tension:.3,pointRadius:4,pointBackgroundColor:C.green}]},
+  options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'$'+v+'B'},min:7},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('epsChart'),{
+  data:{labels:['2020','2021','2022','2023','2024','2025','26E','27E'],
+    datasets:[
+      {type:'bar',label:'门店(千家)',data:[10.5,11.8,12.9,14.6,16.4,18.1,20.0,22.0],backgroundColor:C.blueL,borderColor:C.blue,borderWidth:1,yAxisID:'y1'},
+      {type:'line',label:'摊薄EPS($)',data:[1.40,1.20,1.10,1.97,2.33,2.51,2.85,3.10],borderColor:C.amber,backgroundColor:'transparent',tension:.3,pointRadius:4,pointBackgroundColor:C.amber,yAxisID:'y'}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}}},
+    scales:{y:{position:'left',grid:{color:C.grid},ticks:{callback:v=>'$'+v},title:{display:true,text:'EPS'}},
+      y1:{position:'right',grid:{display:false},ticks:{callback:v=>v+'k'},title:{display:true,text:'门店'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('returnChart'),{type:'bar',
+  data:{labels:['2023','2024','2025','2026E'],
+    datasets:[
+      {label:'回购',data:[820,1240,1136,1100],backgroundColor:C.red,borderWidth:0,stack:'s'},
+      {label:'股息',data:[280,300,353,400],backgroundColor:C.green,borderWidth:0,stack:'s'}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y+'M'}}},
+    scales:{y:{stacked:true,grid:{color:C.grid},ticks:{callback:v=>'$'+v+'M'}},x:{stacked:true,grid:{display:false}}}}});
+
+new Chart(document.getElementById('valChart'),{type:'bar',
+  data:{labels:['PE法26E','PE法27E','EV/EBITDA','资本回报反推','FCF收益率','综合合理值'],
+    datasets:[
+      {label:'保守',data:[42.8,46.5,48.3,35.7,43.6,46],backgroundColor:C.redL,borderColor:C.red,borderWidth:2},
+      {label:'中性',data:[45.6,49.6,53.7,40.8,48.5,50],backgroundColor:C.greenL,borderColor:C.green,borderWidth:2},
+      {label:'乐观',data:[51.3,55.8,59.1,47.6,53.3,55],backgroundColor:'rgba(107,70,193,.1)',borderColor:C.purple,borderWidth:2}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},
+    tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'$'+v},min:30,max:62},x:{grid:{display:false}}},
+  }});
+// 现价参考线(注解用文字提示)
+</script>
+
+</body>
+</html>
