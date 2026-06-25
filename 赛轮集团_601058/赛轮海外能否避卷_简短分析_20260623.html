@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮海外能否避卷·简短分析 · 2026-06-23</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.72;}
+
+.hdr{background:linear-gradient(180deg,#fefbf3 0%,var(--bg2) 100%);border-bottom:2.5px solid var(--ink);padding:18px 44px;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:7px;}
+h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:9px;max-width:870px;line-height:1.78;}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--di);letter-spacing:1px;margin-top:6px;}
+
+main{padding:0 44px 50px;}
+section{margin-top:24px;}
+
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;font-weight:700;}
+.sec-hd .num{color:var(--r);margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+
+.box{border-left:3px solid;padding:13px 16px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11.5px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);} .c-g{color:var(--g);} .c-a{color:var(--a);} .c-b{color:var(--b);} .c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.right{text-align:right;}
+
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:1px 6px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--g);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--a);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--r);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--b);}
+
+ul.tight{list-style:none;padding-left:0;}
+ul.tight li{padding:4px 0 4px 16px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.72;}
+ul.tight li::before{content:'▸';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+
+footer{margin-top:36px;padding:13px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+/* MOAT VISUAL */
+.moat{background:var(--bg2);border:1px solid var(--line);padding:12px 16px;margin:11px 0;}
+.moat-row{display:grid;grid-template-columns:55px 1fr 75px;gap:12px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line);font-size:11px;}
+.moat-row:last-child{border:none;}
+.moat-num{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--g);text-align:center;}
+.moat-bd{font-size:11px;color:var(--mu);line-height:1.65;}
+.moat-bd strong{color:var(--ink);}
+.moat-s{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--g);font-weight:700;text-align:right;text-transform:uppercase;letter-spacing:.5px;}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="eyebrow">SAILUN · OVERSEAS COMPETITION ANALYSIS · SHORT NOTE</div>
+  <h1>赛轮海外能否避卷? <em>简短分析</em><br>2024-2025中国轮胎出海井喷期 vs 赛轮<span class="g">先发护城河</span></h1>
+  <div class="sub">中国轮胎企业大规模出海(2024-25年井喷10+家),柬埔寨/印尼/北非密集涌入。赛轮在国际市场表现最亮眼,但同行集中出海是否会引发海外价格战?这份简短分析回答:① 哪些基地会卷;② 赛轮的护城河有多深;③ 净利率的5年走势。</div>
+  <div class="stamp">2026·06·23 · 简短判断 · 基于读者提供的"中国轮胎企业出海+上市时间表"图</div>
+</div>
+
+<main>
+
+<!-- §1 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>核心判断 · 一句话</span><span class="meta">BOTTOM LINE</span></div>
+  
+  <div class="box box-g">
+    <strong>会卷,但不会全面卷;赛轮会被影响,但能保持比同行高5-8pp的领先优势。</strong>判断依据:① 同行集中出海主要扎堆<strong>柬埔寨+印尼+北非</strong>三地,赛轮已在这三地都先一步达产;② 赛轮的<strong>先发优势(12年早于行业)+品牌渠道+产品高端化+客户黏性+关税地图</strong>形成五重护城河;③ 海外净利率从越南22%中位向印尼/埃及15-17%结构性下移是<strong>赛轮自己阶梯递减的结果,不是被卷出来的</strong>。
+  </div>
+</section>
+
+<!-- §2 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>海外价格战风险地图</span><span class="meta">RISK MAP BY GEOGRAPHY</span></div>
+
+  <table>
+    <thead>
+      <tr><th>区域</th><th>中国厂数量(已建/在建)</th><th>面向市场</th><th>卷的风险</th><th>对赛轮影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr">
+        <td class="fw7">柬埔寨</td>
+        <td>赛轮二期+青岛双星+福麦斯+正道+新大陆+托普+万力+江苏通用 = <strong>8+家</strong></td>
+        <td>欧盟+东南亚</td>
+        <td><span class="pill pill-r">高 ⚠</span></td>
+        <td class="c-a">2028-2030 净利率-2-3pp</td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">泰国</td>
+        <td>玲珑+森麒麟+中策+浦林成山+江苏通用+双钱 = <strong>6家</strong></td>
+        <td>原本面向美国</td>
+        <td><span class="pill pill-r">已出清</span></td>
+        <td class="c-g">美国双反114%已"团灭",赛轮无敞口</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">印尼</td>
+        <td>赛轮+中策+(其他在评估) = <strong>3-5家</strong></td>
+        <td>东南亚+欧盟</td>
+        <td><span class="pill pill-a">中</span></td>
+        <td class="c-a">2027-2029 净利率-1-2pp</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">墨西哥</td>
+        <td>赛轮+中策+玲珑(筹划) = <strong>2-3家</strong></td>
+        <td>美国(USMCA零关税)</td>
+        <td><span class="pill pill-a">中性</span></td>
+        <td class="c-g">美国2亿条市场太大,USMCA门槛高,差异化竞争</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">埃及/北非</td>
+        <td>赛轮+朝阳浪马+森麒麟摩洛哥+永盛+青岛双星阿尔及利亚 = <strong>5+家</strong></td>
+        <td>中东+欧盟+非洲</td>
+        <td><span class="pill pill-a">中</span></td>
+        <td class="c-a">赛轮先发但产能最大,2029-2031 净利率-1-2pp</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">越南</td>
+        <td>赛轮+金宇+贵州+昊华 = <strong>4家</strong>(其中赛轮最大)</td>
+        <td>欧盟+东南亚</td>
+        <td><span class="pill pill-g">低</span></td>
+        <td class="c-g">赛轮垄断+9年免税+12年成熟,无威胁</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">巴西/中东/巴基斯坦</td>
+        <td>各1家</td>
+        <td>本地市场</td>
+        <td><span class="pill pill-g">低</span></td>
+        <td class="c-g">体量小+分散</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-a">
+    <strong>关键观察 · "柬埔寨陷阱"是2028后最大隐忧:</strong>2024-2025年7家中国企业涌入柬埔寨,都享受9年免税+0%税率,都面向欧盟市场。这是一个<strong>"红利期同期上车"的典型剧本</strong>,3-5年后必然出现产能过剩→价格战→洗牌。赛轮在柬埔寨虽有先发优势(2015年第一批),但<strong>柬埔寨二期1,260万条半钢爬坡期恰好与同行涌入期重叠</strong>,这是中长期最值得关注的风险点。
+  </div>
+</section>
+
+<!-- §3 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>赛轮的五层护城河</span><span class="meta">FIVE-LAYER MOAT</span></div>
+
+  <div class="moat">
+    <div class="moat-row">
+      <div class="moat-num">①</div>
+      <div class="moat-bd"><strong>先发优势 (最核心)</strong> · 2012年第一个出海越南,比2024-2025井喷期早12年。当对手2024年才在柬埔寨建厂时,赛轮柬埔寨一期已经达产5年。这种<strong>"时间不可逆"的优势</strong>无法被复制。</div>
+      <div class="moat-s">12年领先</div>
+    </div>
+    <div class="moat-row">
+      <div class="moat-num">②</div>
+      <div class="moat-bd"><strong>产业链协同</strong> · 软控股份(同一实控人)提供成型机/硫化机/混炼线,装备成本比同行<strong>低10-20%</strong>。14家技术输出企业的建厂经验形成模块化能力,可同时推进3-4个项目。</div>
+      <div class="moat-s">5-12%成本优势</div>
+    </div>
+    <div class="moat-row">
+      <div class="moat-num">③</div>
+      <div class="moat-bd"><strong>品牌+渠道</strong> · Brand Finance 2025年全球轮胎品牌价值第10位(中国第一);75个国家渠道矩阵;7个品牌(赛轮/路极/黑鹰/锐科途/黑骑士/赛维/迈驰)分层覆盖不同价格带。新进者从0建渠道至少需要5-8年。</div>
+      <div class="moat-s">5-8年壁垒</div>
+    </div>
+    <div class="moat-row">
+      <div class="moat-num">④</div>
+      <div class="moat-bd"><strong>产品高端化</strong> · 液体黄金技术配套比亚迪/一汽-大众;49-63吋巨胎全系列(力拓五年供应协议);<strong>OTR毛利率30%+</strong>。中小同行无法在高端品类卷动。</div>
+      <div class="moat-s">技术壁垒</div>
+    </div>
+    <div class="moat-row">
+      <div class="moat-num">⑤</div>
+      <div class="moat-bd"><strong>关税地图最完整</strong> · 五地+一矩阵:越南/柬→欧盟免双反、墨西哥→美国零关税(独家)、埃及→中东+欧盟+非洲AfCFTA。同行普遍只覆盖1-2个关税通道,赛轮覆盖全部。</div>
+      <div class="moat-s">独家关税路径</div>
+    </div>
+  </div>
+</section>
+
+<!-- §4 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>净利率5年走势预判</span><span class="meta">MARGIN TRAJECTORY</span></div>
+
+  <table>
+    <thead>
+      <tr><th>时段</th><th>赛轮海外加权净利率</th><th>关键驱动</th><th>vs 同行(预估)</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">2024-2025 已实现</td><td class="right c-g">~20-22%</td><td>越南+柬一期稳态</td><td class="c-g">领先6-8pp</td></tr>
+      <tr class="hg"><td class="fw7">2026-2027</td><td class="right c-g">~18-19%</td><td>印尼/墨西哥扭亏爬坡</td><td class="c-g">领先5-7pp</td></tr>
+      <tr class="ha"><td class="fw7">2028-2029</td><td class="right c-a">~16-18%</td><td>埃及一期/二期达产·柬埔寨开始卷</td><td class="c-a">领先4-6pp</td></tr>
+      <tr class="ha"><td class="fw7">2030 稳态</td><td class="right c-a">~15-17%</td><td>埃及三期+柬埔寨内卷+墨西哥USMCA续签</td><td class="c-a">领先3-5pp</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>关键认知:</strong>赛轮海外净利率从22%下降到15-17%是<strong>必然趋势</strong>,但<strong>主要原因不是被同行卷,而是赛轮自己阶梯扩张的结果</strong>(越南22%→印尼18.65%→埃及一期18.30%→二期16.72%→三期14.5%)。即使没有同行涌入,赛轮自身扩张也会让加权净利率从22%降到17-18%。<strong>同行涌入再加速这个过程1-2年,并多带走1-2pp的净利率</strong>。<br><br>
+    但关键是:<strong>赛轮相对同行仍能保持3-5pp的稳定领先</strong>,这是五层护城河的真正价值——不是绝对优势,而是相对优势的可持续性。
+  </div>
+</section>
+
+<!-- §5 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>三句话总结</span><span class="meta">FINAL THREE</span></div>
+
+  <div class="box box-g">
+    <strong>① 会卷,但是局部+渐进:</strong>柬埔寨2028后是最大风险点(7+家中国企业同期涌入),印尼/北非有中度风险,而越南/墨西哥/中东相对安全。<strong>不会是2026-2027年的事,而是2028-2030年才会显现</strong>。
+  </div>
+
+  <div class="box box-g">
+    <strong>② 赛轮的护城河是"相对的"而非"绝对的":</strong>无论海外是否卷,赛轮自己阶梯扩张就会让海外净利率从22%降到15-17%。但<strong>相对于同行,五层护城河能保持3-5pp的稳定领先</strong>。即"被卷之后赛轮还是行业第一"。
+  </div>
+
+  <div class="box box-b">
+    <strong>③ 对2026-2030年投资判断的含义:</strong>这个时间窗口对赛轮反而是<strong>最有利的</strong>——同行的产能还在建设期,赛轮已经达产+品牌建立+渠道铺设完成,享受"先发红利"。2028后开始出现压力,但那时赛轮的<strong>美国市场份额(墨西哥USMCA)+OTR高端化+液体黄金技术</strong>已经成为新增长极。<strong>简言之:卷的时候赛轮也是行业里最不怕卷的那一家。</strong>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源:读者提供"中国轮胎出海+上市时间表"图 · 2025年报 · 中信建投5/14董秘交流 · v19东南亚产能潮+国际对标</span>
+  <span>赛轮海外能否避卷_简短分析_20260623 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
