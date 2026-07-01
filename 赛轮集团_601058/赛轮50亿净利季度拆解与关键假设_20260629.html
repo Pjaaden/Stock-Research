@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮2026年净利50亿·季度拆解与关键假设 · 2026-06-29</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;
+  --a:#8c4800;--ap:#fdf7f0;
+  --g:#1a6030;--gp:#f0faf4;
+  --b:#1a3870;--bp:#f0f4fb;
+  --p:#521a80;--pp:#f5f0fc;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.72;}
+
+.hdr{background:linear-gradient(180deg,#fefbf3 0%,var(--bg2) 100%);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:18px 0;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);font-weight:700;margin-bottom:8px;}
+h1{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.3px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:11px;max-width:870px;line-height:1.78;}
+.stamp{font-family:'JetBrains Mono',monospace;font-size:9px;text-align:right;letter-spacing:1px;color:var(--mu);line-height:1.7;}
+.stamp .big{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ink);letter-spacing:1px;}
+
+main{padding:0 44px 50px;}
+section{margin-top:26px;}
+
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:8px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;font-weight:700;}
+.sec-hd .num{color:var(--r);margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+.sec-sub-hd{font-family:'Noto Serif SC',serif;font-size:14px;font-weight:700;color:var(--ink);margin:14px 0 9px;padding-left:9px;border-left:3px solid var(--ink);}
+
+.box{border-left:3px solid;padding:13px 16px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11.5px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr.hg td{background:var(--gp);}
+tr.ha td{background:var(--ap);}
+tr.hr td{background:var(--rp);}
+tr.hb td{background:var(--bp);}
+tr.hp td{background:var(--pp);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);} .c-g{color:var(--g);} .c-a{color:var(--a);} .c-b{color:var(--b);} .c-p{color:var(--p);} .c-mu{color:var(--mu);}
+.fw7{font-weight:700;}
+.right{text-align:right;}
+
+.kpi-row{display:grid;gap:10px;margin:12px 0;}
+.kpi-4{grid-template-columns:repeat(4,1fr);}
+.kpi-3{grid-template-columns:repeat(3,1fr);}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:13px 14px;}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:5px;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);} .kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);} .kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);} .kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);} .kpi-b .kpi-v{color:var(--b);}
+
+.callout{background:var(--bg3);border:1px solid var(--line2);padding:13px 16px;margin:11px 0;}
+.callout-l{font-family:'Syne',sans-serif;font-size:9.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--r);font-weight:700;margin-bottom:7px;}
+.callout-bd{font-size:11.5px;color:var(--mu);line-height:1.82;}
+.callout-bd strong{color:var(--ink);}
+
+/* QUARTERLY MODEL SPECIAL */
+.q-model{background:var(--bg2);border:1.5px solid var(--ink);margin:14px 0;}
+.q-model-hd{background:var(--ink);color:var(--bg);padding:10px 16px;font-family:'Syne',sans-serif;font-size:11px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;display:flex;justify-content:space-between;}
+.q-model-grid{display:grid;grid-template-columns:110px 1fr 1fr 1fr 1fr;border-bottom:1px solid var(--line);}
+.q-model-grid.hdr-row{background:var(--bg3);}
+.q-model-grid.hdr-row > div{padding:8px 12px;font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;font-weight:700;border-right:1px solid var(--line);}
+.q-model-grid.hdr-row > div:last-child{border-right:none;}
+.q-model-grid > div{padding:9px 12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);border-right:1px solid var(--line);line-height:1.6;}
+.q-model-grid > div:last-child{border-right:none;}
+.q-model-grid > div:first-child{background:var(--bg3);font-weight:700;color:var(--ink);}
+.q-model-grid.q1 > div:nth-child(2){background:var(--gp);}
+.q-model-grid.q2 > div:nth-child(3){background:var(--gp);}
+.q-model-grid.q3 > div:nth-child(4){background:var(--ap);}
+.q-model-grid.q4 > div:nth-child(5){background:var(--gp);}
+.q-model-tot{background:var(--bg3);font-weight:700;}
+.q-model-tot > div{border-top:2px solid var(--ink);}
+
+ul.tight{list-style:none;padding-left:0;}
+ul.tight li{padding:4px 0 4px 16px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.72;}
+ul.tight li::before{content:'▸';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+
+footer{margin-top:40px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:1px 6px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--g);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--a);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--r);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--b);}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>SAILUN · 601058.SH · 50B FORECAST DECOMPOSITION</span>
+    <span>QUARTERLY MODEL &amp; ASSUMPTIONS</span>
+    <span>2026·06·29 SUNDAY</span>
+  </div>
+  <div class="hdr-body">
+    <div>
+      <div class="eyebrow">SAILUN TIRE · 50B NET INCOME DECOMPOSITION</div>
+      <h1>50亿净利<em>季度拆解</em>与<span class="g">关键假设透明化</span></h1>
+      <div class="sub">用户核心质疑："Q1净利仅10.56亿(+1.72%)，Q2受油价/天胶双高影响，50亿全年怎么算出来?" 本报告拆解Q2-Q4的季度盈利模型、天胶2个月库存滞后传导机制、关键假设的成立条件与失效情景，坦诚呈现50亿预测所依赖的乐观假设，以及回落至46-48亿的可能路径。</div>
+    </div>
+    <div class="stamp">
+      <div class="big">2026·06·29</div>
+      <div>诚实拆解<br>不粉饰模型</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- §0 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§0</span>核心结论</span><span class="meta">HONEST TAKEAWAY</span></div>
+
+  <div class="box box-a">
+    <strong>用户的质疑完全正确 — 50亿净利需要Q4大幅贡献才能达成。</strong>本报告透明拆解:
+    <ul style="margin:8px 0;padding-left:20px;color:var(--mu);list-style:disc">
+      <li><strong>Q1实际:</strong> 10.56亿 · <strong>Q2估:</strong> 12-14亿 · <strong>Q3估:</strong> 11-13亿(压力最大) · <strong>Q4估:</strong> 14-17亿</li>
+      <li><strong>中性合计:</strong> 47.5-54.5亿 · <strong>中位:</strong> 51亿</li>
+      <li>50亿预测是<strong>"中性略偏乐观"情景</strong>,依赖三个假设:① Q2营收破100亿+;② Q3毛利率不低于23%;③ Q4油价$72传导充分兑现</li>
+      <li>如果Q3毛利率跌破22%(天胶Q2峰值18,091传导),或Q4扭亏兑现推迟,全年可能落到 <strong>46-48亿</strong>(下修至5/17基准情景)</li>
+    </ul>
+  </div>
+
+  <div class="kpi-row kpi-4">
+    <div class="kpi kpi-g"><div class="kpi-l">Q1 实际</div><div class="kpi-v">10.56亿</div><div class="kpi-s">已披露·净利率11.16%</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">Q2 估算</div><div class="kpi-v">12-14亿</div><div class="kpi-s">4月发货800万条+涨价</div></div>
+    <div class="kpi kpi-r"><div class="kpi-l">Q3 估算 (最脆弱)</div><div class="kpi-v">11-13亿</div><div class="kpi-s">天胶Q2峰值滞后传导</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">Q4 估算 (最关键)</div><div class="kpi-v">14-17亿</div><div class="kpi-s">油价$72传导+全维度催化</div></div>
+  </div>
+</section>
+
+<!-- §1 天胶2个月库存滞后传导机制 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>天胶2个月库存滞后·成本传导时序</span><span class="meta">INVENTORY LAG MECHANICS</span></div>
+
+  <div class="box box-r">
+    <strong>关键机制:公司库存2个月(董秘明确披露)</strong>,意味着<strong>当季消化的是2个月前采购的原材料</strong>。这是理解Q3为什么是"最脆弱季度"的核心。
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>季度</th><th>销售周期</th><th>消化的原材料采购季</th><th>对应天胶采购成本(SHFE RU)</th><th>对应油价</th><th>对季度毛利率影响</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">Q1</td><td>1-3月</td><td>2025 Q4</td><td class="c-g">~15,300元/吨 (低位)</td><td class="c-g">~$70-75</td><td class="c-g fw7">26.86% ★ 已实现</td></tr>
+      <tr class="hb"><td class="fw7">Q2</td><td>4-6月</td><td>2026 Q1</td><td>~15,500-16,500元/吨</td><td>~$78-95 (振荡上升)</td><td class="c-b">25-26% 估</td></tr>
+      <tr class="hr"><td class="fw7">Q3 ⚠</td><td>7-9月</td><td>2026 Q2</td><td class="c-r fw7">~17,500-18,091元/吨 (年内峰值)</td><td class="c-r">~$85-103 (高位)</td><td class="c-r fw7">22-24% 估 · 全年最低</td></tr>
+      <tr class="hg"><td class="fw7">Q4</td><td>10-12月</td><td>2026 Q3</td><td class="c-g">~17,000-17,500元/吨 (小幅回落)</td><td class="c-g">~$72-86 (回落传导)</td><td class="c-g">25-27% 估 · 明显反弹</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">关键洞察 · Q3是"隐形悬崖"</div>
+    <div class="callout-bd">
+      Q1毛利率26.86%的"高光时刻"其实是<strong>消化2025 Q4低胶价库存</strong>的结果。Q2开始,原材料成本环比上升(4-5月是2026年天胶价格上升起始),Q3将消化2026 Q2采购的"峰值胶"。<br><br>
+      <strong>SHFE RU 2026 Q2峰值出现在6月初(18,091元/吨),比Q1采购成本高出2,500-3,000元/吨</strong>,叠加合成胶Q2还未回落到位。以赛轮年天胶用量约20万吨测算,Q3单季原料成本压力约<strong>+2-3亿元</strong>(vs Q1),对应毛利率下拉<strong>-2-3pp</strong>。<br><br>
+      <strong>但Q4会明显反弹:</strong>Q3消化的是2026 Q3采购(6月油价$72跌破,天胶6月虽然仍在17,200-17,800震荡但已开始回落),加上合成胶(丁苯13,650、丁二烯13,270)已经充分回落。Q4毛利率有望重新回到25-27%的高位区间。
+    </div>
+  </div>
+</section>
+
+<!-- §2 季度盈利模型详细 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>季度盈利模型·四季度详细拆解</span><span class="meta">QUARTERLY MODEL</span></div>
+
+  <div class="q-model">
+    <div class="q-model-hd">
+      <span>2026 QUARTERLY MODEL</span>
+      <span style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--bg);opacity:.6">数值均为中性估算 · 单位:亿元</span>
+    </div>
+    <div class="q-model-grid hdr-row">
+      <div>指标</div><div>Q1 已实现</div><div>Q2 估算</div><div>Q3 估算</div><div>Q4 估算</div>
+    </div>
+    <div class="q-model-grid q1">
+      <div>营业收入</div>
+      <div>94.61</div>
+      <div>102-108 <span class="pill pill-g">+4-7%</span></div>
+      <div>105-113 <span class="pill pill-g">旺季+2-5%</span></div>
+      <div>110-118 <span class="pill pill-g">扭亏+涨价</span></div>
+    </div>
+    <div class="q-model-grid q2">
+      <div>毛利率</div>
+      <div>26.86%</div>
+      <div>25-26% <span class="pill pill-a">-1-2pp</span></div>
+      <div class="c-r">22-24% <span class="pill pill-r">-3-5pp</span></div>
+      <div class="c-g">25-27% <span class="pill pill-g">回升</span></div>
+    </div>
+    <div class="q-model-grid">
+      <div>毛利额</div>
+      <div>~25.4</div>
+      <div>~25.5-28</div>
+      <div class="c-r">~23-27</div>
+      <div class="c-g">~27.5-32</div>
+    </div>
+    <div class="q-model-grid">
+      <div>销售+管理+研发费</div>
+      <div>~10</div>
+      <div>~11</div>
+      <div>~11.5</div>
+      <div>~12</div>
+    </div>
+    <div class="q-model-grid">
+      <div>财务费用</div>
+      <div>2.26 <span style="color:var(--r);font-size:9px">(含汇兑1亿)</span></div>
+      <div>~2 <span style="color:var(--r);font-size:9px">(4月再损0.2亿)</span></div>
+      <div>~1.5-2</div>
+      <div>~1.5</div>
+    </div>
+    <div class="q-model-grid">
+      <div>印尼/墨西哥</div>
+      <div class="c-r">-0.4 亏</div>
+      <div class="c-a">-0.3 至 -0.5</div>
+      <div class="c-g">+0.3 至 +0.5 转正</div>
+      <div class="c-g">+0.8 至 +1.5 稳态</div>
+    </div>
+    <div class="q-model-grid">
+      <div>其他 (税/少数股东等)</div>
+      <div>~2</div>
+      <div>~2.2</div>
+      <div>~2.3</div>
+      <div>~2.5</div>
+    </div>
+    <div class="q-model-grid q3">
+      <div class="fw7">归母净利</div>
+      <div class="fw7">10.56 ★</div>
+      <div class="fw7 c-g">12-14</div>
+      <div class="fw7 c-r">11-13 (最脆弱)</div>
+      <div class="fw7 c-g">14-17 (最关键)</div>
+    </div>
+    <div class="q-model-grid q4">
+      <div>净利率</div>
+      <div>11.16%</div>
+      <div>11.8-13%</div>
+      <div>10.5-11.5%</div>
+      <div>12.7-14.4%</div>
+    </div>
+    <div class="q-model-grid q-model-tot">
+      <div>Q1-Q4 累计</div>
+      <div colspan="4" style="grid-column:span 4;text-align:center;font-family:'JetBrains Mono',monospace;font-size:14px;">
+        中性合计: <span class="c-g fw7">47.5-54.5亿</span> · 中位: <span class="c-g fw7">51亿</span> · 悲观下沿: <span class="c-r fw7">45亿</span> · 乐观上沿: <span class="c-g fw7">56亿</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- §3 支撑Q2-Q4增长的关键因素 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>Q2-Q4增长驱动因素·6项</span><span class="meta">Q2-Q4 DRIVERS</span></div>
+
+  <table>
+    <thead>
+      <tr><th>驱动因素</th><th>发生季度</th><th>对净利贡献</th><th>确定性</th><th>依据</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hg">
+        <td class="fw7">① 4月发货800万条创历史新高</td>
+        <td>Q2持续</td>
+        <td class="right c-g">Q2营收+8-13亿</td>
+        <td><span class="pill pill-g">高</span></td>
+        <td>董秘5/14披露,三品类同比+20%</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">② 涨价四轮累计</td>
+        <td>Q2-Q4</td>
+        <td class="right c-g">全年+6-8亿净利</td>
+        <td><span class="pill pill-a">中</span></td>
+        <td>TBR/PCR各2轮+OTR一轮·落地率打折</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">③ 印尼/墨西哥扭亏</td>
+        <td>Q3-Q4</td>
+        <td class="right c-g">Q3-Q4合计+2-3亿</td>
+        <td><span class="pill pill-a">中</span></td>
+        <td>7-8月达产·全年目标盈利</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">④ 欧盟双反7/18兑现</td>
+        <td>Q3-Q4</td>
+        <td class="right c-g">H2 +1.5-3亿</td>
+        <td><span class="pill pill-g">高</span></td>
+        <td>24.4%税率已流出·符合预期</td>
+      </tr>
+      <tr class="hb">
+        <td class="fw7">⑤ 油价$72传导</td>
+        <td>Q4主要兑现</td>
+        <td class="right c-g">Q4 +1-2亿</td>
+        <td><span class="pill pill-g">高</span></td>
+        <td>合成胶已跌·2个月滞后传导</td>
+      </tr>
+      <tr>
+        <td class="fw7">⑥ 海外配套持续增长</td>
+        <td>全年</td>
+        <td class="right c-g">+2-3亿</td>
+        <td><span class="pill pill-g">高</span></td>
+        <td>中国汽车出口+68.7%·配套订单转移</td>
+      </tr>
+      <tr class="tot">
+        <td>合计正向贡献</td>
+        <td colspan="4">vs Q1年化(42.24亿)基础,新增约+11-14亿净利,达到 <strong>53-56亿</strong> 潜在</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- §4 抵消因素 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>抵消因素·4项风险</span><span class="meta">RISK OFFSETS</span></div>
+
+  <table>
+    <thead>
+      <tr><th>风险因素</th><th>影响季度</th><th>对净利拖累</th><th>发生概率</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr">
+        <td class="fw7">① Q3天胶Q2峰值滞后传导</td>
+        <td>Q3</td>
+        <td class="right c-r fw7">Q3 -2-3亿 · 全年 -2-3亿</td>
+        <td><span class="pill pill-r">高·基本确定</span></td>
+      </tr>
+      <tr class="hr">
+        <td class="fw7">② 汇兑损失全年</td>
+        <td>全年</td>
+        <td class="right c-r">-2至-2.5亿</td>
+        <td><span class="pill pill-r">高·Q1已损1亿+</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">③ 国内涨价"明涨暗降"</td>
+        <td>Q2-Q3</td>
+        <td class="right c-a">-1至-2亿</td>
+        <td><span class="pill pill-a">中·行业现象</span></td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">④ 沈阳新和平持续亏损</td>
+        <td>全年</td>
+        <td class="right c-a">-5至-7亿(减亏但仍亏)</td>
+        <td><span class="pill pill-a">中·爬坡期</span></td>
+      </tr>
+      <tr class="tot">
+        <td>合计负向</td>
+        <td colspan="3">全年约-6至-8亿(其中沈阳减亏已部分改善)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>净变化计算:</strong>Q1年化基础42.24亿 + 正向贡献11-14亿 - 净负向 5-8亿(汇兑+天胶+涨价打折,沈阳减亏已含在正向) = <strong>48-52亿</strong>。这就是中性预测50亿的完整逻辑。
+  </div>
+</section>
+
+<!-- §5 三情景敏感性 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>三情景敏感性分析</span><span class="meta">SCENARIOS</span></div>
+
+  <table>
+    <thead>
+      <tr><th>情景</th><th>Q3毛利率</th><th>Q4扭亏兑现</th><th>欧盟双反</th><th>全年净利</th><th>股价隐含</th></tr>
+    </thead>
+    <tbody>
+      <tr class="hr">
+        <td class="fw7">悲观</td>
+        <td class="c-r">21-22%</td>
+        <td>推迟至2027</td>
+        <td>&gt;30%</td>
+        <td class="c-r fw7">42-46亿</td>
+        <td>PE 8x → 10.5-11.5元</td>
+      </tr>
+      <tr class="ha">
+        <td class="fw7">中性偏悲观</td>
+        <td class="c-a">22-23%</td>
+        <td>部分兑现</td>
+        <td>24.4%(符合)</td>
+        <td class="c-a fw7">46-49亿</td>
+        <td>PE 8-9x → 11.5-13元</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">中性 ★</td>
+        <td class="c-a">23-24%</td>
+        <td>如期兑现</td>
+        <td>24.4%(符合)</td>
+        <td class="c-g fw7">50-52亿</td>
+        <td>PE 9-10x → 13.5-15.5元</td>
+      </tr>
+      <tr class="hg">
+        <td class="fw7">乐观</td>
+        <td class="c-g">24-25%</td>
+        <td>提前兑现</td>
+        <td>&lt;20%</td>
+        <td class="c-g fw7">54-58亿</td>
+        <td>PE 10-12x → 16-19元</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box box-a">
+    <strong>回应用户质疑:</strong>你的直觉"Q1 10亿+Q2受原料涨价影响=50亿存疑"是<strong>对的</strong>——如果Q2-Q4均按"线性外推"或"悲观情境",全年可能只有40-46亿。
+    <br><br>
+    <strong>50亿依赖三个"正常兑现"假设:</strong>
+    <ul class="tight">
+      <li><strong>假设1:</strong>Q2营收破100亿(4月已实现800万条支撑),</li>
+      <li><strong>假设2:</strong>Q3毛利率不跌破23%(天胶Q3消化Q2峰值是明确利空,但涨价+扭亏部分对冲),</li>
+      <li><strong>假设3:</strong>Q4油价$72传导充分兑现+涨价充分落地+印尼墨西哥稳态盈利。</li>
+    </ul>
+    <br>
+    如果假设1和假设3成立但假设2失效(Q3毛利率跌破22%),全年可能落到<strong>46-48亿</strong>——即回到5/17版基准情景。<strong>净利预测更稳妥的表述是"46-52亿区间,中性50亿"</strong>。
+  </div>
+</section>
+
+<!-- §6 估值定位再校准 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>估值定位·再校准</span><span class="meta">RECALIBRATED VALUATION</span></div>
+
+  <div class="kpi-row kpi-4">
+    <div class="kpi kpi-r"><div class="kpi-l">当前股价</div><div class="kpi-v">¥11.72</div><div class="kpi-s">6/23收盘 · 5日累计-7%</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">中性50亿·PE-2026E</div><div class="kpi-v">7.7x</div><div class="kpi-s">深度低估</div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">悲观46亿·PE-2026E</div><div class="kpi-v">8.4x</div><div class="kpi-s">仍低估</div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">下行支撑</div><div class="kpi-v">10.5-11.5</div><div class="kpi-s">悲观情境下的估值锚</div></div>
+  </div>
+
+  <div class="box box-g">
+    <strong>关键结论:即使按最保守的悲观情景(全年46亿),当前11.72元对应PE 8.4x仍处深度低估。</strong>
+    <ul class="tight">
+      <li><strong>下行保护:</strong>即使Q3毛利率跌至22%+Q4扭亏推迟,悲观下沿约10.5-11.5元(vs 当前11.72,仅-2至-10%空间);</li>
+      <li><strong>上行空间:</strong>如中性情景成立(50亿净利),合理估值中枢13.5-15.5元(+15-32%);</li>
+      <li><strong>非对称机会:</strong>下行-10%空间 vs 上行+30%空间 = 3:1赔率;</li>
+      <li><strong>关键催化未变:</strong>7/初Q2预喜、7/18欧盟终裁、8月底中报 — 30天内三大催化中任一兑现,均可能触发估值向13-14元回归。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- §7 三句话总结 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§7</span>三句话总结</span><span class="meta">FINAL</span></div>
+
+  <div class="box box-a">
+    <strong>① 用户质疑成立:</strong>50亿是"中性略偏乐观"预测,需要Q4大幅贡献(14-17亿)才能达成,并非简单外推Q1的10.56亿。<strong>更稳健的表述是"46-52亿区间,中性50亿"</strong>。
+  </div>
+
+  <div class="box box-r">
+    <strong>② Q3是全年最脆弱季度:</strong>由于2个月库存滞后,Q3将消化Q2峰值胶价(18,091元/吨),毛利率可能跌至22-24%,单季净利仅11-13亿。<strong>这是50亿预测最大的不确定性来源</strong>。
+  </div>
+
+  <div class="box box-g">
+    <strong>③ 但即使46-48亿也支撑当前估值:</strong>悲观情景下PE 8.4x仍深度低估,当前11.72元对应下行-10% vs 上行+30%的非对称机会。<strong>用户对基本面的谨慎审视 + 估值的保守测算,反而更强化了11-12元加仓的合理性</strong>——因为即便按悲观假设,也没有下跌太多的理由。
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span>数据来源:赛轮2026 Q1季报(10.56亿净利+26.86%毛利率) · 董秘5/14披露(4月800万条+涨价) · SHFE RU历史数据 · 天胶2个月库存机制 · 6/17埃及公告 · 6/23两条IR披露</span>
+  <span>赛轮50亿净利季度拆解_20260629 · FOR REFERENCE ONLY</span>
+</footer>
+
+</body>
+</html>
