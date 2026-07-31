@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>草甘膦行业深度分析报告 | 2026</title>
+
+  <style>
+    /* === Fresh Gradient Theme === */
+    :root {
+      --bg: #f8f9fb;
+      --bg2: #ffffff;
+      --ink: #1a1a2e;
+      --muted: #6b7280;
+      --rule: #e5e7eb;
+      --accent: #2563eb;
+      --accent2: #059669;
+      --font: 'PingFang SC','Microsoft YaHei','Noto Sans SC',-apple-system,BlinkMacSystemFont,sans-serif;
+      --font-mono: 'SF Mono','Fira Code','Consolas',monospace;
+      --max: 960px;
+      --radius: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.8;
+      padding: 0;
+    }
+
+    /* === Layout === */
+    .page {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* === Scrollbar === */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+
+    /* === Cover === */
+    .cover {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 80px 60px 60px;
+      border-radius: 0 0 var(--radius) var(--radius);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 0;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(5,150,105,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .cover .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(8px);
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .cover h1 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 span { color: #60a5fa; }
+    .cover .subtitle {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+    .cover .meta {
+      display: flex;
+      gap: 32px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      position: relative;
+      z-index: 1;
+    }
+    .cover .meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* === Navigation / TOC === */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 24px;
+    }
+    .nav-bar-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 8px 0;
+      scrollbar-width: none;
+    }
+    .nav-bar-inner::-webkit-scrollbar { display: none; }
+    .nav-bar-inner a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.8rem;
+      white-space: nowrap;
+      padding: 4px 10px;
+      border-radius: 6px;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-bar-inner a:hover,
+    .nav-bar-inner a.active { color: var(--accent); background: rgba(37,99,235,0.08); }
+
+    /* === TOC Section === */
+    .toc-section {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 48px;
+      margin: 32px 24px;
+    }
+    .toc-section h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .toc-section h2 small {
+      font-size: 0.7rem;
+      font-weight: 400;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 2px 10px;
+      border-radius: 10px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 32px;
+    }
+    .toc-item {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    .toc-item:hover { background: rgba(37,99,235,0.06); }
+    .toc-item .num {
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.8rem;
+      min-width: 28px;
+      font-family: var(--font-mono);
+    }
+    .toc-item .vol-tag {
+      font-size: 0.7rem;
+      color: var(--muted);
+      background: var(--bg);
+      padding: 1px 8px;
+      border-radius: 8px;
+      margin-left: auto;
+    }
+
+    /* === Content Sections === */
+    .content-area { padding: 0 24px 48px; }
+    .volume-header {
+      margin: 40px 0 24px;
+      padding: 20px 32px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+      border-radius: var(--radius);
+    }
+    .volume-header h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      opacity: 0.85;
+      letter-spacing: 2px;
+    }
+    .volume-header h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .chapter {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 36px 40px;
+      margin-bottom: 24px;
+    }
+    .chapter-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 2px solid var(--rule);
+    }
+    .chapter-header .ch-num {
+      background: var(--accent);
+      color: #fff;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .chapter-header h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .chapter h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 20px 0 10px;
+    }
+    .chapter h5 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin: 16px 0 8px;
+      color: var(--ink);
+    }
+    .chapter p {
+      margin-bottom: 12px;
+      color: var(--ink);
+      line-height: 1.9;
+    }
+    .chapter ul, .chapter ol {
+      margin: 8px 0 16px;
+      padding-left: 24px;
+    }
+    .chapter li {
+      margin-bottom: 6px;
+      line-height: 1.7;
+    }
+
+    /* === Highlight Boxes === */
+    .callout {
+      padding: 16px 20px;
+      border-radius: 10px;
+      margin: 16px 0;
+      border-left: 4px solid;
+    }
+    .callout.info {
+      background: rgba(37,99,235,0.06);
+      border-color: var(--accent);
+    }
+    .callout.warn {
+      background: rgba(245,158,11,0.08);
+      border-color: #f59e0b;
+    }
+    .callout.success {
+      background: rgba(5,150,105,0.06);
+      border-color: var(--accent2);
+    }
+    .callout.danger {
+      background: rgba(239,68,68,0.06);
+      border-color: #ef4444;
+    }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .callout p { margin-bottom: 0 !important; }
+
+    /* === Data Cards === */
+    .data-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .data-card {
+      background: var(--bg);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+      border: 1px solid var(--rule);
+    }
+    .data-card .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      font-family: var(--font-mono);
+    }
+    .data-card .label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* === Tables === */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead { background: var(--bg); }
+    th {
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 2px solid var(--rule);
+      white-space: nowrap;
+    }
+    td {
+      padding: 9px 14px;
+      border-bottom: 1px solid var(--rule);
+      color: var(--ink);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(37,99,235,0.03); }
+
+    /* === Charts === */
+    .chart-box {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      border: 1px solid var(--rule);
+      padding: 16px;
+      margin: 20px 0;
+    }
+    .chart-box .chart-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .chart-container {
+      width: 100%;
+      height: 400px;
+    }
+    .chart-container.tall { height: 480px; }
+
+    /* === Scenario Cards === */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0;
+    }
+    .scenario-card {
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--rule);
+      background: var(--bg);
+    }
+    .scenario-card h5 {
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+    .scenario-card .prob {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .scenario-card ul { margin: 8px 0 0; padding-left: 16px; }
+    .scenario-card li { font-size: 0.85rem; margin-bottom: 4px; }
+
+    /* === Dashboard === */
+    .dash-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .dash-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: var(--bg);
+      border-radius: 8px;
+      border: 1px solid var(--rule);
+    }
+    .dash-item .signal {
+      font-size: 0.75rem;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+    .dash-item .signal.green { background: rgba(5,150,105,0.12); color: var(--accent2); }
+    .dash-item .signal.yellow { background: rgba(245,158,11,0.12); color: #d97706; }
+    .dash-item .signal.red { background: rgba(239,68,68,0.12); color: #dc2626; }
+
+    /* === Timeline === */
+    .timeline { position: relative; padding-left: 28px; margin: 16px 0; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--rule);
+    }
+    .tl-item { position: relative; margin-bottom: 20px; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -24px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg2);
+    }
+    .tl-item .year {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    /* === Appendices === */
+    .appendix { background: var(--bg2); border-radius: var(--radius); box-shadow: var(--shadow); padding: 36px 40px; margin-bottom: 24px; }
+    .appendix h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .appendix h3 .badge { background: var(--accent); color: #fff; font-size: 0.7rem; padding: 2px 10px; border-radius: 10px; }
+
+    /* === Footer === */
+    .report-footer {
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      border-top: 1px solid var(--rule);
+      margin-top: 16px;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 720px) {
+      .cover { padding: 48px 24px 40px; }
+      .cover h1 { font-size: 1.8rem; }
+      .toc-section { padding: 24px 20px; margin: 20px 12px; }
+      .toc-grid { grid-template-columns: 1fr; }
+      .chapter { padding: 24px 20px; }
+      .scenario-grid { grid-template-columns: 1fr; }
+      .dash-grid { grid-template-columns: 1fr; }
+      .data-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-bar { padding: 0 12px; }
+      .nav-bar-inner a { font-size: 0.75rem; padding: 4px 8px; }
+      .content-area { padding: 0 12px 32px; }
+      .volume-header { padding: 16px 20px; }
+      .volume-header h3 { font-size: 1.2rem; }
+      .appendix { padding: 24px 20px; }
+    }
+
+    @media print {
+      .nav-bar { display: none; }
+      .chapter { break-inside: avoid; page-break-after: always; }
+      .cover { border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ COVER ═══════════════════ -->
+  <div class="page">
+    <div class="cover">
+      <div class="tag">行业深度研究 · 2026年7月</div>
+      <h1>草甘膦行业<span>深度分析报告</span></h1>
+      <div class="subtitle">从全球农药宏观全景到投资交易落地框架的全维度研究</div>
+      <div class="meta">
+        <span>报告期：2026年7月</span>
+        <span>涵盖：3卷10章 + 附录</span>
+        <span>数据截止：2026年7月</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ STICKY NAV ═══════════════════ -->
+  <nav class="nav-bar" id="navBar">
+    <div class="nav-bar-inner">
+      <a href="#toc">目录</a>
+      <a href="#ch1">第1章</a>
+      <a href="#ch2">第2章</a>
+      <a href="#ch3">第3章</a>
+      <a href="#ch4">第4章</a>
+      <a href="#ch5">第5章</a>
+      <a href="#ch6">第6章</a>
+      <a href="#ch7">第7章</a>
+      <a href="#ch8">第8章</a>
+      <a href="#ch9">第9章</a>
+      <a href="#ch10">第10章</a>
+      <a href="#appendix">附录</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════ TABLE OF CONTENTS ═══════════════════ -->
+  <div class="page">
+    <section class="toc-section" id="toc">
+      <h2>目录 <small>3卷 · 10章 · 2附录</small></h2>
+      <div class="toc-grid">
+
+        <a href="#vol1" class="toc-item"><span class="num">卷 I</span> 基础认知篇</a>
+        <a href="#ch1" class="toc-item"><span class="num">01</span> 全球农药行业宏观全景</a>
+        <a href="#ch2" class="toc-item"><span class="num">02</span> 草甘膦基础认知</a>
+        <a href="#ch3" class="toc-item"><span class="num">03</span> 化工生产过程与成本结构</a>
+
+        <a href="#vol2" class="toc-item"><span class="num">卷 II</span> 行业分析篇</a>
+        <a href="#ch4" class="toc-item"><span class="num">04</span> 市场规模与需求驱动力</a>
+        <a href="#ch5" class="toc-item"><span class="num">05</span> 供给端深度分析</a>
+        <a href="#ch6" class="toc-item"><span class="num">06</span> 价格波动机制</a>
+        <a href="#ch7" class="toc-item"><span class="num">07</span> 农产品联动机制</a>
+
+        <a href="#vol3" class="toc-item"><span class="num">卷 III</span> 投资实践篇</a>
+        <a href="#ch8" class="toc-item"><span class="num">08</span> 2026下半年情景与机会</a>
+        <a href="#ch9" class="toc-item"><span class="num">09</span> 竞争格局与标的筛选</a>
+        <a href="#ch10" class="toc-item"><span class="num">10</span> 投资/交易落地框架</a>
+
+        <a href="#appendix" class="toc-item"><span class="num">附</span> 附录A · 数据字典 / 附录B · 来源索引</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <div class="page">
+    <div class="content-area">
+
+      <!-- ================================================================ -->
+      <!--                   第一卷：基础认知篇                               -->
+      <!-- ================================================================ -->
+      <div class="volume-header" id="vol1">
+        <h2>第一卷</h2>
+        <h3>基础认知篇</h3>
+      </div>
+
+      <!-- ──────── 第1章 ──────── -->
+      <article class="chapter" id="ch1">
+        <div class="chapter-header">
+          <div class="ch-num">01</div>
+          <h3>全球农药行业宏观全景</h3>
+        </div>
+
+        <h4>1.1 全球作物保护市场规模</h4>
+        <p>2024年全球作物保护市场（Crop Protection）规模约为 <strong>700亿美元</strong>，其中化学农药仍占据主导地位。草甘膦作为全球使用量最大的除草剂品种，其终端市场规模约为 <strong>47亿美元</strong>（2024年），约占全球除草剂市场的 <strong>30%</strong>，占整个作物保护市场的 <strong>6.7%</strong>。</p>
+
+        <div class="data-grid">
+          <div class="data-card"><div class="value">~700亿</div><div class="label">全球作物保护市场 (USD)</div></div>
+          <div class="data-card"><div class="value">~47亿</div><div class="label">草甘膦终端市场 (USD)</div></div>
+          <div class="data-card"><div class="value">30%</div><div class="label">占全球除草剂份额</div></div>
+          <div class="data-card"><div class="value">6.7%</div><div class="label">占作物保护市场份额</div></div>
+        </div>
+
+        <h4>1.2 农药行业产业链结构</h4>
+        <p>农药产业链自上而下可分为：<strong>基础化工原料</strong>（黄磷、甘氨酸、甲醇等）→ <strong>中间体/原药</strong>（草甘膦原药、草甘膦异丙胺盐等）→ <strong>制剂加工</strong>（水剂、颗粒剂等）→ <strong>渠道分销</strong> → <strong>终端农户</strong>。草甘膦处于产业链中游核心位置，其价格波动受上游原料成本、中游产能格局和下游农产品价格的三重影响。</p>
+
+        <h4>1.3 草甘膦在农药行业的战略地位</h4>
+        <p>草甘膦是全球第一大除草剂品种，具备以下战略属性：（1）<strong>广谱灭生性</strong>——可有效防除一年生和多年生杂草；（2）<strong>转基因配套</strong>——与抗草甘膦转基因作物（大豆、玉米、棉花）构成农化黄金搭档；（3）<strong>性价比突出</strong>——单位面积用药成本远低于同类替代品；（4）<strong>难替代性</strong>——虽面临麦草畏、草铵膦等产品的竞争，但由于综合性能和成本优势，短期内难以被大规模替代。</p>
+
+        <div class="callout info">
+          <strong>关键洞察</strong>
+          <p>草甘膦作为全球农药行业的"压舱石"品种，其景气度直接反映了全球农业种植意愿和转基因作物种植面积的扩张速度。2024年47亿美元的终端市场体量使其成为农化投资领域不可回避的核心标的。</p>
+        </div>
+      </article>
+
+      <!-- ──────── 第2章 ──────── -->
+      <article class="chapter" id="ch2">
+        <div class="chapter-header">
+          <div class="ch-num">02</div>
+          <h3>草甘膦基础认知</h3>
+        </div>
+
+        <h4>2.1 化学结构与作用机理</h4>
+        <p>草甘膦（Glyphosate）的化学名称为 N-（膦羧甲基）甘氨酸，分子式为 <strong>C₃H₈NO₅P</strong>，分子量 169.07 g/mol。其作用机理为抑制植物体内的 <strong>5-烯醇丙酮酰莽草酸-3-磷酸合酶（EPSPS）</strong>，从而阻断芳香族氨基酸（苯丙氨酸、酪氨酸、色氨酸）的生物合成，导致植物生长受阻直至死亡。由于该代谢通路只存在于植物和部分微生物中，人和动物体内不存在，因此对人畜毒性较低。</p>
+
+        <h4>2.2 发展历程</h4>
+        <div class="timeline">
+          <div class="tl-item"><span class="year">1970</span><br>孟山都（现拜耳）化学家 John E. Franz 发现草甘膦的除草活性</div>
+          <div class="tl-item"><span class="year">1974</span><br>商业名称"Roundup"（农达）首次在美国获批上市，开启草甘膦商品化时代</div>
+          <div class="tl-item"><span class="year">1996</span><br>抗草甘膦转基因大豆（Roundup Ready）在美国商业化种植，引发草甘膦需求革命</div>
+          <div class="tl-item"><span class="year">2000s</span><br>中国成为全球草甘膦主要生产国，甘氨酸法技术路线大规模产业化</div>
+          <div class="tl-item"><span class="year">2018</span><br>拜耳完成对孟山都的收购，接手草甘膦全球业务，同时面临致癌诉讼挑战</div>
+          <div class="tl-item"><span class="year">2020s</span><br>全球草甘膦产能向中国进一步集中，行业进入存量博弈和成本竞争阶段</div>
+        </div>
+
+        <h4>2.3 理化性质与剂型</h4>
+        <p>草甘膦为白色结晶粉末，熔点 230°C（分解），水中溶解度为 10.1 g/L（20°C）。由于草甘膦原药本身在水中的溶解度有限，通常制成水溶性盐类（异丙胺盐、铵盐、钾盐等）以提高药效。常见剂型包括：41% 异丙胺盐水剂、30% 铵盐水剂、75.7% 可溶性粒剂等。</p>
+
+        <div class="callout success">
+          <strong>核心竞争力</strong>
+          <p>草甘膦的成功源于三大要素叠加：独特的EPSPS抑制机理保证了高效除草效果；与转基因作物的完美兼容创造了巨大的配套市场；优异的性价比使其在全球农业中成为不可替代的基础农资产。</p>
+        </div>
+      </article>
+
+      <!-- ──────── 第3章 ──────── -->
+      <article class="chapter" id="ch3">
+        <div class="chapter-header">
+          <div class="ch-num">03</div>
+          <h3>化工生产过程与成本结构</h3>
+        </div>
+
+        <h4>3.1 主要生产工艺路线</h4>
+        <p>目前全球草甘膦工业化生产主要采用两条技术路线：</p>
+        <ul>
+          <li><strong>甘氨酸法</strong>（占比 ~70%）：以甘氨酸、亚磷酸二甲酯、多聚甲醛为原料，经过酯化、缩合、水解、结晶等步骤制得。该路线为中国主流工艺，技术成熟度高，但"三废"排放量较大。</li>
+          <li><strong>IDA法</strong>（亚氨基二乙酸法，占比 ~30%）：以亚氨基二乙酸、亚磷酸、甲醛为原料，通过催化合成制得。该路线为拜耳（原孟山都）主流工艺，收率高、环保性好，但投资门槛高。</li>
+        </ul>
+
+        <h4>3.2 成本结构分析</h4>
+        <p>甘氨酸法的主要成本构成（以2023-2025年均价测算）：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>成本项</th><th>占比</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>原材料</td><td>~60-65%</td><td>甘氨酸、亚磷酸二甲酯、甲醇等</td></tr>
+              <tr><td>能源及动力</td><td>~12-15%</td><td>电力、蒸汽、水等</td></tr>
+              <tr><td>人工及制造费用</td><td>~8-10%</td><td>直接人工、折旧、维修等</td></tr>
+              <tr><td>环保处理</td><td>~6-8%</td><td>"三废"处理成本持续上升</td></tr>
+              <tr><td>其他费用</td><td>~5-8%</td><td>管理费用、运输费用等</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>3.3 原料价格关联</h4>
+        <p>草甘膦的原料成本高度依赖于两大核心基础化工产品：</p>
+        <div class="data-grid">
+          <div class="data-card"><div class="value">~22,000</div><div class="label">黄磷 元/吨 (2025年均价)</div></div>
+          <div class="data-card"><div class="value">~13,500</div><div class="label">甘氨酸 元/吨 (2023年均价)</div></div>
+        </div>
+        <p>黄磷和甘氨酸的价格波动会通过成本传导机制直接影响草甘膦的盈利空间。以甘氨酸路线为例，每生产1吨草甘膦原药约消耗 1.2-1.3 吨甘氨酸，甘氨酸价格每上涨 1,000 元/吨，草甘膦成本将上升约 1,200-1,300 元/吨。</p>
+
+        <h4>3.4 成本对标：甘氨酸法 vs IDA法</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>对比维度</th><th>甘氨酸法</th><th>IDA法</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>综合成本（元/吨）</td><td>18,000-22,000</td><td>17,000-20,000</td></tr>
+              <tr><td>单线最大产能（万吨/年）</td><td>3-5</td><td>5-8</td></tr>
+              <tr><td>环保压力</td><td>较高</td><td>较低</td></tr>
+              <tr><td>投资强度（万元/万吨）</td><td>~5,000-8,000</td><td>~10,000-15,000</td></tr>
+              <tr><td>技术来源</td><td>国内自主</td><td>引进/自主</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout warn">
+          <strong>成本趋势</strong>
+          <p>随着国内环保政策趋严和碳达峰目标推进，甘氨酸法的环保处理成本将持续上升，IDA法的相对成本优势将逐步显现。但短期内，甘氨酸法仍将保持工艺成熟度上的优势。</p>
+        </div>
+      </article>
+
+      <!-- ================================================================ -->
+      <!--                   第二卷：行业分析篇                               -->
+      <!-- ================================================================ -->
+      <div class="volume-header" id="vol2">
+        <h2>第二卷</h2>
+        <h3>行业分析篇</h3>
+      </div>
+
+      <!-- ──────── 第4章 ──────── -->
+      <article class="chapter" id="ch4">
+        <div class="chapter-header">
+          <div class="ch-num">04</div>
+          <h3>市场规模与需求驱动力</h3>
+        </div>
+
+        <h4>4.1 全球草甘膦市场概览</h4>
+        <p>2024年全球草甘膦市场规模（按终端售价计）约为 <strong>47亿美元</strong>，对应原药消费量约 <strong>75-85万吨</strong>。按终端市场（制剂）测算，全口径市场规模在 <strong>80-100亿美元</strong>之间。草甘膦是全球使用量最大的农药品种，占全球农药使用量的约 15%。</p>
+
+        <div class="data-grid">
+          <div class="data-card"><div class="value">75-85万吨</div><div class="label">全球草甘膦原药消费量/年</div></div>
+          <div class="data-card"><div class="value">80-100亿</div><div class="label">终端市场规模 (USD)</div></div>
+          <div class="data-card"><div class="value">~47亿</div><div class="label">原药等效市场 (USD)</div></div>
+          <div class="data-card"><div class="value">~15%</div><div class="label">占全球农药使用量</div></div>
+        </div>
+
+        <h4>4.2 需求驱动力分析</h4>
+        <p><strong>（1）转基因作物种植面积扩张</strong></p>
+        <p>全球转基因作物种植面积从 1996 年的 170 万公顷增长至 2024 年的约 2.0 亿公顷，年均复合增长率约 8%。抗草甘膦大豆、玉米、棉花是转基因作物的主要品种，约占全球转基因面积的 85% 以上。转基因渗透率仍有提升空间，特别是非洲和亚洲地区。</p>
+
+        <p><strong>（2）全球粮食安全与农业投入</strong></p>
+        <p>全球人口增长和粮食安全需求推动农药使用量维持刚性增长。尽管单位面积用药量趋于稳定，但耕地面积扩张和种植强度提高仍为草甘膦需求提供支撑。</p>
+
+        <p><strong>（3）替代效应与竞品格局</strong></p>
+        <p>草甘膦面临的主要替代品包括草铵膦（Glufosinate）、麦草畏（Dicamba）和 2,4-D。但草甘膦的综合性价比（单位面积成本约草铵膦的 1/3-1/2）和成熟的转基因配套体系使其仍占据主导地位。</p>
+
+        <div class="callout info">
+          <strong>需求前瞻</strong>
+          <p>2026年全球草甘膦需求预计维持低速增长（1-3%），主要增量来自巴西、阿根廷等南美大豆产区的种植面积扩大以及非洲地区转基因作物的推广。短期扰动因素包括拉尼娜/厄尔尼诺天气对种植面积的影响和主要进口国的库存周期调整。</p>
+        </div>
+      </article>
+
+      <!-- ──────── 第5章 ──────── -->
+      <article class="chapter" id="ch5">
+        <div class="chapter-header">
+          <div class="ch-num">05</div>
+          <h3>供给端深度分析</h3>
+        </div>
+
+        <h4>5.1 全球供给格局</h4>
+        <p>截至 2025 年底，全球草甘膦原药产能约为 <strong>120 万吨/年</strong>，其中中国产能约 <strong>81 万吨</strong>（占比 66%），海外产能约 39 万吨（占比 34%）。行业集中度较高，全球 CR4（兴发、拜耳、福华、新安）约为 <strong>70.7%</strong>。</p>
+
+        <!-- Chart 4: 全球产能分布饼图 -->
+        <div class="chart-box">
+          <div class="chart-title">图 5-1：全球草甘膦产能分布</div>
+          <div class="chart-container" id="chart-capacity-pie"></div>
+        </div>
+
+        <h4>5.2 中国主要企业产能排名</h4>
+        <p>中国主要草甘膦生产企业产能排名如下：</p>
+
+        <!-- Chart 5: 企业产能排名条形图 -->
+        <div class="chart-box">
+          <div class="chart-title">图 5-2：中国主要草甘膦企业产能排名</div>
+          <div class="chart-container" id="chart-capacity-bar"></div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>排名</th><th>企业名称</th><th>产能（万吨/年）</th><th>工艺路线</th><th>备注</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>兴发集团</td><td>23</td><td>甘氨酸法</td><td>国内最大，配套黄磷</td></tr>
+              <tr><td>2</td><td>福华通达</td><td>15</td><td>甘氨酸法</td><td>产能利用率高</td></tr>
+              <tr><td>3</td><td>新安股份</td><td>8</td><td>甘氨酸法</td><td>一体化优势</td></tr>
+              <tr><td>4</td><td>江山股份</td><td>7</td><td>甘氨酸法+IDA法</td><td>技术储备丰富</td></tr>
+              <tr><td>5</td><td>广信股份</td><td>6</td><td>甘氨酸法</td><td>近年扩产较快</td></tr>
+              <tr><td>6</td><td>和邦生物</td><td>5</td><td>IDA法</td><td>海外出口占比较高</td></tr>
+              <tr><td>7</td><td>利尔化学</td><td>5</td><td>IDA法</td><td>华润并购标的</td></tr>
+              <tr><td>8</td><td>扬农化工</td><td>4</td><td>IDA法</td><td>中化旗下</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>5.3 拜耳（原孟山都）的全球地位</h4>
+        <p>拜耳（Bayer）目前拥有约 <strong>37 万吨/年</strong>的草甘膦产能（含美国、比利时、巴西等地产能），占全球总产能的 <strong>31.4%</strong>。拜耳的产能主要集中在 IDA 工艺路线，成本控制能力强。然而，拜耳面临持续的草甘膦致癌诉讼风险，可能对其长期产能扩张意愿形成压制，这为中国企业扩大全球市场份额提供了窗口。</p>
+
+        <div class="callout info">
+          <strong>供给端关键判断</strong>
+          <p>全球草甘膦供给格局呈现"中国主导+拜耳寡头"的双极特征。中国产能占比 66% 且仍在上升，行业 CR4 约 70.7%。未来新增产能主要来自中国头部企业的技改扩产，中小企业将因环保和成本压力逐步退出。</p>
+        </div>
+      </article>
+
+      <!-- ──────── 第6章 ──────── -->
+      <article class="chapter" id="ch6">
+        <div class="chapter-header">
+          <div class="ch-num">06</div>
+          <h3>价格波动机制</h3>
+        </div>
+
+        <h4>6.1 国内现货价格走势（2025-08 ~ 2026-07）</h4>
+        <p>基于 Chemicalbook 平台草甘膦（95%原药）国内现货报价数据，2025年8月至2026年7月期间价格走势呈现"先抑后扬再回调"的三段式格局：</p>
+
+        <!-- Chart 1: 国内现货价格走势图 -->
+        <div class="chart-box">
+          <div class="chart-title">图 6-1：草甘膦国内现货价格走势（2025.08 - 2026.07）</div>
+          <div class="chart-container" id="chart-spot-price"></div>
+        </div>
+
+        <div class="data-grid">
+          <div class="data-card"><div class="value">¥26,500</div><div class="label">2025年8月 期初价</div></div>
+          <div class="data-card"><div class="value">¥24,000</div><div class="label">2026年2月 低点</div></div>
+          <div class="data-card"><div class="value">¥38,000</div><div class="label">2026年5月 最高价</div></div>
+          <div class="data-card"><div class="value">¥27,000</div><div class="label">2026年7月 期末价</div></div>
+        </div>
+
+        <h4>6.2 三段价格归因分析</h4>
+
+        <!-- Chart 2: 价格波动分段归因图 -->
+        <div class="chart-box">
+          <div class="chart-title">图 6-2：价格波动分段归因（三段区间 + 关键事件）</div>
+          <div class="chart-container" id="chart-price-attribution"></div>
+        </div>
+
+        <p><strong>阶段一：需求疲软·供应宽松（2025.08 - 2026.02）</strong></p>
+        <p>价格从 26,500 元/吨持续回落至 24,000 元/吨，跌幅约 9.4%。核心原因：（1）南美产区种植季前采购不及预期；（2）国内行业开工率维持高位，社会库存累积；（3）海外客户去库存周期延长。</p>
+
+        <p><strong>阶段二：供需共振·快速拉升（2026.03 - 2026.05）</strong></p>
+        <p>价格从 24,000 元/吨急速攀升至 38,000 元/吨，涨幅达 58.3%。核心驱动：（1）春耕备货旺季叠加南美种植季订单集中释放，需求端内外同步爆发；（2）黄磷价格受枯水期电力供应紧张影响上涨至 25,000 元/吨以上，成本推升效应显著；（3）行业库存处于历史低位，头部企业限量发货加剧供应紧张预期。</p>
+
+        <p><strong>阶段三：需求担忧·去库存（2026.06 - 2026.07）</strong></p>
+        <p>价格从 38,000 元/吨高位回调至 27,000 元/吨，跌幅约 28.9%。核心原因：（1）高价位抑制终端需求，下游转为观望；（2）CBOT 大豆价格从 12 美元/蒲式耳上方回落至 11 美元附近，种植收益预期转弱；（3）国内进入检修季但社会库存仍处高位，去库存压力显现。</p>
+
+        <h4>6.3 价格驱动代理变量篮子</h4>
+        <p>基于以上分析，我们构建了草甘膦价格波动的"代理变量篮子"，用于实时跟踪和预判价格走势：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>变量类别</th><th>代理变量</th><th>数据频率</th><th>相关性方向</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>成本端</td><td>黄磷现货价、甘氨酸价格</td><td>周度</td><td>正相关</td></tr>
+              <tr><td>供给端</td><td>行业开工率、企业库存天数</td><td>月度</td><td>负相关</td></tr>
+              <tr><td>需求端</td><td>月度出口量、南美进口量</td><td>月度</td><td>正相关</td></tr>
+              <tr><td>终端农产品</td><td>CBOT大豆价格、大豆/玉米比价</td><td>日度</td><td>正相关</td></tr>
+              <tr><td>宏观汇率</td><td>USD/CNY 在岸即期汇率</td><td>日度</td><td>负相关（出口折算）</td></tr>
+              <tr><td>政策事件</td><td>环保督查、反倾销调查</td><td>不定期</td><td>事件驱动</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- ──────── 第7章 ──────── -->
+      <article class="chapter" id="ch7">
+        <div class="chapter-header">
+          <div class="ch-num">07</div>
+          <h3>农产品联动机制</h3>
+        </div>
+
+        <h4>7.1 传导链路</h4>
+        <p>草甘膦价格与农产品价格之间存在清晰的三层传导链路：</p>
+        <ol>
+          <li><strong>农产品价格 → 种植面积/种植意愿</strong>：以 CBOT 大豆、玉米为代表的农产品期货价格决定下一种植季的农户种植意愿和种植面积。</li>
+          <li><strong>种植面积 → 农药投入</strong>：种植面积的扩大和种植密度的提高直接带动包括草甘膦在内的农药需求量。</li>
+          <li><strong>农药需求 → 草甘膦价格</strong>：在供给相对刚性的背景下，需求的周期性波动是草甘膦价格的主要驱动因素之一。</li>
+        </ol>
+
+        <h4>7.2 两季播种窗口与价格节奏</h4>
+        <p>全球草甘膦需求呈现出鲜明的两季播种特征：</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>播种季</th><th>时间窗口</th><th>主要作物</th><th>主要地区</th><th>对草甘膦需求高峰</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>南美一季</td><td>9月-11月</td><td>大豆、玉米</td><td>巴西、阿根廷</td><td>8月-10月</td></tr>
+              <tr><td>北美/欧洲一季</td><td>4月-6月</td><td>大豆、玉米、棉花</td><td>美国、欧盟</td><td>3月-5月</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>这意味着草甘膦出口通常在每年 3-5 月（对应北半球播种）和 8-10 月（对应南半球播种）迎来两波需求高峰。两季播种窗口的存在使草甘膦需求较为均衡地分布于全年，但也加大了库存管理和价格研判的复杂度。</p>
+
+        <h4>7.3 当前农产品价格环境（2026年7月）</h4>
+        <div class="data-grid">
+          <div class="data-card"><div class="value">~$11.0</div><div class="label">CBOT大豆 (美元/蒲式耳)</div></div>
+          <div class="data-card"><div class="value">~6.77</div><div class="label">USD/CNY 即期汇率</div></div>
+          <div class="data-card"><div class="value">~6.88</div><div class="label">2026年均汇率预测</div></div>
+        </div>
+
+        <p>2026年7月 CBOT 大豆价格约 11.0 美元/蒲式耳，较年初 10.5 美元有所回升，但仍处于历史中等偏低水平。USD/CNY 即期汇率约 6.77（2026年7月），全年均值预计在 6.88 左右。人民币汇率的相对强势对以人民币计价的国内草甘膦出口价格形成一定压制。</p>
+
+        <div class="callout warn">
+          <strong>汇率风险提示</strong>
+          <p>若2026年下半年人民币进一步升值至 6.6-6.7 区间，国内草甘膦企业的出口收入折算人民币后将面临压力，这可能在需求端对价格形成额外拖累。</p>
+        </div>
+      </article>
+
+      <!-- ================================================================ -->
+      <!--                   第三卷：投资实践篇                               -->
+      <!-- ================================================================ -->
+      <div class="volume-header" id="vol3">
+        <h2>第三卷</h2>
+        <h3>投资实践篇</h3>
+      </div>
+
+      <!-- ──────── 第8章 ──────── -->
+      <article class="chapter" id="ch8">
+        <div class="chapter-header">
+          <div class="ch-num">08</div>
+          <h3>2026下半年情景与机会</h3>
+        </div>
+
+        <h4>8.1 核心事件：华润并购利尔化学</h4>
+        <p>2026年7月29-30日，华润医药旗下<strong>华润双鹤</strong>公告拟通过协议受让方式收购利尔化学约 <strong>23.5%</strong> 股权（交易对价及具体方案尚在推进中）。这是央企首次大规模入局草甘膦行业，对行业影响具有里程碑意义：</p>
+        <ul>
+          <li><strong>行业整合加速</strong>：华润作为央企入局草甘膦行业，标志着行业整合已进入国家队时代，预计将加速中小企业出清。</li>
+          <li><strong>利尔化学估值重塑</strong>：华润的资本实力和产业资源将显著提升利尔化学的竞争力和抗风险能力。</li>
+          <li><strong>示范效应</strong>：可能引发其他头部企业的并购重组预期，提升全行业估值中枢。</li>
+        </ul>
+
+        <h4>8.2 三条情景路径</h4>
+        <div class="scenario-grid">
+          <div class="scenario-card">
+            <h5>情景A：温和复苏（基础情景）</h5>
+            <div class="prob" style="background:rgba(5,150,105,0.12);color:var(--accent2);">概率 50%</div>
+            <ul>
+              <li>2026H2 现货价运行区间：28,000-32,000 元/吨</li>
+              <li>南美播种季需求如期释放</li>
+              <li>CBOT 大豆维持 10-11.5 美元</li>
+              <li>华润并购如期推进</li>
+              <li>出口量同比 +3-5%</li>
+            </ul>
+          </div>
+          <div class="scenario-card">
+            <h5>情景B：景气上行（乐观情景）</h5>
+            <div class="prob" style="background:rgba(37,99,235,0.12);color:var(--accent);">概率 25%</div>
+            <ul>
+              <li>2026H2 现货价运行区间：32,000-38,000 元/吨</li>
+              <li>拉尼娜天气影响供给</li>
+              <li>CBOT 大豆突破 12 美元</li>
+              <li>行业超预期整合事件</li>
+              <li>出口量同比 +8-12%</li>
+            </ul>
+          </div>
+          <div class="scenario-card">
+            <h5>情景C：承压下行（悲观情景）</h5>
+            <div class="prob" style="background:rgba(239,68,68,0.12);color:#dc2626;">概率 25%</div>
+            <ul>
+              <li>2026H2 现货价运行区间：23,000-27,000 元/吨</li>
+              <li>全球经济衰退拖累农产品需求</li>
+              <li>CBOT 大豆跌破 9.5 美元</li>
+              <li>汇率升值至 6.5 以下</li>
+              <li>出口量同比 -5-10%</li>
+            </ul>
+          </div>
+        </div>
+
+        <h4>8.3 触发器仪表盘</h4>
+        <p>以下实时监测指标将触发我们对情景预期的动态调整：</p>
+        <div class="dash-grid">
+          <div class="dash-item"><span>CBOT 大豆价格</span> <span class="signal yellow">$11.0</span></div>
+          <div class="dash-item"><span>行业开工率</span> <span class="signal green">68%</span></div>
+          <div class="dash-item"><span>黄磷现货价</span> <span class="signal yellow">¥22,500</span></div>
+          <div class="dash-item"><span>USD/CNY 汇率</span> <span class="signal green">6.77</span></div>
+          <div class="dash-item"><span>月度出口量（最新）</span> <span class="signal green">6.7万吨</span></div>
+          <div class="dash-item"><span>华润并购进展</span> <span class="signal yellow">推进中</span></div>
+          <div class="dash-item"><span>社会库存（周度）</span> <span class="signal red">偏高</span></div>
+          <div class="dash-item"><span>南美采购订单</span> <span class="signal yellow">正常</span></div>
+        </div>
+      </article>
+
+      <!-- ──────── 第9章 ──────── -->
+      <article class="chapter" id="ch9">
+        <div class="chapter-header">
+          <div class="ch-num">09</div>
+          <h3>竞争格局与标的筛选</h3>
+        </div>
+
+        <h4>9.1 上市公司弹性排序</h4>
+        <p>我们按照草甘膦业务在上市公司营收/利润中的占比、产能规模、成本优势和一体化率等维度，对6家草甘膦业务占比较高的A股上市公司进行了弹性排序：</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>排名</th><th>公司</th><th>产能（万吨）</th><th>草甘膦营收占比</th><th>弹性评分</th><th>核心优势</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>兴发集团</td><td>23</td><td>~35-40%</td><td>★★★★★</td><td>产能最大，黄磷完全配套</td></tr>
+              <tr><td>2</td><td>福华通达</td><td>15</td><td>~50-60%</td><td>★★★★★</td><td>纯正草甘膦标的，弹性最高</td></tr>
+              <tr><td>3</td><td>利尔化学</td><td>5</td><td>~25-30%</td><td>★★★★</td><td>华润并购催化剂</td></tr>
+              <tr><td>4</td><td>新安股份</td><td>8</td><td>~20-25%</td><td>★★★★</td><td>一体化循环经济</td></tr>
+              <tr><td>5</td><td>江山股份</td><td>7</td><td>~15-20%</td><td>★★★</td><td>技术路线灵活</td></tr>
+              <tr><td>6</td><td>扬农化工</td><td>4</td><td>~10-15%</td><td>★★</td><td>央企平台，但占比低</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p><strong>弹性评分标准</strong>：综合考量（1）草甘膦业务营收/利润占比权重 40%；（2）产能规模和行业地位权重 25%；（3）成本优势（含原料配套）权重 20%；（4）催化剂事件权重 15%。</p>
+
+        <h4>9.2 企业弹性对比</h4>
+
+        <!-- Chart 6: 企业弹性对比雷达图 -->
+        <div class="chart-box">
+          <div class="chart-title">图 9-1：草甘膦企业多维度弹性对比</div>
+          <div class="chart-container tall" id="chart-elasticity"></div>
+        </div>
+
+        <h4>9.3 弹性测算框架</h4>
+        <p>企业弹性（Earnings Sensitivity）我们采用以下标准化公式测算：</p>
+        <div class="callout info">
+          <p><strong>E = (P_gly / P_tot) x (R_gly / R_tot) x (1 + I) x (1 + C)</strong></p>
+          <p style="font-size:0.85rem;margin-top:8px;">其中：E = 弹性系数；P_gly = 草甘膦利润贡献；P_tot = 公司总利润；R_gly = 草甘膦收入贡献；R_tot = 公司总收入；I = 一体化加成因子（0~0.3）；C = 催化剂因子（0~0.2）</p>
+        </div>
+        <p>按此框架，当草甘膦价格上涨 10%（约 2,700 元/吨），兴发集团和福华通达的 EPS 弹性预计最高，分别可达 ~8-12% 和 ~12-15% 的业绩弹性。利尔化学因华润并购的催化剂加成，其估值弹性可能超越短期业绩弹性。</p>
+
+        <div class="callout warn">
+          <strong>风险提示</strong>
+          <p>以上弹性测算基于当前可获取的公开信息，未考虑以下潜在风险：（1）企业非草甘膦业务的大幅波动；（2）财务杠杆和资金成本差异；（3）税收政策变动。投资决策应以详尽的企业调研和财务模型为准。</p>
+        </div>
+      </article>
+
+      <!-- ──────── 第10章 ──────── -->
+      <article class="chapter" id="ch10">
+        <div class="chapter-header">
+          <div class="ch-num">10</div>
+          <h3>投资/交易落地框架</h3>
+        </div>
+
+        <h4>10.1 价格信号体系</h4>
+        <p>基于本报告构建的分析框架，我们建立了多层信号体系以辅助投资和交易决策：</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>信号层级</th><th>指标</th><th>阈值/方向</th><th>信号含义</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>L1 趋势信号</td><td>草甘膦现货价 MA10 vs MA30</td><td>金叉/死叉</td><td>中期趋势方向</td></tr>
+              <tr><td>L2 成本信号</td><td>黄磷-草甘膦价差</td><td>< 4,000 元/吨为亏损区</td><td>行业盈利底部</td></tr>
+              <tr><td>L3 需求信号</td><td>月度出口量同比</td><td>> +10% 为需求强劲</td><td>需求景气度</td></tr>
+              <tr><td>L4 宏观信号</td><td>CBOT大豆价格</td><td>> 12.5 美元为强支撑</td><td>种植意愿前瞻</td></tr>
+              <tr><td>L5 库存信号</td><td>社会库存周度变化</td><td>连续4周下降为去库确认</td><td>供需拐点</td></tr>
+              <tr><td>L6 事件信号</td><td>行业整合/环保督查</td><td>重大事件触发</td><td>情绪/估值催化</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>10.2 对冲框架</h4>
+        <p>草甘膦价格波动具有明显的周期性特征，建议采用以下对冲策略管理风险：</p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>风险来源</th><th>对冲工具</th><th>操作建议</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>草甘膦价格下跌</td><td>卖出草甘膦原药期货或场外期权</td><td>当信号体系触发 L1 死叉 + L2 亏损区时加大对冲比例</td></tr>
+              <tr><td>原材料价格上涨</td><td>买入黄磷/甘氨酸期货或远期</td><td>当成本信号显示价差收窄至历史 20% 分位以下时锁定原料成本</td></tr>
+              <tr><td>汇率风险</td><td>USD/CNY 远期结汇</td><td>出口型企业建议锁定 50-70% 外汇敞口</td></tr>
+              <tr><td>极端事件风险</td><td>买入草甘膦行业看跌期权</td><td>当 CBOT 大豆跌破 9 美元或全球性衰退信号出现时配置</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>10.3 风险清单</h4>
+        <div class="callout danger">
+          <strong>风险清单（Rank by Impact）</strong>
+          <ol style="margin-top:8px;">
+            <li><strong>监管/法律风险</strong>：拜耳致癌诉讼继续发酵并蔓延至中国企业，可能导致主要进口国出台限制性政策。</li>
+            <li><strong>地缘政治风险</strong>：中美贸易摩擦升级可能导致草甘膦被列入加征关税清单。</li>
+            <li><strong>技术替代风险</strong>：基因编辑技术（CRISPR）培育出非转基因抗除草剂作物，改变现有竞争格局。</li>
+            <li><strong>极端天气风险</strong>：强厄尔尼诺/拉尼娜事件导致全球主要农业产区大幅减产。</li>
+            <li><strong>汇率大幅波动风险</strong>：人民币在短期内出现 5% 以上的大幅升值。</li>
+            <li><strong>行业产能无序扩张</strong>：在行业景气度高企时大量新增产能投产，打破供需平衡。</li>
+          </ol>
+        </div>
+
+        <h4>10.4 投资日历（2026下半年关键节点）</h4>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>时间</th><th>关键事件</th><th>预期影响</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>2026年8月</td><td>南美种植季备货启动</td><td>出口订单增加，价格支撑增强</td></tr>
+              <tr><td>2026年9月</td><td>美国农业部（USDA）种植面积报告</td><td>大豆/玉米种植面积预期调整</td></tr>
+              <tr><td>2026年10月</td><td>华润并购利尔进展更新</td><td>行业整合预期再定价</td></tr>
+              <tr><td>2026年11月</td><td>南美播种进度 + 天气监测</td><td>拉尼娜/厄尔尼诺确认</td></tr>
+              <tr><td>2026年12月</td><td>年底库存盘点 + 2027年需求展望</td><td>库存出清力度决定2027年起点</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- ================================================================ -->
+      <!--                      附录                                         -->
+      <!-- ================================================================ -->
+      <div class="volume-header" id="appendix" style="background:linear-gradient(135deg,#6b7280,#4b5563);">
+        <h2>附录</h2>
+        <h3>数据字典 &amp; 来源索引</h3>
+      </div>
+
+      <article class="appendix">
+        <h3><span class="badge">A</span> 数据字典</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>编号</th><th>数据项</th><th>数值/区间</th><th>数据来源</th><th>更新频率</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>D01</td><td>全球作物保护市场规模</td><td>~700亿美元（2024）</td><td>Phillips McDougall / Kleffmann</td><td>年度</td></tr>
+              <tr><td>D02</td><td>草甘膦终端市场规模</td><td>~47亿美元（2024）</td><td>行业估算</td><td>年度</td></tr>
+              <tr><td>D03</td><td>全球草甘膦产能</td><td>120万吨/年</td><td>CCF / 行业调研</td><td>年度</td></tr>
+              <tr><td>D04</td><td>中国草甘膦产能</td><td>81万吨/年</td><td>CCF / 上市公司公告</td><td>年度</td></tr>
+              <tr><td>D05</td><td>草甘膦国内现货价格</td><td>24,000-38,000元/吨</td><td>Chemicalbook / 百川盈孚</td><td>周度</td></tr>
+              <tr><td>D06</td><td>月度出口量（2024）</td><td>4.8-6.7万吨/月</td><td>UN Comtrade / 海关总署</td><td>月度</td></tr>
+              <tr><td>D07</td><td>CBOT大豆价格</td><td>~11.0美元/蒲式耳</td><td>CME Group</td><td>日度</td></tr>
+              <tr><td>D08</td><td>USD/CNY即期汇率</td><td>~6.77（2026.07）</td><td>中国外汇交易中心</td><td>日度</td></tr>
+              <tr><td>D09</td><td>黄磷现货价</td><td>~22,000元/吨（2025）</td><td>百川盈孚 / 卓创资讯</td><td>周度</td></tr>
+              <tr><td>D10</td><td>甘氨酸价格</td><td>~13,500元/吨（2023）</td><td>百川盈孚 / 卓创资讯</td><td>周度</td></tr>
+              <tr><td>D11</td><td>草甘膦全球消费量</td><td>75-85万吨/年</td><td>行业调研 / FAO</td><td>年度</td></tr>
+              <tr><td>D12</td><td>全球转基因种植面积</td><td>~2.0亿公顷（2024）</td><td>ISAAA</td><td>年度</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <article class="appendix">
+        <h3><span class="badge">B</span> 来源索引</h3>
+        <div class="callout info" style="margin-bottom:16px;">
+          <p>本报告所引用的数据和分析来源主要包括以下几类：</p>
+        </div>
+        <ol style="padding-left:20px;">
+          <li><strong>行业研究机构</strong>：Phillips McDougall（全球作物保护市场数据）、Kleffmann Group（农药使用量统计）、ISAAA（转基因作物种植面积年度报告）</li>
+          <li><strong>政府及国际组织</strong>：联合国商品贸易统计数据库（UN Comtrade）、中国海关总署（月度进出口数据）、美国农业部 USDA（种植面积及供需报告）、FAO（粮食及农业组织）</li>
+          <li><strong>价格信息平台</strong>：Chemicalbook（草甘膦现货报价）、百川盈孚（化工品价格）、卓创资讯（黄磷、甘氨酸价格）、CME Group（CBOT农产品期货）</li>
+          <li><strong>企业公告</strong>：各上市公司（兴发集团、新安股份、江山股份、利尔化学、扬农化工、广信股份、和邦生物等）发布的定期报告及临时公告（来源：巨潮资讯网）</li>
+          <li><strong>财经资讯</strong>：Bloomberg Terminal（金融数据及汇率）、WIND（中国金融数据终端）</li>
+          <li><strong>汇率数据</strong>：中国外汇交易中心（CFETS）每日公布的人民币汇率中间价及即期汇率</li>
+        </ol>
+        <p style="margin-top:16px;font-size:0.85rem;color:var(--muted);">免责声明：本报告中的数据和信息均来源于公开渠道或基于公开信息的合理推算，仅供研究参考，不构成投资建议。投资者据此做出的任何投资决策与本报告作者无关。报告生成日期：2026年7月30日。</p>
+      </article>
+
+      <!-- 出口量额双轴图在章节间作为补充 -->
+      <div class="chart-box" style="margin-bottom:24px;">
+        <div class="chart-title">图 C-1：2024年草甘膦月度出口量额双轴图（Comtrade数据）</div>
+        <div class="chart-container" id="chart-export"></div>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════ FOOTER ═══════════════════ -->
+    <footer class="report-footer">
+      <p>草甘膦行业深度分析报告 &middot; 2026年7月 &middot; 仅供研究参考</p>
+      <p style="margin-top:4px;font-size:0.75rem;">数据截止：2026年7月30日 &middot; 编制：Trae Work AI Agent</p>
+    </footer>
+  </div>
+
+  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script src="./assets/charts.js"></script>
+
+  <!-- ═══════════════════ NAV HIGHLIGHT ═══════════════════ -->
+  <script>
+    (function() {
+      var links = document.querySelectorAll('.nav-bar-inner a');
+      var sections = [];
+      links.forEach(function(a) {
+        var href = a.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          var el = document.getElementById(href.slice(1));
+          if (el) sections.push({ el: el, link: a });
+        }
+      });
+      var ticking = false;
+      function onScroll() {
+        if (!ticking) {
+          requestAnimationFrame(function() {
+            var scrollY = window.scrollY + 80;
+            var active = null;
+            sections.forEach(function(s) {
+              if (s.el.offsetTop <= scrollY) active = s;
+            });
+            sections.forEach(function(s) { s.link.classList.remove('active'); });
+            if (active) active.link.classList.add('active');
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Smooth scroll
+      document.querySelector('.nav-bar-inner').addEventListener('click', function(e) {
+        if (e.target.tagName === 'A') {
+          var id = e.target.getAttribute('href');
+          if (id && id.startsWith('#')) {
+            e.preventDefault();
+            var el = document.getElementById(id.slice(1));
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
