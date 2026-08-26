@@ -56,6 +56,8 @@
 
 ## 项目内入口
 
+- **文件索引（总入口）**：`/INDEX.md`
+- **多页面任务工作区**：`/pages/INDEX.md`（本地保存，不推送 GitHub）
 - 原始主提示：`/PASTE_INTO_TREA_STOCK_RESEARCH.md`
 - 工作流说明：`TRAE/WORKFLOW.md`
 - 输出与命名：`TRAE/OUTPUT_RULES.md`
