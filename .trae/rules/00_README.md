@@ -15,6 +15,7 @@
 | `OUTPUT_RULES.md` | 输出与命名规则（HTML 报告 / JSON / 展示层） |
 | `GITHUB_CREDENTIAL_POLICY.md` | GitHub 凭证规则（PAT 有效期、安全边界） |
 | `WORKBENCH_AND_DATA_SCOPE.md` | 工作台与数据范围（报告 > JSON 的分工） |
+| `QUARTERLY_CSV_WORKFLOW.md` | 季度财报 CSV 存档工作流（试点：凌霄泵业 002884） |
 
 ## 本地位置（本地化后）
 

@@ -186,7 +186,9 @@ Stock-Research/
 ### 凌霄泵业（002884）
 | 文件 | 内容 | 日期 |
 |------|------|------|
-| lingxiao_pump_2025_analysis_20260413.html | 2025年报、零有息负债、ROE 19.46%、三情景估值¥15/19/23 | 2026-04-13 |
+| [lingxiao_pump_2025_analysis_20260413.html](凌霄泵业_002884/lingxiao_pump_2025_analysis_20260413.html) | 2025年报：零有息负债、ROE 19.46%、三情景估值¥15/19/23 | 2026-04-13 |
+| [lingxiao_pump_2026H1_analysis_20260827.html](凌霄泵业_002884/lingxiao_pump_2026H1_analysis_20260827.html) ★ | **2026H1 三张表对比+二级市场估值**：增收不增利（收入+9.9%/净利-9.2%）、毛利率-4.16ppt、净现金13.7亿、实时行情链路验证（现价¥15.84/PE 13.3×/股息率6.31%）、合理区间¥15-18 | 2026-08-27 |
+| [季度财报CSV存档](凌霄泵业_002884/data/quarterly/README.md) | 利润表/资产负债表/现金流量表/分部收入 长格式CSV（2026H1起，含2025H1同期），长期积累季度财务序列 | 2026-08-27 |
 
 ---
 
@@ -230,6 +232,7 @@ Stock-Research/
 | 文件 | 说明 |
 |------|------|
 | CASHFLOW_VISUAL_SPEC.md | 现金流瀑布图标准规范 |
+| [季度财报CSV存档工作流](TRAE/QUARTERLY_CSV_WORKFLOW.md) | 按季度把公司财报三张表归档为长格式CSV的规范（试点：凌霄泵业，目录 `各标的/data/quarterly/`） |
 | Investment_OS/GUIDE.md | 投资工作台操作指南 |
 | Investment_OS/CLAUDE_CODE_GUIDE.md | Claude推送数据操作手册 |
 | data/ | companies.json 单一数据源 |
@@ -237,4 +240,4 @@ Stock-Research/
 
 ---
 
-*Last updated: 2026-07-31 · 行业分类索引新增：🌾 农业与化工*
+*Last updated: 2026-08-27 · 凌霄泵业 2026H1 三张表对比+估值报告 · 季度财报CSV存档工作流（试点）*

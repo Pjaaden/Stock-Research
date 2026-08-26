@@ -40,7 +40,7 @@
 | 华润万象生活 | 01209.HK | active | hold | `华润万象生活_01209HK` | 4 |
 | 绿城服务 | 2869.HK | active | watch | `绿城服务_2869HK` | 1 |
 | 霸王茶姬 | CHA | active | watch | `霸王茶姬_NASDAQ_CHA` | 1 |
-| 凌霄泵业 | 002884.SZ | active | hold | `凌霄泵业_002884` | 1 |
+| 凌霄泵业 | 002884.SZ | active | hold | `凌霄泵业_002884` | 2 |
 | 百胜中国 | YUMC | active | hold | `百胜中国_NASDAQ_YUMC` | 3 |
 | 中航信 | 00696 | active | buy | `中航信_HKEX_00696` | 1 |
 | 中策橡胶 | 603049.SH | hidden | hold | `赛轮集团_601058`（并入赛轮研究） | — |
@@ -86,6 +86,7 @@
 - `OUTPUT_RULES.md`：输出与命名规则
 - `WORKBENCH_AND_DATA_SCOPE.md`：工作台与数据边界理解
 - `GITHUB_CREDENTIAL_POLICY.md`：GitHub 凭证使用规则
+- `QUARTERLY_CSV_WORKFLOW.md`：季度财报 CSV 存档工作流（试点：凌霄泵业 002884，见 `凌霄泵业_002884/data/quarterly/`）
 - `push_with_local_pat.sh`：本地 PAT 自动推送脚本
 
 ---

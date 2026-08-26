@@ -1,7 +1,26 @@
 {
   "_meta": {
-    "description": "Investment OS 操作日志 - 所有交易决策记录",
-    "last_updated": "2026-04-03"
+    "description": "Investment OS 操作日志 - 所有交易决策与研究动作记录",
+    "last_updated": "2026-08-27"
   },
-  "logs": []
+  "logs": [
+    {
+      "id": "log-20260827-001",
+      "date": "2026-08-27",
+      "type": "财报更新",
+      "company": "凌霄泵业",
+      "code": "002884.SZ",
+      "action": "发布2026H1三张表对比+二级市场估值报告",
+      "detail": "新增 lingxiao_pump_2026H1_analysis_20260827.html；更新 companies.json（price 15.84 / eps_forecast 1.19 / 情景 熊14.5·基准17.5·牛21.4 / 净现金13.7亿）；行情链路（腾讯/东财）验证可用"
+    },
+    {
+      "id": "log-20260827-002",
+      "date": "2026-08-27",
+      "type": "数据存档",
+      "company": "凌霄泵业",
+      "code": "002884.SZ",
+      "action": "季度财报CSV存档首次建档",
+      "detail": "凌霄泵业_002884/data/quarterly/ 建立 利润表/资产负债表/现金流量表/分部收入 4份CSV（2026H1+2025H1），并编写 TRAE/QUARTERLY_CSV_WORKFLOW.md 工作流规范（试点）"
+    }
+  ]
 }
