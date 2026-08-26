@@ -1,0 +1,8 @@
+# 本地凭证（明文 PAT）—— 绝不进入 git / GitHub
+TRAE_LOCAL/
+
+# 多页面任务工作区（本地保存，不推送）
+pages/
+
+# macOS
+.DS_Store
