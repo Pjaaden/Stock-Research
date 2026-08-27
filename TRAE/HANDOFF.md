@@ -13,7 +13,7 @@
 ## 最近动态（新→旧，≤5 条）
 
 1. 2026-08-27 机器B 推送通道开通：origin 切换 SSH（`git@github.com:Pjaaden/Stock-Research.git`），提交 `e8db70a` 推送成功
-2. 2026-08-27 工作流优化：新增 `TRAE/sessions/` 交接档案 + `HANDOFF.md` + 多设备协作规范（INDEX / README / WORKFLOW / logs 同步）
+2. 2026-08-27 工作流优化：新增 `TRAE/sessions/` 交接档案 + `HANDOFF.md` + `QUICKSTART.md` 速查卡 + 多设备协作规范（INDEX / README / WORKFLOW / logs 同步）
 3. 2026-08-27 凌霄泵业 2026H1 三张表对比 + 估值报告；季度财报 CSV 存档工作流试点（002884，建档 2026H1+2025H1）
 4. 2026-08-26 本地化迁移与 GitHub 连通性测试（SSH 通道验证通过）
 5. 2026-08-25 工作流完整性审计（目录/JSON/字段一致性）

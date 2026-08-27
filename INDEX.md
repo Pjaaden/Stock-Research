@@ -18,7 +18,7 @@
 
 | 想做什么 | 去哪里 |
 |---|---|
-| 了解项目规则与工作流 | `TRAE/PROJECT_INSTRUCTIONS.md` · `TRAE/WORKFLOW.md` · `TRAE/OUTPUT_RULES.md` |
+| 了解项目规则与工作流 | `TRAE/QUICKSTART.md`（日常速查，第一步）· `TRAE/PROJECT_INSTRUCTIONS.md` · `TRAE/WORKFLOW.md` · `TRAE/OUTPUT_RULES.md` |
 | 主提示原文（整段粘贴用） | `PASTE_INTO_TREA_STOCK_RESEARCH.md` |
 | 开展/查看多页面任务 | `pages/INDEX.md`（本地保存，不推送） |
 | 查看/维护研究数据 | `data/companies.json` · `data/watchlist.json` · `data/logs.json` |
@@ -93,6 +93,7 @@
 ## 七、规则与脚本（TRAE/）
 
 - `PROJECT_INSTRUCTIONS.md`：项目说明（落地版）
+- `QUICKSTART.md`：日常操作速查卡（开工/执行/收工/推送的最小步骤与命令）
 - `WORKFLOW.md`：可执行工作流（先读旧资料 → 产出报告 → 再评估 JSON → 最后同步）
 - `OUTPUT_RULES.md`：输出与命名规则
 - `WORKBENCH_AND_DATA_SCOPE.md`：工作台与数据边界理解
