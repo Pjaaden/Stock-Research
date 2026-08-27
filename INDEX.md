@@ -5,6 +5,15 @@
 
 ---
 
+## 〇、最近动态与进行中任务
+
+> 完整版见 `TRAE/HANDOFF.md`（换机/开工第一眼）
+
+- **进行中**：本机（机器B）push 凭证待配置 ｜ 凌霄泵业 2026Q3 CSV 追加（10 月末）｜ 已投资标的研究补全（霸王茶姬、凌霄泵业）
+- **最近动态**（新→旧）：2026-08-27 工作流优化（sessions/ 交接档案 + HANDOFF + 多设备规范）→ 2026-08-27 凌霄泵业 2026H1 报告 + 季度 CSV 建档 → 2026-08-26 本地化迁移与连通性测试 → 2026-08-25 工作流完整性审计 → 2026-07-31 草甘膦行业深度研究
+
+---
+
 ## 一、快速导航
 
 | 想做什么 | 去哪里 |
@@ -15,6 +24,8 @@
 | 查看/维护研究数据 | `data/companies.json` · `data/watchlist.json` · `data/logs.json` |
 | 打开工作台（展示层） | 线上：`https://pjaaden.github.io/Stock-Research/Investment_OS/` ｜ 代码：`Investment_OS/index.html` |
 | 查看试运行/审计报告 | `TRAE/reports/` |
+| 换机/开工先看（当前状态） | `TRAE/HANDOFF.md` |
+| 查看会话交接档案 | `TRAE/sessions/`（每会话一篇，入库） |
 | 推送 GitHub（自动） | `TRAE/push_with_local_pat.sh` |
 | 本地凭证（PAT） | `TRAE_LOCAL/`（仅本地，不进入 git） |
 
@@ -87,6 +98,8 @@
 - `WORKBENCH_AND_DATA_SCOPE.md`：工作台与数据边界理解
 - `GITHUB_CREDENTIAL_POLICY.md`：GitHub 凭证使用规则
 - `QUARTERLY_CSV_WORKFLOW.md`：季度财报 CSV 存档工作流（试点：凌霄泵业 002884，见 `凌霄泵业_002884/data/quarterly/`）
+- `HANDOFF.md`：当前状态速览（进行中任务 + 最近动态），换机/开工第一眼
+- `sessions/`：会话交接档案（每会话一篇 `YYYYMMDD_主题.md`，模板 `_模板.md`；把对话里的推理/待办沉淀为可同步历史）
 - `push_with_local_pat.sh`：本地 PAT 自动推送脚本
 
 ---
@@ -103,4 +116,5 @@
 
 - 新增公司研究目录 / 新报告 / 新页面后，同步更新本索引对应表格
 - 页面文件一律放 `pages/`，并在 `pages/INDEX.md` 登记
+- 任务结束或换机前：写 `TRAE/sessions/` 交接档案，并更新 `TRAE/HANDOFF.md` 与 `data/logs.json`
 - 只有需要工作台/展示层消费的结构化信息才写入 `data/*.json`

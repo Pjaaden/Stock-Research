@@ -233,11 +233,12 @@ Stock-Research/
 |------|------|
 | CASHFLOW_VISUAL_SPEC.md | 现金流瀑布图标准规范 |
 | [季度财报CSV存档工作流](TRAE/QUARTERLY_CSV_WORKFLOW.md) | 按季度把公司财报三张表归档为长格式CSV的规范（试点：凌霄泵业，目录 `各标的/data/quarterly/`） |
+| [会话交接档案](TRAE/sessions/_模板.md) · [HANDOFF.md](TRAE/HANDOFF.md) | 多设备协作：把会话推理沉淀为可同步历史（每会话一篇入库；HANDOFF 为当前状态速览） |
 | Investment_OS/GUIDE.md | 投资工作台操作指南 |
 | Investment_OS/CLAUDE_CODE_GUIDE.md | Claude推送数据操作手册 |
 | data/ | companies.json 单一数据源 |
-| TRAE/ | TRAE 工作流配置（OUTPUT_RULES / WORKFLOW / 推送脚本等） |
+| TRAE/ | TRAE 工作流配置（OUTPUT_RULES / WORKFLOW / 交接档案 sessions/ + HANDOFF / 推送脚本等） |
 
 ---
 
-*Last updated: 2026-08-27 · 凌霄泵业 2026H1 三张表对比+估值报告 · 季度财报CSV存档工作流（试点）*
+*Last updated: 2026-08-27 · 凌霄泵业 2026H1 三张表对比+估值报告 · 季度财报CSV存档工作流（试点）· 会话交接档案机制（sessions/ + HANDOFF + 多设备协作规范）*

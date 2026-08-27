@@ -21,6 +21,8 @@
 - `data/companies.json` 里该公司的字段（如果公司是 active）
 - `data/watchlist.json`（如果任务与候选池有关）
 - `data/logs.json`（如果要记录关键动作）
+- `TRAE/HANDOFF.md`（当前进行中任务与最近动态，多设备协作时必读）
+- 相关 `TRAE/sessions/` 交接档案（如果该任务上次在其他设备上进行）
 
 ### 2) 拆分新信息（强制）
 
@@ -80,3 +82,14 @@
 - 先停止 `push`、停止需要认证的 GitHub 写入
 - 保留本地改动与补丁说明
 - 提醒用户当前 PAT 可能已到期，需要更新后再继续
+
+## 多设备协作（双机/多机）
+
+同一仓库在多台设备上通过 git 同步；TRAE 对话记录在设备本地，跨机“记忆”靠交接档案：
+
+1. **开工前**：`git pull --rebase origin main`；读 `TRAE/HANDOFF.md` 与相关 `TRAE/sessions/` 档案恢复上下文。
+2. **收工/换机前**：写 `TRAE/sessions/YYYYMMDD_主题.md`（模板见 `_模板.md`）；更新 `TRAE/HANDOFF.md`（进行中任务 + 最近动态 ≤5 条）；有关键动作则登记 `data/logs.json`。
+3. **push 前**：`git pull --rebase origin main`，避免覆盖其他设备的新提交；冲突时先比对差异（尤其 `data/*.json`），不强行覆盖。
+4. **单一写者约定**：同一时段尽量只有一台设备做 JSON 写入与推送，另一台只读；避免两个会话同时改 `companies.json`。
+5. **凭证按设备准备**：SSH（`~/.ssh/id_ed25519`，公钥需在 GitHub 注册）或 HTTPS+PAT（`TRAE_LOCAL/GITHUB_PAT.local`，PAT 有效期记录 2026-10-21）；每台新设备都要单独准备其一。
+6. **pages/ 是本地草稿区**，不入库；定稿一律蒸馏到同步层（研究报告 + `data/*.json` + `TRAE/sessions/`）。

@@ -21,6 +21,15 @@
       "code": "002884.SZ",
       "action": "季度财报CSV存档首次建档",
       "detail": "凌霄泵业_002884/data/quarterly/ 建立 利润表/资产负债表/现金流量表/分部收入 4份CSV（2026H1+2025H1），并编写 TRAE/QUARTERLY_CSV_WORKFLOW.md 工作流规范（试点）"
+    },
+    {
+      "id": "log-20260827-003",
+      "date": "2026-08-27",
+      "type": "系统优化",
+      "company": "项目级",
+      "code": "-",
+      "action": "新增会话交接档案机制（多设备协作）",
+      "detail": "新建 TRAE/sessions/（交接档案模板 _模板.md + 首篇存档）与 TRAE/HANDOFF.md（当前状态速览）；WORKFLOW/INDEX/README/主提示 增加多设备协作规范（开工先 pull --rebase、换机前写交接、凭证按设备准备）"
     }
   ]
 }
