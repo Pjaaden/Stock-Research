@@ -50,7 +50,7 @@
 | 赛轮集团 | 601058.SH | active | hold | `赛轮集团_601058` | 34 |
 | 华润万象生活 | 01209.HK | active | hold | `华润万象生活_01209HK` | 4 |
 | 绿城服务 | 2869.HK | active | watch | `绿城服务_2869HK` | 1 |
-| 霸王茶姬 | CHA | active | watch | `霸王茶姬_NASDAQ_CHA` | 1 |
+| 霸王茶姬 | CHA | active | watch | `霸王茶姬_NASDAQ_CHA` | 2 |
 | 凌霄泵业 | 002884.SZ | active | hold | `凌霄泵业_002884` | 2 |
 | 百胜中国 | YUMC | active | hold | `百胜中国_NASDAQ_YUMC` | 3 |
 | 中航信 | 00696 | active | buy | `中航信_HKEX_00696` | 1 |

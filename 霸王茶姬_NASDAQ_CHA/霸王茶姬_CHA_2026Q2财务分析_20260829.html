@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>霸王茶姬 CHA · 2026Q2 财务分析（v6）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+SC:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&family=Syne:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --surface2: #f3f1ed;
+  --border: #e2dfd8;
+  --text-primary: #1a1917;
+  --text-secondary: #6b6760;
+  --text-muted: #9e9b96;
+  --accent: #2c5f3f;
+  --accent-light: #e8f0eb;
+  --red: #8b2020;
+  --red-light: #fdf0f0;
+  --amber: #7a4c0a;
+  --amber-light: #fdf6e8;
+  --blue: #1a3a6b;
+  --blue-light: #edf2fb;
+  --green: #1f5c2e;
+  --green-light: #edf5ef;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'IBM Plex Sans SC', sans-serif;
+  --display: 'Syne', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.page { max-width: 960px; margin: 0 auto; padding: 48px 32px 80px; }
+
+/* Header */
+.report-header { border-bottom: 1.5px solid var(--text-primary); padding-bottom: 24px; margin-bottom: 40px; }
+.report-meta { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 12px; }
+.ticker-badge {
+  font-family: var(--mono);
+  font-size: 12px;
+  background: var(--text-primary);
+  color: var(--bg);
+  padding: 3px 10px;
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+}
+.report-date { font-family: var(--mono); font-size: 12px; color: var(--text-muted); }
+.report-title { font-family: var(--display); font-size: 32px; font-weight: 600; letter-spacing: -0.02em; margin: 16px 0 6px; line-height: 1.2; }
+.report-subtitle { font-size: 14px; color: var(--text-secondary); }
+
+/* Section headers */
+.section { margin-bottom: 48px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-num { font-family: var(--mono); font-size: 11px; color: var(--text-muted); }
+.section-title { font-family: var(--display); font-size: 18px; font-weight: 500; }
+.section-divider { flex: 1; height: 0.5px; background: var(--border); }
+
+/* Metric cards */
+.metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+.metric {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 0.04em; }
+.metric-value { font-family: var(--mono); font-size: 22px; font-weight: 500; color: var(--text-primary); }
+.metric-change { font-size: 11px; margin-top: 4px; font-family: var(--mono); }
+.up { color: var(--green); }
+.dn { color: var(--red); }
+.flat2 { color: var(--text-muted); }
+
+/* Chart containers */
+.chart-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.chart-title { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; font-weight: 500; letter-spacing: 0.04em; }
+.chart-wrap { position: relative; width: 100%; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+.legend-dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+
+/* Two-column layout */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+/* KV table */
+.kv-table { width: 100%; border-collapse: collapse; }
+.kv-table tr { border-bottom: 0.5px solid var(--border); }
+.kv-table tr:last-child { border-bottom: none; }
+.kv-table td { padding: 8px 0; font-size: 13px; }
+.kv-table td:first-child { color: var(--text-secondary); }
+.kv-table td:last-child { text-align: right; font-family: var(--mono); font-weight: 500; }
+
+/* Alert boxes */
+.alert { border-radius: 6px; padding: 14px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.7; }
+.alert-warn { background: var(--amber-light); border-left: 3px solid var(--amber); color: var(--amber); }
+.alert-info { background: var(--blue-light); border-left: 3px solid var(--blue); color: var(--blue); }
+.alert-red { background: var(--red-light); border-left: 3px solid var(--red); color: var(--red); }
+.alert-green { background: var(--green-light); border-left: 3px solid var(--green); color: var(--green); }
+.alert strong { font-weight: 500; }
+
+/* Scenario cards */
+.scenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.scenario-card {
+  border-radius: 8px;
+  padding: 16px;
+  border: 0.5px solid var(--border);
+}
+.sc-bear { background: var(--red-light); }
+.sc-base { background: var(--blue-light); }
+.sc-bull { background: var(--green-light); }
+.sc-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.sc-bear .sc-tag { color: var(--red); }
+.sc-base .sc-tag { color: var(--blue); }
+.sc-bull .sc-tag { color: var(--green); }
+.sc-price {
+  font-family: var(--mono);
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.sc-bear .sc-price { color: var(--red); }
+.sc-base .sc-price { color: var(--blue); }
+.sc-bull .sc-price { color: var(--green); }
+.sc-prob { font-size: 11px; color: var(--text-muted); margin-bottom: 10px; }
+.sc-body { font-size: 12px; line-height: 1.65; color: var(--text-secondary); }
+
+/* Data table */
+.data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.data-table th {
+  text-align: right;
+  padding: 6px 10px;
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.data-table th:first-child { text-align: left; }
+.data-table td {
+  text-align: right;
+  padding: 7px 10px;
+  border-bottom: 0.5px solid var(--border);
+  font-family: var(--mono);
+}
+.data-table td:first-child { text-align: left; color: var(--text-secondary); font-family: var(--sans); }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table .total-row td { font-weight: 500; background: var(--surface2); }
+
+/* Observation list */
+.obs-list { list-style: none; }
+.obs-list li {
+  padding: 10px 0;
+  border-bottom: 0.5px solid var(--border);
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.obs-list li:last-child { border-bottom: none; }
+.obs-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 0.5px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--mono);
+  line-height: 1.8;
+}
+
+/* Print */
+@media print {
+  body { background: white; }
+  .page { padding: 32px; }
+}
+
+@media (max-width: 680px) {
+  .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  .two-col { grid-template-columns: 1fr; }
+  .scenarios { grid-template-columns: 1fr; }
+  .report-title { font-size: 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="report-meta">
+    <div>
+      <span class="ticker-badge">NASDAQ: CHA</span>
+    </div>
+    <div class="report-date">研究日期：2026-08-29 ｜ 数据截至：2026-06-30（Q2财报 2026-08-28发布）</div>
+  </div>
+  <div class="report-title">霸王茶姬 Chagee Holdings</div>
+  <div class="report-subtitle">2026Q2 财务分析 v6 · 同店企稳平台期 · SBC正常化驱动利润反转 · 估值校准</div>
+</div>
+
+<!-- 1. 核心指标概览 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <span class="section-title">核心财务指标概览（Q2 2026）</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="metrics-grid">
+    <div class="metric">
+      <div class="metric-label">Q2总收入</div>
+      <div class="metric-value">¥34.1亿</div>
+      <div class="metric-change up">+2.5% YoY ★</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">GAAP净利润</div>
+      <div class="metric-value">¥4.65亿</div>
+      <div class="metric-change up">+502% YoY ★★</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">Non-GAAP净利润</div>
+      <div class="metric-value">¥4.89亿</div>
+      <div class="metric-change dn">−22.4% YoY</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">经营利润率</div>
+      <div class="metric-value">15.4%</div>
+      <div class="metric-change up">↑ 2025Q2 3.2% ★</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">同店GMV增速</div>
+      <div class="metric-value">−16.1%</div>
+      <div class="metric-change flat2">连续两季持平（Q1 −16.1%）</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">单店月均GMV</div>
+      <div class="metric-value">¥33.8万</div>
+      <div class="metric-change dn">QoQ −5.0%（¥35.6万）</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">海外GMV</div>
+      <div class="metric-value">¥5.04亿</div>
+      <div class="metric-change up">+114.3% YoY ★★</div>
+    </div>
+    <div class="metric">
+      <div class="metric-label">当前股价</div>
+      <div class="metric-value">$10.80</div>
+      <div class="metric-change up">+4.35%（财报日）</div>
+    </div>
+  </div>
+
+  <div class="alert alert-green">
+    <strong>Q2核心矛盾：</strong>GAAP净利暴增502%是"会计镜像"——2025Q2基数被IPO相关SBC（¥4.83亿）压到¥0.77亿，而2026Q2的SBC已正常化至仅¥0.24亿/季。真实的经营盈利仍在下滑：Non-GAAP净利−22.4%、Non-GAAP净利率14.3%（vs 2025Q2的18.9%）。同店GMV−16.1%连续两季持平，拐点确认后进入<strong>平台期</strong>——既未恶化也未继续收窄。
+  </div>
+</div>
+
+<!-- 2. 运营趋势 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <span class="section-title">运营趋势：同店企稳平台期（−16%×2）</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">大中华同店GMV增速（%）与单店月均GMV（万元/月/店）</div>
+    <div class="chart-wrap" style="height: 240px;">
+      <canvas id="trendChart"></canvas>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#1a3a6b;"></div>同店GMV增速（%，左轴）</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8b2020;"></div>单店月均GMV（万元，右轴）</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">运营数据快照（大中华）</div>
+      <table class="kv-table">
+        <tr><td>同店GMV增速 Q2 2026</td><td class="dn">−16.1%（Q1 −16.1%）</td></tr>
+        <tr><td>单店月均GMV Q2 2026</td><td>¥33.83万（Q1 ¥35.61万）</td></tr>
+        <tr><td>大中华GMV Q2</td><td>¥71.56亿（同比 −9.0%）</td></tr>
+        <tr><td>总GMV Q2</td><td>¥76.60亿（同比 −5.5%）</td></tr>
+        <tr><td>活跃会员（Q2末）</td><td>4,710万（Q1 5,000万）</td></tr>
+        <tr><td>海外同店GMV增速</td><td>−15.1%（Q1 −12.0%）</td></tr>
+      </table>
+    </div>
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">平台期特征判断</div>
+      <ul class="obs-list">
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>同店跌幅连续两季钉在−16%。</strong>Q1−16.0%→Q2−16.1%，止跌但未改善，与"上半场企稳、下半场修复"的指引节奏部分吻合（企稳已现，修复未至）。</span></li>
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>单店月均GMV环比−5.0%。</strong>Q1的+5.5%反弹被Q2的−5.0%回吐一半，暑期前淡季叠加，需Q3验证季节性规律。</span></li>
+        <li><div class="obs-dot" style="background:var(--red);"></div><span><strong>大中华GMV绝对值同比−9.0%。</strong>门店总数增加8.5%的情况下GMV仍萎缩，单店经济尚未修复，仍是估值核心压制项。</span></li>
+        <li><div class="obs-dot" style="background:var(--green);"></div><span><strong>海外同店−15.1%（Q1 −12.0%）。</strong>海外基数扩张后同店也在转弱，但规模小、成长叙事仍靠门店数驱动。</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert alert-warn">
+    <strong>v6判断更新（vs v5）：</strong>v5基于Q1判断"同店拐点方向确认"，Q2验证了止跌（−16.1%未恶化），但"逐季收窄"的乐观预期被证伪——同店进入−16%平台的横盘期。下一个硬验证点是Q3（暑期旺季+秋冬新品）：若Q3仍持平−15%±1%，则2026年同店转正的概率大幅下降，全年Non-GAAP净利中枢从v5的¥20-23亿下修至¥16亿；若Q3收窄至−10%以内，则进入真实修复通道。
+  </div>
+</div>
+
+<!-- 3. 损益表 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <span class="section-title">损益表：SBC正常化驱动"会计利润反转"</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Q2 2026 vs Q2 2025 损益对比（百万元人民币）</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;">科目</th>
+          <th>Q2 2025</th>
+          <th>Q2 2026</th>
+          <th>YoY</th>
+          <th>费用率25→26</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>加盟收入</td><td>3,020.7</td><td>2,474.0</td><td class="dn">−18.1%</td><td>90.7%→72.5%</td></tr>
+        <tr><td>直营收入</td><td>311.2</td><td>940.6</td><td class="up">+202.3%</td><td>9.3%→27.5%</td></tr>
+        <tr class="total-row"><td>总收入</td><td>3,331.9</td><td>3,414.6</td><td class="up">+2.5%</td><td>100%</td></tr>
+        <tr><td>物料仓储物流</td><td>1,536.8</td><td>1,571.2</td><td class="dn">+2.2%</td><td>46.1%→46.0%</td></tr>
+        <tr><td>直营店运营成本</td><td>184.1</td><td>566.8</td><td class="dn">+207.8%</td><td>5.5%→16.6%</td></tr>
+        <tr><td>其他运营成本</td><td>173.7</td><td>115.8</td><td class="up">−33.3%</td><td>5.2%→3.4%</td></tr>
+        <tr><td>销售营销费用</td><td>385.0</td><td>301.5</td><td class="up">−21.7%</td><td>11.6%→8.8%</td></tr>
+        <tr><td>一般管理费用（含SBC）</td><td>944.6</td><td>334.5</td><td class="up">−64.6%</td><td>28.3%→9.8%</td></tr>
+        <tr><td>其中：SBC</td><td>≈530</td><td>23.9</td><td class="up">−95.5%</td><td>—</td></tr>
+        <tr class="total-row"><td>经营利润</td><td>107.6</td><td>524.7</td><td class="up">+387.6%</td><td>3.2%→15.4%</td></tr>
+        <tr class="total-row"><td>GAAP净利润</td><td>77.2</td><td>464.8</td><td class="up">+502%</td><td>2.3%→13.6%</td></tr>
+        <tr><td>加回SBC</td><td>+552.6</td><td>+23.9</td><td>—</td><td>—</td></tr>
+        <tr class="total-row"><td>Non-GAAP净利润</td><td>629.8</td><td>488.7</td><td class="dn">−22.4%</td><td>18.9%→14.3%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:8px">注：2025Q2 SBC为报告未单列拆分，按G&A降幅（−¥482.7M SBC）与营销费用SBC（−¥30.7M）推算约¥5.3亿，其中IPO相关一次性SBC为利润基数压制的核心原因。</p>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">主要费用率：Q2 2025 vs Q2 2026（占总营收 %）</div>
+    <div class="chart-wrap" style="height: 200px;">
+      <canvas id="costChart"></canvas>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#1a3a6b55;border:1px solid #1a3a6b;"></div>Q2 2025</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8b202055;border:1px solid #8b2020;"></div>Q2 2026</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="alert alert-green" style="margin-bottom:0;">
+      <strong>✅ 利润质量结构性改善（2026年确定性最高主线）</strong><br>
+      SBC从2025Q2的≈¥5.3亿/季降至2026Q2的¥0.24亿/季（−95.5%），全年SBC有望控制在¥1.5亿以内（2025全年¥7.24亿）。同时销售营销费用率−2.8ppt（团队精简+投放效率提升）、其他运营成本−33.3%（组织调整后人力优化）——<strong>费用端已被系统性压缩</strong>，即使收入零增长，2026年GAAP净利润也将显著高于2025年。
+    </div>
+    <div class="alert alert-warn" style="margin-bottom:0;">
+      <strong>⚠️ 收入结构双刃剑：直营化重资产化</strong><br>
+      直营收入占比27.5%（2025Q2为9.3%），直营运营成本+207.8%。直营毛利率约39.7%尚可，但直营是重资产、重人工模式，吞噬部分"轻资产加盟"的利润弹性。加盟收入−18.1%反映GMV分成新模式下总部收入与大中华GMV直接挂钩——同店不修复，加盟收入难回正。
+    </div>
+  </div>
+</div>
+
+<!-- 4. H1 汇总与全年指引 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <span class="section-title">H1 2026 汇总与全年净利中枢下修</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">H1 2026 vs H1 2025（百万元）</div>
+    <table class="data-table">
+      <thead>
+        <tr><th style="text-align:left;">科目</th><th>H1 2025</th><th>H1 2026</th><th>YoY</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>总收入</td><td>6,725</td><td>6,961</td><td class="up">+3.5%</td></tr>
+        <tr><td>经营利润</td><td>1,428</td><td>1,223</td><td class="dn">−14.4%</td></tr>
+        <tr class="total-row"><td>GAAP净利润</td><td>≈754</td><td>913</td><td class="up">+21.1%</td></tr>
+        <tr class="total-row"><td>Non-GAAP净利润</td><td>1,307</td><td>996</td><td class="dn">−23.8%</td></tr>
+        <tr><td>Non-GAAP净利率</td><td>19.4%</td><td>14.3%</td><td class="dn">−5.1ppt</td></tr>
+        <tr><td>海外GMV</td><td>≈240*</td><td>930</td><td class="up">+287%*</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:8px">*2025H1海外GMV按Q1/Q2推算约¥240M；海外占比由2025H1约1.7%升至2026H1约6.0%。</p>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>2026E Non-GAAP净利中枢：¥15.5–16.5亿（v6下修，v5为¥20-23亿）</strong><br>
+    H1实际¥9.96亿（−23.8%）。2025年H2基数仅¥6.03亿（H1/下半年≈2.2:1的季节性）。若2026H2同比持平→全年≈¥16.0亿；H2同比−5%~+5%→¥15.4–16.3亿。<strong>v5的¥20-23亿隐含H2同比+33%~+66%，在Q2同店仅−16%的现实下已不成立</strong>。净利中枢下修是估值最核心的调整项；但SBC正常化意味着GAAP口径2026全年将大幅改善（约¥17-18亿，较2025年¥11.9亿+45%），"会计利润反转"与"经营盈利承压"并存。
+  </div>
+</div>
+
+<!-- 5. 门店结构 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <span class="section-title">门店结构：直营化提速，加盟企稳</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">门店结构变化（2025Q2 – 2026Q2）</div>
+    <div class="chart-wrap" style="height: 220px;">
+      <canvas id="storeChart"></canvas>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:#1a3a6b;"></div>加盟·大中华</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#8b2020;"></div>直营·大中华</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2c5f3f;"></div>直营·海外</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#c9a84c;"></div>加盟·海外</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">关键门店数据</div>
+      <table class="kv-table">
+        <tr><td>总门店（2026-06-30）</td><td>7,639（+8.5% YoY）</td></tr>
+        <tr><td>大中华加盟</td><td>6,616（Q1 6,603，环比+13）</td></tr>
+        <tr><td>大中华直营</td><td>624（Q1 554，环比+70）</td></tr>
+        <tr><td>海外直营</td><td>259（Q1 236，环比+23）</td></tr>
+        <tr><td>海外加盟</td><td>140（Q1 138）</td></tr>
+        <tr><td>直营占比</td><td>11.6% → 12.4% → … → 15.1%</td></tr>
+      </table>
+    </div>
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">结构判断</div>
+      <ul class="obs-list">
+        <li><div class="obs-dot" style="background:var(--green);"></div><span><strong>大中华加盟店环比+13家。</strong>连续两季净减少（Q4 −136、Q1 −97）后首次转正，加盟商出清基本结束、企稳信号明确。</span></li>
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>直营单季+93家（大中华70+海外23）。</strong>直营化仍在快速推进，符合"国内标杆+海外先锋"双逻辑，但资本开支与运营成本压力同步上升。</span></li>
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>门店增长8.5% vs 大中华GMV −9.0%。</strong>总量增长的"注水"效应明显——同店口径更能反映真实经营。</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 6. 海外扩张 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <span class="section-title">海外扩张：GMV占比突破6%，进入独立叙事临界区</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="two-col">
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">海外关键指标</div>
+      <table class="kv-table">
+        <tr><td>海外GMV（Q2 2026）</td><td class="up">¥5.04亿（+114.3% YoY）</td></tr>
+        <tr><td>海外GMV占比（Q2）</td><td>6.6%（Q1 5.4%）</td></tr>
+        <tr><td>海外门店（Q2末）</td><td>399（直营259 + 加盟140）</td></tr>
+        <tr><td>海外同店GMV增速</td><td class="dn">−15.1%（Q1 −12.0%）</td></tr>
+        <tr><td>H1海外GMV</td><td>¥9.30亿（占总GMV 6.0%）</td></tr>
+      </table>
+    </div>
+    <div class="chart-card" style="margin-bottom:0;">
+      <div class="chart-title">叙事判断</div>
+      <ul class="obs-list">
+        <li><div class="obs-dot" style="background:var(--green);"></div><span><strong>占比6.0-6.6%，达到v5设定的"独立估值叙事"阈值（6%）。</strong>海外从"期权"进入"现实增量"。</span></li>
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>但海外同店−15.1%且环比走弱</strong>（−12.0%→−15.1%），门店扩张（+399家）与单店经济脱节，模式复制期的高增长有"开店驱动"成分。</span></li>
+        <li><div class="obs-dot" style="background:var(--amber);"></div><span><strong>直营毛利率39.7%整体健康</strong>，但含海外亏损店拉低，单店盈亏平衡验证仍需2026H2。</span></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 7. 回购与资本回报 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <span class="section-title">回购执行：底部支撑已兑现三分之一</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">US$1.5亿回购计划执行进度（截至2026-08-24）</div>
+    <table class="data-table">
+      <thead>
+        <tr><th style="text-align:left;">项目</th><th>数值</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>授权规模</td><td>US$150M（2026-05-28董事会授权，6/1起12个月）</td></tr>
+        <tr><td>已回购ADS</td><td>约257万股</td></tr>
+        <tr><td>已投入金额</td><td class="up">US$29.5M（约20%完成度）</td></tr>
+        <tr><td>剩余额度</td><td>US$120.5M</td></tr>
+        <tr><td>回购均价（推算）</td><td>≈US$11.5/ADS</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:8px">按市值US$20.6亿计，回购总规模≈市值14.6%，剩余额度≈市值5.8%——管理层在$10-12区间持续托底，构成现价下方明确支撑。</p>
+  </div>
+
+  <div class="alert alert-info" style="margin-bottom:0;">
+    <strong>资本结构：</strong>现金及等价物+受限现金+定期存款 RMB¥67.96亿（US$10.0亿），占总市值约49%；净现金（扣除全部负债后）估计仍达US$9亿+。零有息负债、自由现金流为正（经营CF Q1正常化后回暖），回购+可能的后续派息构成完整资本回报框架。
+  </div>
+</div>
+
+<!-- 8. 估值更新 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <span class="section-title">估值校准：现价$10.80，TTM Non-GAAP PE≈8.7×</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>实时行情链路验证（本次实测通过）：</strong>腾讯行情（qt.gtimg.cn/q=usCHA）与东财（secid=105.CHA）均正常返回。快照（2026-08-28收盘，财报当日）：现价 <strong>$10.80</strong>（+4.35%）、市值 <strong>≈US$20.6亿</strong>（RMB¥139.8亿）、PB 1.71、52周区间约 $9.92–15.49。
+  </div>
+
+  <div class="chart-card" style="margin-bottom:16px;">
+    <div class="chart-title">估值参数（v6 更新）</div>
+    <table class="kv-table">
+      <tr><td>当前股价</td><td>$10.80 / ADS（2026-08-28）</td></tr>
+      <tr><td>汇率（2026-06-30）</td><td>RMB 6.7851 = US$1.00</td></tr>
+      <tr><td>总市值</td><td>≈US$20.6亿 ≈ RMB¥139.8亿</td></tr>
+      <tr><td>TTM Non-GAAP净利润</td><td>≈¥16.0亿（2025FY 19.1 − 25H1 13.1 + 26H1 10.0）</td></tr>
+      <tr><td>TTM Non-GAAP PE</td><td>≈ 8.7×</td></tr>
+      <tr><td>TTM GAAP净利润</td><td>≈¥13.4亿 → GAAP PE ≈ 10.4×</td></tr>
+      <tr><td>现金（总口径）</td><td>US$10.0亿（占市值≈49%）</td></tr>
+      <tr><td>2026E Non-GAAP净利（下修）</td><td>¥15.5–16.5亿（v5为¥20-23亿）</td></tr>
+    </table>
+  </div>
+
+  <div class="scenarios">
+    <div class="scenario-card sc-bear">
+      <div class="sc-tag">BEAR CASE · 悲观 · 30%概率</div>
+      <div class="sc-price">$9–13</div>
+      <div class="sc-prob">中枢≈$11 · 2026E Non-GAAP ¥14.5亿</div>
+      <div class="sc-body">
+        Q3同店仍−15%±、全年H2同比−5%；直营持续吞噬利润；海外同店转弱。PE 8× + 净现金×50%。<br><br>
+        <strong>触发条件：</strong>Q3同店未收窄；大中华加盟再度净减少；消费环境恶化。
+      </div>
+    </div>
+    <div class="scenario-card sc-base">
+      <div class="sc-tag">BASE CASE · 基准 · 50%概率</div>
+      <div class="sc-price">$16–20</div>
+      <div class="sc-prob">中枢≈$17 · 2026E Non-GAAP ¥16亿</div>
+      <div class="sc-body">
+        Q3同店收窄至−10%左右、H2环比企稳；SBC全年≈¥1.5亿；直营毛利率维持39%+；海外占比6-8%。PE 12× + 净现金×80%。<br><br>
+        <strong>触发条件：</strong>Q3同店≤−12%；海外GMV占比突破7%；回购持续执行。
+      </div>
+    </div>
+    <div class="scenario-card sc-bull">
+      <div class="sc-tag">BULL CASE · 乐观 · 20%概率</div>
+      <div class="sc-price">$20–26</div>
+      <div class="sc-prob">中枢≈$22 · 2026E Non-GAAP ¥17.5亿</div>
+      <div class="sc-body">
+        秋冬爆款带动同店Q4收窄至−5%内或转正；海外单店模型验证、占比8%+；GAAP/Non-GAAP剪刀差闭合。PE 15× + 净现金×60%。<br><br>
+        <strong>触发条件：</strong>连续两季同店环比收窄>3ppt；海外直营单店月盈亏平衡验证。
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">估值情景与现价位置（v6）</div>
+    <div class="chart-wrap" style="height: 200px;">
+      <canvas id="valChart"></canvas>
+    </div>
+    <p style="font-size:11px;color:var(--text-muted);margin-top:8px">概率加权目标价≈$17.5（悲观30%×11 + 基准50%×17 + 乐观20%×22），较现价$10.80上行约62%。现价仍处悲观区间内，市场对同店修复缺乏信心。</p>
+  </div>
+
+  <div class="alert alert-warn" style="margin-bottom:0;">
+    <strong>v6估值结论：</strong>净利中枢下修（¥20-23亿→¥16亿）使"绝对低估"程度减弱，但现价$10.80对应的TTM Non-GAAP PE仅8.7×、市值现金比约2:1，仍显著低于消费品同业（15×+）。估值修复的核心驱动不变：<strong>同店GMV从−16%平台向−10%以内收敛</strong>。回购（剩余$120.5M）在$10-12区间提供机械性托底。信号维持"watch"，建仓门槛（同店转正）未触发，但风险收益比已进入"可分批关注"区域。
+  </div>
+</div>
+
+<!-- 9. 风险与监控 -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <span class="section-title">风险清单与监控更新</span>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="two-col">
+    <div>
+      <div class="alert alert-red" style="margin-bottom:12px;">
+        <strong>同店修复停滞风险（核心）</strong><br>
+        −16.1%连续两季持平，若Q3仍无收窄，"上半年企稳"将退化为"全年横盘"。同店是估值所有假设的锚点。
+      </div>
+      <div class="alert alert-red" style="margin-bottom:12px;">
+        <strong>加盟收入结构性下滑</strong><br>
+        加盟收入−18.1%且占72.5%。GMV分成新模式+同店负增长双重压制，2026年加盟收入大概率继续负增长。
+      </div>
+      <div class="alert alert-warn" style="margin-bottom:0;">
+        <strong>直营重资产化风险</strong><br>
+        直营883家、单季+93家，运营成本+207.8%。直营占比快速提升抬高盈亏平衡点，若单店经济不修复，规模反成负担。
+      </div>
+    </div>
+    <div>
+      <div class="alert alert-warn" style="margin-bottom:12px;">
+        <strong>海外"高增长低质量"风险</strong><br>
+        海外GMV+114%但同店−15.1%，靠开店驱动。若海外单店经济未验证，占比越高，亏损拖累越大。
+      </div>
+      <div class="alert alert-warn" style="margin-bottom:12px;">
+        <strong>竞争与消费环境</strong><br>
+        蜜雪冰城/瑞幸/喜茶高频上新，外卖平台补贴战若重燃将再次冲击线下客流。
+      </div>
+      <div class="alert alert-info" style="margin-bottom:0;">
+        <strong>公司治理微变化</strong><br>
+        董事Yong Zhang于2026-08-28财报同日辞任（个人原因），董事会6人（3名独立董事）。关注后续治理动向，暂视为中性事件。
+      </div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">2026H2监控节点</div>
+    <table class="kv-table">
+      <tr><td>2026年9-10月</td><td>Q3财报：同店是否收窄至−12%以内；暑期旺季单店GMV季节性表现</td></tr>
+      <tr><td>持续</td><td>回购执行：月均$1,000万+视为积极；剩余$120.5M按节奏释放</td></tr>
+      <tr><td>2026年11-12月</td><td>Q3后秋冬新品（应季爆款）对同店的拉动验证</td></tr>
+      <tr><td>2027年2-3月</td><td>2026年报：全年Non-GAAP净利是否落于¥15.5-16.5亿区间；海外单店盈亏平衡数据</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>霸王茶姬 Chagee Holdings Limited（NASDAQ: CHA）· 2026Q2 财务分析 v6（2026-08-29）</div>
+  <div>数据来源：SEC 6-K Exhibit 99.1（2026-08-28，2026Q2未经审计业绩）★ 一手数据 ｜ 行情：腾讯/东财接口（2026-08-28收盘）</div>
+  <div>汇率基准：RMB 6.7851/USD（2026-06-30，美联储H.10）</div>
+  <div>v5→v6 主要变化：①同店平台期确认（−16.1%×2）；②2026E Non-GAAP净利下修至¥16亿中枢；③估值三情景下修（基准$18-24→$16-20）；④海外GMV占比突破6%触发独立叙事阈值；⑤回购进度纳入（已执行$29.5M/剩余$120.5M）。仅供研究参考，不构成投资建议</div>
+</div>
+
+</div>
+
+<script>
+Chart.defaults.font.family = "'IBM Plex Mono', monospace";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#6b6760';
+
+const gridColor = 'rgba(0,0,0,0.07)';
+
+// Trend chart: SSSG + avg monthly GMV
+new Chart(document.getElementById('trendChart'), {
+  data: {
+    labels: ['2024Q4','2025Q1','2025Q2','2025Q3','2025Q4','2026Q1','2026Q2'],
+    datasets: [
+      {
+        type: 'bar',
+        label: '同店GMV增速（%）',
+        data: [-19.3, -19.1, -23.1, -27.9, -25.5, -16.0, -16.1],
+        backgroundColor: (ctx) => {
+          const v = ctx.raw;
+          if (ctx.dataIndex >= 5) return 'rgba(44,95,63,0.45)';
+          return 'rgba(139,32,32,0.28)';
+        },
+        borderColor: (ctx) => ctx.dataIndex >= 5 ? '#2c5f3f' : '#8b2020',
+        borderWidth: 1,
+        yAxisID: 'y'
+      },
+      {
+        type: 'line',
+        label: '单店月均GMV（万元）',
+        data: [45.60, 43.20, 40.44, 37.85, 33.74, 35.61, 33.83],
+        borderColor: '#1a3a6b',
+        backgroundColor: 'transparent',
+        pointBackgroundColor: '#1a3a6b',
+        pointRadius: 4,
+        borderWidth: 2,
+        tension: 0.3,
+        yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { position: 'left', grid: { color: gridColor }, ticks: { callback: v => v + '%' }, min: -35, max: 0 },
+      y2: { position: 'right', grid: { display: false }, min: 25, max: 50, title: { display: true, text: '万元/月/店', font: { size: 10 } } }
+    }
+  }
+});
+
+// Cost chart Q2 2025 vs Q2 2026
+new Chart(document.getElementById('costChart'), {
+  type: 'bar',
+  data: {
+    labels: ['物料仓储物流','直营店运营成本','其他运营成本','销售营销','一般管理（含SBC）'],
+    datasets: [
+      { label: 'Q2 2025', data: [46.1, 5.5, 5.2, 11.6, 28.3], backgroundColor: 'rgba(26,58,107,0.2)', borderColor: '#1a3a6b', borderWidth: 1 },
+      { label: 'Q2 2026', data: [46.0, 16.6, 3.4, 8.8, 9.8], backgroundColor: 'rgba(139,32,32,0.25)', borderColor: '#8b2020', borderWidth: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: gridColor }, title: { display: true, text: '占总营收 %', font: { size: 10 } } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Store chart
+new Chart(document.getElementById('storeChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2025Q2','2025Q3','2025Q4','2026Q1','2026Q2'],
+    datasets: [
+      { label: '加盟·大中华', data: [6666, 6836, 6700, 6603, 6616], backgroundColor: 'rgba(26,58,107,0.18)', borderColor: '#1a3a6b', borderWidth: 1 },
+      { label: '直营·大中华', data: [164, 240, 408, 554, 624], backgroundColor: 'rgba(139,32,32,0.3)', borderColor: '#8b2020', borderWidth: 1 },
+      { label: '直营·海外', data: [75, 127, 207, 236, 259], backgroundColor: 'rgba(44,95,63,0.35)', borderColor: '#2c5f3f', borderWidth: 1 },
+      { label: '加盟·海外', data: [133, 135, 138, 138, 140], backgroundColor: 'rgba(201,168,76,0.5)', borderColor: '#c9a84c', borderWidth: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { stacked: true, grid: { color: gridColor } },
+      x: { stacked: true, grid: { display: false } }
+    }
+  }
+});
+
+// Valuation chart
+new Chart(document.getElementById('valChart'), {
+  type: 'bar',
+  data: {
+    labels: ['悲观中枢', '基准中枢', '乐观中枢', '加权目标', '当前市价'],
+    datasets: [{
+      label: '价格（US$）',
+      data: [11, 17, 22, 17.5, 10.80],
+      backgroundColor: ['#f0b7b0', '#b9d8b4', '#d9e8d5', '#c9a84c', '#1a3a6b'],
+      borderRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { min: 0, max: 28, grid: { color: gridColor }, ticks: { callback: v => '$' + v } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>

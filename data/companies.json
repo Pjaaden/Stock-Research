@@ -874,10 +874,10 @@
       "exchange": "US",
       "sector": "新茶饮",
       "research_folder": "霸王茶姬_NASDAQ_CHA",
-      "price": 9.3,
+      "price": 10.8,
       "shares": 2.5,
-      "net_cash_bn": 10.9,
-      "eps_forecast": 0.8,
+      "net_cash_bn": 10.0,
+      "eps_forecast": 1.24,
       "discount_rate": 10,
       "valuation_method": "Non-GAAP净利润 × PE + 净现金 × 折算比例",
       "signal": "watch",
@@ -885,35 +885,35 @@
       "avg_cost": 11.04,
       "max_position_pct": 30,
       "rating": "watch",
-      "next_catalyst": "Q2 2026财报（约8月）：同店增速是否收窄至-10%；回购执行进度",
-      "data_as_of": "2026Q1（2026-05-29发布）+ 实地监测（2026-04-20）",
+      "next_catalyst": "Q3 2026财报（约11月）：同店是否收窄至-12%以内；回购执行进度（截至8/24已执行$29.5M）；海外单店盈亏平衡验证",
+      "data_as_of": "2026Q2财报（2026-08-28 SEC 6-K）+ 行情2026-08-28收盘（现价$10.80）",
       "scenarios": [
         {
           "name": "乐观",
-          "prob": 25,
-          "target_price": 36,
-          "pe_assumed": 16,
-          "profit_2026e": 26,
-          "cash_pct": 100,
-          "assumptions": "同店Q2收窄至-10%内并转正；海外盈利独立叙事成立；Non-GAAP净利¥26亿；PE 16×；回购执行完毕"
+          "prob": 20,
+          "target_price": 22,
+          "pe_assumed": 15,
+          "profit_2026e": 17.5,
+          "cash_pct": 60,
+          "assumptions": "秋冬爆款带动同店Q4收窄至-5%内或转正；海外单店模型验证、GMV占比8%+；2026E Non-GAAP净利¥17.5亿；PE 15×"
         },
         {
           "name": "基准",
           "prob": 50,
-          "target_price": 21,
+          "target_price": 17,
           "pe_assumed": 12,
-          "profit_2026e": 22,
+          "profit_2026e": 16,
           "cash_pct": 80,
-          "assumptions": "同店逐季收窄，年底企稳；Non-GAAP净利¥21亿；PE 12×；净现金US$10.4亿×80%；回购托底"
+          "assumptions": "同店平台期后Q3收窄至-12%左右、H2环比企稳；SBC全年≈¥1.5亿；2026E Non-GAAP净利¥16亿；PE 12×；净现金US$10亿×80%；回购托底"
         },
         {
           "name": "悲观",
-          "prob": 25,
+          "prob": 30,
           "target_price": 11,
           "pe_assumed": 8,
-          "profit_2026e": 18,
+          "profit_2026e": 14.5,
           "cash_pct": 50,
-          "assumptions": "同店收窄停滞，Q2仍-20%+；直营持续亏损；Non-GAAP净利¥16亿；PE 8×；现金打五折"
+          "assumptions": "同店持续-15%±、H2同比-5%；直营持续亏损；海外同店转弱；2026E Non-GAAP净利¥14.5亿；PE 8×；现金打五折"
         }
       ],
       "position_rules": [
@@ -942,26 +942,26 @@
       "checklist": [
         {
           "id": "chk050",
-          "text": "2026Q1同店GMV跌幅是否收窄至-15%以内",
-          "action": "若跌幅仍超-20%，维持观察不建仓",
+          "text": "Q2同店GMV -16.1%（连续两季持平，平台期确认）；Q3能否收窄至-12%以内",
+          "action": "Q3仍-15%±→全年横盘，维持watch不建仓；Q3≤-12%→进入真实修复通道",
           "priority": "high",
           "checked": false,
           "category": "核心指标"
         },
         {
           "id": "chk051",
-          "text": "大中华加盟店净变动：是否连续两季度净减少停止",
-          "action": "出清结束信号，届时单店均值应上移",
+          "text": "大中华加盟店净变动：Q2环比+13家，连续两季净减少（Q4-136/Q1-97）后首次转正",
+          "action": "加盟商出清基本结束、企稳信号；若再度净减少则推翻企稳判断",
           "priority": "high",
-          "checked": false,
+          "checked": true,
           "category": "核心指标"
         },
         {
           "id": "chk052",
-          "text": "2026Q1 SBC费用是否较2025Q4（¥6610万）显著下降",
-          "action": "SBC正常化是最确定的利润改善路径，需跟踪季度确认金额",
+          "text": "SBC费用：Q2单季¥0.24亿（Q1 ¥0.59亿），较2025Q4（¥6,610万）降96%，正常化基本完成",
+          "action": "全年SBC≈¥1.5亿验证；GAAP/Non-GAAP剪刀差收窄是最确定利润改善路径",
           "priority": "high",
-          "checked": false,
+          "checked": true,
           "category": "盈利质量"
         },
         {
@@ -974,10 +974,10 @@
         },
         {
           "id": "chk054",
-          "text": "海外直营GMV占比是否突破6%",
-          "action": "当前约5%，突破6%才具备独立估值叙事",
+          "text": "海外GMV占比：H1达6.0%、Q2单季6.6%，已突破6%独立叙事阈值",
+          "action": "占比8%+且海外单店模型验证→乐观情形上调；海外同店-15.1%转弱需跟踪",
           "priority": "mid",
-          "checked": false,
+          "checked": true,
           "category": "海外扩张"
         },
         {
@@ -1006,48 +1006,51 @@
         },
         {
           "id": "chk058",
-          "text": "Q2 2026同店GMV增速是否收窄至-10%以内",
-          "action": "若Q2仍超-15%，基准情形再次下调；若收窄至-5%，乐观情形概率上调至35%",
+          "text": "Q3 2026同店GMV增速能否收窄至-12%以内（Q2实际-16.1%，平台期）",
+          "action": "Q3仍超-15%→基准情形概率下调至40%、悲观上调至40%；收窄至-10%内→乐观上调至30%",
           "priority": "high",
           "checked": false,
           "category": "核心指标"
         },
         {
           "id": "chk059",
-          "text": "回购执行进度：6月起是否按计划在市场买入",
-          "action": "回购是估值底部支撑，若执行积极（月均$1000万+）则下行风险有限",
+          "text": "回购执行进度：截至2026-08-24已回购257万ADS（$29.5M），剩余$120.5M",
+          "action": "月均$1,000万+视为积极，$10-12区间持续托底；若回购放缓则底部支撑减弱",
           "priority": "mid",
-          "checked": false,
+          "checked": true,
           "category": "资本回报"
         }
       ],
-      "research_notes": "★ 2026Q1财报（2026-05-29）核心数据：\n营收¥35.5亿(+4.5% YoY)；GAAP净利¥4.48亿(-33.9%)；Non-GAAP净利¥5.07亿(-25.1%)；\n同店GMV -16.0%（连续三季收窄，峰值-27.9%）；单店月均¥35.6万(QoQ+5.5%)；\nSBC单季¥0.59亿（年化约¥2.4亿，较2025年¥7.24亿大幅正常化）；\n海外GMV ¥4.26亿(+139% YoY)；净现金¥71.5亿(US$10.4亿)；\n回购计划US$1.5亿，6月起12个月执行（≈市值17%）。\n\n核心判断（v5, 2026-05-30）：\n同店拐点方向确认（-16%），结合实地坪效4月112元一致。SBC正常化是最确定利润修复路径。\n直营毛利率约38%，好于预期，海外部分门店已盈利。经营CF¥1.93亿偏低，主因时存款→短期投资重分类，剔除后合理。\n情形概率：悲观25% / 基准50% / 乐观25%。基准目标价$18-24（12-18个月）。\n\n【商业模式重构（2026-03）】从原材料供销→GMV分成，加盟商压力减轻，总部与强位门店利益对齐。\n【实地监测（2026-04-20）】坪效三年跌67%（300→96元），4月回升至112元，呈企稳迹象。\n4月春季新品（龙井/果茶）坪效是否持续110+为下一校准点。",
+      "research_notes": "★ 2026Q2财报（2026-08-28 SEC 6-K）核心数据：\n营收¥34.1亿(+2.5%)；GAAP净利¥4.65亿(+502%，SBC正常化驱动)；Non-GAAP净利¥4.89亿(-22.4%)；\n同店GMV -16.1%（连续两季持平，平台期确认）；单店月均¥33.8万(QoQ-5.0%)；\nSBC单季¥0.24亿（Q1 ¥0.59亿，正常化基本完成）；加盟收入-18.1%、直营收入+202.3%（占比27.5%）；\n海外GMV ¥5.04亿(+114.3%)，占比6.6%（H1 6.0%，突破6%独立叙事阈值）；\n大中华加盟店环比+13家（出清后首次转正）；现金RMB¥67.96亿(US$10.0亿，占总市值约49%)；\n回购：已执行$29.5M/257万ADS，剩余$120.5M（均价≈$11.5）。\n\n核心判断（v6, 2026-08-29）：\n同店拐点确认后进入平台期（-16%×2），'逐季收窄'乐观预期被证伪；\n2026E Non-GAAP净利中枢下修至¥15.5-16.5亿（v5为¥20-23亿），H1实际¥9.96亿(-23.8%)；\nGAAP口径2026全年将大幅改善（SBC从¥7.24亿降至≈¥1.5亿），'会计利润反转'与'经营盈利承压'并存；\n直营化提速（直营883家，毛利率39.7%）与加盟企稳（+13家）并存；\n现价$10.80（2026-08-28收盘），TTM Non-GAAP PE≈8.7×，市值US$20.6亿，PB 1.71；\n三情景：悲观30%→$9-13 / 基准50%→$16-20 / 乐观20%→$20-26，加权≈$17.5；\n核心变量：Q3同店能否收窄至-12%以内、回购执行节奏、海外单店盈亏平衡验证。\n\n【v5要点保留】2026Q1：营收¥35.5亿(+4.5%)、Non-GAAP净利¥5.07亿(-25.1%)、同店-16.0%、回购计划US$1.5亿。\n【商业模式重构（2026-03）】原材料供销→GMV分成，加盟商压力减轻。\n【实地监测（2026-04-20，内部）】坪效三年跌67%（300→96元），4月回升至112元。",
       "gradient": {
         "buy_strong": 10,
-        "buy": 14,
-        "hold_low": 20,
-        "trim": 30,
-        "sell": 38,
+        "buy": 13,
+        "hold_low": 17,
+        "trim": 22,
+        "sell": 27,
         "custom_points": []
       },
       "shares_held": 50,
       "status": "active",
       "valuation_params": {
         "nongaap_profit_rmb_bn": 19.1,
-        "nongaap_profit_2026e_rmb_bn": 21.0,
-        "fx_rate": 6.898,
-        "total_shares_mn": 192,
-        "net_cash_usd_bn": 10.4,
+        "nongaap_profit_2026e_rmb_bn": 16.0,
+        "fx_rate": 6.7851,
+        "total_shares_mn": 191,
+        "net_cash_usd_bn": 10.0,
         "sbc_2025_rmb_bn": 7.24,
         "sbc_2026e_rmb_bn": 1.5,
-        "current_pe": 6.5,
+        "current_pe": 8.7,
         "peer_pe_avg": 15,
-        "sssg_2025q4": -25.5,
-        "avg_gmv_per_store_2025q4_rmb": 337358,
-        "franchised_stores_2025q4": 6700,
-        "owned_stores_2025q4": 615,
-        "nongaap_profit_q1_2026_rmb_bn": 5.07,
-        "buyback_usd_bn": 1.5
+        "sssg_2026q2": -16.1,
+        "avg_gmv_per_store_2026q2_rmb": 338259,
+        "franchised_stores_2026q2": 6756,
+        "owned_stores_2026q2": 883,
+        "nongaap_profit_h1_2026_rmb_bn": 9.96,
+        "buyback_usd_bn": 1.5,
+        "buyback_executed_usd_bn": 0.295,
+        "overseas_gmv_q2_2026_rmb_bn": 0.504,
+        "overseas_gmv_pct_h1_2026": 6.0
       }
     },
     {
