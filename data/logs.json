@@ -5,6 +5,24 @@
   },
   "logs": [
     {
+      "id": "log-20260910-004",
+      "date": "2026-09-10",
+      "type": "JSON 同步",
+      "company": "赛轮集团",
+      "code": "601058.SH",
+      "action": "companies.json 赛轮(c002)字段按 2026H1 中报写回",
+      "detail": "price 13.7→14.38、eps_forecast 1.2→1.46、net_cash_bn −121.2→−146.73、data_as_of→2026H1中报·v21、next_catalyst→Q3季报/汇兑/高新证书续期/海外达产；baseline_data（有息负债146.73、资产负债率52.46、经营CF 41.79、新增净负债94.66/FCF−15.65/as_of）；scenarios 三档目标价由 17.0/14.5/10.5 改为 20.53/16.06/11.37（概率25/50/25，对应54/48/44亿净利）；gradient 当前点 13.7→14.38、gradient_logic.last_updated→2026-09-10；新增 key_financials_2026H1（Q2隐含、汇兑、税率、海外占比等）与 research_notes_2026H1；checklist：chk012 标记已验证（Q1 EPS 0.32），新增 chk019/chk020/chk021（Q3毛利率与汇兑、高新证书续期、杠杆与FCF）"
+    },
+    {
+      "id": "log-20260910-003",
+      "date": "2026-09-10",
+      "type": "系统优化",
+      "company": "项目级",
+      "code": "-",
+      "action": "季度财报 CSV 归档升级为项目标准（全标的适用）",
+      "detail": "重写 TRAE/QUARTERLY_CSV_WORKFLOW.md 为《季度财报 CSV 存档规范（项目标准）》：适用范围扩至 companies.json 全部公司；新增 §五 季度触发节奏、§6.1 覆盖清单（9 标的建档状态）、§6.2 列结构差异登记、§七 新标的建档检查清单（11 项）、§九 与工作流衔接。同步修改 TRAE/WORKFLOW.md（任务分类新增「季度 CSV 归档」、标准步骤新增第 4 步「归档季度 CSV（强制）」、失败保护与多设备纪律补充）与 TRAE/PROJECT_INSTRUCTIONS.md（三层结构、输出规则、默认工作顺序、不要做的事、项目内入口）。同步 INDEX.md 与 .trae/rules 副本"
+    },
+    {
       "id": "log-20260910-002",
       "date": "2026-09-10",
       "type": "数据存档",

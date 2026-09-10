@@ -9,6 +9,7 @@
 - `事件跟踪`：政策、事故、产品、订单、价格、关税、管理层动作
 - `JSON 同步`：只做结构化字段写回（不产出长篇分析）
 - `候选池维护`：维护 `data/watchlist.json`
+- `季度 CSV 归档`：按 `TRAE/QUARTERLY_CSV_WORKFLOW.md` 更新/补齐 `<research_folder>/data/quarterly/`（财报类任务必经，适用于**所有研究标的**）
 
 ## 标准执行步骤
 
@@ -45,7 +46,18 @@
 - 后续跟踪点
 - “是否需要结构化同步”的结论（需要/不需要）
 
-### 4) 再评估是否改 JSON（可选）
+### 4) 归档季度 CSV（强制，财报类任务）
+
+凡任务涉及财报（季报 / 半年报 / 年报），必须按 `TRAE/QUARTERLY_CSV_WORKFLOW.md` 同步该标的的结构化时序数据：
+
+- 落点：`<research_folder>/data/quarterly/`（4 份 CSV + README，UTF-8 带 BOM、long-format）
+- 保留报告内“上年同期”为独立 `period` 行；资产负债表同时给 `期末` / `期初`
+- 追加不覆盖；派生指标标注“派生计算”并给出公式；不得虚构未披露科目
+- 建/改后登记：规范的覆盖清单（§6.1）、`INDEX.md`、`data/logs.json`、当期 `TRAE/sessions/`
+- 未建档的标的，应在本次触及该标的时一并补齐（以规范 §六 覆盖清单为准）
+- 自检：会计恒等式（资产=负债+权益、利润表结转、净利润=归母+少数、OCF=流入−流出、FCF=OCF−capex）
+
+### 5) 再评估是否改 JSON（可选）
 
 只有这些适合进 `data/*.json`：
 
@@ -58,7 +70,7 @@
 - 交易想法（短期、战术）
 - 浏览器临时采集结果（未确认来源/稳定性）
 
-### 5) 最后才考虑同步仓库（可选）
+### 6) 最后才考虑同步仓库（可选）
 
 只有在明确满足这些条件时才做推送：
 
@@ -77,6 +89,8 @@
 
 如果遇到“目录不一致”（`companies.json.research_folder` 与真实目录不同），先暂停写入动作，优先输出一个“目录与字段校准建议”，避免写错位置导致历史断裂。
 
+如果遇到“季度 CSV 不一致”（如 `research_folder` 下缺 `data/quarterly/`、或已有 period 与最新财报不同步），先补齐 CSV 归档再宣布任务完成，避免出现“只有报告、没有时序底稿”的断层。
+
 如果遇到“凭证失效”：
 
 - 先停止 `push`、停止需要认证的 GitHub 写入
@@ -90,6 +104,6 @@
 1. **开工前**：`git pull --rebase origin main`；读 `TRAE/HANDOFF.md` 与相关 `TRAE/sessions/` 档案恢复上下文。
 2. **收工/换机前**：写 `TRAE/sessions/YYYYMMDD_主题.md`（模板见 `_模板.md`）；更新 `TRAE/HANDOFF.md`（进行中任务 + 最近动态 ≤5 条）；有关键动作则登记 `data/logs.json`。
 3. **push 前**：`git pull --rebase origin main`，避免覆盖其他设备的新提交；冲突时先比对差异（尤其 `data/*.json`），不强行覆盖。
-4. **单一写者约定**：同一时段尽量只有一台设备做 JSON 写入与推送，另一台只读；避免两个会话同时改 `companies.json`。
+4. **单一写者约定**：同一时段尽量只有一台设备做 JSON / 季度 CSV 写入与推送，另一台只读；避免两个会话同时改 `companies.json` 或同一标的的 `data/quarterly/`。
 5. **凭证按设备准备**：SSH（`~/.ssh/id_ed25519`，公钥需在 GitHub 注册）或 HTTPS+PAT（`TRAE_LOCAL/GITHUB_PAT.local`，PAT 有效期记录 2026-10-21）；每台新设备都要单独准备其一。
-6. **pages/ 是本地草稿区**，不入库；定稿一律蒸馏到同步层（研究报告 + `data/*.json` + `TRAE/sessions/`）。
+6. **pages/ 是本地草稿区**，不入库；定稿一律蒸馏到同步层（研究报告 + `data/quarterly/` 季度 CSV + `data/*.json` + `TRAE/sessions/`）。
