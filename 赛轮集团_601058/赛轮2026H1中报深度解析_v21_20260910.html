@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>赛轮轮胎 · 2026H1 中报深度解析 v21 · 2026-09-10</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f3ee;--bg2:#ffffff;--bg3:#ece9e2;--bg4:#e2dfd8;--bg5:#dad6cc;
+  --ink:#0c0a08;--line:#d0ccc3;--line2:#bab4a8;
+  --r:#c41a08;--rp:#fdf1f0;--rl:#e8c4be;
+  --a:#8c4800;--ap:#fdf7f0;--al:#e8d4b8;
+  --g:#1a6030;--gp:#f0faf4;--gl:#bcdbc6;
+  --b:#1a3870;--bp:#f0f4fb;--bl:#bdc8df;
+  --p:#521a80;--pp:#f5f0fc;--pl:#d4c0e0;
+  --mu:#706a60;--di:#a09890;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans SC',sans-serif;font-size:13px;line-height:1.7;}
+.hdr{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg2) 92%,var(--bg3) 100%);border-bottom:2.5px solid var(--ink);padding:0 44px;}
+.hdr-meta{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.5px;}
+.hdr-body{padding:18px 0 16px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;}
+.eyebrow{font-family:'Syne',sans-serif;font-size:9.5px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--mu);margin-bottom:8px;}
+h1{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;line-height:1.05;letter-spacing:-.5px;}
+h1 em{color:var(--r);font-style:normal;}
+h1 .g{color:var(--g);font-style:normal;}
+.sub{font-size:12px;color:var(--mu);margin-top:10px;max-width:820px;line-height:1.78;}
+.price-stamp{text-align:right;font-family:'JetBrains Mono',monospace;}
+.price-stamp .px-l{font-size:8.5px;letter-spacing:1.8px;color:var(--mu);text-transform:uppercase;font-weight:700;}
+.price-stamp .px-v{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--r);line-height:1;margin:3px 0;}
+.price-stamp .px-s{font-size:10px;color:var(--mu);letter-spacing:0.5px;}
+main{padding:0 44px 50px;}
+section{margin-top:30px;}
+.sec-hd{font-family:'Syne',sans-serif;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--mu);padding-bottom:9px;border-bottom:2px solid var(--ink);margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline;}
+.sec-hd .num{font-family:'JetBrains Mono',monospace;color:var(--r);font-weight:700;margin-right:8px;}
+.sec-hd .meta{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;font-weight:400;text-transform:none;}
+.sec-sub-hd{font-family:'Noto Serif SC',serif;font-size:14.5px;font-weight:700;color:var(--ink);margin:18px 0 10px;padding-left:9px;border-left:3px solid var(--ink);}
+.box{border-left:3px solid;padding:14px 17px;margin:11px 0;font-size:12px;line-height:1.85;}
+.box strong{color:var(--ink);font-weight:700;}
+.box-g{border-color:var(--g);background:var(--gp);color:var(--mu);}
+.box-a{border-color:var(--a);background:var(--ap);color:var(--mu);}
+.box-r{border-color:var(--r);background:var(--rp);color:var(--mu);}
+.box-b{border-color:var(--b);background:var(--bp);color:var(--mu);}
+.box-p{border-color:var(--p);background:var(--pp);color:var(--mu);}
+table{width:100%;border-collapse:collapse;background:var(--bg2);font-size:11px;margin:10px 0;border:1px solid var(--line);}
+thead th{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1.8px;text-transform:uppercase;color:var(--mu);padding:9px 12px;text-align:left;background:var(--bg3);border-bottom:2px solid var(--ink);font-weight:700;}
+tbody td{padding:9px 12px;border-bottom:1px solid var(--line);font-family:'JetBrains Mono',monospace;font-size:11px;vertical-align:top;line-height:1.65;}
+tr.hg td{background:var(--gp);}tr.ha td{background:var(--ap);}tr.hr td{background:var(--rp);}tr.hb td{background:var(--bp);}tr.hp td{background:var(--pp);}
+tr.tot td{border-top:2px solid var(--ink);font-weight:700;background:var(--bg3);}
+tr:not(.tot):hover td{background:var(--bg3);}
+.c-r{color:var(--r);}.c-g{color:var(--g);}.c-a{color:var(--a);}.c-b{color:var(--b);}.c-p{color:var(--p);}.c-mu{color:var(--mu);}
+.fw7{font-weight:700;}.right{text-align:right;}.center{text-align:center;}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin:14px 0;}
+.kpi-row-5{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:12px 0;}
+.kpi-row-3{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin:14px 0;}
+.kpi{background:var(--bg2);border:1px solid var(--line);border-top:3px solid var(--ink);padding:13px 14px;}
+.kpi-l{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.kpi-v{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;color:var(--ink);line-height:1.1;}
+.kpi-s{font-size:10px;color:var(--mu);margin-top:5px;line-height:1.55;}
+.kpi-g{border-top-color:var(--g);}.kpi-g .kpi-v{color:var(--g);}
+.kpi-r{border-top-color:var(--r);}.kpi-r .kpi-v{color:var(--r);}
+.kpi-a{border-top-color:var(--a);}.kpi-a .kpi-v{color:var(--a);}
+.kpi-b{border-top-color:var(--b);}.kpi-b .kpi-v{color:var(--b);}
+.kpi-p{border-top-color:var(--p);}.kpi-p .kpi-v{color:var(--p);}
+.delta{display:inline-block;padding:2px 7px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:.3px;border-radius:2px;line-height:1.2;}
+.delta-up{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.delta-dn{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.delta-neu{background:var(--bg3);color:var(--mu);border:1px solid var(--line);}
+.pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;padding:2px 7px;font-weight:700;letter-spacing:.5px;border-radius:2px;}
+.pill-g{background:var(--gp);color:var(--g);border:1px solid var(--gl);}
+.pill-r{background:var(--rp);color:var(--r);border:1px solid var(--rl);}
+.pill-a{background:var(--ap);color:var(--a);border:1px solid var(--al);}
+.pill-b{background:var(--bp);color:var(--b);border:1px solid var(--bl);}
+.pill-p{background:var(--pp);color:var(--p);border:1px solid var(--pl);}
+.callout{background:var(--bg3);border:1px solid var(--line2);padding:13px 18px;margin:11px 0;}
+.callout-l{font-family:'Syne',sans-serif;font-size:9.5px;letter-spacing:2.8px;text-transform:uppercase;color:var(--r);font-weight:700;margin-bottom:7px;}
+.callout-bd{font-size:11.5px;color:var(--mu);line-height:1.85;}
+.callout-bd strong{color:var(--ink);}
+.var-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);margin:12px 0;background:var(--bg2);}
+.var-cell{padding:13px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.var-cell:nth-child(4n){border-right:none;}
+.var-name{font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--mu);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px;font-weight:700;}
+.var-then{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--mu);text-decoration:line-through;}
+.var-now{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--ink);line-height:1.2;margin:2px 0;}
+.var-delta{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:.3px;}
+.var-impact{font-size:9.5px;color:var(--mu);margin-top:4px;font-style:italic;line-height:1.5;}
+.ladder{background:var(--bg2);border:1px solid var(--ink);padding:0;margin:14px 0;}
+.ladder-hd{background:var(--ink);color:var(--bg);padding:8px 16px;font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2.5px;font-weight:700;text-transform:uppercase;}
+.lad-row{display:grid;grid-template-columns:150px 90px 1fr 100px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);font-size:11px;}
+.lad-row:last-child{border-bottom:none;}
+.lad-row.current{background:var(--rp);font-weight:700;}
+.lad-px{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;}
+.lad-desc{font-size:11px;color:var(--mu);line-height:1.6;}
+.lad-act{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;text-align:right;}
+footer{margin-top:42px;padding:14px 44px;background:var(--bg3);border-top:2px solid var(--ink);display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--di);letter-spacing:1.2px;}
+ul.tight{list-style:none;padding-left:0;margin:6px 0;}
+ul.tight li{padding:4px 0 4px 16px;position:relative;font-size:11.5px;color:var(--mu);line-height:1.75;}
+ul.tight li::before{content:'\25B8';position:absolute;left:0;color:var(--ink);font-weight:700;}
+ul.tight li strong{color:var(--ink);}
+.note{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--di);margin-top:6px;line-height:1.7;}
+@media print{body{font-size:11px;}.hdr,footer{padding-left:20px;padding-right:20px;}main{padding:0 20px 30px;}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-meta">
+    <span>SAILUN TIRE · 601058.SH · 2026H1 REVIEW v21</span>
+    <span>POST · 4/29 2026Q1 · POST · 6/29 50亿推演 · POST · 8/28 中报</span>
+    <span>20260910 · LAYER 12</span>
+  </div>
+  <div class="hdr-body">
+    <div>
+      <div class="eyebrow">SAILUN TIRE · 2026 INTERIM DEEP DIVE</div>
+      <h1>赛轮轮胎 · <em>2026H1 中报</em><br>从<span class="g">"市场已认可"</span>到量化再定价</h1>
+      <div class="sub">用户命题：H1 财报已被市场认可、股价两月已涨过一轮，但仍需更量化、更全面的解析。本报告以 2026 中期报告原始数据为底稿，对账此前研究的时间节点（最新硬数据 = 2026Q1；6/29 的 Q2 12–14 亿为纯推演），逐项验证/证伪旧假设，并给出以现价 14.38 元为锚的情景重估。</div>
+    </div>
+    <div class="price-stamp">
+      <div class="px-l">当前股价 · 2026.09.10 10:44</div>
+      <div class="px-v">¥14.38</div>
+      <div class="px-s">总市值 472.8 亿 · 总股本 32.88 亿股</div>
+      <div class="px-s" style="margin-top:6px;color:var(--mu)">vs 6/16 ¥12.40 +16.0% · vs 年初 ¥16.04 −10.3%</div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- §0 核心结论 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§0</span>核心结论·三句话</span><span class="meta">EXECUTIVE SUMMARY</span></div>
+
+  <div class="box box-g">
+    <strong>① H1 总量超预期、结构真实：营收 200.27 亿（+13.88%）、归母 21.60 亿（+17.97%）；单季隐含 Q2 营收 105.66 亿——Q2 首次单季破 100 亿，验证了 6/29 报告的假设①。</strong>
+  </div>
+
+  <div class="box box-a">
+    <strong>② 但 Q2 归母仅 11.04 亿，低于 6/29 推演的 12–14 亿约 2 亿。落差不在毛利率（Q2 毛利率 27.10%，环比还升 0.24pp、同比大幅改善），而在三处"非经营性"侵蚀：财务费用（汇兑净损失约 2.56 亿，同比摆动 +3.75 亿，+429.74%）、有效税率升至 14.65%（+2.29pp，含 GIoBE 补足税）、以及少数股东损益结构变化。</strong>
+  </div>
+
+  <div class="box box-b">
+    <strong>③ 现价 14.38 元隐含 PE(TTM) 12.29x、PB 2.09x；若 2026 净利 48 亿则动态 PE 9.86x。情景概率加权中枢 16.00 元（+11.2%）。但需正视两个新增风险：杠杆抬升（有息负债 146.73 亿，半年 +26.19 亿）与自由现金流为负（FCF −15.65 亿），产能扩张期的"利润好、现金紧"特征已明确。</strong>
+  </div>
+</section>
+
+<!-- §1 数据边界对账 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§1</span>数据边界对账·此前素材更新到哪个节点</span><span class="meta">RECONCILIATION OF PRIOR ARTIFACTS</span></div>
+
+  <div class="sec-sub-hd">1.1 时间节点与数据性质</div>
+  <table>
+    <thead><tr><th>时间</th><th>素材</th><th>性质</th><th>关键结论</th><th>本次中报校验</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">2026-03-18</td><td>三基地成本结构 / 净利下滑归因</td><td><span class="pill pill-a">归因</span></td><td>成本结构拆解</td><td class="c-mu">未被推翻</td></tr>
+      <tr><td class="fw7">2026-04-29</td><td>2025FY + 2026Q1 分析</td><td><span class="pill pill-b">硬数据</span></td><td>Q1 营收 94.61 亿、归母 10.56 亿、毛利率 26.86%</td><td class="c-g">✓ 与中报一致</td></tr>
+      <tr class="hg"><td class="fw7">2026-05-17</td><td><strong>赛轮全球产能与资本开支量化</strong></td><td><span class="pill pill-b">产能底稿</span></td><td>九基地+埃及二期；全钢 3,170 万条 / 半钢 1.12 亿条 / OTR 49.14 万吨</td><td class="c-g">✓ 中报产能/在建口径吻合</td></tr>
+      <tr class="ha"><td class="fw7">2026-06-16</td><td>估值更新 v20（12.4 元节点）</td><td><span class="pill pill-a">估值</span></td><td>中枢 14–16 元、乐观 18–19 元；2026 净利 46–50 亿</td><td class="c-b">待 §6 重估</td></tr>
+      <tr><td class="fw7">2026-06-18</td><td>埃及超级产能扩张（可研解读）</td><td><span class="pill pill-a">产能</span></td><td>埃及二期 705 万条</td><td class="c-g">✓ 中报披露埃及扩建</td></tr>
+      <tr class="hr"><td class="fw7">2026-06-29</td><td><strong>50 亿净利季度拆解</strong></td><td><span class="pill pill-r">纯推演</span></td><td>Q2 估 <strong>12–14 亿</strong>；Q3 11–13 亿；Q4 14–17 亿</td><td class="c-r">✗ Q2 实际 11.04 亿，低约 2 亿</td></tr>
+      <tr class="hg"><td class="fw7">2026-08-28</td><td>2026 半年度报告（本次输入）</td><td><span class="pill pill-g">硬数据</span></td><td>H1 营收 200.27 亿 / 归母 21.60 亿</td><td class="c-g">✓ 本报告底稿</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <div class="callout-l">边界结论</div>
+    <div class="callout-bd">
+      <strong>此前财务数据的"硬节点"是 2026Q1（4/29）；6/29 的 50 亿拆解是情景推演、不是已披露数据。</strong>因此本次中报是首次能够"证真/证伪"推演的文件。产能侧的最完整底稿是 5/17 的《全球产能与资本开支量化》——本次中报的在建工程、贡布特区投入、埃及扩建均可在该底稿内对号入座（§4）。<br>
+      <strong>另需注意口径差：</strong>v20 与 6/29 的估值锚是 12.40 / 11.72 元，现价已 14.38 元，所有"隐含 PE/上行空间"必须重算（§6）。
+    </div>
+  </div>
+</section>
+
+<!-- §2 利润表深挖 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§2</span>利润表深挖·Q2 的钱去哪了</span><span class="meta">INCOME STATEMENT DEEP DIVE</span></div>
+
+  <div class="sec-sub-hd">2.1 H1 总量与质量</div>
+  <div class="kpi-row-5">
+    <div class="kpi kpi-g"><div class="kpi-l">营业收入</div><div class="kpi-v">200.27</div><div class="kpi-s">亿元 · YoY <span class="delta delta-up">+13.88%</span></div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">归母净利</div><div class="kpi-v">21.60</div><div class="kpi-s">亿元 · YoY <span class="delta delta-up">+17.97%</span></div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">毛利率</div><div class="kpi-v">26.99%</div><div class="kpi-s">去年同期 24.53% · <span class="delta delta-up">+2.45pp</span></div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">扣非归母</div><div class="kpi-v">20.58</div><div class="kpi-s">亿元 · YoY +12.75%</div></div>
+    <div class="kpi kpi-r"><div class="kpi-l">有效税率</div><div class="kpi-v">14.65%</div><div class="kpi-s">去年同期 12.36% · <span class="delta delta-dn">+2.29pp</span></div></div>
+  </div>
+  <ul class="tight">
+    <li><strong>利润增速（+17.97%）显著快于营收（+13.88%）</strong>——毛利率 +2.45pp 是主因，符合"原材料红利释放"的旧判断。</li>
+    <li><strong>非经常性损益 1.02 亿（占归母 4.7%），含金量高</strong>：主要来自套保公允价值变动 +0.74 亿与政府补助 +0.16 亿，扣非 / 归母 = 95.3%，利润"干净"。</li>
+  </ul>
+
+  <div class="sec-sub-hd">2.2 期间费用：唯一的"真异常"是财务费用</div>
+  <table>
+    <thead><tr><th>科目</th><th>2026H1</th><th>费用率</th><th>2025H1</th><th>同比</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">销售费用</td><td class="right">9.54 亿</td><td class="right">4.77%</td><td class="right">8.26 亿</td><td class="right c-a">+15.57%</td><td>随营收与海外占比扩张</td></tr>
+      <tr><td class="fw7">管理费用</td><td class="right">6.57 亿</td><td class="right">3.28%</td><td class="right">5.15 亿</td><td class="right c-a">+27.61%</td><td>增速快于营收，需跟踪（新基地开办）</td></tr>
+      <tr><td class="fw7">研发费用</td><td class="right">5.90 亿</td><td class="right">2.95%</td><td class="right">5.37 亿</td><td class="right c-a">+9.84%</td><td>稳态投入</td></tr>
+      <tr class="hr"><td class="fw7">财务费用</td><td class="right fw7">4.57 亿</td><td class="right fw7">2.28%</td><td class="right">0.86 亿</td><td class="right c-r fw7">+429.74%</td><td><strong>核心异动：汇兑由收益转损失</strong></td></tr>
+      <tr class="tot"><td>期间费用合计</td><td class="right">26.59 亿</td><td class="right">13.28%</td><td class="right">19.64 亿</td><td class="right">+35.4%</td><td>费率 +2.11pp（去年 11.17%）</td></tr>
+    </tbody>
+  </table>
+  <div class="callout">
+    <div class="callout-l">汇兑拆解（还原真实经营）</div>
+    <div class="callout-bd">
+      财务费用内部：利息费用 2.29 亿（同比 −5.91%，融资成本并未恶化）、利息收入 0.28 亿（−25.82%）。<br>
+      其差额 ≈ <strong>汇兑净损失 2.56 亿</strong>；去年同期为汇兑净收益 1.19 亿。<strong>仅此一项，同比摆动 +3.75 亿（不利方向）</strong>——这就是 Q2 利润低于推演的最大单一来源。<br>
+      <strong>结论：剥离汇兑，H1 经营性利润（营业利润 25.53 亿 / +18.74%）质量优于表观。</strong>汇兑是人民币升值期的账面扰动，非经营性损失，但对当期净利润是实打实的扣减。
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">2.3 单季拆解：Q2 是"增收不增利"，还是"增收被费用吃"？</div>
+  <table>
+    <thead><tr><th>单季</th><th>营收(亿)</th><th>归母(亿)</th><th>毛利率</th><th>归母净利率</th><th>环比</th><th>同比</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">2025Q1</td><td class="right">84.10</td><td class="right">10.38</td><td class="right c-mu">—</td><td class="right">12.34%</td><td class="right c-mu">—</td><td class="right c-mu">—</td></tr>
+      <tr><td class="fw7">2025Q2</td><td class="right">91.77</td><td class="right">7.93</td><td class="right c-mu">—</td><td class="right">8.64%</td><td class="right c-mu">—</td><td class="right c-mu">—</td></tr>
+      <tr><td class="fw7">2026Q1</td><td class="right">94.61</td><td class="right">10.56</td><td class="right">26.86%</td><td class="right">11.16%</td><td class="right c-g">+12.50%<span class="c-mu">(YoY)</span></td><td class="right c-a">+1.70%(YoY)</td></tr>
+      <tr class="hg"><td class="fw7">2026Q2</td><td class="right fw7">105.66</td><td class="right fw7">11.04</td><td class="right c-g fw7">27.10%</td><td class="right">10.45%</td><td class="right c-g">+11.68%</td><td class="right c-g fw7">+15.14% / +39.28%</td></tr>
+      <tr class="tot"><td>H1 合计</td><td class="right">200.27</td><td class="right">21.60</td><td class="right">26.99%</td><td class="right">10.78%</td><td class="right">—</td><td class="right">+13.88% / +17.97%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="var-grid">
+    <div class="var-cell"><div class="var-name">Q2 营收</div><div class="var-then">6/29 假设① 破 100 亿</div><div class="var-now">105.66 亿</div><div class="var-delta c-g">✓ 已兑现 <span class="delta delta-up">验证</span></div><div class="var-impact">Q2 环比 +11.68%、同比 +15.14%，产能释放真实</div></div>
+    <div class="var-cell"><div class="var-name">Q2 毛利率</div><div class="var-then">6/29 估 25–26%</div><div class="var-now">27.10%</div><div class="var-delta c-g">✓ 超预期 <span class="delta delta-up">+1.1pp</span></div><div class="var-impact">原材料红利未在 Q2 消退，反环比 +0.24pp</div></div>
+    <div class="var-cell"><div class="var-name">Q2 归母</div><div class="var-then">6/29 估 12–14 亿</div><div class="var-now">11.04 亿</div><div class="var-delta c-r">✗ 低约 2 亿 <span class="delta delta-dn">证伪</span></div><div class="var-impact">被财务费用(汇兑)+税率+少数股东吃掉</div></div>
+    <div class="var-cell"><div class="var-name">Q2 净利率</div><div class="var-then">Q1 11.16%</div><div class="var-now">10.45%</div><div class="var-delta c-r">−0.71pp <span class="delta delta-dn">下滑</span></div><div class="var-impact">毛利率升、净利率降 = 费用端拖累的直接证据</div></div>
+  </div>
+
+  <div class="box box-a">
+    <strong>关键判断：Q2 的问题不是"卖不动"也不是"毛利掉"，而是"毛利创了新高、但被汇兑与税负吃掉了"。</strong>毛利率 27.10%（环比 +0.24pp、同比显著修复）证明产品结构与成本传导仍然健康；归母净利率从 Q1 的 11.16% 降到 10.45%，缺口正好对应财务费用（2.28% 费用率）与有效税率（14.65%）。<strong>这属于"可逆的账面扰动"，而非"经营恶化"——但连续两个季度的人民币升值会持续侵蚀（§7 跟踪点）。</strong>
+  </div>
+</section>
+
+<!-- §3 资产负债与现金流 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§3</span>资产负债与现金流·扩张期的"利润好·现金紧"</span><span class="meta">BALANCE SHEET &amp; CASH FLOW</span></div>
+
+  <div class="sec-sub-hd">3.1 杠杆：半年新增有息负债 26.19 亿</div>
+  <div class="kpi-row">
+    <div class="kpi kpi-r"><div class="kpi-l">有息负债</div><div class="kpi-v">146.73</div><div class="kpi-s">亿元 · 2025 末 120.54 亿<br><span class="delta delta-dn">+26.19 亿 / +21.7%</span></div></div>
+    <div class="kpi kpi-r"><div class="kpi-l">净负债</div><div class="kpi-v">94.66</div><div class="kpi-s">亿元 · 2025 末 74.75 亿</div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">资产负债率</div><div class="kpi-v">52.46%</div><div class="kpi-s">2025 末 50.06% · <span class="delta delta-dn">+2.39pp</span></div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">净负债/归母净资产</div><div class="kpi-v">41.8%</div><div class="kpi-s">仍处可控区间</div></div>
+  </div>
+  <table>
+    <thead><tr><th>项目</th><th>2026.6.30</th><th>2025.12.31</th><th>变动</th><th>说明</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">短期借款</td><td class="right">69.91 亿</td><td class="right">59.57 亿</td><td class="right c-r">+17.4%</td><td>短期化特征</td></tr>
+      <tr><td class="fw7">一年内到期非流动负债</td><td class="right">17.08 亿</td><td class="right">15.54 亿</td><td class="right c-r">+10.0%</td><td>—</td></tr>
+      <tr><td class="fw7">长期借款</td><td class="right">57.82 亿</td><td class="right">43.47 亿</td><td class="right c-r">+33.02%</td><td><strong>增量主来源（+14.35 亿）</strong></td></tr>
+      <tr><td class="fw7">租赁负债</td><td class="right">1.91 亿</td><td class="right">1.96 亿</td><td class="right">−2.6%</td><td>—</td></tr>
+      <tr class="tot"><td>有息负债合计</td><td class="right">146.73 亿</td><td class="right">120.54 亿</td><td class="right">+21.7%</td><td>—</td></tr>
+      <tr><td class="fw7">货币资金</td><td class="right">52.07 亿</td><td class="right">45.79 亿</td><td class="right c-g">+13.7%</td><td>—</td></tr>
+      <tr><td class="fw7">流动比率 / 速动比率</td><td class="right">1.175 / 0.773</td><td class="right c-mu">—</td><td class="right c-a">速动 &lt;1</td><td>短期偿付靠存货与经营回款</td></tr>
+    </tbody>
+  </table>
+  <div class="note">口径：有息负债 = 短期借款 + 一年内到期非流动负债 + 长期借款 + 租赁负债；净负债 = 有息负债 − 货币资金。</div>
+
+  <div class="sec-sub-hd">3.2 现金流：经营回款被营运资本全部吞掉</div>
+  <table>
+    <thead><tr><th>指标</th><th>2026H1</th><th>2025H1</th><th>变动</th><th>解读</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">经营活动现金流净额</td><td class="right">10.33 亿</td><td class="right">8.84 亿</td><td class="right c-g">+16.89%</td><td>与利润同向改善</td></tr>
+      <tr class="hr"><td class="fw7">购建固定资产等（capex）</td><td class="right fw7">25.98 亿</td><td class="right">17.50 亿</td><td class="right c-r fw7">+48.5%</td><td><strong>产能扩张加速，是现金最大流出</strong></td></tr>
+      <tr class="hr"><td class="fw7">自由现金流（OCF−capex）</td><td class="right fw7 c-r">−15.65 亿</td><td class="right c-r">−8.66 亿</td><td class="right c-r">缺口扩大</td><td><strong>典型扩张期特征</strong></td></tr>
+      <tr><td class="fw7">投资活动现金流净额</td><td class="right">−25.23 亿</td><td class="right">−18.69 亿</td><td class="right c-r">−34.94%</td><td>—</td></tr>
+      <tr><td class="fw7">筹资活动现金流净额</td><td class="right">19.34 亿</td><td class="right">14.29 亿</td><td class="right c-r">+35.33%</td><td>以借款补足投资缺口</td></tr>
+      <tr><td class="fw7">OCF / 归母净利</td><td class="right c-a">0.478</td><td class="right">0.483</td><td class="right c-mu">基本持平</td><td>利润现金含量 &lt;0.5，偏低</td></tr>
+      <tr><td class="fw7">其他综合收益（税后）</td><td class="right c-r">−5.54 亿</td><td class="right">−0.72 亿</td><td class="right c-r">大幅扩大</td><td><strong>外币报表折算损失（人民币升值）</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">3.3 营运资本占用：约 +17.32 亿</div>
+  <table>
+    <thead><tr><th>项目</th><th>2026.6.30</th><th>2025.12.31</th><th>增加</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">应收合计（账款+票据+融资）</td><td class="right">87.51 亿</td><td class="right">72.96 亿</td><td class="right c-r">+14.54 亿</td></tr>
+      <tr><td class="fw7">存货</td><td class="right">81.85 亿</td><td class="right">71.39 亿</td><td class="right c-r">+10.45 亿</td></tr>
+      <tr><td class="fw7">应付合计（账款+票据）</td><td class="right">95.14 亿</td><td class="right">87.47 亿</td><td class="right c-g">+7.67 亿（抵扣）</td></tr>
+      <tr class="tot"><td>净营运资本占用增加</td><td class="right">—</td><td class="right">—</td><td class="right c-r fw7">≈ +17.32 亿</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-a">
+    <strong>为什么"归母 21.60 亿、OCF 只有 10.33 亿"？</strong>答案在营运资本：应收 +14.54 亿、存货 +10.45 亿，尽管应付增加了 7.67 亿对冲，净占用仍增加约 <strong>17.32 亿</strong>——几乎等于半个 H1 的利润。叠加 capex 25.98 亿，OCF 被完全吞没，只能靠 19.34 亿净融资补足。<strong>这是"以负债换产能"的清晰画像，且与 §4 的产能投放节奏完全对应。</strong>可接受的前提是：新产能投放后能形成 ≥ 现有海外基地（19.61% 净利率）的回报。
+  </div>
+</section>
+
+<!-- §4 海外基地与产能 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§4</span>海外基地与产能·利润引擎的真实分布</span><span class="meta">OVERSEAS BASE &amp; CAPACITY</span></div>
+
+  <div class="sec-sub-hd">4.1 主要子公司：海外 vs 国内的"两倍净利率鸿沟"</div>
+  <table>
+    <thead><tr><th>主体</th><th>属性</th><th>营业收入</th><th>归母净利</th><th>净利率</th><th>总资产</th><th>ROA(年化)</th></tr></thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">CART TIRE（柬埔寨）</td><td><span class="pill pill-g">海外</span></td><td class="right">44.05 亿</td><td class="right">9.52 亿</td><td class="right c-g fw7">21.61%</td><td class="right">83.92 亿</td><td class="right">22.7%</td></tr>
+      <tr class="hg"><td class="fw7">赛轮越南</td><td><span class="pill pill-g">海外</span></td><td class="right">46.45 亿</td><td class="right">8.22 亿</td><td class="right c-g fw7">17.70%</td><td class="right">98.98 亿</td><td class="right">16.6%</td></tr>
+      <tr><td class="fw7">赛轮东营</td><td><span class="pill pill-a">国内</span></td><td class="right">23.48 亿</td><td class="right">3.28 亿</td><td class="right c-a">13.97%</td><td class="right">48.89 亿</td><td class="right">13.4%</td></tr>
+      <tr class="hr"><td class="fw7">赛轮沈阳</td><td><span class="pill pill-a">国内</span></td><td class="right">91.83 亿</td><td class="right">3.58 亿</td><td class="right c-r fw7">3.90%</td><td class="right">134.05 亿</td><td class="right">5.3%</td></tr>
+      <tr class="tot"><td>海外合计</td><td>—</td><td class="right">90.50 亿</td><td class="right">17.74 亿</td><td class="right c-g fw7">19.61%</td><td class="right">—</td><td class="right">—</td></tr>
+      <tr class="tot"><td>国内合计（东营+沈阳）</td><td>—</td><td class="right">115.31 亿</td><td class="right">6.86 亿</td><td class="right c-r fw7">5.95%</td><td class="right">—</td><td class="right">—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="kpi-row-3">
+    <div class="kpi kpi-g"><div class="kpi-l">海外营收占比</div><div class="kpi-v">45.2%</div><div class="kpi-s">90.50 / 200.27 亿</div></div>
+    <div class="kpi kpi-g"><div class="kpi-l">海外利润占比</div><div class="kpi-v">82.2%</div><div class="kpi-s">17.74 / 21.60 亿 · <strong>利润主引擎</strong></div></div>
+    <div class="kpi kpi-r"><div class="kpi-l">沈阳净利率</div><div class="kpi-v">3.90%</div><div class="kpi-s">营收 91.83 亿 → 最大拖累项</div></div>
+  </div>
+
+  <div class="box box-g">
+    <strong>结构性事实（本次中报首次可完整量化）：海外两家子公司以 45.2% 的营收贡献了 82.2% 的归母净利，综合净利率 19.61%，是国内（5.95%）的 3.3 倍。</strong>其中柬埔寨 CART TIRE 净利率 21.61%、越南 17.70%——这与 5/17 产能底稿中"海外基地可研净利率 16.7%–19.25%"的判断高度一致，说明海外产能的盈利能力已被验证。<br>
+    <strong>反面：赛轮沈阳以 91.83 亿营收仅创造 3.58 亿净利（3.90%）</strong>——新和平基地爬坡期的成本结构是持续拖累，对应 5/17 底稿对其"低·战略卡位"的资本效率评级。
+  </div>
+
+  <div class="sec-sub-hd">4.2 产能对账：与 5/17 底稿逐项核对</div>
+  <table>
+    <thead><tr><th>品类</th><th>国内产能(规划)</th><th>海外产能(规划)</th><th>合计</th><th>海外占比</th><th>中报校验</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7">全钢胎 TBR</td><td class="right">2,180 万条</td><td class="right">990 万条</td><td class="right fw7">3,170 万条</td><td class="right">31.2%</td><td class="c-mu">未单独披露，口径延续</td></tr>
+      <tr class="hg"><td class="fw7">半钢胎 PCR</td><td class="right">6,000 万条</td><td class="right c-g fw7">5,200 万条</td><td class="right fw7">1.12 亿条</td><td class="right c-g fw7">46.4%</td><td class="c-g">✓ 埃及"3,600 万条半钢"印证扩张</td></tr>
+      <tr><td class="fw7">非公路胎 OTR</td><td class="right">38.14 万吨</td><td class="right">11 万吨</td><td class="right fw7">49.14 万吨</td><td class="right">22.4%</td><td class="c-g">✓ 埃及"2 万吨非公路"印证</td></tr>
+      <tr class="tot"><td>全球合计（规划）</td><td class="right">—</td><td class="right">—</td><td class="right">全钢 3,170 万条 / 半钢 1.12 亿条 / OTR 49.14 万吨</td><td class="right">—</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">4.3 在建与新增产能（中报披露口径）</div>
+  <table>
+    <thead><tr><th>项目</th><th>规划</th><th>进度 / 投入</th><th>意义</th></tr></thead>
+    <tbody>
+      <tr class="hp"><td class="fw7">柬埔寨贡布经济特区</td><td class="right">总投资 $2.63 亿</td><td class="right">累计投入 $2.37 亿<br>(H1 投入 $0.72 亿)</td><td>在建中；柬埔寨是净利率最高的基地（21.61%），继续加码</td></tr>
+      <tr class="hp"><td class="fw7">埃及一期 + 产能提升</td><td class="right">2026-04 投建 705 万条子午线；2026-06 再投产能提升</td><td class="right">建设中</td><td>建成后埃及具备 <strong>半钢 3,600 万条 + 全钢 330 万条 + 非公路 2 万吨</strong></td></tr>
+      <tr><td class="fw7">印尼（扩建）</td><td class="right">全钢 75 万条 / 半钢 600 万条 / OTR 1 万吨</td><td class="right">爬坡（7–8 月达产）</td><td>—</td></tr>
+      <tr><td class="fw7">墨西哥</td><td class="right">半钢 600 万条</td><td class="right">爬坡（8–9 月达产）</td><td>北美近岸供应</td></tr>
+      <tr><td class="fw7">青岛董家口</td><td class="right">半钢 1,260 万条</td><td class="right">规划 / Q4 投产口径</td><td>国内高端产能补充</td></tr>
+    </tbody>
+  </table>
+  <div class="note">深圳/香港/欧洲/北美/澳洲等主体多为销售或贸易平台，不构成产能；产能口径以 5/17《全球产能与资本开支量化》九基地+埃及为框架，本期中报未推翻该框架。</div>
+
+  <div class="box box-b">
+    <strong>产能与现金的闭环：</strong>H1 capex 25.98 亿（+48.5%）正对应上表的贡布特区、埃及、印尼、墨西哥在建——这解释了 §3 的 FCF −15.65 亿。<strong>关键不是"花了钱"，而是"花得值不值"：已投产的柬埔寨（21.61%）与越南（17.70%）证明了海外基地的高回报可复制性，因此埃及/印尼/墨西哥的达产节奏与净利率，是 2027 年利润的第二增长曲线。</strong>这也是 5/17 底稿给出"全达产 +90–100 亿营收"的量化基础。
+  </div>
+</section>
+
+<!-- §5 税率与税收优惠 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§5</span>税率结构与税收优惠·GIoBE 正在抹平"超低税率红利"</span><span class="meta">TAX STRUCTURE &amp; GIoBE</span></div>
+
+  <div class="sec-sub-hd">5.1 有效税率上行：从 12.36% 到 14.65%</div>
+  <div class="kpi-row-3">
+    <div class="kpi kpi-r"><div class="kpi-l">集团有效税率</div><div class="kpi-v">14.65%</div><div class="kpi-s">2025H1 12.36% · <span class="delta delta-dn">+2.29pp</span></div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">所得税费用</div><div class="kpi-v">3.77 亿</div><div class="kpi-s">YoY <span class="delta delta-dn">+42.01%</span>（快于利润总额 +19.83%）</div></div>
+    <div class="kpi kpi-p"><div class="kpi-l">隐含海外实际税率</div><div class="kpi-v">≈14.14%</div><div class="kpi-s">已逼近 15% 最低税底线</div></div>
+  </div>
+  <div class="callout">
+    <div class="callout-l">反推逻辑</div>
+    <div class="callout-bd">
+      以海外利润占比 <strong>82.2%</strong>、假设国内综合税率 17% 反推：<br>
+      <strong>隐含海外实际税率 ≈ (14.65% − 17.8%×17%) ÷ 82.2% ≈ 14.14%</strong>——已非常接近 GIoBE 的 <strong>15% 最低税底线</strong>。<br>
+      这说明：越南的 10% 优惠、ACTR 的 10%、柬埔寨 CART TIRE 的 8 年免税，其"超低税率优势"已被补足税机制大幅抹平。<strong>税率从"护城河"变成"被追平"的变量，是本报告最重要的边际变化之一。</strong>
+    </div>
+  </div>
+
+  <div class="sec-sub-hd">5.2 税率结构：35 个纳税主体的"税率拼图"</div>
+  <table>
+    <thead><tr><th>税率档</th><th>代表主体</th><th>税负含义</th></tr></thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">10%–15%</td><td>赛轮越南 20%→<strong>实际 10%</strong>；ACTR <strong>10%</strong>；赛轮欧洲 / 巴西 15%</td><td>优惠档，但受 GIoBE 补足</td></tr>
+      <tr><td class="fw7">16.5%–17%</td><td>赛轮香港 / 香港控股 / 迈驰轮胎 16.5%；迈驰新加坡 / 赛轮新加坡 / 新加坡控股 17%</td><td>中间档（香港亦需补足税）</td></tr>
+      <tr class="ha"><td class="fw7">19%–22.5%</td><td>赛轮荷兰 19%；CART TIRE / 越南系 20%；赛轮美国 21%；赛轮印尼 / 印尼制造 22%；赛轮埃及 22.5%</td><td>制造主体主力档</td></tr>
+      <tr class="hr"><td class="fw7">24%–30%</td><td>赛轮马来 24%；赛轮北美 / 动力轮胎 26.5%；赛轮南非 27%；墨西哥 / 坦桑尼亚 / 澳新 30%</td><td>高税档，销售/贸易主体为主</td></tr>
+      <tr class="tot"><td>25%</td><td>集团基准企业所得税率</td><td>增值税 13% · 城建 7% · 教育附加 3% · 地方教育附加 2%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">5.3 税收优惠全清单（中报原文口径）</div>
+  <table>
+    <thead><tr><th>类别</th><th>主体 / 政策</th><th>优惠内容</th><th>有效期</th></tr></thead>
+    <tbody>
+      <tr><td class="fw7" rowspan="4">企业所得税<br>高新 15%</td><td>集团（本部）</td><td>高新技术企业 15%</td><td>证书 2023-11-29，<span class="c-a">2026-11-29 到期</span></td></tr>
+      <tr><td>赛轮沈阳</td><td>高新技术企业 15%</td><td>证书 2023-12-20，<span class="c-a">2026-12-20 到期</span></td></tr>
+      <tr><td>赛轮东营</td><td>高新技术企业 15%</td><td>2025-12-08 发证，2025–2027</td></tr>
+      <tr><td>涌安科技</td><td>高新技术企业 15%</td><td>2025-12-08 发证，2025–2027</td></tr>
+      <tr class="hg"><td class="fw7" rowspan="3">海外所得税<br>优惠</td><td>赛轮越南</td><td>10%（15 年内）；4 年免税 + 9 年减半（5%）</td><td>越南 205 号公文</td></tr>
+      <tr class="hg"><td>ACTR</td><td>10%（15 年内）；4 年免税 + 9 年减半（5%）</td><td>2022-12-26 第 8354/GXN-BCT 号</td></tr>
+      <tr class="hg"><td>CART TIRE（柬埔寨）</td><td>PCR 一期 2+3+3 = <strong>8 年免税</strong>；TBR &amp; PCR 二期各 <strong>9 年免税</strong></td><td>自 2021-06-28 起</td></tr>
+      <tr class="hb"><td class="fw7" rowspan="2">增值税</td><td>出口免、抵、退</td><td>退税率 9% → <strong>13%</strong>（2018-11-01 起）</td><td>长期</td></tr>
+      <tr class="hb"><td>先进制造业加计抵减</td><td>按可抵扣进项税额 <strong>加计 5%</strong> 抵减应纳增值税</td><td>2023-01-01 至 2027-12-31（集团/沈阳/东营）</td></tr>
+      <tr class="hp"><td class="fw7">全球最低税</td><td>GIoBE 支柱二</td><td>按各辖区有效税率与 <strong>15% 最低税率</strong>差额缴补足税；<strong>越南、柬埔寨、香港需缴纳</strong></td><td>已适用</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-p">
+    <strong>三个值得强调的时点风险：</strong>
+    <ul class="tight" style="margin-top:6px">
+      <li><strong>集团本部高新证书 2026-11-29 到期、沈阳 2026-12-20 到期</strong>——若未能续期，本部/沈阳所得税率将由 15% 回升至 25%，对集团有效税率形成上行压力（沈阳净利率仅 3.90%，税率弹性尤其敏感）。</li>
+      <li><strong>GIoBE 已在越南、柬埔寨、香港实际产生补足税</strong>——这正是有效税率 +2.29pp 的结构性来源，且不可逆。</li>
+      <li><strong>增值税加计抵减 5% 于 2027-12-31 到期</strong>——对国内基地的现金流补贴存在明确终点。</li>
+    </ul>
+  </div>
+
+  <div class="box box-b">
+    <strong>与 §4 的联动：</strong>海外基地的利润占比 82.2% 与"税率被 GIoBE 追平"叠加，意味着<strong>未来海外扩张的边际利润，税率优势将弱于过去十年</strong>。这削弱了"海外产能=高净利率"叙事的可持续性——海外基地的净利率（19.61%）将由"税率红利 + 成本红利"转为"更多依赖成本与产品结构红利"。估值上应对此给予适度折价（§6 情景已反映）。
+  </div>
+</section>
+
+<!-- §6 估值重估 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§6</span>估值重估·以现价 14.38 元为锚（非 12.40 元）</span><span class="meta">VALUATION RE-BASE</span></div>
+
+  <div class="box box-a">
+    <strong>前置提醒：</strong>此前 v20（6/16）与 6/29 报告以 12.40 / 11.72 元为锚，现价已 14.38 元（较 6/16 +16.0%）。<strong>所有"隐含 PE / 上行空间"若不重算会系统性低估估值水平。</strong>本节全部基于 14.38 元与最新股本 32.88 亿股重算。
+  </div>
+
+  <div class="sec-sub-hd">6.1 当前估值水平</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="kpi-l">总市值</div><div class="kpi-v">472.8 亿</div><div class="kpi-s">14.38 × 32.88 亿股</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">PE (TTM)</div><div class="kpi-v">12.29x</div><div class="kpi-s">TTM 归母 38.51 亿</div></div>
+    <div class="kpi kpi-b"><div class="kpi-l">PB (2026H1)</div><div class="kpi-v">2.09x</div><div class="kpi-s">BPS 6.892 元</div></div>
+    <div class="kpi kpi-a"><div class="kpi-l">股息（半年度）</div><div class="kpi-v">0.15 元</div><div class="kpi-s">每 10 股派 1.5 元</div></div>
+  </div>
+  <div class="note">TTM 归母 = 2025FY 35.22 亿 − 2025H1 18.31 亿 + 2026H1 21.60 亿 = 38.51 亿。BPS = 归母净资产 226.62 亿 ÷ 32.88 亿股 = 6.892 元。</div>
+
+  <div class="sec-sub-hd">6.2 2026 全年净利的 EPS / PE 敏感性</div>
+  <table>
+    <thead><tr><th>2026E 归母净利</th><th>EPS</th><th>PE @14.38</th><th>对应 10x 股价</th><th>对应 12x 股价</th><th>情景倾向</th></tr></thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">44 亿</td><td class="right">1.338</td><td class="right">10.75x</td><td class="right">13.38</td><td class="right">16.06</td><td>H2 汇兑续损 + Q3 毛利率回落</td></tr>
+      <tr><td class="fw7">46 亿</td><td class="right">1.399</td><td class="right">10.29x</td><td class="right">13.99</td><td class="right">16.79</td><td>保守</td></tr>
+      <tr class="ha"><td class="fw7">48 亿</td><td class="right">1.460</td><td class="right">9.86x</td><td class="right">14.60</td><td class="right">17.52</td><td><strong>中性（H1 年化 21.60×2=43.2，加 H2 环比改善）</strong></td></tr>
+      <tr><td class="fw7">50 亿</td><td class="right">1.521</td><td class="right">9.46x</td><td class="right">15.21</td><td class="right">18.25</td><td>6/29 报告中性情形</td></tr>
+      <tr class="hg"><td class="fw7">54 亿</td><td class="right">1.642</td><td class="right">8.76x</td><td class="right">16.42</td><td class="right">19.71</td><td>乐观（Q3 毛利率 ≥23% + 汇兑转正）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-b">
+    <strong>对 50 亿假设的量化修正：</strong>H1 归母 21.60 亿，简单年化为 43.2 亿；要达成 50 亿，H2 需贡献 <strong>28.40 亿</strong>（较 H1 增长 31.5%）。基于 Q2 实际仅 11.04 亿、且汇兑与税率两个逆风在 H2 大概率延续，<strong>本报告将中性预测下修至 <span class="fw7 c-b">48 亿</span>（对应 H2 需 26.4 亿，环比 +22%，需 Q3/Q4 单季回到 13 亿以上）。50 亿需"汇兑转正 + Q3 毛利率不回落"双重条件同时成立。</strong>
+  </div>
+
+  <div class="sec-sub-hd">6.3 情景概率加权</div>
+  <table>
+    <thead><tr><th>情景</th><th>概率</th><th>2026 归母</th><th>目标 PE</th><th>隐含股价</th><th>相对现价</th></tr></thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">悲观：H2 汇兑续损 + Q3 毛利率回落至 22–23%</td><td class="right">25%</td><td class="right">44 亿</td><td class="right">8.5x</td><td class="right fw7">11.37 元</td><td class="right c-r">−20.9%</td></tr>
+      <tr class="ha"><td class="fw7">中性：汇兑收窄 + 产能爬坡兑现</td><td class="right">50%</td><td class="right">48 亿</td><td class="right">11.0x</td><td class="right fw7">16.06 元</td><td class="right c-g">+11.7%</td></tr>
+      <tr class="hg"><td class="fw7">乐观：Q3 毛利率企稳 + 汇兑转正 + 埃及/印尼达产</td><td class="right">25%</td><td class="right">54 亿</td><td class="right">12.5x</td><td class="right fw7">20.53 元</td><td class="right c-g">+42.8%</td></tr>
+      <tr class="tot"><td>概率加权中枢</td><td class="right">100%</td><td class="right">—</td><td class="right">—</td><td class="right fw7">16.00 元</td><td class="right c-g fw7">+11.2%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">6.4 价格阶梯</div>
+  <div class="ladder">
+    <div class="ladder-hd">赛轮轮胎 · 价格阶梯（现价 14.38 元）</div>
+    <div class="lad-row"><div class="lad-px c-g">20.53 元</div><div class="lad-desc">乐观情景（54 亿 × 12.5x）</div><div class="lad-act c-g">+42.8%</div></div>
+    <div class="lad-row"><div class="lad-px c-g">18.25 元</div><div class="lad-desc">50 亿 × 12x · 6/29 中性上限</div><div class="lad-act c-g">+26.9%</div></div>
+    <div class="lad-row"><div class="lad-px c-b">16.06 元</div><div class="lad-desc">情景加权中枢（48 亿 × 11x）</div><div class="lad-act c-b">+11.7%</div></div>
+    <div class="lad-row current"><div class="lad-px c-r">14.38 元</div><div class="lad-desc">当前价 · PE(TTM) 12.29x · PB 2.09x</div><div class="lad-act c-r">—</div></div>
+    <div class="lad-row"><div class="lad-px c-a">13.38 元</div><div class="lad-desc">44 亿 × 10x（悲观情景上沿）</div><div class="lad-act c-a">−6.9%</div></div>
+    <div class="lad-row"><div class="lad-px c-mu">11.37 元</div><div class="lad-desc">悲观情景（44 亿 × 8.5x）</div><div class="lad-act c-mu">−20.9%</div></div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-l">估值结论</div>
+    <div class="callout-bd">
+      <strong>现价 14.38 元处于"中性中枢之下、悲观上沿之上"。</strong>PE(TTM) 12.29x 对一家利润仍在两位数增长、海外产能持续投放的轮胎龙头不算贵，但也不再有 v20 时点（12.40 元 / PE 11.6x）的安全边际。<br>
+      <strong>核心矛盾：</strong>市场已按"H1 认可 + 海外产能叙事"给了一轮涨幅（6/16→9/10 +16.0%），<strong>但 Q2 单季利润实际低于推演 2 亿、且汇兑与税率两个逆风尚未出清</strong>。<strong>因此"继续追高"的赔率已不如 6 月——上行 +11.7% 至中枢，下行 −20.9% 至悲观，左右基本对称甚至略偏下行。</strong>更合理的是等待 Q3 季报（10 月末）验证"汇兑是否收窄 + Q3 毛利率是否守住 23%"后再决定。
+    </div>
+  </div>
+</section>
+
+<!-- §7 假设验证与风险 -->
+<section>
+  <div class="sec-hd"><span><span class="num">§7</span>假设验证·风险·跟踪点</span><span class="meta">ASSUMPTIONS · RISKS · TRIGGERS</span></div>
+
+  <div class="sec-sub-hd">7.1 6/29 报告三条假设的验证结果</div>
+  <table>
+    <thead><tr><th>假设</th><th>原判据</th><th>中报实际</th><th>结论</th></tr></thead>
+    <tbody>
+      <tr class="hg"><td class="fw7">① Q2 营收破 100 亿</td><td>单季营收 ≥ 100 亿</td><td class="right">105.66 亿</td><td class="c-g fw7">✓ 已验证（超出 5.7%）</td></tr>
+      <tr class="ha"><td class="fw7">② Q3 毛利率 ≥ 23%</td><td>原材料滞后 2 个月传导</td><td class="right c-mu">Q2 毛利率 27.10% 为最新证据</td><td class="c-a">待 Q3 季报验证（10 月末）</td></tr>
+      <tr class="hr"><td class="fw7">③ Q4 油价 $72 传导</td><td>油价回落 → 成本红利</td><td class="right c-mu">H2 尚未披露</td><td class="c-mu">待验证（外生变量）</td></tr>
+      <tr class="hr"><td class="fw7">隐含：Q2 归母 12–14 亿</td><td>由①+毛利率推演</td><td class="right fw7">11.04 亿</td><td class="c-r fw7">✗ 证伪（低约 2 亿）</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box box-r">
+    <strong>为什么"假设①②都对、结果却错"？</strong>因为原推演只建模了营收与毛利率，<strong>遗漏了两个非经营性变量</strong>：①财务费用中的汇兑（H1 净损失 2.56 亿，摆动 +3.75 亿）；②有效税率上行（+2.29pp，GIoBE 补足税）。<strong>方法论修正：今后季度推演须把"汇率 + 税率"作为独立变量纳入，而非默认中性。</strong>
+  </div>
+
+  <div class="sec-sub-hd">7.2 本次中报新增/强化的风险</div>
+  <table>
+    <thead><tr><th>风险</th><th>量化证据</th><th>级别</th><th>对估值影响</th></tr></thead>
+    <tbody>
+      <tr class="hr"><td class="fw7">汇兑持续侵蚀</td><td>H1 汇兑净损失 2.56 亿；其他综合收益 −5.54 亿（外币折算）</td><td><span class="pill pill-r">高</span></td><td>每 1 亿汇兑损失 ≈ EPS −0.030 元</td></tr>
+      <tr class="hr"><td class="fw7">杠杆与现金流</td><td>有息负债 146.73 亿（+26.19 亿）；FCF −15.65 亿；速动比率 0.773</td><td><span class="pill pill-r">高</span></td><td>制约分红与回购空间；利率敏感</td></tr>
+      <tr class="ha"><td class="fw7">税率红利消失</td><td>有效税率 14.65%（+2.29pp）；隐含海外 14.14% 逼近 15% 底线</td><td><span class="pill pill-a">中高</span></td><td>净利率结构性下移 0.5–1pp</td></tr>
+      <tr class="ha"><td class="fw7">高新证书到期</td><td>本部 2026-11-29、沈阳 2026-12-20</td><td><span class="pill pill-a">中</span></td><td>若不续期，税率 15%→25%</td></tr>
+      <tr><td class="fw7">国内基地拖累</td><td>沈阳净利率 3.90%（营收 91.83 亿）</td><td><span class="pill pill-a">中</span></td><td>爬坡成本是持续扣分项</td></tr>
+      <tr><td class="fw7">管理费用偏快</td><td>+27.61%，快于营收 +13.88%</td><td><span class="pill pill-b">低中</span></td><td>需观察是否新基地开办一次性</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-sub-hd">7.3 后续跟踪点（按优先级）</div>
+  <div class="var-grid">
+    <div class="var-cell"><div class="var-name">① Q3 季报（10 月末）</div><div class="var-now" style="font-size:13px">毛利率是否守 23%</div><div class="var-impact">若 &lt;22% 则全年下修至 44–46 亿；≥23% 则中性 48 亿成立</div></div>
+    <div class="var-cell"><div class="var-name">② 人民币汇率</div><div class="var-now" style="font-size:13px">汇兑是否收窄</div><div class="var-impact">人民币若转向贬值，Q3/Q4 汇兑可回补 2–3 亿</div></div>
+    <div class="var-cell"><div class="var-name">③ 高新证书续期</div><div class="var-now" style="font-size:13px">2026Q4 公告</div><div class="var-impact">本部/沈阳续期成功 = 消除税率上行尾部风险</div></div>
+    <div class="var-cell"><div class="var-name">④ 埃及/印尼/墨西哥爬坡</div><div class="var-now" style="font-size:13px">达产进度</div><div class="var-impact">验证"海外高净利率可复制"，2027 第二曲线</div></div>
+    <div class="var-cell"><div class="var-name">⑤ 欧盟双反终裁影响</div><div class="var-now" style="font-size:13px">海外产能承接</div><div class="var-impact">5,200 万条海外半钢产能是承接基础</div></div>
+    <div class="var-cell"><div class="var-name">⑥ 天胶/合成胶与油价</div><div class="var-now" style="font-size:13px">滞后 2 个月传导</div><div class="var-impact">Q4 成本端决定性变量</div></div>
+    <div class="var-cell"><div class="var-name">⑦ 有息负债与 FCF</div><div class="var-now" style="font-size:13px">扩张是否收敛</div><div class="var-impact">决定分红率与财务费用走向</div></div>
+    <div class="var-cell"><div class="var-name">⑧ 运价与海运费</div><div class="var-now" style="font-size:13px">出口成本</div><div class="var-impact">影响海外交付盈利能力</div></div>
+  </div>
+
+  <div class="sec-sub-hd">7.4 一句话总结</div>
+  <div class="box box-g">
+    <strong>2026H1 是一份"总量扎实、结构分化、表观被汇兑与税负压住"的中报：</strong>营收与毛利率双超预期，验证了产能释放与成本红利；但 Q2 单季利润低于推演 2 亿，暴露了"汇率 + 税率"两个未被建模的逆风，以及"以负债换产能"的现金流压力。<strong>现价 14.38 元已反映市场的认可，情景加权中枢 16.00 元（+11.2%），但下行至悲观情景为 −20.9%，赔率较 6 月明显转弱。理性做法是持有并等待 Q3 季报对"毛利率 23% + 汇兑收窄"的双重验证，而非在此时追高。</strong>
+  </div>
+
+  <div class="note" style="margin-top:14px">
+    数据源：赛轮集团 2026 年半年度报告（2026-08 披露，合并口径）· 2026Q1 季报 · 历次研究 HTML（v20 / 6-29 拆解 / 5-17 产能底稿）· 行情 2026-09-10 10:44（腾讯财经 sh601058）。<br>
+    免责：本报告为个人研究记录，非投资建议；派生指标（毛利率/净利率/有效税率/有息负债/净负债/隐含税率/情景加权）均为自算，口径已在正文注明；子公司为万元口径换算。
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>赛轮轮胎 601058.SH · 2026H1 中报深度解析 · v21</span>
+  <span>数据源：2026 半年度报告 / 2026Q1 季报 / 历次研究 HTML · 行情 2026-09-10 10:44 腾讯财经</span>
+</footer>
+</body>
+</html>
