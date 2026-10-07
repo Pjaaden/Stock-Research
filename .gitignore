@@ -4,5 +4,8 @@ TRAE_LOCAL/
 # 多页面任务工作区（本地保存，不推送）
 pages/
 
+# HTML 文件分享包（本地临时生成，不推送）
+.trae-html-share-packages/
+
 # macOS
 .DS_Store

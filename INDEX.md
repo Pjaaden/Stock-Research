@@ -52,13 +52,13 @@
 | 绿城服务 | 2869.HK | active | watch | `绿城服务_2869HK` | 1 |
 | 霸王茶姬 | CHA | active | watch | `霸王茶姬_NASDAQ_CHA` | 2 |
 | 凌霄泵业 | 002884.SZ | active | hold | `凌霄泵业_002884` | 2 |
-| 百胜中国 | YUMC | active | hold | `百胜中国_NASDAQ_YUMC` | 3 |
+| 百胜中国 | YUMC | active | hold | `百胜中国_NASDAQ_YUMC` | 4 |
 | 中航信 | 00696 | active | buy | `中航信_HKEX_00696` | 1 |
 | 中策橡胶 | 603049.SH | hidden | hold | `赛轮集团_601058`（并入赛轮研究） | — |
 
 > 已投资 5 家：中国国贸 / 赛轮集团 / 霸王茶姬 / 凌霄泵业 / 百胜中国
 > 研究薄弱需补全（已投资）：霸王茶姬、凌霄泵业
-> 季度 CSV 建档：✅ 凌霄泵业、赛轮集团｜⬜ 其余 7 家待建档（覆盖清单见 `TRAE/QUARTERLY_CSV_WORKFLOW.md` §6.1）
+> 季度 CSV 建档：✅ 凌霄泵业、赛轮集团、百胜中国｜⬜ 其余 6 家待建档（覆盖清单见 `TRAE/QUARTERLY_CSV_WORKFLOW.md` §6.1）
 
 ---
 

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百胜中国 (YUMC) — 2026Q2 财报深度解析：经营 / 现金流 / 股东回报 / 估值 / 股价归因</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#f7f5f1;--surface:#fff;--surface-alt:#f2efe9;--border:#e6e0d6;
+    --ink:#1a1714;--ink2:#5a5550;--muted:#9a9490;
+    --red:#c0392b;--green:#1e7a54;--blue:#1a4a7c;--amber:#b5590a;--purple:#6b46c1;
+    --redL:rgba(192,57,43,.10);--greenL:rgba(30,122,84,.10);--blueL:rgba(26,74,124,.10);--amberL:rgba(181,89,10,.10);
+    --mono:'IBM Plex Mono',monospace;--serif:'Noto Serif SC',serif;--sans:'IBM Plex Sans',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14px;line-height:1.7}
+  .head{background:var(--ink);color:#fff;padding:48px 60px 40px;position:relative;overflow:hidden}
+  .head::before{content:'';position:absolute;top:-80px;right:-40px;width:300px;height:300px;border-radius:50%;background:rgba(30,122,84,.16)}
+  .head .meta{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:14px}
+  .head h1{font-family:var(--serif);font-size:30px;font-weight:700;line-height:1.25;margin-bottom:6px}
+  .head .sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:24px}
+  .badges{display:flex;gap:9px;flex-wrap:wrap}
+  .badge{padding:5px 13px;border-radius:18px;font-family:var(--mono);font-size:11px;font-weight:500}
+  .badge-a{background:var(--green);color:#fff}.badge-o{border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.8)}
+  .badge-r{background:var(--red);color:#fff}
+  .wrap{max-width:1040px;margin:0 auto;padding:44px 38px}
+  .stamp{background:#faf5e4;border:1px solid #d4b96a;border-radius:6px;padding:8px 15px;font-family:var(--mono);font-size:11px;color:#9a7528;letter-spacing:.06em;display:inline-block;margin-bottom:32px}
+  .sec{margin-bottom:44px}
+  .sec-t{font-family:var(--serif);font-size:21px;font-weight:700;margin-bottom:18px;padding-bottom:9px;border-bottom:2px solid var(--green);display:flex;align-items:center;gap:10px}
+  .sec-n{font-family:var(--mono);font-size:12px;color:var(--green);background:var(--greenL);padding:3px 9px;border-radius:4px}
+  .lead{font-size:14px;color:var(--ink2);margin-bottom:20px}
+  .verdict{background:var(--ink);color:#fff;border-radius:12px;padding:32px 36px;margin-bottom:44px}
+  .verdict h3{font-family:var(--serif);font-size:19px;margin-bottom:14px;color:#fff}
+  .verdict p{color:rgba(255,255,255,.82);font-size:14px;line-height:1.8;margin-bottom:11px}
+  .verdict .hl{color:#fff;font-weight:600}
+  .vtag{display:inline-flex;gap:8px;background:var(--green);border-radius:8px;padding:9px 18px;margin-top:6px;margin-right:10px}
+  .vtag span{font-family:var(--mono);font-size:12px;font-weight:500;color:#fff}
+  table{width:100%;border-collapse:collapse;margin-bottom:22px;font-size:13px;background:var(--surface);border-radius:8px;overflow:hidden}
+  th{background:var(--surface-alt);font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink2);padding:10px 13px;text-align:left;border-bottom:2px solid var(--border)}
+  th.r,td.r{text-align:right}
+  td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:middle}
+  tr:last-child td{border-bottom:none}
+  td.m{font-family:var(--mono)}
+  .up{color:var(--green)}.down{color:var(--red)}.neu{color:var(--muted)}
+  .hl-row{background:var(--greenL)!important}
+  .chartbox{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;margin-bottom:24px}
+  .chartbox.row{display:grid;grid-template-columns:1fr 1fr;gap:24px;background:none;border:none;padding:0}
+  .chartbox.row>div{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px}
+  .ct{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .call{border-radius:8px;padding:16px 20px;margin-bottom:18px;border-left:4px solid}
+  .call-g{background:var(--greenL);border-color:var(--green)}.call-a{background:var(--amberL);border-color:var(--amber)}
+  .call-r{background:var(--redL);border-color:var(--red)}.call-b{background:var(--blueL);border-color:var(--blue)}
+  .call-t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:600;margin-bottom:6px}
+  .call-g .call-t{color:var(--green)}.call-a .call-t{color:var(--amber)}.call-r .call-t{color:var(--red)}.call-b .call-t{color:var(--blue)}
+  .call p{font-size:13px;line-height:1.65}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+  .kpi{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:17px 16px;position:relative;overflow:hidden}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+  .kpi.r::before{background:var(--red)}.kpi.g::before{background:var(--green)}.kpi.b::before{background:var(--blue)}.kpi.a::before{background:var(--amber)}
+  .kpi .l{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-bottom:7px}
+  .kpi .v{font-family:var(--mono);font-size:22px;font-weight:600;line-height:1;margin-bottom:4px}
+  .kpi .c{font-family:var(--mono);font-size:10.5px}
+  .price-ladder{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:22px}
+  .pl-cell{padding:14px 10px;text-align:center;border-right:1px solid var(--border)}
+  .pl-cell:last-child{border-right:none}
+  .pl-zone{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+  .pl-price{font-family:var(--mono);font-size:18px;font-weight:600;margin-bottom:4px}
+  .pl-note{font-size:10.5px;color:var(--ink2);line-height:1.4}
+  .foot{background:var(--surface-alt);border-top:1px solid var(--border);padding:24px 60px;font-family:var(--mono);font-size:11px;color:var(--muted);line-height:1.8}
+  strong{font-weight:600;color:var(--ink)}
+  .big-yield{font-family:var(--mono);font-size:42px;font-weight:600;color:var(--green);line-height:1}
+  .tl{border-left:2px solid var(--border);margin:6px 0 24px 8px;padding-left:22px}
+  .tl-i{position:relative;padding:9px 0}
+  .tl-i::before{content:'';position:absolute;left:-29px;top:16px;width:9px;height:9px;border-radius:50%;background:var(--green);border:2px solid var(--bg)}
+  .tl-i.neg::before{background:var(--red)}
+  .tl-d{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em}
+  .tl-t{font-weight:600;font-size:13.5px}
+  .tl-x{font-size:12.5px;color:var(--ink2);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="head">
+  <div class="meta">财报更新 · 经营 / 现金流 / 股东回报 / 估值 / 股价归因 · Pjaaden/Stock-Research</div>
+  <h1>百胜中国 (YUMC) — 2026Q2 财报深度解析</h1>
+  <div class="sub">基于 2026 Q2 10-Q（截至 2026-06-30）· 补上 8 月迟更的季报 · 从 52 周高点 $58.4 跌至 $40.6 的归因</div>
+  <div class="badges">
+    <span class="badge badge-a">NYSE: YUMC / HKEX: 9987</span>
+    <span class="badge badge-o">现价 ~$40.6</span>
+    <span class="badge badge-o">市值 ~$13.7B</span>
+    <span class="badge badge-r">52 周新低 ~$39.7</span>
+    <span class="badge badge-o">分析日：2026.10.07</span>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stamp">★ 日期标记：2026年10月7日 · 数据源：2026 Q2 10-Q（SEC，2026年8月提交，未经审计）+ 2026-07-30 业绩公告 + 必胜客并购公告（2026-06-16 签约 / 2026-08-07 交割）+ 2025 Form 10-K · 行情为 2026-10-06 收盘</div>
+
+  <!-- 结论 -->
+  <div class="verdict">
+    <h3>结论：基本面创历史最佳，股价却创 52 周新低 —— 这是一次"估值压缩"而非"盈利恶化"</h3>
+    <p>2026Q2 是一份<span class="hl">"创纪录"的中报</span>：营收 $31.4 亿（+13%）、经营利润 $3.48 亿（+14%，Q2 历史新高）、OP margin 11.1%（连续第 9 个季度扩张）、摊薄 EPS $0.70（+21%）。经营利润、利润率、同店交易量、开店速度全部向好。</p>
+    <p>而股价自 2026 年上半年高点 $58.4 一路跌至 10 月初的 <span class="hl">$40.6（-30%）</span>，10 月 2 日创 52 周新低 $39.7。<span class="hl">跌的是"倍数"，不是"利润"</span>：市场在给"外卖成本上升 + 客单价下滑 + 中国消费疲软 + 必胜客并购杠杆"打估值折价。</p>
+    <p>四大估值方法收敛于 <span class="hl">$45–54 的合理价值区间</span>（中枢 ~$50），当前 $40.6 提供约 <span class="hl">+11%~+33% 空间</span>；2026 年 $15 亿股东回报 ≈ 市值的 <span class="hl">11%</span>，为股价提供机械式下行保护。</p>
+    <div style="margin-top:14px">
+      <div class="vtag"><span>合理价值：$45–54</span></div>
+      <div class="vtag" style="background:var(--blue)"><span>2026 股东回报率：~11%</span></div>
+      <div class="vtag" style="background:var(--purple)"><span>加仓区间：$38–44</span></div>
+    </div>
+  </div>
+
+  <!-- 1 市值快照 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">01</span>市值与估值快照（2026-10-06）</div>
+    <div class="kpis">
+      <div class="kpi r"><div class="l">当前股价</div><div class="v">$40.6</div><div class="c down">↓ 52周区间 $39.7–$58.4</div></div>
+      <div class="kpi b"><div class="l">市值</div><div class="v">~$13.7B</div><div class="c neu">~338M 股 × $40.6（持续回购缩股）</div></div>
+      <div class="kpi g"><div class="l">PE (2026E)</div><div class="v">13.8×</div><div class="c up">2026E EPS $2.95</div></div>
+      <div class="kpi g"><div class="l">PE (2027E)</div><div class="v">11.8×</div><div class="c up">2027E EPS $3.43</div></div>
+      <div class="kpi a"><div class="l">股息率</div><div class="v">2.86%</div><div class="c neu">$0.29/季 · $1.16/年</div></div>
+      <div class="kpi r"><div class="l">2026 股东回报率</div><div class="v">~11%</div><div class="c up">★ $1.5B / 市值</div></div>
+      <div class="kpi b"><div class="l">FCF 收益率</div><div class="v">~5.8%</div><div class="c up">FCF ~$0.8B / 市值</div></div>
+      <div class="kpi a"><div class="l">净现金（估）</div><div class="v">~$0.8B</div><div class="c neu">并购后（含 $1.2B 过桥贷款）</div></div>
+    </div>
+
+    <table>
+      <thead><tr><th>股价</th><th class="r">市值</th><th class="r">PE26E</th><th class="r">PE27E</th><th class="r">股息率</th><th class="r">2026 股东回报率</th><th class="r">EV/EBITDA</th></tr></thead>
+      <tbody>
+        <tr><td class="down">$38 (悲观)</td><td class="r m">$12.8B</td><td class="r m">12.9×</td><td class="r m">11.1×</td><td class="r m">3.1%</td><td class="r m up">11.7%</td><td class="r m">6.3×</td></tr>
+        <tr class="hl-row"><td><strong>$40.6 (现价)</strong></td><td class="r m">$13.7B</td><td class="r m">13.8×</td><td class="r m">11.8×</td><td class="r m">2.86%</td><td class="r m up"><strong>~11%</strong></td><td class="r m">6.8×</td></tr>
+        <tr><td>$50 (合理中值)</td><td class="r m">$16.9B</td><td class="r m">16.9×</td><td class="r m">14.6×</td><td class="r m">2.3%</td><td class="r m">8.9%</td><td class="r m">8.5×</td></tr>
+        <tr><td class="up">$54 (合理上沿)</td><td class="r m">$18.3B</td><td class="r m">18.3×</td><td class="r m">15.7×</td><td class="r m">2.1%</td><td class="r m">8.2%</td><td class="r m">9.3×</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);font-family:var(--mono)">EPS 假设：2025 实际 $2.51；2026E $2.95（Zacks 一致预期，含必胜客授权费节省）/ 2027E $3.43。股份数用 ~338M（2026-06-30 已发行 342.5M，持续回购中）。净现金 = 现金 $4.85 亿 + 短投 $9.01 亿 + 长期存款/票据 $6.88 亿 − 短借 $0.66 亿 ≈ $20.1 亿（6-30 时点，并购前）；交割后扣除 $1.2B 过桥贷款 → ~$0.8B。EV/EBITDA 用 2026E EBITDA ~$1.9B。</p>
+  </div>
+
+  <!-- 2 经营状况 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">02</span>经营状况：2026Q2 / H1 —— 全面创纪录的一季</div>
+    <p class="lead">Q2 的核心叙事是"量增价减、利润率仍扩张"：同店交易量 +5%（连续 14 季增长），但客单价下滑拖累同店销售额仅 +1%；靠供应链、精简运营与费用管控，OP margin 仍逆势扩张 20bps。</p>
+
+    <div class="kpis">
+      <div class="kpi g"><div class="l">Q2 总营收</div><div class="v">$3,138M</div><div class="c up">+13% / 剔除汇率 +6%</div></div>
+      <div class="kpi g"><div class="l">Q2 经营利润</div><div class="v">$348M</div><div class="c up">+14% · Q2 历史新高</div></div>
+      <div class="kpi g"><div class="l">Q2 OP Margin</div><div class="v">11.1%</div><div class="c up">+20bps · 连续9季扩张</div></div>
+      <div class="kpi a"><div class="l">Q2 餐厅利润率</div><div class="v">16.1%</div><div class="c neu">同比持平（骑手成本拖累）</div></div>
+      <div class="kpi g"><div class="l">Q2 摊薄 EPS</div><div class="v">$0.70</div><div class="c up">+21% / 剔除汇率 +14%</div></div>
+      <div class="kpi g"><div class="l">H1 营收 / 经营利润</div><div class="v">$6,409M</div><div class="c up">+11% / OP $795M +13%</div></div>
+      <div class="kpi b"><div class="l">H1 同店销售 / 交易量</div><div class="v">+1% / +5%</div><div class="c neu">客单价为主要拖累</div></div>
+      <div class="kpi b"><div class="l">门店总数</div><div class="v">19,297</div><div class="c up">H1 净增 ~1,200（去年约2倍）</div></div>
+    </div>
+
+    <div class="chartbox row">
+      <div><div class="ct">Q2 分品牌收入与经营利润 ($M) — 25Q2 vs 26Q2</div><canvas id="brandChart" height="200"></canvas></div>
+      <div><div class="ct">分品牌餐厅利润率 (%) — 25Q2 vs 26Q2</div><canvas id="marginChart" height="200"></canvas></div>
+    </div>
+
+    <table>
+      <thead><tr><th>指标（Q2 2026）</th><th class="r">集团</th><th class="r">KFC</th><th class="r">必胜客</th></tr></thead>
+      <tbody>
+        <tr><td>门店数</td><td class="r m">19,297</td><td class="r m">13,789</td><td class="r m">4,549</td></tr>
+        <tr><td>系统销售额同比</td><td class="r m up">+6%</td><td class="r m up">+7%</td><td class="r m up">+6%</td></tr>
+        <tr><td>同店销售额同比</td><td class="r m up">+1%</td><td class="r m up">+1%</td><td class="r m up">+1%（转正）</td></tr>
+        <tr><td>同店交易量同比</td><td class="r m up">+5%</td><td class="r m up">+4%</td><td class="r m up">+13%</td></tr>
+        <tr><td>客单价同比</td><td class="r m down">—</td><td class="r m down">-3%</td><td class="r m down">-11%</td></tr>
+        <tr><td>收入 ($M)</td><td class="r m">3,138</td><td class="r m">2,338</td><td class="r m">613</td></tr>
+        <tr><td>经营利润 ($M)</td><td class="r m">348</td><td class="r m">332</td><td class="r m">51</td></tr>
+        <tr><td>OP Margin</td><td class="r m">11.1% (+0.2)</td><td class="r m">14.2% (+0.2)</td><td class="r m">8.3% (持平)</td></tr>
+        <tr class="hl-row"><td>餐厅利润率</td><td class="r m">16.1% (持平)</td><td class="r m up">17.1% (+0.2)</td><td class="r m down">12.9% (-0.4)</td></tr>
+        <tr><td>外卖占公司销售</td><td class="r m">~54%</td><td class="r m">~54%</td><td class="r m">~52%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-g">
+      <div class="call-t">★ 亮点：三重引擎同时点火</div>
+      <p><strong>① 开店再加速</strong>：Q2 净增 560 家（Q2 历史新高，同比 +67%），其中 41% 由加盟商开出；H1 净增约 1,200 家（去年同期约 2 倍），进入 200+ 个新城市；全年 20,000 店、净增 1,900 家的目标进度良好。<strong>② 交易量强劲</strong>：同店交易量 +5%，连续 14 个季度正增长，说明客流和渗透仍在扩张，不是靠涨价。<strong>③ 利润率逆势扩张</strong>：OP margin 连续 9 季扩张，KFC 餐厅利润率 17.1%（+20bps），反映供应链锁价 + 精简运营 + 自动化见效。</p>
+    </div>
+    <div class="call call-a">
+      <div class="call-t">⚠ 隐忧：增长"质量"与外卖成本</div>
+      <p><strong>以价换量</strong>：同店销售额仅 +1%，但交易量 +5%——意味着客单价持续走低（KFC -3%、必胜客 -11%），增长依赖低价小单（KCOFFEE、KPRO、一人食、必胜客 WOW），"量"的含金量下降。<strong>外卖成本上升</strong>：外卖销售同比 +26%，占公司销售从 45% 升至 54%，抬高骑手（配送）成本，直接压制餐厅利润率——Q2 集团餐厅利润率因此被"拉平"（16.1% 持平，若剔除外卖结构变化本可 improve）。这是市场质疑"盈利可持续性"的核心切口。</p>
+    </div>
+    <p style="font-size:11px;color:var(--muted);font-family:var(--mono)">口径提示：KFC/必胜客系统销售额、同店销售额均为剔除汇率口径；集团营收 +13% 含汇率顺风（人民币升值），剔除汇率 +6%。</p>
+  </div>
+
+  <!-- 3 现金流 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">03</span>现金流：利润的"现金含量"极高</div>
+    <p class="lead">餐饮是重现金流生意，百胜的利润几乎全部转化为现金，且几乎零有息负债（并购前）。这是估值底部的第一层支撑。</p>
+
+    <div class="chartbox"><div class="ct">H1 现金流对比 ($M) — 2025H1 vs 2026H1</div><canvas id="cashChart" height="120"></canvas></div>
+
+    <table>
+      <thead><tr><th>现金流指标 ($M)</th><th class="r">2026H1</th><th class="r">2025H1</th><th class="r">同比</th></tr></thead>
+      <tbody>
+        <tr><td>净利润（含少数股东）</td><td class="r m">595</td><td class="r m">546</td><td class="r m up">+9%</td></tr>
+        <tr><td>经营活动现金流 (OCF)</td><td class="r m">976</td><td class="r m">864</td><td class="r m up">+13%</td></tr>
+        <tr><td>资本开支 (Capex)</td><td class="r m">(271)</td><td class="r m">(259)</td><td class="r m">+5%</td></tr>
+        <tr class="hl-row"><td><strong>自由现金流 (FCF)</strong></td><td class="r m"><strong>705</strong></td><td class="r m">605</td><td class="r m up">+17%</td></tr>
+        <tr><td>OCF / 净利润</td><td class="r m up">164%</td><td class="r m up">158%</td><td class="r m">现金含量高</td></tr>
+        <tr><td>回购 + 股息（H1）</td><td class="r m">718</td><td class="r m">548</td><td class="r m up">+31%</td></tr>
+        <tr><td>股东回报 / FCF</td><td class="r m">102%</td><td class="r m">91%</td><td class="r m">略超 FCF</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-b">
+      <div class="call-t">现金流三句话</div>
+      <p>① <strong>利润含金量高</strong>：OCF/净利润 164%，非现金项目（折旧 $2.37 亿、租赁摊销 $2.11 亿）是主因，说明会计利润被真实现金验证。② <strong>资本开支可控</strong>：H1 capex 仅 $2.71 亿，全年指引 $6–7 亿——门店扩张主要走加盟（轻资产），资本强度下降。③ <strong>FCF 稳步走高</strong>：H1 FCF $7.05 亿（+17%），全年化约 $8 亿+，是分红/回购的现金来源。</p>
+    </div>
+  </div>
+
+  <!-- 4 分红与回购 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">04</span>分红与回购（股东回报）：可持续性拆解【核心】</div>
+    <p class="lead">这是"$40.6 是贵还是便宜"最有力的角度。公司把赚到的现金大规模返还股东；股价越低，回购越高效、被动回报率越高。</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1.4fr;gap:24px;margin-bottom:24px;align-items:center">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:28px;text-align:center">
+        <div class="ct" style="margin-bottom:10px">2026 年股东回报率 @ $40.6</div>
+        <div class="big-yield">~11%</div>
+        <div style="font-size:12px;color:var(--ink2);margin-top:10px">$15 亿 ÷ $137 亿市值<br>(股息 ~$4 亿 + 回购 ~$11 亿)</div>
+      </div>
+      <div>
+        <div class="chartbox" style="margin:0"><div class="ct">回购 + 股息构成与历史 ($M)</div><canvas id="returnChart" height="150"></canvas></div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>股东回报要素</th><th>金额 / 计划</th><th>可持续性判断</th></tr></thead>
+      <tbody>
+        <tr><td><strong>2026 年总返还</strong></td><td class="m">$1.5B（≈市值 11%）</td><td class="m up">★ 承诺不变，H1 已执行 $7.18 亿</td></tr>
+        <tr><td>季度股息</td><td class="m">$0.29/股（2026 已上调 +21%）</td><td class="m up">股息率 2.86%，9 年 CAGR ~13%</td></tr>
+        <tr><td>回购执行</td><td class="m">H1 回购 $5.15 亿</td><td class="m up">低股价下回购效率提升</td></tr>
+        <tr><td>2024–2026 三年计划</td><td class="m">合计 $4.5B</td><td class="m">三年累计 ≈ 市值 33%</td></tr>
+        <tr class="hl-row"><td><strong>2027 年起新政策</strong></td><td class="m">返还 ≈ 100% 自由现金流（扣 NCI 分红）</td><td class="m up">年化 ~$0.9B 至 &gt;$1B（2028 超 $1B）</td></tr>
+        <tr><td>少数股东分红（NCI）</td><td class="m">H1 $32M / 全年约 $65M</td><td class="m">规模小、稳定</td></tr>
+        <tr><td>上市以来累计返还</td><td class="m">2017 年至今 ≈ $5.8B</td><td class="m">占当前市值约 42%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-a">
+      <div class="call-t">可持续性关键：2026 是"高返还 + 大并购"双重支出年</div>
+      <p><strong>2026 年 $15 亿返还 &gt; 全年 FCF（约 $8 亿）</strong>，缺口约 $7 亿，由资产负债表上的存量现金补足——属于"高位一次性"而非长期中枢。叠加 8 月必胜客品牌并购消耗约 <strong>$12 亿</strong>现金（用过桥贷款融资），2026 年现金净流出显著。<strong>但核心是 2027 年起的"新常态"</strong>：公司明确承诺返还约 100% 自由现金流（扣除子公司少数股东分红），对应年化 <strong>$0.9B–$1B+</strong>。以 $40.6 计，归一化前瞻股东回报率约 <strong>7%</strong>——不依赖杠杆、不依赖资产负债表消耗，可持续性强。因此 11% 的当年回报率不可外推，但 7% 的"底仓收益率"是扎实的。</p>
+    </div>
+    <div class="call call-r">
+      <div class="call-t">并购融资的短期不确定性（股价压制因素之一）</div>
+      <p>为支付 $12 亿对价，公司取得一笔 <strong>约 $12 亿等值、期限≤12 个月、利率约 2% 的离岸人民币过桥贷款</strong>。管理层在 Q3 交流中透露长期方案倾向<strong>可转债</strong>：转股溢价率 70%–80%、票息接近 0、若股价涨幅超 80% 股权稀释仅约 1–2 个点，并可能搭配上限看涨期权对冲。市场担忧点在于：① 短期负债上升（"零杠杆"估值溢价削弱）；② 未来股本稀释的不确定性。这是"短空长多"的典型结构——真正落地后不确定性消除。</p>
+    </div>
+  </div>
+
+  <!-- 5 分部情况 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">05</span>分部（分子公司 / 分品牌）经营与可持续性</div>
+    <p class="lead">集团由 KFC（贡献约 94% 经营利润）与必胜客两大主力，加 Taco Bell / Lavazza 等"其他"构成；必胜客并购后从"被授权方"变为"品牌所有人"，是未来利润率弹性的关键变量。</p>
+
+    <table>
+      <thead><tr><th>分部</th><th>定位</th><th>Q2 表现</th><th>可持续性判断</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>肯德基 KFC</strong><br><span style="font-size:11px;color:var(--muted)">13,789 店</span></td>
+          <td>利润引擎 · 现金流基本盘</td>
+          <td class="m">收入 $2,338M(+12%)<br>经营利润 $332M(+14%)<br>餐厅利润率 17.1%(+0.2)</td>
+          <td>强。系统销售额 +7%、客单价仅 -3%、利润率扩张，靠 KCOFFEE(3,300+ 店，拉动母店中个位数销售)、KPRO、车速取(8,000 店) 拓展场景。护城河来自规模+供应链+会员。</td>
+        </tr>
+        <tr>
+          <td><strong>必胜客 Pizza Hut</strong><br><span style="font-size:11px;color:var(--muted)">4,549 店</span></td>
+          <td>第二增长曲线 · 利润率修复弹性</td>
+          <td class="m">收入 $613M(+11%)<br>经营利润 $51M(+11%)<br>餐厅利润率 12.9%(-0.4)</td>
+          <td>改善中但承压。同店销售转正(+1%)、交易量 +13%，但客单价 -11% 拖累；H1 OP margin 9.8%(+0.6)已改善。并购后取消 3% 授权费 → 餐厅利润率有望再 +2.8pct、集团 OP margin +0.6pct；净开店目标从 600 上调至 2027–28 年超 800 家/年。</td>
+        </tr>
+        <tr>
+          <td><strong>其他</strong><br><span style="font-size:11px;color:var(--muted)">Taco Bell / Lavazza 等</span></td>
+          <td>孵化 · 规模尚小</td>
+          <td class="m">合计占比小，含未分摊总部费用（集团 OP &lt; KFC+PH 之和，差额即总部费用与其他亏损）</td>
+          <td>短期不改大局；Lavazza 咖啡、Taco Bell 仍处投入期，谨慎看待。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="call call-g">
+      <div class="call-t">★ 分部层面的核心逻辑：利润率"填谷"</div>
+      <p>集团 OP margin 的持续扩张，很大程度靠"<strong>强势品牌更强（KFC 效率提升）+ 弱势品牌补涨（必胜客利润率修复）</strong>"。必胜客餐厅利润率（12.9%）与 KFC（17.1%）仍有约 4pct 差距，管理层目标是"接近 KFC"。必胜客品牌所有权带来菜单/店型/新品自主权（如 Burger Bar 汉堡模块，Q2 母店双位数增量销售），是未来 2–3 年利润率与开店的双重弹性来源。</p>
+    </div>
+  </div>
+
+  <!-- 6 估值框架 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">06</span>估值框架：四方法交叉验证 → 合理价值区间</div>
+    <div class="chartbox"><div class="ct">合理价值区间汇总 ($/股) — 现价 $40.6 vs 各方法</div><canvas id="valChart" height="130"></canvas></div>
+
+    <table>
+      <thead><tr><th>估值方法</th><th>关键假设</th><th class="r">保守</th><th class="r">中性</th><th class="r">乐观</th></tr></thead>
+      <tbody>
+        <tr><td><strong>PE 法 (2026E)</strong></td><td>EPS $2.95；14× / 15× / 17×</td><td class="r m">$41</td><td class="r m">$44</td><td class="r m">$50</td></tr>
+        <tr><td><strong>PE 法 (2027E)</strong></td><td>EPS $3.43；13× / 15× / 16×</td><td class="r m">$45</td><td class="r m">$51</td><td class="r m">$55</td></tr>
+        <tr><td><strong>EV/EBITDA</strong></td><td>EBITDA $1.9B；7× / 9× / 10× + 净现金 $0.8B</td><td class="r m">$42</td><td class="r m">$53</td><td class="r m">$59</td></tr>
+        <tr><td><strong>FCF 收益率法</strong></td><td>FCF ~$0.8B；5.5% / 5.0% / 4.5%</td><td class="r m">$43</td><td class="r m">$47</td><td class="r m">$53</td></tr>
+        <tr><td><strong>股东回报反推</strong></td><td>归一化 $0.95B/年；要求 8% / 7% / 6%</td><td class="r m">$35</td><td class="r m">$40</td><td class="r m">$47</td></tr>
+        <tr class="hl-row"><td><strong>综合合理价值</strong></td><td>四法收敛（剔除极端）</td><td class="r m"><strong>$44</strong></td><td class="r m"><strong>$50</strong></td><td class="r m"><strong>$54</strong></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:11px;color:var(--muted);font-family:var(--mono)">"股东回报反推"给出最保守区间（本质是"无增长"的债券化估值，约 $40 是硬底）；PE / EV-EBITDA 计入增长，给出更高值。合理价值取四法中枢 <strong>$45–54</strong>，中点约 $50。当前 $40.6 → 上行空间约 +11%（保守）至 +33%（乐观）。</p>
+
+    <div class="call call-b">
+      <div class="call-t">反向推演：当前价格隐含了"永久停滞"</div>
+      <p>$40.6 对应 <strong>EV/EBITDA 仅 6.8×、EV/EBIT ~8.9×、2026E PE 13.8×、FCF 收益率 5.8%</strong>，均处上市以来低位区。这个定价隐含的假设是：同店长期零增长甚至负增长、利润率见顶、中国消费长期不复苏——而现实是经营利润/利润率/EPS 仍在双位数增长。市场给的是"衰退估值"，公司交的是"增长业绩"，这个背离是全部安全边际的来源。</p>
+    </div>
+    <div class="call call-a">
+      <div class="call-t">估值不可忽视的两个变量</div>
+      <p>① <strong>必胜客并购融资演绎</strong>：若可转债条款摊薄可控（转股溢价 70–80%、摊薄 1–2pct），偏正面；若被迫以更高成本或更大摊薄融资，短期压制估值。② <strong>人民币汇率</strong>：营收本币计价、报表折美元，人民币若大幅贬值将侵蚀美元 EPS（Q2 汇率反而贡献了约 4 美分顺风）。</p>
+    </div>
+  </div>
+
+  <!-- 7 价格阶梯 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">07</span>多少钱合适：价格阶梯与操作区间</div>
+    <div class="price-ladder">
+      <div class="pl-cell" style="background:var(--redL)">
+        <div class="pl-zone" style="color:var(--red)">深度低估</div>
+        <div class="pl-price" style="color:var(--red)">&lt;$38</div>
+        <div class="pl-note">2026E PE&lt;13×<br>股东回报率&gt;11%<br>重仓买入</div>
+      </div>
+      <div class="pl-cell" style="background:#fbf3e8">
+        <div class="pl-zone" style="color:var(--amber)">低估 · 加仓</div>
+        <div class="pl-price" style="color:var(--amber)">$38–44</div>
+        <div class="pl-note">现价落此区<br>回报率~10–11%<br>分批建仓</div>
+      </div>
+      <div class="pl-cell" style="background:var(--greenL)">
+        <div class="pl-zone" style="color:var(--green)">合理 · 持有</div>
+        <div class="pl-price" style="color:var(--green)">$44–51</div>
+        <div class="pl-note">PE 15–17×<br>合理中枢附近<br>持有</div>
+      </div>
+      <div class="pl-cell" style="background:#f4f0fb">
+        <div class="pl-zone" style="color:var(--purple)">合理上沿</div>
+        <div class="pl-price" style="color:var(--purple)">$51–57</div>
+        <div class="pl-note">PE 17–19×<br>需同店 &gt;2% 支撑<br>分批减</div>
+      </div>
+      <div class="pl-cell" style="background:var(--surface-alt)">
+        <div class="pl-zone" style="color:var(--ink2)">高估</div>
+        <div class="pl-price" style="color:var(--ink2)">&gt;$57</div>
+        <div class="pl-note">PE&gt;19×<br>需消费强复苏<br>止盈</div>
+      </div>
+    </div>
+    <div class="call call-g">
+      <div class="call-t">一句话回答"多少钱合适"</div>
+      <p><strong>合理价值 $45–54；当前 $40.6 偏低，安全边际约 11–33%。</strong>$38–44 是理想加仓区间——这里既有约 10–11% 的股东回报率（股息+回购）托底，又有必胜客并购后利润率抬升的期权。向上催化需要：① 可转债融资方案落地且摊薄可控；② 同店销售实质转正（+2~3%）验证 H2 高基数下韧性；③ 中国消费出现边际改善。在催化兑现前，宜把它当作"高现金回报的价值股"持有，而非"高成长股"。</p>
+    </div>
+  </div>
+
+  <!-- 8 股价归因 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">08</span>近期二级市场价格下滑归因</div>
+    <p class="lead">从 2026 年上半年高点 $58.4 到 10 月 2 日的 52 周新低 $39.7，累计回撤约 32%。逐一拆解驱动因素——注意：这轮下跌几乎全部来自"估值/情绪"，而非"业绩"。</p>
+
+    <div class="chartbox"><div class="ct">价格坐标 ($/股)：52 周高 / 6 月参考价 / 现价 / 52 周低</div><canvas id="priceChart" height="110"></canvas></div>
+
+    <div class="tl">
+      <div class="tl-i neg"><div class="tl-d">2026-06-16/17</div><div class="tl-t">宣布以 $12 亿收购必胜客中国品牌所有权</div><div class="tl-x">当日股价下跌约 4.7%。市场解读为"花现金押注弱品牌 + 引入杠杆"，尽管战略上可取消 3% 授权费。</div></div>
+      <div class="tl-i"><div class="tl-d">2026-07-30</div><div class="tl-t">Q2 业绩全面超预期</div><div class="tl-x">营收 +13%、经营利润 +14%、EPS +21%。但市场关注点转向"外卖成本上升 + H2 高基数"，股价未获提振。</div></div>
+      <div class="tl-i neg"><div class="tl-d">2026-08-07</div><div class="tl-t">并购交割，$12 亿过桥贷款落地</div><div class="tl-x">负债端从"几乎零有息负债"转为短期有 $12 亿过桥，市场对"零杠杆溢价"消失与后续融资摊薄产生担忧。</div></div>
+      <div class="tl-i neg"><div class="tl-d">2026-08</div><div class="tl-t">华东两波台风冲击旺季经营</div><div class="tl-x">华东是公司优势利润区域，极端天气对 8 月经营造成负面影响（公司追加营销对冲）。</div></div>
+      <div class="tl-i neg"><div class="tl-d">2026-09-15/17</div><div class="tl-t">行业逆风与"跌了 21.6%"叙事发酵</div><div class="tl-x">晨星指出地产下行+缺乏刺激压制消费；Zacks 统计 YUMC 6 个月跌 21.6%，跑输行业与标普 500，趋势卖盘加速。</div></div>
+      <div class="tl-i neg"><div class="tl-d">2026-09-19</div><div class="tl-t">公司交流透露"Q3 阶段性承压"</div><div class="tl-x">7 月符合预期，8 月受台风影响，9 月中秋假期错配；管理层预计 9 月下旬改善但存不确定性。短期业绩能见度下降。</div></div>
+      <div class="tl-i neg"><div class="tl-d">2026-10-02</div><div class="tl-t">创 52 周新低 $39.7</div><div class="tl-x">技术面破位，趋势与量化资金卖出；同时公司仍在低位持续回购（10-02 港交所回购 25,100 股）。</div></div>
+    </div>
+
+    <table>
+      <thead><tr><th>#</th><th>归因因素</th><th>性质</th><th>对基本面的实质影响</th></tr></thead>
+      <tbody>
+        <tr><td class="m">1</td><td><strong>必胜客并购的杠杆与摊薄疑虑</strong></td><td class="m">情绪/结构</td><td>短空长多：消耗现金+引入 $12 亿过桥；但取消 3% 授权费增厚利润率与 EPS，中长期正面。</td></tr>
+        <tr><td class="m">2</td><td><strong>外卖成本上升（骑手成本）</strong></td><td class="m">真实成本</td><td>外卖占比升至 54%，压制餐厅利润率（Q2 持平）；但管理层称 H2 骑手成本压力较 H1 缓解，长期占比稳定 50–60%。</td></tr>
+        <tr><td class="m">3</td><td><strong>客单价下滑 / 以价换量</strong></td><td class="m">增长质量</td><td>同店 +1% 靠量（+5%）撑，价格贡献为负；市场担心"低价策略难扭转同店疲软"、侵蚀高端定位。</td></tr>
+        <tr><td class="m">4</td><td><strong>H2 高基数 + Q3 承压</strong></td><td class="m">真实/季节性</td><td>去年外卖平台补贴大战抬高基数；叠加 8 月台风、9 月中秋错配，短期增速能见度下降。</td></tr>
+        <tr><td class="m">5</td><td><strong>中国消费疲软 / 宏观</strong></td><td class="m">宏观</td><td>地产下行、缺乏刺激、通缩预期压制可选消费；餐饮行业整体承压，YUMC 虽跑赢但仍受贝塔拖累。</td></tr>
+        <tr><td class="m">6</td><td><strong>估值/情绪/资金面</strong></td><td class="m">估值</td><td>外资对中国消费配置意愿偏弱、ADR 情绪承压；新低触发趋势与量化卖盘。但分析师一致仍偏多（12 买入 / 1 持有，平均目标价约 $61）。</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-r">
+      <div class="call-t">核心判断：这是"倍数杀"，不是"盈利杀"</div>
+      <p>逐项看，只有 #2（外卖成本）、#4（高基数/天气）是真实的当期经营变量，且均属"可控/可逆"；#1 是结构性短空长多；#3 是增长质量的边际问题（量仍在增）；#5 是外部贝塔；#6 是情绪与资金。与此同时，经营利润、OP margin、EPS 全部创历史新高，且公司仍在低位大规模回购。<strong>股价下跌主要反映的是估值倍数的压缩（PE 从年初约 19× 压缩至 13.8×），而非盈利的下修</strong>——盈利预期（2026E $2.95 / 2027E $3.43）在近 30 天保持稳定。</p>
+    </div>
+  </div>
+
+  <!-- 9 风险与跟踪 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">09</span>关键变量、风险与后续跟踪点</div>
+    <table>
+      <thead><tr><th>跟踪点</th><th>时间窗</th><th>看什么</th><th>触发含义</th></tr></thead>
+      <tbody>
+        <tr><td><strong>2026 Q3 财报</strong></td><td class="m">2026-11</td><td>同店销售能否守住 +1% 以上；骑手成本是否如管理层所述缓解；Q3 天气/假期影响的最终读数</td><td class="m">同店≥+2% → 上调；转负 → 下调至 WATCH</td></tr>
+        <tr><td><strong>必胜客并购长期融资</strong></td><td class="m">未来 6–12 月</td><td>过桥贷款是否转为可转债；转股溢价率、票息、潜在摊薄幅度</td><td class="m">摊薄&lt;2pct → 利好；条件恶化 → 压制估值</td></tr>
+        <tr><td><strong>全年目标兑现</strong></td><td class="m">2027-02（年报）</td><td>20,000 店/净增 1,900 家；$1.5B 股东回报；capex $6–7 亿；EPS 双位数增长</td><td class="m">全部达成 → 验证"增长+回报"双轮</td></tr>
+        <tr><td><strong>KFC 客单价与同店</strong></td><td class="m">逐季</td><td>客单价降幅是否收窄；KCOFFEE/KPRO 母店拉动是否可持续</td><td class="m">客单价企稳 → 同店质量改善</td></tr>
+        <tr><td><strong>必胜客利润率修复</strong></td><td class="m">逐季</td><td>授权费取消后餐厅利润率能否向 KFC（17%）靠拢</td><td class="m">差距缩小 → 集团 OP margin 上台阶</td></tr>
+        <tr><td><strong>人民币汇率</strong></td><td class="m">持续</td><td>美元 EPS 的折算影响</td><td class="m">大幅贬值 → 下修美元 EPS</td></tr>
+        <tr><td><strong>股东回报执行</strong></td><td class="m">逐季</td><td>回购节奏、2027 起"100% FCF"承诺落地</td><td class="m">回购不低于指引 → 支撑股价</td></tr>
+      </tbody>
+    </table>
+
+    <div class="call call-a">
+      <div class="call-t">主要风险</div>
+      <p>① <strong>消费持续疲软</strong>：若同店销售再度转负，利润率扩张引擎（主要靠精简运营与成本）将难以为继；② <strong>价格战加剧</strong>：塔斯汀（7,000+ 店）、华莱士等本土低价品牌以 10–15 元套餐抢占，可能迫使 KFC 长期维持低价姿态、侵蚀品质溢价；③ <strong>外卖成本黏性</strong>：若骑手成本降幅不及预期，餐厅利润率长期受压；④ <strong>融资摊薄</strong>：并购若以不理想的可转债条款落地；⑤ <strong>汇率与宏观</strong>。</p>
+    </div>
+  </div>
+
+  <!-- 10 结构化同步 -->
+  <div class="sec">
+    <div class="sec-t"><span class="sec-n">10</span>结构化同步结论（是否写回 data/*.json 与 CSV）</div>
+    <table>
+      <thead><tr><th>项目</th><th>结论</th><th>落点</th></tr></thead>
+      <tbody>
+        <tr><td>季度 CSV 归档（强制）</td><td class="m up">需要 · 本次建档</td><td class="m">百胜中国_NASDAQ_YUMC/data/quarterly/（利润表/资产负债表/现金流量表/分部收入 + README）</td></tr>
+        <tr><td>companies.json 字段</td><td class="m up">需要 · 小幅写回</td><td class="m">price / data_as_of / next_catalyst / scenarios / checklist / research_notes</td></tr>
+        <tr><td>logs.json</td><td class="m up">需要</td><td class="m">登记本次财报更新与 CSV 建档</td></tr>
+        <tr><td>INDEX.md / HANDOFF.md</td><td class="m up">需要</td><td class="m">更新标的覆盖状态与最近动态</td></tr>
+        <tr><td>GitHub 推送</td><td class="m">待确认</td><td class="m">按工作流：PAT 到期记录 2026-10-21，推送前需确认凭证有效</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="foot">
+  <div style="max-width:1040px;margin:0 auto">
+    数据源：百胜中国 2026 Q2 Form 10-Q（SEC，yumc-20260630.htm，2026 年 8 月提交，未经审计）+ 2026-07-30 Q2 业绩公告 + 必胜客中国并购公告（HKEX 2026-06-16 签约 / 2026-08-07 交割 / Yum! Brands 公告）+ 2025 Form 10-K（KPMG 审计）+ 公司 Q3 经营交流（2026-09-19）+ Zacks / Morningstar / 雪球行情（2026-10-06 收盘）· 现价 $40.62 · 部分 EPS/EBITDA/净现金为推算（已标注口径）· 分析日：2026-10-07<br>
+    本报告为个人研究用途，不构成投资建议。投资有风险，决策需基于自身判断。档案：Pjaaden/Stock-Research / 百胜中国_NASDAQ_YUMC · 2026Q2 财报深度解析 v1.0
+  </div>
+</div>
+
+<script>
+const C={red:'#c0392b',green:'#1e7a54',blue:'#1a4a7c',amber:'#b5590a',purple:'#6b46c1',grid:'#e6e0d6'};
+const F={family:"'IBM Plex Mono', monospace",size:11};
+Chart.defaults.font=F;Chart.defaults.color='#9a9490';
+
+new Chart(document.getElementById('brandChart'),{type:'bar',
+  data:{labels:['KFC','必胜客'],
+    datasets:[
+      {label:'25Q2 收入',data:[2096,554],backgroundColor:C.blueL,borderColor:C.blue,borderWidth:1},
+      {label:'26Q2 收入',data:[2338,613],backgroundColor:C.green,borderColor:C.green,borderWidth:1}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y+'M'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'$'+v+'M'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('marginChart'),{type:'bar',
+  data:{labels:['KFC','必胜客'],
+    datasets:[
+      {label:'25Q2',data:[16.9,13.3],backgroundColor:C.blueL,borderColor:C.blue,borderWidth:1},
+      {label:'26Q2',data:[17.1,12.9],backgroundColor:C.amber,borderColor:C.amber,borderWidth:1}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': '+c.parsed.y+'%'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>v+'%'},min:10,max:19},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('cashChart'),{type:'bar',
+  data:{labels:['经营现金流','资本开支','自由现金流','股东回报'],
+    datasets:[
+      {label:'2025H1',data:[864,-259,605,548],backgroundColor:C.blueL,borderColor:C.blue,borderWidth:1},
+      {label:'2026H1',data:[976,-271,705,718],backgroundColor:C.green,borderColor:C.green,borderWidth:1}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y+'M'}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'$'+v+'M'}},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('returnChart'),{type:'bar',
+  data:{labels:['2023','2024','2025','2026E'],
+    datasets:[
+      {label:'回购',data:[820,1240,1136,1100],backgroundColor:C.red,borderWidth:0,stack:'s'},
+      {label:'股息',data:[280,300,353,400],backgroundColor:C.green,borderWidth:0,stack:'s'}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y+'M'}}},
+    scales:{y:{stacked:true,grid:{color:C.grid},ticks:{callback:v=>'$'+v+'M'}},x:{stacked:true,grid:{display:false}}}}});
+
+new Chart(document.getElementById('valChart'),{type:'bar',
+  data:{labels:['PE法26E','PE法27E','EV/EBITDA','FCF收益率','股东回报反推','综合合理值'],
+    datasets:[
+      {label:'保守',data:[41,45,42,43,35,44],backgroundColor:C.redL,borderColor:C.red,borderWidth:2},
+      {label:'中性',data:[44,51,53,47,40,50],backgroundColor:C.greenL,borderColor:C.green,borderWidth:2},
+      {label:'乐观',data:[50,55,59,53,47,54],backgroundColor:'rgba(107,70,193,.1)',borderColor:C.purple,borderWidth:2}
+    ]},
+  options:{responsive:true,plugins:{legend:{labels:{font:F}},tooltip:{callbacks:{label:c=>c.dataset.label+': $'+c.parsed.y}}},
+    scales:{y:{grid:{color:C.grid},ticks:{callback:v=>'$'+v},min:30,max:62},x:{grid:{display:false}}}}});
+
+new Chart(document.getElementById('priceChart'),{type:'bar',
+  data:{labels:['52周高 (2026上半年)','6月参考价','现价 (10/6)','52周低 (10/2)'],
+    datasets:[{label:'价格($)',data:[58.39,41.0,40.62,39.72],
+      backgroundColor:[C.blueL,C.amberL,C.redL,C.red],borderColor:[C.blue,C.amber,C.red,C.red],borderWidth:2}]},
+  options:{responsive:true,plugins:{legend:{display:false}},indexAxis:'y',
+    scales:{x:{grid:{color:C.grid},ticks:{callback:v=>'$'+v}},y:{grid:{display:false}}}}});
+</script>
+
+</body>
+</html>
